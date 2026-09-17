@@ -1,0 +1,169 @@
+//
+// AUTO-GENERATED FILE, DO NOT MODIFY!
+//
+// @dart=2.0
+
+// ignore_for_file: unused_element, unused_import
+// ignore_for_file: always_put_required_named_parameters_first
+// ignore_for_file: constant_identifier_names
+// ignore_for_file: lines_longer_than_80_chars
+
+import 'package:crossly/api.dart';
+import 'package:test/test.dart';
+
+// tests for UpdateMeTemplateResponse
+void main() {
+  final instance = UpdateMeTemplateResponse();
+
+  group('test UpdateMeTemplateResponse', () {
+    // String id
+    test('to test the property `id`', () async {
+      // TODO
+    });
+
+    // String userId
+    test('to test the property `userId`', () async {
+      // TODO
+    });
+
+    // String scope
+    test('to test the property `scope`', () async {
+      // TODO
+    });
+
+    // String name
+    test('to test the property `name`', () async {
+      // TODO
+    });
+
+    // Optional short blurb the seller can attach to remember what it's for.
+    // String notes
+    test('to test the property `notes`', () async {
+      // TODO
+    });
+
+    // Primary description body. For scope='description' this is the  snippet body; for scope='listing' this is the default description  the seller wants pre-filled.
+    // String description
+    test('to test the property `description`', () async {
+      // TODO
+    });
+
+    // A/B variants for description. Populated for scope='listing';  typically null for scope='description' (a snippet is one string).
+    // List<String> descriptionVariants (default value: const [])
+    test('to test the property `descriptionVariants`', () async {
+      // TODO
+    });
+
+    // String title
+    test('to test the property `title`', () async {
+      // TODO
+    });
+
+    // List<String> titleVariants (default value: const [])
+    test('to test the property `titleVariants`', () async {
+      // TODO
+    });
+
+    // String brand
+    test('to test the property `brand`', () async {
+      // TODO
+    });
+
+    // Master condition enum — new/like_new/good/fair/poor.
+    // String condition
+    test('to test the property `condition`', () async {
+      // TODO
+    });
+
+    // String color
+    test('to test the property `color`', () async {
+      // TODO
+    });
+
+    // String material
+    test('to test the property `material`', () async {
+      // TODO
+    });
+
+    // String size
+    test('to test the property `size`', () async {
+      // TODO
+    });
+
+    // String sizeSystem
+    test('to test the property `sizeSystem`', () async {
+      // TODO
+    });
+
+    // num weightOz
+    test('to test the property `weightOz`', () async {
+      // TODO
+    });
+
+    // String department
+    test('to test the property `department`', () async {
+      // TODO
+    });
+
+    // String gender
+    test('to test the property `gender`', () async {
+      // TODO
+    });
+
+    // String style
+    test('to test the property `style`', () async {
+      // TODO
+    });
+
+    // String pattern
+    test('to test the property `pattern`', () async {
+      // TODO
+    });
+
+    // String itemType
+    test('to test the property `itemType`', () async {
+      // TODO
+    });
+
+    // List<String> tags (default value: const [])
+    test('to test the property `tags`', () async {
+      // TODO
+    });
+
+    // When set, form's category picker prompts \"Use your default for  this category\" on match.
+    // String defaultForCategory
+    test('to test the property `defaultForCategory`', () async {
+      // TODO
+    });
+
+    // bool isDefault
+    test('to test the property `isDefault`', () async {
+      // TODO
+    });
+
+    // URL-safe random token. Populated by POST /me/templates/:id/share;  the /public/templates/:token route surfaces a read-only view any  visitor can browse + import.
+    // String shareToken
+    test('to test the property `shareToken`', () async {
+      // TODO
+    });
+
+    // Snippet ordering — kept for scope='description' back-compat with  the description_templates.sort_order behavior.
+    // num sortOrder
+    test('to test the property `sortOrder`', () async {
+      // TODO
+    });
+
+    // DateTime createdAt
+    test('to test the property `createdAt`', () async {
+      // TODO
+    });
+
+    // DateTime updatedAt
+    test('to test the property `updatedAt`', () async {
+      // TODO
+    });
+
+
+  });
+
+}

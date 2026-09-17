@@ -1,0 +1,21 @@
+# crossly_buyer.model.CreateCbxRedemptionQuoteResponse
+
+## Load the model package
+```dart
+import 'package:crossly_buyer/api.dart';
+```
+
+## Properties
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**serviceKind** | **String** |  | 
+**label** | **String** |  | 
+**listPriceCents** | **num** |  | 
+**chargedCents** | **num** |  | 
+**discountBps** | **num** |  | 
+**baseUnits** | **String** |  | 
+**centsPerToken** | **num** |  | 
+
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+
