@@ -1,0 +1,224 @@
+//
+// AUTO-GENERATED FILE, DO NOT MODIFY!
+//
+// @dart=2.0
+
+// ignore_for_file: unused_element, unused_import
+// ignore_for_file: always_put_required_named_parameters_first
+// ignore_for_file: constant_identifier_names
+// ignore_for_file: lines_longer_than_80_chars
+
+part of openapi.api;
+
+class GetVaultMarketTaxResponsePurchases {
+  /// Returns a new [GetVaultMarketTaxResponsePurchases] instance.
+  GetVaultMarketTaxResponsePurchases({
+    @required this.vaultItemId,
+    this.title,
+    @required this.at,
+    @required this.how,
+    this.costCents,
+  });
+
+  String vaultItemId;
+
+  String title;
+
+  DateTime at;
+
+  GetVaultMarketTaxResponsePurchasesHowEnum how;
+
+  num costCents;
+
+  @override
+  bool operator ==(Object other) => identical(this, other) || other is GetVaultMarketTaxResponsePurchases &&
+     other.vaultItemId == vaultItemId &&
+     other.title == title &&
+     other.at == at &&
+     other.how == how &&
+     other.costCents == costCents;
+
+  @override
+  int get hashCode =>
+  // ignore: unnecessary_parenthesis
+    (vaultItemId == null ? 0 : vaultItemId.hashCode) +
+    (title == null ? 0 : title.hashCode) +
+    (at == null ? 0 : at.hashCode) +
+    (how == null ? 0 : how.hashCode) +
+    (costCents == null ? 0 : costCents.hashCode);
+
+  @override
+  String toString() => 'GetVaultMarketTaxResponsePurchases[vaultItemId=$vaultItemId, title=$title, at=$at, how=$how, costCents=$costCents]';
+
+  Map<String, dynamic> toJson() {
+    final json = <String, dynamic>{};
+      json[r'vaultItemId'] = vaultItemId;
+    if (title != null) {
+      json[r'title'] = title;
+    }
+      json[r'at'] = at.toUtc().toIso8601String();
+      json[r'how'] = how;
+    if (costCents != null) {
+      json[r'costCents'] = costCents;
+    }
+    return json;
+  }
+
+  /// Returns a new [GetVaultMarketTaxResponsePurchases] instance and imports its values from
+  /// [value] if it's a [Map], null otherwise.
+  // ignore: prefer_constructors_over_static_methods
+  static GetVaultMarketTaxResponsePurchases fromJson(dynamic value) {
+    if (value is Map) {
+      final json = value.cast<String, dynamic>();
+      return GetVaultMarketTaxResponsePurchases(
+        vaultItemId: mapValueOfType<String>(json, r'vaultItemId'),
+        title: mapValueOfType<String>(json, r'title'),
+        at: mapDateTime(json, r'at', ''),
+        how: GetVaultMarketTaxResponsePurchasesHowEnum.fromJson(json[r'how']),
+        costCents: json[r'costCents'] == null
+          ? null
+          : num.parse(json[r'costCents'].toString()),
+      );
+    }
+    return null;
+  }
+
+  static List<GetVaultMarketTaxResponsePurchases> listFromJson(dynamic json, {bool emptyIsNull, bool growable,}) =>
+    json is List && json.isNotEmpty
+      ? json.map(GetVaultMarketTaxResponsePurchases.fromJson).toList(growable: true == growable)
+      : true == emptyIsNull ? null : <GetVaultMarketTaxResponsePurchases>[];
+
+  static Map<String, GetVaultMarketTaxResponsePurchases> mapFromJson(dynamic json) {
+    final map = <String, GetVaultMarketTaxResponsePurchases>{};
+    if (json is Map && json.isNotEmpty) {
+      json
+        .cast<String, dynamic>()
+        .forEach((key, dynamic value) => map[key] = GetVaultMarketTaxResponsePurchases.fromJson(value));
+    }
+    return map;
+  }
+
+  // maps a json object with a list of GetVaultMarketTaxResponsePurchases-objects as value to a dart map
+  static Map<String, List<GetVaultMarketTaxResponsePurchases>> mapListFromJson(dynamic json, {bool emptyIsNull, bool growable,}) {
+    final map = <String, List<GetVaultMarketTaxResponsePurchases>>{};
+    if (json is Map && json.isNotEmpty) {
+      json
+        .cast<String, dynamic>()
+        .forEach((key, dynamic value) {
+          map[key] = GetVaultMarketTaxResponsePurchases.listFromJson(
+            value,
+            emptyIsNull: emptyIsNull,
+            growable: growable,
+          );
+        });
+    }
+    return map;
+  }
+}
+
+
+class GetVaultMarketTaxResponsePurchasesHowEnum {
+  /// Instantiate a new enum with the provided [value].
+  const GetVaultMarketTaxResponsePurchasesHowEnum._(this.value);
+
+  /// The underlying value of this enum member.
+  final String value;
+
+  @override
+  String toString() => value ?? '';
+
+  String toJson() => value;
+
+  static const buy = GetVaultMarketTaxResponsePurchasesHowEnum._(r'buy');
+  static const sell = GetVaultMarketTaxResponsePurchasesHowEnum._(r'sell');
+  static const pack = GetVaultMarketTaxResponsePurchasesHowEnum._(r'pack');
+  static const giftIn = GetVaultMarketTaxResponsePurchasesHowEnum._(r'gift_in');
+  static const swapIn = GetVaultMarketTaxResponsePurchasesHowEnum._(r'swap_in');
+  static const loanReturn = GetVaultMarketTaxResponsePurchasesHowEnum._(r'loan_return');
+  static const gradingIn = GetVaultMarketTaxResponsePurchasesHowEnum._(r'grading_in');
+  static const otherIn = GetVaultMarketTaxResponsePurchasesHowEnum._(r'other_in');
+  static const swapOut = GetVaultMarketTaxResponsePurchasesHowEnum._(r'swap_out');
+  static const loanCash = GetVaultMarketTaxResponsePurchasesHowEnum._(r'loan_cash');
+  static const buyback = GetVaultMarketTaxResponsePurchasesHowEnum._(r'buyback');
+  static const giftOut = GetVaultMarketTaxResponsePurchasesHowEnum._(r'gift_out');
+  static const donate = GetVaultMarketTaxResponsePurchasesHowEnum._(r'donate');
+  static const lentOut = GetVaultMarketTaxResponsePurchasesHowEnum._(r'lent_out');
+  static const otherOut = GetVaultMarketTaxResponsePurchasesHowEnum._(r'other_out');
+
+  /// List of all possible values in this [enum][GetVaultMarketTaxResponsePurchasesHowEnum].
+  static const values = <GetVaultMarketTaxResponsePurchasesHowEnum>[
+    buy,
+    sell,
+    pack,
+    giftIn,
+    swapIn,
+    loanReturn,
+    gradingIn,
+    otherIn,
+    swapOut,
+    loanCash,
+    buyback,
+    giftOut,
+    donate,
+    lentOut,
+    otherOut,
+  ];
+
+  static GetVaultMarketTaxResponsePurchasesHowEnum fromJson(dynamic value) =>
+    GetVaultMarketTaxResponsePurchasesHowEnumTypeTransformer().decode(value);
+
+  static List<GetVaultMarketTaxResponsePurchasesHowEnum> listFromJson(dynamic json, {bool emptyIsNull, bool growable,}) =>
+    json is List && json.isNotEmpty
+      ? json.map(GetVaultMarketTaxResponsePurchasesHowEnum.fromJson).toList(growable: true == growable)
+      : true == emptyIsNull ? null : <GetVaultMarketTaxResponsePurchasesHowEnum>[];
+}
+
+/// Transformation class that can [encode] an instance of [GetVaultMarketTaxResponsePurchasesHowEnum] to String,
+/// and [decode] dynamic data back to [GetVaultMarketTaxResponsePurchasesHowEnum].
+class GetVaultMarketTaxResponsePurchasesHowEnumTypeTransformer {
+  factory GetVaultMarketTaxResponsePurchasesHowEnumTypeTransformer() => _instance ??= const GetVaultMarketTaxResponsePurchasesHowEnumTypeTransformer._();
+
+  const GetVaultMarketTaxResponsePurchasesHowEnumTypeTransformer._();
+
+  String encode(GetVaultMarketTaxResponsePurchasesHowEnum data) => data.value;
+
+  /// Decodes a [dynamic value][data] to a GetVaultMarketTaxResponsePurchasesHowEnum.
+  ///
+  /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
+  /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
+  /// cannot be decoded successfully, then an [UnimplementedError] is thrown.
+  ///
+  /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
+  /// and users are still using an old app with the old code.
+  GetVaultMarketTaxResponsePurchasesHowEnum decode(dynamic data, {bool allowNull}) {
+    if (data != null) {
+      switch (data.toString()) {
+        case r'buy': return GetVaultMarketTaxResponsePurchasesHowEnum.buy;
+        case r'sell': return GetVaultMarketTaxResponsePurchasesHowEnum.sell;
+        case r'pack': return GetVaultMarketTaxResponsePurchasesHowEnum.pack;
+        case r'gift_in': return GetVaultMarketTaxResponsePurchasesHowEnum.giftIn;
+        case r'swap_in': return GetVaultMarketTaxResponsePurchasesHowEnum.swapIn;
+        case r'loan_return': return GetVaultMarketTaxResponsePurchasesHowEnum.loanReturn;
+        case r'grading_in': return GetVaultMarketTaxResponsePurchasesHowEnum.gradingIn;
+        case r'other_in': return GetVaultMarketTaxResponsePurchasesHowEnum.otherIn;
+        case r'swap_out': return GetVaultMarketTaxResponsePurchasesHowEnum.swapOut;
+        case r'loan_cash': return GetVaultMarketTaxResponsePurchasesHowEnum.loanCash;
+        case r'buyback': return GetVaultMarketTaxResponsePurchasesHowEnum.buyback;
+        case r'gift_out': return GetVaultMarketTaxResponsePurchasesHowEnum.giftOut;
+        case r'donate': return GetVaultMarketTaxResponsePurchasesHowEnum.donate;
+        case r'lent_out': return GetVaultMarketTaxResponsePurchasesHowEnum.lentOut;
+        case r'other_out': return GetVaultMarketTaxResponsePurchasesHowEnum.otherOut;
+        default:
+          if (allowNull == false) {
+            throw ArgumentError('Unknown enum value to decode: $data');
+          }
+      }
+    }
+    return null;
+  }
+
+  /// Singleton [GetVaultMarketTaxResponsePurchasesHowEnumTypeTransformer] instance.
+  static GetVaultMarketTaxResponsePurchasesHowEnumTypeTransformer _instance;
+}
+
+

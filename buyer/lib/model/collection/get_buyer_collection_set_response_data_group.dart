@@ -1,0 +1,130 @@
+//
+// AUTO-GENERATED FILE, DO NOT MODIFY!
+//
+// @dart=2.0
+
+// ignore_for_file: unused_element, unused_import
+// ignore_for_file: always_put_required_named_parameters_first
+// ignore_for_file: constant_identifier_names
+// ignore_for_file: lines_longer_than_80_chars
+
+part of openapi.api;
+
+class GetBuyerCollectionSetResponseDataGroup {
+  /// Returns a new [GetBuyerCollectionSetResponseDataGroup] instance.
+  GetBuyerCollectionSetResponseDataGroup({
+    @required this.brand,
+    @required this.category,
+    @required this.model,
+    @required this.brandSlug,
+    @required this.modelSlug,
+    @required this.total,
+    @required this.owned,
+  });
+
+  String brand;
+
+  String category;
+
+  String model;
+
+  String brandSlug;
+
+  String modelSlug;
+
+  num total;
+
+  num owned;
+
+  @override
+  bool operator ==(Object other) => identical(this, other) || other is GetBuyerCollectionSetResponseDataGroup &&
+     other.brand == brand &&
+     other.category == category &&
+     other.model == model &&
+     other.brandSlug == brandSlug &&
+     other.modelSlug == modelSlug &&
+     other.total == total &&
+     other.owned == owned;
+
+  @override
+  int get hashCode =>
+  // ignore: unnecessary_parenthesis
+    (brand == null ? 0 : brand.hashCode) +
+    (category == null ? 0 : category.hashCode) +
+    (model == null ? 0 : model.hashCode) +
+    (brandSlug == null ? 0 : brandSlug.hashCode) +
+    (modelSlug == null ? 0 : modelSlug.hashCode) +
+    (total == null ? 0 : total.hashCode) +
+    (owned == null ? 0 : owned.hashCode);
+
+  @override
+  String toString() => 'GetBuyerCollectionSetResponseDataGroup[brand=$brand, category=$category, model=$model, brandSlug=$brandSlug, modelSlug=$modelSlug, total=$total, owned=$owned]';
+
+  Map<String, dynamic> toJson() {
+    final json = <String, dynamic>{};
+      json[r'brand'] = brand;
+      json[r'category'] = category;
+      json[r'model'] = model;
+      json[r'brandSlug'] = brandSlug;
+      json[r'modelSlug'] = modelSlug;
+      json[r'total'] = total;
+      json[r'owned'] = owned;
+    return json;
+  }
+
+  /// Returns a new [GetBuyerCollectionSetResponseDataGroup] instance and imports its values from
+  /// [value] if it's a [Map], null otherwise.
+  // ignore: prefer_constructors_over_static_methods
+  static GetBuyerCollectionSetResponseDataGroup fromJson(dynamic value) {
+    if (value is Map) {
+      final json = value.cast<String, dynamic>();
+      return GetBuyerCollectionSetResponseDataGroup(
+        brand: mapValueOfType<String>(json, r'brand'),
+        category: mapValueOfType<String>(json, r'category'),
+        model: mapValueOfType<String>(json, r'model'),
+        brandSlug: mapValueOfType<String>(json, r'brandSlug'),
+        modelSlug: mapValueOfType<String>(json, r'modelSlug'),
+        total: json[r'total'] == null
+          ? null
+          : num.parse(json[r'total'].toString()),
+        owned: json[r'owned'] == null
+          ? null
+          : num.parse(json[r'owned'].toString()),
+      );
+    }
+    return null;
+  }
+
+  static List<GetBuyerCollectionSetResponseDataGroup> listFromJson(dynamic json, {bool emptyIsNull, bool growable,}) =>
+    json is List && json.isNotEmpty
+      ? json.map(GetBuyerCollectionSetResponseDataGroup.fromJson).toList(growable: true == growable)
+      : true == emptyIsNull ? null : <GetBuyerCollectionSetResponseDataGroup>[];
+
+  static Map<String, GetBuyerCollectionSetResponseDataGroup> mapFromJson(dynamic json) {
+    final map = <String, GetBuyerCollectionSetResponseDataGroup>{};
+    if (json is Map && json.isNotEmpty) {
+      json
+        .cast<String, dynamic>()
+        .forEach((key, dynamic value) => map[key] = GetBuyerCollectionSetResponseDataGroup.fromJson(value));
+    }
+    return map;
+  }
+
+  // maps a json object with a list of GetBuyerCollectionSetResponseDataGroup-objects as value to a dart map
+  static Map<String, List<GetBuyerCollectionSetResponseDataGroup>> mapListFromJson(dynamic json, {bool emptyIsNull, bool growable,}) {
+    final map = <String, List<GetBuyerCollectionSetResponseDataGroup>>{};
+    if (json is Map && json.isNotEmpty) {
+      json
+        .cast<String, dynamic>()
+        .forEach((key, dynamic value) {
+          map[key] = GetBuyerCollectionSetResponseDataGroup.listFromJson(
+            value,
+            emptyIsNull: emptyIsNull,
+            growable: growable,
+          );
+        });
+    }
+    return map;
+  }
+}
+
