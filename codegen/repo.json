@@ -1,0 +1,37 @@
+{
+  "lang": "dart",
+  "vendor": [
+    {
+      "from": "webhooks/dart/crossly_webhooks.dart",
+      "to": "seller/lib/crossly_webhooks.dart"
+    },
+    {
+      "from": "webhooks/dart/crossly_webhooks.dart",
+      "to": "buyer/lib/crossly_webhooks.dart"
+    },
+    {
+      "from": "extras/dart/crossly_client.dart",
+      "to": "seller/lib/crossly_client.dart"
+    },
+    {
+      "from": "extras/dart/crossly_client.dart",
+      "to": "buyer/lib/crossly_client.dart"
+    },
+    {
+      "from": "extras/dart/LICENSE",
+      "to": "seller/LICENSE"
+    },
+    {
+      "from": "extras/dart/LICENSE",
+      "to": "buyer/LICENSE"
+    },
+    {
+      "from": "extras/dart/CHANGELOG.md",
+      "to": "seller/CHANGELOG.md"
+    },
+    {
+      "from": "extras/dart/CHANGELOG.md",
+      "to": "buyer/CHANGELOG.md"
+    }
+  ]
+}
