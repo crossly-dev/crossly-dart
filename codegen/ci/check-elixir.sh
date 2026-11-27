@@ -8,9 +8,10 @@
 #
 #  1. what a consumer's first build does: mix deps.get, mix compile;
 #  2. into the copy, the files assemble.mjs vendors into the seller package (codegen/repo.json: the verifier,
-#     Crossly, Crossly.Adapter, Crossly.WebhookPlug), plus plug, which every Phoenix app has; the buyer copy gets
-#     them too, test-only, to prove Crossly.client/2 drives the buyer modules. Compiled with no warning in those
-#     files, then codegen/integrations/extras/elixir/tests/smoke.exs runs against a fake adapter.
+#     Crossly, Crossly.Adapter, Crossly.WebhookPlug), plus plug, which every Phoenix app has (1.14.x: the newest
+#     that builds on the Elixir 1.14 checked here); the buyer copy gets them too, test-only, to prove
+#     Crossly.client/2 drives the buyer modules. Compiled with no warning in those files, then
+#     codegen/integrations/extras/elixir/tests/smoke.exs runs against a fake adapter.
 set -euo pipefail
 src="$(cd "$1" && pwd)"
 api="$(basename "$src")"
@@ -41,7 +42,9 @@ for (const v of JSON.parse(fs.readFileSync(repoJson, 'utf8')).vendor ?? []) {
   console.log(`vendored ${v.from} -> lib/${path.basename(v.to)}`);
 }
 JS
-  sed -i 's/{:tesla, /{:plug, "~> 1.14"},\n      {:tesla, /' mix.exs
+  sed -i 's/{:tesla, /{:plug, "~> 1.14.2"},\n      {:tesla, /' mix.exs
+  # as the release build declares it for the seller package (the verifier calls :crypto)
+  sed -i 's/extra_applications: \[:logger\]/extra_applications: [:logger, :crypto]/' mix.exs
   mix deps.get
   mix compile 2>&1 | tee "$work/compile.log"
   mine='lib/(crossly|crossly_adapter|crossly_webhook_plug|crossly_webhooks)\.ex'
