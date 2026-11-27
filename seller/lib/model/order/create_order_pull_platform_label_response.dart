@@ -13,10 +13,12 @@ part of openapi.api;
 class CreateOrderPullPlatformLabelResponse {
   /// Returns a new [CreateOrderPullPlatformLabelResponse] instance.
   CreateOrderPullPlatformLabelResponse({
-    @required this.url,
-    @required this.persisted,
-    @required this.expiresInSeconds,
+    this.url,
+    this.persisted,
+    this.expiresInSeconds,
     @required this.provenance,
+    this.shippingLabelUrl,
+    this.trackingNumber,
   });
 
   String url;
@@ -27,12 +29,18 @@ class CreateOrderPullPlatformLabelResponse {
 
   CreateOrderPullPlatformLabelResponseProvenanceEnum provenance;
 
+  String shippingLabelUrl;
+
+  String trackingNumber;
+
   @override
   bool operator ==(Object other) => identical(this, other) || other is CreateOrderPullPlatformLabelResponse &&
      other.url == url &&
      other.persisted == persisted &&
      other.expiresInSeconds == expiresInSeconds &&
-     other.provenance == provenance;
+     other.provenance == provenance &&
+     other.shippingLabelUrl == shippingLabelUrl &&
+     other.trackingNumber == trackingNumber;
 
   @override
   int get hashCode =>
@@ -40,17 +48,31 @@ class CreateOrderPullPlatformLabelResponse {
     (url == null ? 0 : url.hashCode) +
     (persisted == null ? 0 : persisted.hashCode) +
     (expiresInSeconds == null ? 0 : expiresInSeconds.hashCode) +
-    (provenance == null ? 0 : provenance.hashCode);
+    (provenance == null ? 0 : provenance.hashCode) +
+    (shippingLabelUrl == null ? 0 : shippingLabelUrl.hashCode) +
+    (trackingNumber == null ? 0 : trackingNumber.hashCode);
 
   @override
-  String toString() => 'CreateOrderPullPlatformLabelResponse[url=$url, persisted=$persisted, expiresInSeconds=$expiresInSeconds, provenance=$provenance]';
+  String toString() => 'CreateOrderPullPlatformLabelResponse[url=$url, persisted=$persisted, expiresInSeconds=$expiresInSeconds, provenance=$provenance, shippingLabelUrl=$shippingLabelUrl, trackingNumber=$trackingNumber]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
+    if (url != null) {
       json[r'url'] = url;
+    }
+    if (persisted != null) {
       json[r'persisted'] = persisted;
+    }
+    if (expiresInSeconds != null) {
       json[r'expiresInSeconds'] = expiresInSeconds;
+    }
       json[r'provenance'] = provenance;
+    if (shippingLabelUrl != null) {
+      json[r'shippingLabelUrl'] = shippingLabelUrl;
+    }
+    if (trackingNumber != null) {
+      json[r'trackingNumber'] = trackingNumber;
+    }
     return json;
   }
 
@@ -67,6 +89,8 @@ class CreateOrderPullPlatformLabelResponse {
           ? null
           : num.parse(json[r'expiresInSeconds'].toString()),
         provenance: CreateOrderPullPlatformLabelResponseProvenanceEnum.fromJson(json[r'provenance']),
+        shippingLabelUrl: mapValueOfType<String>(json, r'shippingLabelUrl'),
+        trackingNumber: mapValueOfType<String>(json, r'trackingNumber'),
       );
     }
     return null;

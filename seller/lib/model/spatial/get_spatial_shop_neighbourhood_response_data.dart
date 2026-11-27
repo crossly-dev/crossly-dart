@@ -16,8 +16,6 @@ class GetSpatialShopNeighbourhoodResponseData {
     this.shop,
     this.home,
     this.suggested,
-    @required this.canMove,
-    this.move,
     this.options = const [],
   });
 
@@ -27,10 +25,6 @@ class GetSpatialShopNeighbourhoodResponseData {
 
   GetSpatialShopNeighbourhoodResponseDataSuggestedEnum suggested;
 
-  bool canMove;
-
-  Object move;
-
   List<ListNeighbourhoodsItem> options;
 
   @override
@@ -38,8 +32,6 @@ class GetSpatialShopNeighbourhoodResponseData {
      other.shop == shop &&
      other.home == home &&
      other.suggested == suggested &&
-     other.canMove == canMove &&
-     other.move == move &&
      other.options == options;
 
   @override
@@ -48,12 +40,10 @@ class GetSpatialShopNeighbourhoodResponseData {
     (shop == null ? 0 : shop.hashCode) +
     (home == null ? 0 : home.hashCode) +
     (suggested == null ? 0 : suggested.hashCode) +
-    (canMove == null ? 0 : canMove.hashCode) +
-    (move == null ? 0 : move.hashCode) +
     (options == null ? 0 : options.hashCode);
 
   @override
-  String toString() => 'GetSpatialShopNeighbourhoodResponseData[shop=$shop, home=$home, suggested=$suggested, canMove=$canMove, move=$move, options=$options]';
+  String toString() => 'GetSpatialShopNeighbourhoodResponseData[shop=$shop, home=$home, suggested=$suggested, options=$options]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -63,10 +53,6 @@ class GetSpatialShopNeighbourhoodResponseData {
     }
     if (suggested != null) {
       json[r'suggested'] = suggested;
-    }
-      json[r'canMove'] = canMove;
-    if (move != null) {
-      json[r'move'] = move;
     }
       json[r'options'] = options;
     return json;
@@ -82,8 +68,6 @@ class GetSpatialShopNeighbourhoodResponseData {
         shop: mapValueOfType<Object>(json, r'shop'),
         home: mapValueOfType<Object>(json, r'home'),
         suggested: GetSpatialShopNeighbourhoodResponseDataSuggestedEnum.fromJson(json[r'suggested']),
-        canMove: mapValueOfType<bool>(json, r'canMove'),
-        move: mapValueOfType<Object>(json, r'move'),
         options: ListNeighbourhoodsItem.listFromJson(json[r'options']),
       );
     }

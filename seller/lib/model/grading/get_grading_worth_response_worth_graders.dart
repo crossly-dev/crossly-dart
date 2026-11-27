@@ -154,13 +154,13 @@ class GetGradingWorthResponseWorthGradersViaEnum {
 
   String toJson() => value;
 
-  static const run = GetGradingWorthResponseWorthGradersViaEnum._(r'run');
   static const single = GetGradingWorthResponseWorthGradersViaEnum._(r'single');
+  static const run = GetGradingWorthResponseWorthGradersViaEnum._(r'run');
 
   /// List of all possible values in this [enum][GetGradingWorthResponseWorthGradersViaEnum].
   static const values = <GetGradingWorthResponseWorthGradersViaEnum>[
-    run,
     single,
+    run,
   ];
 
   static GetGradingWorthResponseWorthGradersViaEnum fromJson(dynamic value) =>
@@ -192,8 +192,8 @@ class GetGradingWorthResponseWorthGradersViaEnumTypeTransformer {
   GetGradingWorthResponseWorthGradersViaEnum decode(dynamic data, {bool allowNull}) {
     if (data != null) {
       switch (data.toString()) {
-        case r'run': return GetGradingWorthResponseWorthGradersViaEnum.run;
         case r'single': return GetGradingWorthResponseWorthGradersViaEnum.single;
+        case r'run': return GetGradingWorthResponseWorthGradersViaEnum.run;
         default:
           if (allowNull == false) {
             throw ArgumentError('Unknown enum value to decode: $data');

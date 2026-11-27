@@ -13,60 +13,60 @@ part of openapi.api;
 class GetBuyerCollectionSetResponseDataPieces {
   /// Returns a new [GetBuyerCollectionSetResponseDataPieces] instance.
   GetBuyerCollectionSetResponseDataPieces({
-    @required this.number,
+    @required this.skuId,
     @required this.title,
     this.imageUrl,
-    @required this.skuId,
-    this.bestAskCents,
+    @required this.number,
     @required this.owned,
+    this.bestAskCents,
   });
 
-  num number;
+  String skuId;
 
   String title;
 
   String imageUrl;
 
-  String skuId;
-
-  num bestAskCents;
+  num number;
 
   bool owned;
 
+  num bestAskCents;
+
   @override
   bool operator ==(Object other) => identical(this, other) || other is GetBuyerCollectionSetResponseDataPieces &&
-     other.number == number &&
+     other.skuId == skuId &&
      other.title == title &&
      other.imageUrl == imageUrl &&
-     other.skuId == skuId &&
-     other.bestAskCents == bestAskCents &&
-     other.owned == owned;
+     other.number == number &&
+     other.owned == owned &&
+     other.bestAskCents == bestAskCents;
 
   @override
   int get hashCode =>
   // ignore: unnecessary_parenthesis
-    (number == null ? 0 : number.hashCode) +
+    (skuId == null ? 0 : skuId.hashCode) +
     (title == null ? 0 : title.hashCode) +
     (imageUrl == null ? 0 : imageUrl.hashCode) +
-    (skuId == null ? 0 : skuId.hashCode) +
-    (bestAskCents == null ? 0 : bestAskCents.hashCode) +
-    (owned == null ? 0 : owned.hashCode);
+    (number == null ? 0 : number.hashCode) +
+    (owned == null ? 0 : owned.hashCode) +
+    (bestAskCents == null ? 0 : bestAskCents.hashCode);
 
   @override
-  String toString() => 'GetBuyerCollectionSetResponseDataPieces[number=$number, title=$title, imageUrl=$imageUrl, skuId=$skuId, bestAskCents=$bestAskCents, owned=$owned]';
+  String toString() => 'GetBuyerCollectionSetResponseDataPieces[skuId=$skuId, title=$title, imageUrl=$imageUrl, number=$number, owned=$owned, bestAskCents=$bestAskCents]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-      json[r'number'] = number;
+      json[r'skuId'] = skuId;
       json[r'title'] = title;
     if (imageUrl != null) {
       json[r'imageUrl'] = imageUrl;
     }
-      json[r'skuId'] = skuId;
+      json[r'number'] = number;
+      json[r'owned'] = owned;
     if (bestAskCents != null) {
       json[r'bestAskCents'] = bestAskCents;
     }
-      json[r'owned'] = owned;
     return json;
   }
 
@@ -77,16 +77,16 @@ class GetBuyerCollectionSetResponseDataPieces {
     if (value is Map) {
       final json = value.cast<String, dynamic>();
       return GetBuyerCollectionSetResponseDataPieces(
+        skuId: mapValueOfType<String>(json, r'skuId'),
+        title: mapValueOfType<String>(json, r'title'),
+        imageUrl: mapValueOfType<String>(json, r'imageUrl'),
         number: json[r'number'] == null
           ? null
           : num.parse(json[r'number'].toString()),
-        title: mapValueOfType<String>(json, r'title'),
-        imageUrl: mapValueOfType<String>(json, r'imageUrl'),
-        skuId: mapValueOfType<String>(json, r'skuId'),
+        owned: mapValueOfType<bool>(json, r'owned'),
         bestAskCents: json[r'bestAskCents'] == null
           ? null
           : num.parse(json[r'bestAskCents'].toString()),
-        owned: mapValueOfType<bool>(json, r'owned'),
       );
     }
     return null;

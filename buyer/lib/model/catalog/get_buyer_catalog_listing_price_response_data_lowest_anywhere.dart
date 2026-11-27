@@ -14,25 +14,33 @@ class GetBuyerCatalogListingPriceResponseDataLowestAnywhere {
   /// Returns a new [GetBuyerCatalogListingPriceResponseDataLowestAnywhere] instance.
   GetBuyerCatalogListingPriceResponseDataLowestAnywhere({
     this.platforms = const [],
+    this.platformNames,
   });
 
   List<String> platforms;
 
+  List<String> platformNames;
+
   @override
   bool operator ==(Object other) => identical(this, other) || other is GetBuyerCatalogListingPriceResponseDataLowestAnywhere &&
-     other.platforms == platforms;
+     other.platforms == platforms &&
+     other.platformNames == platformNames;
 
   @override
   int get hashCode =>
   // ignore: unnecessary_parenthesis
-    (platforms == null ? 0 : platforms.hashCode);
+    (platforms == null ? 0 : platforms.hashCode) +
+    (platformNames == null ? 0 : platformNames.hashCode);
 
   @override
-  String toString() => 'GetBuyerCatalogListingPriceResponseDataLowestAnywhere[platforms=$platforms]';
+  String toString() => 'GetBuyerCatalogListingPriceResponseDataLowestAnywhere[platforms=$platforms, platformNames=$platformNames]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
       json[r'platforms'] = platforms;
+    if (platformNames != null) {
+      json[r'platformNames'] = platformNames;
+    }
     return json;
   }
 
@@ -45,6 +53,9 @@ class GetBuyerCatalogListingPriceResponseDataLowestAnywhere {
       return GetBuyerCatalogListingPriceResponseDataLowestAnywhere(
         platforms: json[r'platforms'] is List
           ? (json[r'platforms'] as List).cast<String>()
+          : null,
+        platformNames: json[r'platformNames'] is List
+          ? (json[r'platformNames'] as List).cast<String>()
           : null,
       );
     }

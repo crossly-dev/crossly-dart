@@ -110,15 +110,15 @@ class GetOrderEvidenceResponseDataSealAssessmentVerdictEnum {
 
   String toJson() => value;
 
-  static const opened = GetOrderEvidenceResponseDataSealAssessmentVerdictEnum._(r'opened');
   static const unknown = GetOrderEvidenceResponseDataSealAssessmentVerdictEnum._(r'unknown');
+  static const opened = GetOrderEvidenceResponseDataSealAssessmentVerdictEnum._(r'opened');
   static const intact = GetOrderEvidenceResponseDataSealAssessmentVerdictEnum._(r'intact');
   static const suspect = GetOrderEvidenceResponseDataSealAssessmentVerdictEnum._(r'suspect');
 
   /// List of all possible values in this [enum][GetOrderEvidenceResponseDataSealAssessmentVerdictEnum].
   static const values = <GetOrderEvidenceResponseDataSealAssessmentVerdictEnum>[
-    opened,
     unknown,
+    opened,
     intact,
     suspect,
   ];
@@ -152,8 +152,8 @@ class GetOrderEvidenceResponseDataSealAssessmentVerdictEnumTypeTransformer {
   GetOrderEvidenceResponseDataSealAssessmentVerdictEnum decode(dynamic data, {bool allowNull}) {
     if (data != null) {
       switch (data.toString()) {
-        case r'opened': return GetOrderEvidenceResponseDataSealAssessmentVerdictEnum.opened;
         case r'unknown': return GetOrderEvidenceResponseDataSealAssessmentVerdictEnum.unknown;
+        case r'opened': return GetOrderEvidenceResponseDataSealAssessmentVerdictEnum.opened;
         case r'intact': return GetOrderEvidenceResponseDataSealAssessmentVerdictEnum.intact;
         case r'suspect': return GetOrderEvidenceResponseDataSealAssessmentVerdictEnum.suspect;
         default:

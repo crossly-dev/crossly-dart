@@ -126,16 +126,16 @@ class GetVaultMarketAlertPrefResponseChannelsKeyEnum {
   String toJson() => value;
 
   static const email = GetVaultMarketAlertPrefResponseChannelsKeyEnum._(r'email');
-  static const webhook = GetVaultMarketAlertPrefResponseChannelsKeyEnum._(r'webhook');
   static const push = GetVaultMarketAlertPrefResponseChannelsKeyEnum._(r'push');
+  static const webhook = GetVaultMarketAlertPrefResponseChannelsKeyEnum._(r'webhook');
   static const telegram = GetVaultMarketAlertPrefResponseChannelsKeyEnum._(r'telegram');
   static const terminal = GetVaultMarketAlertPrefResponseChannelsKeyEnum._(r'terminal');
 
   /// List of all possible values in this [enum][GetVaultMarketAlertPrefResponseChannelsKeyEnum].
   static const values = <GetVaultMarketAlertPrefResponseChannelsKeyEnum>[
     email,
-    webhook,
     push,
+    webhook,
     telegram,
     terminal,
   ];
@@ -170,8 +170,8 @@ class GetVaultMarketAlertPrefResponseChannelsKeyEnumTypeTransformer {
     if (data != null) {
       switch (data.toString()) {
         case r'email': return GetVaultMarketAlertPrefResponseChannelsKeyEnum.email;
-        case r'webhook': return GetVaultMarketAlertPrefResponseChannelsKeyEnum.webhook;
         case r'push': return GetVaultMarketAlertPrefResponseChannelsKeyEnum.push;
+        case r'webhook': return GetVaultMarketAlertPrefResponseChannelsKeyEnum.webhook;
         case r'telegram': return GetVaultMarketAlertPrefResponseChannelsKeyEnum.telegram;
         case r'terminal': return GetVaultMarketAlertPrefResponseChannelsKeyEnum.terminal;
         default:

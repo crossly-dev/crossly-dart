@@ -232,16 +232,16 @@ class ListPayoutCompareItemShippingSourceEnum {
 
   String toJson() => value;
 
-  static const none = ListPayoutCompareItemShippingSourceEnum._(r'none');
   static const unknown = ListPayoutCompareItemShippingSourceEnum._(r'unknown');
+  static const none = ListPayoutCompareItemShippingSourceEnum._(r'none');
   static const quoted = ListPayoutCompareItemShippingSourceEnum._(r'quoted');
   static const platformLabel = ListPayoutCompareItemShippingSourceEnum._(r'platform_label');
   static const buyerPaid = ListPayoutCompareItemShippingSourceEnum._(r'buyer_paid');
 
   /// List of all possible values in this [enum][ListPayoutCompareItemShippingSourceEnum].
   static const values = <ListPayoutCompareItemShippingSourceEnum>[
-    none,
     unknown,
+    none,
     quoted,
     platformLabel,
     buyerPaid,
@@ -276,8 +276,8 @@ class ListPayoutCompareItemShippingSourceEnumTypeTransformer {
   ListPayoutCompareItemShippingSourceEnum decode(dynamic data, {bool allowNull}) {
     if (data != null) {
       switch (data.toString()) {
-        case r'none': return ListPayoutCompareItemShippingSourceEnum.none;
         case r'unknown': return ListPayoutCompareItemShippingSourceEnum.unknown;
+        case r'none': return ListPayoutCompareItemShippingSourceEnum.none;
         case r'quoted': return ListPayoutCompareItemShippingSourceEnum.quoted;
         case r'platform_label': return ListPayoutCompareItemShippingSourceEnum.platformLabel;
         case r'buyer_paid': return ListPayoutCompareItemShippingSourceEnum.buyerPaid;

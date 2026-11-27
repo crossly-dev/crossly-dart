@@ -16,10 +16,10 @@ class GetBuyerListingResaleValueResponseData {
     @required this.brand,
     @required this.category,
     @required this.medianCents,
-    @required this.buybackDays,
-    this.buybackCents,
     @required this.comps,
     this.keepsPct,
+    this.buybackCents,
+    @required this.buybackDays,
   });
 
   String brand;
@@ -28,23 +28,23 @@ class GetBuyerListingResaleValueResponseData {
 
   num medianCents;
 
-  num buybackDays;
-
-  num buybackCents;
-
   num comps;
 
   num keepsPct;
+
+  num buybackCents;
+
+  num buybackDays;
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is GetBuyerListingResaleValueResponseData &&
      other.brand == brand &&
      other.category == category &&
      other.medianCents == medianCents &&
-     other.buybackDays == buybackDays &&
-     other.buybackCents == buybackCents &&
      other.comps == comps &&
-     other.keepsPct == keepsPct;
+     other.keepsPct == keepsPct &&
+     other.buybackCents == buybackCents &&
+     other.buybackDays == buybackDays;
 
   @override
   int get hashCode =>
@@ -52,27 +52,27 @@ class GetBuyerListingResaleValueResponseData {
     (brand == null ? 0 : brand.hashCode) +
     (category == null ? 0 : category.hashCode) +
     (medianCents == null ? 0 : medianCents.hashCode) +
-    (buybackDays == null ? 0 : buybackDays.hashCode) +
-    (buybackCents == null ? 0 : buybackCents.hashCode) +
     (comps == null ? 0 : comps.hashCode) +
-    (keepsPct == null ? 0 : keepsPct.hashCode);
+    (keepsPct == null ? 0 : keepsPct.hashCode) +
+    (buybackCents == null ? 0 : buybackCents.hashCode) +
+    (buybackDays == null ? 0 : buybackDays.hashCode);
 
   @override
-  String toString() => 'GetBuyerListingResaleValueResponseData[brand=$brand, category=$category, medianCents=$medianCents, buybackDays=$buybackDays, buybackCents=$buybackCents, comps=$comps, keepsPct=$keepsPct]';
+  String toString() => 'GetBuyerListingResaleValueResponseData[brand=$brand, category=$category, medianCents=$medianCents, comps=$comps, keepsPct=$keepsPct, buybackCents=$buybackCents, buybackDays=$buybackDays]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
       json[r'brand'] = brand;
       json[r'category'] = category;
       json[r'medianCents'] = medianCents;
-      json[r'buybackDays'] = buybackDays;
-    if (buybackCents != null) {
-      json[r'buybackCents'] = buybackCents;
-    }
       json[r'comps'] = comps;
     if (keepsPct != null) {
       json[r'keepsPct'] = keepsPct;
     }
+    if (buybackCents != null) {
+      json[r'buybackCents'] = buybackCents;
+    }
+      json[r'buybackDays'] = buybackDays;
     return json;
   }
 
@@ -88,18 +88,18 @@ class GetBuyerListingResaleValueResponseData {
         medianCents: json[r'medianCents'] == null
           ? null
           : num.parse(json[r'medianCents'].toString()),
-        buybackDays: json[r'buybackDays'] == null
-          ? null
-          : num.parse(json[r'buybackDays'].toString()),
-        buybackCents: json[r'buybackCents'] == null
-          ? null
-          : num.parse(json[r'buybackCents'].toString()),
         comps: json[r'comps'] == null
           ? null
           : num.parse(json[r'comps'].toString()),
         keepsPct: json[r'keepsPct'] == null
           ? null
           : num.parse(json[r'keepsPct'].toString()),
+        buybackCents: json[r'buybackCents'] == null
+          ? null
+          : num.parse(json[r'buybackCents'].toString()),
+        buybackDays: json[r'buybackDays'] == null
+          ? null
+          : num.parse(json[r'buybackDays'].toString()),
       );
     }
     return null;

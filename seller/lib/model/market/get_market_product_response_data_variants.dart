@@ -16,12 +16,12 @@ class GetMarketProductResponseDataVariants {
     @required this.id,
     @required this.label,
     @required this.sortKey,
+    @required this.skuId,
     this.externalId,
     this.externalSource,
     this.externalSyncedAt,
     this.lastSaleCents,
     @required this.tradesCount,
-    @required this.skuId,
     this.lastSaleAt,
     this.bestBidCents,
     this.bestAskCents,
@@ -33,6 +33,8 @@ class GetMarketProductResponseDataVariants {
 
   num sortKey;
 
+  String skuId;
+
   String externalId;
 
   String externalSource;
@@ -42,8 +44,6 @@ class GetMarketProductResponseDataVariants {
   num lastSaleCents;
 
   num tradesCount;
-
-  String skuId;
 
   DateTime lastSaleAt;
 
@@ -56,12 +56,12 @@ class GetMarketProductResponseDataVariants {
      other.id == id &&
      other.label == label &&
      other.sortKey == sortKey &&
+     other.skuId == skuId &&
      other.externalId == externalId &&
      other.externalSource == externalSource &&
      other.externalSyncedAt == externalSyncedAt &&
      other.lastSaleCents == lastSaleCents &&
      other.tradesCount == tradesCount &&
-     other.skuId == skuId &&
      other.lastSaleAt == lastSaleAt &&
      other.bestBidCents == bestBidCents &&
      other.bestAskCents == bestAskCents;
@@ -72,24 +72,25 @@ class GetMarketProductResponseDataVariants {
     (id == null ? 0 : id.hashCode) +
     (label == null ? 0 : label.hashCode) +
     (sortKey == null ? 0 : sortKey.hashCode) +
+    (skuId == null ? 0 : skuId.hashCode) +
     (externalId == null ? 0 : externalId.hashCode) +
     (externalSource == null ? 0 : externalSource.hashCode) +
     (externalSyncedAt == null ? 0 : externalSyncedAt.hashCode) +
     (lastSaleCents == null ? 0 : lastSaleCents.hashCode) +
     (tradesCount == null ? 0 : tradesCount.hashCode) +
-    (skuId == null ? 0 : skuId.hashCode) +
     (lastSaleAt == null ? 0 : lastSaleAt.hashCode) +
     (bestBidCents == null ? 0 : bestBidCents.hashCode) +
     (bestAskCents == null ? 0 : bestAskCents.hashCode);
 
   @override
-  String toString() => 'GetMarketProductResponseDataVariants[id=$id, label=$label, sortKey=$sortKey, externalId=$externalId, externalSource=$externalSource, externalSyncedAt=$externalSyncedAt, lastSaleCents=$lastSaleCents, tradesCount=$tradesCount, skuId=$skuId, lastSaleAt=$lastSaleAt, bestBidCents=$bestBidCents, bestAskCents=$bestAskCents]';
+  String toString() => 'GetMarketProductResponseDataVariants[id=$id, label=$label, sortKey=$sortKey, skuId=$skuId, externalId=$externalId, externalSource=$externalSource, externalSyncedAt=$externalSyncedAt, lastSaleCents=$lastSaleCents, tradesCount=$tradesCount, lastSaleAt=$lastSaleAt, bestBidCents=$bestBidCents, bestAskCents=$bestAskCents]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
       json[r'id'] = id;
       json[r'label'] = label;
       json[r'sortKey'] = sortKey;
+      json[r'skuId'] = skuId;
     if (externalId != null) {
       json[r'externalId'] = externalId;
     }
@@ -103,7 +104,6 @@ class GetMarketProductResponseDataVariants {
       json[r'lastSaleCents'] = lastSaleCents;
     }
       json[r'tradesCount'] = tradesCount;
-      json[r'skuId'] = skuId;
     if (lastSaleAt != null) {
       json[r'lastSaleAt'] = lastSaleAt.toUtc().toIso8601String();
     }
@@ -128,6 +128,7 @@ class GetMarketProductResponseDataVariants {
         sortKey: json[r'sortKey'] == null
           ? null
           : num.parse(json[r'sortKey'].toString()),
+        skuId: mapValueOfType<String>(json, r'skuId'),
         externalId: mapValueOfType<String>(json, r'externalId'),
         externalSource: mapValueOfType<String>(json, r'externalSource'),
         externalSyncedAt: mapDateTime(json, r'externalSyncedAt', ''),
@@ -137,7 +138,6 @@ class GetMarketProductResponseDataVariants {
         tradesCount: json[r'tradesCount'] == null
           ? null
           : num.parse(json[r'tradesCount'].toString()),
-        skuId: mapValueOfType<String>(json, r'skuId'),
         lastSaleAt: mapDateTime(json, r'lastSaleAt', ''),
         bestBidCents: json[r'bestBidCents'] == null
           ? null

@@ -16,22 +16,25 @@ class ListInsightByPlatformItem {
     @required this.platform,
     @required this.sales,
     @required this.grossCents,
-    @required this.avgDaysToSale,
-    @required this.avgSaleCents,
+    this.avgDaysToSale,
+    this.avgSaleCents,
     @required this.netCents,
+    this.netProfitCents,
   });
 
   String platform;
 
-  String sales;
+  num sales;
 
-  String grossCents;
+  num grossCents;
 
   num avgDaysToSale;
 
   num avgSaleCents;
 
-  String netCents;
+  num netCents;
+
+  num netProfitCents;
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is ListInsightByPlatformItem &&
@@ -40,7 +43,8 @@ class ListInsightByPlatformItem {
      other.grossCents == grossCents &&
      other.avgDaysToSale == avgDaysToSale &&
      other.avgSaleCents == avgSaleCents &&
-     other.netCents == netCents;
+     other.netCents == netCents &&
+     other.netProfitCents == netProfitCents;
 
   @override
   int get hashCode =>
@@ -50,19 +54,27 @@ class ListInsightByPlatformItem {
     (grossCents == null ? 0 : grossCents.hashCode) +
     (avgDaysToSale == null ? 0 : avgDaysToSale.hashCode) +
     (avgSaleCents == null ? 0 : avgSaleCents.hashCode) +
-    (netCents == null ? 0 : netCents.hashCode);
+    (netCents == null ? 0 : netCents.hashCode) +
+    (netProfitCents == null ? 0 : netProfitCents.hashCode);
 
   @override
-  String toString() => 'ListInsightByPlatformItem[platform=$platform, sales=$sales, grossCents=$grossCents, avgDaysToSale=$avgDaysToSale, avgSaleCents=$avgSaleCents, netCents=$netCents]';
+  String toString() => 'ListInsightByPlatformItem[platform=$platform, sales=$sales, grossCents=$grossCents, avgDaysToSale=$avgDaysToSale, avgSaleCents=$avgSaleCents, netCents=$netCents, netProfitCents=$netProfitCents]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
       json[r'platform'] = platform;
       json[r'sales'] = sales;
       json[r'gross_cents'] = grossCents;
+    if (avgDaysToSale != null) {
       json[r'avg_days_to_sale'] = avgDaysToSale;
+    }
+    if (avgSaleCents != null) {
       json[r'avg_sale_cents'] = avgSaleCents;
+    }
       json[r'net_cents'] = netCents;
+    if (netProfitCents != null) {
+      json[r'net_profit_cents'] = netProfitCents;
+    }
     return json;
   }
 
@@ -74,15 +86,24 @@ class ListInsightByPlatformItem {
       final json = value.cast<String, dynamic>();
       return ListInsightByPlatformItem(
         platform: mapValueOfType<String>(json, r'platform'),
-        sales: mapValueOfType<String>(json, r'sales'),
-        grossCents: mapValueOfType<String>(json, r'gross_cents'),
+        sales: json[r'sales'] == null
+          ? null
+          : num.parse(json[r'sales'].toString()),
+        grossCents: json[r'gross_cents'] == null
+          ? null
+          : num.parse(json[r'gross_cents'].toString()),
         avgDaysToSale: json[r'avg_days_to_sale'] == null
           ? null
           : num.parse(json[r'avg_days_to_sale'].toString()),
         avgSaleCents: json[r'avg_sale_cents'] == null
           ? null
           : num.parse(json[r'avg_sale_cents'].toString()),
-        netCents: mapValueOfType<String>(json, r'net_cents'),
+        netCents: json[r'net_cents'] == null
+          ? null
+          : num.parse(json[r'net_cents'].toString()),
+        netProfitCents: json[r'net_profit_cents'] == null
+          ? null
+          : num.parse(json[r'net_profit_cents'].toString()),
       );
     }
     return null;

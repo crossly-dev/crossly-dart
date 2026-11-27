@@ -14,56 +14,56 @@ class GetBuyerCaseResponseDataMessages {
   /// Returns a new [GetBuyerCaseResponseDataMessages] instance.
   GetBuyerCaseResponseDataMessages({
     @required this.id,
-    @required this.createdAt,
-    @required this.kind,
-    @required this.body,
     @required this.authorRole,
+    @required this.body,
+    @required this.kind,
+    @required this.createdAt,
     this.attachmentUrls,
   });
 
   String id;
 
-  String createdAt;
+  /// buyer | seller | ops | system.
+  String authorRole;
+
+  String body;
 
   /// message | offer | decision | state_change.
   String kind;
 
-  String body;
-
-  /// buyer | seller | ops | system.
-  String authorRole;
+  String createdAt;
 
   List<String> attachmentUrls;
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is GetBuyerCaseResponseDataMessages &&
      other.id == id &&
-     other.createdAt == createdAt &&
-     other.kind == kind &&
-     other.body == body &&
      other.authorRole == authorRole &&
+     other.body == body &&
+     other.kind == kind &&
+     other.createdAt == createdAt &&
      other.attachmentUrls == attachmentUrls;
 
   @override
   int get hashCode =>
   // ignore: unnecessary_parenthesis
     (id == null ? 0 : id.hashCode) +
-    (createdAt == null ? 0 : createdAt.hashCode) +
-    (kind == null ? 0 : kind.hashCode) +
-    (body == null ? 0 : body.hashCode) +
     (authorRole == null ? 0 : authorRole.hashCode) +
+    (body == null ? 0 : body.hashCode) +
+    (kind == null ? 0 : kind.hashCode) +
+    (createdAt == null ? 0 : createdAt.hashCode) +
     (attachmentUrls == null ? 0 : attachmentUrls.hashCode);
 
   @override
-  String toString() => 'GetBuyerCaseResponseDataMessages[id=$id, createdAt=$createdAt, kind=$kind, body=$body, authorRole=$authorRole, attachmentUrls=$attachmentUrls]';
+  String toString() => 'GetBuyerCaseResponseDataMessages[id=$id, authorRole=$authorRole, body=$body, kind=$kind, createdAt=$createdAt, attachmentUrls=$attachmentUrls]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
       json[r'id'] = id;
-      json[r'createdAt'] = createdAt;
-      json[r'kind'] = kind;
-      json[r'body'] = body;
       json[r'authorRole'] = authorRole;
+      json[r'body'] = body;
+      json[r'kind'] = kind;
+      json[r'createdAt'] = createdAt;
     if (attachmentUrls != null) {
       json[r'attachmentUrls'] = attachmentUrls;
     }
@@ -78,10 +78,10 @@ class GetBuyerCaseResponseDataMessages {
       final json = value.cast<String, dynamic>();
       return GetBuyerCaseResponseDataMessages(
         id: mapValueOfType<String>(json, r'id'),
-        createdAt: mapValueOfType<String>(json, r'createdAt'),
-        kind: mapValueOfType<String>(json, r'kind'),
-        body: mapValueOfType<String>(json, r'body'),
         authorRole: mapValueOfType<String>(json, r'authorRole'),
+        body: mapValueOfType<String>(json, r'body'),
+        kind: mapValueOfType<String>(json, r'kind'),
+        createdAt: mapValueOfType<String>(json, r'createdAt'),
         attachmentUrls: json[r'attachmentUrls'] is List
           ? (json[r'attachmentUrls'] as List).cast<String>()
           : null,

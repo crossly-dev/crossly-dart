@@ -14,12 +14,15 @@ class ListBuyerOrdersItem {
   /// Returns a new [ListBuyerOrdersItem] instance.
   ListBuyerOrdersItem({
     @required this.id,
+    this.orderNumber,
     @required this.status,
     @required this.buyerPaidCents,
     @required this.createdAt,
   });
 
   String id;
+
+  String orderNumber;
 
   String status;
 
@@ -30,6 +33,7 @@ class ListBuyerOrdersItem {
   @override
   bool operator ==(Object other) => identical(this, other) || other is ListBuyerOrdersItem &&
      other.id == id &&
+     other.orderNumber == orderNumber &&
      other.status == status &&
      other.buyerPaidCents == buyerPaidCents &&
      other.createdAt == createdAt;
@@ -38,16 +42,20 @@ class ListBuyerOrdersItem {
   int get hashCode =>
   // ignore: unnecessary_parenthesis
     (id == null ? 0 : id.hashCode) +
+    (orderNumber == null ? 0 : orderNumber.hashCode) +
     (status == null ? 0 : status.hashCode) +
     (buyerPaidCents == null ? 0 : buyerPaidCents.hashCode) +
     (createdAt == null ? 0 : createdAt.hashCode);
 
   @override
-  String toString() => 'ListBuyerOrdersItem[id=$id, status=$status, buyerPaidCents=$buyerPaidCents, createdAt=$createdAt]';
+  String toString() => 'ListBuyerOrdersItem[id=$id, orderNumber=$orderNumber, status=$status, buyerPaidCents=$buyerPaidCents, createdAt=$createdAt]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
       json[r'id'] = id;
+    if (orderNumber != null) {
+      json[r'orderNumber'] = orderNumber;
+    }
       json[r'status'] = status;
       json[r'buyerPaidCents'] = buyerPaidCents;
       json[r'createdAt'] = createdAt.toUtc().toIso8601String();
@@ -62,6 +70,7 @@ class ListBuyerOrdersItem {
       final json = value.cast<String, dynamic>();
       return ListBuyerOrdersItem(
         id: mapValueOfType<String>(json, r'id'),
+        orderNumber: mapValueOfType<String>(json, r'orderNumber'),
         status: mapValueOfType<String>(json, r'status'),
         buyerPaidCents: json[r'buyerPaidCents'] == null
           ? null

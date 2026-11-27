@@ -102,15 +102,15 @@ class CreateCbxSubjectSpendPlanResponseDataLegsSource_Enum {
 
   String toJson() => value;
 
-  static const granted = CreateCbxSubjectSpendPlanResponseDataLegsSource_Enum._(r'granted');
   static const earned = CreateCbxSubjectSpendPlanResponseDataLegsSource_Enum._(r'earned');
   static const connected = CreateCbxSubjectSpendPlanResponseDataLegsSource_Enum._(r'connected');
+  static const granted = CreateCbxSubjectSpendPlanResponseDataLegsSource_Enum._(r'granted');
 
   /// List of all possible values in this [enum][CreateCbxSubjectSpendPlanResponseDataLegsSource_Enum].
   static const values = <CreateCbxSubjectSpendPlanResponseDataLegsSource_Enum>[
-    granted,
     earned,
     connected,
+    granted,
   ];
 
   static CreateCbxSubjectSpendPlanResponseDataLegsSource_Enum fromJson(dynamic value) =>
@@ -142,9 +142,9 @@ class CreateCbxSubjectSpendPlanResponseDataLegsSource_EnumTypeTransformer {
   CreateCbxSubjectSpendPlanResponseDataLegsSource_Enum decode(dynamic data, {bool allowNull}) {
     if (data != null) {
       switch (data.toString()) {
-        case r'granted': return CreateCbxSubjectSpendPlanResponseDataLegsSource_Enum.granted;
         case r'earned': return CreateCbxSubjectSpendPlanResponseDataLegsSource_Enum.earned;
         case r'connected': return CreateCbxSubjectSpendPlanResponseDataLegsSource_Enum.connected;
+        case r'granted': return CreateCbxSubjectSpendPlanResponseDataLegsSource_Enum.granted;
         default:
           if (allowNull == false) {
             throw ArgumentError('Unknown enum value to decode: $data');

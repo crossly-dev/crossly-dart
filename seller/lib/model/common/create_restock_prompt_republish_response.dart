@@ -17,7 +17,7 @@ class CreateRestockPromptRepublishResponse {
     this.platforms = const [],
     this.remainingPlatforms = const [],
     this.jobIds = const [],
-    @required this.bulkJobId,
+    this.bulkJobId,
   });
 
   String message;
@@ -56,7 +56,9 @@ class CreateRestockPromptRepublishResponse {
       json[r'platforms'] = platforms;
       json[r'remainingPlatforms'] = remainingPlatforms;
       json[r'jobIds'] = jobIds;
+    if (bulkJobId != null) {
       json[r'bulkJobId'] = bulkJobId;
+    }
     return json;
   }
 

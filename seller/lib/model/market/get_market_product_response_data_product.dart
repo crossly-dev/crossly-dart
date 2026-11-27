@@ -20,16 +20,16 @@ class GetMarketProductResponseDataProduct {
     @required this.createdAt,
     @required this.status,
     this.retailCents,
-    @required this.categorySlug,
-    this.externalId,
     this.imageUrl,
+    @required this.categorySlug,
+    this.approvedByUserId,
+    this.approvedAt,
+    this.externalId,
     this.model,
     this.colorway,
     this.styleCode,
     this.releaseDate,
     this.submittedByUserId,
-    this.approvedByUserId,
-    this.approvedAt,
     this.rejectionReason,
     this.proposedVariants = const [],
     this.verification = const {},
@@ -69,11 +69,15 @@ class GetMarketProductResponseDataProduct {
 
   num retailCents;
 
+  String imageUrl;
+
   String categorySlug;
 
-  String externalId;
+  String approvedByUserId;
 
-  String imageUrl;
+  DateTime approvedAt;
+
+  String externalId;
 
   String model;
 
@@ -84,10 +88,6 @@ class GetMarketProductResponseDataProduct {
   String releaseDate;
 
   String submittedByUserId;
-
-  String approvedByUserId;
-
-  DateTime approvedAt;
 
   String rejectionReason;
 
@@ -144,16 +144,16 @@ class GetMarketProductResponseDataProduct {
      other.createdAt == createdAt &&
      other.status == status &&
      other.retailCents == retailCents &&
-     other.categorySlug == categorySlug &&
-     other.externalId == externalId &&
      other.imageUrl == imageUrl &&
+     other.categorySlug == categorySlug &&
+     other.approvedByUserId == approvedByUserId &&
+     other.approvedAt == approvedAt &&
+     other.externalId == externalId &&
      other.model == model &&
      other.colorway == colorway &&
      other.styleCode == styleCode &&
      other.releaseDate == releaseDate &&
      other.submittedByUserId == submittedByUserId &&
-     other.approvedByUserId == approvedByUserId &&
-     other.approvedAt == approvedAt &&
      other.rejectionReason == rejectionReason &&
      other.proposedVariants == proposedVariants &&
      other.verification == verification &&
@@ -188,16 +188,16 @@ class GetMarketProductResponseDataProduct {
     (createdAt == null ? 0 : createdAt.hashCode) +
     (status == null ? 0 : status.hashCode) +
     (retailCents == null ? 0 : retailCents.hashCode) +
-    (categorySlug == null ? 0 : categorySlug.hashCode) +
-    (externalId == null ? 0 : externalId.hashCode) +
     (imageUrl == null ? 0 : imageUrl.hashCode) +
+    (categorySlug == null ? 0 : categorySlug.hashCode) +
+    (approvedByUserId == null ? 0 : approvedByUserId.hashCode) +
+    (approvedAt == null ? 0 : approvedAt.hashCode) +
+    (externalId == null ? 0 : externalId.hashCode) +
     (model == null ? 0 : model.hashCode) +
     (colorway == null ? 0 : colorway.hashCode) +
     (styleCode == null ? 0 : styleCode.hashCode) +
     (releaseDate == null ? 0 : releaseDate.hashCode) +
     (submittedByUserId == null ? 0 : submittedByUserId.hashCode) +
-    (approvedByUserId == null ? 0 : approvedByUserId.hashCode) +
-    (approvedAt == null ? 0 : approvedAt.hashCode) +
     (rejectionReason == null ? 0 : rejectionReason.hashCode) +
     (proposedVariants == null ? 0 : proposedVariants.hashCode) +
     (verification == null ? 0 : verification.hashCode) +
@@ -223,7 +223,7 @@ class GetMarketProductResponseDataProduct {
     (metalForm == null ? 0 : metalForm.hashCode);
 
   @override
-  String toString() => 'GetMarketProductResponseDataProduct[images=$images, id=$id, brand=$brand, name=$name, createdAt=$createdAt, status=$status, retailCents=$retailCents, categorySlug=$categorySlug, externalId=$externalId, imageUrl=$imageUrl, model=$model, colorway=$colorway, styleCode=$styleCode, releaseDate=$releaseDate, submittedByUserId=$submittedByUserId, approvedByUserId=$approvedByUserId, approvedAt=$approvedAt, rejectionReason=$rejectionReason, proposedVariants=$proposedVariants, verification=$verification, aiVerdict=$aiVerdict, submissionSource=$submissionSource, duplicateOfSkuId=$duplicateOfSkuId, preferredProviderSlug=$preferredProviderSlug, allowPreBid=$allowPreBid, preBidOpensAt=$preBidOpensAt, featured=$featured, externalSource=$externalSource, externalSyncedAt=$externalSyncedAt, gradedGradeKeys=$gradedGradeKeys, lowestAskCents=$lowestAskCents, highestBidCents=$highestBidCents, lastSaleCents=$lastSaleCents, tradesCount=$tradesCount, popularity=$popularity, colorFamily=$colorFamily, metal=$metal, grossWeightMg=$grossWeightMg, finenessPpm=$finenessPpm, metalForm=$metalForm]';
+  String toString() => 'GetMarketProductResponseDataProduct[images=$images, id=$id, brand=$brand, name=$name, createdAt=$createdAt, status=$status, retailCents=$retailCents, imageUrl=$imageUrl, categorySlug=$categorySlug, approvedByUserId=$approvedByUserId, approvedAt=$approvedAt, externalId=$externalId, model=$model, colorway=$colorway, styleCode=$styleCode, releaseDate=$releaseDate, submittedByUserId=$submittedByUserId, rejectionReason=$rejectionReason, proposedVariants=$proposedVariants, verification=$verification, aiVerdict=$aiVerdict, submissionSource=$submissionSource, duplicateOfSkuId=$duplicateOfSkuId, preferredProviderSlug=$preferredProviderSlug, allowPreBid=$allowPreBid, preBidOpensAt=$preBidOpensAt, featured=$featured, externalSource=$externalSource, externalSyncedAt=$externalSyncedAt, gradedGradeKeys=$gradedGradeKeys, lowestAskCents=$lowestAskCents, highestBidCents=$highestBidCents, lastSaleCents=$lastSaleCents, tradesCount=$tradesCount, popularity=$popularity, colorFamily=$colorFamily, metal=$metal, grossWeightMg=$grossWeightMg, finenessPpm=$finenessPpm, metalForm=$metalForm]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -238,12 +238,18 @@ class GetMarketProductResponseDataProduct {
     if (retailCents != null) {
       json[r'retailCents'] = retailCents;
     }
-      json[r'categorySlug'] = categorySlug;
-    if (externalId != null) {
-      json[r'externalId'] = externalId;
-    }
     if (imageUrl != null) {
       json[r'imageUrl'] = imageUrl;
+    }
+      json[r'categorySlug'] = categorySlug;
+    if (approvedByUserId != null) {
+      json[r'approvedByUserId'] = approvedByUserId;
+    }
+    if (approvedAt != null) {
+      json[r'approvedAt'] = approvedAt.toUtc().toIso8601String();
+    }
+    if (externalId != null) {
+      json[r'externalId'] = externalId;
     }
     if (model != null) {
       json[r'model'] = model;
@@ -259,12 +265,6 @@ class GetMarketProductResponseDataProduct {
     }
     if (submittedByUserId != null) {
       json[r'submittedByUserId'] = submittedByUserId;
-    }
-    if (approvedByUserId != null) {
-      json[r'approvedByUserId'] = approvedByUserId;
-    }
-    if (approvedAt != null) {
-      json[r'approvedAt'] = approvedAt.toUtc().toIso8601String();
     }
     if (rejectionReason != null) {
       json[r'rejectionReason'] = rejectionReason;
@@ -338,16 +338,16 @@ class GetMarketProductResponseDataProduct {
         retailCents: json[r'retailCents'] == null
           ? null
           : num.parse(json[r'retailCents'].toString()),
-        categorySlug: mapValueOfType<String>(json, r'categorySlug'),
-        externalId: mapValueOfType<String>(json, r'externalId'),
         imageUrl: mapValueOfType<String>(json, r'imageUrl'),
+        categorySlug: mapValueOfType<String>(json, r'categorySlug'),
+        approvedByUserId: mapValueOfType<String>(json, r'approvedByUserId'),
+        approvedAt: mapDateTime(json, r'approvedAt', ''),
+        externalId: mapValueOfType<String>(json, r'externalId'),
         model: mapValueOfType<String>(json, r'model'),
         colorway: mapValueOfType<String>(json, r'colorway'),
         styleCode: mapValueOfType<String>(json, r'styleCode'),
         releaseDate: mapValueOfType<String>(json, r'releaseDate'),
         submittedByUserId: mapValueOfType<String>(json, r'submittedByUserId'),
-        approvedByUserId: mapValueOfType<String>(json, r'approvedByUserId'),
-        approvedAt: mapDateTime(json, r'approvedAt', ''),
         rejectionReason: mapValueOfType<String>(json, r'rejectionReason'),
         proposedVariants: GetMarketProductResponseDataProductProposedVariants.listFromJson(json[r'proposedVariants']),
         verification: mapValueOfType<Map<String, Object>>(json, r'verification'),

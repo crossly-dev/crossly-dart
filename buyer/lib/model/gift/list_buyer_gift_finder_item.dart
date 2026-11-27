@@ -16,8 +16,8 @@ class ListBuyerGiftFinderItem {
     @required this.slug,
     @required this.priceCents,
     this.title,
-    this.salePriceCents,
     this.thumbnail,
+    this.salePriceCents,
   });
 
   String slug;
@@ -26,17 +26,17 @@ class ListBuyerGiftFinderItem {
 
   String title;
 
-  num salePriceCents;
-
   String thumbnail;
+
+  num salePriceCents;
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is ListBuyerGiftFinderItem &&
      other.slug == slug &&
      other.priceCents == priceCents &&
      other.title == title &&
-     other.salePriceCents == salePriceCents &&
-     other.thumbnail == thumbnail;
+     other.thumbnail == thumbnail &&
+     other.salePriceCents == salePriceCents;
 
   @override
   int get hashCode =>
@@ -44,11 +44,11 @@ class ListBuyerGiftFinderItem {
     (slug == null ? 0 : slug.hashCode) +
     (priceCents == null ? 0 : priceCents.hashCode) +
     (title == null ? 0 : title.hashCode) +
-    (salePriceCents == null ? 0 : salePriceCents.hashCode) +
-    (thumbnail == null ? 0 : thumbnail.hashCode);
+    (thumbnail == null ? 0 : thumbnail.hashCode) +
+    (salePriceCents == null ? 0 : salePriceCents.hashCode);
 
   @override
-  String toString() => 'ListBuyerGiftFinderItem[slug=$slug, priceCents=$priceCents, title=$title, salePriceCents=$salePriceCents, thumbnail=$thumbnail]';
+  String toString() => 'ListBuyerGiftFinderItem[slug=$slug, priceCents=$priceCents, title=$title, thumbnail=$thumbnail, salePriceCents=$salePriceCents]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -57,11 +57,11 @@ class ListBuyerGiftFinderItem {
     if (title != null) {
       json[r'title'] = title;
     }
-    if (salePriceCents != null) {
-      json[r'salePriceCents'] = salePriceCents;
-    }
     if (thumbnail != null) {
       json[r'thumbnail'] = thumbnail;
+    }
+    if (salePriceCents != null) {
+      json[r'salePriceCents'] = salePriceCents;
     }
     return json;
   }
@@ -78,10 +78,10 @@ class ListBuyerGiftFinderItem {
           ? null
           : num.parse(json[r'priceCents'].toString()),
         title: mapValueOfType<String>(json, r'title'),
+        thumbnail: mapValueOfType<String>(json, r'thumbnail'),
         salePriceCents: json[r'salePriceCents'] == null
           ? null
           : num.parse(json[r'salePriceCents'].toString()),
-        thumbnail: mapValueOfType<String>(json, r'thumbnail'),
       );
     }
     return null;

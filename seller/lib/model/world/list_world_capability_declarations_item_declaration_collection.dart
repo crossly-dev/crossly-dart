@@ -102,23 +102,23 @@ class ListWorldCapabilityDeclarationsItemDeclarationCollectionChainEnum {
 
   String toJson() => value;
 
-  static const solana = ListWorldCapabilityDeclarationsItemDeclarationCollectionChainEnum._(r'solana');
-  static const cosm = ListWorldCapabilityDeclarationsItemDeclarationCollectionChainEnum._(r'cosm');
   static const ethereum = ListWorldCapabilityDeclarationsItemDeclarationCollectionChainEnum._(r'ethereum');
   static const base = ListWorldCapabilityDeclarationsItemDeclarationCollectionChainEnum._(r'base');
   static const polygon = ListWorldCapabilityDeclarationsItemDeclarationCollectionChainEnum._(r'polygon');
   static const arbitrum = ListWorldCapabilityDeclarationsItemDeclarationCollectionChainEnum._(r'arbitrum');
   static const optimism = ListWorldCapabilityDeclarationsItemDeclarationCollectionChainEnum._(r'optimism');
+  static const solana = ListWorldCapabilityDeclarationsItemDeclarationCollectionChainEnum._(r'solana');
+  static const cosm = ListWorldCapabilityDeclarationsItemDeclarationCollectionChainEnum._(r'cosm');
 
   /// List of all possible values in this [enum][ListWorldCapabilityDeclarationsItemDeclarationCollectionChainEnum].
   static const values = <ListWorldCapabilityDeclarationsItemDeclarationCollectionChainEnum>[
-    solana,
-    cosm,
     ethereum,
     base,
     polygon,
     arbitrum,
     optimism,
+    solana,
+    cosm,
   ];
 
   static ListWorldCapabilityDeclarationsItemDeclarationCollectionChainEnum fromJson(dynamic value) =>
@@ -150,13 +150,13 @@ class ListWorldCapabilityDeclarationsItemDeclarationCollectionChainEnumTypeTrans
   ListWorldCapabilityDeclarationsItemDeclarationCollectionChainEnum decode(dynamic data, {bool allowNull}) {
     if (data != null) {
       switch (data.toString()) {
-        case r'solana': return ListWorldCapabilityDeclarationsItemDeclarationCollectionChainEnum.solana;
-        case r'cosm': return ListWorldCapabilityDeclarationsItemDeclarationCollectionChainEnum.cosm;
         case r'ethereum': return ListWorldCapabilityDeclarationsItemDeclarationCollectionChainEnum.ethereum;
         case r'base': return ListWorldCapabilityDeclarationsItemDeclarationCollectionChainEnum.base;
         case r'polygon': return ListWorldCapabilityDeclarationsItemDeclarationCollectionChainEnum.polygon;
         case r'arbitrum': return ListWorldCapabilityDeclarationsItemDeclarationCollectionChainEnum.arbitrum;
         case r'optimism': return ListWorldCapabilityDeclarationsItemDeclarationCollectionChainEnum.optimism;
+        case r'solana': return ListWorldCapabilityDeclarationsItemDeclarationCollectionChainEnum.solana;
+        case r'cosm': return ListWorldCapabilityDeclarationsItemDeclarationCollectionChainEnum.cosm;
         default:
           if (allowNull == false) {
             throw ArgumentError('Unknown enum value to decode: $data');

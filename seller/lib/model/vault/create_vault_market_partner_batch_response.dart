@@ -26,7 +26,7 @@ class CreateVaultMarketPartnerBatchResponse {
 
   List<CreateVaultMarketPartnerBatchResponseCreated> created;
 
-  CreateVaultMarketPartnerBatchResponseLabel label;
+  LabelUrlTrackingCode label;
 
   String labelError;
 
@@ -74,7 +74,7 @@ class CreateVaultMarketPartnerBatchResponse {
         batchId: mapValueOfType<String>(json, r'batchId'),
         partnerCode: mapValueOfType<String>(json, r'partnerCode'),
         created: CreateVaultMarketPartnerBatchResponseCreated.listFromJson(json[r'created']),
-        label: CreateVaultMarketPartnerBatchResponseLabel.fromJson(json[r'label']),
+        label: LabelUrlTrackingCode.fromJson(json[r'label']),
         labelError: mapValueOfType<String>(json, r'labelError'),
       );
     }

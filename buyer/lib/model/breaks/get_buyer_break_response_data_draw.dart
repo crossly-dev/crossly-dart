@@ -13,32 +13,32 @@ part of openapi.api;
 class GetBuyerBreakResponseDataDraw {
   /// Returns a new [GetBuyerBreakResponseDataDraw] instance.
   GetBuyerBreakResponseDataDraw({
-    @required this.position,
     @required this.entry,
+    @required this.position,
   });
-
-  num position;
 
   num entry;
 
+  num position;
+
   @override
   bool operator ==(Object other) => identical(this, other) || other is GetBuyerBreakResponseDataDraw &&
-     other.position == position &&
-     other.entry == entry;
+     other.entry == entry &&
+     other.position == position;
 
   @override
   int get hashCode =>
   // ignore: unnecessary_parenthesis
-    (position == null ? 0 : position.hashCode) +
-    (entry == null ? 0 : entry.hashCode);
+    (entry == null ? 0 : entry.hashCode) +
+    (position == null ? 0 : position.hashCode);
 
   @override
-  String toString() => 'GetBuyerBreakResponseDataDraw[position=$position, entry=$entry]';
+  String toString() => 'GetBuyerBreakResponseDataDraw[entry=$entry, position=$position]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-      json[r'position'] = position;
       json[r'entry'] = entry;
+      json[r'position'] = position;
     return json;
   }
 
@@ -49,12 +49,12 @@ class GetBuyerBreakResponseDataDraw {
     if (value is Map) {
       final json = value.cast<String, dynamic>();
       return GetBuyerBreakResponseDataDraw(
-        position: json[r'position'] == null
-          ? null
-          : num.parse(json[r'position'].toString()),
         entry: json[r'entry'] == null
           ? null
           : num.parse(json[r'entry'].toString()),
+        position: json[r'position'] == null
+          ? null
+          : num.parse(json[r'position'].toString()),
       );
     }
     return null;

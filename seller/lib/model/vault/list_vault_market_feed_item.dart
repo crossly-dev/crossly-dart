@@ -15,6 +15,7 @@ class ListVaultMarketFeedItem {
   ListVaultMarketFeedItem({
     @required this.id,
     @required this.at,
+    @required this.by,
     @required this.bookKey,
     this.name,
     this.label,
@@ -27,6 +28,8 @@ class ListVaultMarketFeedItem {
 
   String at;
 
+  ListVaultMarketFeedItemBy by;
+
   String bookKey;
 
   String name;
@@ -35,7 +38,7 @@ class ListVaultMarketFeedItem {
 
   String imageUrl;
 
-  ListVaultMarketFeedItemMark mark;
+  ListVaultMarketOpeningItemMark mark;
 
   String buyHref;
 
@@ -43,6 +46,7 @@ class ListVaultMarketFeedItem {
   bool operator ==(Object other) => identical(this, other) || other is ListVaultMarketFeedItem &&
      other.id == id &&
      other.at == at &&
+     other.by == by &&
      other.bookKey == bookKey &&
      other.name == name &&
      other.label == label &&
@@ -55,6 +59,7 @@ class ListVaultMarketFeedItem {
   // ignore: unnecessary_parenthesis
     (id == null ? 0 : id.hashCode) +
     (at == null ? 0 : at.hashCode) +
+    (by == null ? 0 : by.hashCode) +
     (bookKey == null ? 0 : bookKey.hashCode) +
     (name == null ? 0 : name.hashCode) +
     (label == null ? 0 : label.hashCode) +
@@ -63,12 +68,13 @@ class ListVaultMarketFeedItem {
     (buyHref == null ? 0 : buyHref.hashCode);
 
   @override
-  String toString() => 'ListVaultMarketFeedItem[id=$id, at=$at, bookKey=$bookKey, name=$name, label=$label, imageUrl=$imageUrl, mark=$mark, buyHref=$buyHref]';
+  String toString() => 'ListVaultMarketFeedItem[id=$id, at=$at, by=$by, bookKey=$bookKey, name=$name, label=$label, imageUrl=$imageUrl, mark=$mark, buyHref=$buyHref]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
       json[r'id'] = id;
       json[r'at'] = at;
+      json[r'by'] = by;
       json[r'bookKey'] = bookKey;
     if (name != null) {
       json[r'name'] = name;
@@ -93,11 +99,12 @@ class ListVaultMarketFeedItem {
       return ListVaultMarketFeedItem(
         id: mapValueOfType<String>(json, r'id'),
         at: mapValueOfType<String>(json, r'at'),
+        by: ListVaultMarketFeedItemBy.fromJson(json[r'by']),
         bookKey: mapValueOfType<String>(json, r'bookKey'),
         name: mapValueOfType<String>(json, r'name'),
         label: mapValueOfType<String>(json, r'label'),
         imageUrl: mapValueOfType<String>(json, r'imageUrl'),
-        mark: ListVaultMarketFeedItemMark.fromJson(json[r'mark']),
+        mark: ListVaultMarketOpeningItemMark.fromJson(json[r'mark']),
         buyHref: mapValueOfType<String>(json, r'buyHref'),
       );
     }

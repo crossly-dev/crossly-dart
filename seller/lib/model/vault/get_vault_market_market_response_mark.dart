@@ -175,21 +175,21 @@ class GetVaultMarketMarketResponseMarkSource_Enum {
   String toJson() => value;
 
   static const none = GetVaultMarketMarketResponseMarkSource_Enum._(r'none');
-  static const twap = GetVaultMarketMarketResponseMarkSource_Enum._(r'twap');
-  static const mid = GetVaultMarketMarketResponseMarkSource_Enum._(r'mid');
   static const ask = GetVaultMarketMarketResponseMarkSource_Enum._(r'ask');
-  static const bid = GetVaultMarketMarketResponseMarkSource_Enum._(r'bid');
+  static const mid = GetVaultMarketMarketResponseMarkSource_Enum._(r'mid');
   static const last = GetVaultMarketMarketResponseMarkSource_Enum._(r'last');
+  static const bid = GetVaultMarketMarketResponseMarkSource_Enum._(r'bid');
+  static const twap = GetVaultMarketMarketResponseMarkSource_Enum._(r'twap');
   static const implied = GetVaultMarketMarketResponseMarkSource_Enum._(r'implied');
 
   /// List of all possible values in this [enum][GetVaultMarketMarketResponseMarkSource_Enum].
   static const values = <GetVaultMarketMarketResponseMarkSource_Enum>[
     none,
-    twap,
-    mid,
     ask,
-    bid,
+    mid,
     last,
+    bid,
+    twap,
     implied,
   ];
 
@@ -223,11 +223,11 @@ class GetVaultMarketMarketResponseMarkSource_EnumTypeTransformer {
     if (data != null) {
       switch (data.toString()) {
         case r'none': return GetVaultMarketMarketResponseMarkSource_Enum.none;
-        case r'twap': return GetVaultMarketMarketResponseMarkSource_Enum.twap;
-        case r'mid': return GetVaultMarketMarketResponseMarkSource_Enum.mid;
         case r'ask': return GetVaultMarketMarketResponseMarkSource_Enum.ask;
-        case r'bid': return GetVaultMarketMarketResponseMarkSource_Enum.bid;
+        case r'mid': return GetVaultMarketMarketResponseMarkSource_Enum.mid;
         case r'last': return GetVaultMarketMarketResponseMarkSource_Enum.last;
+        case r'bid': return GetVaultMarketMarketResponseMarkSource_Enum.bid;
+        case r'twap': return GetVaultMarketMarketResponseMarkSource_Enum.twap;
         case r'implied': return GetVaultMarketMarketResponseMarkSource_Enum.implied;
         default:
           if (allowNull == false) {
@@ -257,16 +257,16 @@ class GetVaultMarketMarketResponseMarkQualityEnum {
   String toJson() => value;
 
   static const none = GetVaultMarketMarketResponseMarkQualityEnum._(r'none');
+  static const C = GetVaultMarketMarketResponseMarkQualityEnum._(r'C');
   static const A = GetVaultMarketMarketResponseMarkQualityEnum._(r'A');
   static const B = GetVaultMarketMarketResponseMarkQualityEnum._(r'B');
-  static const C = GetVaultMarketMarketResponseMarkQualityEnum._(r'C');
 
   /// List of all possible values in this [enum][GetVaultMarketMarketResponseMarkQualityEnum].
   static const values = <GetVaultMarketMarketResponseMarkQualityEnum>[
     none,
+    C,
     A,
     B,
-    C,
   ];
 
   static GetVaultMarketMarketResponseMarkQualityEnum fromJson(dynamic value) =>
@@ -299,9 +299,9 @@ class GetVaultMarketMarketResponseMarkQualityEnumTypeTransformer {
     if (data != null) {
       switch (data.toString()) {
         case r'none': return GetVaultMarketMarketResponseMarkQualityEnum.none;
+        case r'C': return GetVaultMarketMarketResponseMarkQualityEnum.C;
         case r'A': return GetVaultMarketMarketResponseMarkQualityEnum.A;
         case r'B': return GetVaultMarketMarketResponseMarkQualityEnum.B;
-        case r'C': return GetVaultMarketMarketResponseMarkQualityEnum.C;
         default:
           if (allowNull == false) {
             throw ArgumentError('Unknown enum value to decode: $data');

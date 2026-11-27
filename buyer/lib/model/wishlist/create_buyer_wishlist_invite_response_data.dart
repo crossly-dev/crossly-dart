@@ -13,37 +13,37 @@ part of openapi.api;
 class CreateBuyerWishlistInviteResponseData {
   /// Returns a new [CreateBuyerWishlistInviteResponseData] instance.
   CreateBuyerWishlistInviteResponseData({
-    @required this.url,
     @required this.token,
+    @required this.url,
     @required this.expiresAt,
   });
 
-  String url;
-
   String token;
+
+  String url;
 
   String expiresAt;
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is CreateBuyerWishlistInviteResponseData &&
-     other.url == url &&
      other.token == token &&
+     other.url == url &&
      other.expiresAt == expiresAt;
 
   @override
   int get hashCode =>
   // ignore: unnecessary_parenthesis
-    (url == null ? 0 : url.hashCode) +
     (token == null ? 0 : token.hashCode) +
+    (url == null ? 0 : url.hashCode) +
     (expiresAt == null ? 0 : expiresAt.hashCode);
 
   @override
-  String toString() => 'CreateBuyerWishlistInviteResponseData[url=$url, token=$token, expiresAt=$expiresAt]';
+  String toString() => 'CreateBuyerWishlistInviteResponseData[token=$token, url=$url, expiresAt=$expiresAt]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-      json[r'url'] = url;
       json[r'token'] = token;
+      json[r'url'] = url;
       json[r'expiresAt'] = expiresAt;
     return json;
   }
@@ -55,8 +55,8 @@ class CreateBuyerWishlistInviteResponseData {
     if (value is Map) {
       final json = value.cast<String, dynamic>();
       return CreateBuyerWishlistInviteResponseData(
-        url: mapValueOfType<String>(json, r'url'),
         token: mapValueOfType<String>(json, r'token'),
+        url: mapValueOfType<String>(json, r'url'),
         expiresAt: mapValueOfType<String>(json, r'expiresAt'),
       );
     }

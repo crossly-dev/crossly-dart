@@ -15,8 +15,10 @@ class GetMileageSummaryResponse {
   GetMileageSummaryResponse({
     @required this.year,
     @required this.ratePerMile,
+    this.rates = const [],
     @required this.totalMiles,
     @required this.deduction,
+    @required this.deductionCents,
     @required this.entryCount,
   });
 
@@ -24,9 +26,13 @@ class GetMileageSummaryResponse {
 
   num ratePerMile;
 
+  List<GetMileageSummaryResponseRates> rates;
+
   num totalMiles;
 
   num deduction;
+
+  num deductionCents;
 
   num entryCount;
 
@@ -34,8 +40,10 @@ class GetMileageSummaryResponse {
   bool operator ==(Object other) => identical(this, other) || other is GetMileageSummaryResponse &&
      other.year == year &&
      other.ratePerMile == ratePerMile &&
+     other.rates == rates &&
      other.totalMiles == totalMiles &&
      other.deduction == deduction &&
+     other.deductionCents == deductionCents &&
      other.entryCount == entryCount;
 
   @override
@@ -43,19 +51,23 @@ class GetMileageSummaryResponse {
   // ignore: unnecessary_parenthesis
     (year == null ? 0 : year.hashCode) +
     (ratePerMile == null ? 0 : ratePerMile.hashCode) +
+    (rates == null ? 0 : rates.hashCode) +
     (totalMiles == null ? 0 : totalMiles.hashCode) +
     (deduction == null ? 0 : deduction.hashCode) +
+    (deductionCents == null ? 0 : deductionCents.hashCode) +
     (entryCount == null ? 0 : entryCount.hashCode);
 
   @override
-  String toString() => 'GetMileageSummaryResponse[year=$year, ratePerMile=$ratePerMile, totalMiles=$totalMiles, deduction=$deduction, entryCount=$entryCount]';
+  String toString() => 'GetMileageSummaryResponse[year=$year, ratePerMile=$ratePerMile, rates=$rates, totalMiles=$totalMiles, deduction=$deduction, deductionCents=$deductionCents, entryCount=$entryCount]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
       json[r'year'] = year;
       json[r'ratePerMile'] = ratePerMile;
+      json[r'rates'] = rates;
       json[r'totalMiles'] = totalMiles;
       json[r'deduction'] = deduction;
+      json[r'deductionCents'] = deductionCents;
       json[r'entryCount'] = entryCount;
     return json;
   }
@@ -73,12 +85,16 @@ class GetMileageSummaryResponse {
         ratePerMile: json[r'ratePerMile'] == null
           ? null
           : num.parse(json[r'ratePerMile'].toString()),
+        rates: GetMileageSummaryResponseRates.listFromJson(json[r'rates']),
         totalMiles: json[r'totalMiles'] == null
           ? null
           : num.parse(json[r'totalMiles'].toString()),
         deduction: json[r'deduction'] == null
           ? null
           : num.parse(json[r'deduction'].toString()),
+        deductionCents: json[r'deductionCents'] == null
+          ? null
+          : num.parse(json[r'deductionCents'].toString()),
         entryCount: json[r'entryCount'] == null
           ? null
           : num.parse(json[r'entryCount'].toString()),

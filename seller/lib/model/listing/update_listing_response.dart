@@ -13,25 +13,33 @@ part of openapi.api;
 class UpdateListingResponse {
   /// Returns a new [UpdateListingResponse] instance.
   UpdateListingResponse({
+    this.warnings,
     this.jobs = const [],
   });
+
+  List<CreateListingResponseWarnings> warnings;
 
   List<UpdateListingResponseJobs> jobs;
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is UpdateListingResponse &&
+     other.warnings == warnings &&
      other.jobs == jobs;
 
   @override
   int get hashCode =>
   // ignore: unnecessary_parenthesis
+    (warnings == null ? 0 : warnings.hashCode) +
     (jobs == null ? 0 : jobs.hashCode);
 
   @override
-  String toString() => 'UpdateListingResponse[jobs=$jobs]';
+  String toString() => 'UpdateListingResponse[warnings=$warnings, jobs=$jobs]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
+    if (warnings != null) {
+      json[r'warnings'] = warnings;
+    }
       json[r'jobs'] = jobs;
     return json;
   }
@@ -43,6 +51,7 @@ class UpdateListingResponse {
     if (value is Map) {
       final json = value.cast<String, dynamic>();
       return UpdateListingResponse(
+        warnings: CreateListingResponseWarnings.listFromJson(json[r'warnings']),
         jobs: UpdateListingResponseJobs.listFromJson(json[r'jobs']),
       );
     }

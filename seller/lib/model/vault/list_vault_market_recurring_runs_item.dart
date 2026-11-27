@@ -18,8 +18,8 @@ class ListVaultMarketRecurringRunsItem {
     @required this.id,
     @required this.userId,
     @required this.status,
-    this.reason,
     this.orderId,
+    this.reason,
     this.markCents,
     this.limitCents,
     this.filledCents,
@@ -37,9 +37,9 @@ class ListVaultMarketRecurringRunsItem {
 
   String status;
 
-  String reason;
-
   String orderId;
+
+  String reason;
 
   num markCents;
 
@@ -58,8 +58,8 @@ class ListVaultMarketRecurringRunsItem {
      other.id == id &&
      other.userId == userId &&
      other.status == status &&
-     other.reason == reason &&
      other.orderId == orderId &&
+     other.reason == reason &&
      other.markCents == markCents &&
      other.limitCents == limitCents &&
      other.filledCents == filledCents &&
@@ -74,8 +74,8 @@ class ListVaultMarketRecurringRunsItem {
     (id == null ? 0 : id.hashCode) +
     (userId == null ? 0 : userId.hashCode) +
     (status == null ? 0 : status.hashCode) +
-    (reason == null ? 0 : reason.hashCode) +
     (orderId == null ? 0 : orderId.hashCode) +
+    (reason == null ? 0 : reason.hashCode) +
     (markCents == null ? 0 : markCents.hashCode) +
     (limitCents == null ? 0 : limitCents.hashCode) +
     (filledCents == null ? 0 : filledCents.hashCode) +
@@ -83,7 +83,7 @@ class ListVaultMarketRecurringRunsItem {
     (usedBackup == null ? 0 : usedBackup.hashCode);
 
   @override
-  String toString() => 'ListVaultMarketRecurringRunsItem[dueAt=$dueAt, createdAt=$createdAt, id=$id, userId=$userId, status=$status, reason=$reason, orderId=$orderId, markCents=$markCents, limitCents=$limitCents, filledCents=$filledCents, scheduleId=$scheduleId, usedBackup=$usedBackup]';
+  String toString() => 'ListVaultMarketRecurringRunsItem[dueAt=$dueAt, createdAt=$createdAt, id=$id, userId=$userId, status=$status, orderId=$orderId, reason=$reason, markCents=$markCents, limitCents=$limitCents, filledCents=$filledCents, scheduleId=$scheduleId, usedBackup=$usedBackup]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -92,11 +92,11 @@ class ListVaultMarketRecurringRunsItem {
       json[r'id'] = id;
       json[r'userId'] = userId;
       json[r'status'] = status;
-    if (reason != null) {
-      json[r'reason'] = reason;
-    }
     if (orderId != null) {
       json[r'orderId'] = orderId;
+    }
+    if (reason != null) {
+      json[r'reason'] = reason;
     }
     if (markCents != null) {
       json[r'markCents'] = markCents;
@@ -124,8 +124,8 @@ class ListVaultMarketRecurringRunsItem {
         id: mapValueOfType<String>(json, r'id'),
         userId: mapValueOfType<String>(json, r'userId'),
         status: mapValueOfType<String>(json, r'status'),
-        reason: mapValueOfType<String>(json, r'reason'),
         orderId: mapValueOfType<String>(json, r'orderId'),
+        reason: mapValueOfType<String>(json, r'reason'),
         markCents: json[r'markCents'] == null
           ? null
           : num.parse(json[r'markCents'].toString()),

@@ -14,28 +14,30 @@ class ListBuyerProtectionPlansItem {
   /// Returns a new [ListBuyerProtectionPlansItem] instance.
   ListBuyerProtectionPlansItem({
     @required this.id,
-    @required this.createdAt,
+    this.purchaseId,
     @required this.status,
     @required this.title,
-    this.purchaseId,
+    this.termMonths,
+    this.coverage,
     this.termsUrl,
     @required this.priceCents,
     this.refundCents,
-    this.termMonths,
-    this.coverage,
     this.contractId,
     this.itemTitle,
+    @required this.createdAt,
   });
 
   String id;
 
-  String createdAt;
+  String purchaseId;
 
   String status;
 
   String title;
 
-  String purchaseId;
+  num termMonths;
+
+  String coverage;
 
   String termsUrl;
 
@@ -43,56 +45,59 @@ class ListBuyerProtectionPlansItem {
 
   num refundCents;
 
-  num termMonths;
-
-  String coverage;
-
   String contractId;
 
   String itemTitle;
 
+  String createdAt;
+
   @override
   bool operator ==(Object other) => identical(this, other) || other is ListBuyerProtectionPlansItem &&
      other.id == id &&
-     other.createdAt == createdAt &&
+     other.purchaseId == purchaseId &&
      other.status == status &&
      other.title == title &&
-     other.purchaseId == purchaseId &&
+     other.termMonths == termMonths &&
+     other.coverage == coverage &&
      other.termsUrl == termsUrl &&
      other.priceCents == priceCents &&
      other.refundCents == refundCents &&
-     other.termMonths == termMonths &&
-     other.coverage == coverage &&
      other.contractId == contractId &&
-     other.itemTitle == itemTitle;
+     other.itemTitle == itemTitle &&
+     other.createdAt == createdAt;
 
   @override
   int get hashCode =>
   // ignore: unnecessary_parenthesis
     (id == null ? 0 : id.hashCode) +
-    (createdAt == null ? 0 : createdAt.hashCode) +
+    (purchaseId == null ? 0 : purchaseId.hashCode) +
     (status == null ? 0 : status.hashCode) +
     (title == null ? 0 : title.hashCode) +
-    (purchaseId == null ? 0 : purchaseId.hashCode) +
+    (termMonths == null ? 0 : termMonths.hashCode) +
+    (coverage == null ? 0 : coverage.hashCode) +
     (termsUrl == null ? 0 : termsUrl.hashCode) +
     (priceCents == null ? 0 : priceCents.hashCode) +
     (refundCents == null ? 0 : refundCents.hashCode) +
-    (termMonths == null ? 0 : termMonths.hashCode) +
-    (coverage == null ? 0 : coverage.hashCode) +
     (contractId == null ? 0 : contractId.hashCode) +
-    (itemTitle == null ? 0 : itemTitle.hashCode);
+    (itemTitle == null ? 0 : itemTitle.hashCode) +
+    (createdAt == null ? 0 : createdAt.hashCode);
 
   @override
-  String toString() => 'ListBuyerProtectionPlansItem[id=$id, createdAt=$createdAt, status=$status, title=$title, purchaseId=$purchaseId, termsUrl=$termsUrl, priceCents=$priceCents, refundCents=$refundCents, termMonths=$termMonths, coverage=$coverage, contractId=$contractId, itemTitle=$itemTitle]';
+  String toString() => 'ListBuyerProtectionPlansItem[id=$id, purchaseId=$purchaseId, status=$status, title=$title, termMonths=$termMonths, coverage=$coverage, termsUrl=$termsUrl, priceCents=$priceCents, refundCents=$refundCents, contractId=$contractId, itemTitle=$itemTitle, createdAt=$createdAt]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
       json[r'id'] = id;
-      json[r'createdAt'] = createdAt;
-      json[r'status'] = status;
-      json[r'title'] = title;
     if (purchaseId != null) {
       json[r'purchaseId'] = purchaseId;
+    }
+      json[r'status'] = status;
+      json[r'title'] = title;
+    if (termMonths != null) {
+      json[r'termMonths'] = termMonths;
+    }
+    if (coverage != null) {
+      json[r'coverage'] = coverage;
     }
     if (termsUrl != null) {
       json[r'termsUrl'] = termsUrl;
@@ -101,18 +106,13 @@ class ListBuyerProtectionPlansItem {
     if (refundCents != null) {
       json[r'refundCents'] = refundCents;
     }
-    if (termMonths != null) {
-      json[r'termMonths'] = termMonths;
-    }
-    if (coverage != null) {
-      json[r'coverage'] = coverage;
-    }
     if (contractId != null) {
       json[r'contractId'] = contractId;
     }
     if (itemTitle != null) {
       json[r'itemTitle'] = itemTitle;
     }
+      json[r'createdAt'] = createdAt;
     return json;
   }
 
@@ -124,10 +124,13 @@ class ListBuyerProtectionPlansItem {
       final json = value.cast<String, dynamic>();
       return ListBuyerProtectionPlansItem(
         id: mapValueOfType<String>(json, r'id'),
-        createdAt: mapValueOfType<String>(json, r'createdAt'),
+        purchaseId: mapValueOfType<String>(json, r'purchaseId'),
         status: mapValueOfType<String>(json, r'status'),
         title: mapValueOfType<String>(json, r'title'),
-        purchaseId: mapValueOfType<String>(json, r'purchaseId'),
+        termMonths: json[r'termMonths'] == null
+          ? null
+          : num.parse(json[r'termMonths'].toString()),
+        coverage: mapValueOfType<String>(json, r'coverage'),
         termsUrl: mapValueOfType<String>(json, r'termsUrl'),
         priceCents: json[r'priceCents'] == null
           ? null
@@ -135,12 +138,9 @@ class ListBuyerProtectionPlansItem {
         refundCents: json[r'refundCents'] == null
           ? null
           : num.parse(json[r'refundCents'].toString()),
-        termMonths: json[r'termMonths'] == null
-          ? null
-          : num.parse(json[r'termMonths'].toString()),
-        coverage: mapValueOfType<String>(json, r'coverage'),
         contractId: mapValueOfType<String>(json, r'contractId'),
         itemTitle: mapValueOfType<String>(json, r'itemTitle'),
+        createdAt: mapValueOfType<String>(json, r'createdAt'),
       );
     }
     return null;

@@ -20,6 +20,7 @@ class GetVaultMarketRiskReportResponse {
     @required this.lvar,
     @required this.stress,
     @required this.concentration,
+    @required this.counterparty,
     @required this.partnerDcm,
   });
 
@@ -37,6 +38,8 @@ class GetVaultMarketRiskReportResponse {
 
   GetVaultMarketRiskReportResponseConcentration concentration;
 
+  GetVaultMarketRiskReportResponseCounterparty counterparty;
+
   GetVaultMarketRiskReportResponsePartnerDcm partnerDcm;
 
   @override
@@ -48,6 +51,7 @@ class GetVaultMarketRiskReportResponse {
      other.lvar == lvar &&
      other.stress == stress &&
      other.concentration == concentration &&
+     other.counterparty == counterparty &&
      other.partnerDcm == partnerDcm;
 
   @override
@@ -60,10 +64,11 @@ class GetVaultMarketRiskReportResponse {
     (lvar == null ? 0 : lvar.hashCode) +
     (stress == null ? 0 : stress.hashCode) +
     (concentration == null ? 0 : concentration.hashCode) +
+    (counterparty == null ? 0 : counterparty.hashCode) +
     (partnerDcm == null ? 0 : partnerDcm.hashCode);
 
   @override
-  String toString() => 'GetVaultMarketRiskReportResponse[account=$account, asOf=$asOf, nav=$nav, var_=$var_, lvar=$lvar, stress=$stress, concentration=$concentration, partnerDcm=$partnerDcm]';
+  String toString() => 'GetVaultMarketRiskReportResponse[account=$account, asOf=$asOf, nav=$nav, var_=$var_, lvar=$lvar, stress=$stress, concentration=$concentration, counterparty=$counterparty, partnerDcm=$partnerDcm]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -74,6 +79,7 @@ class GetVaultMarketRiskReportResponse {
       json[r'lvar'] = lvar;
       json[r'stress'] = stress;
       json[r'concentration'] = concentration;
+      json[r'counterparty'] = counterparty;
       json[r'partnerDcm'] = partnerDcm;
     return json;
   }
@@ -92,6 +98,7 @@ class GetVaultMarketRiskReportResponse {
         lvar: GetVaultMarketRiskReportResponseLvar.fromJson(json[r'lvar']),
         stress: GetVaultMarketRiskReportResponseStress.fromJson(json[r'stress']),
         concentration: GetVaultMarketRiskReportResponseConcentration.fromJson(json[r'concentration']),
+        counterparty: GetVaultMarketRiskReportResponseCounterparty.fromJson(json[r'counterparty']),
         partnerDcm: GetVaultMarketRiskReportResponsePartnerDcm.fromJson(json[r'partnerDcm']),
       );
     }

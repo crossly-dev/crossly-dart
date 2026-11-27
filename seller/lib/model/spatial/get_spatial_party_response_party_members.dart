@@ -147,13 +147,13 @@ class GetSpatialPartyResponsePartyMembersRoleEnum {
 
   String toJson() => value;
 
-  static const member = GetSpatialPartyResponsePartyMembersRoleEnum._(r'member');
   static const leader = GetSpatialPartyResponsePartyMembersRoleEnum._(r'leader');
+  static const member = GetSpatialPartyResponsePartyMembersRoleEnum._(r'member');
 
   /// List of all possible values in this [enum][GetSpatialPartyResponsePartyMembersRoleEnum].
   static const values = <GetSpatialPartyResponsePartyMembersRoleEnum>[
-    member,
     leader,
+    member,
   ];
 
   static GetSpatialPartyResponsePartyMembersRoleEnum fromJson(dynamic value) =>
@@ -185,8 +185,8 @@ class GetSpatialPartyResponsePartyMembersRoleEnumTypeTransformer {
   GetSpatialPartyResponsePartyMembersRoleEnum decode(dynamic data, {bool allowNull}) {
     if (data != null) {
       switch (data.toString()) {
-        case r'member': return GetSpatialPartyResponsePartyMembersRoleEnum.member;
         case r'leader': return GetSpatialPartyResponsePartyMembersRoleEnum.leader;
+        case r'member': return GetSpatialPartyResponsePartyMembersRoleEnum.member;
         default:
           if (allowNull == false) {
             throw ArgumentError('Unknown enum value to decode: $data');

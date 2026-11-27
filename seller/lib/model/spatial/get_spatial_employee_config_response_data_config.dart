@@ -158,15 +158,17 @@ class GetSpatialEmployeeConfigResponseDataConfigBrainKindEnum {
 
   String toJson() => value;
 
-  static const idle = GetSpatialEmployeeConfigResponseDataConfigBrainKindEnum._(r'idle');
   static const rules = GetSpatialEmployeeConfigResponseDataConfigBrainKindEnum._(r'rules');
+  static const idle = GetSpatialEmployeeConfigResponseDataConfigBrainKindEnum._(r'idle');
   static const agent = GetSpatialEmployeeConfigResponseDataConfigBrainKindEnum._(r'agent');
+  static const byok = GetSpatialEmployeeConfigResponseDataConfigBrainKindEnum._(r'byok');
 
   /// List of all possible values in this [enum][GetSpatialEmployeeConfigResponseDataConfigBrainKindEnum].
   static const values = <GetSpatialEmployeeConfigResponseDataConfigBrainKindEnum>[
-    idle,
     rules,
+    idle,
     agent,
+    byok,
   ];
 
   static GetSpatialEmployeeConfigResponseDataConfigBrainKindEnum fromJson(dynamic value) =>
@@ -198,9 +200,10 @@ class GetSpatialEmployeeConfigResponseDataConfigBrainKindEnumTypeTransformer {
   GetSpatialEmployeeConfigResponseDataConfigBrainKindEnum decode(dynamic data, {bool allowNull}) {
     if (data != null) {
       switch (data.toString()) {
-        case r'idle': return GetSpatialEmployeeConfigResponseDataConfigBrainKindEnum.idle;
         case r'rules': return GetSpatialEmployeeConfigResponseDataConfigBrainKindEnum.rules;
+        case r'idle': return GetSpatialEmployeeConfigResponseDataConfigBrainKindEnum.idle;
         case r'agent': return GetSpatialEmployeeConfigResponseDataConfigBrainKindEnum.agent;
+        case r'byok': return GetSpatialEmployeeConfigResponseDataConfigBrainKindEnum.byok;
         default:
           if (allowNull == false) {
             throw ArgumentError('Unknown enum value to decode: $data');

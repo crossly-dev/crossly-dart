@@ -60,6 +60,18 @@ String parameterToString(dynamic value) {
   if (value is DateTime) {
     return value.toUtc().toIso8601String();
   }
+  if (value is BuyerWholesaleOrderSheetResponseDataLinesFlagsItem) {
+    return BuyerWholesaleOrderSheetResponseDataLinesFlagsItemTypeTransformer().encode(value).toString();
+  }
+  if (value is CreateBuyerWholesaleUploadValidateResponseDataLinesFlagsItem) {
+    return CreateBuyerWholesaleUploadValidateResponseDataLinesFlagsItemTypeTransformer().encode(value).toString();
+  }
+  if (value is GetBuyerWholesaleCartResponseDataGroupsCheckoutMethodsItem) {
+    return GetBuyerWholesaleCartResponseDataGroupsCheckoutMethodsItemTypeTransformer().encode(value).toString();
+  }
+  if (value is GetBuyerWholesaleInvoicePayQuoteResponseDataMethodsItem) {
+    return GetBuyerWholesaleInvoicePayQuoteResponseDataMethodsItemTypeTransformer().encode(value).toString();
+  }
   return value.toString();
 }
 

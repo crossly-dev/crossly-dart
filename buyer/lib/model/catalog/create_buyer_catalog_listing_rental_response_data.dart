@@ -17,6 +17,7 @@ class CreateBuyerCatalogListingRentalResponseData {
     this.clientSecret,
     @required this.totalCents,
     @required this.needsApproval,
+    @required this.quote,
   });
 
   String rentalId;
@@ -27,12 +28,15 @@ class CreateBuyerCatalogListingRentalResponseData {
 
   bool needsApproval;
 
+  CreateBuyerCatalogListingRentalResponseDataQuote quote;
+
   @override
   bool operator ==(Object other) => identical(this, other) || other is CreateBuyerCatalogListingRentalResponseData &&
      other.rentalId == rentalId &&
      other.clientSecret == clientSecret &&
      other.totalCents == totalCents &&
-     other.needsApproval == needsApproval;
+     other.needsApproval == needsApproval &&
+     other.quote == quote;
 
   @override
   int get hashCode =>
@@ -40,10 +44,11 @@ class CreateBuyerCatalogListingRentalResponseData {
     (rentalId == null ? 0 : rentalId.hashCode) +
     (clientSecret == null ? 0 : clientSecret.hashCode) +
     (totalCents == null ? 0 : totalCents.hashCode) +
-    (needsApproval == null ? 0 : needsApproval.hashCode);
+    (needsApproval == null ? 0 : needsApproval.hashCode) +
+    (quote == null ? 0 : quote.hashCode);
 
   @override
-  String toString() => 'CreateBuyerCatalogListingRentalResponseData[rentalId=$rentalId, clientSecret=$clientSecret, totalCents=$totalCents, needsApproval=$needsApproval]';
+  String toString() => 'CreateBuyerCatalogListingRentalResponseData[rentalId=$rentalId, clientSecret=$clientSecret, totalCents=$totalCents, needsApproval=$needsApproval, quote=$quote]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -53,6 +58,7 @@ class CreateBuyerCatalogListingRentalResponseData {
     }
       json[r'totalCents'] = totalCents;
       json[r'needsApproval'] = needsApproval;
+      json[r'quote'] = quote;
     return json;
   }
 
@@ -69,6 +75,7 @@ class CreateBuyerCatalogListingRentalResponseData {
           ? null
           : num.parse(json[r'totalCents'].toString()),
         needsApproval: mapValueOfType<bool>(json, r'needsApproval'),
+        quote: CreateBuyerCatalogListingRentalResponseDataQuote.fromJson(json[r'quote']),
       );
     }
     return null;

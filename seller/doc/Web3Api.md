@@ -42,19 +42,31 @@ Method | HTTP request | Description
 [**createWeb3SolanaOrderDelistTx**](Web3Api.md#createweb3solanaorderdelisttx) | **POST** /v1/web3/solana/orders/{hash}/delist-tx | Build the unsigned transaction that takes your Solana listing down.
 [**createWeb3SolanaTensorBidAcceptTx**](Web3Api.md#createweb3solanatensorbidaccepttx) | **POST** /v1/web3/solana/tensor-bids/accept-tx | Build the transaction that sells your NFT into a Tensor bid, never below `minLamports`.
 [**createWeb3SolanaTensorBidCancelTx**](Web3Api.md#createweb3solanatensorbidcanceltx) | **POST** /v1/web3/solana/tensor-bids/cancel-tx | Build the transaction that cancels your Tensor bid.
+[**createWeb3SolanaTensorBidConfirm**](Web3Api.md#createweb3solanatensorbidconfirm) | **POST** /v1/web3/solana/tensor-bids/confirm | After your wallet’s Tensor transaction confirms: `action` place, cancel or accept, with its `signature` and the `wallet` that signed. Checked on chain, then recorded in your Activity. Accept needs listings:write; place and cancel need buyer:offers:write.
 [**createWeb3SolanaTensorBidPlaceTx**](Web3Api.md#createweb3solanatensorbidplacetx) | **POST** /v1/web3/solana/tensor-bids/place-tx | Build a Tensor collection bid (or trait bid with `trait`) for your Solana wallet to sign. Price in lamports.
+[**createWeb3StakingStake**](Web3Api.md#createweb3stakingstake) | **POST** /v1/web3/staking/stake | Lock earned CBX (`baseUnits`, a string) into the best tier it reaches. 409 while a stake or unstake is in progress.
+[**createWeb3StakingUnstake**](Web3Api.md#createweb3stakingunstake) | **POST** /v1/web3/staking/unstake | Start unstaking: the earn boost stops now, the tokens release when the tier’s cooldown ends. Returns `{ unlocksAt, cooldownDays }`.
+[**createWeb3StoreWallet**](Web3Api.md#createweb3storewallet) | **POST** /v1/web3/store-wallets | Link one of your verified wallets to the store so it sells NFTs from it and is paid into it.
+[**createWeb3StoreWalletChallenge**](Web3Api.md#createweb3storewalletchallenge) | **POST** /v1/web3/store-wallets/challenge | Start adding a selling wallet to the store: the message the wallet signs.
+[**createWeb3StoreWalletImport**](Web3Api.md#createweb3storewalletimport) | **POST** /v1/web3/store-wallets/{walletId}/import | Add picked NFTs (`tokens: [{ chain, contract, tokenId }]`) from a store wallet to inventory.
+[**createWeb3StoreWalletSync**](Web3Api.md#createweb3storewalletsync) | **POST** /v1/web3/store-wallets/{walletId}/sync | Sync a store wallet: refresh its NFTs in inventory; new ones are added when the store's link auto-imports.
+[**createWeb3StoreWalletVerify**](Web3Api.md#createweb3storewalletverify) | **POST** /v1/web3/store-wallets/verify | Finish adding a selling wallet: verify its signature and link it to the store.
 [**createWeb3TokenRefresh**](Web3Api.md#createweb3tokenrefresh) | **POST** /v1/web3/tokens/{chain}/{contract}/{tokenId}/refresh | Re-read a token's metadata from the chain's provider (name, traits, image — a new image is copied to Crossly's CDN). Once per token per 10 minutes.
 [**createWeb3Transaction**](Web3Api.md#createweb3transaction) | **POST** /v1/web3/transactions | Apply a Seaport transaction's fills and cancels to the Crossly book (read from the receipt).
 [**createWeb3WalletChallenge**](Web3Api.md#createweb3walletchallenge) | **POST** /v1/web3/wallets/challenge | Start linking a wallet: returns the message the wallet must sign.
+[**createWeb3WalletImport**](Web3Api.md#createweb3walletimport) | **POST** /v1/web3/wallets/{id}/import | Add picked NFTs (`tokens`: chain, contract, tokenId; up to 200) from a linked wallet to inventory. Tokens the wallet does not hold are counted in `notInWallet`, never added.
 [**createWeb3WalletSync**](Web3Api.md#createweb3walletsync) | **POST** /v1/web3/wallets/{id}/sync | Import a linked wallet's NFTs into inventory; archives ones that have left the wallet.
 [**createWeb3WalletVerify**](Web3Api.md#createweb3walletverify) | **POST** /v1/web3/wallets/verify | Finish linking a wallet with its signature over the challenge message.
 [**deleteWeb3Alert**](Web3Api.md#deleteweb3alert) | **DELETE** /v1/web3/alerts/{id} | Delete a price alert.
-[**deleteWeb3HolderPerk**](Web3Api.md#deleteweb3holderperk) | **DELETE** /v1/web3/holder-perks/{id} | Remove a holder perk. Returns `{ ok }`.
+[**deleteWeb3HolderPerk**](Web3Api.md#deleteweb3holderperk) | **DELETE** /v1/web3/holder-perks/{id} | DEPRECATED: use /api/v1/discounts/holders/:id. Remove a Collection holders deal. Returns `{ ok }`.
 [**deleteWeb3Launch**](Web3Api.md#deleteweb3launch) | **DELETE** /v1/web3/launches/{id} | Delete a launch draft that never went live. Returns `{ ok }`.
 [**deleteWeb3LaunchFollowCreator**](Web3Api.md#deleteweb3launchfollowcreator) | **DELETE** /v1/web3/launches/{id}/follow-creator | Stop following the creator of a launch. Returns `{ following }`.
+[**deleteWeb3LaunchPerk**](Web3Api.md#deleteweb3launchperk) | **DELETE** /v1/web3/launches/{id}/perks | Remove every collection perk of a launch. Returns `{ ok }`.
 [**deleteWeb3MarketplaceKey**](Web3Api.md#deleteweb3marketplacekey) | **DELETE** /v1/web3/marketplace-keys/{marketplace} | Remove your own key for a marketplace; Crossly's key is used again.
+[**deleteWeb3StoreWallet**](Web3Api.md#deleteweb3storewallet) | **DELETE** /v1/web3/store-wallets/{walletId} | Stop the store selling from a wallet (the wallet and its other stores are unaffected).
 [**deleteWeb3Wallet**](Web3Api.md#deleteweb3wallet) | **DELETE** /v1/web3/wallets/{id} | Unlink a wallet. Its NFTs stay in inventory but stop syncing.
 [**getWeb3Auction**](Web3Api.md#getweb3auction) | **GET** /v1/web3/auctions/{chain}/{contract}/{tokenId} | A token's live (or latest) auction: reserve, end, top bid, bid count and the minimum next bid.
+[**getWeb3Balance**](Web3Api.md#getweb3balance) | **GET** /v1/web3/balances | Every CBX you have, in one read, with the three balances kept apart.
 [**getWeb3Browse**](Web3Api.md#getweb3browse) | **GET** /v1/web3/browse | The Web3 directory's categories and chains, with how many collections each holds.
 [**getWeb3Collection**](Web3Api.md#getweb3collection) | **GET** /v1/web3/collections/{chain}/{contract} | A collection: metadata and Crossly stats (floor, listed, volume, best collection offer).
 [**getWeb3CollectionDepth**](Web3Api.md#getweb3collectiondepth) | **GET** /v1/web3/collections/{chain}/{contract}/depth | A collection's Crossly order book by price level — asks cheapest first, bids dearest first, with running totals — and the floor of every trait value.
@@ -69,6 +81,7 @@ Method | HTTP request | Description
 [**getWeb3Inventory**](Web3Api.md#getweb3inventory) | **GET** /v1/web3/inventory/{itemId} | The NFT behind an inventory item: its token, wallet, and open listings on every marketplace (null if it is not an NFT).
 [**getWeb3LaunchAllowlistRootTx**](Web3Api.md#getweb3launchallowlistroottx) | **GET** /v1/web3/launches/{id}/allowlist/root-tx | The setAllowlistRoot transaction for the allowlist Crossly holds (EVM, live): `{ chain, from, to, data }`.
 [**getWeb3LaunchDeployTx**](Web3Api.md#getweb3launchdeploytx) | **GET** /v1/web3/launches/{id}/deploy-tx | The contract-creation transaction for the draft: send it from the owner wallet, then confirm it. Returns `{ chain, from, data }`.
+[**getWeb3LaunchStat**](Web3Api.md#getweb3launchstat) | **GET** /v1/web3/launches/{id}/stats | A launch’s phase timeline, mint progress, proceeds (gross, Crossly’s cut, yours; airdrops excluded), allowlist and art counts, and recent mints.
 [**getWeb3LaunchTool**](Web3Api.md#getweb3launchtool) | **GET** /v1/web3/launches/{id}/tools | A launch’s creator tools: allowlist size and root (and whether the contract has it yet), uploaded art and reveal, supply minted.
 [**getWeb3OrderFulfillment**](Web3Api.md#getweb3orderfulfillment) | **GET** /v1/web3/orders/{chain}/{hash}/fulfillment | The signed order a taker passes to Seaport, after re-checking it can still fill.
 [**getWeb3Phygital**](Web3Api.md#getweb3phygital) | **GET** /v1/web3/phygitals/{chain}/{contract}/{tokenId} | A token's phygital: the physical item it can be redeemed for, and whether it has been.
@@ -78,7 +91,11 @@ Method | HTTP request | Description
 [**getWeb3Profile**](Web3Api.md#getweb3profile) | **GET** /v1/web3/profiles/{address} | A wallet's public profile: NFTs held, open Crossly listings, and activity.
 [**getWeb3Resolve**](Web3Api.md#getweb3resolve) | **GET** /v1/web3/resolve/{chain}/{slug} | A collection's chain and contract from its readable URL slug (e.g. eth / boredapeyachtclub).
 [**getWeb3SolanaCollectionTensorBid**](Web3Api.md#getweb3solanacollectiontensorbid) | **GET** /v1/web3/solana/collections/{collection}/tensor-bids | A Solana collection’s Tensor bids (collection-wide and by trait), best first; price in lamports. Needs your Tensor key.
+[**getWeb3Staking**](Web3Api.md#getweb3staking) | **GET** /v1/web3/staking | Your CBX stake: what is locked, its tier, the tier ladder and your past positions.
+[**getWeb3StoreWalletHolding**](Web3Api.md#getweb3storewalletholding) | **GET** /v1/web3/store-wallets/{walletId}/holdings | What a store wallet holds (chain + contract + token id), each marked in-inventory or not.
+[**getWeb3StoreWalletNft**](Web3Api.md#getweb3storewalletnft) | **GET** /v1/web3/store-wallets/nfts | The store's Crossly NFTs: plots (deeds and leases), streets its owner founded and vault receipt tokens in its wallets, with the wallets a plot purchase and a receipt export use.
 [**getWeb3Token**](Web3Api.md#getweb3token) | **GET** /v1/web3/tokens/{chain}/{contract}/{tokenId} | One NFT: metadata, traits, owner, open listings and offers, activity.
+[**getWeb3WalletHolding**](Web3Api.md#getweb3walletholding) | **GET** /v1/web3/wallets/{id}/holdings | What a linked wallet holds right now, each NFT marked `inInventory` or not. Reads the chain; writes nothing.
 [**listWeb3Activity**](Web3Api.md#listweb3activity) | **GET** /v1/web3/activity | Listings, offers, sales and cancels in the Crossly book, newest first.
 [**listWeb3Alerts**](Web3Api.md#listweb3alerts) | **GET** /v1/web3/alerts | Your NFT price alerts, with the cheapest open Crossly listing each one covers now.
 [**listWeb3Approvals**](Web3Api.md#listweb3approvals) | **GET** /v1/web3/approvals | Your collections the OpenSea conduit is approved to move, per linked wallet.
@@ -90,23 +107,31 @@ Method | HTTP request | Description
 [**listWeb3Collections**](Web3Api.md#listweb3collections) | **GET** /v1/web3/collections | Collections ranked by 30-day Crossly volume, with floor and listed count.
 [**listWeb3CreatorCollections**](Web3Api.md#listweb3creatorcollections) | **GET** /v1/web3/creator/collections | Collections you are the creator of: your launches, and contracts you claimed by owning them.
 [**listWeb3Drops**](Web3Api.md#listweb3drops) | **GET** /v1/web3/drops | Upcoming and live NFT drops (curated mints on the creator's own page), soonest first, with whether you asked to be reminded.
-[**listWeb3HolderPerks**](Web3Api.md#listweb3holderperks) | **GET** /v1/web3/holder-perks | Your holder perks: percent off your Crossly shop for holders of an NFT collection, best first.
+[**listWeb3HolderPerks**](Web3Api.md#listweb3holderperks) | **GET** /v1/web3/holder-perks | DEPRECATED: use /api/v1/discounts/holders. Your Collection holders deals in the old holder-perk shape, best first.
+[**listWeb3LaunchPerks**](Web3Api.md#listweb3launchperks) | **GET** /v1/web3/launches/{id}/perks | The perks holders of this launch’s collection get (percent off your shop, early drop access, a World item, a loyalty tier, live early entry, an event ticket).
 [**listWeb3Launches**](Web3Api.md#listweb3launches) | **GET** /v1/web3/launches | Your launchpad collections (drafts and live), newest first, with minted count and phase.
 [**listWeb3Listings**](Web3Api.md#listweb3listings) | **GET** /v1/web3/listings | Open NFT listings in the Crossly book — the cheapest per token.
 [**listWeb3MarketplaceKeys**](Web3Api.md#listweb3marketplacekeys) | **GET** /v1/web3/marketplace-keys | Your own marketplace API keys (last four characters only) and whether Crossly's key covers each marketplace.
 [**listWeb3Nfts**](Web3Api.md#listweb3nfts) | **GET** /v1/web3/nfts | List the NFTs in your inventory, imported from your linked wallets.
-[**listWeb3Orders**](Web3Api.md#listweb3orders) | **GET** /v1/web3/orders | Your orders in the Crossly book (listings and offers), any status.
+[**listWeb3Orders**](Web3Api.md#listweb3orders) | **GET** /v1/web3/orders | Your orders in the Crossly book (listings and offers), any status. With X-Storefront-Id: that store's listings (offers always).
 [**listWeb3Purchases**](Web3Api.md#listweb3purchases) | **GET** /v1/web3/purchases | NFTs your linked wallets bought — on Crossly or any marketplace the chain feed saw — newest first, with price and whether you still hold each.
 [**listWeb3Rankings**](Web3Api.md#listweb3rankings) | **GET** /v1/web3/rankings | Collections by sales volume over 24h, 7d or 30d, in one coin: the ETH chains together, or Polygon / Solana on their own.
 [**listWeb3Reserved**](Web3Api.md#listweb3reserved) | **GET** /v1/web3/reserved | Private listings reserved for one of your linked wallets — only you can see or buy them.
 [**listWeb3Sales**](Web3Api.md#listweb3sales) | **GET** /v1/web3/sales | The latest NFT sales across the directory, from the chain (Seaport and Blur) and the Crossly book, newest first; page with `before`.
 [**listWeb3Search**](Web3Api.md#listweb3search) | **GET** /v1/web3/search | Find collections by contract address (every chain) or by name.
 [**listWeb3SearchTokens**](Web3Api.md#listweb3searchtokens) | **GET** /v1/web3/search/tokens | Find tokens by collection name and number: 'pudgy 42', 'Bored Ape #1234'.
+[**listWeb3StoreWalletBalances**](Web3Api.md#listweb3storewalletbalances) | **GET** /v1/web3/store-wallets/balances | The native-coin balance (SOL, ETH, POL, …) of each of the store's selling wallets, read on chain.
+[**listWeb3StoreWallets**](Web3Api.md#listweb3storewallets) | **GET** /v1/web3/store-wallets | List the store's selling wallets (X-Storefront-Id; default store when omitted).
 [**listWeb3Wallets**](Web3Api.md#listweb3wallets) | **GET** /v1/web3/wallets | List your verified, linked wallets (EVM and Solana).
 [**listWeb3Watchlist**](Web3Api.md#listweb3watchlist) | **GET** /v1/web3/watchlist | Your favourited NFTs, with the cheapest open Crossly listing and the last sale of each.
-[**updateWeb3HolderPerk**](Web3Api.md#updateweb3holderperk) | **PUT** /v1/web3/holder-perks | Set the percent off (100–5000 bps) holders of a collection get across your Crossly shop; one perk per collection.
+[**updateWeb3HolderPerk**](Web3Api.md#updateweb3holderperk) | **PUT** /v1/web3/holder-perks | DEPRECATED: use /api/v1/discounts/holders. Set the percent off (100–5000 bps) holders of a collection get in your store (the key’s store, else the default); one per collection.
+[**updateWeb3Launch**](Web3Api.md#updateweb3launch) | **PATCH** /v1/web3/launches/{id} | Edit a launch draft (or a failed deploy) before it deploys: any creation field except chain and owner. The schedule is re-checked; 409 once live.
 [**updateWeb3LaunchAllowlist**](Web3Api.md#updateweb3launchallowlist) | **PUT** /v1/web3/launches/{id}/allowlist | Replace the early-phase allowlist (up to 10,000 wallets). EVM live launches get back `rootTx`, the setAllowlistRoot transaction for the owner wallet.
+[**updateWeb3LaunchPerk**](Web3Api.md#updateweb3launchperk) | **PUT** /v1/web3/launches/{id}/perks | Replace a launch’s collection perks: `{ perks: [{ config: { type, ... }, active }] }`, one per type; a type left out is removed.
 [**updateWeb3MarketplaceKey**](Web3Api.md#updateweb3marketplacekey) | **PUT** /v1/web3/marketplace-keys/{marketplace} | Save your own API key for a marketplace (checked against the marketplace first where it can be); stored encrypted.
+[**updateWeb3StoreWallet**](Web3Api.md#updateweb3storewallet) | **PATCH** /v1/web3/store-wallets/{walletId} | Turn on or off whether syncing this store wallet adds new NFTs to the store’s inventory (X-Storefront-Id).
+[**updateWeb3StoreWalletDefault**](Web3Api.md#updateweb3storewalletdefault) | **PUT** /v1/web3/store-wallets/{walletId}/default | Make a linked wallet the store's default selling wallet on its network (EVM or Solana).
+[**updateWeb3Wallet**](Web3Api.md#updateweb3wallet) | **PATCH** /v1/web3/wallets/{id} | Change a linked wallet: `autoImport` (a sync adds new NFTs to inventory; off, it only refreshes the ones there) and `label`.
 
 
 # **createWeb3Alert**
@@ -1602,6 +1627,49 @@ This endpoint does not need any parameter.
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
+# **createWeb3SolanaTensorBidConfirm**
+> CreateWeb3SolanaTensorBidConfirmResponse createWeb3SolanaTensorBidConfirm()
+
+After your wallet’s Tensor transaction confirms: `action` place, cancel or accept, with its `signature` and the `wallet` that signed. Checked on chain, then recorded in your Activity. Accept needs listings:write; place and cancel need buyer:offers:write.
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = Web3Api();
+
+try {
+    final result = api_instance.createWeb3SolanaTensorBidConfirm();
+    print(result);
+} catch (e) {
+    print('Exception when calling Web3Api->createWeb3SolanaTensorBidConfirm: $e\n');
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+**CreateWeb3SolanaTensorBidConfirmResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
 # **createWeb3SolanaTensorBidPlaceTx**
 > CreateWeb3SolanaTensorBidPlaceTxResponse createWeb3SolanaTensorBidPlaceTx()
 
@@ -1633,6 +1701,315 @@ This endpoint does not need any parameter.
 ### Return type
 
 **CreateWeb3SolanaTensorBidPlaceTxResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+# **createWeb3StakingStake**
+> CreateWeb3StakingStakeResponse createWeb3StakingStake()
+
+Lock earned CBX (`baseUnits`, a string) into the best tier it reaches. 409 while a stake or unstake is in progress.
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = Web3Api();
+
+try {
+    final result = api_instance.createWeb3StakingStake();
+    print(result);
+} catch (e) {
+    print('Exception when calling Web3Api->createWeb3StakingStake: $e\n');
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+**CreateWeb3StakingStakeResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+# **createWeb3StakingUnstake**
+> CreateWeb3StakingUnstakeResponse createWeb3StakingUnstake()
+
+Start unstaking: the earn boost stops now, the tokens release when the tier’s cooldown ends. Returns `{ unlocksAt, cooldownDays }`.
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = Web3Api();
+
+try {
+    final result = api_instance.createWeb3StakingUnstake();
+    print(result);
+} catch (e) {
+    print('Exception when calling Web3Api->createWeb3StakingUnstake: $e\n');
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+**CreateWeb3StakingUnstakeResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+# **createWeb3StoreWallet**
+> CreateWeb3StoreWalletResponse createWeb3StoreWallet()
+
+Link one of your verified wallets to the store so it sells NFTs from it and is paid into it.
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = Web3Api();
+
+try {
+    final result = api_instance.createWeb3StoreWallet();
+    print(result);
+} catch (e) {
+    print('Exception when calling Web3Api->createWeb3StoreWallet: $e\n');
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+**CreateWeb3StoreWalletResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+# **createWeb3StoreWalletChallenge**
+> CreateWeb3WalletChallengeResponse createWeb3StoreWalletChallenge()
+
+Start adding a selling wallet to the store: the message the wallet signs.
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = Web3Api();
+
+try {
+    final result = api_instance.createWeb3StoreWalletChallenge();
+    print(result);
+} catch (e) {
+    print('Exception when calling Web3Api->createWeb3StoreWalletChallenge: $e\n');
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+**CreateWeb3WalletChallengeResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+# **createWeb3StoreWalletImport**
+> CreateWeb3WalletImportResponse createWeb3StoreWalletImport(walletId)
+
+Add picked NFTs (`tokens: [{ chain, contract, tokenId }]`) from a store wallet to inventory.
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = Web3Api();
+final walletId = 38400000-8cf0-11bd-b23e-10b96e4ef00d; // String | 
+
+try {
+    final result = api_instance.createWeb3StoreWalletImport(walletId);
+    print(result);
+} catch (e) {
+    print('Exception when calling Web3Api->createWeb3StoreWalletImport: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **walletId** | **String**|  | 
+
+### Return type
+
+**CreateWeb3WalletImportResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+# **createWeb3StoreWalletSync**
+> CreateWeb3StoreWalletSyncResponse createWeb3StoreWalletSync(walletId)
+
+Sync a store wallet: refresh its NFTs in inventory; new ones are added when the store's link auto-imports.
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = Web3Api();
+final walletId = 38400000-8cf0-11bd-b23e-10b96e4ef00d; // String | 
+
+try {
+    final result = api_instance.createWeb3StoreWalletSync(walletId);
+    print(result);
+} catch (e) {
+    print('Exception when calling Web3Api->createWeb3StoreWalletSync: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **walletId** | **String**|  | 
+
+### Return type
+
+**CreateWeb3StoreWalletSyncResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+# **createWeb3StoreWalletVerify**
+> CreateWeb3StoreWalletResponse createWeb3StoreWalletVerify()
+
+Finish adding a selling wallet: verify its signature and link it to the store.
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = Web3Api();
+
+try {
+    final result = api_instance.createWeb3StoreWalletVerify();
+    print(result);
+} catch (e) {
+    print('Exception when calling Web3Api->createWeb3StoreWalletVerify: $e\n');
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+**CreateWeb3StoreWalletResponse**
 
 ### Authorization
 
@@ -1770,6 +2147,53 @@ This endpoint does not need any parameter.
 ### Return type
 
 **CreateWeb3WalletChallengeResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+# **createWeb3WalletImport**
+> CreateWeb3WalletImportResponse createWeb3WalletImport(id)
+
+Add picked NFTs (`tokens`: chain, contract, tokenId; up to 200) from a linked wallet to inventory. Tokens the wallet does not hold are counted in `notInWallet`, never added.
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = Web3Api();
+final id = id_example; // String | 
+
+try {
+    final result = api_instance.createWeb3WalletImport(id);
+    print(result);
+} catch (e) {
+    print('Exception when calling Web3Api->createWeb3WalletImport: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **String**|  | 
+
+### Return type
+
+**CreateWeb3WalletImportResponse**
 
 ### Authorization
 
@@ -1922,7 +2346,7 @@ Name | Type | Description  | Notes
 # **deleteWeb3HolderPerk**
 > OkResponse deleteWeb3HolderPerk(id)
 
-Remove a holder perk. Returns `{ ok }`.
+DEPRECATED: use /api/v1/discounts/holders/:id. Remove a Collection holders deal. Returns `{ ok }`.
 
 ### Example
 ```dart
@@ -2060,6 +2484,53 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
+# **deleteWeb3LaunchPerk**
+> OkResponse deleteWeb3LaunchPerk(id)
+
+Remove every collection perk of a launch. Returns `{ ok }`.
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = Web3Api();
+final id = 38400000-8cf0-11bd-b23e-10b96e4ef00d; // String | 
+
+try {
+    final result = api_instance.deleteWeb3LaunchPerk(id);
+    print(result);
+} catch (e) {
+    print('Exception when calling Web3Api->deleteWeb3LaunchPerk: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **String**|  | 
+
+### Return type
+
+**OkResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
 # **deleteWeb3MarketplaceKey**
 > deleteWeb3MarketplaceKey(marketplace)
 
@@ -2090,6 +2561,52 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **marketplace** | **String**|  | 
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+# **deleteWeb3StoreWallet**
+> deleteWeb3StoreWallet(walletId)
+
+Stop the store selling from a wallet (the wallet and its other stores are unaffected).
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = Web3Api();
+final walletId = 38400000-8cf0-11bd-b23e-10b96e4ef00d; // String | 
+
+try {
+    api_instance.deleteWeb3StoreWallet(walletId);
+} catch (e) {
+    print('Exception when calling Web3Api->deleteWeb3StoreWallet: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **walletId** | **String**|  | 
 
 ### Return type
 
@@ -2192,6 +2709,51 @@ Name | Type | Description  | Notes
 ### Return type
 
 **GetWeb3AuctionResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+# **getWeb3Balance**
+> GetWeb3BalanceResponse getWeb3Balance()
+
+Every CBX you have, in one read, with the three balances kept apart.
+
+`credit`: EARNED (withdrawable once matured; `withdrawableBaseUnits` is earned minus anything staked) and GRANTED (in-platform spend only, never withdrawable). `connected`: headroom on your connected-wallet delegation, a ceiling on what Crossly may pull, never a balance. `wallets`: each linked wallet with its own on-chain CBX (`status` read / not_solana / not_live / unavailable). `totals.allBaseUnits` is credit + wallets and never adds the delegation headroom. Amounts are base-unit strings (`decimals`).
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = Web3Api();
+
+try {
+    final result = api_instance.getWeb3Balance();
+    print(result);
+} catch (e) {
+    print('Exception when calling Web3Api->getWeb3Balance: $e\n');
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+**GetWeb3BalanceResponse**
 
 ### Authorization
 
@@ -2860,6 +3422,53 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
+# **getWeb3LaunchStat**
+> GetWeb3LaunchStatResponse getWeb3LaunchStat(id)
+
+A launch’s phase timeline, mint progress, proceeds (gross, Crossly’s cut, yours; airdrops excluded), allowlist and art counts, and recent mints.
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = Web3Api();
+final id = id_example; // String | 
+
+try {
+    final result = api_instance.getWeb3LaunchStat(id);
+    print(result);
+} catch (e) {
+    print('Exception when calling Web3Api->getWeb3LaunchStat: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **String**|  | 
+
+### Return type
+
+**GetWeb3LaunchStatResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
 # **getWeb3LaunchTool**
 > GetWeb3LaunchToolResponse getWeb3LaunchTool(id)
 
@@ -3279,6 +3888,141 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
+# **getWeb3Staking**
+> GetWeb3StakingResponse getWeb3Staking()
+
+Your CBX stake: what is locked, its tier, the tier ladder and your past positions.
+
+A stake locks EARNED CBX; it moves nothing and pays no yield. Each tier buys a withdrawal-fee discount and an earn-rate boost on future purchases, and has a cooldown before an unstake releases.
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = Web3Api();
+
+try {
+    final result = api_instance.getWeb3Staking();
+    print(result);
+} catch (e) {
+    print('Exception when calling Web3Api->getWeb3Staking: $e\n');
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+**GetWeb3StakingResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+# **getWeb3StoreWalletHolding**
+> GetWeb3WalletHoldingResponse getWeb3StoreWalletHolding(walletId)
+
+What a store wallet holds (chain + contract + token id), each marked in-inventory or not.
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = Web3Api();
+final walletId = 38400000-8cf0-11bd-b23e-10b96e4ef00d; // String | 
+
+try {
+    final result = api_instance.getWeb3StoreWalletHolding(walletId);
+    print(result);
+} catch (e) {
+    print('Exception when calling Web3Api->getWeb3StoreWalletHolding: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **walletId** | **String**|  | 
+
+### Return type
+
+**GetWeb3WalletHoldingResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+# **getWeb3StoreWalletNft**
+> GetWeb3StoreWalletNftResponse getWeb3StoreWalletNft()
+
+The store's Crossly NFTs: plots (deeds and leases), streets its owner founded and vault receipt tokens in its wallets, with the wallets a plot purchase and a receipt export use.
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = Web3Api();
+
+try {
+    final result = api_instance.getWeb3StoreWalletNft();
+    print(result);
+} catch (e) {
+    print('Exception when calling Web3Api->getWeb3StoreWalletNft: $e\n');
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+**GetWeb3StoreWalletNftResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
 # **getWeb3Token**
 > GetWeb3TokenResponse getWeb3Token(chain, contract, tokenId)
 
@@ -3318,6 +4062,53 @@ Name | Type | Description  | Notes
 ### Return type
 
 **GetWeb3TokenResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+# **getWeb3WalletHolding**
+> GetWeb3WalletHoldingResponse getWeb3WalletHolding(id)
+
+What a linked wallet holds right now, each NFT marked `inInventory` or not. Reads the chain; writes nothing.
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = Web3Api();
+final id = id_example; // String | 
+
+try {
+    final result = api_instance.getWeb3WalletHolding(id);
+    print(result);
+} catch (e) {
+    print('Exception when calling Web3Api->getWeb3WalletHolding: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **String**|  | 
+
+### Return type
+
+**GetWeb3WalletHoldingResponse**
 
 ### Authorization
 
@@ -3812,7 +4603,7 @@ This endpoint does not need any parameter.
 # **listWeb3HolderPerks**
 > ListWeb3HolderPerksResponse listWeb3HolderPerks()
 
-Your holder perks: percent off your Crossly shop for holders of an NFT collection, best first.
+DEPRECATED: use /api/v1/discounts/holders. Your Collection holders deals in the old holder-perk shape, best first.
 
 ### Example
 ```dart
@@ -3840,6 +4631,53 @@ This endpoint does not need any parameter.
 ### Return type
 
 **ListWeb3HolderPerksResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+# **listWeb3LaunchPerks**
+> ListWeb3LaunchPerksResponse listWeb3LaunchPerks(id)
+
+The perks holders of this launch’s collection get (percent off your shop, early drop access, a World item, a loyalty tier, live early entry, an event ticket).
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = Web3Api();
+final id = 38400000-8cf0-11bd-b23e-10b96e4ef00d; // String | 
+
+try {
+    final result = api_instance.listWeb3LaunchPerks(id);
+    print(result);
+} catch (e) {
+    print('Exception when calling Web3Api->listWeb3LaunchPerks: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **String**|  | 
+
+### Return type
+
+**ListWeb3LaunchPerksResponse**
 
 ### Authorization
 
@@ -4037,7 +4875,7 @@ Name | Type | Description  | Notes
 # **listWeb3Orders**
 > ListWeb3OrdersResponse listWeb3Orders()
 
-Your orders in the Crossly book (listings and offers), any status.
+Your orders in the Crossly book (listings and offers), any status. With X-Storefront-Id: that store's listings (offers always).
 
 ### Example
 ```dart
@@ -4335,6 +5173,92 @@ This endpoint does not need any parameter.
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
+# **listWeb3StoreWalletBalances**
+> ListWeb3StoreWalletBalancesResponse listWeb3StoreWalletBalances()
+
+The native-coin balance (SOL, ETH, POL, …) of each of the store's selling wallets, read on chain.
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = Web3Api();
+
+try {
+    final result = api_instance.listWeb3StoreWalletBalances();
+    print(result);
+} catch (e) {
+    print('Exception when calling Web3Api->listWeb3StoreWalletBalances: $e\n');
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+**ListWeb3StoreWalletBalancesResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+# **listWeb3StoreWallets**
+> ListWeb3StoreWalletsResponse listWeb3StoreWallets()
+
+List the store's selling wallets (X-Storefront-Id; default store when omitted).
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = Web3Api();
+
+try {
+    final result = api_instance.listWeb3StoreWallets();
+    print(result);
+} catch (e) {
+    print('Exception when calling Web3Api->listWeb3StoreWallets: $e\n');
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+**ListWeb3StoreWalletsResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
 # **listWeb3Wallets**
 > ListWeb3WalletsResponse listWeb3Wallets()
 
@@ -4422,9 +5346,9 @@ This endpoint does not need any parameter.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
 # **updateWeb3HolderPerk**
-> ListWeb3HolderPerksItem updateWeb3HolderPerk()
+> UpdateWeb3HolderPerkResponse updateWeb3HolderPerk()
 
-Set the percent off (100–5000 bps) holders of a collection get across your Crossly shop; one perk per collection.
+DEPRECATED: use /api/v1/discounts/holders. Set the percent off (100–5000 bps) holders of a collection get in your store (the key’s store, else the default); one per collection.
 
 ### Example
 ```dart
@@ -4451,7 +5375,54 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-**ListWeb3HolderPerksItem**
+**UpdateWeb3HolderPerkResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+# **updateWeb3Launch**
+> UpdateWeb3LaunchResponse updateWeb3Launch(id)
+
+Edit a launch draft (or a failed deploy) before it deploys: any creation field except chain and owner. The schedule is re-checked; 409 once live.
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = Web3Api();
+final id = id_example; // String | 
+
+try {
+    final result = api_instance.updateWeb3Launch(id);
+    print(result);
+} catch (e) {
+    print('Exception when calling Web3Api->updateWeb3Launch: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **String**|  | 
+
+### Return type
+
+**UpdateWeb3LaunchResponse**
 
 ### Authorization
 
@@ -4511,6 +5482,53 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
+# **updateWeb3LaunchPerk**
+> ListWeb3LaunchPerksResponse updateWeb3LaunchPerk(id)
+
+Replace a launch’s collection perks: `{ perks: [{ config: { type, ... }, active }] }`, one per type; a type left out is removed.
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = Web3Api();
+final id = 38400000-8cf0-11bd-b23e-10b96e4ef00d; // String | 
+
+try {
+    final result = api_instance.updateWeb3LaunchPerk(id);
+    print(result);
+} catch (e) {
+    print('Exception when calling Web3Api->updateWeb3LaunchPerk: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **String**|  | 
+
+### Return type
+
+**ListWeb3LaunchPerksResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
 # **updateWeb3MarketplaceKey**
 > ListWeb3MarketplaceKeysItem updateWeb3MarketplaceKey(marketplace)
 
@@ -4546,6 +5564,147 @@ Name | Type | Description  | Notes
 ### Return type
 
 **ListWeb3MarketplaceKeysItem**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+# **updateWeb3StoreWallet**
+> UpdateWeb3StoreWalletResponse updateWeb3StoreWallet(walletId)
+
+Turn on or off whether syncing this store wallet adds new NFTs to the store’s inventory (X-Storefront-Id).
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = Web3Api();
+final walletId = 38400000-8cf0-11bd-b23e-10b96e4ef00d; // String | 
+
+try {
+    final result = api_instance.updateWeb3StoreWallet(walletId);
+    print(result);
+} catch (e) {
+    print('Exception when calling Web3Api->updateWeb3StoreWallet: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **walletId** | **String**|  | 
+
+### Return type
+
+**UpdateWeb3StoreWalletResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+# **updateWeb3StoreWalletDefault**
+> ListWeb3StoreWalletsResponse updateWeb3StoreWalletDefault(walletId)
+
+Make a linked wallet the store's default selling wallet on its network (EVM or Solana).
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = Web3Api();
+final walletId = 38400000-8cf0-11bd-b23e-10b96e4ef00d; // String | 
+
+try {
+    final result = api_instance.updateWeb3StoreWalletDefault(walletId);
+    print(result);
+} catch (e) {
+    print('Exception when calling Web3Api->updateWeb3StoreWalletDefault: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **walletId** | **String**|  | 
+
+### Return type
+
+**ListWeb3StoreWalletsResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+# **updateWeb3Wallet**
+> UpdateWeb3WalletResponse updateWeb3Wallet(id)
+
+Change a linked wallet: `autoImport` (a sync adds new NFTs to inventory; off, it only refreshes the ones there) and `label`.
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = Web3Api();
+final id = id_example; // String | 
+
+try {
+    final result = api_instance.updateWeb3Wallet(id);
+    print(result);
+} catch (e) {
+    print('Exception when calling Web3Api->updateWeb3Wallet: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **String**|  | 
+
+### Return type
+
+**UpdateWeb3WalletResponse**
 
 ### Authorization
 

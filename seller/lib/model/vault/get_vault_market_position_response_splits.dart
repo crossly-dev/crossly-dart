@@ -148,14 +148,14 @@ class GetVaultMarketPositionResponseSplitsReasonEnum {
 
   String toJson() => value;
 
-  static const auction = GetVaultMarketPositionResponseSplitsReasonEnum._(r'auction');
   static const close = GetVaultMarketPositionResponseSplitsReasonEnum._(r'close');
+  static const auction = GetVaultMarketPositionResponseSplitsReasonEnum._(r'auction');
   static const recall = GetVaultMarketPositionResponseSplitsReasonEnum._(r'recall');
 
   /// List of all possible values in this [enum][GetVaultMarketPositionResponseSplitsReasonEnum].
   static const values = <GetVaultMarketPositionResponseSplitsReasonEnum>[
-    auction,
     close,
+    auction,
     recall,
   ];
 
@@ -188,8 +188,8 @@ class GetVaultMarketPositionResponseSplitsReasonEnumTypeTransformer {
   GetVaultMarketPositionResponseSplitsReasonEnum decode(dynamic data, {bool allowNull}) {
     if (data != null) {
       switch (data.toString()) {
-        case r'auction': return GetVaultMarketPositionResponseSplitsReasonEnum.auction;
         case r'close': return GetVaultMarketPositionResponseSplitsReasonEnum.close;
+        case r'auction': return GetVaultMarketPositionResponseSplitsReasonEnum.auction;
         case r'recall': return GetVaultMarketPositionResponseSplitsReasonEnum.recall;
         default:
           if (allowNull == false) {
@@ -291,13 +291,13 @@ class GetVaultMarketPositionResponseSplitsActionEnum {
 
   String toJson() => value;
 
-  static const auction = GetVaultMarketPositionResponseSplitsActionEnum._(r'auction');
   static const close = GetVaultMarketPositionResponseSplitsActionEnum._(r'close');
+  static const auction = GetVaultMarketPositionResponseSplitsActionEnum._(r'auction');
 
   /// List of all possible values in this [enum][GetVaultMarketPositionResponseSplitsActionEnum].
   static const values = <GetVaultMarketPositionResponseSplitsActionEnum>[
-    auction,
     close,
+    auction,
   ];
 
   static GetVaultMarketPositionResponseSplitsActionEnum fromJson(dynamic value) =>
@@ -329,8 +329,8 @@ class GetVaultMarketPositionResponseSplitsActionEnumTypeTransformer {
   GetVaultMarketPositionResponseSplitsActionEnum decode(dynamic data, {bool allowNull}) {
     if (data != null) {
       switch (data.toString()) {
-        case r'auction': return GetVaultMarketPositionResponseSplitsActionEnum.auction;
         case r'close': return GetVaultMarketPositionResponseSplitsActionEnum.close;
+        case r'auction': return GetVaultMarketPositionResponseSplitsActionEnum.auction;
         default:
           if (allowNull == false) {
             throw ArgumentError('Unknown enum value to decode: $data');

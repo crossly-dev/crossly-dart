@@ -329,15 +329,15 @@ class CreateVaultMarketAgentDraftCancelResponseDraftFundingEnum {
 
   String toJson() => value;
 
+  static const vault = CreateVaultMarketAgentDraftCancelResponseDraftFundingEnum._(r'vault');
   static const card = CreateVaultMarketAgentDraftCancelResponseDraftFundingEnum._(r'card');
   static const custodian = CreateVaultMarketAgentDraftCancelResponseDraftFundingEnum._(r'custodian');
-  static const vault = CreateVaultMarketAgentDraftCancelResponseDraftFundingEnum._(r'vault');
 
   /// List of all possible values in this [enum][CreateVaultMarketAgentDraftCancelResponseDraftFundingEnum].
   static const values = <CreateVaultMarketAgentDraftCancelResponseDraftFundingEnum>[
+    vault,
     card,
     custodian,
-    vault,
   ];
 
   static CreateVaultMarketAgentDraftCancelResponseDraftFundingEnum fromJson(dynamic value) =>
@@ -369,9 +369,9 @@ class CreateVaultMarketAgentDraftCancelResponseDraftFundingEnumTypeTransformer {
   CreateVaultMarketAgentDraftCancelResponseDraftFundingEnum decode(dynamic data, {bool allowNull}) {
     if (data != null) {
       switch (data.toString()) {
+        case r'vault': return CreateVaultMarketAgentDraftCancelResponseDraftFundingEnum.vault;
         case r'card': return CreateVaultMarketAgentDraftCancelResponseDraftFundingEnum.card;
         case r'custodian': return CreateVaultMarketAgentDraftCancelResponseDraftFundingEnum.custodian;
-        case r'vault': return CreateVaultMarketAgentDraftCancelResponseDraftFundingEnum.vault;
         default:
           if (allowNull == false) {
             throw ArgumentError('Unknown enum value to decode: $data');
@@ -401,18 +401,18 @@ class CreateVaultMarketAgentDraftCancelResponseDraftStatusEnum {
 
   static const cancelled = CreateVaultMarketAgentDraftCancelResponseDraftStatusEnum._(r'cancelled');
   static const expired = CreateVaultMarketAgentDraftCancelResponseDraftStatusEnum._(r'expired');
+  static const drafted = CreateVaultMarketAgentDraftCancelResponseDraftStatusEnum._(r'drafted');
   static const rejected = CreateVaultMarketAgentDraftCancelResponseDraftStatusEnum._(r'rejected');
   static const placing = CreateVaultMarketAgentDraftCancelResponseDraftStatusEnum._(r'placing');
-  static const drafted = CreateVaultMarketAgentDraftCancelResponseDraftStatusEnum._(r'drafted');
   static const placed = CreateVaultMarketAgentDraftCancelResponseDraftStatusEnum._(r'placed');
 
   /// List of all possible values in this [enum][CreateVaultMarketAgentDraftCancelResponseDraftStatusEnum].
   static const values = <CreateVaultMarketAgentDraftCancelResponseDraftStatusEnum>[
     cancelled,
     expired,
+    drafted,
     rejected,
     placing,
-    drafted,
     placed,
   ];
 
@@ -447,9 +447,9 @@ class CreateVaultMarketAgentDraftCancelResponseDraftStatusEnumTypeTransformer {
       switch (data.toString()) {
         case r'cancelled': return CreateVaultMarketAgentDraftCancelResponseDraftStatusEnum.cancelled;
         case r'expired': return CreateVaultMarketAgentDraftCancelResponseDraftStatusEnum.expired;
+        case r'drafted': return CreateVaultMarketAgentDraftCancelResponseDraftStatusEnum.drafted;
         case r'rejected': return CreateVaultMarketAgentDraftCancelResponseDraftStatusEnum.rejected;
         case r'placing': return CreateVaultMarketAgentDraftCancelResponseDraftStatusEnum.placing;
-        case r'drafted': return CreateVaultMarketAgentDraftCancelResponseDraftStatusEnum.drafted;
         case r'placed': return CreateVaultMarketAgentDraftCancelResponseDraftStatusEnum.placed;
         default:
           if (allowNull == false) {

@@ -43,7 +43,7 @@ class GetVaultMarketProfileByHandleResponse {
 
   bool isMe;
 
-  List<ListVaultMarketFeedItem> recentBuys;
+  List<GetVaultMarketProfileByHandleResponseOneOfRecentBuys> recentBuys;
 
   String displayName;
 
@@ -125,7 +125,7 @@ class GetVaultMarketProfileByHandleResponse {
           : num.parse(json[r'followers'].toString()),
         following: mapValueOfType<bool>(json, r'following'),
         isMe: mapValueOfType<bool>(json, r'isMe'),
-        recentBuys: ListVaultMarketFeedItem.listFromJson(json[r'recentBuys']),
+        recentBuys: GetVaultMarketProfileByHandleResponseOneOfRecentBuys.listFromJson(json[r'recentBuys']),
         displayName: mapValueOfType<String>(json, r'displayName'),
         avatarUrl: mapValueOfType<Object>(json, r'avatarUrl'),
         profileUrl: mapValueOfType<Object>(json, r'profileUrl'),

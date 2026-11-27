@@ -15,6 +15,7 @@ class CreateMagicScanResponse {
   CreateMagicScanResponse({
     @required this.runId,
     this.photoIdentifier,
+    this.matchReference,
     this.ebayMatch,
     this.topHits = const [],
     this.ebayHits = const [],
@@ -23,11 +24,14 @@ class CreateMagicScanResponse {
     this.visionAspects = const {},
     this.possibleDuplicates = const [],
     @required this.cached,
+    this.visionCallsUsed,
   });
 
   String runId;
 
   CreateMagicScanResponsePhotoIdentifier photoIdentifier;
+
+  CreateMagicScanResponseMatchReference matchReference;
 
   CreateMagicScanResponseEbayMatch ebayMatch;
 
@@ -50,10 +54,14 @@ class CreateMagicScanResponse {
 
   bool cached;
 
+  /// Monthly vision calls (vision-quota.ts) this scan spent: the seller's Activity Log shows them as credits used. 0 for a single-photo scan and for a re-scan of the same photos.
+  num visionCallsUsed;
+
   @override
   bool operator ==(Object other) => identical(this, other) || other is CreateMagicScanResponse &&
      other.runId == runId &&
      other.photoIdentifier == photoIdentifier &&
+     other.matchReference == matchReference &&
      other.ebayMatch == ebayMatch &&
      other.topHits == topHits &&
      other.ebayHits == ebayHits &&
@@ -61,13 +69,15 @@ class CreateMagicScanResponse {
      other.imageUrls == imageUrls &&
      other.visionAspects == visionAspects &&
      other.possibleDuplicates == possibleDuplicates &&
-     other.cached == cached;
+     other.cached == cached &&
+     other.visionCallsUsed == visionCallsUsed;
 
   @override
   int get hashCode =>
   // ignore: unnecessary_parenthesis
     (runId == null ? 0 : runId.hashCode) +
     (photoIdentifier == null ? 0 : photoIdentifier.hashCode) +
+    (matchReference == null ? 0 : matchReference.hashCode) +
     (ebayMatch == null ? 0 : ebayMatch.hashCode) +
     (topHits == null ? 0 : topHits.hashCode) +
     (ebayHits == null ? 0 : ebayHits.hashCode) +
@@ -75,16 +85,20 @@ class CreateMagicScanResponse {
     (imageUrls == null ? 0 : imageUrls.hashCode) +
     (visionAspects == null ? 0 : visionAspects.hashCode) +
     (possibleDuplicates == null ? 0 : possibleDuplicates.hashCode) +
-    (cached == null ? 0 : cached.hashCode);
+    (cached == null ? 0 : cached.hashCode) +
+    (visionCallsUsed == null ? 0 : visionCallsUsed.hashCode);
 
   @override
-  String toString() => 'CreateMagicScanResponse[runId=$runId, photoIdentifier=$photoIdentifier, ebayMatch=$ebayMatch, topHits=$topHits, ebayHits=$ebayHits, otherMatches=$otherMatches, imageUrls=$imageUrls, visionAspects=$visionAspects, possibleDuplicates=$possibleDuplicates, cached=$cached]';
+  String toString() => 'CreateMagicScanResponse[runId=$runId, photoIdentifier=$photoIdentifier, matchReference=$matchReference, ebayMatch=$ebayMatch, topHits=$topHits, ebayHits=$ebayHits, otherMatches=$otherMatches, imageUrls=$imageUrls, visionAspects=$visionAspects, possibleDuplicates=$possibleDuplicates, cached=$cached, visionCallsUsed=$visionCallsUsed]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
       json[r'runId'] = runId;
     if (photoIdentifier != null) {
       json[r'photoIdentifier'] = photoIdentifier;
+    }
+    if (matchReference != null) {
+      json[r'matchReference'] = matchReference;
     }
     if (ebayMatch != null) {
       json[r'ebayMatch'] = ebayMatch;
@@ -96,6 +110,9 @@ class CreateMagicScanResponse {
       json[r'visionAspects'] = visionAspects;
       json[r'possibleDuplicates'] = possibleDuplicates;
       json[r'cached'] = cached;
+    if (visionCallsUsed != null) {
+      json[r'visionCallsUsed'] = visionCallsUsed;
+    }
     return json;
   }
 
@@ -108,6 +125,7 @@ class CreateMagicScanResponse {
       return CreateMagicScanResponse(
         runId: mapValueOfType<String>(json, r'runId'),
         photoIdentifier: CreateMagicScanResponsePhotoIdentifier.fromJson(json[r'photoIdentifier']),
+        matchReference: CreateMagicScanResponseMatchReference.fromJson(json[r'matchReference']),
         ebayMatch: CreateMagicScanResponseEbayMatch.fromJson(json[r'ebayMatch']),
         topHits: CreateMagicScanResponseTopHits.listFromJson(json[r'topHits']),
         ebayHits: CreateMagicScanResponseEbayHits.listFromJson(json[r'ebayHits']),
@@ -118,6 +136,9 @@ class CreateMagicScanResponse {
         visionAspects: mapValueOfType<Map<String, Object>>(json, r'visionAspects'),
         possibleDuplicates: CreateMagicScanResponsePossibleDuplicates.listFromJson(json[r'possibleDuplicates']),
         cached: mapValueOfType<bool>(json, r'cached'),
+        visionCallsUsed: json[r'visionCallsUsed'] == null
+          ? null
+          : num.parse(json[r'visionCallsUsed'].toString()),
       );
     }
     return null;

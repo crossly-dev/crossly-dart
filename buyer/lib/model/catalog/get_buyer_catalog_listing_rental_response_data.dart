@@ -15,14 +15,17 @@ class GetBuyerCatalogListingRentalResponseData {
   GetBuyerCatalogListingRentalResponseData({
     @required this.dailyCents,
     this.weeklyCents,
-    @required this.depositCents,
+    this.depositCents,
     @required this.minDays,
     @required this.maxDays,
     @required this.bufferDays,
     @required this.rentOnly,
     @required this.requireApproval,
     @required this.available,
+    this.returnPolicy,
     this.booked = const [],
+    @required this.options,
+    this.unitsFree = const {},
   });
 
   num dailyCents;
@@ -43,7 +46,13 @@ class GetBuyerCatalogListingRentalResponseData {
 
   bool available;
 
+  String returnPolicy;
+
   List<GetBuyerCatalogListingRentalResponseDataBooked> booked;
+
+  GetBuyerCatalogListingRentalResponseDataOptions options;
+
+  Map<String, Object> unitsFree;
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is GetBuyerCatalogListingRentalResponseData &&
@@ -56,7 +65,10 @@ class GetBuyerCatalogListingRentalResponseData {
      other.rentOnly == rentOnly &&
      other.requireApproval == requireApproval &&
      other.available == available &&
-     other.booked == booked;
+     other.returnPolicy == returnPolicy &&
+     other.booked == booked &&
+     other.options == options &&
+     other.unitsFree == unitsFree;
 
   @override
   int get hashCode =>
@@ -70,10 +82,13 @@ class GetBuyerCatalogListingRentalResponseData {
     (rentOnly == null ? 0 : rentOnly.hashCode) +
     (requireApproval == null ? 0 : requireApproval.hashCode) +
     (available == null ? 0 : available.hashCode) +
-    (booked == null ? 0 : booked.hashCode);
+    (returnPolicy == null ? 0 : returnPolicy.hashCode) +
+    (booked == null ? 0 : booked.hashCode) +
+    (options == null ? 0 : options.hashCode) +
+    (unitsFree == null ? 0 : unitsFree.hashCode);
 
   @override
-  String toString() => 'GetBuyerCatalogListingRentalResponseData[dailyCents=$dailyCents, weeklyCents=$weeklyCents, depositCents=$depositCents, minDays=$minDays, maxDays=$maxDays, bufferDays=$bufferDays, rentOnly=$rentOnly, requireApproval=$requireApproval, available=$available, booked=$booked]';
+  String toString() => 'GetBuyerCatalogListingRentalResponseData[dailyCents=$dailyCents, weeklyCents=$weeklyCents, depositCents=$depositCents, minDays=$minDays, maxDays=$maxDays, bufferDays=$bufferDays, rentOnly=$rentOnly, requireApproval=$requireApproval, available=$available, returnPolicy=$returnPolicy, booked=$booked, options=$options, unitsFree=$unitsFree]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -81,14 +96,21 @@ class GetBuyerCatalogListingRentalResponseData {
     if (weeklyCents != null) {
       json[r'weeklyCents'] = weeklyCents;
     }
+    if (depositCents != null) {
       json[r'depositCents'] = depositCents;
+    }
       json[r'minDays'] = minDays;
       json[r'maxDays'] = maxDays;
       json[r'bufferDays'] = bufferDays;
       json[r'rentOnly'] = rentOnly;
       json[r'requireApproval'] = requireApproval;
       json[r'available'] = available;
+    if (returnPolicy != null) {
+      json[r'returnPolicy'] = returnPolicy;
+    }
       json[r'booked'] = booked;
+      json[r'options'] = options;
+      json[r'unitsFree'] = unitsFree;
     return json;
   }
 
@@ -120,7 +142,10 @@ class GetBuyerCatalogListingRentalResponseData {
         rentOnly: mapValueOfType<bool>(json, r'rentOnly'),
         requireApproval: mapValueOfType<bool>(json, r'requireApproval'),
         available: mapValueOfType<bool>(json, r'available'),
+        returnPolicy: mapValueOfType<String>(json, r'returnPolicy'),
         booked: GetBuyerCatalogListingRentalResponseDataBooked.listFromJson(json[r'booked']),
+        options: GetBuyerCatalogListingRentalResponseDataOptions.fromJson(json[r'options']),
+        unitsFree: mapValueOfType<Map<String, Object>>(json, r'unitsFree'),
       );
     }
     return null;

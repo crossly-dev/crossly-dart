@@ -25,7 +25,7 @@ class CreateWorldOutfitResponseDataPreset {
 
   String name;
 
-  ListWorldOutfitsItemAppearance appearance;
+  CreateWorldOutfitResponseDataPresetAppearance appearance;
 
   List<Map<String, Object>> items;
 
@@ -75,7 +75,7 @@ class CreateWorldOutfitResponseDataPreset {
       return CreateWorldOutfitResponseDataPreset(
         id: mapValueOfType<String>(json, r'id'),
         name: mapValueOfType<String>(json, r'name'),
-        appearance: ListWorldOutfitsItemAppearance.fromJson(json[r'appearance']),
+        appearance: CreateWorldOutfitResponseDataPresetAppearance.fromJson(json[r'appearance']),
         items: json[r'items'] is List ? (json[r'items'] as List).cast<Map<String, Object>>() : const [],
         createdAt: mapValueOfType<String>(json, r'createdAt'),
         updatedAt: mapValueOfType<String>(json, r'updatedAt'),

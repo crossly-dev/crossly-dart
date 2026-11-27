@@ -146,14 +146,14 @@ class CreateCbxRedemptionQuoteResponseDataServiceKindEnum {
   String toJson() => value;
 
   static const grading = CreateCbxRedemptionQuoteResponseDataServiceKindEnum._(r'grading');
-  static const authentication = CreateCbxRedemptionQuoteResponseDataServiceKindEnum._(r'authentication');
   static const subscription = CreateCbxRedemptionQuoteResponseDataServiceKindEnum._(r'subscription');
+  static const authentication = CreateCbxRedemptionQuoteResponseDataServiceKindEnum._(r'authentication');
 
   /// List of all possible values in this [enum][CreateCbxRedemptionQuoteResponseDataServiceKindEnum].
   static const values = <CreateCbxRedemptionQuoteResponseDataServiceKindEnum>[
     grading,
-    authentication,
     subscription,
+    authentication,
   ];
 
   static CreateCbxRedemptionQuoteResponseDataServiceKindEnum fromJson(dynamic value) =>
@@ -186,8 +186,8 @@ class CreateCbxRedemptionQuoteResponseDataServiceKindEnumTypeTransformer {
     if (data != null) {
       switch (data.toString()) {
         case r'grading': return CreateCbxRedemptionQuoteResponseDataServiceKindEnum.grading;
-        case r'authentication': return CreateCbxRedemptionQuoteResponseDataServiceKindEnum.authentication;
         case r'subscription': return CreateCbxRedemptionQuoteResponseDataServiceKindEnum.subscription;
+        case r'authentication': return CreateCbxRedemptionQuoteResponseDataServiceKindEnum.authentication;
         default:
           if (allowNull == false) {
             throw ArgumentError('Unknown enum value to decode: $data');

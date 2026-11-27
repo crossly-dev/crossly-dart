@@ -13,8 +13,8 @@ part of openapi.api;
 class GetBuyerCollectionSetResponseDataGroup {
   /// Returns a new [GetBuyerCollectionSetResponseDataGroup] instance.
   GetBuyerCollectionSetResponseDataGroup({
-    @required this.brand,
     @required this.category,
+    @required this.brand,
     @required this.model,
     @required this.brandSlug,
     @required this.modelSlug,
@@ -22,9 +22,9 @@ class GetBuyerCollectionSetResponseDataGroup {
     @required this.owned,
   });
 
-  String brand;
-
   String category;
+
+  String brand;
 
   String model;
 
@@ -38,8 +38,8 @@ class GetBuyerCollectionSetResponseDataGroup {
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is GetBuyerCollectionSetResponseDataGroup &&
-     other.brand == brand &&
      other.category == category &&
+     other.brand == brand &&
      other.model == model &&
      other.brandSlug == brandSlug &&
      other.modelSlug == modelSlug &&
@@ -49,8 +49,8 @@ class GetBuyerCollectionSetResponseDataGroup {
   @override
   int get hashCode =>
   // ignore: unnecessary_parenthesis
-    (brand == null ? 0 : brand.hashCode) +
     (category == null ? 0 : category.hashCode) +
+    (brand == null ? 0 : brand.hashCode) +
     (model == null ? 0 : model.hashCode) +
     (brandSlug == null ? 0 : brandSlug.hashCode) +
     (modelSlug == null ? 0 : modelSlug.hashCode) +
@@ -58,12 +58,12 @@ class GetBuyerCollectionSetResponseDataGroup {
     (owned == null ? 0 : owned.hashCode);
 
   @override
-  String toString() => 'GetBuyerCollectionSetResponseDataGroup[brand=$brand, category=$category, model=$model, brandSlug=$brandSlug, modelSlug=$modelSlug, total=$total, owned=$owned]';
+  String toString() => 'GetBuyerCollectionSetResponseDataGroup[category=$category, brand=$brand, model=$model, brandSlug=$brandSlug, modelSlug=$modelSlug, total=$total, owned=$owned]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-      json[r'brand'] = brand;
       json[r'category'] = category;
+      json[r'brand'] = brand;
       json[r'model'] = model;
       json[r'brandSlug'] = brandSlug;
       json[r'modelSlug'] = modelSlug;
@@ -79,8 +79,8 @@ class GetBuyerCollectionSetResponseDataGroup {
     if (value is Map) {
       final json = value.cast<String, dynamic>();
       return GetBuyerCollectionSetResponseDataGroup(
-        brand: mapValueOfType<String>(json, r'brand'),
         category: mapValueOfType<String>(json, r'category'),
+        brand: mapValueOfType<String>(json, r'brand'),
         model: mapValueOfType<String>(json, r'model'),
         brandSlug: mapValueOfType<String>(json, r'brandSlug'),
         modelSlug: mapValueOfType<String>(json, r'modelSlug'),

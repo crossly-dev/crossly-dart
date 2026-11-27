@@ -13,55 +13,55 @@ part of openapi.api;
 class CreateBuyerCartOptimizerResponseData {
   /// Returns a new [CreateBuyerCartOptimizerResponseData] instance.
   CreateBuyerCartOptimizerResponseData({
+    this.lines = const [],
+    @required this.itemsCents,
     @required this.shippingCents,
     @required this.totalCents,
-    this.lines = const [],
     @required this.sellers,
-    @required this.itemsCents,
     this.unmatched = const [],
   });
+
+  List<CreateBuyerCartOptimizerResponseDataLines> lines;
+
+  num itemsCents;
 
   num shippingCents;
 
   num totalCents;
 
-  List<CreateBuyerCartOptimizerResponseDataLines> lines;
-
   num sellers;
-
-  num itemsCents;
 
   List<String> unmatched;
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is CreateBuyerCartOptimizerResponseData &&
+     other.lines == lines &&
+     other.itemsCents == itemsCents &&
      other.shippingCents == shippingCents &&
      other.totalCents == totalCents &&
-     other.lines == lines &&
      other.sellers == sellers &&
-     other.itemsCents == itemsCents &&
      other.unmatched == unmatched;
 
   @override
   int get hashCode =>
   // ignore: unnecessary_parenthesis
+    (lines == null ? 0 : lines.hashCode) +
+    (itemsCents == null ? 0 : itemsCents.hashCode) +
     (shippingCents == null ? 0 : shippingCents.hashCode) +
     (totalCents == null ? 0 : totalCents.hashCode) +
-    (lines == null ? 0 : lines.hashCode) +
     (sellers == null ? 0 : sellers.hashCode) +
-    (itemsCents == null ? 0 : itemsCents.hashCode) +
     (unmatched == null ? 0 : unmatched.hashCode);
 
   @override
-  String toString() => 'CreateBuyerCartOptimizerResponseData[shippingCents=$shippingCents, totalCents=$totalCents, lines=$lines, sellers=$sellers, itemsCents=$itemsCents, unmatched=$unmatched]';
+  String toString() => 'CreateBuyerCartOptimizerResponseData[lines=$lines, itemsCents=$itemsCents, shippingCents=$shippingCents, totalCents=$totalCents, sellers=$sellers, unmatched=$unmatched]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
+      json[r'lines'] = lines;
+      json[r'itemsCents'] = itemsCents;
       json[r'shippingCents'] = shippingCents;
       json[r'totalCents'] = totalCents;
-      json[r'lines'] = lines;
       json[r'sellers'] = sellers;
-      json[r'itemsCents'] = itemsCents;
       json[r'unmatched'] = unmatched;
     return json;
   }
@@ -73,19 +73,19 @@ class CreateBuyerCartOptimizerResponseData {
     if (value is Map) {
       final json = value.cast<String, dynamic>();
       return CreateBuyerCartOptimizerResponseData(
+        lines: CreateBuyerCartOptimizerResponseDataLines.listFromJson(json[r'lines']),
+        itemsCents: json[r'itemsCents'] == null
+          ? null
+          : num.parse(json[r'itemsCents'].toString()),
         shippingCents: json[r'shippingCents'] == null
           ? null
           : num.parse(json[r'shippingCents'].toString()),
         totalCents: json[r'totalCents'] == null
           ? null
           : num.parse(json[r'totalCents'].toString()),
-        lines: CreateBuyerCartOptimizerResponseDataLines.listFromJson(json[r'lines']),
         sellers: json[r'sellers'] == null
           ? null
           : num.parse(json[r'sellers'].toString()),
-        itemsCents: json[r'itemsCents'] == null
-          ? null
-          : num.parse(json[r'itemsCents'].toString()),
         unmatched: json[r'unmatched'] is List
           ? (json[r'unmatched'] as List).cast<String>()
           : null,

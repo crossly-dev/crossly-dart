@@ -18,6 +18,7 @@ class GetMainStageResponseStream {
     this.playbackUrl,
     this.coverImageUrl,
     this.host,
+    this.lot,
   });
 
   String id;
@@ -30,13 +31,16 @@ class GetMainStageResponseStream {
 
   String host;
 
+  GetMainStageResponseStreamLot lot;
+
   @override
   bool operator ==(Object other) => identical(this, other) || other is GetMainStageResponseStream &&
      other.id == id &&
      other.title == title &&
      other.playbackUrl == playbackUrl &&
      other.coverImageUrl == coverImageUrl &&
-     other.host == host;
+     other.host == host &&
+     other.lot == lot;
 
   @override
   int get hashCode =>
@@ -45,10 +49,11 @@ class GetMainStageResponseStream {
     (title == null ? 0 : title.hashCode) +
     (playbackUrl == null ? 0 : playbackUrl.hashCode) +
     (coverImageUrl == null ? 0 : coverImageUrl.hashCode) +
-    (host == null ? 0 : host.hashCode);
+    (host == null ? 0 : host.hashCode) +
+    (lot == null ? 0 : lot.hashCode);
 
   @override
-  String toString() => 'GetMainStageResponseStream[id=$id, title=$title, playbackUrl=$playbackUrl, coverImageUrl=$coverImageUrl, host=$host]';
+  String toString() => 'GetMainStageResponseStream[id=$id, title=$title, playbackUrl=$playbackUrl, coverImageUrl=$coverImageUrl, host=$host, lot=$lot]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -62,6 +67,9 @@ class GetMainStageResponseStream {
     }
     if (host != null) {
       json[r'host'] = host;
+    }
+    if (lot != null) {
+      json[r'lot'] = lot;
     }
     return json;
   }
@@ -78,6 +86,7 @@ class GetMainStageResponseStream {
         playbackUrl: mapValueOfType<String>(json, r'playbackUrl'),
         coverImageUrl: mapValueOfType<String>(json, r'coverImageUrl'),
         host: mapValueOfType<String>(json, r'host'),
+        lot: GetMainStageResponseStreamLot.fromJson(json[r'lot']),
       );
     }
     return null;

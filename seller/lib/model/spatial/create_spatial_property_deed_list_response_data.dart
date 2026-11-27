@@ -16,9 +16,10 @@ class CreateSpatialPropertyDeedListResponseData {
     @required this.id,
     @required this.createdAt,
     @required this.status,
-    @required this.sellerUserId,
+    this.storefrontId,
     this.buyerUserId,
     @required this.priceCents,
+    @required this.sellerUserId,
     this.closedAt,
     @required this.deedId,
   });
@@ -29,11 +30,13 @@ class CreateSpatialPropertyDeedListResponseData {
 
   String status;
 
-  String sellerUserId;
+  String storefrontId;
 
   String buyerUserId;
 
   num priceCents;
+
+  String sellerUserId;
 
   DateTime closedAt;
 
@@ -44,9 +47,10 @@ class CreateSpatialPropertyDeedListResponseData {
      other.id == id &&
      other.createdAt == createdAt &&
      other.status == status &&
-     other.sellerUserId == sellerUserId &&
+     other.storefrontId == storefrontId &&
      other.buyerUserId == buyerUserId &&
      other.priceCents == priceCents &&
+     other.sellerUserId == sellerUserId &&
      other.closedAt == closedAt &&
      other.deedId == deedId;
 
@@ -56,25 +60,29 @@ class CreateSpatialPropertyDeedListResponseData {
     (id == null ? 0 : id.hashCode) +
     (createdAt == null ? 0 : createdAt.hashCode) +
     (status == null ? 0 : status.hashCode) +
-    (sellerUserId == null ? 0 : sellerUserId.hashCode) +
+    (storefrontId == null ? 0 : storefrontId.hashCode) +
     (buyerUserId == null ? 0 : buyerUserId.hashCode) +
     (priceCents == null ? 0 : priceCents.hashCode) +
+    (sellerUserId == null ? 0 : sellerUserId.hashCode) +
     (closedAt == null ? 0 : closedAt.hashCode) +
     (deedId == null ? 0 : deedId.hashCode);
 
   @override
-  String toString() => 'CreateSpatialPropertyDeedListResponseData[id=$id, createdAt=$createdAt, status=$status, sellerUserId=$sellerUserId, buyerUserId=$buyerUserId, priceCents=$priceCents, closedAt=$closedAt, deedId=$deedId]';
+  String toString() => 'CreateSpatialPropertyDeedListResponseData[id=$id, createdAt=$createdAt, status=$status, storefrontId=$storefrontId, buyerUserId=$buyerUserId, priceCents=$priceCents, sellerUserId=$sellerUserId, closedAt=$closedAt, deedId=$deedId]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
       json[r'id'] = id;
       json[r'createdAt'] = createdAt.toUtc().toIso8601String();
       json[r'status'] = status;
-      json[r'sellerUserId'] = sellerUserId;
+    if (storefrontId != null) {
+      json[r'storefrontId'] = storefrontId;
+    }
     if (buyerUserId != null) {
       json[r'buyerUserId'] = buyerUserId;
     }
       json[r'priceCents'] = priceCents;
+      json[r'sellerUserId'] = sellerUserId;
     if (closedAt != null) {
       json[r'closedAt'] = closedAt.toUtc().toIso8601String();
     }
@@ -92,11 +100,12 @@ class CreateSpatialPropertyDeedListResponseData {
         id: mapValueOfType<String>(json, r'id'),
         createdAt: mapDateTime(json, r'createdAt', ''),
         status: mapValueOfType<String>(json, r'status'),
-        sellerUserId: mapValueOfType<String>(json, r'sellerUserId'),
+        storefrontId: mapValueOfType<String>(json, r'storefrontId'),
         buyerUserId: mapValueOfType<String>(json, r'buyerUserId'),
         priceCents: json[r'priceCents'] == null
           ? null
           : num.parse(json[r'priceCents'].toString()),
+        sellerUserId: mapValueOfType<String>(json, r'sellerUserId'),
         closedAt: mapDateTime(json, r'closedAt', ''),
         deedId: mapValueOfType<String>(json, r'deedId'),
       );

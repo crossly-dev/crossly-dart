@@ -102,23 +102,23 @@ class GetWorldHomePlaceableResponseDataItemsRefKindEnum {
 
   String toJson() => value;
 
-  static const token = GetWorldHomePlaceableResponseDataItemsRefKindEnum._(r'token');
-  static const portal = GetWorldHomePlaceableResponseDataItemsRefKindEnum._(r'portal');
-  static const portfolio = GetWorldHomePlaceableResponseDataItemsRefKindEnum._(r'portfolio');
   static const inventory = GetWorldHomePlaceableResponseDataItemsRefKindEnum._(r'inventory');
+  static const vault = GetWorldHomePlaceableResponseDataItemsRefKindEnum._(r'vault');
+  static const portal = GetWorldHomePlaceableResponseDataItemsRefKindEnum._(r'portal');
+  static const token = GetWorldHomePlaceableResponseDataItemsRefKindEnum._(r'token');
   static const purchase = GetWorldHomePlaceableResponseDataItemsRefKindEnum._(r'purchase');
   static const nft = GetWorldHomePlaceableResponseDataItemsRefKindEnum._(r'nft');
-  static const vault = GetWorldHomePlaceableResponseDataItemsRefKindEnum._(r'vault');
+  static const portfolio = GetWorldHomePlaceableResponseDataItemsRefKindEnum._(r'portfolio');
 
   /// List of all possible values in this [enum][GetWorldHomePlaceableResponseDataItemsRefKindEnum].
   static const values = <GetWorldHomePlaceableResponseDataItemsRefKindEnum>[
-    token,
-    portal,
-    portfolio,
     inventory,
+    vault,
+    portal,
+    token,
     purchase,
     nft,
-    vault,
+    portfolio,
   ];
 
   static GetWorldHomePlaceableResponseDataItemsRefKindEnum fromJson(dynamic value) =>
@@ -150,13 +150,13 @@ class GetWorldHomePlaceableResponseDataItemsRefKindEnumTypeTransformer {
   GetWorldHomePlaceableResponseDataItemsRefKindEnum decode(dynamic data, {bool allowNull}) {
     if (data != null) {
       switch (data.toString()) {
-        case r'token': return GetWorldHomePlaceableResponseDataItemsRefKindEnum.token;
-        case r'portal': return GetWorldHomePlaceableResponseDataItemsRefKindEnum.portal;
-        case r'portfolio': return GetWorldHomePlaceableResponseDataItemsRefKindEnum.portfolio;
         case r'inventory': return GetWorldHomePlaceableResponseDataItemsRefKindEnum.inventory;
+        case r'vault': return GetWorldHomePlaceableResponseDataItemsRefKindEnum.vault;
+        case r'portal': return GetWorldHomePlaceableResponseDataItemsRefKindEnum.portal;
+        case r'token': return GetWorldHomePlaceableResponseDataItemsRefKindEnum.token;
         case r'purchase': return GetWorldHomePlaceableResponseDataItemsRefKindEnum.purchase;
         case r'nft': return GetWorldHomePlaceableResponseDataItemsRefKindEnum.nft;
-        case r'vault': return GetWorldHomePlaceableResponseDataItemsRefKindEnum.vault;
+        case r'portfolio': return GetWorldHomePlaceableResponseDataItemsRefKindEnum.portfolio;
         default:
           if (allowNull == false) {
             throw ArgumentError('Unknown enum value to decode: $data');

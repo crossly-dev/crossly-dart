@@ -32,6 +32,7 @@ class CreateVaultMarketValuationStatementResponse {
     this.notes = const [],
     this.verifyUrl,
     @required this.venue,
+    this.shares,
   });
 
   bool issued;
@@ -72,6 +73,8 @@ class CreateVaultMarketValuationStatementResponse {
 
   String venue;
 
+  CreateVaultMarketValuationStatementResponseShares shares;
+
   @override
   bool operator ==(Object other) => identical(this, other) || other is CreateVaultMarketValuationStatementResponse &&
      other.issued == issued &&
@@ -92,7 +95,8 @@ class CreateVaultMarketValuationStatementResponse {
      other.methodology == methodology &&
      other.notes == notes &&
      other.verifyUrl == verifyUrl &&
-     other.venue == venue;
+     other.venue == venue &&
+     other.shares == shares;
 
   @override
   int get hashCode =>
@@ -115,10 +119,11 @@ class CreateVaultMarketValuationStatementResponse {
     (methodology == null ? 0 : methodology.hashCode) +
     (notes == null ? 0 : notes.hashCode) +
     (verifyUrl == null ? 0 : verifyUrl.hashCode) +
-    (venue == null ? 0 : venue.hashCode);
+    (venue == null ? 0 : venue.hashCode) +
+    (shares == null ? 0 : shares.hashCode);
 
   @override
-  String toString() => 'CreateVaultMarketValuationStatementResponse[issued=$issued, hash=$hash, seal=$seal, kind=$kind, version=$version, id=$id, purpose=$purpose, title=$title, asOf=$asOf, issuedAt=$issuedAt, account=$account, preparedFor=$preparedFor, policyRef=$policyRef, units=$units, totals=$totals, methodology=$methodology, notes=$notes, verifyUrl=$verifyUrl, venue=$venue]';
+  String toString() => 'CreateVaultMarketValuationStatementResponse[issued=$issued, hash=$hash, seal=$seal, kind=$kind, version=$version, id=$id, purpose=$purpose, title=$title, asOf=$asOf, issuedAt=$issuedAt, account=$account, preparedFor=$preparedFor, policyRef=$policyRef, units=$units, totals=$totals, methodology=$methodology, notes=$notes, verifyUrl=$verifyUrl, venue=$venue, shares=$shares]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -149,6 +154,9 @@ class CreateVaultMarketValuationStatementResponse {
       json[r'verifyUrl'] = verifyUrl;
     }
       json[r'venue'] = venue;
+    if (shares != null) {
+      json[r'shares'] = shares;
+    }
     return json;
   }
 
@@ -182,6 +190,7 @@ class CreateVaultMarketValuationStatementResponse {
           : null,
         verifyUrl: mapValueOfType<String>(json, r'verifyUrl'),
         venue: mapValueOfType<String>(json, r'venue'),
+        shares: CreateVaultMarketValuationStatementResponseShares.fromJson(json[r'shares']),
       );
     }
     return null;
@@ -233,13 +242,13 @@ class CreateVaultMarketValuationStatementResponsePurposeEnum {
 
   String toJson() => value;
 
-  static const insurance = CreateVaultMarketValuationStatementResponsePurposeEnum._(r'insurance');
   static const appraisal = CreateVaultMarketValuationStatementResponsePurposeEnum._(r'appraisal');
+  static const insurance = CreateVaultMarketValuationStatementResponsePurposeEnum._(r'insurance');
 
   /// List of all possible values in this [enum][CreateVaultMarketValuationStatementResponsePurposeEnum].
   static const values = <CreateVaultMarketValuationStatementResponsePurposeEnum>[
-    insurance,
     appraisal,
+    insurance,
   ];
 
   static CreateVaultMarketValuationStatementResponsePurposeEnum fromJson(dynamic value) =>
@@ -271,8 +280,8 @@ class CreateVaultMarketValuationStatementResponsePurposeEnumTypeTransformer {
   CreateVaultMarketValuationStatementResponsePurposeEnum decode(dynamic data, {bool allowNull}) {
     if (data != null) {
       switch (data.toString()) {
-        case r'insurance': return CreateVaultMarketValuationStatementResponsePurposeEnum.insurance;
         case r'appraisal': return CreateVaultMarketValuationStatementResponsePurposeEnum.appraisal;
+        case r'insurance': return CreateVaultMarketValuationStatementResponsePurposeEnum.insurance;
         default:
           if (allowNull == false) {
             throw ArgumentError('Unknown enum value to decode: $data');

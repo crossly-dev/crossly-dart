@@ -14,11 +14,11 @@ class GetBuyerTogetherResponseDataItems {
   /// Returns a new [GetBuyerTogetherResponseDataItems] instance.
   GetBuyerTogetherResponseDataItems({
     @required this.id,
-    @required this.available,
-    this.title,
     @required this.slug,
+    this.title,
     @required this.priceCents,
     this.image,
+    @required this.available,
     @required this.addedBy,
     @required this.up,
     @required this.down,
@@ -27,15 +27,15 @@ class GetBuyerTogetherResponseDataItems {
 
   String id;
 
-  bool available;
+  String slug;
 
   String title;
-
-  String slug;
 
   num priceCents;
 
   String image;
+
+  bool available;
 
   String addedBy;
 
@@ -48,11 +48,11 @@ class GetBuyerTogetherResponseDataItems {
   @override
   bool operator ==(Object other) => identical(this, other) || other is GetBuyerTogetherResponseDataItems &&
      other.id == id &&
-     other.available == available &&
-     other.title == title &&
      other.slug == slug &&
+     other.title == title &&
      other.priceCents == priceCents &&
      other.image == image &&
+     other.available == available &&
      other.addedBy == addedBy &&
      other.up == up &&
      other.down == down &&
@@ -62,31 +62,31 @@ class GetBuyerTogetherResponseDataItems {
   int get hashCode =>
   // ignore: unnecessary_parenthesis
     (id == null ? 0 : id.hashCode) +
-    (available == null ? 0 : available.hashCode) +
-    (title == null ? 0 : title.hashCode) +
     (slug == null ? 0 : slug.hashCode) +
+    (title == null ? 0 : title.hashCode) +
     (priceCents == null ? 0 : priceCents.hashCode) +
     (image == null ? 0 : image.hashCode) +
+    (available == null ? 0 : available.hashCode) +
     (addedBy == null ? 0 : addedBy.hashCode) +
     (up == null ? 0 : up.hashCode) +
     (down == null ? 0 : down.hashCode) +
     (myVote == null ? 0 : myVote.hashCode);
 
   @override
-  String toString() => 'GetBuyerTogetherResponseDataItems[id=$id, available=$available, title=$title, slug=$slug, priceCents=$priceCents, image=$image, addedBy=$addedBy, up=$up, down=$down, myVote=$myVote]';
+  String toString() => 'GetBuyerTogetherResponseDataItems[id=$id, slug=$slug, title=$title, priceCents=$priceCents, image=$image, available=$available, addedBy=$addedBy, up=$up, down=$down, myVote=$myVote]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
       json[r'id'] = id;
-      json[r'available'] = available;
+      json[r'slug'] = slug;
     if (title != null) {
       json[r'title'] = title;
     }
-      json[r'slug'] = slug;
       json[r'priceCents'] = priceCents;
     if (image != null) {
       json[r'image'] = image;
     }
+      json[r'available'] = available;
       json[r'addedBy'] = addedBy;
       json[r'up'] = up;
       json[r'down'] = down;
@@ -102,13 +102,13 @@ class GetBuyerTogetherResponseDataItems {
       final json = value.cast<String, dynamic>();
       return GetBuyerTogetherResponseDataItems(
         id: mapValueOfType<String>(json, r'id'),
-        available: mapValueOfType<bool>(json, r'available'),
-        title: mapValueOfType<String>(json, r'title'),
         slug: mapValueOfType<String>(json, r'slug'),
+        title: mapValueOfType<String>(json, r'title'),
         priceCents: json[r'priceCents'] == null
           ? null
           : num.parse(json[r'priceCents'].toString()),
         image: mapValueOfType<String>(json, r'image'),
+        available: mapValueOfType<bool>(json, r'available'),
         addedBy: mapValueOfType<String>(json, r'addedBy'),
         up: json[r'up'] == null
           ? null

@@ -25,6 +25,10 @@ class ListWorldConventionsItem {
     @required this.tableCount,
     @required this.exhibitorCount,
     this.publicSlug,
+    @required this.tiered,
+    @required this.doorsOpenAt,
+    this.yourDoorsOpenAt,
+    this.doorsOpen,
   });
 
   String id;
@@ -53,6 +57,17 @@ class ListWorldConventionsItem {
   /// The room it is held in, so a card can link straight into it.
   String publicSlug;
 
+  /// A full-page convention (a rented hall, booth tiers; spec WD4): sellers book a tier on its booth page.
+  bool tiered;
+
+  /// When the doors open for visitors: the start (or when the host takes it live, if sooner).
+  DateTime doorsOpenAt;
+
+  /// For a signed-in viewer (doors.ts): when THEIR doors open (earlier with live_early_entry), and whether they are.
+  String yourDoorsOpenAt;
+
+  bool doorsOpen;
+
   @override
   bool operator ==(Object other) => identical(this, other) || other is ListWorldConventionsItem &&
      other.id == id &&
@@ -66,7 +81,11 @@ class ListWorldConventionsItem {
      other.revenueShareBps == revenueShareBps &&
      other.tableCount == tableCount &&
      other.exhibitorCount == exhibitorCount &&
-     other.publicSlug == publicSlug;
+     other.publicSlug == publicSlug &&
+     other.tiered == tiered &&
+     other.doorsOpenAt == doorsOpenAt &&
+     other.yourDoorsOpenAt == yourDoorsOpenAt &&
+     other.doorsOpen == doorsOpen;
 
   @override
   int get hashCode =>
@@ -82,10 +101,14 @@ class ListWorldConventionsItem {
     (revenueShareBps == null ? 0 : revenueShareBps.hashCode) +
     (tableCount == null ? 0 : tableCount.hashCode) +
     (exhibitorCount == null ? 0 : exhibitorCount.hashCode) +
-    (publicSlug == null ? 0 : publicSlug.hashCode);
+    (publicSlug == null ? 0 : publicSlug.hashCode) +
+    (tiered == null ? 0 : tiered.hashCode) +
+    (doorsOpenAt == null ? 0 : doorsOpenAt.hashCode) +
+    (yourDoorsOpenAt == null ? 0 : yourDoorsOpenAt.hashCode) +
+    (doorsOpen == null ? 0 : doorsOpen.hashCode);
 
   @override
-  String toString() => 'ListWorldConventionsItem[id=$id, title=$title, categorySlug=$categorySlug, startsAt=$startsAt, endsAt=$endsAt, status=$status, entryModel=$entryModel, entryFeeCents=$entryFeeCents, revenueShareBps=$revenueShareBps, tableCount=$tableCount, exhibitorCount=$exhibitorCount, publicSlug=$publicSlug]';
+  String toString() => 'ListWorldConventionsItem[id=$id, title=$title, categorySlug=$categorySlug, startsAt=$startsAt, endsAt=$endsAt, status=$status, entryModel=$entryModel, entryFeeCents=$entryFeeCents, revenueShareBps=$revenueShareBps, tableCount=$tableCount, exhibitorCount=$exhibitorCount, publicSlug=$publicSlug, tiered=$tiered, doorsOpenAt=$doorsOpenAt, yourDoorsOpenAt=$yourDoorsOpenAt, doorsOpen=$doorsOpen]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -108,6 +131,14 @@ class ListWorldConventionsItem {
       json[r'exhibitorCount'] = exhibitorCount;
     if (publicSlug != null) {
       json[r'publicSlug'] = publicSlug;
+    }
+      json[r'tiered'] = tiered;
+      json[r'doorsOpenAt'] = doorsOpenAt.toUtc().toIso8601String();
+    if (yourDoorsOpenAt != null) {
+      json[r'yourDoorsOpenAt'] = yourDoorsOpenAt;
+    }
+    if (doorsOpen != null) {
+      json[r'doorsOpen'] = doorsOpen;
     }
     return json;
   }
@@ -139,6 +170,10 @@ class ListWorldConventionsItem {
           ? null
           : num.parse(json[r'exhibitorCount'].toString()),
         publicSlug: mapValueOfType<String>(json, r'publicSlug'),
+        tiered: mapValueOfType<bool>(json, r'tiered'),
+        doorsOpenAt: mapDateTime(json, r'doorsOpenAt', ''),
+        yourDoorsOpenAt: mapValueOfType<String>(json, r'yourDoorsOpenAt'),
+        doorsOpen: mapValueOfType<bool>(json, r'doorsOpen'),
       );
     }
     return null;

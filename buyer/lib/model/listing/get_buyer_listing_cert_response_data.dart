@@ -186,15 +186,15 @@ class GetBuyerListingCertResponseDataStatusEnum {
   String toJson() => value;
 
   static const verified = GetBuyerListingCertResponseDataStatusEnum._(r'verified');
-  static const notFound = GetBuyerListingCertResponseDataStatusEnum._(r'not_found');
   static const mismatch = GetBuyerListingCertResponseDataStatusEnum._(r'mismatch');
+  static const notFound = GetBuyerListingCertResponseDataStatusEnum._(r'not_found');
   static const unchecked = GetBuyerListingCertResponseDataStatusEnum._(r'unchecked');
 
   /// List of all possible values in this [enum][GetBuyerListingCertResponseDataStatusEnum].
   static const values = <GetBuyerListingCertResponseDataStatusEnum>[
     verified,
-    notFound,
     mismatch,
+    notFound,
     unchecked,
   ];
 
@@ -228,8 +228,8 @@ class GetBuyerListingCertResponseDataStatusEnumTypeTransformer {
     if (data != null) {
       switch (data.toString()) {
         case r'verified': return GetBuyerListingCertResponseDataStatusEnum.verified;
-        case r'not_found': return GetBuyerListingCertResponseDataStatusEnum.notFound;
         case r'mismatch': return GetBuyerListingCertResponseDataStatusEnum.mismatch;
+        case r'not_found': return GetBuyerListingCertResponseDataStatusEnum.notFound;
         case r'unchecked': return GetBuyerListingCertResponseDataStatusEnum.unchecked;
         default:
           if (allowNull == false) {

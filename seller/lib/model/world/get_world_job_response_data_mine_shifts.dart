@@ -269,13 +269,13 @@ class GetWorldJobResponseDataMineShiftsRailEnum {
 
   String toJson() => value;
 
-  static const bucks = GetWorldJobResponseDataMineShiftsRailEnum._(r'bucks');
   static const cbx = GetWorldJobResponseDataMineShiftsRailEnum._(r'cbx');
+  static const bucks = GetWorldJobResponseDataMineShiftsRailEnum._(r'bucks');
 
   /// List of all possible values in this [enum][GetWorldJobResponseDataMineShiftsRailEnum].
   static const values = <GetWorldJobResponseDataMineShiftsRailEnum>[
-    bucks,
     cbx,
+    bucks,
   ];
 
   static GetWorldJobResponseDataMineShiftsRailEnum fromJson(dynamic value) =>
@@ -307,8 +307,8 @@ class GetWorldJobResponseDataMineShiftsRailEnumTypeTransformer {
   GetWorldJobResponseDataMineShiftsRailEnum decode(dynamic data, {bool allowNull}) {
     if (data != null) {
       switch (data.toString()) {
-        case r'bucks': return GetWorldJobResponseDataMineShiftsRailEnum.bucks;
         case r'cbx': return GetWorldJobResponseDataMineShiftsRailEnum.cbx;
+        case r'bucks': return GetWorldJobResponseDataMineShiftsRailEnum.bucks;
         default:
           if (allowNull == false) {
             throw ArgumentError('Unknown enum value to decode: $data');
@@ -336,8 +336,8 @@ class GetWorldJobResponseDataMineShiftsStatusEnum {
 
   String toJson() => value;
 
-  static const open = GetWorldJobResponseDataMineShiftsStatusEnum._(r'open');
   static const cancelled = GetWorldJobResponseDataMineShiftsStatusEnum._(r'cancelled');
+  static const open = GetWorldJobResponseDataMineShiftsStatusEnum._(r'open');
   static const paid = GetWorldJobResponseDataMineShiftsStatusEnum._(r'paid');
   static const claimed = GetWorldJobResponseDataMineShiftsStatusEnum._(r'claimed');
   static const worked = GetWorldJobResponseDataMineShiftsStatusEnum._(r'worked');
@@ -345,8 +345,8 @@ class GetWorldJobResponseDataMineShiftsStatusEnum {
 
   /// List of all possible values in this [enum][GetWorldJobResponseDataMineShiftsStatusEnum].
   static const values = <GetWorldJobResponseDataMineShiftsStatusEnum>[
-    open,
     cancelled,
+    open,
     paid,
     claimed,
     worked,
@@ -382,8 +382,8 @@ class GetWorldJobResponseDataMineShiftsStatusEnumTypeTransformer {
   GetWorldJobResponseDataMineShiftsStatusEnum decode(dynamic data, {bool allowNull}) {
     if (data != null) {
       switch (data.toString()) {
-        case r'open': return GetWorldJobResponseDataMineShiftsStatusEnum.open;
         case r'cancelled': return GetWorldJobResponseDataMineShiftsStatusEnum.cancelled;
+        case r'open': return GetWorldJobResponseDataMineShiftsStatusEnum.open;
         case r'paid': return GetWorldJobResponseDataMineShiftsStatusEnum.paid;
         case r'claimed': return GetWorldJobResponseDataMineShiftsStatusEnum.claimed;
         case r'worked': return GetWorldJobResponseDataMineShiftsStatusEnum.worked;

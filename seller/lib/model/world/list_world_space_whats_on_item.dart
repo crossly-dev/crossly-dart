@@ -154,17 +154,17 @@ class ListWorldSpaceWhatsOnItemPlaceEnum {
 
   String toJson() => value;
 
+  static const stage = ListWorldSpaceWhatsOnItemPlaceEnum._(r'stage');
   static const street = ListWorldSpaceWhatsOnItemPlaceEnum._(r'street');
   static const festival = ListWorldSpaceWhatsOnItemPlaceEnum._(r'festival');
   static const space = ListWorldSpaceWhatsOnItemPlaceEnum._(r'space');
-  static const stage = ListWorldSpaceWhatsOnItemPlaceEnum._(r'stage');
 
   /// List of all possible values in this [enum][ListWorldSpaceWhatsOnItemPlaceEnum].
   static const values = <ListWorldSpaceWhatsOnItemPlaceEnum>[
+    stage,
     street,
     festival,
     space,
-    stage,
   ];
 
   static ListWorldSpaceWhatsOnItemPlaceEnum fromJson(dynamic value) =>
@@ -196,10 +196,10 @@ class ListWorldSpaceWhatsOnItemPlaceEnumTypeTransformer {
   ListWorldSpaceWhatsOnItemPlaceEnum decode(dynamic data, {bool allowNull}) {
     if (data != null) {
       switch (data.toString()) {
+        case r'stage': return ListWorldSpaceWhatsOnItemPlaceEnum.stage;
         case r'street': return ListWorldSpaceWhatsOnItemPlaceEnum.street;
         case r'festival': return ListWorldSpaceWhatsOnItemPlaceEnum.festival;
         case r'space': return ListWorldSpaceWhatsOnItemPlaceEnum.space;
-        case r'stage': return ListWorldSpaceWhatsOnItemPlaceEnum.stage;
         default:
           if (allowNull == false) {
             throw ArgumentError('Unknown enum value to decode: $data');

@@ -13,19 +13,19 @@ part of openapi.api;
 class CreateBuyerCartOptimizerResponseDataLinesPick {
   /// Returns a new [CreateBuyerCartOptimizerResponseDataLinesPick] instance.
   CreateBuyerCartOptimizerResponseDataLinesPick({
+    @required this.slug,
     @required this.title,
     @required this.sellerUserId,
-    @required this.slug,
     this.sellerName,
     @required this.unitCents,
     @required this.shipCents,
   });
 
+  String slug;
+
   String title;
 
   String sellerUserId;
-
-  String slug;
 
   String sellerName;
 
@@ -35,9 +35,9 @@ class CreateBuyerCartOptimizerResponseDataLinesPick {
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is CreateBuyerCartOptimizerResponseDataLinesPick &&
+     other.slug == slug &&
      other.title == title &&
      other.sellerUserId == sellerUserId &&
-     other.slug == slug &&
      other.sellerName == sellerName &&
      other.unitCents == unitCents &&
      other.shipCents == shipCents;
@@ -45,21 +45,21 @@ class CreateBuyerCartOptimizerResponseDataLinesPick {
   @override
   int get hashCode =>
   // ignore: unnecessary_parenthesis
+    (slug == null ? 0 : slug.hashCode) +
     (title == null ? 0 : title.hashCode) +
     (sellerUserId == null ? 0 : sellerUserId.hashCode) +
-    (slug == null ? 0 : slug.hashCode) +
     (sellerName == null ? 0 : sellerName.hashCode) +
     (unitCents == null ? 0 : unitCents.hashCode) +
     (shipCents == null ? 0 : shipCents.hashCode);
 
   @override
-  String toString() => 'CreateBuyerCartOptimizerResponseDataLinesPick[title=$title, sellerUserId=$sellerUserId, slug=$slug, sellerName=$sellerName, unitCents=$unitCents, shipCents=$shipCents]';
+  String toString() => 'CreateBuyerCartOptimizerResponseDataLinesPick[slug=$slug, title=$title, sellerUserId=$sellerUserId, sellerName=$sellerName, unitCents=$unitCents, shipCents=$shipCents]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
+      json[r'slug'] = slug;
       json[r'title'] = title;
       json[r'sellerUserId'] = sellerUserId;
-      json[r'slug'] = slug;
     if (sellerName != null) {
       json[r'sellerName'] = sellerName;
     }
@@ -75,9 +75,9 @@ class CreateBuyerCartOptimizerResponseDataLinesPick {
     if (value is Map) {
       final json = value.cast<String, dynamic>();
       return CreateBuyerCartOptimizerResponseDataLinesPick(
+        slug: mapValueOfType<String>(json, r'slug'),
         title: mapValueOfType<String>(json, r'title'),
         sellerUserId: mapValueOfType<String>(json, r'sellerUserId'),
-        slug: mapValueOfType<String>(json, r'slug'),
         sellerName: mapValueOfType<String>(json, r'sellerName'),
         unitCents: json[r'unitCents'] == null
           ? null

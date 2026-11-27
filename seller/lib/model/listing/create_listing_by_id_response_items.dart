@@ -71,6 +71,8 @@ class CreateListingByIdResponseItems {
     this.automationBlockedRuleIds = const [],
     this.automationAssignedChainIds = const [],
     this.automationBlockedChainIds = const [],
+    this.workflowBlockedIds = const [],
+    this.workflowAssignedIds = const [],
     this.hsCode,
     this.countryOfOrigin,
     this.priceFloorCents,
@@ -81,6 +83,9 @@ class CreateListingByIdResponseItems {
     @required this.source_,
     this.duplicateOfListingId,
     this.clientDraftId,
+    this.attributedOauthAppId,
+    this.attributedGrantId,
+    this.quotaBucket,
     @required this.createdAt,
     @required this.updatedAt,
   });
@@ -147,7 +152,7 @@ class CreateListingByIdResponseItems {
   /// Third-party grading, when the item is slabbed. Migration 0277.  Separate from `condition` on purpose and never derived from it: a grade is a claim about what a GRADING COMPANY certified, and inferring \"PSA 10\" from a coarse condition would be a false authenticity claim. It is also never filled from our own AI estimate (`bulk_market_items.grade`), which carries an explicit \"not a professional grade\" disclaimer.  `gradeKey` is the canonical form from `gradeKey()` in shared/constants/graders.ts; `grading` holds the full GradingInfo including the cert number and whether a cert lookup verified it.
   String gradeKey;
 
-  ListGradingSubmissionsItemGrading grading;
+  CreateBulkBatchItemResponseGrading grading;
 
   String brand;
 
@@ -214,6 +219,11 @@ class CreateListingByIdResponseItems {
 
   List<String> automationBlockedChainIds;
 
+  /// Per-listing workflow overrides (migration 1099, docs/WORKFLOWS.md §10): the automation_* rule/chain ids above map here on conversion; `find.listings` and listing action nodes honour them.   workflowBlockedIds  — workflows (workflows.id) this listing is exempt from  workflowAssignedIds — workflows this listing is force-included in
+  List<String> workflowBlockedIds;
+
+  List<String> workflowAssignedIds;
+
   /// Harmonised System customs code — international shipping declarations.
   String hsCode;
 
@@ -241,6 +251,14 @@ class CreateListingByIdResponseItems {
 
   /// UUID minted on a seller's machine for a draft written offline.  The idempotency key for desktop sync. The failure it guards is a POST that succeeds server-side whose reply is lost — the client cannot tell that from a failure, retries, and one item becomes two live listings against one piece of stock. Unique per user (partial index, migration 0268); null for every listing that did not come from an offline draft.
   String clientDraftId;
+
+  /// The third-party OAuth app that created this listing (via its access token), if any — the anchor for developer revenue-share: the app that created the item earns a cut of its sales. Stamped once at create time (first writer wins, never overwritten); null for the web app, a PAT, or anything first-party. `attributedGrantId` pins the specific install whose agreed terms apply. See services/developer-earnings/.
+  String attributedOauthAppId;
+
+  String attributedGrantId;
+
+  /// Which quota this listing is counted in (migration 1064): 'app_allowance' = the attributed app's per-seller allowance (services/app-allowance/), 'plan' = the seller's plan, null = created before allowances / by no app (plan rules). Stays 'app_allowance' after an unlink (grandfathered, no longer counted).
+  String quotaBucket;
 
   DateTime createdAt;
 
@@ -306,6 +324,8 @@ class CreateListingByIdResponseItems {
      other.automationBlockedRuleIds == automationBlockedRuleIds &&
      other.automationAssignedChainIds == automationAssignedChainIds &&
      other.automationBlockedChainIds == automationBlockedChainIds &&
+     other.workflowBlockedIds == workflowBlockedIds &&
+     other.workflowAssignedIds == workflowAssignedIds &&
      other.hsCode == hsCode &&
      other.countryOfOrigin == countryOfOrigin &&
      other.priceFloorCents == priceFloorCents &&
@@ -316,6 +336,9 @@ class CreateListingByIdResponseItems {
      other.source_ == source_ &&
      other.duplicateOfListingId == duplicateOfListingId &&
      other.clientDraftId == clientDraftId &&
+     other.attributedOauthAppId == attributedOauthAppId &&
+     other.attributedGrantId == attributedGrantId &&
+     other.quotaBucket == quotaBucket &&
      other.createdAt == createdAt &&
      other.updatedAt == updatedAt;
 
@@ -380,6 +403,8 @@ class CreateListingByIdResponseItems {
     (automationBlockedRuleIds == null ? 0 : automationBlockedRuleIds.hashCode) +
     (automationAssignedChainIds == null ? 0 : automationAssignedChainIds.hashCode) +
     (automationBlockedChainIds == null ? 0 : automationBlockedChainIds.hashCode) +
+    (workflowBlockedIds == null ? 0 : workflowBlockedIds.hashCode) +
+    (workflowAssignedIds == null ? 0 : workflowAssignedIds.hashCode) +
     (hsCode == null ? 0 : hsCode.hashCode) +
     (countryOfOrigin == null ? 0 : countryOfOrigin.hashCode) +
     (priceFloorCents == null ? 0 : priceFloorCents.hashCode) +
@@ -390,11 +415,14 @@ class CreateListingByIdResponseItems {
     (source_ == null ? 0 : source_.hashCode) +
     (duplicateOfListingId == null ? 0 : duplicateOfListingId.hashCode) +
     (clientDraftId == null ? 0 : clientDraftId.hashCode) +
+    (attributedOauthAppId == null ? 0 : attributedOauthAppId.hashCode) +
+    (attributedGrantId == null ? 0 : attributedGrantId.hashCode) +
+    (quotaBucket == null ? 0 : quotaBucket.hashCode) +
     (createdAt == null ? 0 : createdAt.hashCode) +
     (updatedAt == null ? 0 : updatedAt.hashCode);
 
   @override
-  String toString() => 'CreateListingByIdResponseItems[effectiveTitle=$effectiveTitle, effectivePrice=$effectivePrice, effectiveDescription=$effectiveDescription, effectiveImages=$effectiveImages, effectiveBrand=$effectiveBrand, effectiveCondition=$effectiveCondition, effectiveSize=$effectiveSize, effectiveSku=$effectiveSku, effectiveColor=$effectiveColor, effectiveTags=$effectiveTags, platformListings=$platformListings, inventoryItemId=$inventoryItemId, id=$id, userId=$userId, name=$name, title=$title, description=$description, descriptionHtml=$descriptionHtml, price=$price, currency=$currency, images=$images, videoUrl=$videoUrl, aiMediaUrls=$aiMediaUrls, aiMediaDeclared=$aiMediaDeclared, aiMediaDetectedUrls=$aiMediaDetectedUrls, status=$status, condition=$condition, gradeKey=$gradeKey, grading=$grading, brand=$brand, size=$size, material=$material, style=$style, pattern=$pattern, department=$department, gender=$gender, itemType=$itemType, sizeSystem=$sizeSystem, color=$color, tags=$tags, sku=$sku, isDigital=$isDigital, quantity=$quantity, quantityAvailable=$quantityAvailable, weightLb=$weightLb, weightOz=$weightOz, dimensionLIn=$dimensionLIn, dimensionWIn=$dimensionWIn, dimensionHIn=$dimensionHIn, publishAt=$publishAt, scheduledPlatforms=$scheduledPlatforms, parentListingId=$parentListingId, groupKind=$groupKind, isBundle=$isBundle, automationAssignedRuleIds=$automationAssignedRuleIds, automationBlockedRuleIds=$automationBlockedRuleIds, automationAssignedChainIds=$automationAssignedChainIds, automationBlockedChainIds=$automationBlockedChainIds, hsCode=$hsCode, countryOfOrigin=$countryOfOrigin, priceFloorCents=$priceFloorCents, floorIsNet=$floorIsNet, delistedAt=$delistedAt, soldAt=$soldAt, ebayAttributesEnrichedAt=$ebayAttributesEnrichedAt, source_=$source_, duplicateOfListingId=$duplicateOfListingId, clientDraftId=$clientDraftId, createdAt=$createdAt, updatedAt=$updatedAt]';
+  String toString() => 'CreateListingByIdResponseItems[effectiveTitle=$effectiveTitle, effectivePrice=$effectivePrice, effectiveDescription=$effectiveDescription, effectiveImages=$effectiveImages, effectiveBrand=$effectiveBrand, effectiveCondition=$effectiveCondition, effectiveSize=$effectiveSize, effectiveSku=$effectiveSku, effectiveColor=$effectiveColor, effectiveTags=$effectiveTags, platformListings=$platformListings, inventoryItemId=$inventoryItemId, id=$id, userId=$userId, name=$name, title=$title, description=$description, descriptionHtml=$descriptionHtml, price=$price, currency=$currency, images=$images, videoUrl=$videoUrl, aiMediaUrls=$aiMediaUrls, aiMediaDeclared=$aiMediaDeclared, aiMediaDetectedUrls=$aiMediaDetectedUrls, status=$status, condition=$condition, gradeKey=$gradeKey, grading=$grading, brand=$brand, size=$size, material=$material, style=$style, pattern=$pattern, department=$department, gender=$gender, itemType=$itemType, sizeSystem=$sizeSystem, color=$color, tags=$tags, sku=$sku, isDigital=$isDigital, quantity=$quantity, quantityAvailable=$quantityAvailable, weightLb=$weightLb, weightOz=$weightOz, dimensionLIn=$dimensionLIn, dimensionWIn=$dimensionWIn, dimensionHIn=$dimensionHIn, publishAt=$publishAt, scheduledPlatforms=$scheduledPlatforms, parentListingId=$parentListingId, groupKind=$groupKind, isBundle=$isBundle, automationAssignedRuleIds=$automationAssignedRuleIds, automationBlockedRuleIds=$automationBlockedRuleIds, automationAssignedChainIds=$automationAssignedChainIds, automationBlockedChainIds=$automationBlockedChainIds, workflowBlockedIds=$workflowBlockedIds, workflowAssignedIds=$workflowAssignedIds, hsCode=$hsCode, countryOfOrigin=$countryOfOrigin, priceFloorCents=$priceFloorCents, floorIsNet=$floorIsNet, delistedAt=$delistedAt, soldAt=$soldAt, ebayAttributesEnrichedAt=$ebayAttributesEnrichedAt, source_=$source_, duplicateOfListingId=$duplicateOfListingId, clientDraftId=$clientDraftId, attributedOauthAppId=$attributedOauthAppId, attributedGrantId=$attributedGrantId, quotaBucket=$quotaBucket, createdAt=$createdAt, updatedAt=$updatedAt]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -530,6 +558,8 @@ class CreateListingByIdResponseItems {
       json[r'automationBlockedRuleIds'] = automationBlockedRuleIds;
       json[r'automationAssignedChainIds'] = automationAssignedChainIds;
       json[r'automationBlockedChainIds'] = automationBlockedChainIds;
+      json[r'workflowBlockedIds'] = workflowBlockedIds;
+      json[r'workflowAssignedIds'] = workflowAssignedIds;
     if (hsCode != null) {
       json[r'hsCode'] = hsCode;
     }
@@ -555,6 +585,15 @@ class CreateListingByIdResponseItems {
     }
     if (clientDraftId != null) {
       json[r'clientDraftId'] = clientDraftId;
+    }
+    if (attributedOauthAppId != null) {
+      json[r'attributedOauthAppId'] = attributedOauthAppId;
+    }
+    if (attributedGrantId != null) {
+      json[r'attributedGrantId'] = attributedGrantId;
+    }
+    if (quotaBucket != null) {
+      json[r'quotaBucket'] = quotaBucket;
     }
       json[r'createdAt'] = createdAt.toUtc().toIso8601String();
       json[r'updatedAt'] = updatedAt.toUtc().toIso8601String();
@@ -608,7 +647,7 @@ class CreateListingByIdResponseItems {
         status: mapValueOfType<String>(json, r'status'),
         condition: mapValueOfType<String>(json, r'condition'),
         gradeKey: mapValueOfType<String>(json, r'gradeKey'),
-        grading: ListGradingSubmissionsItemGrading.fromJson(json[r'grading']),
+        grading: CreateBulkBatchItemResponseGrading.fromJson(json[r'grading']),
         brand: mapValueOfType<String>(json, r'brand'),
         size: mapValueOfType<String>(json, r'size'),
         material: mapValueOfType<String>(json, r'material'),
@@ -656,6 +695,12 @@ class CreateListingByIdResponseItems {
         automationBlockedChainIds: json[r'automationBlockedChainIds'] is List
           ? (json[r'automationBlockedChainIds'] as List).cast<String>()
           : null,
+        workflowBlockedIds: json[r'workflowBlockedIds'] is List
+          ? (json[r'workflowBlockedIds'] as List).cast<String>()
+          : null,
+        workflowAssignedIds: json[r'workflowAssignedIds'] is List
+          ? (json[r'workflowAssignedIds'] as List).cast<String>()
+          : null,
         hsCode: mapValueOfType<String>(json, r'hsCode'),
         countryOfOrigin: mapValueOfType<String>(json, r'countryOfOrigin'),
         priceFloorCents: json[r'priceFloorCents'] == null
@@ -668,6 +713,9 @@ class CreateListingByIdResponseItems {
         source_: mapValueOfType<String>(json, r'source'),
         duplicateOfListingId: mapValueOfType<String>(json, r'duplicateOfListingId'),
         clientDraftId: mapValueOfType<String>(json, r'clientDraftId'),
+        attributedOauthAppId: mapValueOfType<String>(json, r'attributedOauthAppId'),
+        attributedGrantId: mapValueOfType<String>(json, r'attributedGrantId'),
+        quotaBucket: mapValueOfType<String>(json, r'quotaBucket'),
         createdAt: mapDateTime(json, r'createdAt', ''),
         updatedAt: mapDateTime(json, r'updatedAt', ''),
       );

@@ -17,22 +17,37 @@ class CreateListingResponse {
     this.jobs = const [],
     this.skipped = const [],
     this.bulkJobId,
+    this.clientReferenceId,
+    this.existing,
+    this.warnings,
   });
 
   IdResponse listing;
 
+  /// One dispatched crosspost job per accepted platform.
   List<CreateListingResponseJobs> jobs;
 
+  /// Platforms not dispatched, and why (category gate, dropship_not_allowed_on_platform, a dispatch refusal such as validation_error \"Add a weight before listing\", ...). The listing itself was created.
   List<CreateListingResponseSkipped> skipped;
 
   String bulkJobId;
+
+  String clientReferenceId;
+
+  bool existing;
+
+  /// Soft item-specifics problems (strictItemSpecifics off) and eBay fields accepted but mapped or ignored.
+  List<CreateListingResponseWarnings> warnings;
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is CreateListingResponse &&
      other.listing == listing &&
      other.jobs == jobs &&
      other.skipped == skipped &&
-     other.bulkJobId == bulkJobId;
+     other.bulkJobId == bulkJobId &&
+     other.clientReferenceId == clientReferenceId &&
+     other.existing == existing &&
+     other.warnings == warnings;
 
   @override
   int get hashCode =>
@@ -40,10 +55,13 @@ class CreateListingResponse {
     (listing == null ? 0 : listing.hashCode) +
     (jobs == null ? 0 : jobs.hashCode) +
     (skipped == null ? 0 : skipped.hashCode) +
-    (bulkJobId == null ? 0 : bulkJobId.hashCode);
+    (bulkJobId == null ? 0 : bulkJobId.hashCode) +
+    (clientReferenceId == null ? 0 : clientReferenceId.hashCode) +
+    (existing == null ? 0 : existing.hashCode) +
+    (warnings == null ? 0 : warnings.hashCode);
 
   @override
-  String toString() => 'CreateListingResponse[listing=$listing, jobs=$jobs, skipped=$skipped, bulkJobId=$bulkJobId]';
+  String toString() => 'CreateListingResponse[listing=$listing, jobs=$jobs, skipped=$skipped, bulkJobId=$bulkJobId, clientReferenceId=$clientReferenceId, existing=$existing, warnings=$warnings]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -52,6 +70,15 @@ class CreateListingResponse {
       json[r'skipped'] = skipped;
     if (bulkJobId != null) {
       json[r'bulkJobId'] = bulkJobId;
+    }
+    if (clientReferenceId != null) {
+      json[r'clientReferenceId'] = clientReferenceId;
+    }
+    if (existing != null) {
+      json[r'existing'] = existing;
+    }
+    if (warnings != null) {
+      json[r'warnings'] = warnings;
     }
     return json;
   }
@@ -67,6 +94,9 @@ class CreateListingResponse {
         jobs: CreateListingResponseJobs.listFromJson(json[r'jobs']),
         skipped: CreateListingResponseSkipped.listFromJson(json[r'skipped']),
         bulkJobId: mapValueOfType<String>(json, r'bulkJobId'),
+        clientReferenceId: mapValueOfType<String>(json, r'clientReferenceId'),
+        existing: mapValueOfType<bool>(json, r'existing'),
+        warnings: CreateListingResponseWarnings.listFromJson(json[r'warnings']),
       );
     }
     return null;

@@ -192,15 +192,15 @@ class GetVaultMarketMarketResponseTierTierEnum {
 
   String toJson() => value;
 
-  static const standard = GetVaultMarketMarketResponseTierTierEnum._(r'standard');
   static const closed = GetVaultMarketMarketResponseTierTierEnum._(r'closed');
+  static const standard = GetVaultMarketMarketResponseTierTierEnum._(r'standard');
   static const deep = GetVaultMarketMarketResponseTierTierEnum._(r'deep');
   static const thin = GetVaultMarketMarketResponseTierTierEnum._(r'thin');
 
   /// List of all possible values in this [enum][GetVaultMarketMarketResponseTierTierEnum].
   static const values = <GetVaultMarketMarketResponseTierTierEnum>[
-    standard,
     closed,
+    standard,
     deep,
     thin,
   ];
@@ -234,8 +234,8 @@ class GetVaultMarketMarketResponseTierTierEnumTypeTransformer {
   GetVaultMarketMarketResponseTierTierEnum decode(dynamic data, {bool allowNull}) {
     if (data != null) {
       switch (data.toString()) {
-        case r'standard': return GetVaultMarketMarketResponseTierTierEnum.standard;
         case r'closed': return GetVaultMarketMarketResponseTierTierEnum.closed;
+        case r'standard': return GetVaultMarketMarketResponseTierTierEnum.standard;
         case r'deep': return GetVaultMarketMarketResponseTierTierEnum.deep;
         case r'thin': return GetVaultMarketMarketResponseTierTierEnum.thin;
         default:
@@ -265,16 +265,16 @@ class GetVaultMarketMarketResponseTierLiquidityTierEnum {
 
   String toJson() => value;
 
+  static const C = GetVaultMarketMarketResponseTierLiquidityTierEnum._(r'C');
   static const A = GetVaultMarketMarketResponseTierLiquidityTierEnum._(r'A');
   static const B = GetVaultMarketMarketResponseTierLiquidityTierEnum._(r'B');
-  static const C = GetVaultMarketMarketResponseTierLiquidityTierEnum._(r'C');
   static const D = GetVaultMarketMarketResponseTierLiquidityTierEnum._(r'D');
 
   /// List of all possible values in this [enum][GetVaultMarketMarketResponseTierLiquidityTierEnum].
   static const values = <GetVaultMarketMarketResponseTierLiquidityTierEnum>[
+    C,
     A,
     B,
-    C,
     D,
   ];
 
@@ -307,9 +307,9 @@ class GetVaultMarketMarketResponseTierLiquidityTierEnumTypeTransformer {
   GetVaultMarketMarketResponseTierLiquidityTierEnum decode(dynamic data, {bool allowNull}) {
     if (data != null) {
       switch (data.toString()) {
+        case r'C': return GetVaultMarketMarketResponseTierLiquidityTierEnum.C;
         case r'A': return GetVaultMarketMarketResponseTierLiquidityTierEnum.A;
         case r'B': return GetVaultMarketMarketResponseTierLiquidityTierEnum.B;
-        case r'C': return GetVaultMarketMarketResponseTierLiquidityTierEnum.C;
         case r'D': return GetVaultMarketMarketResponseTierLiquidityTierEnum.D;
         default:
           if (allowNull == false) {

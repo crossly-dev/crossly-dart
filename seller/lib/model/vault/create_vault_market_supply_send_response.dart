@@ -13,47 +13,63 @@ part of openapi.api;
 class CreateVaultMarketSupplySendResponse {
   /// Returns a new [CreateVaultMarketSupplySendResponse] instance.
   CreateVaultMarketSupplySendResponse({
-    this.created = const [],
+    this.batchId,
+    this.created,
     this.skipped = const [],
     this.label,
     this.labelError,
+    this.storefrontId,
   });
 
-  List<CreateVaultMarketSupplySendResponseCreated> created;
+  Object batchId;
 
-  List<CreateVaultMarketSupplySendResponseSkipped> skipped;
+  Object created;
 
-  CreateVaultMarketPartnerBatchResponseLabel label;
+  List<InventoryItemIdReason> skipped;
 
-  String labelError;
+  Object label;
+
+  Object labelError;
+
+  String storefrontId;
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is CreateVaultMarketSupplySendResponse &&
+     other.batchId == batchId &&
      other.created == created &&
      other.skipped == skipped &&
      other.label == label &&
-     other.labelError == labelError;
+     other.labelError == labelError &&
+     other.storefrontId == storefrontId;
 
   @override
   int get hashCode =>
   // ignore: unnecessary_parenthesis
+    (batchId == null ? 0 : batchId.hashCode) +
     (created == null ? 0 : created.hashCode) +
     (skipped == null ? 0 : skipped.hashCode) +
     (label == null ? 0 : label.hashCode) +
-    (labelError == null ? 0 : labelError.hashCode);
+    (labelError == null ? 0 : labelError.hashCode) +
+    (storefrontId == null ? 0 : storefrontId.hashCode);
 
   @override
-  String toString() => 'CreateVaultMarketSupplySendResponse[created=$created, skipped=$skipped, label=$label, labelError=$labelError]';
+  String toString() => 'CreateVaultMarketSupplySendResponse[batchId=$batchId, created=$created, skipped=$skipped, label=$label, labelError=$labelError, storefrontId=$storefrontId]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-      json[r'created'] = created;
+    if (batchId != null) {
+      json[r'batchId'] = batchId;
+    }
+      json[r'created'] = created == null ? null : created;
       json[r'skipped'] = skipped;
     if (label != null) {
       json[r'label'] = label;
     }
     if (labelError != null) {
       json[r'labelError'] = labelError;
+    }
+    if (storefrontId != null) {
+      json[r'storefrontId'] = storefrontId;
     }
     return json;
   }
@@ -65,10 +81,12 @@ class CreateVaultMarketSupplySendResponse {
     if (value is Map) {
       final json = value.cast<String, dynamic>();
       return CreateVaultMarketSupplySendResponse(
-        created: CreateVaultMarketSupplySendResponseCreated.listFromJson(json[r'created']),
-        skipped: CreateVaultMarketSupplySendResponseSkipped.listFromJson(json[r'skipped']),
-        label: CreateVaultMarketPartnerBatchResponseLabel.fromJson(json[r'label']),
-        labelError: mapValueOfType<String>(json, r'labelError'),
+        batchId: mapValueOfType<Object>(json, r'batchId'),
+        created: mapValueOfType<Object>(json, r'created'),
+        skipped: InventoryItemIdReason.listFromJson(json[r'skipped']),
+        label: mapValueOfType<Object>(json, r'label'),
+        labelError: mapValueOfType<Object>(json, r'labelError'),
+        storefrontId: mapValueOfType<String>(json, r'storefrontId'),
       );
     }
     return null;

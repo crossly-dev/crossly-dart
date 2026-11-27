@@ -48,7 +48,7 @@ class GetVaultMarketCapacityResponse {
 
   List<String> unpriced;
 
-  List<Object> perKey;
+  List<GetVaultMarketCapacityResponsePerKeyItem> perKey;
 
   List<String> notes;
 
@@ -138,7 +138,7 @@ class GetVaultMarketCapacityResponse {
         unpriced: json[r'unpriced'] is List
           ? (json[r'unpriced'] as List).cast<String>()
           : null,
-        perKey: json[r'perKey'] is List ? (json[r'perKey'] as List).cast<Object>() : const [],
+        perKey: GetVaultMarketCapacityResponsePerKeyItem.listFromJson(json[r'perKey']),
         notes: json[r'notes'] is List
           ? (json[r'notes'] as List).cast<String>()
           : null,

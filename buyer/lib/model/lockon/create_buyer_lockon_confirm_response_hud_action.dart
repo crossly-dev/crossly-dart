@@ -113,18 +113,18 @@ class CreateBuyerLockonConfirmResponseHudActionKindEnum {
   String toJson() => value;
 
   static const none = CreateBuyerLockonConfirmResponseHudActionKindEnum._(r'none');
-  static const confirm = CreateBuyerLockonConfirmResponseHudActionKindEnum._(r'confirm');
   static const save = CreateBuyerLockonConfirmResponseHudActionKindEnum._(r'save');
   static const buyCrossly = CreateBuyerLockonConfirmResponseHudActionKindEnum._(r'buy_crossly');
   static const buyOffsite = CreateBuyerLockonConfirmResponseHudActionKindEnum._(r'buy_offsite');
+  static const confirm = CreateBuyerLockonConfirmResponseHudActionKindEnum._(r'confirm');
 
   /// List of all possible values in this [enum][CreateBuyerLockonConfirmResponseHudActionKindEnum].
   static const values = <CreateBuyerLockonConfirmResponseHudActionKindEnum>[
     none,
-    confirm,
     save,
     buyCrossly,
     buyOffsite,
+    confirm,
   ];
 
   static CreateBuyerLockonConfirmResponseHudActionKindEnum fromJson(dynamic value) =>
@@ -157,10 +157,10 @@ class CreateBuyerLockonConfirmResponseHudActionKindEnumTypeTransformer {
     if (data != null) {
       switch (data.toString()) {
         case r'none': return CreateBuyerLockonConfirmResponseHudActionKindEnum.none;
-        case r'confirm': return CreateBuyerLockonConfirmResponseHudActionKindEnum.confirm;
         case r'save': return CreateBuyerLockonConfirmResponseHudActionKindEnum.save;
         case r'buy_crossly': return CreateBuyerLockonConfirmResponseHudActionKindEnum.buyCrossly;
         case r'buy_offsite': return CreateBuyerLockonConfirmResponseHudActionKindEnum.buyOffsite;
+        case r'confirm': return CreateBuyerLockonConfirmResponseHudActionKindEnum.confirm;
         default:
           if (allowNull == false) {
             throw ArgumentError('Unknown enum value to decode: $data');

@@ -680,7 +680,7 @@ class BuyerCatalogApi {
 
   /// Shipping services and prices to a destination.
   ///
-  /// Lists every shipping service the seller offers to `country` (default: the seller’s own country) with its price for `quantity` units and its delivery window in business days (handling included). `zip` is required for a domestic quote. `shipsToCountry: false` means the seller does not ship there. Pass a service `id` as `shippingServiceId` to POST /api/v1/buyer/checkout, or in `shippingServiceBySeller` to POST /api/v1/buyer/cart/quote.
+  /// Lists every shipping service the seller offers to `country` (default: the seller’s own country) with its price for `quantity` units and its delivery window in business days (handling included). `zip` is required for a domestic quote; `state` is optional. `shipsToCountry: false` means the seller does not ship there (`noShipMessage` says why); `partial: true` means a ZIP or postcode could change the answer. Pass a service `id` as `shippingServiceId` to POST /api/v1/buyer/checkout, or in `shippingServiceBySeller` to POST /api/v1/buyer/cart/quote. A seller on \"buyer pays: calculated\" prices each allowed carrier service from the live label rate for this parcel plus their handling fee (rates cached 15 minutes): those services carry `carrier` and `carrierService`, and `calculatedAtCheckout: true` means a ZIP is needed first.
   ///
   /// Note: This method returns the HTTP [Response].
   ///
@@ -690,10 +690,12 @@ class BuyerCatalogApi {
   ///
   /// * [String] zip:
   ///
+  /// * [String] state:
+  ///
   /// * [String] country:
   ///
   /// * [int] quantity:
-  Future<Response> getBuyerCatalogListingShippingWithHttpInfo(String slug, { String zip, String country, int quantity, }) async {
+  Future<Response> getBuyerCatalogListingShippingWithHttpInfo(String slug, { String zip, String state, String country, int quantity, }) async {
     // Verify required params are set.
     if (slug == null) {
      throw ApiException(HttpStatus.badRequest, 'Missing required param: slug');
@@ -712,6 +714,9 @@ class BuyerCatalogApi {
 
     if (zip != null) {
       queryParams.addAll(_convertParametersForCollectionFormat('', 'zip', zip));
+    }
+    if (state != null) {
+      queryParams.addAll(_convertParametersForCollectionFormat('', 'state', state));
     }
     if (country != null) {
       queryParams.addAll(_convertParametersForCollectionFormat('', 'country', country));
@@ -738,7 +743,7 @@ class BuyerCatalogApi {
 
   /// Shipping services and prices to a destination.
   ///
-  /// Lists every shipping service the seller offers to `country` (default: the seller’s own country) with its price for `quantity` units and its delivery window in business days (handling included). `zip` is required for a domestic quote. `shipsToCountry: false` means the seller does not ship there. Pass a service `id` as `shippingServiceId` to POST /api/v1/buyer/checkout, or in `shippingServiceBySeller` to POST /api/v1/buyer/cart/quote.
+  /// Lists every shipping service the seller offers to `country` (default: the seller’s own country) with its price for `quantity` units and its delivery window in business days (handling included). `zip` is required for a domestic quote; `state` is optional. `shipsToCountry: false` means the seller does not ship there (`noShipMessage` says why); `partial: true` means a ZIP or postcode could change the answer. Pass a service `id` as `shippingServiceId` to POST /api/v1/buyer/checkout, or in `shippingServiceBySeller` to POST /api/v1/buyer/cart/quote. A seller on \"buyer pays: calculated\" prices each allowed carrier service from the live label rate for this parcel plus their handling fee (rates cached 15 minutes): those services carry `carrier` and `carrierService`, and `calculatedAtCheckout: true` means a ZIP is needed first.
   ///
   /// Parameters:
   ///
@@ -746,11 +751,13 @@ class BuyerCatalogApi {
   ///
   /// * [String] zip:
   ///
+  /// * [String] state:
+  ///
   /// * [String] country:
   ///
   /// * [int] quantity:
-  Future<GetBuyerCatalogListingShippingResponse> getBuyerCatalogListingShipping(String slug, { String zip, String country, int quantity, }) async {
-    final response = await getBuyerCatalogListingShippingWithHttpInfo(slug,  zip: zip, country: country, quantity: quantity, );
+  Future<GetBuyerCatalogListingShippingResponse> getBuyerCatalogListingShipping(String slug, { String zip, String state, String country, int quantity, }) async {
+    final response = await getBuyerCatalogListingShippingWithHttpInfo(slug,  zip: zip, state: state, country: country, quantity: quantity, );
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }

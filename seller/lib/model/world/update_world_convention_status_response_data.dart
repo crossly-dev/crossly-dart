@@ -96,15 +96,15 @@ class UpdateWorldConventionStatusResponseDataStatusEnum {
   String toJson() => value;
 
   static const live = UpdateWorldConventionStatusResponseDataStatusEnum._(r'live');
-  static const open = UpdateWorldConventionStatusResponseDataStatusEnum._(r'open');
   static const cancelled = UpdateWorldConventionStatusResponseDataStatusEnum._(r'cancelled');
+  static const open = UpdateWorldConventionStatusResponseDataStatusEnum._(r'open');
   static const ended = UpdateWorldConventionStatusResponseDataStatusEnum._(r'ended');
 
   /// List of all possible values in this [enum][UpdateWorldConventionStatusResponseDataStatusEnum].
   static const values = <UpdateWorldConventionStatusResponseDataStatusEnum>[
     live,
-    open,
     cancelled,
+    open,
     ended,
   ];
 
@@ -138,8 +138,8 @@ class UpdateWorldConventionStatusResponseDataStatusEnumTypeTransformer {
     if (data != null) {
       switch (data.toString()) {
         case r'live': return UpdateWorldConventionStatusResponseDataStatusEnum.live;
-        case r'open': return UpdateWorldConventionStatusResponseDataStatusEnum.open;
         case r'cancelled': return UpdateWorldConventionStatusResponseDataStatusEnum.cancelled;
+        case r'open': return UpdateWorldConventionStatusResponseDataStatusEnum.open;
         case r'ended': return UpdateWorldConventionStatusResponseDataStatusEnum.ended;
         default:
           if (allowNull == false) {

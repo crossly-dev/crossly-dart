@@ -104,17 +104,17 @@ class UpdateSpatialSceneShopLayoutResponseDataShellSizeEnum {
 
   String toJson() => value;
 
+  static const auto = UpdateSpatialSceneShopLayoutResponseDataShellSizeEnum._(r'auto');
   static const standard = UpdateSpatialSceneShopLayoutResponseDataShellSizeEnum._(r'standard');
   static const large = UpdateSpatialSceneShopLayoutResponseDataShellSizeEnum._(r'large');
-  static const auto = UpdateSpatialSceneShopLayoutResponseDataShellSizeEnum._(r'auto');
   static const compact = UpdateSpatialSceneShopLayoutResponseDataShellSizeEnum._(r'compact');
   static const flagship = UpdateSpatialSceneShopLayoutResponseDataShellSizeEnum._(r'flagship');
 
   /// List of all possible values in this [enum][UpdateSpatialSceneShopLayoutResponseDataShellSizeEnum].
   static const values = <UpdateSpatialSceneShopLayoutResponseDataShellSizeEnum>[
+    auto,
     standard,
     large,
-    auto,
     compact,
     flagship,
   ];
@@ -148,9 +148,9 @@ class UpdateSpatialSceneShopLayoutResponseDataShellSizeEnumTypeTransformer {
   UpdateSpatialSceneShopLayoutResponseDataShellSizeEnum decode(dynamic data, {bool allowNull}) {
     if (data != null) {
       switch (data.toString()) {
+        case r'auto': return UpdateSpatialSceneShopLayoutResponseDataShellSizeEnum.auto;
         case r'standard': return UpdateSpatialSceneShopLayoutResponseDataShellSizeEnum.standard;
         case r'large': return UpdateSpatialSceneShopLayoutResponseDataShellSizeEnum.large;
-        case r'auto': return UpdateSpatialSceneShopLayoutResponseDataShellSizeEnum.auto;
         case r'compact': return UpdateSpatialSceneShopLayoutResponseDataShellSizeEnum.compact;
         case r'flagship': return UpdateSpatialSceneShopLayoutResponseDataShellSizeEnum.flagship;
         default:

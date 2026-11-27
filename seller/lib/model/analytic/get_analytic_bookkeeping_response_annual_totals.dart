@@ -13,12 +13,20 @@ part of openapi.api;
 class GetAnalyticBookkeepingResponseAnnualTotals {
   /// Returns a new [GetAnalyticBookkeepingResponseAnnualTotals] instance.
   GetAnalyticBookkeepingResponseAnnualTotals({
+    @required this.grossSales,
+    @required this.refunds,
     @required this.revenue,
     @required this.cogs,
     @required this.platformFees,
     @required this.shippingCosts,
+    @required this.mileage,
+    @required this.otherExpenses,
     @required this.netProfit,
   });
+
+  num grossSales;
+
+  num refunds;
 
   num revenue;
 
@@ -28,34 +36,50 @@ class GetAnalyticBookkeepingResponseAnnualTotals {
 
   num shippingCosts;
 
+  num mileage;
+
+  num otherExpenses;
+
   num netProfit;
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is GetAnalyticBookkeepingResponseAnnualTotals &&
+     other.grossSales == grossSales &&
+     other.refunds == refunds &&
      other.revenue == revenue &&
      other.cogs == cogs &&
      other.platformFees == platformFees &&
      other.shippingCosts == shippingCosts &&
+     other.mileage == mileage &&
+     other.otherExpenses == otherExpenses &&
      other.netProfit == netProfit;
 
   @override
   int get hashCode =>
   // ignore: unnecessary_parenthesis
+    (grossSales == null ? 0 : grossSales.hashCode) +
+    (refunds == null ? 0 : refunds.hashCode) +
     (revenue == null ? 0 : revenue.hashCode) +
     (cogs == null ? 0 : cogs.hashCode) +
     (platformFees == null ? 0 : platformFees.hashCode) +
     (shippingCosts == null ? 0 : shippingCosts.hashCode) +
+    (mileage == null ? 0 : mileage.hashCode) +
+    (otherExpenses == null ? 0 : otherExpenses.hashCode) +
     (netProfit == null ? 0 : netProfit.hashCode);
 
   @override
-  String toString() => 'GetAnalyticBookkeepingResponseAnnualTotals[revenue=$revenue, cogs=$cogs, platformFees=$platformFees, shippingCosts=$shippingCosts, netProfit=$netProfit]';
+  String toString() => 'GetAnalyticBookkeepingResponseAnnualTotals[grossSales=$grossSales, refunds=$refunds, revenue=$revenue, cogs=$cogs, platformFees=$platformFees, shippingCosts=$shippingCosts, mileage=$mileage, otherExpenses=$otherExpenses, netProfit=$netProfit]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
+      json[r'grossSales'] = grossSales;
+      json[r'refunds'] = refunds;
       json[r'revenue'] = revenue;
       json[r'cogs'] = cogs;
       json[r'platformFees'] = platformFees;
       json[r'shippingCosts'] = shippingCosts;
+      json[r'mileage'] = mileage;
+      json[r'otherExpenses'] = otherExpenses;
       json[r'netProfit'] = netProfit;
     return json;
   }
@@ -67,6 +91,12 @@ class GetAnalyticBookkeepingResponseAnnualTotals {
     if (value is Map) {
       final json = value.cast<String, dynamic>();
       return GetAnalyticBookkeepingResponseAnnualTotals(
+        grossSales: json[r'grossSales'] == null
+          ? null
+          : num.parse(json[r'grossSales'].toString()),
+        refunds: json[r'refunds'] == null
+          ? null
+          : num.parse(json[r'refunds'].toString()),
         revenue: json[r'revenue'] == null
           ? null
           : num.parse(json[r'revenue'].toString()),
@@ -79,6 +109,12 @@ class GetAnalyticBookkeepingResponseAnnualTotals {
         shippingCosts: json[r'shippingCosts'] == null
           ? null
           : num.parse(json[r'shippingCosts'].toString()),
+        mileage: json[r'mileage'] == null
+          ? null
+          : num.parse(json[r'mileage'].toString()),
+        otherExpenses: json[r'otherExpenses'] == null
+          ? null
+          : num.parse(json[r'otherExpenses'].toString()),
         netProfit: json[r'netProfit'] == null
           ? null
           : num.parse(json[r'netProfit'].toString()),

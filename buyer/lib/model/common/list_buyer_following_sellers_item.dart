@@ -17,9 +17,9 @@ class ListBuyerFollowingSellersItem {
     @required this.followedAt,
     @required this.activeListings,
     @required this.newListings,
+    this.username,
     this.name,
     this.avatarUrl,
-    this.username,
     this.lastSeenAt,
   });
 
@@ -32,11 +32,11 @@ class ListBuyerFollowingSellersItem {
   /// Active listings put up since you last marked this seller seen.
   num newListings;
 
+  String username;
+
   String name;
 
   String avatarUrl;
-
-  String username;
 
   String lastSeenAt;
 
@@ -46,9 +46,9 @@ class ListBuyerFollowingSellersItem {
      other.followedAt == followedAt &&
      other.activeListings == activeListings &&
      other.newListings == newListings &&
+     other.username == username &&
      other.name == name &&
      other.avatarUrl == avatarUrl &&
-     other.username == username &&
      other.lastSeenAt == lastSeenAt;
 
   @override
@@ -58,13 +58,13 @@ class ListBuyerFollowingSellersItem {
     (followedAt == null ? 0 : followedAt.hashCode) +
     (activeListings == null ? 0 : activeListings.hashCode) +
     (newListings == null ? 0 : newListings.hashCode) +
+    (username == null ? 0 : username.hashCode) +
     (name == null ? 0 : name.hashCode) +
     (avatarUrl == null ? 0 : avatarUrl.hashCode) +
-    (username == null ? 0 : username.hashCode) +
     (lastSeenAt == null ? 0 : lastSeenAt.hashCode);
 
   @override
-  String toString() => 'ListBuyerFollowingSellersItem[sellerUserId=$sellerUserId, followedAt=$followedAt, activeListings=$activeListings, newListings=$newListings, name=$name, avatarUrl=$avatarUrl, username=$username, lastSeenAt=$lastSeenAt]';
+  String toString() => 'ListBuyerFollowingSellersItem[sellerUserId=$sellerUserId, followedAt=$followedAt, activeListings=$activeListings, newListings=$newListings, username=$username, name=$name, avatarUrl=$avatarUrl, lastSeenAt=$lastSeenAt]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -72,14 +72,14 @@ class ListBuyerFollowingSellersItem {
       json[r'followedAt'] = followedAt;
       json[r'activeListings'] = activeListings;
       json[r'newListings'] = newListings;
+    if (username != null) {
+      json[r'username'] = username;
+    }
     if (name != null) {
       json[r'name'] = name;
     }
     if (avatarUrl != null) {
       json[r'avatarUrl'] = avatarUrl;
-    }
-    if (username != null) {
-      json[r'username'] = username;
     }
     if (lastSeenAt != null) {
       json[r'lastSeenAt'] = lastSeenAt;
@@ -102,9 +102,9 @@ class ListBuyerFollowingSellersItem {
         newListings: json[r'newListings'] == null
           ? null
           : num.parse(json[r'newListings'].toString()),
+        username: mapValueOfType<String>(json, r'username'),
         name: mapValueOfType<String>(json, r'name'),
         avatarUrl: mapValueOfType<String>(json, r'avatarUrl'),
-        username: mapValueOfType<String>(json, r'username'),
         lastSeenAt: mapValueOfType<String>(json, r'lastSeenAt'),
       );
     }

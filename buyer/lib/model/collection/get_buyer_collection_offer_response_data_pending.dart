@@ -14,37 +14,37 @@ class GetBuyerCollectionOfferResponseDataPending {
   /// Returns a new [GetBuyerCollectionOfferResponseDataPending] instance.
   GetBuyerCollectionOfferResponseDataPending({
     @required this.id,
-    @required this.status,
     @required this.cents,
+    @required this.status,
   });
 
   String id;
 
-  String status;
-
   num cents;
+
+  String status;
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is GetBuyerCollectionOfferResponseDataPending &&
      other.id == id &&
-     other.status == status &&
-     other.cents == cents;
+     other.cents == cents &&
+     other.status == status;
 
   @override
   int get hashCode =>
   // ignore: unnecessary_parenthesis
     (id == null ? 0 : id.hashCode) +
-    (status == null ? 0 : status.hashCode) +
-    (cents == null ? 0 : cents.hashCode);
+    (cents == null ? 0 : cents.hashCode) +
+    (status == null ? 0 : status.hashCode);
 
   @override
-  String toString() => 'GetBuyerCollectionOfferResponseDataPending[id=$id, status=$status, cents=$cents]';
+  String toString() => 'GetBuyerCollectionOfferResponseDataPending[id=$id, cents=$cents, status=$status]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
       json[r'id'] = id;
-      json[r'status'] = status;
       json[r'cents'] = cents;
+      json[r'status'] = status;
     return json;
   }
 
@@ -56,10 +56,10 @@ class GetBuyerCollectionOfferResponseDataPending {
       final json = value.cast<String, dynamic>();
       return GetBuyerCollectionOfferResponseDataPending(
         id: mapValueOfType<String>(json, r'id'),
-        status: mapValueOfType<String>(json, r'status'),
         cents: json[r'cents'] == null
           ? null
           : num.parse(json[r'cents'].toString()),
+        status: mapValueOfType<String>(json, r'status'),
       );
     }
     return null;

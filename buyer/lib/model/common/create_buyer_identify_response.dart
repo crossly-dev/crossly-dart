@@ -211,15 +211,15 @@ class CreateBuyerIdentifyResponseTierEnum {
 
   String toJson() => value;
 
-  static const identifier = CreateBuyerIdentifyResponseTierEnum._(r'identifier');
   static const none = CreateBuyerIdentifyResponseTierEnum._(r'none');
+  static const identifier = CreateBuyerIdentifyResponseTierEnum._(r'identifier');
   static const visual = CreateBuyerIdentifyResponseTierEnum._(r'visual');
   static const vision = CreateBuyerIdentifyResponseTierEnum._(r'vision');
 
   /// List of all possible values in this [enum][CreateBuyerIdentifyResponseTierEnum].
   static const values = <CreateBuyerIdentifyResponseTierEnum>[
-    identifier,
     none,
+    identifier,
     visual,
     vision,
   ];
@@ -253,8 +253,8 @@ class CreateBuyerIdentifyResponseTierEnumTypeTransformer {
   CreateBuyerIdentifyResponseTierEnum decode(dynamic data, {bool allowNull}) {
     if (data != null) {
       switch (data.toString()) {
-        case r'identifier': return CreateBuyerIdentifyResponseTierEnum.identifier;
         case r'none': return CreateBuyerIdentifyResponseTierEnum.none;
+        case r'identifier': return CreateBuyerIdentifyResponseTierEnum.identifier;
         case r'visual': return CreateBuyerIdentifyResponseTierEnum.visual;
         case r'vision': return CreateBuyerIdentifyResponseTierEnum.vision;
         default:

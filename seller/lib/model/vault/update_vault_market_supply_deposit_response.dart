@@ -121,22 +121,22 @@ class UpdateVaultMarketSupplyDepositResponseStatusEnum {
   String toJson() => value;
 
   static const stored = UpdateVaultMarketSupplyDepositResponseStatusEnum._(r'stored');
-  static const listed = UpdateVaultMarketSupplyDepositResponseStatusEnum._(r'listed');
-  static const inbound = UpdateVaultMarketSupplyDepositResponseStatusEnum._(r'inbound');
   static const cancelled = UpdateVaultMarketSupplyDepositResponseStatusEnum._(r'cancelled');
+  static const listed = UpdateVaultMarketSupplyDepositResponseStatusEnum._(r'listed');
+  static const shipped = UpdateVaultMarketSupplyDepositResponseStatusEnum._(r'shipped');
+  static const inbound = UpdateVaultMarketSupplyDepositResponseStatusEnum._(r'inbound');
   static const soldOnBook = UpdateVaultMarketSupplyDepositResponseStatusEnum._(r'sold_on_book');
   static const channelSold = UpdateVaultMarketSupplyDepositResponseStatusEnum._(r'channel_sold');
-  static const shipped = UpdateVaultMarketSupplyDepositResponseStatusEnum._(r'shipped');
 
   /// List of all possible values in this [enum][UpdateVaultMarketSupplyDepositResponseStatusEnum].
   static const values = <UpdateVaultMarketSupplyDepositResponseStatusEnum>[
     stored,
-    listed,
-    inbound,
     cancelled,
+    listed,
+    shipped,
+    inbound,
     soldOnBook,
     channelSold,
-    shipped,
   ];
 
   static UpdateVaultMarketSupplyDepositResponseStatusEnum fromJson(dynamic value) =>
@@ -169,12 +169,12 @@ class UpdateVaultMarketSupplyDepositResponseStatusEnumTypeTransformer {
     if (data != null) {
       switch (data.toString()) {
         case r'stored': return UpdateVaultMarketSupplyDepositResponseStatusEnum.stored;
-        case r'listed': return UpdateVaultMarketSupplyDepositResponseStatusEnum.listed;
-        case r'inbound': return UpdateVaultMarketSupplyDepositResponseStatusEnum.inbound;
         case r'cancelled': return UpdateVaultMarketSupplyDepositResponseStatusEnum.cancelled;
+        case r'listed': return UpdateVaultMarketSupplyDepositResponseStatusEnum.listed;
+        case r'shipped': return UpdateVaultMarketSupplyDepositResponseStatusEnum.shipped;
+        case r'inbound': return UpdateVaultMarketSupplyDepositResponseStatusEnum.inbound;
         case r'sold_on_book': return UpdateVaultMarketSupplyDepositResponseStatusEnum.soldOnBook;
         case r'channel_sold': return UpdateVaultMarketSupplyDepositResponseStatusEnum.channelSold;
-        case r'shipped': return UpdateVaultMarketSupplyDepositResponseStatusEnum.shipped;
         default:
           if (allowNull == false) {
             throw ArgumentError('Unknown enum value to decode: $data');

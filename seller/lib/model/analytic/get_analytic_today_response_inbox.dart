@@ -19,10 +19,10 @@ class GetAnalyticTodayResponseInbox {
     @required this.answered,
   });
 
-  /// Conversations not yet opened (hidden threads excluded).
+  /// Unread conversations + unopened offers — the Unread tab's rows (services/inbox/attention.ts).
   num unread;
 
-  /// Open threads whose newest message is the buyer's.
+  /// Threads and offers waiting on the seller — the Needs reply tab's rows.
   num awaitingReply;
 
   /// Median hours from a buyer's question to the seller's reply, last 90 days; null below MIN_ANSWERED.

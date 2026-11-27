@@ -130,21 +130,21 @@ class GetWeb3CrosslistQuoteResponseChainEnum {
 
   String toJson() => value;
 
-  static const solana = GetWeb3CrosslistQuoteResponseChainEnum._(r'solana');
   static const ethereum = GetWeb3CrosslistQuoteResponseChainEnum._(r'ethereum');
   static const base = GetWeb3CrosslistQuoteResponseChainEnum._(r'base');
   static const polygon = GetWeb3CrosslistQuoteResponseChainEnum._(r'polygon');
   static const arbitrum = GetWeb3CrosslistQuoteResponseChainEnum._(r'arbitrum');
   static const optimism = GetWeb3CrosslistQuoteResponseChainEnum._(r'optimism');
+  static const solana = GetWeb3CrosslistQuoteResponseChainEnum._(r'solana');
 
   /// List of all possible values in this [enum][GetWeb3CrosslistQuoteResponseChainEnum].
   static const values = <GetWeb3CrosslistQuoteResponseChainEnum>[
-    solana,
     ethereum,
     base,
     polygon,
     arbitrum,
     optimism,
+    solana,
   ];
 
   static GetWeb3CrosslistQuoteResponseChainEnum fromJson(dynamic value) =>
@@ -176,12 +176,12 @@ class GetWeb3CrosslistQuoteResponseChainEnumTypeTransformer {
   GetWeb3CrosslistQuoteResponseChainEnum decode(dynamic data, {bool allowNull}) {
     if (data != null) {
       switch (data.toString()) {
-        case r'solana': return GetWeb3CrosslistQuoteResponseChainEnum.solana;
         case r'ethereum': return GetWeb3CrosslistQuoteResponseChainEnum.ethereum;
         case r'base': return GetWeb3CrosslistQuoteResponseChainEnum.base;
         case r'polygon': return GetWeb3CrosslistQuoteResponseChainEnum.polygon;
         case r'arbitrum': return GetWeb3CrosslistQuoteResponseChainEnum.arbitrum;
         case r'optimism': return GetWeb3CrosslistQuoteResponseChainEnum.optimism;
+        case r'solana': return GetWeb3CrosslistQuoteResponseChainEnum.solana;
         default:
           if (allowNull == false) {
             throw ArgumentError('Unknown enum value to decode: $data');

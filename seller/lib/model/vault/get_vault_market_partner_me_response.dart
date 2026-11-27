@@ -14,27 +14,33 @@ class GetVaultMarketPartnerMeResponse {
   /// Returns a new [GetVaultMarketPartnerMeResponse] instance.
   GetVaultMarketPartnerMeResponse({
     this.partnership,
+    @required this.identity,
   });
 
   GetVaultMarketPartnerMeResponsePartnership partnership;
 
+  GetVaultMarketPartnerMeResponseIdentity identity;
+
   @override
   bool operator ==(Object other) => identical(this, other) || other is GetVaultMarketPartnerMeResponse &&
-     other.partnership == partnership;
+     other.partnership == partnership &&
+     other.identity == identity;
 
   @override
   int get hashCode =>
   // ignore: unnecessary_parenthesis
-    (partnership == null ? 0 : partnership.hashCode);
+    (partnership == null ? 0 : partnership.hashCode) +
+    (identity == null ? 0 : identity.hashCode);
 
   @override
-  String toString() => 'GetVaultMarketPartnerMeResponse[partnership=$partnership]';
+  String toString() => 'GetVaultMarketPartnerMeResponse[partnership=$partnership, identity=$identity]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     if (partnership != null) {
       json[r'partnership'] = partnership;
     }
+      json[r'identity'] = identity;
     return json;
   }
 
@@ -46,6 +52,7 @@ class GetVaultMarketPartnerMeResponse {
       final json = value.cast<String, dynamic>();
       return GetVaultMarketPartnerMeResponse(
         partnership: GetVaultMarketPartnerMeResponsePartnership.fromJson(json[r'partnership']),
+        identity: GetVaultMarketPartnerMeResponseIdentity.fromJson(json[r'identity']),
       );
     }
     return null;

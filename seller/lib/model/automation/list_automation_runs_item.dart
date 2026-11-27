@@ -14,80 +14,95 @@ class ListAutomationRunsItem {
   /// Returns a new [ListAutomationRunsItem] instance.
   ListAutomationRunsItem({
     @required this.id,
-    @required this.createdAt,
     @required this.userId,
+    this.ruleId,
+    this.chainId,
     @required this.status,
+    @required this.actionType,
+    this.summary = const {},
     this.errorMessage,
     this.durationMs,
-    this.ruleId,
-    @required this.actionType,
-    this.chainId,
+    @required this.createdAt,
+    this.workflowRunId,
   });
 
   String id;
 
-  DateTime createdAt;
-
   String userId;
 
+  String ruleId;
+
+  String chainId;
+
   String status;
+
+  String actionType;
+
+  Map<String, Object> summary;
 
   String errorMessage;
 
   num durationMs;
 
-  String ruleId;
+  DateTime createdAt;
 
-  String actionType;
-
-  String chainId;
+  /// Set for runs of the converted workflow.
+  String workflowRunId;
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is ListAutomationRunsItem &&
      other.id == id &&
-     other.createdAt == createdAt &&
      other.userId == userId &&
+     other.ruleId == ruleId &&
+     other.chainId == chainId &&
      other.status == status &&
+     other.actionType == actionType &&
+     other.summary == summary &&
      other.errorMessage == errorMessage &&
      other.durationMs == durationMs &&
-     other.ruleId == ruleId &&
-     other.actionType == actionType &&
-     other.chainId == chainId;
+     other.createdAt == createdAt &&
+     other.workflowRunId == workflowRunId;
 
   @override
   int get hashCode =>
   // ignore: unnecessary_parenthesis
     (id == null ? 0 : id.hashCode) +
-    (createdAt == null ? 0 : createdAt.hashCode) +
     (userId == null ? 0 : userId.hashCode) +
+    (ruleId == null ? 0 : ruleId.hashCode) +
+    (chainId == null ? 0 : chainId.hashCode) +
     (status == null ? 0 : status.hashCode) +
+    (actionType == null ? 0 : actionType.hashCode) +
+    (summary == null ? 0 : summary.hashCode) +
     (errorMessage == null ? 0 : errorMessage.hashCode) +
     (durationMs == null ? 0 : durationMs.hashCode) +
-    (ruleId == null ? 0 : ruleId.hashCode) +
-    (actionType == null ? 0 : actionType.hashCode) +
-    (chainId == null ? 0 : chainId.hashCode);
+    (createdAt == null ? 0 : createdAt.hashCode) +
+    (workflowRunId == null ? 0 : workflowRunId.hashCode);
 
   @override
-  String toString() => 'ListAutomationRunsItem[id=$id, createdAt=$createdAt, userId=$userId, status=$status, errorMessage=$errorMessage, durationMs=$durationMs, ruleId=$ruleId, actionType=$actionType, chainId=$chainId]';
+  String toString() => 'ListAutomationRunsItem[id=$id, userId=$userId, ruleId=$ruleId, chainId=$chainId, status=$status, actionType=$actionType, summary=$summary, errorMessage=$errorMessage, durationMs=$durationMs, createdAt=$createdAt, workflowRunId=$workflowRunId]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
       json[r'id'] = id;
-      json[r'createdAt'] = createdAt.toUtc().toIso8601String();
       json[r'userId'] = userId;
+    if (ruleId != null) {
+      json[r'ruleId'] = ruleId;
+    }
+    if (chainId != null) {
+      json[r'chainId'] = chainId;
+    }
       json[r'status'] = status;
+      json[r'actionType'] = actionType;
+      json[r'summary'] = summary;
     if (errorMessage != null) {
       json[r'errorMessage'] = errorMessage;
     }
     if (durationMs != null) {
       json[r'durationMs'] = durationMs;
     }
-    if (ruleId != null) {
-      json[r'ruleId'] = ruleId;
-    }
-      json[r'actionType'] = actionType;
-    if (chainId != null) {
-      json[r'chainId'] = chainId;
+      json[r'createdAt'] = createdAt.toUtc().toIso8601String();
+    if (workflowRunId != null) {
+      json[r'workflowRunId'] = workflowRunId;
     }
     return json;
   }
@@ -100,16 +115,18 @@ class ListAutomationRunsItem {
       final json = value.cast<String, dynamic>();
       return ListAutomationRunsItem(
         id: mapValueOfType<String>(json, r'id'),
-        createdAt: mapDateTime(json, r'createdAt', ''),
         userId: mapValueOfType<String>(json, r'userId'),
+        ruleId: mapValueOfType<String>(json, r'ruleId'),
+        chainId: mapValueOfType<String>(json, r'chainId'),
         status: mapValueOfType<String>(json, r'status'),
+        actionType: mapValueOfType<String>(json, r'actionType'),
+        summary: mapValueOfType<Map<String, Object>>(json, r'summary'),
         errorMessage: mapValueOfType<String>(json, r'errorMessage'),
         durationMs: json[r'durationMs'] == null
           ? null
           : num.parse(json[r'durationMs'].toString()),
-        ruleId: mapValueOfType<String>(json, r'ruleId'),
-        actionType: mapValueOfType<String>(json, r'actionType'),
-        chainId: mapValueOfType<String>(json, r'chainId'),
+        createdAt: mapDateTime(json, r'createdAt', ''),
+        workflowRunId: mapValueOfType<String>(json, r'workflowRunId'),
       );
     }
     return null;

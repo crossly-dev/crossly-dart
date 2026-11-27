@@ -175,25 +175,33 @@ class ListVaultMarketPaperMissionsItemKeyEnum {
 
   String toJson() => value;
 
-  static const roundTrip = ListVaultMarketPaperMissionsItemKeyEnum._(r'round_trip');
   static const firstFill = ListVaultMarketPaperMissionsItemKeyEnum._(r'first_fill');
   static const readMark = ListVaultMarketPaperMissionsItemKeyEnum._(r'read_mark');
   static const bidBelow = ListVaultMarketPaperMissionsItemKeyEnum._(r'bid_below');
   static const makerFill = ListVaultMarketPaperMissionsItemKeyEnum._(r'maker_fill');
   static const instantExit = ListVaultMarketPaperMissionsItemKeyEnum._(r'instant_exit');
   static const priceWatch = ListVaultMarketPaperMissionsItemKeyEnum._(r'price_watch');
+  static const roundTrip = ListVaultMarketPaperMissionsItemKeyEnum._(r'round_trip');
   static const miniSet = ListVaultMarketPaperMissionsItemKeyEnum._(r'mini_set');
+  static const shareFirst = ListVaultMarketPaperMissionsItemKeyEnum._(r'share_first');
+  static const shareQueue = ListVaultMarketPaperMissionsItemKeyEnum._(r'share_queue');
+  static const optionFirst = ListVaultMarketPaperMissionsItemKeyEnum._(r'option_first');
+  static const optionExpiry = ListVaultMarketPaperMissionsItemKeyEnum._(r'option_expiry');
 
   /// List of all possible values in this [enum][ListVaultMarketPaperMissionsItemKeyEnum].
   static const values = <ListVaultMarketPaperMissionsItemKeyEnum>[
-    roundTrip,
     firstFill,
     readMark,
     bidBelow,
     makerFill,
     instantExit,
     priceWatch,
+    roundTrip,
     miniSet,
+    shareFirst,
+    shareQueue,
+    optionFirst,
+    optionExpiry,
   ];
 
   static ListVaultMarketPaperMissionsItemKeyEnum fromJson(dynamic value) =>
@@ -225,14 +233,18 @@ class ListVaultMarketPaperMissionsItemKeyEnumTypeTransformer {
   ListVaultMarketPaperMissionsItemKeyEnum decode(dynamic data, {bool allowNull}) {
     if (data != null) {
       switch (data.toString()) {
-        case r'round_trip': return ListVaultMarketPaperMissionsItemKeyEnum.roundTrip;
         case r'first_fill': return ListVaultMarketPaperMissionsItemKeyEnum.firstFill;
         case r'read_mark': return ListVaultMarketPaperMissionsItemKeyEnum.readMark;
         case r'bid_below': return ListVaultMarketPaperMissionsItemKeyEnum.bidBelow;
         case r'maker_fill': return ListVaultMarketPaperMissionsItemKeyEnum.makerFill;
         case r'instant_exit': return ListVaultMarketPaperMissionsItemKeyEnum.instantExit;
         case r'price_watch': return ListVaultMarketPaperMissionsItemKeyEnum.priceWatch;
+        case r'round_trip': return ListVaultMarketPaperMissionsItemKeyEnum.roundTrip;
         case r'mini_set': return ListVaultMarketPaperMissionsItemKeyEnum.miniSet;
+        case r'share_first': return ListVaultMarketPaperMissionsItemKeyEnum.shareFirst;
+        case r'share_queue': return ListVaultMarketPaperMissionsItemKeyEnum.shareQueue;
+        case r'option_first': return ListVaultMarketPaperMissionsItemKeyEnum.optionFirst;
+        case r'option_expiry': return ListVaultMarketPaperMissionsItemKeyEnum.optionExpiry;
         default:
           if (allowNull == false) {
             throw ArgumentError('Unknown enum value to decode: $data');
@@ -261,18 +273,18 @@ class ListVaultMarketPaperMissionsItemActionEnum {
   String toJson() => value;
 
   static const market = ListVaultMarketPaperMissionsItemActionEnum._(r'market');
-  static const assistant = ListVaultMarketPaperMissionsItemActionEnum._(r'assistant');
   static const paper = ListVaultMarketPaperMissionsItemActionEnum._(r'paper');
-  static const markCheck = ListVaultMarketPaperMissionsItemActionEnum._(r'mark_check');
+  static const assistant = ListVaultMarketPaperMissionsItemActionEnum._(r'assistant');
   static const sets = ListVaultMarketPaperMissionsItemActionEnum._(r'sets');
+  static const markCheck = ListVaultMarketPaperMissionsItemActionEnum._(r'mark_check');
 
   /// List of all possible values in this [enum][ListVaultMarketPaperMissionsItemActionEnum].
   static const values = <ListVaultMarketPaperMissionsItemActionEnum>[
     market,
-    assistant,
     paper,
-    markCheck,
+    assistant,
     sets,
+    markCheck,
   ];
 
   static ListVaultMarketPaperMissionsItemActionEnum fromJson(dynamic value) =>
@@ -305,10 +317,10 @@ class ListVaultMarketPaperMissionsItemActionEnumTypeTransformer {
     if (data != null) {
       switch (data.toString()) {
         case r'market': return ListVaultMarketPaperMissionsItemActionEnum.market;
-        case r'assistant': return ListVaultMarketPaperMissionsItemActionEnum.assistant;
         case r'paper': return ListVaultMarketPaperMissionsItemActionEnum.paper;
-        case r'mark_check': return ListVaultMarketPaperMissionsItemActionEnum.markCheck;
+        case r'assistant': return ListVaultMarketPaperMissionsItemActionEnum.assistant;
         case r'sets': return ListVaultMarketPaperMissionsItemActionEnum.sets;
+        case r'mark_check': return ListVaultMarketPaperMissionsItemActionEnum.markCheck;
         default:
           if (allowNull == false) {
             throw ArgumentError('Unknown enum value to decode: $data');
@@ -338,11 +350,13 @@ class ListVaultMarketPaperMissionsItemLearnEnum {
 
   static const instantExit = ListVaultMarketPaperMissionsItemLearnEnum._(r'instant-exit');
   static const marks = ListVaultMarketPaperMissionsItemLearnEnum._(r'marks');
+  static const vaultShares = ListVaultMarketPaperMissionsItemLearnEnum._(r'vault-shares');
 
   /// List of all possible values in this [enum][ListVaultMarketPaperMissionsItemLearnEnum].
   static const values = <ListVaultMarketPaperMissionsItemLearnEnum>[
     instantExit,
     marks,
+    vaultShares,
   ];
 
   static ListVaultMarketPaperMissionsItemLearnEnum fromJson(dynamic value) =>
@@ -376,6 +390,7 @@ class ListVaultMarketPaperMissionsItemLearnEnumTypeTransformer {
       switch (data.toString()) {
         case r'instant-exit': return ListVaultMarketPaperMissionsItemLearnEnum.instantExit;
         case r'marks': return ListVaultMarketPaperMissionsItemLearnEnum.marks;
+        case r'vault-shares': return ListVaultMarketPaperMissionsItemLearnEnum.vaultShares;
         default:
           if (allowNull == false) {
             throw ArgumentError('Unknown enum value to decode: $data');

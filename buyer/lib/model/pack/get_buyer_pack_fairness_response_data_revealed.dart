@@ -14,18 +14,14 @@ class GetBuyerPackFairnessResponseDataRevealed {
   /// Returns a new [GetBuyerPackFairnessResponseDataRevealed] instance.
   GetBuyerPackFairnessResponseDataRevealed({
     @required this.id,
-    @required this.nonce,
-    @required this.revealedAt,
     @required this.serverSeed,
     @required this.serverSeedHash,
     @required this.clientSeed,
+    @required this.nonce,
+    @required this.revealedAt,
   });
 
   String id;
-
-  num nonce;
-
-  String revealedAt;
 
   String serverSeed;
 
@@ -33,36 +29,40 @@ class GetBuyerPackFairnessResponseDataRevealed {
 
   String clientSeed;
 
+  num nonce;
+
+  String revealedAt;
+
   @override
   bool operator ==(Object other) => identical(this, other) || other is GetBuyerPackFairnessResponseDataRevealed &&
      other.id == id &&
-     other.nonce == nonce &&
-     other.revealedAt == revealedAt &&
      other.serverSeed == serverSeed &&
      other.serverSeedHash == serverSeedHash &&
-     other.clientSeed == clientSeed;
+     other.clientSeed == clientSeed &&
+     other.nonce == nonce &&
+     other.revealedAt == revealedAt;
 
   @override
   int get hashCode =>
   // ignore: unnecessary_parenthesis
     (id == null ? 0 : id.hashCode) +
-    (nonce == null ? 0 : nonce.hashCode) +
-    (revealedAt == null ? 0 : revealedAt.hashCode) +
     (serverSeed == null ? 0 : serverSeed.hashCode) +
     (serverSeedHash == null ? 0 : serverSeedHash.hashCode) +
-    (clientSeed == null ? 0 : clientSeed.hashCode);
+    (clientSeed == null ? 0 : clientSeed.hashCode) +
+    (nonce == null ? 0 : nonce.hashCode) +
+    (revealedAt == null ? 0 : revealedAt.hashCode);
 
   @override
-  String toString() => 'GetBuyerPackFairnessResponseDataRevealed[id=$id, nonce=$nonce, revealedAt=$revealedAt, serverSeed=$serverSeed, serverSeedHash=$serverSeedHash, clientSeed=$clientSeed]';
+  String toString() => 'GetBuyerPackFairnessResponseDataRevealed[id=$id, serverSeed=$serverSeed, serverSeedHash=$serverSeedHash, clientSeed=$clientSeed, nonce=$nonce, revealedAt=$revealedAt]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
       json[r'id'] = id;
-      json[r'nonce'] = nonce;
-      json[r'revealedAt'] = revealedAt;
       json[r'serverSeed'] = serverSeed;
       json[r'serverSeedHash'] = serverSeedHash;
       json[r'clientSeed'] = clientSeed;
+      json[r'nonce'] = nonce;
+      json[r'revealedAt'] = revealedAt;
     return json;
   }
 
@@ -74,13 +74,13 @@ class GetBuyerPackFairnessResponseDataRevealed {
       final json = value.cast<String, dynamic>();
       return GetBuyerPackFairnessResponseDataRevealed(
         id: mapValueOfType<String>(json, r'id'),
+        serverSeed: mapValueOfType<String>(json, r'serverSeed'),
+        serverSeedHash: mapValueOfType<String>(json, r'serverSeedHash'),
+        clientSeed: mapValueOfType<String>(json, r'clientSeed'),
         nonce: json[r'nonce'] == null
           ? null
           : num.parse(json[r'nonce'].toString()),
         revealedAt: mapValueOfType<String>(json, r'revealedAt'),
-        serverSeed: mapValueOfType<String>(json, r'serverSeed'),
-        serverSeedHash: mapValueOfType<String>(json, r'serverSeedHash'),
-        clientSeed: mapValueOfType<String>(json, r'clientSeed'),
       );
     }
     return null;

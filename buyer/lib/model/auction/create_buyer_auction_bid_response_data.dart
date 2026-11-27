@@ -13,47 +13,47 @@ part of openapi.api;
 class CreateBuyerAuctionBidResponseData {
   /// Returns a new [CreateBuyerAuctionBidResponseData] instance.
   CreateBuyerAuctionBidResponseData({
-    @required this.endsAt,
-    @required this.currentBidCents,
     @required this.ok,
     @required this.leading,
+    @required this.currentBidCents,
+    @required this.endsAt,
   });
-
-  /// Possibly extended by anti-sniping.
-  String endsAt;
-
-  /// The price now, in cents, after proxy bidding resolved.
-  num currentBidCents;
 
   bool ok;
 
   /// false = a standing proxy bid outbid you straight away.
   bool leading;
 
+  /// The price now, in cents, after proxy bidding resolved.
+  num currentBidCents;
+
+  /// Possibly extended by anti-sniping.
+  String endsAt;
+
   @override
   bool operator ==(Object other) => identical(this, other) || other is CreateBuyerAuctionBidResponseData &&
-     other.endsAt == endsAt &&
-     other.currentBidCents == currentBidCents &&
      other.ok == ok &&
-     other.leading == leading;
+     other.leading == leading &&
+     other.currentBidCents == currentBidCents &&
+     other.endsAt == endsAt;
 
   @override
   int get hashCode =>
   // ignore: unnecessary_parenthesis
-    (endsAt == null ? 0 : endsAt.hashCode) +
-    (currentBidCents == null ? 0 : currentBidCents.hashCode) +
     (ok == null ? 0 : ok.hashCode) +
-    (leading == null ? 0 : leading.hashCode);
+    (leading == null ? 0 : leading.hashCode) +
+    (currentBidCents == null ? 0 : currentBidCents.hashCode) +
+    (endsAt == null ? 0 : endsAt.hashCode);
 
   @override
-  String toString() => 'CreateBuyerAuctionBidResponseData[endsAt=$endsAt, currentBidCents=$currentBidCents, ok=$ok, leading=$leading]';
+  String toString() => 'CreateBuyerAuctionBidResponseData[ok=$ok, leading=$leading, currentBidCents=$currentBidCents, endsAt=$endsAt]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-      json[r'endsAt'] = endsAt;
-      json[r'currentBidCents'] = currentBidCents;
       json[r'ok'] = ok;
       json[r'leading'] = leading;
+      json[r'currentBidCents'] = currentBidCents;
+      json[r'endsAt'] = endsAt;
     return json;
   }
 
@@ -64,12 +64,12 @@ class CreateBuyerAuctionBidResponseData {
     if (value is Map) {
       final json = value.cast<String, dynamic>();
       return CreateBuyerAuctionBidResponseData(
-        endsAt: mapValueOfType<String>(json, r'endsAt'),
+        ok: mapValueOfType<bool>(json, r'ok'),
+        leading: mapValueOfType<bool>(json, r'leading'),
         currentBidCents: json[r'currentBidCents'] == null
           ? null
           : num.parse(json[r'currentBidCents'].toString()),
-        ok: mapValueOfType<bool>(json, r'ok'),
-        leading: mapValueOfType<bool>(json, r'leading'),
+        endsAt: mapValueOfType<String>(json, r'endsAt'),
       );
     }
     return null;

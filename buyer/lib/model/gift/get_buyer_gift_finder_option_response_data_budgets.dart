@@ -13,32 +13,32 @@ part of openapi.api;
 class GetBuyerGiftFinderOptionResponseDataBudgets {
   /// Returns a new [GetBuyerGiftFinderOptionResponseDataBudgets] instance.
   GetBuyerGiftFinderOptionResponseDataBudgets({
-    @required this.label,
     @required this.key,
+    @required this.label,
   });
-
-  String label;
 
   String key;
 
+  String label;
+
   @override
   bool operator ==(Object other) => identical(this, other) || other is GetBuyerGiftFinderOptionResponseDataBudgets &&
-     other.label == label &&
-     other.key == key;
+     other.key == key &&
+     other.label == label;
 
   @override
   int get hashCode =>
   // ignore: unnecessary_parenthesis
-    (label == null ? 0 : label.hashCode) +
-    (key == null ? 0 : key.hashCode);
+    (key == null ? 0 : key.hashCode) +
+    (label == null ? 0 : label.hashCode);
 
   @override
-  String toString() => 'GetBuyerGiftFinderOptionResponseDataBudgets[label=$label, key=$key]';
+  String toString() => 'GetBuyerGiftFinderOptionResponseDataBudgets[key=$key, label=$label]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-      json[r'label'] = label;
       json[r'key'] = key;
+      json[r'label'] = label;
     return json;
   }
 
@@ -49,8 +49,8 @@ class GetBuyerGiftFinderOptionResponseDataBudgets {
     if (value is Map) {
       final json = value.cast<String, dynamic>();
       return GetBuyerGiftFinderOptionResponseDataBudgets(
-        label: mapValueOfType<String>(json, r'label'),
         key: mapValueOfType<String>(json, r'key'),
+        label: mapValueOfType<String>(json, r'label'),
       );
     }
     return null;

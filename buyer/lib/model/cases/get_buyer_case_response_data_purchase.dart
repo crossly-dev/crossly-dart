@@ -14,17 +14,17 @@ class GetBuyerCaseResponseDataPurchase {
   /// Returns a new [GetBuyerCaseResponseDataPurchase] instance.
   GetBuyerCaseResponseDataPurchase({
     @required this.id,
-    @required this.status,
     @required this.buyerPaidCents,
+    @required this.status,
     this.refundStatus,
     this.refundAmountCents,
   });
 
   String id;
 
-  String status;
-
   num buyerPaidCents;
+
+  String status;
 
   String refundStatus;
 
@@ -33,8 +33,8 @@ class GetBuyerCaseResponseDataPurchase {
   @override
   bool operator ==(Object other) => identical(this, other) || other is GetBuyerCaseResponseDataPurchase &&
      other.id == id &&
-     other.status == status &&
      other.buyerPaidCents == buyerPaidCents &&
+     other.status == status &&
      other.refundStatus == refundStatus &&
      other.refundAmountCents == refundAmountCents;
 
@@ -42,19 +42,19 @@ class GetBuyerCaseResponseDataPurchase {
   int get hashCode =>
   // ignore: unnecessary_parenthesis
     (id == null ? 0 : id.hashCode) +
-    (status == null ? 0 : status.hashCode) +
     (buyerPaidCents == null ? 0 : buyerPaidCents.hashCode) +
+    (status == null ? 0 : status.hashCode) +
     (refundStatus == null ? 0 : refundStatus.hashCode) +
     (refundAmountCents == null ? 0 : refundAmountCents.hashCode);
 
   @override
-  String toString() => 'GetBuyerCaseResponseDataPurchase[id=$id, status=$status, buyerPaidCents=$buyerPaidCents, refundStatus=$refundStatus, refundAmountCents=$refundAmountCents]';
+  String toString() => 'GetBuyerCaseResponseDataPurchase[id=$id, buyerPaidCents=$buyerPaidCents, status=$status, refundStatus=$refundStatus, refundAmountCents=$refundAmountCents]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
       json[r'id'] = id;
-      json[r'status'] = status;
       json[r'buyerPaidCents'] = buyerPaidCents;
+      json[r'status'] = status;
     if (refundStatus != null) {
       json[r'refundStatus'] = refundStatus;
     }
@@ -72,10 +72,10 @@ class GetBuyerCaseResponseDataPurchase {
       final json = value.cast<String, dynamic>();
       return GetBuyerCaseResponseDataPurchase(
         id: mapValueOfType<String>(json, r'id'),
-        status: mapValueOfType<String>(json, r'status'),
         buyerPaidCents: json[r'buyerPaidCents'] == null
           ? null
           : num.parse(json[r'buyerPaidCents'].toString()),
+        status: mapValueOfType<String>(json, r'status'),
         refundStatus: mapValueOfType<String>(json, r'refundStatus'),
         refundAmountCents: json[r'refundAmountCents'] == null
           ? null

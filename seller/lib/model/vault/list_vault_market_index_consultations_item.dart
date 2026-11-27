@@ -180,15 +180,15 @@ class ListVaultMarketIndexConsultationsItemStatusEnum {
 
   static const open = ListVaultMarketIndexConsultationsItemStatusEnum._(r'open');
   static const closed = ListVaultMarketIndexConsultationsItemStatusEnum._(r'closed');
-  static const adopted = ListVaultMarketIndexConsultationsItemStatusEnum._(r'adopted');
   static const withdrawn = ListVaultMarketIndexConsultationsItemStatusEnum._(r'withdrawn');
+  static const adopted = ListVaultMarketIndexConsultationsItemStatusEnum._(r'adopted');
 
   /// List of all possible values in this [enum][ListVaultMarketIndexConsultationsItemStatusEnum].
   static const values = <ListVaultMarketIndexConsultationsItemStatusEnum>[
     open,
     closed,
-    adopted,
     withdrawn,
+    adopted,
   ];
 
   static ListVaultMarketIndexConsultationsItemStatusEnum fromJson(dynamic value) =>
@@ -222,8 +222,8 @@ class ListVaultMarketIndexConsultationsItemStatusEnumTypeTransformer {
       switch (data.toString()) {
         case r'open': return ListVaultMarketIndexConsultationsItemStatusEnum.open;
         case r'closed': return ListVaultMarketIndexConsultationsItemStatusEnum.closed;
-        case r'adopted': return ListVaultMarketIndexConsultationsItemStatusEnum.adopted;
         case r'withdrawn': return ListVaultMarketIndexConsultationsItemStatusEnum.withdrawn;
+        case r'adopted': return ListVaultMarketIndexConsultationsItemStatusEnum.adopted;
         default:
           if (allowNull == false) {
             throw ArgumentError('Unknown enum value to decode: $data');

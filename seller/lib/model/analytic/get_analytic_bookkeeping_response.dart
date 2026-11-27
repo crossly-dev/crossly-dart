@@ -17,6 +17,8 @@ class GetAnalyticBookkeepingResponse {
     this.monthlyPL = const [],
     @required this.annualTotals,
     this.platformBreakdown = const [],
+    @required this.pendingDetailsCount,
+    @required this.tz,
   });
 
   num year;
@@ -27,12 +29,20 @@ class GetAnalyticBookkeepingResponse {
 
   List<GetAnalyticBookkeepingResponsePlatformBreakdown> platformBreakdown;
 
+  /// Sales of the year whose price and buyer are not known yet: in no line above. \"N sales pending details\".
+  num pendingDetailsCount;
+
+  /// The books timezone the year was cut in.
+  String tz;
+
   @override
   bool operator ==(Object other) => identical(this, other) || other is GetAnalyticBookkeepingResponse &&
      other.year == year &&
      other.monthlyPL == monthlyPL &&
      other.annualTotals == annualTotals &&
-     other.platformBreakdown == platformBreakdown;
+     other.platformBreakdown == platformBreakdown &&
+     other.pendingDetailsCount == pendingDetailsCount &&
+     other.tz == tz;
 
   @override
   int get hashCode =>
@@ -40,10 +50,12 @@ class GetAnalyticBookkeepingResponse {
     (year == null ? 0 : year.hashCode) +
     (monthlyPL == null ? 0 : monthlyPL.hashCode) +
     (annualTotals == null ? 0 : annualTotals.hashCode) +
-    (platformBreakdown == null ? 0 : platformBreakdown.hashCode);
+    (platformBreakdown == null ? 0 : platformBreakdown.hashCode) +
+    (pendingDetailsCount == null ? 0 : pendingDetailsCount.hashCode) +
+    (tz == null ? 0 : tz.hashCode);
 
   @override
-  String toString() => 'GetAnalyticBookkeepingResponse[year=$year, monthlyPL=$monthlyPL, annualTotals=$annualTotals, platformBreakdown=$platformBreakdown]';
+  String toString() => 'GetAnalyticBookkeepingResponse[year=$year, monthlyPL=$monthlyPL, annualTotals=$annualTotals, platformBreakdown=$platformBreakdown, pendingDetailsCount=$pendingDetailsCount, tz=$tz]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -51,6 +63,8 @@ class GetAnalyticBookkeepingResponse {
       json[r'monthlyPL'] = monthlyPL;
       json[r'annualTotals'] = annualTotals;
       json[r'platformBreakdown'] = platformBreakdown;
+      json[r'pendingDetailsCount'] = pendingDetailsCount;
+      json[r'tz'] = tz;
     return json;
   }
 
@@ -67,6 +81,10 @@ class GetAnalyticBookkeepingResponse {
         monthlyPL: GetAnalyticBookkeepingResponseMonthlyPL.listFromJson(json[r'monthlyPL']),
         annualTotals: GetAnalyticBookkeepingResponseAnnualTotals.fromJson(json[r'annualTotals']),
         platformBreakdown: GetAnalyticBookkeepingResponsePlatformBreakdown.listFromJson(json[r'platformBreakdown']),
+        pendingDetailsCount: json[r'pendingDetailsCount'] == null
+          ? null
+          : num.parse(json[r'pendingDetailsCount'].toString()),
+        tz: mapValueOfType<String>(json, r'tz'),
       );
     }
     return null;

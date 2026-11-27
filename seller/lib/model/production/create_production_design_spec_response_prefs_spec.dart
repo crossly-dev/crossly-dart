@@ -142,6 +142,7 @@ class CreateProductionDesignSpecResponsePrefsSpecCategoryEnum {
   static const slides = CreateProductionDesignSpecResponsePrefsSpecCategoryEnum._(r'slides');
   static const figureResin = CreateProductionDesignSpecResponsePrefsSpecCategoryEnum._(r'figure_resin');
   static const figureVinyl = CreateProductionDesignSpecResponsePrefsSpecCategoryEnum._(r'figure_vinyl');
+  static const tradingCards = CreateProductionDesignSpecResponsePrefsSpecCategoryEnum._(r'trading_cards');
 
   /// List of all possible values in this [enum][CreateProductionDesignSpecResponsePrefsSpecCategoryEnum].
   static const values = <CreateProductionDesignSpecResponsePrefsSpecCategoryEnum>[
@@ -161,6 +162,7 @@ class CreateProductionDesignSpecResponsePrefsSpecCategoryEnum {
     slides,
     figureResin,
     figureVinyl,
+    tradingCards,
   ];
 
   static CreateProductionDesignSpecResponsePrefsSpecCategoryEnum fromJson(dynamic value) =>
@@ -208,6 +210,7 @@ class CreateProductionDesignSpecResponsePrefsSpecCategoryEnumTypeTransformer {
         case r'slides': return CreateProductionDesignSpecResponsePrefsSpecCategoryEnum.slides;
         case r'figure_resin': return CreateProductionDesignSpecResponsePrefsSpecCategoryEnum.figureResin;
         case r'figure_vinyl': return CreateProductionDesignSpecResponsePrefsSpecCategoryEnum.figureVinyl;
+        case r'trading_cards': return CreateProductionDesignSpecResponsePrefsSpecCategoryEnum.tradingCards;
         default:
           if (allowNull == false) {
             throw ArgumentError('Unknown enum value to decode: $data');
@@ -236,14 +239,14 @@ class CreateProductionDesignSpecResponsePrefsSpecMaterialTierEnum {
   String toJson() => value;
 
   static const standard = CreateProductionDesignSpecResponsePrefsSpecMaterialTierEnum._(r'standard');
-  static const luxury = CreateProductionDesignSpecResponsePrefsSpecMaterialTierEnum._(r'luxury');
   static const premium = CreateProductionDesignSpecResponsePrefsSpecMaterialTierEnum._(r'premium');
+  static const luxury = CreateProductionDesignSpecResponsePrefsSpecMaterialTierEnum._(r'luxury');
 
   /// List of all possible values in this [enum][CreateProductionDesignSpecResponsePrefsSpecMaterialTierEnum].
   static const values = <CreateProductionDesignSpecResponsePrefsSpecMaterialTierEnum>[
     standard,
-    luxury,
     premium,
+    luxury,
   ];
 
   static CreateProductionDesignSpecResponsePrefsSpecMaterialTierEnum fromJson(dynamic value) =>
@@ -276,8 +279,8 @@ class CreateProductionDesignSpecResponsePrefsSpecMaterialTierEnumTypeTransformer
     if (data != null) {
       switch (data.toString()) {
         case r'standard': return CreateProductionDesignSpecResponsePrefsSpecMaterialTierEnum.standard;
-        case r'luxury': return CreateProductionDesignSpecResponsePrefsSpecMaterialTierEnum.luxury;
         case r'premium': return CreateProductionDesignSpecResponsePrefsSpecMaterialTierEnum.premium;
+        case r'luxury': return CreateProductionDesignSpecResponsePrefsSpecMaterialTierEnum.luxury;
         default:
           if (allowNull == false) {
             throw ArgumentError('Unknown enum value to decode: $data');

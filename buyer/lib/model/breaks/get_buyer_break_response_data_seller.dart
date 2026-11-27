@@ -13,35 +13,35 @@ part of openapi.api;
 class GetBuyerBreakResponseDataSeller {
   /// Returns a new [GetBuyerBreakResponseDataSeller] instance.
   GetBuyerBreakResponseDataSeller({
-    this.displayName,
     this.username,
+    this.displayName,
   });
-
-  String displayName;
 
   String username;
 
+  String displayName;
+
   @override
   bool operator ==(Object other) => identical(this, other) || other is GetBuyerBreakResponseDataSeller &&
-     other.displayName == displayName &&
-     other.username == username;
+     other.username == username &&
+     other.displayName == displayName;
 
   @override
   int get hashCode =>
   // ignore: unnecessary_parenthesis
-    (displayName == null ? 0 : displayName.hashCode) +
-    (username == null ? 0 : username.hashCode);
+    (username == null ? 0 : username.hashCode) +
+    (displayName == null ? 0 : displayName.hashCode);
 
   @override
-  String toString() => 'GetBuyerBreakResponseDataSeller[displayName=$displayName, username=$username]';
+  String toString() => 'GetBuyerBreakResponseDataSeller[username=$username, displayName=$displayName]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (displayName != null) {
-      json[r'displayName'] = displayName;
-    }
     if (username != null) {
       json[r'username'] = username;
+    }
+    if (displayName != null) {
+      json[r'displayName'] = displayName;
     }
     return json;
   }
@@ -53,8 +53,8 @@ class GetBuyerBreakResponseDataSeller {
     if (value is Map) {
       final json = value.cast<String, dynamic>();
       return GetBuyerBreakResponseDataSeller(
-        displayName: mapValueOfType<String>(json, r'displayName'),
         username: mapValueOfType<String>(json, r'username'),
+        displayName: mapValueOfType<String>(json, r'displayName'),
       );
     }
     return null;

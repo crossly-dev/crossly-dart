@@ -102,8 +102,8 @@ class CreateBuyerLockonConfirmResponseIdentifierNsEnum {
 
   String toJson() => value;
 
-  static const styleCode = CreateBuyerLockonConfirmResponseIdentifierNsEnum._(r'style_code');
   static const gtin = CreateBuyerLockonConfirmResponseIdentifierNsEnum._(r'gtin');
+  static const styleCode = CreateBuyerLockonConfirmResponseIdentifierNsEnum._(r'style_code');
   static const legoSet = CreateBuyerLockonConfirmResponseIdentifierNsEnum._(r'lego_set');
   static const tcgplayer = CreateBuyerLockonConfirmResponseIdentifierNsEnum._(r'tcgplayer');
   static const discogs = CreateBuyerLockonConfirmResponseIdentifierNsEnum._(r'discogs');
@@ -111,8 +111,8 @@ class CreateBuyerLockonConfirmResponseIdentifierNsEnum {
 
   /// List of all possible values in this [enum][CreateBuyerLockonConfirmResponseIdentifierNsEnum].
   static const values = <CreateBuyerLockonConfirmResponseIdentifierNsEnum>[
-    styleCode,
     gtin,
+    styleCode,
     legoSet,
     tcgplayer,
     discogs,
@@ -148,8 +148,8 @@ class CreateBuyerLockonConfirmResponseIdentifierNsEnumTypeTransformer {
   CreateBuyerLockonConfirmResponseIdentifierNsEnum decode(dynamic data, {bool allowNull}) {
     if (data != null) {
       switch (data.toString()) {
-        case r'style_code': return CreateBuyerLockonConfirmResponseIdentifierNsEnum.styleCode;
         case r'gtin': return CreateBuyerLockonConfirmResponseIdentifierNsEnum.gtin;
+        case r'style_code': return CreateBuyerLockonConfirmResponseIdentifierNsEnum.styleCode;
         case r'lego_set': return CreateBuyerLockonConfirmResponseIdentifierNsEnum.legoSet;
         case r'tcgplayer': return CreateBuyerLockonConfirmResponseIdentifierNsEnum.tcgplayer;
         case r'discogs': return CreateBuyerLockonConfirmResponseIdentifierNsEnum.discogs;

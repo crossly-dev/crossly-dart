@@ -196,17 +196,17 @@ class ListBuyerSizeMemorySizesItemDepartmentEnum {
 
   String toJson() => value;
 
+  static const unisex = ListBuyerSizeMemorySizesItemDepartmentEnum._(r'unisex');
   static const men = ListBuyerSizeMemorySizesItemDepartmentEnum._(r'men');
   static const women = ListBuyerSizeMemorySizesItemDepartmentEnum._(r'women');
   static const kids = ListBuyerSizeMemorySizesItemDepartmentEnum._(r'kids');
-  static const unisex = ListBuyerSizeMemorySizesItemDepartmentEnum._(r'unisex');
 
   /// List of all possible values in this [enum][ListBuyerSizeMemorySizesItemDepartmentEnum].
   static const values = <ListBuyerSizeMemorySizesItemDepartmentEnum>[
+    unisex,
     men,
     women,
     kids,
-    unisex,
   ];
 
   static ListBuyerSizeMemorySizesItemDepartmentEnum fromJson(dynamic value) =>
@@ -238,10 +238,10 @@ class ListBuyerSizeMemorySizesItemDepartmentEnumTypeTransformer {
   ListBuyerSizeMemorySizesItemDepartmentEnum decode(dynamic data, {bool allowNull}) {
     if (data != null) {
       switch (data.toString()) {
+        case r'unisex': return ListBuyerSizeMemorySizesItemDepartmentEnum.unisex;
         case r'men': return ListBuyerSizeMemorySizesItemDepartmentEnum.men;
         case r'women': return ListBuyerSizeMemorySizesItemDepartmentEnum.women;
         case r'kids': return ListBuyerSizeMemorySizesItemDepartmentEnum.kids;
-        case r'unisex': return ListBuyerSizeMemorySizesItemDepartmentEnum.unisex;
         default:
           if (allowNull == false) {
             throw ArgumentError('Unknown enum value to decode: $data');

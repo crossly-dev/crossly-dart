@@ -17,8 +17,10 @@ class CreateOrderWhatnotPackageQuoteResponse {
     this.error,
   });
 
+  /// Cents the platform charges for the change; 0 = free.
   num costCents;
 
+  /// The platform's refusal of this package, when it gives one.
   String error;
 
   @override

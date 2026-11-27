@@ -121,17 +121,17 @@ class ListVaultMarketDealerPoolsItemLadderBidLimitEnum {
   String toJson() => value;
 
   static const floor = ListVaultMarketDealerPoolsItemLadderBidLimitEnum._(r'floor');
+  static const ceiling = ListVaultMarketDealerPoolsItemLadderBidLimitEnum._(r'ceiling');
   static const noUnits = ListVaultMarketDealerPoolsItemLadderBidLimitEnum._(r'no_units');
   static const noCash = ListVaultMarketDealerPoolsItemLadderBidLimitEnum._(r'no_cash');
-  static const ceiling = ListVaultMarketDealerPoolsItemLadderBidLimitEnum._(r'ceiling');
   static const curveEnd = ListVaultMarketDealerPoolsItemLadderBidLimitEnum._(r'curve_end');
 
   /// List of all possible values in this [enum][ListVaultMarketDealerPoolsItemLadderBidLimitEnum].
   static const values = <ListVaultMarketDealerPoolsItemLadderBidLimitEnum>[
     floor,
+    ceiling,
     noUnits,
     noCash,
-    ceiling,
     curveEnd,
   ];
 
@@ -165,9 +165,9 @@ class ListVaultMarketDealerPoolsItemLadderBidLimitEnumTypeTransformer {
     if (data != null) {
       switch (data.toString()) {
         case r'floor': return ListVaultMarketDealerPoolsItemLadderBidLimitEnum.floor;
+        case r'ceiling': return ListVaultMarketDealerPoolsItemLadderBidLimitEnum.ceiling;
         case r'no_units': return ListVaultMarketDealerPoolsItemLadderBidLimitEnum.noUnits;
         case r'no_cash': return ListVaultMarketDealerPoolsItemLadderBidLimitEnum.noCash;
-        case r'ceiling': return ListVaultMarketDealerPoolsItemLadderBidLimitEnum.ceiling;
         case r'curve_end': return ListVaultMarketDealerPoolsItemLadderBidLimitEnum.curveEnd;
         default:
           if (allowNull == false) {
@@ -197,17 +197,17 @@ class ListVaultMarketDealerPoolsItemLadderAskLimitEnum {
   String toJson() => value;
 
   static const floor = ListVaultMarketDealerPoolsItemLadderAskLimitEnum._(r'floor');
+  static const ceiling = ListVaultMarketDealerPoolsItemLadderAskLimitEnum._(r'ceiling');
   static const noUnits = ListVaultMarketDealerPoolsItemLadderAskLimitEnum._(r'no_units');
   static const noCash = ListVaultMarketDealerPoolsItemLadderAskLimitEnum._(r'no_cash');
-  static const ceiling = ListVaultMarketDealerPoolsItemLadderAskLimitEnum._(r'ceiling');
   static const curveEnd = ListVaultMarketDealerPoolsItemLadderAskLimitEnum._(r'curve_end');
 
   /// List of all possible values in this [enum][ListVaultMarketDealerPoolsItemLadderAskLimitEnum].
   static const values = <ListVaultMarketDealerPoolsItemLadderAskLimitEnum>[
     floor,
+    ceiling,
     noUnits,
     noCash,
-    ceiling,
     curveEnd,
   ];
 
@@ -241,9 +241,9 @@ class ListVaultMarketDealerPoolsItemLadderAskLimitEnumTypeTransformer {
     if (data != null) {
       switch (data.toString()) {
         case r'floor': return ListVaultMarketDealerPoolsItemLadderAskLimitEnum.floor;
+        case r'ceiling': return ListVaultMarketDealerPoolsItemLadderAskLimitEnum.ceiling;
         case r'no_units': return ListVaultMarketDealerPoolsItemLadderAskLimitEnum.noUnits;
         case r'no_cash': return ListVaultMarketDealerPoolsItemLadderAskLimitEnum.noCash;
-        case r'ceiling': return ListVaultMarketDealerPoolsItemLadderAskLimitEnum.ceiling;
         case r'curve_end': return ListVaultMarketDealerPoolsItemLadderAskLimitEnum.curveEnd;
         default:
           if (allowNull == false) {

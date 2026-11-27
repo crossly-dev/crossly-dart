@@ -14,77 +14,77 @@ class GetBuyerListingBreakResponseData {
   /// Returns a new [GetBuyerListingBreakResponseData] instance.
   GetBuyerListingBreakResponseData({
     @required this.id,
-    @required this.status,
     @required this.title,
+    @required this.format,
+    @required this.status,
     this.slug,
     @required this.priceCents,
-    @required this.format,
-    this.seed,
-    @required this.seedCommit,
     @required this.spotsLeft,
+    @required this.seedCommit,
+    this.seed,
   });
 
   String id;
 
-  String status;
-
   String title;
+
+  String format;
+
+  String status;
 
   String slug;
 
   num priceCents;
 
-  String format;
-
-  String seed;
+  num spotsLeft;
 
   String seedCommit;
 
-  num spotsLeft;
+  String seed;
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is GetBuyerListingBreakResponseData &&
      other.id == id &&
-     other.status == status &&
      other.title == title &&
+     other.format == format &&
+     other.status == status &&
      other.slug == slug &&
      other.priceCents == priceCents &&
-     other.format == format &&
-     other.seed == seed &&
+     other.spotsLeft == spotsLeft &&
      other.seedCommit == seedCommit &&
-     other.spotsLeft == spotsLeft;
+     other.seed == seed;
 
   @override
   int get hashCode =>
   // ignore: unnecessary_parenthesis
     (id == null ? 0 : id.hashCode) +
-    (status == null ? 0 : status.hashCode) +
     (title == null ? 0 : title.hashCode) +
+    (format == null ? 0 : format.hashCode) +
+    (status == null ? 0 : status.hashCode) +
     (slug == null ? 0 : slug.hashCode) +
     (priceCents == null ? 0 : priceCents.hashCode) +
-    (format == null ? 0 : format.hashCode) +
-    (seed == null ? 0 : seed.hashCode) +
+    (spotsLeft == null ? 0 : spotsLeft.hashCode) +
     (seedCommit == null ? 0 : seedCommit.hashCode) +
-    (spotsLeft == null ? 0 : spotsLeft.hashCode);
+    (seed == null ? 0 : seed.hashCode);
 
   @override
-  String toString() => 'GetBuyerListingBreakResponseData[id=$id, status=$status, title=$title, slug=$slug, priceCents=$priceCents, format=$format, seed=$seed, seedCommit=$seedCommit, spotsLeft=$spotsLeft]';
+  String toString() => 'GetBuyerListingBreakResponseData[id=$id, title=$title, format=$format, status=$status, slug=$slug, priceCents=$priceCents, spotsLeft=$spotsLeft, seedCommit=$seedCommit, seed=$seed]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
       json[r'id'] = id;
-      json[r'status'] = status;
       json[r'title'] = title;
+      json[r'format'] = format;
+      json[r'status'] = status;
     if (slug != null) {
       json[r'slug'] = slug;
     }
       json[r'priceCents'] = priceCents;
-      json[r'format'] = format;
+      json[r'spotsLeft'] = spotsLeft;
+      json[r'seedCommit'] = seedCommit;
     if (seed != null) {
       json[r'seed'] = seed;
     }
-      json[r'seedCommit'] = seedCommit;
-      json[r'spotsLeft'] = spotsLeft;
     return json;
   }
 
@@ -96,18 +96,18 @@ class GetBuyerListingBreakResponseData {
       final json = value.cast<String, dynamic>();
       return GetBuyerListingBreakResponseData(
         id: mapValueOfType<String>(json, r'id'),
-        status: mapValueOfType<String>(json, r'status'),
         title: mapValueOfType<String>(json, r'title'),
+        format: mapValueOfType<String>(json, r'format'),
+        status: mapValueOfType<String>(json, r'status'),
         slug: mapValueOfType<String>(json, r'slug'),
         priceCents: json[r'priceCents'] == null
           ? null
           : num.parse(json[r'priceCents'].toString()),
-        format: mapValueOfType<String>(json, r'format'),
-        seed: mapValueOfType<String>(json, r'seed'),
-        seedCommit: mapValueOfType<String>(json, r'seedCommit'),
         spotsLeft: json[r'spotsLeft'] == null
           ? null
           : num.parse(json[r'spotsLeft'].toString()),
+        seedCommit: mapValueOfType<String>(json, r'seedCommit'),
+        seed: mapValueOfType<String>(json, r'seed'),
       );
     }
     return null;

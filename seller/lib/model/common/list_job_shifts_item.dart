@@ -36,7 +36,7 @@ class ListJobShiftsItem {
 
   String title;
 
-  SlugName place;
+  NameSlug place;
 
   String startsAt;
 
@@ -133,7 +133,7 @@ class ListJobShiftsItem {
         id: mapValueOfType<String>(json, r'id'),
         role: ListJobShiftsItemRoleEnum.fromJson(json[r'role']),
         title: mapValueOfType<String>(json, r'title'),
-        place: SlugName.fromJson(json[r'place']),
+        place: NameSlug.fromJson(json[r'place']),
         startsAt: mapValueOfType<String>(json, r'startsAt'),
         endsAt: mapValueOfType<String>(json, r'endsAt'),
         payCents: json[r'payCents'] == null
@@ -269,13 +269,13 @@ class ListJobShiftsItemRailEnum {
 
   String toJson() => value;
 
-  static const bucks = ListJobShiftsItemRailEnum._(r'bucks');
   static const cbx = ListJobShiftsItemRailEnum._(r'cbx');
+  static const bucks = ListJobShiftsItemRailEnum._(r'bucks');
 
   /// List of all possible values in this [enum][ListJobShiftsItemRailEnum].
   static const values = <ListJobShiftsItemRailEnum>[
-    bucks,
     cbx,
+    bucks,
   ];
 
   static ListJobShiftsItemRailEnum fromJson(dynamic value) =>
@@ -307,8 +307,8 @@ class ListJobShiftsItemRailEnumTypeTransformer {
   ListJobShiftsItemRailEnum decode(dynamic data, {bool allowNull}) {
     if (data != null) {
       switch (data.toString()) {
-        case r'bucks': return ListJobShiftsItemRailEnum.bucks;
         case r'cbx': return ListJobShiftsItemRailEnum.cbx;
+        case r'bucks': return ListJobShiftsItemRailEnum.bucks;
         default:
           if (allowNull == false) {
             throw ArgumentError('Unknown enum value to decode: $data');
@@ -336,8 +336,8 @@ class ListJobShiftsItemStatusEnum {
 
   String toJson() => value;
 
-  static const open = ListJobShiftsItemStatusEnum._(r'open');
   static const cancelled = ListJobShiftsItemStatusEnum._(r'cancelled');
+  static const open = ListJobShiftsItemStatusEnum._(r'open');
   static const paid = ListJobShiftsItemStatusEnum._(r'paid');
   static const claimed = ListJobShiftsItemStatusEnum._(r'claimed');
   static const worked = ListJobShiftsItemStatusEnum._(r'worked');
@@ -345,8 +345,8 @@ class ListJobShiftsItemStatusEnum {
 
   /// List of all possible values in this [enum][ListJobShiftsItemStatusEnum].
   static const values = <ListJobShiftsItemStatusEnum>[
-    open,
     cancelled,
+    open,
     paid,
     claimed,
     worked,
@@ -382,8 +382,8 @@ class ListJobShiftsItemStatusEnumTypeTransformer {
   ListJobShiftsItemStatusEnum decode(dynamic data, {bool allowNull}) {
     if (data != null) {
       switch (data.toString()) {
-        case r'open': return ListJobShiftsItemStatusEnum.open;
         case r'cancelled': return ListJobShiftsItemStatusEnum.cancelled;
+        case r'open': return ListJobShiftsItemStatusEnum.open;
         case r'paid': return ListJobShiftsItemStatusEnum.paid;
         case r'claimed': return ListJobShiftsItemStatusEnum.claimed;
         case r'worked': return ListJobShiftsItemStatusEnum.worked;

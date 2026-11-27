@@ -103,9 +103,11 @@ class ListWorldCapabilityDeclarationsItemDeclarationCapabilitiesKindEnum {
   String toJson() => value;
 
   static const portal = ListWorldCapabilityDeclarationsItemDeclarationCapabilitiesKindEnum._(r'portal');
-  static const display = ListWorldCapabilityDeclarationsItemDeclarationCapabilitiesKindEnum._(r'display');
+  static const interactive = ListWorldCapabilityDeclarationsItemDeclarationCapabilitiesKindEnum._(r'interactive');
   static const place = ListWorldCapabilityDeclarationsItemDeclarationCapabilitiesKindEnum._(r'place');
+  static const display = ListWorldCapabilityDeclarationsItemDeclarationCapabilitiesKindEnum._(r'display');
   static const badge = ListWorldCapabilityDeclarationsItemDeclarationCapabilitiesKindEnum._(r'badge');
+  static const perk = ListWorldCapabilityDeclarationsItemDeclarationCapabilitiesKindEnum._(r'perk');
   static const wear = ListWorldCapabilityDeclarationsItemDeclarationCapabilitiesKindEnum._(r'wear');
   static const emote = ListWorldCapabilityDeclarationsItemDeclarationCapabilitiesKindEnum._(r'emote');
   static const roomTheme = ListWorldCapabilityDeclarationsItemDeclarationCapabilitiesKindEnum._(r'room_theme');
@@ -113,15 +115,15 @@ class ListWorldCapabilityDeclarationsItemDeclarationCapabilitiesKindEnum {
   static const gate = ListWorldCapabilityDeclarationsItemDeclarationCapabilitiesKindEnum._(r'gate');
   static const quest = ListWorldCapabilityDeclarationsItemDeclarationCapabilitiesKindEnum._(r'quest');
   static const gamePass = ListWorldCapabilityDeclarationsItemDeclarationCapabilitiesKindEnum._(r'game_pass');
-  static const perk = ListWorldCapabilityDeclarationsItemDeclarationCapabilitiesKindEnum._(r'perk');
-  static const interactive = ListWorldCapabilityDeclarationsItemDeclarationCapabilitiesKindEnum._(r'interactive');
 
   /// List of all possible values in this [enum][ListWorldCapabilityDeclarationsItemDeclarationCapabilitiesKindEnum].
   static const values = <ListWorldCapabilityDeclarationsItemDeclarationCapabilitiesKindEnum>[
     portal,
-    display,
+    interactive,
     place,
+    display,
     badge,
+    perk,
     wear,
     emote,
     roomTheme,
@@ -129,8 +131,6 @@ class ListWorldCapabilityDeclarationsItemDeclarationCapabilitiesKindEnum {
     gate,
     quest,
     gamePass,
-    perk,
-    interactive,
   ];
 
   static ListWorldCapabilityDeclarationsItemDeclarationCapabilitiesKindEnum fromJson(dynamic value) =>
@@ -163,9 +163,11 @@ class ListWorldCapabilityDeclarationsItemDeclarationCapabilitiesKindEnumTypeTran
     if (data != null) {
       switch (data.toString()) {
         case r'portal': return ListWorldCapabilityDeclarationsItemDeclarationCapabilitiesKindEnum.portal;
-        case r'display': return ListWorldCapabilityDeclarationsItemDeclarationCapabilitiesKindEnum.display;
+        case r'interactive': return ListWorldCapabilityDeclarationsItemDeclarationCapabilitiesKindEnum.interactive;
         case r'place': return ListWorldCapabilityDeclarationsItemDeclarationCapabilitiesKindEnum.place;
+        case r'display': return ListWorldCapabilityDeclarationsItemDeclarationCapabilitiesKindEnum.display;
         case r'badge': return ListWorldCapabilityDeclarationsItemDeclarationCapabilitiesKindEnum.badge;
+        case r'perk': return ListWorldCapabilityDeclarationsItemDeclarationCapabilitiesKindEnum.perk;
         case r'wear': return ListWorldCapabilityDeclarationsItemDeclarationCapabilitiesKindEnum.wear;
         case r'emote': return ListWorldCapabilityDeclarationsItemDeclarationCapabilitiesKindEnum.emote;
         case r'room_theme': return ListWorldCapabilityDeclarationsItemDeclarationCapabilitiesKindEnum.roomTheme;
@@ -173,8 +175,6 @@ class ListWorldCapabilityDeclarationsItemDeclarationCapabilitiesKindEnumTypeTran
         case r'gate': return ListWorldCapabilityDeclarationsItemDeclarationCapabilitiesKindEnum.gate;
         case r'quest': return ListWorldCapabilityDeclarationsItemDeclarationCapabilitiesKindEnum.quest;
         case r'game_pass': return ListWorldCapabilityDeclarationsItemDeclarationCapabilitiesKindEnum.gamePass;
-        case r'perk': return ListWorldCapabilityDeclarationsItemDeclarationCapabilitiesKindEnum.perk;
-        case r'interactive': return ListWorldCapabilityDeclarationsItemDeclarationCapabilitiesKindEnum.interactive;
         default:
           if (allowNull == false) {
             throw ArgumentError('Unknown enum value to decode: $data');

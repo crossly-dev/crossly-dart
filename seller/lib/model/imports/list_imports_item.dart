@@ -16,11 +16,10 @@ class ListImportsItem {
     @required this.id,
     @required this.createdAt,
     @required this.userId,
-    @required this.status,
     @required this.platform,
+    @required this.status,
     this.lastError,
     this.startedAt,
-    this.batchId,
     this.finishedAt,
     this.filters,
     @required this.importMode,
@@ -31,6 +30,7 @@ class ListImportsItem {
     @required this.importedCount,
     @required this.skippedCount,
     @required this.errorCount,
+    this.batchId,
     @required this.listOnCrossly,
     this.crosslyListedAt,
   });
@@ -41,15 +41,13 @@ class ListImportsItem {
 
   String userId;
 
-  String status;
-
   String platform;
+
+  String status;
 
   String lastError;
 
   DateTime startedAt;
-
-  String batchId;
 
   DateTime finishedAt;
 
@@ -71,6 +69,8 @@ class ListImportsItem {
 
   num errorCount;
 
+  String batchId;
+
   bool listOnCrossly;
 
   DateTime crosslyListedAt;
@@ -80,11 +80,10 @@ class ListImportsItem {
      other.id == id &&
      other.createdAt == createdAt &&
      other.userId == userId &&
-     other.status == status &&
      other.platform == platform &&
+     other.status == status &&
      other.lastError == lastError &&
      other.startedAt == startedAt &&
-     other.batchId == batchId &&
      other.finishedAt == finishedAt &&
      other.filters == filters &&
      other.importMode == importMode &&
@@ -95,6 +94,7 @@ class ListImportsItem {
      other.importedCount == importedCount &&
      other.skippedCount == skippedCount &&
      other.errorCount == errorCount &&
+     other.batchId == batchId &&
      other.listOnCrossly == listOnCrossly &&
      other.crosslyListedAt == crosslyListedAt;
 
@@ -104,11 +104,10 @@ class ListImportsItem {
     (id == null ? 0 : id.hashCode) +
     (createdAt == null ? 0 : createdAt.hashCode) +
     (userId == null ? 0 : userId.hashCode) +
-    (status == null ? 0 : status.hashCode) +
     (platform == null ? 0 : platform.hashCode) +
+    (status == null ? 0 : status.hashCode) +
     (lastError == null ? 0 : lastError.hashCode) +
     (startedAt == null ? 0 : startedAt.hashCode) +
-    (batchId == null ? 0 : batchId.hashCode) +
     (finishedAt == null ? 0 : finishedAt.hashCode) +
     (filters == null ? 0 : filters.hashCode) +
     (importMode == null ? 0 : importMode.hashCode) +
@@ -119,27 +118,25 @@ class ListImportsItem {
     (importedCount == null ? 0 : importedCount.hashCode) +
     (skippedCount == null ? 0 : skippedCount.hashCode) +
     (errorCount == null ? 0 : errorCount.hashCode) +
+    (batchId == null ? 0 : batchId.hashCode) +
     (listOnCrossly == null ? 0 : listOnCrossly.hashCode) +
     (crosslyListedAt == null ? 0 : crosslyListedAt.hashCode);
 
   @override
-  String toString() => 'ListImportsItem[id=$id, createdAt=$createdAt, userId=$userId, status=$status, platform=$platform, lastError=$lastError, startedAt=$startedAt, batchId=$batchId, finishedAt=$finishedAt, filters=$filters, importMode=$importMode, includeInactive=$includeInactive, mergeIntoExistingListing=$mergeIntoExistingListing, mergeIntoExistingInventory=$mergeIntoExistingInventory, totalCount=$totalCount, importedCount=$importedCount, skippedCount=$skippedCount, errorCount=$errorCount, listOnCrossly=$listOnCrossly, crosslyListedAt=$crosslyListedAt]';
+  String toString() => 'ListImportsItem[id=$id, createdAt=$createdAt, userId=$userId, platform=$platform, status=$status, lastError=$lastError, startedAt=$startedAt, finishedAt=$finishedAt, filters=$filters, importMode=$importMode, includeInactive=$includeInactive, mergeIntoExistingListing=$mergeIntoExistingListing, mergeIntoExistingInventory=$mergeIntoExistingInventory, totalCount=$totalCount, importedCount=$importedCount, skippedCount=$skippedCount, errorCount=$errorCount, batchId=$batchId, listOnCrossly=$listOnCrossly, crosslyListedAt=$crosslyListedAt]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
       json[r'id'] = id;
       json[r'createdAt'] = createdAt.toUtc().toIso8601String();
       json[r'userId'] = userId;
-      json[r'status'] = status;
       json[r'platform'] = platform;
+      json[r'status'] = status;
     if (lastError != null) {
       json[r'lastError'] = lastError;
     }
     if (startedAt != null) {
       json[r'startedAt'] = startedAt.toUtc().toIso8601String();
-    }
-    if (batchId != null) {
-      json[r'batchId'] = batchId;
     }
     if (finishedAt != null) {
       json[r'finishedAt'] = finishedAt.toUtc().toIso8601String();
@@ -155,6 +152,9 @@ class ListImportsItem {
       json[r'importedCount'] = importedCount;
       json[r'skippedCount'] = skippedCount;
       json[r'errorCount'] = errorCount;
+    if (batchId != null) {
+      json[r'batchId'] = batchId;
+    }
       json[r'listOnCrossly'] = listOnCrossly;
     if (crosslyListedAt != null) {
       json[r'crosslyListedAt'] = crosslyListedAt.toUtc().toIso8601String();
@@ -172,11 +172,10 @@ class ListImportsItem {
         id: mapValueOfType<String>(json, r'id'),
         createdAt: mapDateTime(json, r'createdAt', ''),
         userId: mapValueOfType<String>(json, r'userId'),
-        status: mapValueOfType<String>(json, r'status'),
         platform: mapValueOfType<String>(json, r'platform'),
+        status: mapValueOfType<String>(json, r'status'),
         lastError: mapValueOfType<String>(json, r'lastError'),
         startedAt: mapDateTime(json, r'startedAt', ''),
-        batchId: mapValueOfType<String>(json, r'batchId'),
         finishedAt: mapDateTime(json, r'finishedAt', ''),
         filters: ListImportsItemFilters.fromJson(json[r'filters']),
         importMode: mapValueOfType<String>(json, r'importMode'),
@@ -195,6 +194,7 @@ class ListImportsItem {
         errorCount: json[r'errorCount'] == null
           ? null
           : num.parse(json[r'errorCount'].toString()),
+        batchId: mapValueOfType<String>(json, r'batchId'),
         listOnCrossly: mapValueOfType<bool>(json, r'listOnCrossly'),
         crosslyListedAt: mapDateTime(json, r'crosslyListedAt', ''),
       );

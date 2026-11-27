@@ -18,11 +18,11 @@ class GetWorldContestMineResponseDataPrizes {
     @required this.createdAt,
     @required this.userId,
     @required this.status,
+    @required this.amount,
     @required this.kind,
     this.note,
     @required this.place,
     @required this.contestId,
-    @required this.amount,
   });
 
   String id;
@@ -35,6 +35,8 @@ class GetWorldContestMineResponseDataPrizes {
 
   GetWorldContestMineResponseDataPrizesStatusEnum status;
 
+  num amount;
+
   String kind;
 
   String note;
@@ -43,8 +45,6 @@ class GetWorldContestMineResponseDataPrizes {
 
   String contestId;
 
-  num amount;
-
   @override
   bool operator ==(Object other) => identical(this, other) || other is GetWorldContestMineResponseDataPrizes &&
      other.id == id &&
@@ -52,11 +52,11 @@ class GetWorldContestMineResponseDataPrizes {
      other.createdAt == createdAt &&
      other.userId == userId &&
      other.status == status &&
+     other.amount == amount &&
      other.kind == kind &&
      other.note == note &&
      other.place == place &&
-     other.contestId == contestId &&
-     other.amount == amount;
+     other.contestId == contestId;
 
   @override
   int get hashCode =>
@@ -66,14 +66,14 @@ class GetWorldContestMineResponseDataPrizes {
     (createdAt == null ? 0 : createdAt.hashCode) +
     (userId == null ? 0 : userId.hashCode) +
     (status == null ? 0 : status.hashCode) +
+    (amount == null ? 0 : amount.hashCode) +
     (kind == null ? 0 : kind.hashCode) +
     (note == null ? 0 : note.hashCode) +
     (place == null ? 0 : place.hashCode) +
-    (contestId == null ? 0 : contestId.hashCode) +
-    (amount == null ? 0 : amount.hashCode);
+    (contestId == null ? 0 : contestId.hashCode);
 
   @override
-  String toString() => 'GetWorldContestMineResponseDataPrizes[id=$id, ref=$ref, createdAt=$createdAt, userId=$userId, status=$status, kind=$kind, note=$note, place=$place, contestId=$contestId, amount=$amount]';
+  String toString() => 'GetWorldContestMineResponseDataPrizes[id=$id, ref=$ref, createdAt=$createdAt, userId=$userId, status=$status, amount=$amount, kind=$kind, note=$note, place=$place, contestId=$contestId]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -84,13 +84,13 @@ class GetWorldContestMineResponseDataPrizes {
       json[r'createdAt'] = createdAt.toUtc().toIso8601String();
       json[r'userId'] = userId;
       json[r'status'] = status;
+      json[r'amount'] = amount;
       json[r'kind'] = kind;
     if (note != null) {
       json[r'note'] = note;
     }
       json[r'place'] = place;
       json[r'contestId'] = contestId;
-      json[r'amount'] = amount;
     return json;
   }
 
@@ -106,15 +106,15 @@ class GetWorldContestMineResponseDataPrizes {
         createdAt: mapDateTime(json, r'createdAt', ''),
         userId: mapValueOfType<String>(json, r'userId'),
         status: GetWorldContestMineResponseDataPrizesStatusEnum.fromJson(json[r'status']),
+        amount: json[r'amount'] == null
+          ? null
+          : num.parse(json[r'amount'].toString()),
         kind: mapValueOfType<String>(json, r'kind'),
         note: mapValueOfType<String>(json, r'note'),
         place: json[r'place'] == null
           ? null
           : num.parse(json[r'place'].toString()),
         contestId: mapValueOfType<String>(json, r'contestId'),
-        amount: json[r'amount'] == null
-          ? null
-          : num.parse(json[r'amount'].toString()),
       );
     }
     return null;

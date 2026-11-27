@@ -405,28 +405,28 @@ class GetVaultMarketP2pLoanResponseStatusEnum {
   String toJson() => value;
 
   static const active = GetVaultMarketP2pLoanResponseStatusEnum._(r'active');
-  static const funding = GetVaultMarketP2pLoanResponseStatusEnum._(r'funding');
   static const cancelled = GetVaultMarketP2pLoanResponseStatusEnum._(r'cancelled');
+  static const funding = GetVaultMarketP2pLoanResponseStatusEnum._(r'funding');
   static const auction = GetVaultMarketP2pLoanResponseStatusEnum._(r'auction');
+  static const repaid = GetVaultMarketP2pLoanResponseStatusEnum._(r'repaid');
+  static const foreclosed = GetVaultMarketP2pLoanResponseStatusEnum._(r'foreclosed');
   static const repaying = GetVaultMarketP2pLoanResponseStatusEnum._(r'repaying');
   static const refinancing = GetVaultMarketP2pLoanResponseStatusEnum._(r'refinancing');
   static const refiPending = GetVaultMarketP2pLoanResponseStatusEnum._(r'refi_pending');
-  static const repaid = GetVaultMarketP2pLoanResponseStatusEnum._(r'repaid');
   static const refinanced = GetVaultMarketP2pLoanResponseStatusEnum._(r'refinanced');
-  static const foreclosed = GetVaultMarketP2pLoanResponseStatusEnum._(r'foreclosed');
 
   /// List of all possible values in this [enum][GetVaultMarketP2pLoanResponseStatusEnum].
   static const values = <GetVaultMarketP2pLoanResponseStatusEnum>[
     active,
-    funding,
     cancelled,
+    funding,
     auction,
+    repaid,
+    foreclosed,
     repaying,
     refinancing,
     refiPending,
-    repaid,
     refinanced,
-    foreclosed,
   ];
 
   static GetVaultMarketP2pLoanResponseStatusEnum fromJson(dynamic value) =>
@@ -459,15 +459,15 @@ class GetVaultMarketP2pLoanResponseStatusEnumTypeTransformer {
     if (data != null) {
       switch (data.toString()) {
         case r'active': return GetVaultMarketP2pLoanResponseStatusEnum.active;
-        case r'funding': return GetVaultMarketP2pLoanResponseStatusEnum.funding;
         case r'cancelled': return GetVaultMarketP2pLoanResponseStatusEnum.cancelled;
+        case r'funding': return GetVaultMarketP2pLoanResponseStatusEnum.funding;
         case r'auction': return GetVaultMarketP2pLoanResponseStatusEnum.auction;
+        case r'repaid': return GetVaultMarketP2pLoanResponseStatusEnum.repaid;
+        case r'foreclosed': return GetVaultMarketP2pLoanResponseStatusEnum.foreclosed;
         case r'repaying': return GetVaultMarketP2pLoanResponseStatusEnum.repaying;
         case r'refinancing': return GetVaultMarketP2pLoanResponseStatusEnum.refinancing;
         case r'refi_pending': return GetVaultMarketP2pLoanResponseStatusEnum.refiPending;
-        case r'repaid': return GetVaultMarketP2pLoanResponseStatusEnum.repaid;
         case r'refinanced': return GetVaultMarketP2pLoanResponseStatusEnum.refinanced;
-        case r'foreclosed': return GetVaultMarketP2pLoanResponseStatusEnum.foreclosed;
         default:
           if (allowNull == false) {
             throw ArgumentError('Unknown enum value to decode: $data');

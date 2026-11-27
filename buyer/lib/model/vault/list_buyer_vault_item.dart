@@ -14,53 +14,53 @@ class ListBuyerVaultItem {
   /// Returns a new [ListBuyerVaultItem] instance.
   ListBuyerVaultItem({
     @required this.id,
-    @required this.condition,
-    this.gradeKey,
     @required this.status,
-    this.receivedAt,
+    @required this.skuId,
+    this.skuName,
     this.imageUrl,
     this.variantId,
+    this.variantLabel,
+    @required this.condition,
+    this.gradeKey,
+    this.location,
     this.lastSaleCents,
-    @required this.skuId,
+    this.askPriceCents,
     this.withdrawSpeed,
     this.withdrawTracking,
-    this.location,
-    this.skuName,
-    this.variantLabel,
-    this.askPriceCents,
+    this.receivedAt,
     this.situation,
     this.earlyWithdrawFeeCents,
   });
 
   String id;
 
-  String condition;
-
-  String gradeKey;
-
   String status;
 
-  String receivedAt;
+  String skuId;
+
+  String skuName;
 
   String imageUrl;
 
   String variantId;
 
+  String variantLabel;
+
+  String condition;
+
+  String gradeKey;
+
+  String location;
+
   num lastSaleCents;
 
-  String skuId;
+  num askPriceCents;
 
   String withdrawSpeed;
 
   String withdrawTracking;
 
-  String location;
-
-  String skuName;
-
-  String variantLabel;
-
-  num askPriceCents;
+  String receivedAt;
 
   /// What is really going on with it: in_auction, pledged, collateral, lent, in_grading, gift_pending, else the status.
   String situation;
@@ -70,20 +70,20 @@ class ListBuyerVaultItem {
   @override
   bool operator ==(Object other) => identical(this, other) || other is ListBuyerVaultItem &&
      other.id == id &&
-     other.condition == condition &&
-     other.gradeKey == gradeKey &&
      other.status == status &&
-     other.receivedAt == receivedAt &&
+     other.skuId == skuId &&
+     other.skuName == skuName &&
      other.imageUrl == imageUrl &&
      other.variantId == variantId &&
+     other.variantLabel == variantLabel &&
+     other.condition == condition &&
+     other.gradeKey == gradeKey &&
+     other.location == location &&
      other.lastSaleCents == lastSaleCents &&
-     other.skuId == skuId &&
+     other.askPriceCents == askPriceCents &&
      other.withdrawSpeed == withdrawSpeed &&
      other.withdrawTracking == withdrawTracking &&
-     other.location == location &&
-     other.skuName == skuName &&
-     other.variantLabel == variantLabel &&
-     other.askPriceCents == askPriceCents &&
+     other.receivedAt == receivedAt &&
      other.situation == situation &&
      other.earlyWithdrawFeeCents == earlyWithdrawFeeCents;
 
@@ -91,36 +91,33 @@ class ListBuyerVaultItem {
   int get hashCode =>
   // ignore: unnecessary_parenthesis
     (id == null ? 0 : id.hashCode) +
-    (condition == null ? 0 : condition.hashCode) +
-    (gradeKey == null ? 0 : gradeKey.hashCode) +
     (status == null ? 0 : status.hashCode) +
-    (receivedAt == null ? 0 : receivedAt.hashCode) +
+    (skuId == null ? 0 : skuId.hashCode) +
+    (skuName == null ? 0 : skuName.hashCode) +
     (imageUrl == null ? 0 : imageUrl.hashCode) +
     (variantId == null ? 0 : variantId.hashCode) +
+    (variantLabel == null ? 0 : variantLabel.hashCode) +
+    (condition == null ? 0 : condition.hashCode) +
+    (gradeKey == null ? 0 : gradeKey.hashCode) +
+    (location == null ? 0 : location.hashCode) +
     (lastSaleCents == null ? 0 : lastSaleCents.hashCode) +
-    (skuId == null ? 0 : skuId.hashCode) +
+    (askPriceCents == null ? 0 : askPriceCents.hashCode) +
     (withdrawSpeed == null ? 0 : withdrawSpeed.hashCode) +
     (withdrawTracking == null ? 0 : withdrawTracking.hashCode) +
-    (location == null ? 0 : location.hashCode) +
-    (skuName == null ? 0 : skuName.hashCode) +
-    (variantLabel == null ? 0 : variantLabel.hashCode) +
-    (askPriceCents == null ? 0 : askPriceCents.hashCode) +
+    (receivedAt == null ? 0 : receivedAt.hashCode) +
     (situation == null ? 0 : situation.hashCode) +
     (earlyWithdrawFeeCents == null ? 0 : earlyWithdrawFeeCents.hashCode);
 
   @override
-  String toString() => 'ListBuyerVaultItem[id=$id, condition=$condition, gradeKey=$gradeKey, status=$status, receivedAt=$receivedAt, imageUrl=$imageUrl, variantId=$variantId, lastSaleCents=$lastSaleCents, skuId=$skuId, withdrawSpeed=$withdrawSpeed, withdrawTracking=$withdrawTracking, location=$location, skuName=$skuName, variantLabel=$variantLabel, askPriceCents=$askPriceCents, situation=$situation, earlyWithdrawFeeCents=$earlyWithdrawFeeCents]';
+  String toString() => 'ListBuyerVaultItem[id=$id, status=$status, skuId=$skuId, skuName=$skuName, imageUrl=$imageUrl, variantId=$variantId, variantLabel=$variantLabel, condition=$condition, gradeKey=$gradeKey, location=$location, lastSaleCents=$lastSaleCents, askPriceCents=$askPriceCents, withdrawSpeed=$withdrawSpeed, withdrawTracking=$withdrawTracking, receivedAt=$receivedAt, situation=$situation, earlyWithdrawFeeCents=$earlyWithdrawFeeCents]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
       json[r'id'] = id;
-      json[r'condition'] = condition;
-    if (gradeKey != null) {
-      json[r'gradeKey'] = gradeKey;
-    }
       json[r'status'] = status;
-    if (receivedAt != null) {
-      json[r'receivedAt'] = receivedAt;
+      json[r'skuId'] = skuId;
+    if (skuName != null) {
+      json[r'skuName'] = skuName;
     }
     if (imageUrl != null) {
       json[r'imageUrl'] = imageUrl;
@@ -128,27 +125,30 @@ class ListBuyerVaultItem {
     if (variantId != null) {
       json[r'variantId'] = variantId;
     }
+    if (variantLabel != null) {
+      json[r'variantLabel'] = variantLabel;
+    }
+      json[r'condition'] = condition;
+    if (gradeKey != null) {
+      json[r'gradeKey'] = gradeKey;
+    }
+    if (location != null) {
+      json[r'location'] = location;
+    }
     if (lastSaleCents != null) {
       json[r'lastSaleCents'] = lastSaleCents;
     }
-      json[r'skuId'] = skuId;
+    if (askPriceCents != null) {
+      json[r'askPriceCents'] = askPriceCents;
+    }
     if (withdrawSpeed != null) {
       json[r'withdrawSpeed'] = withdrawSpeed;
     }
     if (withdrawTracking != null) {
       json[r'withdrawTracking'] = withdrawTracking;
     }
-    if (location != null) {
-      json[r'location'] = location;
-    }
-    if (skuName != null) {
-      json[r'skuName'] = skuName;
-    }
-    if (variantLabel != null) {
-      json[r'variantLabel'] = variantLabel;
-    }
-    if (askPriceCents != null) {
-      json[r'askPriceCents'] = askPriceCents;
+    if (receivedAt != null) {
+      json[r'receivedAt'] = receivedAt;
     }
     if (situation != null) {
       json[r'situation'] = situation;
@@ -167,24 +167,24 @@ class ListBuyerVaultItem {
       final json = value.cast<String, dynamic>();
       return ListBuyerVaultItem(
         id: mapValueOfType<String>(json, r'id'),
-        condition: mapValueOfType<String>(json, r'condition'),
-        gradeKey: mapValueOfType<String>(json, r'gradeKey'),
         status: mapValueOfType<String>(json, r'status'),
-        receivedAt: mapValueOfType<String>(json, r'receivedAt'),
+        skuId: mapValueOfType<String>(json, r'skuId'),
+        skuName: mapValueOfType<String>(json, r'skuName'),
         imageUrl: mapValueOfType<String>(json, r'imageUrl'),
         variantId: mapValueOfType<String>(json, r'variantId'),
+        variantLabel: mapValueOfType<String>(json, r'variantLabel'),
+        condition: mapValueOfType<String>(json, r'condition'),
+        gradeKey: mapValueOfType<String>(json, r'gradeKey'),
+        location: mapValueOfType<String>(json, r'location'),
         lastSaleCents: json[r'lastSaleCents'] == null
           ? null
           : num.parse(json[r'lastSaleCents'].toString()),
-        skuId: mapValueOfType<String>(json, r'skuId'),
-        withdrawSpeed: mapValueOfType<String>(json, r'withdrawSpeed'),
-        withdrawTracking: mapValueOfType<String>(json, r'withdrawTracking'),
-        location: mapValueOfType<String>(json, r'location'),
-        skuName: mapValueOfType<String>(json, r'skuName'),
-        variantLabel: mapValueOfType<String>(json, r'variantLabel'),
         askPriceCents: json[r'askPriceCents'] == null
           ? null
           : num.parse(json[r'askPriceCents'].toString()),
+        withdrawSpeed: mapValueOfType<String>(json, r'withdrawSpeed'),
+        withdrawTracking: mapValueOfType<String>(json, r'withdrawTracking'),
+        receivedAt: mapValueOfType<String>(json, r'receivedAt'),
         situation: mapValueOfType<String>(json, r'situation'),
         earlyWithdrawFeeCents: json[r'earlyWithdrawFeeCents'] == null
           ? null

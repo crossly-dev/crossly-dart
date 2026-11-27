@@ -110,14 +110,14 @@ class GetVaultMarketHomeUnitResponseHomePrivacyEnum {
   String toJson() => value;
 
   static const open = GetVaultMarketHomeUnitResponseHomePrivacyEnum._(r'open');
-  static const locked = GetVaultMarketHomeUnitResponseHomePrivacyEnum._(r'locked');
   static const friends = GetVaultMarketHomeUnitResponseHomePrivacyEnum._(r'friends');
+  static const locked = GetVaultMarketHomeUnitResponseHomePrivacyEnum._(r'locked');
 
   /// List of all possible values in this [enum][GetVaultMarketHomeUnitResponseHomePrivacyEnum].
   static const values = <GetVaultMarketHomeUnitResponseHomePrivacyEnum>[
     open,
-    locked,
     friends,
+    locked,
   ];
 
   static GetVaultMarketHomeUnitResponseHomePrivacyEnum fromJson(dynamic value) =>
@@ -150,8 +150,8 @@ class GetVaultMarketHomeUnitResponseHomePrivacyEnumTypeTransformer {
     if (data != null) {
       switch (data.toString()) {
         case r'open': return GetVaultMarketHomeUnitResponseHomePrivacyEnum.open;
-        case r'locked': return GetVaultMarketHomeUnitResponseHomePrivacyEnum.locked;
         case r'friends': return GetVaultMarketHomeUnitResponseHomePrivacyEnum.friends;
+        case r'locked': return GetVaultMarketHomeUnitResponseHomePrivacyEnum.locked;
         default:
           if (allowNull == false) {
             throw ArgumentError('Unknown enum value to decode: $data');

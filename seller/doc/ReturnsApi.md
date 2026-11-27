@@ -11,9 +11,11 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**createPolicyReturnReceived**](ReturnsApi.md#createpolicyreturnreceived) | **POST** /v1/policy-returns/{id}/received | Mark a return received: refunds the buyer, less the restocking or try fee you keep.
 [**createReturn**](ReturnsApi.md#createreturn) | **POST** /v1/returns | Open a return record on an order (rejects if another open return exists).
+[**createReturnAccept**](ReturnsApi.md#createreturnaccept) | **POST** /v1/returns/{id}/accept | Accept a Crossly-marketplace return request: a prepaid return label to your return address (the buyer has 14 days to ship), a return record linked to it, and optionally a refund now (refund: { amount? } in dollars; needs orders:refund). Without one, the rest is refunded when the return is delivered. Safe to repeat. Crossposted orders: not_supported_on_platform.
+[**createReturnDecline**](ReturnsApi.md#createreturndecline) | **POST** /v1/returns/{id}/decline | Decline a Crossly-marketplace return request with a reason (required, 8-2000 chars), posted to the buyer as your response. It does not close the request: the buyer can reply or ask Crossly to decide. Not after the label is issued.
 [**getReturn**](ReturnsApi.md#getreturn) | **GET** /v1/returns/{id} | Get one return record.
 [**listPolicyReturns**](ReturnsApi.md#listpolicyreturns) | **GET** /v1/policy-returns | Returns Crossly buyers opened under your return policy or try at home; filter by orderId.
-[**listReturns**](ReturnsApi.md#listreturns) | **GET** /v1/returns | List returns (physical-return workflow). status=open|closed|<exact>.
+[**listReturns**](ReturnsApi.md#listreturns) | **GET** /v1/returns | List returns. Default: your return records (the physical-return workflow), status=open|closed|<exact>. source=request: the OPEN return requests buyers made on the Crossly marketplace, newest first; accept or decline each with POST /v1/returns/{id}/accept | decline.
 [**updateReturn**](ReturnsApi.md#updatereturn) | **PATCH** /v1/returns/{id} | Transition return status (received/inspected/restocked) and bump inventory on restock.
 
 
@@ -65,7 +67,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
 # **createReturn**
-> ListReturnsItem createReturn()
+> GetReturnResponse createReturn()
 
 Open a return record on an order (rejects if another open return exists).
 
@@ -94,7 +96,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-**ListReturnsItem**
+**GetReturnResponse**
 
 ### Authorization
 
@@ -107,8 +109,104 @@ This endpoint does not need any parameter.
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
+# **createReturnAccept**
+> CreateReturnAcceptResponse createReturnAccept(id)
+
+Accept a Crossly-marketplace return request: a prepaid return label to your return address (the buyer has 14 days to ship), a return record linked to it, and optionally a refund now (refund: { amount? } in dollars; needs orders:refund). Without one, the rest is refunded when the return is delivered. Safe to repeat. Crossposted orders: not_supported_on_platform.
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = ReturnsApi();
+final id = 38400000-8cf0-11bd-b23e-10b96e4ef00d; // String | 
+
+try {
+    final result = api_instance.createReturnAccept(id);
+    print(result);
+} catch (e) {
+    print('Exception when calling ReturnsApi->createReturnAccept: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **String**|  | 
+
+### Return type
+
+**CreateReturnAcceptResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+# **createReturnDecline**
+> ListReturnsItem createReturnDecline(id, createReturnDeclineRequest)
+
+Decline a Crossly-marketplace return request with a reason (required, 8-2000 chars), posted to the buyer as your response. It does not close the request: the buyer can reply or ask Crossly to decide. Not after the label is issued.
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = ReturnsApi();
+final id = 38400000-8cf0-11bd-b23e-10b96e4ef00d; // String | 
+final createReturnDeclineRequest = CreateReturnDeclineRequest(); // CreateReturnDeclineRequest | 
+
+try {
+    final result = api_instance.createReturnDecline(id, createReturnDeclineRequest);
+    print(result);
+} catch (e) {
+    print('Exception when calling ReturnsApi->createReturnDecline: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **String**|  | 
+ **createReturnDeclineRequest** | **CreateReturnDeclineRequest**|  | 
+
+### Return type
+
+**ListReturnsItem**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
 # **getReturn**
-> ListReturnsItem getReturn(id)
+> GetReturnResponse getReturn(id)
 
 Get one return record.
 
@@ -141,7 +239,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**ListReturnsItem**
+**GetReturnResponse**
 
 ### Authorization
 
@@ -200,7 +298,7 @@ This endpoint does not need any parameter.
 # **listReturns**
 > ListReturnsResponse listReturns()
 
-List returns (physical-return workflow). status=open|closed|<exact>.
+List returns. Default: your return records (the physical-return workflow), status=open|closed|<exact>. source=request: the OPEN return requests buyers made on the Crossly marketplace, newest first; accept or decline each with POST /v1/returns/{id}/accept | decline.
 
 ### Example
 ```dart
@@ -241,7 +339,7 @@ This endpoint does not need any parameter.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
 # **updateReturn**
-> ListReturnsItem updateReturn(id)
+> GetReturnResponse updateReturn(id)
 
 Transition return status (received/inspected/restocked) and bump inventory on restock.
 
@@ -274,7 +372,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**ListReturnsItem**
+**GetReturnResponse**
 
 ### Authorization
 

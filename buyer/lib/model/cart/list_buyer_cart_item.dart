@@ -18,6 +18,7 @@ class ListBuyerCartItem {
     @required this.platformListingId,
     @required this.quantity,
     @required this.unitPriceCents,
+    this.listingVariantId,
     this.slug,
     this.title,
     this.listingStatus,
@@ -33,6 +34,8 @@ class ListBuyerCartItem {
 
   num unitPriceCents;
 
+  String listingVariantId;
+
   String slug;
 
   String title;
@@ -46,6 +49,7 @@ class ListBuyerCartItem {
      other.platformListingId == platformListingId &&
      other.quantity == quantity &&
      other.unitPriceCents == unitPriceCents &&
+     other.listingVariantId == listingVariantId &&
      other.slug == slug &&
      other.title == title &&
      other.listingStatus == listingStatus;
@@ -58,12 +62,13 @@ class ListBuyerCartItem {
     (platformListingId == null ? 0 : platformListingId.hashCode) +
     (quantity == null ? 0 : quantity.hashCode) +
     (unitPriceCents == null ? 0 : unitPriceCents.hashCode) +
+    (listingVariantId == null ? 0 : listingVariantId.hashCode) +
     (slug == null ? 0 : slug.hashCode) +
     (title == null ? 0 : title.hashCode) +
     (listingStatus == null ? 0 : listingStatus.hashCode);
 
   @override
-  String toString() => 'ListBuyerCartItem[available=$available, id=$id, platformListingId=$platformListingId, quantity=$quantity, unitPriceCents=$unitPriceCents, slug=$slug, title=$title, listingStatus=$listingStatus]';
+  String toString() => 'ListBuyerCartItem[available=$available, id=$id, platformListingId=$platformListingId, quantity=$quantity, unitPriceCents=$unitPriceCents, listingVariantId=$listingVariantId, slug=$slug, title=$title, listingStatus=$listingStatus]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -72,6 +77,9 @@ class ListBuyerCartItem {
       json[r'platformListingId'] = platformListingId;
       json[r'quantity'] = quantity;
       json[r'unitPriceCents'] = unitPriceCents;
+    if (listingVariantId != null) {
+      json[r'listingVariantId'] = listingVariantId;
+    }
     if (slug != null) {
       json[r'slug'] = slug;
     }
@@ -100,6 +108,7 @@ class ListBuyerCartItem {
         unitPriceCents: json[r'unitPriceCents'] == null
           ? null
           : num.parse(json[r'unitPriceCents'].toString()),
+        listingVariantId: mapValueOfType<String>(json, r'listingVariantId'),
         slug: mapValueOfType<String>(json, r'slug'),
         title: mapValueOfType<String>(json, r'title'),
         listingStatus: mapValueOfType<String>(json, r'listingStatus'),

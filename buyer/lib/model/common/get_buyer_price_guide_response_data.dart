@@ -13,13 +13,15 @@ part of openapi.api;
 class GetBuyerPriceGuideResponseData {
   /// Returns a new [GetBuyerPriceGuideResponseData] instance.
   GetBuyerPriceGuideResponseData({
+    @required this.count,
     this.medianCents,
     this.p25Cents,
     this.p75Cents,
-    @required this.count,
     this.byMonth = const [],
     this.recent = const [],
   });
+
+  num count;
 
   num medianCents;
 
@@ -27,36 +29,35 @@ class GetBuyerPriceGuideResponseData {
 
   num p75Cents;
 
-  num count;
-
   List<Map<String, Object>> byMonth;
 
   List<Map<String, Object>> recent;
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is GetBuyerPriceGuideResponseData &&
+     other.count == count &&
      other.medianCents == medianCents &&
      other.p25Cents == p25Cents &&
      other.p75Cents == p75Cents &&
-     other.count == count &&
      other.byMonth == byMonth &&
      other.recent == recent;
 
   @override
   int get hashCode =>
   // ignore: unnecessary_parenthesis
+    (count == null ? 0 : count.hashCode) +
     (medianCents == null ? 0 : medianCents.hashCode) +
     (p25Cents == null ? 0 : p25Cents.hashCode) +
     (p75Cents == null ? 0 : p75Cents.hashCode) +
-    (count == null ? 0 : count.hashCode) +
     (byMonth == null ? 0 : byMonth.hashCode) +
     (recent == null ? 0 : recent.hashCode);
 
   @override
-  String toString() => 'GetBuyerPriceGuideResponseData[medianCents=$medianCents, p25Cents=$p25Cents, p75Cents=$p75Cents, count=$count, byMonth=$byMonth, recent=$recent]';
+  String toString() => 'GetBuyerPriceGuideResponseData[count=$count, medianCents=$medianCents, p25Cents=$p25Cents, p75Cents=$p75Cents, byMonth=$byMonth, recent=$recent]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
+      json[r'count'] = count;
     if (medianCents != null) {
       json[r'medianCents'] = medianCents;
     }
@@ -66,7 +67,6 @@ class GetBuyerPriceGuideResponseData {
     if (p75Cents != null) {
       json[r'p75Cents'] = p75Cents;
     }
-      json[r'count'] = count;
       json[r'byMonth'] = byMonth;
       json[r'recent'] = recent;
     return json;
@@ -79,6 +79,9 @@ class GetBuyerPriceGuideResponseData {
     if (value is Map) {
       final json = value.cast<String, dynamic>();
       return GetBuyerPriceGuideResponseData(
+        count: json[r'count'] == null
+          ? null
+          : num.parse(json[r'count'].toString()),
         medianCents: json[r'medianCents'] == null
           ? null
           : num.parse(json[r'medianCents'].toString()),
@@ -88,9 +91,6 @@ class GetBuyerPriceGuideResponseData {
         p75Cents: json[r'p75Cents'] == null
           ? null
           : num.parse(json[r'p75Cents'].toString()),
-        count: json[r'count'] == null
-          ? null
-          : num.parse(json[r'count'].toString()),
         byMonth: json[r'byMonth'] is List ? (json[r'byMonth'] as List).cast<Map<String, Object>>() : const [],
         recent: json[r'recent'] is List ? (json[r'recent'] as List).cast<Map<String, Object>>() : const [],
       );

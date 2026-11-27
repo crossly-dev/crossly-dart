@@ -259,7 +259,7 @@ class OrdersApi {
   }
 
   /// Bulk mark orders as disputed with a shared reason.
-  Future<CreateInventoryLabelRenameResponse> createOrderBulkMarkDisputed() async {
+  Future<UpdatedResponse> createOrderBulkMarkDisputed() async {
     final response = await createOrderBulkMarkDisputedWithHttpInfo();
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
@@ -268,10 +268,10 @@ class OrdersApi {
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
     if (response.body != null && response.statusCode != HttpStatus.noContent) {
-      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'CreateInventoryLabelRenameResponse',) as CreateInventoryLabelRenameResponse;
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'UpdatedResponse',) as UpdatedResponse;
     
     }
-    return Future<CreateInventoryLabelRenameResponse>.value();
+    return Future<UpdatedResponse>.value();
   }
 
   /// Bulk flip status=shipped, clear the reserved-stock marker, and notify each platform.
@@ -366,7 +366,7 @@ class OrdersApi {
     return Future<MultipartFile>.value();
   }
 
-  /// Cancel an order on its marketplace.
+  /// Cancel an order before it ships. Crossly-marketplace orders refund the buyer (also needs orders:refund) and restock; crossposted orders go to the marketplace, or fail not_supported_on_platform (recordOnly: true records a cancel made on the marketplace). Fires order.cancelled.
   ///
   /// Note: This method returns the HTTP [Response].
   ///
@@ -406,7 +406,7 @@ class OrdersApi {
     );
   }
 
-  /// Cancel an order on its marketplace.
+  /// Cancel an order before it ships. Crossly-marketplace orders refund the buyer (also needs orders:refund) and restock; crossposted orders go to the marketplace, or fail not_supported_on_platform (recordOnly: true records a cancel made on the marketplace). Fires order.cancelled.
   ///
   /// Parameters:
   ///
@@ -424,6 +424,70 @@ class OrdersApi {
     
     }
     return Future<CreateOrderCancelResponse>.value();
+  }
+
+  /// Correct a wrong tracking number the marketplace already holds.
+  ///
+  /// Replaces the order's tracking number with `trackingNumber`, on Crossly and on the marketplace, where the platform can change tracking it already has (its trackingCorrection capability): `correction` is replace (overwritten), remove_then_submit (the old number removed, then the new one sent) or submit (the platform held none). Refused with validation_error where the platform cannot change it (update it there), when the order has no tracking, its tracking came with a label (void the label instead), or it is closed or delivered; conflict while the previous tracking update is still in flight.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<Response> createOrderCorrectTrackingWithHttpInfo(String id,) async {
+    // Verify required params are set.
+    if (id == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: id');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/orders/{id}/correct-tracking'
+      .replaceAll('{id}', id);
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'POST',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Correct a wrong tracking number the marketplace already holds.
+  ///
+  /// Replaces the order's tracking number with `trackingNumber`, on Crossly and on the marketplace, where the platform can change tracking it already has (its trackingCorrection capability): `correction` is replace (overwritten), remove_then_submit (the old number removed, then the new one sent) or submit (the platform held none). Refused with validation_error where the platform cannot change it (update it there), when the order has no tracking, its tracking came with a label (void the label instead), or it is closed or delivered; conflict while the previous tracking update is still in flight.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<CreateOrderCorrectTrackingResponse> createOrderCorrectTracking(String id,) async {
+    final response = await createOrderCorrectTrackingWithHttpInfo(id,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'CreateOrderCorrectTrackingResponse',) as CreateOrderCorrectTrackingResponse;
+    
+    }
+    return Future<CreateOrderCorrectTrackingResponse>.value();
   }
 
   /// Flag an order as disputed.
@@ -532,7 +596,7 @@ class OrdersApi {
     return Future<CreateOrderImportResponse>.value();
   }
 
-  /// Purchase EasyPost shipping label.
+  /// Purchase a Crossly Shipping label. An order that already has a label answers 409 label_exists unless allowSecondLabel is true.
   ///
   /// Note: This method returns the HTTP [Response].
   ///
@@ -572,7 +636,7 @@ class OrdersApi {
     );
   }
 
-  /// Purchase EasyPost shipping label.
+  /// Purchase a Crossly Shipping label. An order that already has a label answers 409 label_exists unless allowSecondLabel is true.
   ///
   /// Parameters:
   ///
@@ -590,6 +654,134 @@ class OrdersApi {
     
     }
     return Future<CreateOrderLabelResponse>.value();
+  }
+
+  /// Void a Crossly Shipping label and refund it to the shipping wallet.
+  ///
+  /// Voids the order's unused label, owes the wallet charge back in full (markup included) and sets the order back to needs_fulfillment. The refund is held as pending (`refundPendingCents`; `refundedCents` stays 0) and is credited to the shipping wallet when Crossly releases held credits. Only while the carrier has not scanned the parcel and within 30 days of purchase. `tracking.outcome` says what happens to tracking already sent to the marketplace: not_submitted, removal_queued, replace_on_next_label, or update_manually (with `platformOrderUrl`). Repeating the call returns the same result with `alreadyVoided: true` and refunds nothing again.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<Response> createOrderLabelVoidWithHttpInfo(String id,) async {
+    // Verify required params are set.
+    if (id == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: id');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/orders/{id}/label/void'
+      .replaceAll('{id}', id);
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'POST',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Void a Crossly Shipping label and refund it to the shipping wallet.
+  ///
+  /// Voids the order's unused label, owes the wallet charge back in full (markup included) and sets the order back to needs_fulfillment. The refund is held as pending (`refundPendingCents`; `refundedCents` stays 0) and is credited to the shipping wallet when Crossly releases held credits. Only while the carrier has not scanned the parcel and within 30 days of purchase. `tracking.outcome` says what happens to tracking already sent to the marketplace: not_submitted, removal_queued, replace_on_next_label, or update_manually (with `platformOrderUrl`). Repeating the call returns the same result with `alreadyVoided: true` and refunds nothing again.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<CreateOrderLabelVoidResponse> createOrderLabelVoid(String id,) async {
+    final response = await createOrderLabelVoidWithHttpInfo(id,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'CreateOrderLabelVoidResponse',) as CreateOrderLabelVoidResponse;
+    
+    }
+    return Future<CreateOrderLabelVoidResponse>.value();
+  }
+
+  /// Link an unmatched sale to one of your listings (marks it sold, delists it elsewhere).
+  ///
+  /// For an order whose listing is an auto-created external-sale stub. Body: { listingId, platformListingId? }. Moves the sale onto the listing's row on the order's platform (or moves the stub's row under the listing when it has none), decrements its stock like a detected sale, archives the stub, and delists the item from every other marketplace once no unit is left. 409 when the order is already linked.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<Response> createOrderLinkListingWithHttpInfo(String id,) async {
+    // Verify required params are set.
+    if (id == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: id');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/orders/{id}/link-listing'
+      .replaceAll('{id}', id);
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'POST',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Link an unmatched sale to one of your listings (marks it sold, delists it elsewhere).
+  ///
+  /// For an order whose listing is an auto-created external-sale stub. Body: { listingId, platformListingId? }. Moves the sale onto the listing's row on the order's platform (or moves the stub's row under the listing when it has none), decrements its stock like a detected sale, archives the stub, and delists the item from every other marketplace once no unit is left. 409 when the order is already linked.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<CreateOrderLinkListingResponse> createOrderLinkListing(String id,) async {
+    final response = await createOrderLinkListingWithHttpInfo(id,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'CreateOrderLinkListingResponse',) as CreateOrderLinkListingResponse;
+    
+    }
+    return Future<CreateOrderLinkListingResponse>.value();
   }
 
   /// Message the order's buyer on the marketplace.
@@ -652,6 +844,73 @@ class OrdersApi {
     return Future<CreateOrderMessageResponse>.value();
   }
 
+  /// Send a message to the order's buyer chat on the marketplace. Mirrored into the Crossly inbox.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  ///
+  /// * [CreateOrderOrderChatRequest] createOrderOrderChatRequest (required):
+  Future<Response> createOrderOrderChatWithHttpInfo(String id, CreateOrderOrderChatRequest createOrderOrderChatRequest,) async {
+    // Verify required params are set.
+    if (id == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: id');
+    }
+    if (createOrderOrderChatRequest == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: createOrderOrderChatRequest');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/orders/{id}/order-chat'
+      .replaceAll('{id}', id);
+
+    // ignore: prefer_final_locals
+    Object postBody = createOrderOrderChatRequest;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>['application/json'];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'POST',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Send a message to the order's buyer chat on the marketplace. Mirrored into the Crossly inbox.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  ///
+  /// * [CreateOrderOrderChatRequest] createOrderOrderChatRequest (required):
+  Future<OkResponse> createOrderOrderChat(String id, CreateOrderOrderChatRequest createOrderOrderChatRequest,) async {
+    final response = await createOrderOrderChatWithHttpInfo(id, createOrderOrderChatRequest,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'OkResponse',) as OkResponse;
+    
+    }
+    return Future<OkResponse>.value();
+  }
+
   /// Book a carrier pickup for labelled orders (one carrier per pickup; window at least an hour, up to 14 days ahead).
   ///
   /// Note: This method returns the HTTP [Response].
@@ -698,7 +957,7 @@ class OrdersApi {
     return Future<CreateOrderPickupResponse>.value();
   }
 
-  /// Buy the carrier label for a Crossly order the buyer collects from a pickup point (debits your shipping wallet). 402 when the wallet is short.
+  /// Buy the carrier label for a Crossly order the buyer collects from a pickup point (debits your shipping wallet). 402 when the wallet is short. An order that already has a label answers 409 label_exists unless allowSecondLabel is true.
   ///
   /// Note: This method returns the HTTP [Response].
   ///
@@ -738,7 +997,7 @@ class OrdersApi {
     );
   }
 
-  /// Buy the carrier label for a Crossly order the buyer collects from a pickup point (debits your shipping wallet). 402 when the wallet is short.
+  /// Buy the carrier label for a Crossly order the buyer collects from a pickup point (debits your shipping wallet). 402 when the wallet is short. An order that already has a label answers 409 label_exists unless allowSecondLabel is true.
   ///
   /// Parameters:
   ///
@@ -756,6 +1015,306 @@ class OrdersApi {
     
     }
     return Future<CreateOrderPickupLabelResponse>.value();
+  }
+
+  /// Save the package (weight oz, box inches) the marketplace prices the label from.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<Response> createOrderPlatformLabelPackageWithHttpInfo(String id,) async {
+    // Verify required params are set.
+    if (id == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: id');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/orders/{id}/platform-label/package'
+      .replaceAll('{id}', id);
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'POST',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Save the package (weight oz, box inches) the marketplace prices the label from.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<GetOrderWhatnotShipmentResponse> createOrderPlatformLabelPackage(String id,) async {
+    final response = await createOrderPlatformLabelPackageWithHttpInfo(id,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'GetOrderWhatnotShipmentResponse',) as GetOrderWhatnotShipmentResponse;
+    
+    }
+    return Future<GetOrderWhatnotShipmentResponse>.value();
+  }
+
+  /// Quote what a change to the marketplace shipment's package costs (cents).
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<Response> createOrderPlatformLabelPackageQuoteWithHttpInfo(String id,) async {
+    // Verify required params are set.
+    if (id == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: id');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/orders/{id}/platform-label/package/quote'
+      .replaceAll('{id}', id);
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'POST',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Quote what a change to the marketplace shipment's package costs (cents).
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<CreateOrderWhatnotPackageQuoteResponse> createOrderPlatformLabelPackageQuote(String id,) async {
+    final response = await createOrderPlatformLabelPackageQuoteWithHttpInfo(id,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'CreateOrderWhatnotPackageQuoteResponse',) as CreateOrderWhatnotPackageQuoteResponse;
+    
+    }
+    return Future<CreateOrderWhatnotPackageQuoteResponse>.value();
+  }
+
+  /// Pull the marketplace's prepaid label into Crossly (every platform with a label descriptor).
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<Response> createOrderPlatformLabelPullWithHttpInfo(String id,) async {
+    // Verify required params are set.
+    if (id == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: id');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/orders/{id}/platform-label/pull'
+      .replaceAll('{id}', id);
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'POST',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Pull the marketplace's prepaid label into Crossly (every platform with a label descriptor).
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<CreateOrderPlatformLabelPullResponse> createOrderPlatformLabelPull(String id,) async {
+    final response = await createOrderPlatformLabelPullWithHttpInfo(id,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'CreateOrderPlatformLabelPullResponse',) as CreateOrderPlatformLabelPullResponse;
+    
+    }
+    return Future<CreateOrderPlatformLabelPullResponse>.value();
+  }
+
+  /// Buy a replacement / extra marketplace label, or have the marketplace generate it, and record it.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<Response> createOrderPlatformLabelPurchaseWithHttpInfo(String id,) async {
+    // Verify required params are set.
+    if (id == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: id');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/orders/{id}/platform-label/purchase'
+      .replaceAll('{id}', id);
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'POST',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Buy a replacement / extra marketplace label, or have the marketplace generate it, and record it.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<CreateOrderPlatformLabelPurchaseResponse> createOrderPlatformLabelPurchase(String id,) async {
+    final response = await createOrderPlatformLabelPurchaseWithHttpInfo(id,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'CreateOrderPlatformLabelPurchaseResponse',) as CreateOrderPlatformLabelPurchaseResponse;
+    
+    }
+    return Future<CreateOrderPlatformLabelPurchaseResponse>.value();
+  }
+
+  /// Quote what buying a marketplace label costs, before you are charged.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<Response> createOrderPlatformLabelQuoteWithHttpInfo(String id,) async {
+    // Verify required params are set.
+    if (id == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: id');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/orders/{id}/platform-label/quote'
+      .replaceAll('{id}', id);
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'POST',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Quote what buying a marketplace label costs, before you are charged.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<CreateOrderPlatformLabelQuoteResponse> createOrderPlatformLabelQuote(String id,) async {
+    final response = await createOrderPlatformLabelQuoteWithHttpInfo(id,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'CreateOrderPlatformLabelQuoteResponse',) as CreateOrderPlatformLabelQuoteResponse;
+    
+    }
+    return Future<CreateOrderPlatformLabelQuoteResponse>.value();
   }
 
   /// Pull a pre-paid label from cookie platforms (Poshmark/Mercari).
@@ -818,7 +1377,7 @@ class OrdersApi {
     return Future<CreateOrderPullPlatformLabelResponse>.value();
   }
 
-  /// EasyPost rate quote for an order.
+  /// Crossly Shipping rate quote for an order.
   ///
   /// Note: This method returns the HTTP [Response].
   ///
@@ -858,7 +1417,7 @@ class OrdersApi {
     );
   }
 
-  /// EasyPost rate quote for an order.
+  /// Crossly Shipping rate quote for an order.
   ///
   /// Parameters:
   ///
@@ -878,7 +1437,7 @@ class OrdersApi {
     return Future<CreateOrderRateResponse>.value();
   }
 
-  /// Issue a full or partial refund on the platform.
+  /// DEPRECATED: use POST /v1/orders/{id}/refunds. Full or partial refund (amount in dollars). Same idempotency and cap as /refunds: the same request twice refunds once (Idempotency-Key, else the body), never past what the buyer paid.
   ///
   /// Note: This method returns the HTTP [Response].
   ///
@@ -918,7 +1477,7 @@ class OrdersApi {
     );
   }
 
-  /// Issue a full or partial refund on the platform.
+  /// DEPRECATED: use POST /v1/orders/{id}/refunds. Full or partial refund (amount in dollars). Same idempotency and cap as /refunds: the same request twice refunds once (Idempotency-Key, else the body), never past what the buyer paid.
   ///
   /// Parameters:
   ///
@@ -936,6 +1495,134 @@ class OrdersApi {
     
     }
     return Future<CreateOrderRefundResponse>.value();
+  }
+
+  /// Refund an order, in full or in part. `amount` is dollars; omit it for everything left (or the line items' value). Crossly-marketplace orders refund the buyer's card; crossposted orders refund through the marketplace, or fail not_supported_on_platform. Never refunds past the order (refund_exceeds_remaining). The same request twice refunds once: send an Idempotency-Key (without one, the body is the key). A partial refund keeps the order's status. What the platform takes (full/partial, its own reason keys, a comment) is GET /v1/orders/{id}/refund-options; a request outside it fails partial_refund_unsupported, invalid_refund_reason or refund_exceeds_item_amount. Fires order.refunded.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<Response> createOrderRefundByIdWithHttpInfo(String id,) async {
+    // Verify required params are set.
+    if (id == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: id');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/orders/{id}/refunds'
+      .replaceAll('{id}', id);
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'POST',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Refund an order, in full or in part. `amount` is dollars; omit it for everything left (or the line items' value). Crossly-marketplace orders refund the buyer's card; crossposted orders refund through the marketplace, or fail not_supported_on_platform. Never refunds past the order (refund_exceeds_remaining). The same request twice refunds once: send an Idempotency-Key (without one, the body is the key). A partial refund keeps the order's status. What the platform takes (full/partial, its own reason keys, a comment) is GET /v1/orders/{id}/refund-options; a request outside it fails partial_refund_unsupported, invalid_refund_reason or refund_exceeds_item_amount. Fires order.refunded.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<CreateOrderRefundByIdResponse> createOrderRefundById(String id,) async {
+    final response = await createOrderRefundByIdWithHttpInfo(id,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'CreateOrderRefundByIdResponse',) as CreateOrderRefundByIdResponse;
+    
+    }
+    return Future<CreateOrderRefundByIdResponse>.value();
+  }
+
+  /// Settle an `unverified` refund (one Crossly could not confirm with the marketplace after its request was interrupted) once you have checked the marketplace: succeeded (with the amount actually refunded, dollars) or failed (nothing moved; the same Idempotency-Key can then try again). Crossly-marketplace refunds are confirmed by support instead.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  ///
+  /// * [String] refundId (required):
+  Future<Response> createOrderRefundResolveWithHttpInfo(String id, String refundId,) async {
+    // Verify required params are set.
+    if (id == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: id');
+    }
+    if (refundId == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: refundId');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/orders/{id}/refunds/{refundId}/resolve'
+      .replaceAll('{id}', id)
+      .replaceAll('{refundId}', refundId);
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'POST',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Settle an `unverified` refund (one Crossly could not confirm with the marketplace after its request was interrupted) once you have checked the marketplace: succeeded (with the amount actually refunded, dollars) or failed (nothing moved; the same Idempotency-Key can then try again). Crossly-marketplace refunds are confirmed by support instead.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  ///
+  /// * [String] refundId (required):
+  Future<ListOrderRefundsItem> createOrderRefundResolve(String id, String refundId,) async {
+    final response = await createOrderRefundResolveWithHttpInfo(id, refundId,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'ListOrderRefundsItem',) as ListOrderRefundsItem;
+    
+    }
+    return Future<ListOrderRefundsItem>.value();
   }
 
   /// Create SCAN forms (one per carrier account and ship-from address) for labels the carrier has not scanned yet.
@@ -1029,7 +1716,7 @@ class OrdersApi {
   /// Parameters:
   ///
   /// * [String] id (required):
-  Future<CreateInboxOfferResponse> createOrderTracking(String id,) async {
+  Future<CreateOrderTrackingResponse> createOrderTracking(String id,) async {
     final response = await createOrderTrackingWithHttpInfo(id,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
@@ -1038,10 +1725,10 @@ class OrdersApi {
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
     if (response.body != null && response.statusCode != HttpStatus.noContent) {
-      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'CreateInboxOfferResponse',) as CreateInboxOfferResponse;
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'CreateOrderTrackingResponse',) as CreateOrderTrackingResponse;
     
     }
-    return Future<CreateInboxOfferResponse>.value();
+    return Future<CreateOrderTrackingResponse>.value();
   }
 
   /// Generate the Whatnot shipping label and record it on the order.
@@ -1149,7 +1836,7 @@ class OrdersApi {
   /// Parameters:
   ///
   /// * [String] id (required):
-  Future<CreateOrderWhatnotLabelResponse> createOrderWhatnotPackage(String id,) async {
+  Future<GetOrderWhatnotShipmentResponse> createOrderWhatnotPackage(String id,) async {
     final response = await createOrderWhatnotPackageWithHttpInfo(id,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
@@ -1158,10 +1845,10 @@ class OrdersApi {
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
     if (response.body != null && response.statusCode != HttpStatus.noContent) {
-      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'CreateOrderWhatnotLabelResponse',) as CreateOrderWhatnotLabelResponse;
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'GetOrderWhatnotShipmentResponse',) as GetOrderWhatnotShipmentResponse;
     
     }
-    return Future<CreateOrderWhatnotLabelResponse>.value();
+    return Future<GetOrderWhatnotShipmentResponse>.value();
   }
 
   /// Quote what a Whatnot package change costs (cents).
@@ -1464,6 +2151,194 @@ class OrdersApi {
     return Future<RentalResponse>.value();
   }
 
+  /// Mark a rental delivered to the renter.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<Response> createRentalDeliveredWithHttpInfo(String id,) async {
+    // Verify required params are set.
+    if (id == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: id');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/rentals/{id}/delivered'
+      .replaceAll('{id}', id);
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'POST',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Mark a rental delivered to the renter.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<RentalResponse> createRentalDelivered(String id,) async {
+    final response = await createRentalDeliveredWithHttpInfo(id,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'RentalResponse',) as RentalResponse;
+    
+    }
+    return Future<RentalResponse>.value();
+  }
+
+  /// Approve or decline a renter’s request for more days.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  ///
+  /// * [String] extensionId (required):
+  Future<Response> createRentalExtensionDecideWithHttpInfo(String id, String extensionId,) async {
+    // Verify required params are set.
+    if (id == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: id');
+    }
+    if (extensionId == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: extensionId');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/rentals/{id}/extensions/{extensionId}/decide'
+      .replaceAll('{id}', id)
+      .replaceAll('{extensionId}', extensionId);
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'POST',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Approve or decline a renter’s request for more days.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  ///
+  /// * [String] extensionId (required):
+  Future<CreateRentalExtensionDecideResponse> createRentalExtensionDecide(String id, String extensionId,) async {
+    final response = await createRentalExtensionDecideWithHttpInfo(id, extensionId,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'CreateRentalExtensionDecideResponse',) as CreateRentalExtensionDecideResponse;
+    
+    }
+    return Future<CreateRentalExtensionDecideResponse>.value();
+  }
+
+  /// Record the return inspection: the checklist, photos, and optionally release the deposit.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<Response> createRentalInspectWithHttpInfo(String id,) async {
+    // Verify required params are set.
+    if (id == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: id');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/rentals/{id}/inspect'
+      .replaceAll('{id}', id);
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'POST',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Record the return inspection: the checklist, photos, and optionally release the deposit.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<RentalResponse> createRentalInspect(String id,) async {
+    final response = await createRentalInspectWithHttpInfo(id,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'RentalResponse',) as RentalResponse;
+    
+    }
+    return Future<RentalResponse>.value();
+  }
+
   /// Buy both labels for a booked rental: outbound to the renter, and the return label they use.
   ///
   /// Note: This method returns the HTTP [Response].
@@ -1511,6 +2386,126 @@ class OrdersApi {
   /// * [String] id (required):
   Future<RentalResponse> createRentalLabel(String id,) async {
     final response = await createRentalLabelWithHttpInfo(id,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'RentalResponse',) as RentalResponse;
+    
+    }
+    return Future<RentalResponse>.value();
+  }
+
+  /// Report a rental not returned (14 days past due): the deposit goes to you.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<Response> createRentalNotReturnedWithHttpInfo(String id,) async {
+    // Verify required params are set.
+    if (id == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: id');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/rentals/{id}/not-returned'
+      .replaceAll('{id}', id);
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'POST',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Report a rental not returned (14 days past due): the deposit goes to you.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<RentalResponse> createRentalNotReturned(String id,) async {
+    final response = await createRentalNotReturnedWithHttpInfo(id,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'RentalResponse',) as RentalResponse;
+    
+    }
+    return Future<RentalResponse>.value();
+  }
+
+  /// Release the deposit now, without a claim.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<Response> createRentalReleaseDepositWithHttpInfo(String id,) async {
+    // Verify required params are set.
+    if (id == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: id');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/rentals/{id}/release-deposit'
+      .replaceAll('{id}', id);
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'POST',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Release the deposit now, without a claim.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<RentalResponse> createRentalReleaseDeposit(String id,) async {
+    final response = await createRentalReleaseDepositWithHttpInfo(id,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -1644,7 +2639,9 @@ class OrdersApi {
     return Future<RentalResponse>.value();
   }
 
-  /// Get one order.
+  /// Get one order, with its sale price, fees, SKU and line items.
+  ///
+  /// Each order carries its sale exactly as the order.created webhook sent it: salePrice, platformFee, taxCollected and shippingCharged in DOLLARS as JSON numbers (not decimal strings), feeSource (\"exact\" = the fee the marketplace charged, \"estimated\"), sku (the SKU of the listing), quantity (units), and lineItems: one entry per order row {lineKey, listingId, inventoryItemId, platformListingId (the MARKETPLACE listing id), sku (variant SKU, else the listing SKU), variantId, quantity, unitPrice (dollars per unit, rounded to the cent), total (dollars)}. A multi-item marketplace order is one order row per line sharing platformOrderId, each with its own lineKey. detailsPending: true (the sale was recorded before its price and buyer loaded), an order with no sale, or a sale with no listing behind it has null money and lineItems [] (sku and quantity are still given when known). channel is the business channel that sold it (retail, wholesale, auction, live, world, pos), purchaseOrderRef the buyer's PO number, and trade the on-account invoice behind a wholesale order {invoiceId, invoiceNumber, invoiceStatus (open, partial, overdue, paid, void), netDays, dueAt, totalCents, amountPaidCents, balanceCents} or null.
   ///
   /// Note: This method returns the HTTP [Response].
   ///
@@ -1684,12 +2681,14 @@ class OrdersApi {
     );
   }
 
-  /// Get one order.
+  /// Get one order, with its sale price, fees, SKU and line items.
+  ///
+  /// Each order carries its sale exactly as the order.created webhook sent it: salePrice, platformFee, taxCollected and shippingCharged in DOLLARS as JSON numbers (not decimal strings), feeSource (\"exact\" = the fee the marketplace charged, \"estimated\"), sku (the SKU of the listing), quantity (units), and lineItems: one entry per order row {lineKey, listingId, inventoryItemId, platformListingId (the MARKETPLACE listing id), sku (variant SKU, else the listing SKU), variantId, quantity, unitPrice (dollars per unit, rounded to the cent), total (dollars)}. A multi-item marketplace order is one order row per line sharing platformOrderId, each with its own lineKey. detailsPending: true (the sale was recorded before its price and buyer loaded), an order with no sale, or a sale with no listing behind it has null money and lineItems [] (sku and quantity are still given when known). channel is the business channel that sold it (retail, wholesale, auction, live, world, pos), purchaseOrderRef the buyer's PO number, and trade the on-account invoice behind a wholesale order {invoiceId, invoiceNumber, invoiceStatus (open, partial, overdue, paid, void), netDays, dueAt, totalCents, amountPaidCents, balanceCents} or null.
   ///
   /// Parameters:
   ///
   /// * [String] id (required):
-  Future<ListOrdersItem> getOrder(String id,) async {
+  Future<GetOrderResponse> getOrder(String id,) async {
     final response = await getOrderWithHttpInfo(id,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
@@ -1698,10 +2697,10 @@ class OrdersApi {
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
     if (response.body != null && response.statusCode != HttpStatus.noContent) {
-      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'ListOrdersItem',) as ListOrdersItem;
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'GetOrderResponse',) as GetOrderResponse;
     
     }
-    return Future<ListOrdersItem>.value();
+    return Future<GetOrderResponse>.value();
   }
 
   /// Whether this order can be cancelled, and which reason codes the marketplace accepts.
@@ -1808,6 +2807,70 @@ class OrdersApi {
 
     }
     return Future<Map<String, num>>.value();
+  }
+
+  /// The courier's delivery photo for this order, pulled automatically, with where it came from.
+  ///
+  /// Crossly pulls the doorstep photo from whoever has it (the carrier API, e.g. UPS; Trackified when its tracking carries one; the marketplace when its payload does) and stores it on the order. state is found | none | not_delivered; source / sourceLabel say where it came from (\"From UPS\", \"Added by you\"); checked lists who was asked when there is none. Carriers often attach the photo hours after delivery.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<Response> getOrderDeliveryPhotoWithHttpInfo(String id,) async {
+    // Verify required params are set.
+    if (id == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: id');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/orders/{id}/delivery-photo'
+      .replaceAll('{id}', id);
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// The courier's delivery photo for this order, pulled automatically, with where it came from.
+  ///
+  /// Crossly pulls the doorstep photo from whoever has it (the carrier API, e.g. UPS; Trackified when its tracking carries one; the marketplace when its payload does) and stores it on the order. state is found | none | not_delivered; source / sourceLabel say where it came from (\"From UPS\", \"Added by you\"); checked lists who was asked when there is none. Carriers often attach the photo hours after delivery.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<GetOrderDeliveryPhotoResponse> getOrderDeliveryPhoto(String id,) async {
+    final response = await getOrderDeliveryPhotoWithHttpInfo(id,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'GetOrderDeliveryPhotoResponse',) as GetOrderDeliveryPhotoResponse;
+    
+    }
+    return Future<GetOrderDeliveryPhotoResponse>.value();
   }
 
   /// Everything recorded about how this order was packed and how it arrived.
@@ -1962,6 +3025,66 @@ class OrdersApi {
     return Future<MultipartFile>.value();
   }
 
+  /// The order's buyer chat thread on the marketplace (separate from listing comments): { orderId, platform, messages: [{ id, sender (buyer|seller|platform), body, sentAt, attachments? }], canSend }, oldest message first.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<Response> getOrderOrderChatWithHttpInfo(String id,) async {
+    // Verify required params are set.
+    if (id == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: id');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/orders/{id}/order-chat'
+      .replaceAll('{id}', id);
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// The order's buyer chat thread on the marketplace (separate from listing comments): { orderId, platform, messages: [{ id, sender (buyer|seller|platform), body, sentAt, attachments? }], canSend }, oldest message first.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<GetOrderOrderChatResponse> getOrderOrderChat(String id,) async {
+    final response = await getOrderOrderChatWithHttpInfo(id,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'GetOrderOrderChatResponse',) as GetOrderOrderChatResponse;
+    
+    }
+    return Future<GetOrderOrderChatResponse>.value();
+  }
+
   /// Single-order packing slip PDF.
   ///
   /// Note: This method returns the HTTP [Response].
@@ -2022,6 +3145,246 @@ class OrdersApi {
     return Future<MultipartFile>.value();
   }
 
+  /// What buying a marketplace label offers for this order (weight tiers, mailbox state).
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<Response> getOrderPlatformLabelOptionWithHttpInfo(String id,) async {
+    // Verify required params are set.
+    if (id == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: id');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/orders/{id}/platform-label/options'
+      .replaceAll('{id}', id);
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// What buying a marketplace label offers for this order (weight tiers, mailbox state).
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<GetOrderPlatformLabelOptionResponse> getOrderPlatformLabelOption(String id,) async {
+    final response = await getOrderPlatformLabelOptionWithHttpInfo(id,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'GetOrderPlatformLabelOptionResponse',) as GetOrderPlatformLabelOptionResponse;
+    
+    }
+    return Future<GetOrderPlatformLabelOptionResponse>.value();
+  }
+
+  /// A fresh link to the marketplace's own packing slip PDF.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<Response> getOrderPlatformLabelPackingSlipWithHttpInfo(String id,) async {
+    // Verify required params are set.
+    if (id == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: id');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/orders/{id}/platform-label/packing-slip'
+      .replaceAll('{id}', id);
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// A fresh link to the marketplace's own packing slip PDF.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<UrlExpiresInSecondsResponse> getOrderPlatformLabelPackingSlip(String id,) async {
+    final response = await getOrderPlatformLabelPackingSlipWithHttpInfo(id,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'UrlExpiresInSecondsResponse',) as UrlExpiresInSecondsResponse;
+    
+    }
+    return Future<UrlExpiresInSecondsResponse>.value();
+  }
+
+  /// The marketplace's shipment for an order (package, label, tracking). Records a label found on it.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<Response> getOrderPlatformLabelStateWithHttpInfo(String id,) async {
+    // Verify required params are set.
+    if (id == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: id');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/orders/{id}/platform-label/state'
+      .replaceAll('{id}', id);
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// The marketplace's shipment for an order (package, label, tracking). Records a label found on it.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<GetOrderWhatnotShipmentResponse> getOrderPlatformLabelState(String id,) async {
+    final response = await getOrderPlatformLabelStateWithHttpInfo(id,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'GetOrderWhatnotShipmentResponse',) as GetOrderWhatnotShipmentResponse;
+    
+    }
+    return Future<GetOrderWhatnotShipmentResponse>.value();
+  }
+
+  /// A fresh, short-lived link to the marketplace's label sheet. Never stored.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<Response> getOrderPlatformLabelUrlWithHttpInfo(String id,) async {
+    // Verify required params are set.
+    if (id == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: id');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/orders/{id}/platform-label/url'
+      .replaceAll('{id}', id);
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// A fresh, short-lived link to the marketplace's label sheet. Never stored.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<UrlExpiresInSecondsResponse> getOrderPlatformLabelUrl(String id,) async {
+    final response = await getOrderPlatformLabelUrlWithHttpInfo(id,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'UrlExpiresInSecondsResponse',) as UrlExpiresInSecondsResponse;
+    
+    }
+    return Future<UrlExpiresInSecondsResponse>.value();
+  }
+
   /// Proof-of-delivery evidence from the carrier's scan record (PDF, or JSON).
   ///
   /// Note: This method returns the HTTP [Response].
@@ -2080,6 +3443,126 @@ class OrdersApi {
     
     }
     return Future<GetOrderProofOfDeliveryResponse>.value();
+  }
+
+  /// What a refund on this order may be, from the platform's declared capability: whether Crossly can refund it at all, full and/or partial, what a partial is measured against (total = what the buyer paid, item = the item price only), whether it may precede shipment, the platform's own reason keys (when listed, a refund's reason must be one of them), whether a comment is sent, whether the refund IS cancelling the sale (cancelsSale: Mercari, full only), whether the window closes when the order completes (untilCompleted; windowClosed = it has) and a one-line note on what the platform does not allow.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<Response> getOrderRefundOptionWithHttpInfo(String id,) async {
+    // Verify required params are set.
+    if (id == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: id');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/orders/{id}/refund-options'
+      .replaceAll('{id}', id);
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// What a refund on this order may be, from the platform's declared capability: whether Crossly can refund it at all, full and/or partial, what a partial is measured against (total = what the buyer paid, item = the item price only), whether it may precede shipment, the platform's own reason keys (when listed, a refund's reason must be one of them), whether a comment is sent, whether the refund IS cancelling the sale (cancelsSale: Mercari, full only), whether the window closes when the order completes (untilCompleted; windowClosed = it has) and a one-line note on what the platform does not allow.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<GetOrderRefundOptionResponse> getOrderRefundOption(String id,) async {
+    final response = await getOrderRefundOptionWithHttpInfo(id,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'GetOrderRefundOptionResponse',) as GetOrderRefundOptionResponse;
+    
+    }
+    return Future<GetOrderRefundOptionResponse>.value();
+  }
+
+  /// Who collected sales tax on one Crossly marketplace order, where, and the seller notice.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<Response> getOrderSalesTaxWithHttpInfo(String id,) async {
+    // Verify required params are set.
+    if (id == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: id');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/orders/{id}/sales-tax'
+      .replaceAll('{id}', id);
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Who collected sales tax on one Crossly marketplace order, where, and the seller notice.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<GetOrderSalesTaxResponse> getOrderSalesTax(String id,) async {
+    final response = await getOrderSalesTaxWithHttpInfo(id,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'GetOrderSalesTaxResponse',) as GetOrderSalesTaxResponse;
+    
+    }
+    return Future<GetOrderSalesTaxResponse>.value();
   }
 
   /// One SCAN form; a queued form is re-read from the carrier and its PDF appears once built.
@@ -2251,7 +3734,7 @@ class OrdersApi {
   /// Parameters:
   ///
   /// * [String] id (required):
-  Future<GetOrderWhatnotPackingSlipResponse> getOrderWhatnotPackingSlip(String id,) async {
+  Future<UrlExpiresInSecondsResponse> getOrderWhatnotPackingSlip(String id,) async {
     final response = await getOrderWhatnotPackingSlipWithHttpInfo(id,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
@@ -2260,10 +3743,10 @@ class OrdersApi {
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
     if (response.body != null && response.statusCode != HttpStatus.noContent) {
-      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'GetOrderWhatnotPackingSlipResponse',) as GetOrderWhatnotPackingSlipResponse;
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'UrlExpiresInSecondsResponse',) as UrlExpiresInSecondsResponse;
     
     }
-    return Future<GetOrderWhatnotPackingSlipResponse>.value();
+    return Future<UrlExpiresInSecondsResponse>.value();
   }
 
   /// Whatnot shipment for an order (package, label, tracking). Records a label found on it.
@@ -2311,7 +3794,7 @@ class OrdersApi {
   /// Parameters:
   ///
   /// * [String] id (required):
-  Future<CreateOrderWhatnotLabelResponse> getOrderWhatnotShipment(String id,) async {
+  Future<GetOrderWhatnotShipmentResponse> getOrderWhatnotShipment(String id,) async {
     final response = await getOrderWhatnotShipmentWithHttpInfo(id,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
@@ -2320,10 +3803,116 @@ class OrdersApi {
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
     if (response.body != null && response.statusCode != HttpStatus.noContent) {
-      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'CreateOrderWhatnotLabelResponse',) as CreateOrderWhatnotLabelResponse;
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'GetOrderWhatnotShipmentResponse',) as GetOrderWhatnotShipmentResponse;
     
     }
-    return Future<CreateOrderWhatnotLabelResponse>.value();
+    return Future<GetOrderWhatnotShipmentResponse>.value();
+  }
+
+  /// One rental: its timeline, both sides’ condition photos, payments, extensions and what can be done next.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<Response> getRentalWithHttpInfo(String id,) async {
+    // Verify required params are set.
+    if (id == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: id');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/rentals/{id}'
+      .replaceAll('{id}', id);
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// One rental: its timeline, both sides’ condition photos, payments, extensions and what can be done next.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<GetRentalResponse> getRental(String id,) async {
+    final response = await getRentalWithHttpInfo(id,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'GetRentalResponse',) as GetRentalResponse;
+    
+    }
+    return Future<GetRentalResponse>.value();
+  }
+
+  /// Every rentable item’s bookings (per unit), turnaround buffers and blackouts between two dates (≤ 93 days).
+  ///
+  /// Note: This method returns the HTTP [Response].
+  Future<Response> getRentalCalendarWithHttpInfo() async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/rentals/calendar';
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Every rentable item’s bookings (per unit), turnaround buffers and blackouts between two dates (≤ 93 days).
+  Future<GetRentalCalendarResponse> getRentalCalendar() async {
+    final response = await getRentalCalendarWithHttpInfo();
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'GetRentalCalendarResponse',) as GetRentalCalendarResponse;
+    
+    }
+    return Future<GetRentalCalendarResponse>.value();
   }
 
   /// Your items on layaway (active and paid off). Do not ship an active one: its order moves to needs_fulfillment when paid in full.
@@ -2418,7 +4007,7 @@ class OrdersApi {
     return Future<ListLiveShipmentsResponse>.value();
   }
 
-  /// Orders with a purchased Shippo label a courier can collect or a SCAN form can cover, grouped by carrier.
+  /// Orders with a purchased Crossly Shipping label a courier can collect or a SCAN form can cover, grouped by carrier.
   ///
   /// Note: This method returns the HTTP [Response].
   Future<Response> listOrderPickupReadyWithHttpInfo() async {
@@ -2448,7 +4037,7 @@ class OrdersApi {
     );
   }
 
-  /// Orders with a purchased Shippo label a courier can collect or a SCAN form can cover, grouped by carrier.
+  /// Orders with a purchased Crossly Shipping label a courier can collect or a SCAN form can cover, grouped by carrier.
   Future<ListOrderPickupReadyResponse> listOrderPickupReady() async {
     final response = await listOrderPickupReadyWithHttpInfo();
     if (response.statusCode >= HttpStatus.badRequest) {
@@ -2508,6 +4097,66 @@ class OrdersApi {
     
     }
     return Future<ListOrderPickupsResponse>.value();
+  }
+
+  /// Every refund requested on this order through the API or a cancel, newest first (amounts in dollars).
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<Response> listOrderRefundsWithHttpInfo(String id,) async {
+    // Verify required params are set.
+    if (id == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: id');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/orders/{id}/refunds'
+      .replaceAll('{id}', id);
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Every refund requested on this order through the API or a cancel, newest first (amounts in dollars).
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<ListOrderRefundsResponse> listOrderRefunds(String id,) async {
+    final response = await listOrderRefundsWithHttpInfo(id,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'ListOrderRefundsResponse',) as ListOrderRefundsResponse;
+    
+    }
+    return Future<ListOrderRefundsResponse>.value();
   }
 
   /// SCAN forms, newest first.
@@ -2620,7 +4269,9 @@ class OrdersApi {
     return Future<ListOrderUnitsResponse>.value();
   }
 
-  /// List orders.
+  /// List orders, each with its sale price, fees, SKU and line items.
+  ///
+  /// Each order carries its sale exactly as the order.created webhook sent it: salePrice, platformFee, taxCollected and shippingCharged in DOLLARS as JSON numbers (not decimal strings), feeSource (\"exact\" = the fee the marketplace charged, \"estimated\"), sku (the SKU of the listing), quantity (units), and lineItems: one entry per order row {lineKey, listingId, inventoryItemId, platformListingId (the MARKETPLACE listing id), sku (variant SKU, else the listing SKU), variantId, quantity, unitPrice (dollars per unit, rounded to the cent), total (dollars)}. A multi-item marketplace order is one order row per line sharing platformOrderId, each with its own lineKey. detailsPending: true (the sale was recorded before its price and buyer loaded), an order with no sale, or a sale with no listing behind it has null money and lineItems [] (sku and quantity are still given when known). channel is the business channel that sold it (retail, wholesale, auction, live, world, pos), purchaseOrderRef the buyer's PO number, and trade the on-account invoice behind a wholesale order {invoiceId, invoiceNumber, invoiceStatus (open, partial, overdue, paid, void), netDays, dueAt, totalCents, amountPaidCents, balanceCents} or null.
   ///
   /// Note: This method returns the HTTP [Response].
   ///
@@ -2633,7 +4284,19 @@ class OrdersApi {
   /// * [String] status:
   ///
   /// * [String] platform:
-  Future<Response> listOrdersWithHttpInfo({ int page, int limit, String status, String platform, }) async {
+  ///
+  /// * [String] channel:
+  ///   Only orders sold through this business channel (e.g. wholesale).
+  ///
+  /// * [String] details:
+  ///   pending = only orders whose sale details (price, buyer) have not loaded yet.
+  ///
+  /// * [String] unlinked:
+  ///   1 or true = only orders whose sale is not linked to any listing (an orphan sale).
+  ///
+  /// * [DateTime] updatedSince:
+  ///   Only orders created or changed at or after this time (ISO 8601): poll with the time of your last call to catch new orders and status/tracking changes.
+  Future<Response> listOrdersWithHttpInfo({ int page, int limit, String status, String platform, String channel, String details, String unlinked, DateTime updatedSince, }) async {
     // Verify required params are set.
 
     // ignore: prefer_const_declarations
@@ -2658,6 +4321,18 @@ class OrdersApi {
     if (platform != null) {
       queryParams.addAll(_convertParametersForCollectionFormat('', 'platform', platform));
     }
+    if (channel != null) {
+      queryParams.addAll(_convertParametersForCollectionFormat('', 'channel', channel));
+    }
+    if (details != null) {
+      queryParams.addAll(_convertParametersForCollectionFormat('', 'details', details));
+    }
+    if (unlinked != null) {
+      queryParams.addAll(_convertParametersForCollectionFormat('', 'unlinked', unlinked));
+    }
+    if (updatedSince != null) {
+      queryParams.addAll(_convertParametersForCollectionFormat('', 'updatedSince', updatedSince));
+    }
 
     const authNames = <String>['PersonalAccessToken'];
     const contentTypes = <String>[];
@@ -2675,7 +4350,9 @@ class OrdersApi {
     );
   }
 
-  /// List orders.
+  /// List orders, each with its sale price, fees, SKU and line items.
+  ///
+  /// Each order carries its sale exactly as the order.created webhook sent it: salePrice, platformFee, taxCollected and shippingCharged in DOLLARS as JSON numbers (not decimal strings), feeSource (\"exact\" = the fee the marketplace charged, \"estimated\"), sku (the SKU of the listing), quantity (units), and lineItems: one entry per order row {lineKey, listingId, inventoryItemId, platformListingId (the MARKETPLACE listing id), sku (variant SKU, else the listing SKU), variantId, quantity, unitPrice (dollars per unit, rounded to the cent), total (dollars)}. A multi-item marketplace order is one order row per line sharing platformOrderId, each with its own lineKey. detailsPending: true (the sale was recorded before its price and buyer loaded), an order with no sale, or a sale with no listing behind it has null money and lineItems [] (sku and quantity are still given when known). channel is the business channel that sold it (retail, wholesale, auction, live, world, pos), purchaseOrderRef the buyer's PO number, and trade the on-account invoice behind a wholesale order {invoiceId, invoiceNumber, invoiceStatus (open, partial, overdue, paid, void), netDays, dueAt, totalCents, amountPaidCents, balanceCents} or null.
   ///
   /// Parameters:
   ///
@@ -2686,8 +4363,20 @@ class OrdersApi {
   /// * [String] status:
   ///
   /// * [String] platform:
-  Future<ListOrdersResponse> listOrders({ int page, int limit, String status, String platform, }) async {
-    final response = await listOrdersWithHttpInfo( page: page, limit: limit, status: status, platform: platform, );
+  ///
+  /// * [String] channel:
+  ///   Only orders sold through this business channel (e.g. wholesale).
+  ///
+  /// * [String] details:
+  ///   pending = only orders whose sale details (price, buyer) have not loaded yet.
+  ///
+  /// * [String] unlinked:
+  ///   1 or true = only orders whose sale is not linked to any listing (an orphan sale).
+  ///
+  /// * [DateTime] updatedSince:
+  ///   Only orders created or changed at or after this time (ISO 8601): poll with the time of your last call to catch new orders and status/tracking changes.
+  Future<ListOrdersResponse> listOrders({ int page, int limit, String status, String platform, String channel, String details, String unlinked, DateTime updatedSince, }) async {
+    final response = await listOrdersWithHttpInfo( page: page, limit: limit, status: status, platform: platform, channel: channel, details: details, unlinked: unlinked, updatedSince: updatedSince, );
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -2699,6 +4388,52 @@ class OrdersApi {
     
     }
     return Future<ListOrdersResponse>.value();
+  }
+
+  /// Active rentals and history, filtered by view, status, dates, item or a search.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  Future<Response> listRentalHistoryWithHttpInfo() async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/rentals/history';
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Active rentals and history, filtered by view, status, dates, item or a search.
+  Future<ListRentalHistoryResponse> listRentalHistory() async {
+    final response = await listRentalHistoryWithHttpInfo();
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'ListRentalHistoryResponse',) as ListRentalHistoryResponse;
+    
+    }
+    return Future<ListRentalHistoryResponse>.value();
   }
 
   /// Rentals of your items, with the ship-to and the outbound label.
@@ -2792,7 +4527,7 @@ class OrdersApi {
   /// Parameters:
   ///
   /// * [String] id (required):
-  Future<ListOrdersItem> updateOrder(String id,) async {
+  Future<UpdateOrderResponse> updateOrder(String id,) async {
     final response = await updateOrderWithHttpInfo(id,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
@@ -2801,9 +4536,9 @@ class OrdersApi {
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
     if (response.body != null && response.statusCode != HttpStatus.noContent) {
-      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'ListOrdersItem',) as ListOrdersItem;
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'UpdateOrderResponse',) as UpdateOrderResponse;
     
     }
-    return Future<ListOrdersItem>.value();
+    return Future<UpdateOrderResponse>.value();
   }
 }

@@ -13,55 +13,55 @@ part of openapi.api;
 class ListBuyerCatalogSellersItem {
   /// Returns a new [ListBuyerCatalogSellersItem] instance.
   ListBuyerCatalogSellersItem({
-    @required this.displayName,
     @required this.username,
-    @required this.totalItemsSold,
+    @required this.displayName,
     @required this.isVerified,
     @required this.activeListings,
+    @required this.totalItemsSold,
     this.avatarUrl,
   });
 
-  String displayName;
-
   String username;
 
-  num totalItemsSold;
+  String displayName;
 
   bool isVerified;
 
   num activeListings;
 
+  num totalItemsSold;
+
   String avatarUrl;
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is ListBuyerCatalogSellersItem &&
-     other.displayName == displayName &&
      other.username == username &&
-     other.totalItemsSold == totalItemsSold &&
+     other.displayName == displayName &&
      other.isVerified == isVerified &&
      other.activeListings == activeListings &&
+     other.totalItemsSold == totalItemsSold &&
      other.avatarUrl == avatarUrl;
 
   @override
   int get hashCode =>
   // ignore: unnecessary_parenthesis
-    (displayName == null ? 0 : displayName.hashCode) +
     (username == null ? 0 : username.hashCode) +
-    (totalItemsSold == null ? 0 : totalItemsSold.hashCode) +
+    (displayName == null ? 0 : displayName.hashCode) +
     (isVerified == null ? 0 : isVerified.hashCode) +
     (activeListings == null ? 0 : activeListings.hashCode) +
+    (totalItemsSold == null ? 0 : totalItemsSold.hashCode) +
     (avatarUrl == null ? 0 : avatarUrl.hashCode);
 
   @override
-  String toString() => 'ListBuyerCatalogSellersItem[displayName=$displayName, username=$username, totalItemsSold=$totalItemsSold, isVerified=$isVerified, activeListings=$activeListings, avatarUrl=$avatarUrl]';
+  String toString() => 'ListBuyerCatalogSellersItem[username=$username, displayName=$displayName, isVerified=$isVerified, activeListings=$activeListings, totalItemsSold=$totalItemsSold, avatarUrl=$avatarUrl]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-      json[r'displayName'] = displayName;
       json[r'username'] = username;
-      json[r'totalItemsSold'] = totalItemsSold;
+      json[r'displayName'] = displayName;
       json[r'isVerified'] = isVerified;
       json[r'activeListings'] = activeListings;
+      json[r'totalItemsSold'] = totalItemsSold;
     if (avatarUrl != null) {
       json[r'avatarUrl'] = avatarUrl;
     }
@@ -75,15 +75,15 @@ class ListBuyerCatalogSellersItem {
     if (value is Map) {
       final json = value.cast<String, dynamic>();
       return ListBuyerCatalogSellersItem(
-        displayName: mapValueOfType<String>(json, r'displayName'),
         username: mapValueOfType<String>(json, r'username'),
-        totalItemsSold: json[r'totalItemsSold'] == null
-          ? null
-          : num.parse(json[r'totalItemsSold'].toString()),
+        displayName: mapValueOfType<String>(json, r'displayName'),
         isVerified: mapValueOfType<bool>(json, r'isVerified'),
         activeListings: json[r'activeListings'] == null
           ? null
           : num.parse(json[r'activeListings'].toString()),
+        totalItemsSold: json[r'totalItemsSold'] == null
+          ? null
+          : num.parse(json[r'totalItemsSold'].toString()),
         avatarUrl: mapValueOfType<String>(json, r'avatarUrl'),
       );
     }

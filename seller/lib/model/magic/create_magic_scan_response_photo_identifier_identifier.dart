@@ -102,8 +102,8 @@ class CreateMagicScanResponsePhotoIdentifierIdentifierNamespaceEnum {
 
   String toJson() => value;
 
-  static const styleCode = CreateMagicScanResponsePhotoIdentifierIdentifierNamespaceEnum._(r'style_code');
   static const gtin = CreateMagicScanResponsePhotoIdentifierIdentifierNamespaceEnum._(r'gtin');
+  static const styleCode = CreateMagicScanResponsePhotoIdentifierIdentifierNamespaceEnum._(r'style_code');
   static const legoSet = CreateMagicScanResponsePhotoIdentifierIdentifierNamespaceEnum._(r'lego_set');
   static const tcgplayer = CreateMagicScanResponsePhotoIdentifierIdentifierNamespaceEnum._(r'tcgplayer');
   static const discogs = CreateMagicScanResponsePhotoIdentifierIdentifierNamespaceEnum._(r'discogs');
@@ -111,8 +111,8 @@ class CreateMagicScanResponsePhotoIdentifierIdentifierNamespaceEnum {
 
   /// List of all possible values in this [enum][CreateMagicScanResponsePhotoIdentifierIdentifierNamespaceEnum].
   static const values = <CreateMagicScanResponsePhotoIdentifierIdentifierNamespaceEnum>[
-    styleCode,
     gtin,
+    styleCode,
     legoSet,
     tcgplayer,
     discogs,
@@ -148,8 +148,8 @@ class CreateMagicScanResponsePhotoIdentifierIdentifierNamespaceEnumTypeTransform
   CreateMagicScanResponsePhotoIdentifierIdentifierNamespaceEnum decode(dynamic data, {bool allowNull}) {
     if (data != null) {
       switch (data.toString()) {
-        case r'style_code': return CreateMagicScanResponsePhotoIdentifierIdentifierNamespaceEnum.styleCode;
         case r'gtin': return CreateMagicScanResponsePhotoIdentifierIdentifierNamespaceEnum.gtin;
+        case r'style_code': return CreateMagicScanResponsePhotoIdentifierIdentifierNamespaceEnum.styleCode;
         case r'lego_set': return CreateMagicScanResponsePhotoIdentifierIdentifierNamespaceEnum.legoSet;
         case r'tcgplayer': return CreateMagicScanResponsePhotoIdentifierIdentifierNamespaceEnum.tcgplayer;
         case r'discogs': return CreateMagicScanResponsePhotoIdentifierIdentifierNamespaceEnum.discogs;

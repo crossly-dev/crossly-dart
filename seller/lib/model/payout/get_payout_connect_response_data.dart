@@ -15,6 +15,7 @@ class GetPayoutConnectResponseData {
   GetPayoutConnectResponseData({
     @required this.status,
     this.defaultCountry,
+    @required this.accountSource,
     this.payoutsEnabled,
     this.chargesEnabled,
     this.transfersActive,
@@ -31,6 +32,8 @@ class GetPayoutConnectResponseData {
   String status;
 
   String defaultCountry;
+
+  String accountSource;
 
   bool payoutsEnabled;
 
@@ -61,6 +64,7 @@ class GetPayoutConnectResponseData {
   bool operator ==(Object other) => identical(this, other) || other is GetPayoutConnectResponseData &&
      other.status == status &&
      other.defaultCountry == defaultCountry &&
+     other.accountSource == accountSource &&
      other.payoutsEnabled == payoutsEnabled &&
      other.chargesEnabled == chargesEnabled &&
      other.transfersActive == transfersActive &&
@@ -78,6 +82,7 @@ class GetPayoutConnectResponseData {
   // ignore: unnecessary_parenthesis
     (status == null ? 0 : status.hashCode) +
     (defaultCountry == null ? 0 : defaultCountry.hashCode) +
+    (accountSource == null ? 0 : accountSource.hashCode) +
     (payoutsEnabled == null ? 0 : payoutsEnabled.hashCode) +
     (chargesEnabled == null ? 0 : chargesEnabled.hashCode) +
     (transfersActive == null ? 0 : transfersActive.hashCode) +
@@ -91,7 +96,7 @@ class GetPayoutConnectResponseData {
     (message == null ? 0 : message.hashCode);
 
   @override
-  String toString() => 'GetPayoutConnectResponseData[status=$status, defaultCountry=$defaultCountry, payoutsEnabled=$payoutsEnabled, chargesEnabled=$chargesEnabled, transfersActive=$transfersActive, detailsSubmitted=$detailsSubmitted, taxReporting1099kReady=$taxReporting1099kReady, country=$country, agreement=$agreement, defaultCurrency=$defaultCurrency, accountId=$accountId, payoutsSupported=$payoutsSupported, message=$message]';
+  String toString() => 'GetPayoutConnectResponseData[status=$status, defaultCountry=$defaultCountry, accountSource=$accountSource, payoutsEnabled=$payoutsEnabled, chargesEnabled=$chargesEnabled, transfersActive=$transfersActive, detailsSubmitted=$detailsSubmitted, taxReporting1099kReady=$taxReporting1099kReady, country=$country, agreement=$agreement, defaultCurrency=$defaultCurrency, accountId=$accountId, payoutsSupported=$payoutsSupported, message=$message]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -99,6 +104,7 @@ class GetPayoutConnectResponseData {
     if (defaultCountry != null) {
       json[r'defaultCountry'] = defaultCountry;
     }
+      json[r'accountSource'] = accountSource;
     if (payoutsEnabled != null) {
       json[r'payoutsEnabled'] = payoutsEnabled;
     }
@@ -144,6 +150,7 @@ class GetPayoutConnectResponseData {
       return GetPayoutConnectResponseData(
         status: mapValueOfType<String>(json, r'status'),
         defaultCountry: mapValueOfType<String>(json, r'defaultCountry'),
+        accountSource: mapValueOfType<String>(json, r'accountSource'),
         payoutsEnabled: mapValueOfType<bool>(json, r'payoutsEnabled'),
         chargesEnabled: mapValueOfType<bool>(json, r'chargesEnabled'),
         transfersActive: mapValueOfType<bool>(json, r'transfersActive'),

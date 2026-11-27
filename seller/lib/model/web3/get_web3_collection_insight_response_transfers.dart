@@ -151,18 +151,18 @@ class GetWeb3CollectionInsightResponseTransfersKindEnum {
 
   String toJson() => value;
 
-  static const transfer = GetWeb3CollectionInsightResponseTransfersKindEnum._(r'transfer');
-  static const listing = GetWeb3CollectionInsightResponseTransfersKindEnum._(r'listing');
   static const sale = GetWeb3CollectionInsightResponseTransfersKindEnum._(r'sale');
+  static const listing = GetWeb3CollectionInsightResponseTransfersKindEnum._(r'listing');
   static const mint = GetWeb3CollectionInsightResponseTransfersKindEnum._(r'mint');
+  static const transfer = GetWeb3CollectionInsightResponseTransfersKindEnum._(r'transfer');
   static const burn = GetWeb3CollectionInsightResponseTransfersKindEnum._(r'burn');
 
   /// List of all possible values in this [enum][GetWeb3CollectionInsightResponseTransfersKindEnum].
   static const values = <GetWeb3CollectionInsightResponseTransfersKindEnum>[
-    transfer,
-    listing,
     sale,
+    listing,
     mint,
+    transfer,
     burn,
   ];
 
@@ -195,10 +195,10 @@ class GetWeb3CollectionInsightResponseTransfersKindEnumTypeTransformer {
   GetWeb3CollectionInsightResponseTransfersKindEnum decode(dynamic data, {bool allowNull}) {
     if (data != null) {
       switch (data.toString()) {
-        case r'transfer': return GetWeb3CollectionInsightResponseTransfersKindEnum.transfer;
-        case r'listing': return GetWeb3CollectionInsightResponseTransfersKindEnum.listing;
         case r'sale': return GetWeb3CollectionInsightResponseTransfersKindEnum.sale;
+        case r'listing': return GetWeb3CollectionInsightResponseTransfersKindEnum.listing;
         case r'mint': return GetWeb3CollectionInsightResponseTransfersKindEnum.mint;
+        case r'transfer': return GetWeb3CollectionInsightResponseTransfersKindEnum.transfer;
         case r'burn': return GetWeb3CollectionInsightResponseTransfersKindEnum.burn;
         default:
           if (allowNull == false) {

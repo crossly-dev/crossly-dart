@@ -14,126 +14,126 @@ class GetBuyerBreakResponseData {
   /// Returns a new [GetBuyerBreakResponseData] instance.
   GetBuyerBreakResponseData({
     @required this.id,
-    @required this.createdAt,
-    @required this.status,
-    this.assignedAt,
     @required this.title,
-    @required this.seller,
+    this.product,
+    @required this.format,
+    @required this.status,
     this.slug,
     @required this.priceCents,
-    @required this.format,
     this.streamId,
-    this.seed,
-    this.product,
-    @required this.seedCommit,
+    @required this.seller,
     this.spots = const [],
     @required this.spotsLeft,
+    @required this.seedCommit,
+    this.seed,
     this.draw,
+    @required this.createdAt,
+    this.assignedAt,
   });
 
   String id;
 
-  String createdAt;
-
-  String status;
-
-  String assignedAt;
-
   String title;
 
-  GetBuyerBreakResponseDataSeller seller;
+  String product;
+
+  String format;
+
+  String status;
 
   String slug;
 
   num priceCents;
 
-  String format;
-
   String streamId;
 
-  String seed;
-
-  String product;
-
-  String seedCommit;
+  GetBuyerBreakResponseDataSeller seller;
 
   List<GetBuyerBreakResponseDataSpots> spots;
 
   num spotsLeft;
 
+  String seedCommit;
+
+  String seed;
+
   List<GetBuyerBreakResponseDataDraw> draw;
+
+  String createdAt;
+
+  String assignedAt;
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is GetBuyerBreakResponseData &&
      other.id == id &&
-     other.createdAt == createdAt &&
-     other.status == status &&
-     other.assignedAt == assignedAt &&
      other.title == title &&
-     other.seller == seller &&
+     other.product == product &&
+     other.format == format &&
+     other.status == status &&
      other.slug == slug &&
      other.priceCents == priceCents &&
-     other.format == format &&
      other.streamId == streamId &&
-     other.seed == seed &&
-     other.product == product &&
-     other.seedCommit == seedCommit &&
+     other.seller == seller &&
      other.spots == spots &&
      other.spotsLeft == spotsLeft &&
-     other.draw == draw;
+     other.seedCommit == seedCommit &&
+     other.seed == seed &&
+     other.draw == draw &&
+     other.createdAt == createdAt &&
+     other.assignedAt == assignedAt;
 
   @override
   int get hashCode =>
   // ignore: unnecessary_parenthesis
     (id == null ? 0 : id.hashCode) +
-    (createdAt == null ? 0 : createdAt.hashCode) +
-    (status == null ? 0 : status.hashCode) +
-    (assignedAt == null ? 0 : assignedAt.hashCode) +
     (title == null ? 0 : title.hashCode) +
-    (seller == null ? 0 : seller.hashCode) +
+    (product == null ? 0 : product.hashCode) +
+    (format == null ? 0 : format.hashCode) +
+    (status == null ? 0 : status.hashCode) +
     (slug == null ? 0 : slug.hashCode) +
     (priceCents == null ? 0 : priceCents.hashCode) +
-    (format == null ? 0 : format.hashCode) +
     (streamId == null ? 0 : streamId.hashCode) +
-    (seed == null ? 0 : seed.hashCode) +
-    (product == null ? 0 : product.hashCode) +
-    (seedCommit == null ? 0 : seedCommit.hashCode) +
+    (seller == null ? 0 : seller.hashCode) +
     (spots == null ? 0 : spots.hashCode) +
     (spotsLeft == null ? 0 : spotsLeft.hashCode) +
-    (draw == null ? 0 : draw.hashCode);
+    (seedCommit == null ? 0 : seedCommit.hashCode) +
+    (seed == null ? 0 : seed.hashCode) +
+    (draw == null ? 0 : draw.hashCode) +
+    (createdAt == null ? 0 : createdAt.hashCode) +
+    (assignedAt == null ? 0 : assignedAt.hashCode);
 
   @override
-  String toString() => 'GetBuyerBreakResponseData[id=$id, createdAt=$createdAt, status=$status, assignedAt=$assignedAt, title=$title, seller=$seller, slug=$slug, priceCents=$priceCents, format=$format, streamId=$streamId, seed=$seed, product=$product, seedCommit=$seedCommit, spots=$spots, spotsLeft=$spotsLeft, draw=$draw]';
+  String toString() => 'GetBuyerBreakResponseData[id=$id, title=$title, product=$product, format=$format, status=$status, slug=$slug, priceCents=$priceCents, streamId=$streamId, seller=$seller, spots=$spots, spotsLeft=$spotsLeft, seedCommit=$seedCommit, seed=$seed, draw=$draw, createdAt=$createdAt, assignedAt=$assignedAt]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
       json[r'id'] = id;
-      json[r'createdAt'] = createdAt;
-      json[r'status'] = status;
-    if (assignedAt != null) {
-      json[r'assignedAt'] = assignedAt;
-    }
       json[r'title'] = title;
-      json[r'seller'] = seller;
+    if (product != null) {
+      json[r'product'] = product;
+    }
+      json[r'format'] = format;
+      json[r'status'] = status;
     if (slug != null) {
       json[r'slug'] = slug;
     }
       json[r'priceCents'] = priceCents;
-      json[r'format'] = format;
     if (streamId != null) {
       json[r'streamId'] = streamId;
     }
+      json[r'seller'] = seller;
+      json[r'spots'] = spots;
+      json[r'spotsLeft'] = spotsLeft;
+      json[r'seedCommit'] = seedCommit;
     if (seed != null) {
       json[r'seed'] = seed;
     }
-    if (product != null) {
-      json[r'product'] = product;
-    }
-      json[r'seedCommit'] = seedCommit;
-      json[r'spots'] = spots;
-      json[r'spotsLeft'] = spotsLeft;
     if (draw != null) {
       json[r'draw'] = draw;
+    }
+      json[r'createdAt'] = createdAt;
+    if (assignedAt != null) {
+      json[r'assignedAt'] = assignedAt;
     }
     return json;
   }
@@ -146,25 +146,25 @@ class GetBuyerBreakResponseData {
       final json = value.cast<String, dynamic>();
       return GetBuyerBreakResponseData(
         id: mapValueOfType<String>(json, r'id'),
-        createdAt: mapValueOfType<String>(json, r'createdAt'),
-        status: mapValueOfType<String>(json, r'status'),
-        assignedAt: mapValueOfType<String>(json, r'assignedAt'),
         title: mapValueOfType<String>(json, r'title'),
-        seller: GetBuyerBreakResponseDataSeller.fromJson(json[r'seller']),
+        product: mapValueOfType<String>(json, r'product'),
+        format: mapValueOfType<String>(json, r'format'),
+        status: mapValueOfType<String>(json, r'status'),
         slug: mapValueOfType<String>(json, r'slug'),
         priceCents: json[r'priceCents'] == null
           ? null
           : num.parse(json[r'priceCents'].toString()),
-        format: mapValueOfType<String>(json, r'format'),
         streamId: mapValueOfType<String>(json, r'streamId'),
-        seed: mapValueOfType<String>(json, r'seed'),
-        product: mapValueOfType<String>(json, r'product'),
-        seedCommit: mapValueOfType<String>(json, r'seedCommit'),
+        seller: GetBuyerBreakResponseDataSeller.fromJson(json[r'seller']),
         spots: GetBuyerBreakResponseDataSpots.listFromJson(json[r'spots']),
         spotsLeft: json[r'spotsLeft'] == null
           ? null
           : num.parse(json[r'spotsLeft'].toString()),
+        seedCommit: mapValueOfType<String>(json, r'seedCommit'),
+        seed: mapValueOfType<String>(json, r'seed'),
         draw: GetBuyerBreakResponseDataDraw.listFromJson(json[r'draw']),
+        createdAt: mapValueOfType<String>(json, r'createdAt'),
+        assignedAt: mapValueOfType<String>(json, r'assignedAt'),
       );
     }
     return null;

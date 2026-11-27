@@ -109,10 +109,12 @@ class CreateVaultMarketAlertPrefTestResponseKindEnum {
 
   String toJson() => value;
 
-  static const price = CreateVaultMarketAlertPrefTestResponseKindEnum._(r'price');
-  static const auction = CreateVaultMarketAlertPrefTestResponseKindEnum._(r'auction');
-  static const fill = CreateVaultMarketAlertPrefTestResponseKindEnum._(r'fill');
   static const account = CreateVaultMarketAlertPrefTestResponseKindEnum._(r'account');
+  static const price = CreateVaultMarketAlertPrefTestResponseKindEnum._(r'price');
+  static const fill = CreateVaultMarketAlertPrefTestResponseKindEnum._(r'fill');
+  static const auction = CreateVaultMarketAlertPrefTestResponseKindEnum._(r'auction');
+  static const prediction = CreateVaultMarketAlertPrefTestResponseKindEnum._(r'prediction');
+  static const optionExpiry = CreateVaultMarketAlertPrefTestResponseKindEnum._(r'option_expiry');
   static const marginCall = CreateVaultMarketAlertPrefTestResponseKindEnum._(r'margin_call');
   static const adl = CreateVaultMarketAlertPrefTestResponseKindEnum._(r'adl');
   static const p2pLoan = CreateVaultMarketAlertPrefTestResponseKindEnum._(r'p2p_loan');
@@ -120,13 +122,19 @@ class CreateVaultMarketAlertPrefTestResponseKindEnum {
   static const receiptToken = CreateVaultMarketAlertPrefTestResponseKindEnum._(r'receipt_token');
   static const setGoal = CreateVaultMarketAlertPrefTestResponseKindEnum._(r'set_goal');
   static const follow = CreateVaultMarketAlertPrefTestResponseKindEnum._(r'follow');
+  static const shareOffering = CreateVaultMarketAlertPrefTestResponseKindEnum._(r'share_offering');
+  static const shareVote = CreateVaultMarketAlertPrefTestResponseKindEnum._(r'share_vote');
+  static const optionSettlement = CreateVaultMarketAlertPrefTestResponseKindEnum._(r'option_settlement');
+  static const predictionOdds = CreateVaultMarketAlertPrefTestResponseKindEnum._(r'prediction_odds');
 
   /// List of all possible values in this [enum][CreateVaultMarketAlertPrefTestResponseKindEnum].
   static const values = <CreateVaultMarketAlertPrefTestResponseKindEnum>[
-    price,
-    auction,
-    fill,
     account,
+    price,
+    fill,
+    auction,
+    prediction,
+    optionExpiry,
     marginCall,
     adl,
     p2pLoan,
@@ -134,6 +142,10 @@ class CreateVaultMarketAlertPrefTestResponseKindEnum {
     receiptToken,
     setGoal,
     follow,
+    shareOffering,
+    shareVote,
+    optionSettlement,
+    predictionOdds,
   ];
 
   static CreateVaultMarketAlertPrefTestResponseKindEnum fromJson(dynamic value) =>
@@ -165,10 +177,12 @@ class CreateVaultMarketAlertPrefTestResponseKindEnumTypeTransformer {
   CreateVaultMarketAlertPrefTestResponseKindEnum decode(dynamic data, {bool allowNull}) {
     if (data != null) {
       switch (data.toString()) {
-        case r'price': return CreateVaultMarketAlertPrefTestResponseKindEnum.price;
-        case r'auction': return CreateVaultMarketAlertPrefTestResponseKindEnum.auction;
-        case r'fill': return CreateVaultMarketAlertPrefTestResponseKindEnum.fill;
         case r'account': return CreateVaultMarketAlertPrefTestResponseKindEnum.account;
+        case r'price': return CreateVaultMarketAlertPrefTestResponseKindEnum.price;
+        case r'fill': return CreateVaultMarketAlertPrefTestResponseKindEnum.fill;
+        case r'auction': return CreateVaultMarketAlertPrefTestResponseKindEnum.auction;
+        case r'prediction': return CreateVaultMarketAlertPrefTestResponseKindEnum.prediction;
+        case r'option_expiry': return CreateVaultMarketAlertPrefTestResponseKindEnum.optionExpiry;
         case r'margin_call': return CreateVaultMarketAlertPrefTestResponseKindEnum.marginCall;
         case r'adl': return CreateVaultMarketAlertPrefTestResponseKindEnum.adl;
         case r'p2p_loan': return CreateVaultMarketAlertPrefTestResponseKindEnum.p2pLoan;
@@ -176,6 +190,10 @@ class CreateVaultMarketAlertPrefTestResponseKindEnumTypeTransformer {
         case r'receipt_token': return CreateVaultMarketAlertPrefTestResponseKindEnum.receiptToken;
         case r'set_goal': return CreateVaultMarketAlertPrefTestResponseKindEnum.setGoal;
         case r'follow': return CreateVaultMarketAlertPrefTestResponseKindEnum.follow;
+        case r'share_offering': return CreateVaultMarketAlertPrefTestResponseKindEnum.shareOffering;
+        case r'share_vote': return CreateVaultMarketAlertPrefTestResponseKindEnum.shareVote;
+        case r'option_settlement': return CreateVaultMarketAlertPrefTestResponseKindEnum.optionSettlement;
+        case r'prediction_odds': return CreateVaultMarketAlertPrefTestResponseKindEnum.predictionOdds;
         default:
           if (allowNull == false) {
             throw ArgumentError('Unknown enum value to decode: $data');

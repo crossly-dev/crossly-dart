@@ -121,15 +121,15 @@ class GetWorldArcadeResponseDataScoresKindEnum {
 
   String toJson() => value;
 
+  static const record = GetWorldArcadeResponseDataScoresKindEnum._(r'record');
   static const top = GetWorldArcadeResponseDataScoresKindEnum._(r'top');
   static const leaderboard = GetWorldArcadeResponseDataScoresKindEnum._(r'leaderboard');
-  static const record = GetWorldArcadeResponseDataScoresKindEnum._(r'record');
 
   /// List of all possible values in this [enum][GetWorldArcadeResponseDataScoresKindEnum].
   static const values = <GetWorldArcadeResponseDataScoresKindEnum>[
+    record,
     top,
     leaderboard,
-    record,
   ];
 
   static GetWorldArcadeResponseDataScoresKindEnum fromJson(dynamic value) =>
@@ -161,9 +161,9 @@ class GetWorldArcadeResponseDataScoresKindEnumTypeTransformer {
   GetWorldArcadeResponseDataScoresKindEnum decode(dynamic data, {bool allowNull}) {
     if (data != null) {
       switch (data.toString()) {
+        case r'record': return GetWorldArcadeResponseDataScoresKindEnum.record;
         case r'top': return GetWorldArcadeResponseDataScoresKindEnum.top;
         case r'leaderboard': return GetWorldArcadeResponseDataScoresKindEnum.leaderboard;
-        case r'record': return GetWorldArcadeResponseDataScoresKindEnum.record;
         default:
           if (allowNull == false) {
             throw ArgumentError('Unknown enum value to decode: $data');

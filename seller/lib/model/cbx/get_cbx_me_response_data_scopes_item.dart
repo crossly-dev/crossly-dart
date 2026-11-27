@@ -23,17 +23,17 @@ class GetCbxMeResponseDataScopesItem {
 
   String toJson() => value;
 
+  static const read = GetCbxMeResponseDataScopesItem._(r'read');
   static const spend = GetCbxMeResponseDataScopesItem._(r'spend');
   static const campaign = GetCbxMeResponseDataScopesItem._(r'campaign');
-  static const read = GetCbxMeResponseDataScopesItem._(r'read');
   static const accrue = GetCbxMeResponseDataScopesItem._(r'accrue');
   static const treasury = GetCbxMeResponseDataScopesItem._(r'treasury');
 
   /// List of all possible values in this [enum][GetCbxMeResponseDataScopesItem].
   static const values = <GetCbxMeResponseDataScopesItem>[
+    read,
     spend,
     campaign,
-    read,
     accrue,
     treasury,
   ];
@@ -67,9 +67,9 @@ class GetCbxMeResponseDataScopesItemTypeTransformer {
   GetCbxMeResponseDataScopesItem decode(dynamic data, {bool allowNull}) {
     if (data != null) {
       switch (data.toString()) {
+        case r'read': return GetCbxMeResponseDataScopesItem.read;
         case r'spend': return GetCbxMeResponseDataScopesItem.spend;
         case r'campaign': return GetCbxMeResponseDataScopesItem.campaign;
-        case r'read': return GetCbxMeResponseDataScopesItem.read;
         case r'accrue': return GetCbxMeResponseDataScopesItem.accrue;
         case r'treasury': return GetCbxMeResponseDataScopesItem.treasury;
         default:

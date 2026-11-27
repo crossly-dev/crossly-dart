@@ -140,17 +140,17 @@ class CreateVaultMarketDealerPoolPreviewResponseBidLimitEnum {
   String toJson() => value;
 
   static const floor = CreateVaultMarketDealerPoolPreviewResponseBidLimitEnum._(r'floor');
+  static const ceiling = CreateVaultMarketDealerPoolPreviewResponseBidLimitEnum._(r'ceiling');
   static const noUnits = CreateVaultMarketDealerPoolPreviewResponseBidLimitEnum._(r'no_units');
   static const noCash = CreateVaultMarketDealerPoolPreviewResponseBidLimitEnum._(r'no_cash');
-  static const ceiling = CreateVaultMarketDealerPoolPreviewResponseBidLimitEnum._(r'ceiling');
   static const curveEnd = CreateVaultMarketDealerPoolPreviewResponseBidLimitEnum._(r'curve_end');
 
   /// List of all possible values in this [enum][CreateVaultMarketDealerPoolPreviewResponseBidLimitEnum].
   static const values = <CreateVaultMarketDealerPoolPreviewResponseBidLimitEnum>[
     floor,
+    ceiling,
     noUnits,
     noCash,
-    ceiling,
     curveEnd,
   ];
 
@@ -184,9 +184,9 @@ class CreateVaultMarketDealerPoolPreviewResponseBidLimitEnumTypeTransformer {
     if (data != null) {
       switch (data.toString()) {
         case r'floor': return CreateVaultMarketDealerPoolPreviewResponseBidLimitEnum.floor;
+        case r'ceiling': return CreateVaultMarketDealerPoolPreviewResponseBidLimitEnum.ceiling;
         case r'no_units': return CreateVaultMarketDealerPoolPreviewResponseBidLimitEnum.noUnits;
         case r'no_cash': return CreateVaultMarketDealerPoolPreviewResponseBidLimitEnum.noCash;
-        case r'ceiling': return CreateVaultMarketDealerPoolPreviewResponseBidLimitEnum.ceiling;
         case r'curve_end': return CreateVaultMarketDealerPoolPreviewResponseBidLimitEnum.curveEnd;
         default:
           if (allowNull == false) {
@@ -216,17 +216,17 @@ class CreateVaultMarketDealerPoolPreviewResponseAskLimitEnum {
   String toJson() => value;
 
   static const floor = CreateVaultMarketDealerPoolPreviewResponseAskLimitEnum._(r'floor');
+  static const ceiling = CreateVaultMarketDealerPoolPreviewResponseAskLimitEnum._(r'ceiling');
   static const noUnits = CreateVaultMarketDealerPoolPreviewResponseAskLimitEnum._(r'no_units');
   static const noCash = CreateVaultMarketDealerPoolPreviewResponseAskLimitEnum._(r'no_cash');
-  static const ceiling = CreateVaultMarketDealerPoolPreviewResponseAskLimitEnum._(r'ceiling');
   static const curveEnd = CreateVaultMarketDealerPoolPreviewResponseAskLimitEnum._(r'curve_end');
 
   /// List of all possible values in this [enum][CreateVaultMarketDealerPoolPreviewResponseAskLimitEnum].
   static const values = <CreateVaultMarketDealerPoolPreviewResponseAskLimitEnum>[
     floor,
+    ceiling,
     noUnits,
     noCash,
-    ceiling,
     curveEnd,
   ];
 
@@ -260,9 +260,9 @@ class CreateVaultMarketDealerPoolPreviewResponseAskLimitEnumTypeTransformer {
     if (data != null) {
       switch (data.toString()) {
         case r'floor': return CreateVaultMarketDealerPoolPreviewResponseAskLimitEnum.floor;
+        case r'ceiling': return CreateVaultMarketDealerPoolPreviewResponseAskLimitEnum.ceiling;
         case r'no_units': return CreateVaultMarketDealerPoolPreviewResponseAskLimitEnum.noUnits;
         case r'no_cash': return CreateVaultMarketDealerPoolPreviewResponseAskLimitEnum.noCash;
-        case r'ceiling': return CreateVaultMarketDealerPoolPreviewResponseAskLimitEnum.ceiling;
         case r'curve_end': return CreateVaultMarketDealerPoolPreviewResponseAskLimitEnum.curveEnd;
         default:
           if (allowNull == false) {

@@ -13,37 +13,37 @@ part of openapi.api;
 class GetBuyerListingFitResponseDataComparisons {
   /// Returns a new [GetBuyerListingFitResponseDataComparisons] instance.
   GetBuyerListingFitResponseDataComparisons({
-    @required this.label,
     @required this.refId,
+    @required this.label,
     @required this.result,
   });
 
-  String label;
-
   String refId;
+
+  String label;
 
   GetBuyerListingFitResponseDataComparisonsResult result;
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is GetBuyerListingFitResponseDataComparisons &&
-     other.label == label &&
      other.refId == refId &&
+     other.label == label &&
      other.result == result;
 
   @override
   int get hashCode =>
   // ignore: unnecessary_parenthesis
-    (label == null ? 0 : label.hashCode) +
     (refId == null ? 0 : refId.hashCode) +
+    (label == null ? 0 : label.hashCode) +
     (result == null ? 0 : result.hashCode);
 
   @override
-  String toString() => 'GetBuyerListingFitResponseDataComparisons[label=$label, refId=$refId, result=$result]';
+  String toString() => 'GetBuyerListingFitResponseDataComparisons[refId=$refId, label=$label, result=$result]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-      json[r'label'] = label;
       json[r'refId'] = refId;
+      json[r'label'] = label;
       json[r'result'] = result;
     return json;
   }
@@ -55,8 +55,8 @@ class GetBuyerListingFitResponseDataComparisons {
     if (value is Map) {
       final json = value.cast<String, dynamic>();
       return GetBuyerListingFitResponseDataComparisons(
-        label: mapValueOfType<String>(json, r'label'),
         refId: mapValueOfType<String>(json, r'refId'),
+        label: mapValueOfType<String>(json, r'label'),
         result: GetBuyerListingFitResponseDataComparisonsResult.fromJson(json[r'result']),
       );
     }

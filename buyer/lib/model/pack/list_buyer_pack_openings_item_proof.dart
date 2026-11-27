@@ -13,77 +13,77 @@ part of openapi.api;
 class ListBuyerPackOpeningsItemProof {
   /// Returns a new [ListBuyerPackOpeningsItemProof] instance.
   ListBuyerPackOpeningsItemProof({
-    @required this.nonce,
-    this.tierId,
-    this.serverSeed,
     @required this.serverSeedHash,
+    this.serverSeed,
     @required this.clientSeed,
-    this.poolItemId,
+    @required this.nonce,
     this.tierItemIds,
     this.tierWeights,
+    this.tierId,
+    this.poolItemId,
   });
-
-  num nonce;
-
-  String tierId;
-
-  String serverSeed;
 
   String serverSeedHash;
 
+  String serverSeed;
+
   String clientSeed;
 
-  String poolItemId;
+  num nonce;
 
   List<String> tierItemIds;
 
   List<ListBuyerPackOpeningsItemProofTierWeights> tierWeights;
 
+  String tierId;
+
+  String poolItemId;
+
   @override
   bool operator ==(Object other) => identical(this, other) || other is ListBuyerPackOpeningsItemProof &&
-     other.nonce == nonce &&
-     other.tierId == tierId &&
-     other.serverSeed == serverSeed &&
      other.serverSeedHash == serverSeedHash &&
+     other.serverSeed == serverSeed &&
      other.clientSeed == clientSeed &&
-     other.poolItemId == poolItemId &&
+     other.nonce == nonce &&
      other.tierItemIds == tierItemIds &&
-     other.tierWeights == tierWeights;
+     other.tierWeights == tierWeights &&
+     other.tierId == tierId &&
+     other.poolItemId == poolItemId;
 
   @override
   int get hashCode =>
   // ignore: unnecessary_parenthesis
-    (nonce == null ? 0 : nonce.hashCode) +
-    (tierId == null ? 0 : tierId.hashCode) +
-    (serverSeed == null ? 0 : serverSeed.hashCode) +
     (serverSeedHash == null ? 0 : serverSeedHash.hashCode) +
+    (serverSeed == null ? 0 : serverSeed.hashCode) +
     (clientSeed == null ? 0 : clientSeed.hashCode) +
-    (poolItemId == null ? 0 : poolItemId.hashCode) +
+    (nonce == null ? 0 : nonce.hashCode) +
     (tierItemIds == null ? 0 : tierItemIds.hashCode) +
-    (tierWeights == null ? 0 : tierWeights.hashCode);
+    (tierWeights == null ? 0 : tierWeights.hashCode) +
+    (tierId == null ? 0 : tierId.hashCode) +
+    (poolItemId == null ? 0 : poolItemId.hashCode);
 
   @override
-  String toString() => 'ListBuyerPackOpeningsItemProof[nonce=$nonce, tierId=$tierId, serverSeed=$serverSeed, serverSeedHash=$serverSeedHash, clientSeed=$clientSeed, poolItemId=$poolItemId, tierItemIds=$tierItemIds, tierWeights=$tierWeights]';
+  String toString() => 'ListBuyerPackOpeningsItemProof[serverSeedHash=$serverSeedHash, serverSeed=$serverSeed, clientSeed=$clientSeed, nonce=$nonce, tierItemIds=$tierItemIds, tierWeights=$tierWeights, tierId=$tierId, poolItemId=$poolItemId]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-      json[r'nonce'] = nonce;
-    if (tierId != null) {
-      json[r'tierId'] = tierId;
-    }
+      json[r'serverSeedHash'] = serverSeedHash;
     if (serverSeed != null) {
       json[r'serverSeed'] = serverSeed;
     }
-      json[r'serverSeedHash'] = serverSeedHash;
       json[r'clientSeed'] = clientSeed;
-    if (poolItemId != null) {
-      json[r'poolItemId'] = poolItemId;
-    }
+      json[r'nonce'] = nonce;
     if (tierItemIds != null) {
       json[r'tierItemIds'] = tierItemIds;
     }
     if (tierWeights != null) {
       json[r'tierWeights'] = tierWeights;
+    }
+    if (tierId != null) {
+      json[r'tierId'] = tierId;
+    }
+    if (poolItemId != null) {
+      json[r'poolItemId'] = poolItemId;
     }
     return json;
   }
@@ -95,18 +95,18 @@ class ListBuyerPackOpeningsItemProof {
     if (value is Map) {
       final json = value.cast<String, dynamic>();
       return ListBuyerPackOpeningsItemProof(
+        serverSeedHash: mapValueOfType<String>(json, r'serverSeedHash'),
+        serverSeed: mapValueOfType<String>(json, r'serverSeed'),
+        clientSeed: mapValueOfType<String>(json, r'clientSeed'),
         nonce: json[r'nonce'] == null
           ? null
           : num.parse(json[r'nonce'].toString()),
-        tierId: mapValueOfType<String>(json, r'tierId'),
-        serverSeed: mapValueOfType<String>(json, r'serverSeed'),
-        serverSeedHash: mapValueOfType<String>(json, r'serverSeedHash'),
-        clientSeed: mapValueOfType<String>(json, r'clientSeed'),
-        poolItemId: mapValueOfType<String>(json, r'poolItemId'),
         tierItemIds: json[r'tierItemIds'] is List
           ? (json[r'tierItemIds'] as List).cast<String>()
           : null,
         tierWeights: ListBuyerPackOpeningsItemProofTierWeights.listFromJson(json[r'tierWeights']),
+        tierId: mapValueOfType<String>(json, r'tierId'),
+        poolItemId: mapValueOfType<String>(json, r'poolItemId'),
       );
     }
     return null;

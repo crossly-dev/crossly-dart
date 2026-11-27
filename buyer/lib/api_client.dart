@@ -201,6 +201,58 @@ class ApiClient {
           return BuyerBoardResponseDataItems.fromJson(value);
         case 'BuyerCartResponse':
           return BuyerCartResponse.fromJson(value);
+        case 'BuyerCompanyResponse':
+          return BuyerCompanyResponse.fromJson(value);
+        case 'BuyerCompanyResponseData':
+          return BuyerCompanyResponseData.fromJson(value);
+        case 'BuyerCompanyResponseDataAddresses':
+          return BuyerCompanyResponseDataAddresses.fromJson(value);
+        case 'BuyerCompanyResponseDataMembers':
+          return BuyerCompanyResponseDataMembers.fromJson(value);
+        case 'BuyerCompanyResponseDataYou':
+          return BuyerCompanyResponseDataYou.fromJson(value);
+        case 'BuyerHomeResponse':
+          return BuyerHomeResponse.fromJson(value);
+        case 'BuyerHomeResponseData':
+          return BuyerHomeResponseData.fromJson(value);
+        case 'BuyerHomeResponseDataDecor':
+          return BuyerHomeResponseDataDecor.fromJson(value);
+        case 'BuyerHomeResponseDataGiftShelf':
+          return BuyerHomeResponseDataGiftShelf.fromJson(value);
+        case 'BuyerHomeResponseDataGiftShelfItems':
+          return BuyerHomeResponseDataGiftShelfItems.fromJson(value);
+        case 'BuyerHomeResponseDataGuestbook':
+          return BuyerHomeResponseDataGuestbook.fromJson(value);
+        case 'BuyerHomeResponseDataGuestbookAuthor':
+          return BuyerHomeResponseDataGuestbookAuthor.fromJson(value);
+        case 'BuyerHomeResponseDataLayout':
+          return BuyerHomeResponseDataLayout.fromJson(value);
+        case 'BuyerHomeResponseDataLayoutItem':
+          return BuyerHomeResponseDataLayoutItem.fromJson(value);
+        case 'BuyerHomeResponseDataLayoutRef':
+          return BuyerHomeResponseDataLayoutRef.fromJson(value);
+        case 'BuyerHomeResponseDataOwner':
+          return BuyerHomeResponseDataOwner.fromJson(value);
+        case 'BuyerHomeResponseDataPinCase':
+          return BuyerHomeResponseDataPinCase.fromJson(value);
+        case 'BuyerHomeResponseDataPullsShelf':
+          return BuyerHomeResponseDataPullsShelf.fromJson(value);
+        case 'BuyerHomeResponseDataPullsShelfItems':
+          return BuyerHomeResponseDataPullsShelfItems.fromJson(value);
+        case 'BuyerHomeResponseDataRoom':
+          return BuyerHomeResponseDataRoom.fromJson(value);
+        case 'BuyerHomeResponseDataRoomFloor':
+          return BuyerHomeResponseDataRoomFloor.fromJson(value);
+        case 'BuyerHomeResponseDataSetWall':
+          return BuyerHomeResponseDataSetWall.fromJson(value);
+        case 'BuyerHomeResponseDataSetWallChoices':
+          return BuyerHomeResponseDataSetWallChoices.fromJson(value);
+        case 'BuyerHomeResponseDataSetWallPieces':
+          return BuyerHomeResponseDataSetWallPieces.fromJson(value);
+        case 'BuyerHomeResponseDataVaultWall':
+          return BuyerHomeResponseDataVaultWall.fromJson(value);
+        case 'BuyerHomeResponseDataVaultWallUnits':
+          return BuyerHomeResponseDataVaultWallUnits.fromJson(value);
         case 'BuyerLayawayResponse':
           return BuyerLayawayResponse.fromJson(value);
         case 'BuyerRegistryResponse':
@@ -209,6 +261,12 @@ class ApiClient {
           return BuyerRegistryResponseData.fromJson(value);
         case 'BuyerRegistryResponseDataItems':
           return BuyerRegistryResponseDataItems.fromJson(value);
+        case 'BuyerRentalResponse':
+          return BuyerRentalResponse.fromJson(value);
+        case 'BuyerRentalResponseData':
+          return BuyerRentalResponseData.fromJson(value);
+        case 'BuyerRentalResponseDataInspection':
+          return BuyerRentalResponseDataInspection.fromJson(value);
         case 'BuyerResponse':
           return BuyerResponse.fromJson(value);
         case 'BuyerResponse2':
@@ -217,6 +275,22 @@ class ApiClient {
           return BuyerResponse2Data.fromJson(value);
         case 'BuyerResponse3':
           return BuyerResponse3.fromJson(value);
+        case 'BuyerWholesaleOrderSheetResponse':
+          return BuyerWholesaleOrderSheetResponse.fromJson(value);
+        case 'BuyerWholesaleOrderSheetResponseData':
+          return BuyerWholesaleOrderSheetResponseData.fromJson(value);
+        case 'BuyerWholesaleOrderSheetResponseDataLines':
+          return BuyerWholesaleOrderSheetResponseDataLines.fromJson(value);
+        case 'BuyerWholesaleOrderSheetResponseDataLinesFlagsItem':
+          return BuyerWholesaleOrderSheetResponseDataLinesFlagsItemTypeTransformer().decode(value);
+        case 'BuyerWholesaleOrderSheetResponseDataLinesTerms':
+          return BuyerWholesaleOrderSheetResponseDataLinesTerms.fromJson(value);
+        case 'BuyerWholesaleQuoteResponse':
+          return BuyerWholesaleQuoteResponse.fromJson(value);
+        case 'BuyerWholesaleQuoteResponseData':
+          return BuyerWholesaleQuoteResponseData.fromJson(value);
+        case 'BuyerWholesaleQuoteResponseDataItems':
+          return BuyerWholesaleQuoteResponseDataItems.fromJson(value);
         case 'CreateBuyerActivityRequest':
           return CreateBuyerActivityRequest.fromJson(value);
         case 'CreateBuyerActivityResponse':
@@ -317,16 +391,30 @@ class ApiClient {
           return CreateBuyerCatalogListingRentalQuoteResponse.fromJson(value);
         case 'CreateBuyerCatalogListingRentalQuoteResponseData':
           return CreateBuyerCatalogListingRentalQuoteResponseData.fromJson(value);
+        case 'CreateBuyerCatalogListingRentalQuoteResponseDataBuyout':
+          return CreateBuyerCatalogListingRentalQuoteResponseDataBuyout.fromJson(value);
+        case 'CreateBuyerCatalogListingRentalQuoteResponseDataCancellation':
+          return CreateBuyerCatalogListingRentalQuoteResponseDataCancellation.fromJson(value);
+        case 'CreateBuyerCatalogListingRentalQuoteResponseDataCancellationTiers':
+          return CreateBuyerCatalogListingRentalQuoteResponseDataCancellationTiers.fromJson(value);
+        case 'CreateBuyerCatalogListingRentalQuoteResponseDataLines':
+          return CreateBuyerCatalogListingRentalQuoteResponseDataLines.fromJson(value);
         case 'CreateBuyerCatalogListingRentalResponse':
           return CreateBuyerCatalogListingRentalResponse.fromJson(value);
         case 'CreateBuyerCatalogListingRentalResponseData':
           return CreateBuyerCatalogListingRentalResponseData.fromJson(value);
+        case 'CreateBuyerCatalogListingRentalResponseDataQuote':
+          return CreateBuyerCatalogListingRentalResponseDataQuote.fromJson(value);
         case 'CreateBuyerCatalogListingVideoRequestResponse':
           return CreateBuyerCatalogListingVideoRequestResponse.fromJson(value);
         case 'CreateBuyerCatalogListingVideoRequestResponseData':
           return CreateBuyerCatalogListingVideoRequestResponseData.fromJson(value);
         case 'CreateBuyerCheckoutResponse':
           return CreateBuyerCheckoutResponse.fromJson(value);
+        case 'CreateBuyerCompanyApprovalResponse':
+          return CreateBuyerCompanyApprovalResponse.fromJson(value);
+        case 'CreateBuyerCompanyApprovalResponseData':
+          return CreateBuyerCompanyApprovalResponseData.fromJson(value);
         case 'CreateBuyerConversationJoinResponse':
           return CreateBuyerConversationJoinResponse.fromJson(value);
         case 'CreateBuyerConversationJoinResponseData':
@@ -335,6 +423,10 @@ class ApiClient {
           return CreateBuyerDropJoinResponse.fromJson(value);
         case 'CreateBuyerDropJoinResponseMe':
           return CreateBuyerDropJoinResponseMe.fromJson(value);
+        case 'CreateBuyerEventRsvpResponse':
+          return CreateBuyerEventRsvpResponse.fromJson(value);
+        case 'CreateBuyerEventRsvpResponseData':
+          return CreateBuyerEventRsvpResponseData.fromJson(value);
         case 'CreateBuyerFeedbackItem':
           return CreateBuyerFeedbackItem.fromJson(value);
         case 'CreateBuyerFeedbackRequest':
@@ -451,10 +543,6 @@ class ApiClient {
           return CreateBuyerProtectionPlanCancelResponse.fromJson(value);
         case 'CreateBuyerProtectionPlanCancelResponseData':
           return CreateBuyerProtectionPlanCancelResponseData.fromJson(value);
-        case 'CreateBuyerPurchaseDownloadResponse':
-          return CreateBuyerPurchaseDownloadResponse.fromJson(value);
-        case 'CreateBuyerPurchaseDownloadResponseData':
-          return CreateBuyerPurchaseDownloadResponseData.fromJson(value);
         case 'CreateBuyerRegistryGiftThankedResponse':
           return CreateBuyerRegistryGiftThankedResponse.fromJson(value);
         case 'CreateBuyerRegistryGiftThankedResponseData':
@@ -463,10 +551,18 @@ class ApiClient {
           return CreateBuyerRegistryResponse.fromJson(value);
         case 'CreateBuyerRegistryResponseData':
           return CreateBuyerRegistryResponseData.fromJson(value);
-        case 'CreateBuyerRentalArrivalPhotoResponse':
-          return CreateBuyerRentalArrivalPhotoResponse.fromJson(value);
-        case 'CreateBuyerRentalArrivalPhotoResponseData':
-          return CreateBuyerRentalArrivalPhotoResponseData.fromJson(value);
+        case 'CreateBuyerRentalBuyoutResponse':
+          return CreateBuyerRentalBuyoutResponse.fromJson(value);
+        case 'CreateBuyerRentalBuyoutResponseData':
+          return CreateBuyerRentalBuyoutResponseData.fromJson(value);
+        case 'CreateBuyerRentalExtensionPayResponse':
+          return CreateBuyerRentalExtensionPayResponse.fromJson(value);
+        case 'CreateBuyerRentalExtensionPayResponseData':
+          return CreateBuyerRentalExtensionPayResponseData.fromJson(value);
+        case 'CreateBuyerRentalExtensionResponse':
+          return CreateBuyerRentalExtensionResponse.fromJson(value);
+        case 'CreateBuyerRentalExtensionResponseData':
+          return CreateBuyerRentalExtensionResponseData.fromJson(value);
         case 'CreateBuyerRentalIdentityStartResponse':
           return CreateBuyerRentalIdentityStartResponse.fromJson(value);
         case 'CreateBuyerRentalIdentityStartResponseData':
@@ -491,10 +587,10 @@ class ApiClient {
           return CreateBuyerSellerClubJoinResponseDataTiers.fromJson(value);
         case 'CreateBuyerSellerReportRequest':
           return CreateBuyerSellerReportRequest.fromJson(value);
-        case 'CreateBuyerSellerReportResponse':
-          return CreateBuyerSellerReportResponse.fromJson(value);
-        case 'CreateBuyerSellerReportResponseData':
-          return CreateBuyerSellerReportResponseData.fromJson(value);
+        case 'CreateBuyerStoreReportResponse':
+          return CreateBuyerStoreReportResponse.fromJson(value);
+        case 'CreateBuyerStoreReportResponseData':
+          return CreateBuyerStoreReportResponseData.fromJson(value);
         case 'CreateBuyerTogetherResponse':
           return CreateBuyerTogetherResponse.fromJson(value);
         case 'CreateBuyerTogetherResponseData':
@@ -513,6 +609,34 @@ class ApiClient {
           return CreateBuyerVaultWithdrawResponse.fromJson(value);
         case 'CreateBuyerVaultWithdrawResponseData':
           return CreateBuyerVaultWithdrawResponseData.fromJson(value);
+        case 'CreateBuyerWholesaleCatalogApplyResponse':
+          return CreateBuyerWholesaleCatalogApplyResponse.fromJson(value);
+        case 'CreateBuyerWholesaleCatalogApplyResponseData':
+          return CreateBuyerWholesaleCatalogApplyResponseData.fromJson(value);
+        case 'CreateBuyerWholesaleFreightRequestResponse':
+          return CreateBuyerWholesaleFreightRequestResponse.fromJson(value);
+        case 'CreateBuyerWholesaleFreightRequestResponseData':
+          return CreateBuyerWholesaleFreightRequestResponseData.fromJson(value);
+        case 'CreateBuyerWholesaleFreightRequestResponseDataLines':
+          return CreateBuyerWholesaleFreightRequestResponseDataLines.fromJson(value);
+        case 'CreateBuyerWholesaleInvoicePayLinkResponse':
+          return CreateBuyerWholesaleInvoicePayLinkResponse.fromJson(value);
+        case 'CreateBuyerWholesaleInvoicePayLinkResponseData':
+          return CreateBuyerWholesaleInvoicePayLinkResponseData.fromJson(value);
+        case 'CreateBuyerWholesaleQuoteAcceptResponse':
+          return CreateBuyerWholesaleQuoteAcceptResponse.fromJson(value);
+        case 'CreateBuyerWholesaleQuoteAcceptResponseData':
+          return CreateBuyerWholesaleQuoteAcceptResponseData.fromJson(value);
+        case 'CreateBuyerWholesaleUploadValidateResponse':
+          return CreateBuyerWholesaleUploadValidateResponse.fromJson(value);
+        case 'CreateBuyerWholesaleUploadValidateResponseData':
+          return CreateBuyerWholesaleUploadValidateResponseData.fromJson(value);
+        case 'CreateBuyerWholesaleUploadValidateResponseDataLines':
+          return CreateBuyerWholesaleUploadValidateResponseDataLines.fromJson(value);
+        case 'CreateBuyerWholesaleUploadValidateResponseDataLinesFlagsItem':
+          return CreateBuyerWholesaleUploadValidateResponseDataLinesFlagsItemTypeTransformer().decode(value);
+        case 'CreateBuyerWholesaleUploadValidateResponseDataUnmatched':
+          return CreateBuyerWholesaleUploadValidateResponseDataUnmatched.fromJson(value);
         case 'CreateBuyerWishlistInviteResponse':
           return CreateBuyerWishlistInviteResponse.fromJson(value);
         case 'CreateBuyerWishlistInviteResponseData':
@@ -543,6 +667,10 @@ class ApiClient {
           return DeleteBuyerTryOnResponse.fromJson(value);
         case 'DeleteBuyerTryOnResponseData':
           return DeleteBuyerTryOnResponseData.fromJson(value);
+        case 'DeleteBuyerWholesaleOrderSheetResponse':
+          return DeleteBuyerWholesaleOrderSheetResponse.fromJson(value);
+        case 'DeleteBuyerWholesaleOrderSheetResponseData':
+          return DeleteBuyerWholesaleOrderSheetResponseData.fromJson(value);
         case 'DeleteBuyerWishlistItemResponse':
           return DeleteBuyerWishlistItemResponse.fromJson(value);
         case 'DeleteBuyerWishlistItemResponseData':
@@ -617,8 +745,36 @@ class ApiClient {
           return GetBuyerCatalogListingRentalResponseData.fromJson(value);
         case 'GetBuyerCatalogListingRentalResponseDataBooked':
           return GetBuyerCatalogListingRentalResponseDataBooked.fromJson(value);
+        case 'GetBuyerCatalogListingRentalResponseDataOptions':
+          return GetBuyerCatalogListingRentalResponseDataOptions.fromJson(value);
+        case 'GetBuyerCatalogListingRentalResponseDataOptionsCancellation':
+          return GetBuyerCatalogListingRentalResponseDataOptionsCancellation.fromJson(value);
+        case 'GetBuyerCatalogListingRentalResponseDataOptionsDamageWaiver':
+          return GetBuyerCatalogListingRentalResponseDataOptionsDamageWaiver.fromJson(value);
+        case 'GetBuyerCatalogListingRentalResponseDataOptionsDeposit':
+          return GetBuyerCatalogListingRentalResponseDataOptionsDeposit.fromJson(value);
+        case 'GetBuyerCatalogListingRentalResponseDataOptionsExtensions':
+          return GetBuyerCatalogListingRentalResponseDataOptionsExtensions.fromJson(value);
+        case 'GetBuyerCatalogListingRentalResponseDataOptionsLastMinute':
+          return GetBuyerCatalogListingRentalResponseDataOptionsLastMinute.fromJson(value);
+        case 'GetBuyerCatalogListingRentalResponseDataOptionsLateEscalation':
+          return GetBuyerCatalogListingRentalResponseDataOptionsLateEscalation.fromJson(value);
+        case 'GetBuyerCatalogListingRentalResponseDataOptionsLengthDiscounts':
+          return GetBuyerCatalogListingRentalResponseDataOptionsLengthDiscounts.fromJson(value);
+        case 'GetBuyerCatalogListingRentalResponseDataOptionsPhotosOut':
+          return GetBuyerCatalogListingRentalResponseDataOptionsPhotosOut.fromJson(value);
+        case 'GetBuyerCatalogListingRentalResponseDataOptionsPickup':
+          return GetBuyerCatalogListingRentalResponseDataOptionsPickup.fromJson(value);
+        case 'GetBuyerCatalogListingRentalResponseDataOptionsSeasonal':
+          return GetBuyerCatalogListingRentalResponseDataOptionsSeasonal.fromJson(value);
         case 'GetBuyerCatalogListingResponse':
           return GetBuyerCatalogListingResponse.fromJson(value);
+        case 'GetBuyerCatalogListingResponseDescriptionBlocksItem':
+          return GetBuyerCatalogListingResponseDescriptionBlocksItem.fromJson(value);
+        case 'GetBuyerCatalogListingResponseTokenGate':
+          return GetBuyerCatalogListingResponseTokenGate.fromJson(value);
+        case 'GetBuyerCatalogListingResponseVariants':
+          return GetBuyerCatalogListingResponseVariants.fromJson(value);
         case 'GetBuyerCatalogListingShippingResponse':
           return GetBuyerCatalogListingShippingResponse.fromJson(value);
         case 'GetBuyerCatalogListingShippingResponseInternational':
@@ -649,6 +805,18 @@ class ApiClient {
           return GetBuyerCollectionSetResponseDataLeaderboard.fromJson(value);
         case 'GetBuyerCollectionSetResponseDataPieces':
           return GetBuyerCollectionSetResponseDataPieces.fromJson(value);
+        case 'GetBuyerCreationResponse':
+          return GetBuyerCreationResponse.fromJson(value);
+        case 'GetBuyerCreationResponseData':
+          return GetBuyerCreationResponseData.fromJson(value);
+        case 'GetBuyerCreationResponseDataReviews':
+          return GetBuyerCreationResponseDataReviews.fromJson(value);
+        case 'GetBuyerCreationResponseDataSummary':
+          return GetBuyerCreationResponseDataSummary.fromJson(value);
+        case 'GetBuyerCreationResponseDataViewer':
+          return GetBuyerCreationResponseDataViewer.fromJson(value);
+        case 'GetBuyerCreationResponseDataViewerReview':
+          return GetBuyerCreationResponseDataViewerReview.fromJson(value);
         case 'GetBuyerCreatorResponse':
           return GetBuyerCreatorResponse.fromJson(value);
         case 'GetBuyerCreatorResponseData':
@@ -657,6 +825,22 @@ class ApiClient {
           return GetBuyerCreatorResponseDataCreator.fromJson(value);
         case 'GetBuyerDropMeResponse':
           return GetBuyerDropMeResponse.fromJson(value);
+        case 'GetBuyerEventResponse':
+          return GetBuyerEventResponse.fromJson(value);
+        case 'GetBuyerEventResponseData':
+          return GetBuyerEventResponseData.fromJson(value);
+        case 'GetBuyerEventResponseDataDropRef':
+          return GetBuyerEventResponseDataDropRef.fromJson(value);
+        case 'GetBuyerEventResponseDataHost':
+          return GetBuyerEventResponseDataHost.fromJson(value);
+        case 'GetBuyerEventResponseDataHostStore':
+          return GetBuyerEventResponseDataHostStore.fromJson(value);
+        case 'GetBuyerEventResponseDataListings':
+          return GetBuyerEventResponseDataListings.fromJson(value);
+        case 'GetBuyerEventResponseDataLiveShow':
+          return GetBuyerEventResponseDataLiveShow.fromJson(value);
+        case 'GetBuyerEventResponseDataPromo':
+          return GetBuyerEventResponseDataPromo.fromJson(value);
         case 'GetBuyerFitVocabularyResponse':
           return GetBuyerFitVocabularyResponse.fromJson(value);
         case 'GetBuyerFitVocabularyResponseData':
@@ -671,6 +855,14 @@ class ApiClient {
           return GetBuyerGiftFinderOptionResponseDataBudgets.fromJson(value);
         case 'GetBuyerGiftFinderOptionResponseDataRecipients':
           return GetBuyerGiftFinderOptionResponseDataRecipients.fromJson(value);
+        case 'GetBuyerHomePlaceableResponse':
+          return GetBuyerHomePlaceableResponse.fromJson(value);
+        case 'GetBuyerHomePlaceableResponseData':
+          return GetBuyerHomePlaceableResponseData.fromJson(value);
+        case 'GetBuyerHomePlaceableResponseDataItems':
+          return GetBuyerHomePlaceableResponseDataItems.fromJson(value);
+        case 'GetBuyerHomePlaceableResponseDataItemsRef':
+          return GetBuyerHomePlaceableResponseDataItemsRef.fromJson(value);
         case 'GetBuyerImpactResponse':
           return GetBuyerImpactResponse.fromJson(value);
         case 'GetBuyerImpactResponseData':
@@ -767,10 +959,22 @@ class ApiClient {
           return GetBuyerPassportResponseData.fromJson(value);
         case 'GetBuyerPassportResponseDataAuthenticated':
           return GetBuyerPassportResponseDataAuthenticated.fromJson(value);
+        case 'GetBuyerPassportResponseDataDetails':
+          return GetBuyerPassportResponseDataDetails.fromJson(value);
+        case 'GetBuyerPassportResponseDataGrading':
+          return GetBuyerPassportResponseDataGrading.fromJson(value);
         case 'GetBuyerPassportResponseDataHistory':
           return GetBuyerPassportResponseDataHistory.fromJson(value);
+        case 'GetBuyerPassportResponseDataHolder':
+          return GetBuyerPassportResponseDataHolder.fromJson(value);
         case 'GetBuyerPassportResponseDataItem':
           return GetBuyerPassportResponseDataItem.fromJson(value);
+        case 'GetBuyerPassportResponseDataTimeline':
+          return GetBuyerPassportResponseDataTimeline.fromJson(value);
+        case 'GetBuyerPassportResponseDataVerdict':
+          return GetBuyerPassportResponseDataVerdict.fromJson(value);
+        case 'GetBuyerPassportResponseDataVerdictChecks':
+          return GetBuyerPassportResponseDataVerdictChecks.fromJson(value);
         case 'GetBuyerPreferenceResponse':
           return GetBuyerPreferenceResponse.fromJson(value);
         case 'GetBuyerPreferenceResponseData':
@@ -811,6 +1015,24 @@ class ApiClient {
           return GetBuyerRentalEligibilityResponse.fromJson(value);
         case 'GetBuyerRentalEligibilityResponseData':
           return GetBuyerRentalEligibilityResponseData.fromJson(value);
+        case 'GetBuyerRentalResponse':
+          return GetBuyerRentalResponse.fromJson(value);
+        case 'GetBuyerRentalResponseData':
+          return GetBuyerRentalResponseData.fromJson(value);
+        case 'GetBuyerRentalResponseDataBuyout':
+          return GetBuyerRentalResponseDataBuyout.fromJson(value);
+        case 'GetBuyerRentalResponseDataEvents':
+          return GetBuyerRentalResponseDataEvents.fromJson(value);
+        case 'GetBuyerRentalResponseDataExtension':
+          return GetBuyerRentalResponseDataExtension.fromJson(value);
+        case 'GetBuyerRentalResponseDataExtensions':
+          return GetBuyerRentalResponseDataExtensions.fromJson(value);
+        case 'GetBuyerRentalResponseDataPayments':
+          return GetBuyerRentalResponseDataPayments.fromJson(value);
+        case 'GetBuyerRentalResponseDataShipping':
+          return GetBuyerRentalResponseDataShipping.fromJson(value);
+        case 'GetBuyerRentalResponseDataTimeline':
+          return GetBuyerRentalResponseDataTimeline.fromJson(value);
         case 'GetBuyerScanSessionResponse':
           return GetBuyerScanSessionResponse.fromJson(value);
         case 'GetBuyerScanSessionResponseCaptures':
@@ -821,6 +1043,24 @@ class ApiClient {
           return GetBuyerSellerClubResponse.fromJson(value);
         case 'GetBuyerSellerClubResponseData':
           return GetBuyerSellerClubResponseData.fromJson(value);
+        case 'GetBuyerSellerLoyaltyResponse':
+          return GetBuyerSellerLoyaltyResponse.fromJson(value);
+        case 'GetBuyerSellerLoyaltyResponseData':
+          return GetBuyerSellerLoyaltyResponseData.fromJson(value);
+        case 'GetBuyerSellerLoyaltyResponseDataMember':
+          return GetBuyerSellerLoyaltyResponseDataMember.fromJson(value);
+        case 'GetBuyerSellerLoyaltyResponseDataMemberHistory':
+          return GetBuyerSellerLoyaltyResponseDataMemberHistory.fromJson(value);
+        case 'GetBuyerSellerLoyaltyResponseDataMemberNext':
+          return GetBuyerSellerLoyaltyResponseDataMemberNext.fromJson(value);
+        case 'GetBuyerSellerLoyaltyResponseDataMemberNextTier':
+          return GetBuyerSellerLoyaltyResponseDataMemberNextTier.fromJson(value);
+        case 'GetBuyerSellerLoyaltyResponseDataMemberPerks':
+          return GetBuyerSellerLoyaltyResponseDataMemberPerks.fromJson(value);
+        case 'GetBuyerSellerLoyaltyResponseDataMemberStanding':
+          return GetBuyerSellerLoyaltyResponseDataMemberStanding.fromJson(value);
+        case 'GetBuyerSellerLoyaltyResponseDataMemberTier':
+          return GetBuyerSellerLoyaltyResponseDataMemberTier.fromJson(value);
         case 'GetBuyerSellerTrustResponse':
           return GetBuyerSellerTrustResponse.fromJson(value);
         case 'GetBuyerSellerTrustResponseData':
@@ -845,6 +1085,8 @@ class ApiClient {
           return GetBuyerVaultMarketHistoryResponseNowMarks.fromJson(value);
         case 'GetBuyerVaultMarketHistoryResponseSeries':
           return GetBuyerVaultMarketHistoryResponseSeries.fromJson(value);
+        case 'GetBuyerVaultMarketHistoryResponseToday':
+          return GetBuyerVaultMarketHistoryResponseToday.fromJson(value);
         case 'GetBuyerVaultMarketIndexResponse':
           return GetBuyerVaultMarketIndexResponse.fromJson(value);
         case 'GetBuyerVaultMarketIndexResponseHistory':
@@ -857,12 +1099,256 @@ class ApiClient {
           return GetBuyerVaultMarketInstantExitResponse.fromJson(value);
         case 'GetBuyerVaultMarketInstantExitResponseLevels':
           return GetBuyerVaultMarketInstantExitResponseLevels.fromJson(value);
+        case 'GetBuyerVaultMarketOptionAnalyticResponse':
+          return GetBuyerVaultMarketOptionAnalyticResponse.fromJson(value);
+        case 'GetBuyerVaultMarketOptionAnalyticResponseExpiries':
+          return GetBuyerVaultMarketOptionAnalyticResponseExpiries.fromJson(value);
+        case 'GetBuyerVaultMarketOptionAnalyticResponseExpiriesExpectedMove':
+          return GetBuyerVaultMarketOptionAnalyticResponseExpiriesExpectedMove.fromJson(value);
+        case 'GetBuyerVaultMarketOptionAnalyticResponseExpiriesOpenInterest':
+          return GetBuyerVaultMarketOptionAnalyticResponseExpiriesOpenInterest.fromJson(value);
+        case 'GetBuyerVaultMarketOptionAnalyticResponseHistoricalVol':
+          return GetBuyerVaultMarketOptionAnalyticResponseHistoricalVol.fromJson(value);
+        case 'GetBuyerVaultMarketOptionAnalyticResponseHistoricalVolSeries':
+          return GetBuyerVaultMarketOptionAnalyticResponseHistoricalVolSeries.fromJson(value);
+        case 'GetBuyerVaultMarketOptionAnalyticResponseHistoricalVolWindows':
+          return GetBuyerVaultMarketOptionAnalyticResponseHistoricalVolWindows.fromJson(value);
+        case 'GetBuyerVaultMarketOptionAnalyticResponseIv':
+          return GetBuyerVaultMarketOptionAnalyticResponseIv.fromJson(value);
+        case 'GetBuyerVaultMarketOptionAnalyticResponseIvHistory':
+          return GetBuyerVaultMarketOptionAnalyticResponseIvHistory.fromJson(value);
+        case 'GetBuyerVaultMarketOptionAnalyticResponsePutCall':
+          return GetBuyerVaultMarketOptionAnalyticResponsePutCall.fromJson(value);
+        case 'GetBuyerVaultMarketOptionAnalyticResponsePutCallTotals':
+          return GetBuyerVaultMarketOptionAnalyticResponsePutCallTotals.fromJson(value);
+        case 'GetBuyerVaultMarketOptionAnalyticResponseSmile':
+          return GetBuyerVaultMarketOptionAnalyticResponseSmile.fromJson(value);
+        case 'GetBuyerVaultMarketOptionAnalyticResponseSmileByStrike':
+          return GetBuyerVaultMarketOptionAnalyticResponseSmileByStrike.fromJson(value);
+        case 'GetBuyerVaultMarketOptionAnalyticResponseSmileFitted':
+          return GetBuyerVaultMarketOptionAnalyticResponseSmileFitted.fromJson(value);
+        case 'GetBuyerVaultMarketOptionAnalyticResponseSmilePoints':
+          return GetBuyerVaultMarketOptionAnalyticResponseSmilePoints.fromJson(value);
+        case 'GetBuyerVaultMarketOptionAnalyticResponseSurface':
+          return GetBuyerVaultMarketOptionAnalyticResponseSurface.fromJson(value);
+        case 'GetBuyerVaultMarketOptionAnalyticResponseSurfaceRows':
+          return GetBuyerVaultMarketOptionAnalyticResponseSurfaceRows.fromJson(value);
+        case 'GetBuyerVaultMarketOptionAnalyticResponseUnderlying':
+          return GetBuyerVaultMarketOptionAnalyticResponseUnderlying.fromJson(value);
+        case 'GetBuyerVaultMarketOptionChainResponse':
+          return GetBuyerVaultMarketOptionChainResponse.fromJson(value);
+        case 'GetBuyerVaultMarketOptionChainResponseExpiries':
+          return GetBuyerVaultMarketOptionChainResponseExpiries.fromJson(value);
+        case 'GetBuyerVaultMarketOptionChainResponseRows':
+          return GetBuyerVaultMarketOptionChainResponseRows.fromJson(value);
+        case 'GetBuyerVaultMarketOptionChainResponseRowsCall':
+          return GetBuyerVaultMarketOptionChainResponseRowsCall.fromJson(value);
+        case 'GetBuyerVaultMarketOptionChainResponseSeries':
+          return GetBuyerVaultMarketOptionChainResponseSeries.fromJson(value);
+        case 'GetBuyerVaultMarketOptionChainResponseUnderlying':
+          return GetBuyerVaultMarketOptionChainResponseUnderlying.fromJson(value);
+        case 'GetBuyerVaultMarketOptionChainResponseVenue':
+          return GetBuyerVaultMarketOptionChainResponseVenue.fromJson(value);
+        case 'GetBuyerVaultMarketOptionIvResponse':
+          return GetBuyerVaultMarketOptionIvResponse.fromJson(value);
+        case 'GetBuyerVaultMarketOptionPositionResponse':
+          return GetBuyerVaultMarketOptionPositionResponse.fromJson(value);
+        case 'GetBuyerVaultMarketOptionPositionResponseAccount':
+          return GetBuyerVaultMarketOptionPositionResponseAccount.fromJson(value);
+        case 'GetBuyerVaultMarketOptionPositionResponsePositions':
+          return GetBuyerVaultMarketOptionPositionResponsePositions.fromJson(value);
+        case 'GetBuyerVaultMarketOptionPositionResponsePositionsContract':
+          return GetBuyerVaultMarketOptionPositionResponsePositionsContract.fromJson(value);
+        case 'GetBuyerVaultMarketOptionPositionResponsePositionsGreeks':
+          return GetBuyerVaultMarketOptionPositionResponsePositionsGreeks.fromJson(value);
+        case 'GetBuyerVaultMarketOptionRiskResponse':
+          return GetBuyerVaultMarketOptionRiskResponse.fromJson(value);
+        case 'GetBuyerVaultMarketOptionRiskResponseBetaWeighted':
+          return GetBuyerVaultMarketOptionRiskResponseBetaWeighted.fromJson(value);
+        case 'GetBuyerVaultMarketOptionRiskResponseBetaWeightedIndex':
+          return GetBuyerVaultMarketOptionRiskResponseBetaWeightedIndex.fromJson(value);
+        case 'GetBuyerVaultMarketOptionRiskResponseByUnderlying':
+          return GetBuyerVaultMarketOptionRiskResponseByUnderlying.fromJson(value);
+        case 'GetBuyerVaultMarketOptionRiskResponseScenario':
+          return GetBuyerVaultMarketOptionRiskResponseScenario.fromJson(value);
+        case 'GetBuyerVaultMarketOptionRiskResponseScenarioGrid':
+          return GetBuyerVaultMarketOptionRiskResponseScenarioGrid.fromJson(value);
+        case 'GetBuyerVaultMarketOptionRiskResponseScenarioRanges':
+          return GetBuyerVaultMarketOptionRiskResponseScenarioRanges.fromJson(value);
+        case 'GetBuyerVaultMarketOptionRiskResponseTotal':
+          return GetBuyerVaultMarketOptionRiskResponseTotal.fromJson(value);
+        case 'GetBuyerVaultMarketPredictionBoardResponse':
+          return GetBuyerVaultMarketPredictionBoardResponse.fromJson(value);
+        case 'GetBuyerVaultMarketPredictionBoardResponseRows':
+          return GetBuyerVaultMarketPredictionBoardResponseRows.fromJson(value);
+        case 'GetBuyerVaultMarketPredictionEventResponse':
+          return GetBuyerVaultMarketPredictionEventResponse.fromJson(value);
+        case 'GetBuyerVaultMarketPredictionEventResponseConversions':
+          return GetBuyerVaultMarketPredictionEventResponseConversions.fromJson(value);
+        case 'GetBuyerVaultMarketPredictionEventResponseMarkets':
+          return GetBuyerVaultMarketPredictionEventResponseMarkets.fromJson(value);
+        case 'GetBuyerVaultMarketPredictionEventResponseRisk':
+          return GetBuyerVaultMarketPredictionEventResponseRisk.fromJson(value);
+        case 'GetBuyerVaultMarketPredictionLeaderboardResponse':
+          return GetBuyerVaultMarketPredictionLeaderboardResponse.fromJson(value);
+        case 'GetBuyerVaultMarketPredictionLeaderboardResponseRows':
+          return GetBuyerVaultMarketPredictionLeaderboardResponseRows.fromJson(value);
+        case 'GetBuyerVaultMarketPredictionMarketHistoryResponse':
+          return GetBuyerVaultMarketPredictionMarketHistoryResponse.fromJson(value);
+        case 'GetBuyerVaultMarketPredictionMarketHistoryResponseCandles':
+          return GetBuyerVaultMarketPredictionMarketHistoryResponseCandles.fromJson(value);
+        case 'GetBuyerVaultMarketPredictionMarketHistoryResponseNow':
+          return GetBuyerVaultMarketPredictionMarketHistoryResponseNow.fromJson(value);
+        case 'GetBuyerVaultMarketPredictionMarketHistoryResponsePoints':
+          return GetBuyerVaultMarketPredictionMarketHistoryResponsePoints.fromJson(value);
+        case 'GetBuyerVaultMarketPredictionMarketResponse':
+          return GetBuyerVaultMarketPredictionMarketResponse.fromJson(value);
+        case 'GetBuyerVaultMarketPredictionMarketResponseBook':
+          return GetBuyerVaultMarketPredictionMarketResponseBook.fromJson(value);
+        case 'GetBuyerVaultMarketPredictionMarketResponseBookBids':
+          return GetBuyerVaultMarketPredictionMarketResponseBookBids.fromJson(value);
+        case 'GetBuyerVaultMarketPredictionMarketResponsePracticeBook':
+          return GetBuyerVaultMarketPredictionMarketResponsePracticeBook.fromJson(value);
+        case 'GetBuyerVaultMarketPredictionMarketResponseRules':
+          return GetBuyerVaultMarketPredictionMarketResponseRules.fromJson(value);
+        case 'GetBuyerVaultMarketPredictionMarketResponseSettlements':
+          return GetBuyerVaultMarketPredictionMarketResponseSettlements.fromJson(value);
+        case 'GetBuyerVaultMarketPredictionMarketResponseTrades':
+          return GetBuyerVaultMarketPredictionMarketResponseTrades.fromJson(value);
+        case 'GetBuyerVaultMarketPredictionMarketResponseVenue':
+          return GetBuyerVaultMarketPredictionMarketResponseVenue.fromJson(value);
+        case 'GetBuyerVaultMarketPredictionMarketResponseVenueMissing':
+          return GetBuyerVaultMarketPredictionMarketResponseVenueMissing.fromJson(value);
+        case 'GetBuyerVaultMarketShareBasketResponse':
+          return GetBuyerVaultMarketShareBasketResponse.fromJson(value);
+        case 'GetBuyerVaultMarketShareBasketResponseMembers':
+          return GetBuyerVaultMarketShareBasketResponseMembers.fromJson(value);
+        case 'GetBuyerVaultMarketShareBasketResponseMine':
+          return GetBuyerVaultMarketShareBasketResponseMine.fromJson(value);
+        case 'GetBuyerVaultMarketShareBasketResponseMineMembers':
+          return GetBuyerVaultMarketShareBasketResponseMineMembers.fromJson(value);
+        case 'GetBuyerVaultMarketShareResponse':
+          return GetBuyerVaultMarketShareResponse.fromJson(value);
+        case 'GetBuyerVaultMarketShareResponseAutoInvest':
+          return GetBuyerVaultMarketShareResponseAutoInvest.fromJson(value);
+        case 'GetBuyerVaultMarketShareResponseDistributions':
+          return GetBuyerVaultMarketShareResponseDistributions.fromJson(value);
+        case 'GetBuyerVaultMarketShareResponseHoldings':
+          return GetBuyerVaultMarketShareResponseHoldings.fromJson(value);
+        case 'GetBuyerVaultMarketShareResponseHoldingsSeries':
+          return GetBuyerVaultMarketShareResponseHoldingsSeries.fromJson(value);
+        case 'GetBuyerVaultMarketShareResponseSubscriptions':
+          return GetBuyerVaultMarketShareResponseSubscriptions.fromJson(value);
+        case 'GetBuyerVaultMarketShareResponseTotals':
+          return GetBuyerVaultMarketShareResponseTotals.fromJson(value);
+        case 'GetBuyerVaultMarketShareResponseVenue':
+          return GetBuyerVaultMarketShareResponseVenue.fromJson(value);
+        case 'GetBuyerVaultMarketShareSeryHistoryResponse':
+          return GetBuyerVaultMarketShareSeryHistoryResponse.fromJson(value);
+        case 'GetBuyerVaultMarketShareSeryHistoryResponseAppraisals':
+          return GetBuyerVaultMarketShareSeryHistoryResponseAppraisals.fromJson(value);
+        case 'GetBuyerVaultMarketShareSeryHistoryResponseCandles':
+          return GetBuyerVaultMarketShareSeryHistoryResponseCandles.fromJson(value);
+        case 'GetBuyerVaultMarketShareSeryPerkResponse':
+          return GetBuyerVaultMarketShareSeryPerkResponse.fromJson(value);
+        case 'GetBuyerVaultMarketShareSeryPerkResponseBadge':
+          return GetBuyerVaultMarketShareSeryPerkResponseBadge.fromJson(value);
+        case 'GetBuyerVaultMarketShareSeryPerkResponseViewingDays':
+          return GetBuyerVaultMarketShareSeryPerkResponseViewingDays.fromJson(value);
+        case 'GetBuyerVaultMarketShareSeryPerkResponseViewingDaysMyBooking':
+          return GetBuyerVaultMarketShareSeryPerkResponseViewingDaysMyBooking.fromJson(value);
+        case 'GetBuyerVaultMarketShareSeryPerkResponseVisit':
+          return GetBuyerVaultMarketShareSeryPerkResponseVisit.fromJson(value);
+        case 'GetBuyerVaultMarketShareSeryResponse':
+          return GetBuyerVaultMarketShareSeryResponse.fromJson(value);
+        case 'GetBuyerVaultMarketShareSeryResponseBuyouts':
+          return GetBuyerVaultMarketShareSeryResponseBuyouts.fromJson(value);
+        case 'GetBuyerVaultMarketShareSeryResponseBuyoutsMyVote':
+          return GetBuyerVaultMarketShareSeryResponseBuyoutsMyVote.fromJson(value);
+        case 'GetBuyerVaultMarketShareSeryResponseDepth':
+          return GetBuyerVaultMarketShareSeryResponseDepth.fromJson(value);
+        case 'GetBuyerVaultMarketShareSeryResponseDepthBids':
+          return GetBuyerVaultMarketShareSeryResponseDepthBids.fromJson(value);
+        case 'GetBuyerVaultMarketShareSeryResponseDrop':
+          return GetBuyerVaultMarketShareSeryResponseDrop.fromJson(value);
+        case 'GetBuyerVaultMarketShareSeryResponseHolders':
+          return GetBuyerVaultMarketShareSeryResponseHolders.fromJson(value);
+        case 'GetBuyerVaultMarketShareSeryResponseHoldersDistribution':
+          return GetBuyerVaultMarketShareSeryResponseHoldersDistribution.fromJson(value);
+        case 'GetBuyerVaultMarketShareSeryResponseMarket':
+          return GetBuyerVaultMarketShareSeryResponseMarket.fromJson(value);
+        case 'GetBuyerVaultMarketShareSeryResponseMarketIndicative':
+          return GetBuyerVaultMarketShareSeryResponseMarketIndicative.fromJson(value);
+        case 'GetBuyerVaultMarketShareSeryResponseMarketTrading':
+          return GetBuyerVaultMarketShareSeryResponseMarketTrading.fromJson(value);
+        case 'GetBuyerVaultMarketShareSeryResponseMy':
+          return GetBuyerVaultMarketShareSeryResponseMy.fromJson(value);
+        case 'GetBuyerVaultMarketShareSeryResponseMyOrders':
+          return GetBuyerVaultMarketShareSeryResponseMyOrders.fromJson(value);
+        case 'GetBuyerVaultMarketShareSeryResponseMySubscriptions':
+          return GetBuyerVaultMarketShareSeryResponseMySubscriptions.fromJson(value);
+        case 'GetBuyerVaultMarketShareSeryResponsePerks':
+          return GetBuyerVaultMarketShareSeryResponsePerks.fromJson(value);
+        case 'GetBuyerVaultMarketShareSeryResponsePerksViewingDays':
+          return GetBuyerVaultMarketShareSeryResponsePerksViewingDays.fromJson(value);
+        case 'GetBuyerVaultMarketShareSeryResponseTape':
+          return GetBuyerVaultMarketShareSeryResponseTape.fromJson(value);
+        case 'GetBuyerVaultMarketShareSeryResponseUpdates':
+          return GetBuyerVaultMarketShareSeryResponseUpdates.fromJson(value);
         case 'GetBuyerVaultMarketWorthResponse':
           return GetBuyerVaultMarketWorthResponse.fromJson(value);
         case 'GetBuyerVaultMarketWorthResponseSellNow':
           return GetBuyerVaultMarketWorthResponseSellNow.fromJson(value);
         case 'GetBuyerVaultMarketWorthResponseSellNowBlocked':
           return GetBuyerVaultMarketWorthResponseSellNowBlocked.fromJson(value);
+        case 'GetBuyerVaultMarketWorthResponseToday':
+          return GetBuyerVaultMarketWorthResponseToday.fromJson(value);
+        case 'GetBuyerWholesaleCartResponse':
+          return GetBuyerWholesaleCartResponse.fromJson(value);
+        case 'GetBuyerWholesaleCartResponseData':
+          return GetBuyerWholesaleCartResponseData.fromJson(value);
+        case 'GetBuyerWholesaleCartResponseDataGroups':
+          return GetBuyerWholesaleCartResponseDataGroups.fromJson(value);
+        case 'GetBuyerWholesaleCartResponseDataGroupsCheckout':
+          return GetBuyerWholesaleCartResponseDataGroupsCheckout.fromJson(value);
+        case 'GetBuyerWholesaleCartResponseDataGroupsCheckoutMethodsItem':
+          return GetBuyerWholesaleCartResponseDataGroupsCheckoutMethodsItemTypeTransformer().decode(value);
+        case 'GetBuyerWholesaleCartResponseDataGroupsMinimum':
+          return GetBuyerWholesaleCartResponseDataGroupsMinimum.fromJson(value);
+        case 'GetBuyerWholesaleCartResponseDataTaxExempt':
+          return GetBuyerWholesaleCartResponseDataTaxExempt.fromJson(value);
+        case 'GetBuyerWholesaleCartResponseDataViolations':
+          return GetBuyerWholesaleCartResponseDataViolations.fromJson(value);
+        case 'GetBuyerWholesaleCatalogApplyResponse':
+          return GetBuyerWholesaleCatalogApplyResponse.fromJson(value);
+        case 'GetBuyerWholesaleCatalogApplyResponseData':
+          return GetBuyerWholesaleCatalogApplyResponseData.fromJson(value);
+        case 'GetBuyerWholesaleCatalogApplyResponseDataCatalog':
+          return GetBuyerWholesaleCatalogApplyResponseDataCatalog.fromJson(value);
+        case 'GetBuyerWholesaleCatalogApplyResponseDataPrefill':
+          return GetBuyerWholesaleCatalogApplyResponseDataPrefill.fromJson(value);
+        case 'GetBuyerWholesaleCatalogApplyResponseDataRequirements':
+          return GetBuyerWholesaleCatalogApplyResponseDataRequirements.fromJson(value);
+        case 'GetBuyerWholesaleCatalogApplyResponseDataRequirementsQuestions':
+          return GetBuyerWholesaleCatalogApplyResponseDataRequirementsQuestions.fromJson(value);
+        case 'GetBuyerWholesaleDropResponse':
+          return GetBuyerWholesaleDropResponse.fromJson(value);
+        case 'GetBuyerWholesaleDropResponseData':
+          return GetBuyerWholesaleDropResponseData.fromJson(value);
+        case 'GetBuyerWholesaleDropResponseDataListings':
+          return GetBuyerWholesaleDropResponseDataListings.fromJson(value);
+        case 'GetBuyerWholesaleDropResponseDataReservations':
+          return GetBuyerWholesaleDropResponseDataReservations.fromJson(value);
+        case 'GetBuyerWholesaleInvoicePayQuoteResponse':
+          return GetBuyerWholesaleInvoicePayQuoteResponse.fromJson(value);
+        case 'GetBuyerWholesaleInvoicePayQuoteResponseData':
+          return GetBuyerWholesaleInvoicePayQuoteResponseData.fromJson(value);
+        case 'GetBuyerWholesaleInvoicePayQuoteResponseDataMethodsItem':
+          return GetBuyerWholesaleInvoicePayQuoteResponseDataMethodsItemTypeTransformer().decode(value);
+        case 'GetBuyerWholesaleReorderResponse':
+          return GetBuyerWholesaleReorderResponse.fromJson(value);
+        case 'GetBuyerWholesaleReorderResponseData':
+          return GetBuyerWholesaleReorderResponseData.fromJson(value);
         case 'ListBuyerActivityItem':
           return ListBuyerActivityItem.fromJson(value);
         case 'ListBuyerActivityResponse':
@@ -921,6 +1407,16 @@ class ApiClient {
           return ListBuyerClubsItem.fromJson(value);
         case 'ListBuyerClubsResponse':
           return ListBuyerClubsResponse.fromJson(value);
+        case 'ListBuyerCreationReviewableItem':
+          return ListBuyerCreationReviewableItem.fromJson(value);
+        case 'ListBuyerCreationReviewableItemReview':
+          return ListBuyerCreationReviewableItemReview.fromJson(value);
+        case 'ListBuyerCreationReviewableResponse':
+          return ListBuyerCreationReviewableResponse.fromJson(value);
+        case 'ListBuyerEventsItem':
+          return ListBuyerEventsItem.fromJson(value);
+        case 'ListBuyerEventsResponse':
+          return ListBuyerEventsResponse.fromJson(value);
         case 'ListBuyerFeedbackItem':
           return ListBuyerFeedbackItem.fromJson(value);
         case 'ListBuyerFeedbackPendingItem':
@@ -949,6 +1445,14 @@ class ApiClient {
           return ListBuyerGiftSentItem.fromJson(value);
         case 'ListBuyerGiftSentResponse':
           return ListBuyerGiftSentResponse.fromJson(value);
+        case 'ListBuyerHomeBuildersItem':
+          return ListBuyerHomeBuildersItem.fromJson(value);
+        case 'ListBuyerHomeBuildersResponse':
+          return ListBuyerHomeBuildersResponse.fromJson(value);
+        case 'ListBuyerHomeBuildingItem':
+          return ListBuyerHomeBuildingItem.fromJson(value);
+        case 'ListBuyerHomeBuildingResponse':
+          return ListBuyerHomeBuildingResponse.fromJson(value);
         case 'ListBuyerHotspotsItem':
           return ListBuyerHotspotsItem.fromJson(value);
         case 'ListBuyerHotspotsResponse':
@@ -985,6 +1489,10 @@ class ApiClient {
           return ListBuyerLiveStreamLineupItem.fromJson(value);
         case 'ListBuyerLiveStreamLineupResponse':
           return ListBuyerLiveStreamLineupResponse.fromJson(value);
+        case 'ListBuyerLoyaltyItem':
+          return ListBuyerLoyaltyItem.fromJson(value);
+        case 'ListBuyerLoyaltyResponse':
+          return ListBuyerLoyaltyResponse.fromJson(value);
         case 'ListBuyerMonitorMatchesItem':
           return ListBuyerMonitorMatchesItem.fromJson(value);
         case 'ListBuyerMonitorMatchesResponse':
@@ -1023,6 +1531,10 @@ class ApiClient {
           return ListBuyerPartiesItem.fromJson(value);
         case 'ListBuyerPartiesResponse':
           return ListBuyerPartiesResponse.fromJson(value);
+        case 'ListBuyerPaymentMethodsItem':
+          return ListBuyerPaymentMethodsItem.fromJson(value);
+        case 'ListBuyerPaymentMethodsResponse':
+          return ListBuyerPaymentMethodsResponse.fromJson(value);
         case 'ListBuyerProtectionPlansItem':
           return ListBuyerProtectionPlansItem.fromJson(value);
         case 'ListBuyerProtectionPlansResponse':
@@ -1055,6 +1567,10 @@ class ApiClient {
           return ListBuyerSizeMemorySizesItem.fromJson(value);
         case 'ListBuyerSizeMemorySizesResponse':
           return ListBuyerSizeMemorySizesResponse.fromJson(value);
+        case 'ListBuyerStoreListingsItem':
+          return ListBuyerStoreListingsItem.fromJson(value);
+        case 'ListBuyerStoreListingsResponse':
+          return ListBuyerStoreListingsResponse.fromJson(value);
         case 'ListBuyerSubscriptionsItem':
           return ListBuyerSubscriptionsItem.fromJson(value);
         case 'ListBuyerSubscriptionsResponse':
@@ -1087,6 +1603,68 @@ class ApiClient {
           return ListBuyerVaultMarketInstantExitItem.fromJson(value);
         case 'ListBuyerVaultMarketInstantExitResponse':
           return ListBuyerVaultMarketInstantExitResponse.fromJson(value);
+        case 'ListBuyerVaultMarketOptionCombosItem':
+          return ListBuyerVaultMarketOptionCombosItem.fromJson(value);
+        case 'ListBuyerVaultMarketOptionCombosItemLegs':
+          return ListBuyerVaultMarketOptionCombosItemLegs.fromJson(value);
+        case 'ListBuyerVaultMarketOptionCombosResponse':
+          return ListBuyerVaultMarketOptionCombosResponse.fromJson(value);
+        case 'ListBuyerVaultMarketOptionNoticesItem':
+          return ListBuyerVaultMarketOptionNoticesItem.fromJson(value);
+        case 'ListBuyerVaultMarketOptionNoticesResponse':
+          return ListBuyerVaultMarketOptionNoticesResponse.fromJson(value);
+        case 'ListBuyerVaultMarketOptionSeriesItem':
+          return ListBuyerVaultMarketOptionSeriesItem.fromJson(value);
+        case 'ListBuyerVaultMarketOptionSeriesResponse':
+          return ListBuyerVaultMarketOptionSeriesResponse.fromJson(value);
+        case 'ListBuyerVaultMarketOptionStrategiesItem':
+          return ListBuyerVaultMarketOptionStrategiesItem.fromJson(value);
+        case 'ListBuyerVaultMarketOptionStrategiesResponse':
+          return ListBuyerVaultMarketOptionStrategiesResponse.fromJson(value);
+        case 'ListBuyerVaultMarketPredictionCommentsItem':
+          return ListBuyerVaultMarketPredictionCommentsItem.fromJson(value);
+        case 'ListBuyerVaultMarketPredictionCommentsItemReplies':
+          return ListBuyerVaultMarketPredictionCommentsItemReplies.fromJson(value);
+        case 'ListBuyerVaultMarketPredictionCommentsItemRepliesAuthor':
+          return ListBuyerVaultMarketPredictionCommentsItemRepliesAuthor.fromJson(value);
+        case 'ListBuyerVaultMarketPredictionCommentsResponse':
+          return ListBuyerVaultMarketPredictionCommentsResponse.fromJson(value);
+        case 'ListBuyerVaultMarketPredictionMarketsItem':
+          return ListBuyerVaultMarketPredictionMarketsItem.fromJson(value);
+        case 'ListBuyerVaultMarketPredictionMarketsItemProbability':
+          return ListBuyerVaultMarketPredictionMarketsItemProbability.fromJson(value);
+        case 'ListBuyerVaultMarketPredictionMarketsResponse':
+          return ListBuyerVaultMarketPredictionMarketsResponse.fromJson(value);
+        case 'ListBuyerVaultMarketPredictionPositionsItem':
+          return ListBuyerVaultMarketPredictionPositionsItem.fromJson(value);
+        case 'ListBuyerVaultMarketPredictionPositionsResponse':
+          return ListBuyerVaultMarketPredictionPositionsResponse.fromJson(value);
+        case 'ListBuyerVaultMarketShareAutoInvestItem':
+          return ListBuyerVaultMarketShareAutoInvestItem.fromJson(value);
+        case 'ListBuyerVaultMarketShareAutoInvestItemTargets':
+          return ListBuyerVaultMarketShareAutoInvestItemTargets.fromJson(value);
+        case 'ListBuyerVaultMarketShareAutoInvestResponse':
+          return ListBuyerVaultMarketShareAutoInvestResponse.fromJson(value);
+        case 'ListBuyerVaultMarketShareBasketsItem':
+          return ListBuyerVaultMarketShareBasketsItem.fromJson(value);
+        case 'ListBuyerVaultMarketShareBasketsResponse':
+          return ListBuyerVaultMarketShareBasketsResponse.fromJson(value);
+        case 'ListBuyerVaultMarketShareDropsItem':
+          return ListBuyerVaultMarketShareDropsItem.fromJson(value);
+        case 'ListBuyerVaultMarketShareDropsResponse':
+          return ListBuyerVaultMarketShareDropsResponse.fromJson(value);
+        case 'ListBuyerVaultMarketShareGiftsItem':
+          return ListBuyerVaultMarketShareGiftsItem.fromJson(value);
+        case 'ListBuyerVaultMarketShareGiftsResponse':
+          return ListBuyerVaultMarketShareGiftsResponse.fromJson(value);
+        case 'ListBuyerVaultMarketShareSeriesItem':
+          return ListBuyerVaultMarketShareSeriesItem.fromJson(value);
+        case 'ListBuyerVaultMarketShareSeriesItemMine':
+          return ListBuyerVaultMarketShareSeriesItemMine.fromJson(value);
+        case 'ListBuyerVaultMarketShareSeriesItemRights':
+          return ListBuyerVaultMarketShareSeriesItemRights.fromJson(value);
+        case 'ListBuyerVaultMarketShareSeriesResponse':
+          return ListBuyerVaultMarketShareSeriesResponse.fromJson(value);
         case 'ListBuyerVaultMarketWatchlistItem':
           return ListBuyerVaultMarketWatchlistItem.fromJson(value);
         case 'ListBuyerVaultMarketWatchlistItemSparkline':
@@ -1099,6 +1677,18 @@ class ApiClient {
           return ListBuyerVideoRequestsItem.fromJson(value);
         case 'ListBuyerVideoRequestsResponse':
           return ListBuyerVideoRequestsResponse.fromJson(value);
+        case 'ListBuyerWalletPerksItem':
+          return ListBuyerWalletPerksItem.fromJson(value);
+        case 'ListBuyerWalletPerksResponse':
+          return ListBuyerWalletPerksResponse.fromJson(value);
+        case 'ListBuyerWholesaleDropsItem':
+          return ListBuyerWholesaleDropsItem.fromJson(value);
+        case 'ListBuyerWholesaleDropsResponse':
+          return ListBuyerWholesaleDropsResponse.fromJson(value);
+        case 'ListBuyerWholesalePrebooksItem':
+          return ListBuyerWholesalePrebooksItem.fromJson(value);
+        case 'ListBuyerWholesalePrebooksResponse':
+          return ListBuyerWholesalePrebooksResponse.fromJson(value);
         case 'ListBuyerWishlistItemsItem':
           return ListBuyerWishlistItemsItem.fromJson(value);
         case 'ListBuyerWishlistItemsResponse':
@@ -1117,12 +1707,24 @@ class ApiClient {
           return UpdateBuyerCollectionSetLeaderboardResponse.fromJson(value);
         case 'UpdateBuyerCollectionSetLeaderboardResponseData':
           return UpdateBuyerCollectionSetLeaderboardResponseData.fromJson(value);
+        case 'UpdateBuyerCreationReviewRequest':
+          return UpdateBuyerCreationReviewRequest.fromJson(value);
+        case 'UpdateBuyerCreationReviewResponse':
+          return UpdateBuyerCreationReviewResponse.fromJson(value);
         case 'UpdateBuyerFeedbackRequest':
           return UpdateBuyerFeedbackRequest.fromJson(value);
+        case 'UpdateBuyerPaymentMethodDefaultResponse':
+          return UpdateBuyerPaymentMethodDefaultResponse.fromJson(value);
+        case 'UpdateBuyerPaymentMethodDefaultResponseData':
+          return UpdateBuyerPaymentMethodDefaultResponseData.fromJson(value);
         case 'UpdateBuyerRegistryItemResponse':
           return UpdateBuyerRegistryItemResponse.fromJson(value);
         case 'UpdateBuyerRegistryItemResponseData':
           return UpdateBuyerRegistryItemResponseData.fromJson(value);
+        case 'UpdateBuyerWholesaleCartPoResponse':
+          return UpdateBuyerWholesaleCartPoResponse.fromJson(value);
+        case 'UpdateBuyerWholesaleCartPoResponseData':
+          return UpdateBuyerWholesaleCartPoResponseData.fromJson(value);
         case 'UpdateBuyerWishlistRequest':
           return UpdateBuyerWishlistRequest.fromJson(value);
         case 'UpdateBuyerWishlistResponse':

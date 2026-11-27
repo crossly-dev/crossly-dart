@@ -265,17 +265,17 @@ class ListListingAiDetectionsItemStatusEnum {
 
   String toJson() => value;
 
-  static const flagged = ListListingAiDetectionsItemStatusEnum._(r'flagged');
   static const review = ListListingAiDetectionsItemStatusEnum._(r'review');
   static const clear = ListListingAiDetectionsItemStatusEnum._(r'clear');
+  static const flagged = ListListingAiDetectionsItemStatusEnum._(r'flagged');
   static const disputed = ListListingAiDetectionsItemStatusEnum._(r'disputed');
   static const cleared = ListListingAiDetectionsItemStatusEnum._(r'cleared');
 
   /// List of all possible values in this [enum][ListListingAiDetectionsItemStatusEnum].
   static const values = <ListListingAiDetectionsItemStatusEnum>[
-    flagged,
     review,
     clear,
+    flagged,
     disputed,
     cleared,
   ];
@@ -309,9 +309,9 @@ class ListListingAiDetectionsItemStatusEnumTypeTransformer {
   ListListingAiDetectionsItemStatusEnum decode(dynamic data, {bool allowNull}) {
     if (data != null) {
       switch (data.toString()) {
-        case r'flagged': return ListListingAiDetectionsItemStatusEnum.flagged;
         case r'review': return ListListingAiDetectionsItemStatusEnum.review;
         case r'clear': return ListListingAiDetectionsItemStatusEnum.clear;
+        case r'flagged': return ListListingAiDetectionsItemStatusEnum.flagged;
         case r'disputed': return ListListingAiDetectionsItemStatusEnum.disputed;
         case r'cleared': return ListListingAiDetectionsItemStatusEnum.cleared;
         default:

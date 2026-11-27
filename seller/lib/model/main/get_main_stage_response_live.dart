@@ -158,16 +158,16 @@ class GetMainStageResponseLiveKindEnum {
 
   String toJson() => value;
 
-  static const creatorMeetup = GetMainStageResponseLiveKindEnum._(r'creator_meetup');
   static const brandLaunch = GetMainStageResponseLiveKindEnum._(r'brand_launch');
+  static const creatorMeetup = GetMainStageResponseLiveKindEnum._(r'creator_meetup');
   static const festival = GetMainStageResponseLiveKindEnum._(r'festival');
   static const talk = GetMainStageResponseLiveKindEnum._(r'talk');
   static const liveSale = GetMainStageResponseLiveKindEnum._(r'live_sale');
 
   /// List of all possible values in this [enum][GetMainStageResponseLiveKindEnum].
   static const values = <GetMainStageResponseLiveKindEnum>[
-    creatorMeetup,
     brandLaunch,
+    creatorMeetup,
     festival,
     talk,
     liveSale,
@@ -202,8 +202,8 @@ class GetMainStageResponseLiveKindEnumTypeTransformer {
   GetMainStageResponseLiveKindEnum decode(dynamic data, {bool allowNull}) {
     if (data != null) {
       switch (data.toString()) {
-        case r'creator_meetup': return GetMainStageResponseLiveKindEnum.creatorMeetup;
         case r'brand_launch': return GetMainStageResponseLiveKindEnum.brandLaunch;
+        case r'creator_meetup': return GetMainStageResponseLiveKindEnum.creatorMeetup;
         case r'festival': return GetMainStageResponseLiveKindEnum.festival;
         case r'talk': return GetMainStageResponseLiveKindEnum.talk;
         case r'live_sale': return GetMainStageResponseLiveKindEnum.liveSale;

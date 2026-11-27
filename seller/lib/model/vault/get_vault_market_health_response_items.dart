@@ -169,16 +169,16 @@ class GetVaultMarketHealthResponseItemsQualityEnum {
   String toJson() => value;
 
   static const none = GetVaultMarketHealthResponseItemsQualityEnum._(r'none');
+  static const C = GetVaultMarketHealthResponseItemsQualityEnum._(r'C');
   static const A = GetVaultMarketHealthResponseItemsQualityEnum._(r'A');
   static const B = GetVaultMarketHealthResponseItemsQualityEnum._(r'B');
-  static const C = GetVaultMarketHealthResponseItemsQualityEnum._(r'C');
 
   /// List of all possible values in this [enum][GetVaultMarketHealthResponseItemsQualityEnum].
   static const values = <GetVaultMarketHealthResponseItemsQualityEnum>[
     none,
+    C,
     A,
     B,
-    C,
   ];
 
   static GetVaultMarketHealthResponseItemsQualityEnum fromJson(dynamic value) =>
@@ -211,9 +211,9 @@ class GetVaultMarketHealthResponseItemsQualityEnumTypeTransformer {
     if (data != null) {
       switch (data.toString()) {
         case r'none': return GetVaultMarketHealthResponseItemsQualityEnum.none;
+        case r'C': return GetVaultMarketHealthResponseItemsQualityEnum.C;
         case r'A': return GetVaultMarketHealthResponseItemsQualityEnum.A;
         case r'B': return GetVaultMarketHealthResponseItemsQualityEnum.B;
-        case r'C': return GetVaultMarketHealthResponseItemsQualityEnum.C;
         default:
           if (allowNull == false) {
             throw ArgumentError('Unknown enum value to decode: $data');
@@ -241,17 +241,17 @@ class GetVaultMarketHealthResponseItemsTierEnum {
 
   String toJson() => value;
 
+  static const C = GetVaultMarketHealthResponseItemsTierEnum._(r'C');
   static const A = GetVaultMarketHealthResponseItemsTierEnum._(r'A');
   static const B = GetVaultMarketHealthResponseItemsTierEnum._(r'B');
-  static const C = GetVaultMarketHealthResponseItemsTierEnum._(r'C');
   static const D = GetVaultMarketHealthResponseItemsTierEnum._(r'D');
   static const unclassified = GetVaultMarketHealthResponseItemsTierEnum._(r'unclassified');
 
   /// List of all possible values in this [enum][GetVaultMarketHealthResponseItemsTierEnum].
   static const values = <GetVaultMarketHealthResponseItemsTierEnum>[
+    C,
     A,
     B,
-    C,
     D,
     unclassified,
   ];
@@ -285,9 +285,9 @@ class GetVaultMarketHealthResponseItemsTierEnumTypeTransformer {
   GetVaultMarketHealthResponseItemsTierEnum decode(dynamic data, {bool allowNull}) {
     if (data != null) {
       switch (data.toString()) {
+        case r'C': return GetVaultMarketHealthResponseItemsTierEnum.C;
         case r'A': return GetVaultMarketHealthResponseItemsTierEnum.A;
         case r'B': return GetVaultMarketHealthResponseItemsTierEnum.B;
-        case r'C': return GetVaultMarketHealthResponseItemsTierEnum.C;
         case r'D': return GetVaultMarketHealthResponseItemsTierEnum.D;
         case r'unclassified': return GetVaultMarketHealthResponseItemsTierEnum.unclassified;
         default:

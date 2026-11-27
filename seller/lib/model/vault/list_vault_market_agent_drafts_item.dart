@@ -329,15 +329,15 @@ class ListVaultMarketAgentDraftsItemFundingEnum {
 
   String toJson() => value;
 
+  static const vault = ListVaultMarketAgentDraftsItemFundingEnum._(r'vault');
   static const card = ListVaultMarketAgentDraftsItemFundingEnum._(r'card');
   static const custodian = ListVaultMarketAgentDraftsItemFundingEnum._(r'custodian');
-  static const vault = ListVaultMarketAgentDraftsItemFundingEnum._(r'vault');
 
   /// List of all possible values in this [enum][ListVaultMarketAgentDraftsItemFundingEnum].
   static const values = <ListVaultMarketAgentDraftsItemFundingEnum>[
+    vault,
     card,
     custodian,
-    vault,
   ];
 
   static ListVaultMarketAgentDraftsItemFundingEnum fromJson(dynamic value) =>
@@ -369,9 +369,9 @@ class ListVaultMarketAgentDraftsItemFundingEnumTypeTransformer {
   ListVaultMarketAgentDraftsItemFundingEnum decode(dynamic data, {bool allowNull}) {
     if (data != null) {
       switch (data.toString()) {
+        case r'vault': return ListVaultMarketAgentDraftsItemFundingEnum.vault;
         case r'card': return ListVaultMarketAgentDraftsItemFundingEnum.card;
         case r'custodian': return ListVaultMarketAgentDraftsItemFundingEnum.custodian;
-        case r'vault': return ListVaultMarketAgentDraftsItemFundingEnum.vault;
         default:
           if (allowNull == false) {
             throw ArgumentError('Unknown enum value to decode: $data');
@@ -401,18 +401,18 @@ class ListVaultMarketAgentDraftsItemStatusEnum {
 
   static const cancelled = ListVaultMarketAgentDraftsItemStatusEnum._(r'cancelled');
   static const expired = ListVaultMarketAgentDraftsItemStatusEnum._(r'expired');
+  static const drafted = ListVaultMarketAgentDraftsItemStatusEnum._(r'drafted');
   static const rejected = ListVaultMarketAgentDraftsItemStatusEnum._(r'rejected');
   static const placing = ListVaultMarketAgentDraftsItemStatusEnum._(r'placing');
-  static const drafted = ListVaultMarketAgentDraftsItemStatusEnum._(r'drafted');
   static const placed = ListVaultMarketAgentDraftsItemStatusEnum._(r'placed');
 
   /// List of all possible values in this [enum][ListVaultMarketAgentDraftsItemStatusEnum].
   static const values = <ListVaultMarketAgentDraftsItemStatusEnum>[
     cancelled,
     expired,
+    drafted,
     rejected,
     placing,
-    drafted,
     placed,
   ];
 
@@ -447,9 +447,9 @@ class ListVaultMarketAgentDraftsItemStatusEnumTypeTransformer {
       switch (data.toString()) {
         case r'cancelled': return ListVaultMarketAgentDraftsItemStatusEnum.cancelled;
         case r'expired': return ListVaultMarketAgentDraftsItemStatusEnum.expired;
+        case r'drafted': return ListVaultMarketAgentDraftsItemStatusEnum.drafted;
         case r'rejected': return ListVaultMarketAgentDraftsItemStatusEnum.rejected;
         case r'placing': return ListVaultMarketAgentDraftsItemStatusEnum.placing;
-        case r'drafted': return ListVaultMarketAgentDraftsItemStatusEnum.drafted;
         case r'placed': return ListVaultMarketAgentDraftsItemStatusEnum.placed;
         default:
           if (allowNull == false) {

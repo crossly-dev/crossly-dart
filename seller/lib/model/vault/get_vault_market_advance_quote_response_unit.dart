@@ -186,15 +186,15 @@ class GetVaultMarketAdvanceQuoteResponseUnitTierEnum {
 
   String toJson() => value;
 
-  static const standard = GetVaultMarketAdvanceQuoteResponseUnitTierEnum._(r'standard');
   static const closed = GetVaultMarketAdvanceQuoteResponseUnitTierEnum._(r'closed');
+  static const standard = GetVaultMarketAdvanceQuoteResponseUnitTierEnum._(r'standard');
   static const deep = GetVaultMarketAdvanceQuoteResponseUnitTierEnum._(r'deep');
   static const thin = GetVaultMarketAdvanceQuoteResponseUnitTierEnum._(r'thin');
 
   /// List of all possible values in this [enum][GetVaultMarketAdvanceQuoteResponseUnitTierEnum].
   static const values = <GetVaultMarketAdvanceQuoteResponseUnitTierEnum>[
-    standard,
     closed,
+    standard,
     deep,
     thin,
   ];
@@ -228,8 +228,8 @@ class GetVaultMarketAdvanceQuoteResponseUnitTierEnumTypeTransformer {
   GetVaultMarketAdvanceQuoteResponseUnitTierEnum decode(dynamic data, {bool allowNull}) {
     if (data != null) {
       switch (data.toString()) {
-        case r'standard': return GetVaultMarketAdvanceQuoteResponseUnitTierEnum.standard;
         case r'closed': return GetVaultMarketAdvanceQuoteResponseUnitTierEnum.closed;
+        case r'standard': return GetVaultMarketAdvanceQuoteResponseUnitTierEnum.standard;
         case r'deep': return GetVaultMarketAdvanceQuoteResponseUnitTierEnum.deep;
         case r'thin': return GetVaultMarketAdvanceQuoteResponseUnitTierEnum.thin;
         default:

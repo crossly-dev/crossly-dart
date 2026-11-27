@@ -373,15 +373,15 @@ class GetCustomerResponseProfilesFetchStatusEnum {
   String toJson() => value;
 
   static const error = GetCustomerResponseProfilesFetchStatusEnum._(r'error');
-  static const unsupported = GetCustomerResponseProfilesFetchStatusEnum._(r'unsupported');
   static const ok = GetCustomerResponseProfilesFetchStatusEnum._(r'ok');
+  static const unsupported = GetCustomerResponseProfilesFetchStatusEnum._(r'unsupported');
   static const notFound = GetCustomerResponseProfilesFetchStatusEnum._(r'not_found');
 
   /// List of all possible values in this [enum][GetCustomerResponseProfilesFetchStatusEnum].
   static const values = <GetCustomerResponseProfilesFetchStatusEnum>[
     error,
-    unsupported,
     ok,
+    unsupported,
     notFound,
   ];
 
@@ -415,8 +415,8 @@ class GetCustomerResponseProfilesFetchStatusEnumTypeTransformer {
     if (data != null) {
       switch (data.toString()) {
         case r'error': return GetCustomerResponseProfilesFetchStatusEnum.error;
-        case r'unsupported': return GetCustomerResponseProfilesFetchStatusEnum.unsupported;
         case r'ok': return GetCustomerResponseProfilesFetchStatusEnum.ok;
+        case r'unsupported': return GetCustomerResponseProfilesFetchStatusEnum.unsupported;
         case r'not_found': return GetCustomerResponseProfilesFetchStatusEnum.notFound;
         default:
           if (allowNull == false) {

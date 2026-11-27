@@ -188,13 +188,13 @@ class GetWorldJobResponseDataAppraisalsRailEnum {
 
   String toJson() => value;
 
-  static const bucks = GetWorldJobResponseDataAppraisalsRailEnum._(r'bucks');
   static const cbx = GetWorldJobResponseDataAppraisalsRailEnum._(r'cbx');
+  static const bucks = GetWorldJobResponseDataAppraisalsRailEnum._(r'bucks');
 
   /// List of all possible values in this [enum][GetWorldJobResponseDataAppraisalsRailEnum].
   static const values = <GetWorldJobResponseDataAppraisalsRailEnum>[
-    bucks,
     cbx,
+    bucks,
   ];
 
   static GetWorldJobResponseDataAppraisalsRailEnum fromJson(dynamic value) =>
@@ -226,8 +226,8 @@ class GetWorldJobResponseDataAppraisalsRailEnumTypeTransformer {
   GetWorldJobResponseDataAppraisalsRailEnum decode(dynamic data, {bool allowNull}) {
     if (data != null) {
       switch (data.toString()) {
-        case r'bucks': return GetWorldJobResponseDataAppraisalsRailEnum.bucks;
         case r'cbx': return GetWorldJobResponseDataAppraisalsRailEnum.cbx;
+        case r'bucks': return GetWorldJobResponseDataAppraisalsRailEnum.bucks;
         default:
           if (allowNull == false) {
             throw ArgumentError('Unknown enum value to decode: $data');

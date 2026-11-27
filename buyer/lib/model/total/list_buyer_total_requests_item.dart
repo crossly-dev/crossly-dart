@@ -14,81 +14,81 @@ class ListBuyerTotalRequestsItem {
   /// Returns a new [ListBuyerTotalRequestsItem] instance.
   ListBuyerTotalRequestsItem({
     @required this.id,
-    @required this.createdAt,
-    @required this.status,
     @required this.sellerUserId,
+    @required this.status,
     this.lines = const [],
+    @required this.createdAt,
     @required this.matchesCart,
-    this.expiresAt,
+    this.sellerDisplayName,
     this.quotedShippingCents,
     this.sellerMessage,
-    this.sellerDisplayName,
+    this.expiresAt,
   });
 
   String id;
 
-  String createdAt;
+  String sellerUserId;
 
   /// requested | quoted | declined | expired.
   String status;
 
-  String sellerUserId;
-
   /// The cart lines the request covers.
   List<ListBuyerTotalRequestsItemLines> lines;
+
+  String createdAt;
 
   /// Your cart still holds exactly the quoted items, so checkout applies the quote.
   bool matchesCart;
 
-  String expiresAt;
+  String sellerDisplayName;
 
   /// The seller's combined shipping for these items, in cents, once quoted.
   num quotedShippingCents;
 
   String sellerMessage;
 
-  String sellerDisplayName;
+  String expiresAt;
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is ListBuyerTotalRequestsItem &&
      other.id == id &&
-     other.createdAt == createdAt &&
-     other.status == status &&
      other.sellerUserId == sellerUserId &&
+     other.status == status &&
      other.lines == lines &&
+     other.createdAt == createdAt &&
      other.matchesCart == matchesCart &&
-     other.expiresAt == expiresAt &&
+     other.sellerDisplayName == sellerDisplayName &&
      other.quotedShippingCents == quotedShippingCents &&
      other.sellerMessage == sellerMessage &&
-     other.sellerDisplayName == sellerDisplayName;
+     other.expiresAt == expiresAt;
 
   @override
   int get hashCode =>
   // ignore: unnecessary_parenthesis
     (id == null ? 0 : id.hashCode) +
-    (createdAt == null ? 0 : createdAt.hashCode) +
-    (status == null ? 0 : status.hashCode) +
     (sellerUserId == null ? 0 : sellerUserId.hashCode) +
+    (status == null ? 0 : status.hashCode) +
     (lines == null ? 0 : lines.hashCode) +
+    (createdAt == null ? 0 : createdAt.hashCode) +
     (matchesCart == null ? 0 : matchesCart.hashCode) +
-    (expiresAt == null ? 0 : expiresAt.hashCode) +
+    (sellerDisplayName == null ? 0 : sellerDisplayName.hashCode) +
     (quotedShippingCents == null ? 0 : quotedShippingCents.hashCode) +
     (sellerMessage == null ? 0 : sellerMessage.hashCode) +
-    (sellerDisplayName == null ? 0 : sellerDisplayName.hashCode);
+    (expiresAt == null ? 0 : expiresAt.hashCode);
 
   @override
-  String toString() => 'ListBuyerTotalRequestsItem[id=$id, createdAt=$createdAt, status=$status, sellerUserId=$sellerUserId, lines=$lines, matchesCart=$matchesCart, expiresAt=$expiresAt, quotedShippingCents=$quotedShippingCents, sellerMessage=$sellerMessage, sellerDisplayName=$sellerDisplayName]';
+  String toString() => 'ListBuyerTotalRequestsItem[id=$id, sellerUserId=$sellerUserId, status=$status, lines=$lines, createdAt=$createdAt, matchesCart=$matchesCart, sellerDisplayName=$sellerDisplayName, quotedShippingCents=$quotedShippingCents, sellerMessage=$sellerMessage, expiresAt=$expiresAt]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
       json[r'id'] = id;
-      json[r'createdAt'] = createdAt;
-      json[r'status'] = status;
       json[r'sellerUserId'] = sellerUserId;
+      json[r'status'] = status;
       json[r'lines'] = lines;
+      json[r'createdAt'] = createdAt;
       json[r'matchesCart'] = matchesCart;
-    if (expiresAt != null) {
-      json[r'expiresAt'] = expiresAt;
+    if (sellerDisplayName != null) {
+      json[r'sellerDisplayName'] = sellerDisplayName;
     }
     if (quotedShippingCents != null) {
       json[r'quotedShippingCents'] = quotedShippingCents;
@@ -96,8 +96,8 @@ class ListBuyerTotalRequestsItem {
     if (sellerMessage != null) {
       json[r'sellerMessage'] = sellerMessage;
     }
-    if (sellerDisplayName != null) {
-      json[r'sellerDisplayName'] = sellerDisplayName;
+    if (expiresAt != null) {
+      json[r'expiresAt'] = expiresAt;
     }
     return json;
   }
@@ -110,17 +110,17 @@ class ListBuyerTotalRequestsItem {
       final json = value.cast<String, dynamic>();
       return ListBuyerTotalRequestsItem(
         id: mapValueOfType<String>(json, r'id'),
-        createdAt: mapValueOfType<String>(json, r'createdAt'),
-        status: mapValueOfType<String>(json, r'status'),
         sellerUserId: mapValueOfType<String>(json, r'sellerUserId'),
+        status: mapValueOfType<String>(json, r'status'),
         lines: ListBuyerTotalRequestsItemLines.listFromJson(json[r'lines']),
+        createdAt: mapValueOfType<String>(json, r'createdAt'),
         matchesCart: mapValueOfType<bool>(json, r'matchesCart'),
-        expiresAt: mapValueOfType<String>(json, r'expiresAt'),
+        sellerDisplayName: mapValueOfType<String>(json, r'sellerDisplayName'),
         quotedShippingCents: json[r'quotedShippingCents'] == null
           ? null
           : num.parse(json[r'quotedShippingCents'].toString()),
         sellerMessage: mapValueOfType<String>(json, r'sellerMessage'),
-        sellerDisplayName: mapValueOfType<String>(json, r'sellerDisplayName'),
+        expiresAt: mapValueOfType<String>(json, r'expiresAt'),
       );
     }
     return null;

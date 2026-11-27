@@ -13,37 +13,37 @@ part of openapi.api;
 class GetBuyerCollectionSetResponseDataLeaderboard {
   /// Returns a new [GetBuyerCollectionSetResponseDataLeaderboard] instance.
   GetBuyerCollectionSetResponseDataLeaderboard({
-    @required this.name,
     @required this.rank,
+    @required this.name,
     @required this.owned,
   });
 
-  String name;
-
   num rank;
+
+  String name;
 
   num owned;
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is GetBuyerCollectionSetResponseDataLeaderboard &&
-     other.name == name &&
      other.rank == rank &&
+     other.name == name &&
      other.owned == owned;
 
   @override
   int get hashCode =>
   // ignore: unnecessary_parenthesis
-    (name == null ? 0 : name.hashCode) +
     (rank == null ? 0 : rank.hashCode) +
+    (name == null ? 0 : name.hashCode) +
     (owned == null ? 0 : owned.hashCode);
 
   @override
-  String toString() => 'GetBuyerCollectionSetResponseDataLeaderboard[name=$name, rank=$rank, owned=$owned]';
+  String toString() => 'GetBuyerCollectionSetResponseDataLeaderboard[rank=$rank, name=$name, owned=$owned]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-      json[r'name'] = name;
       json[r'rank'] = rank;
+      json[r'name'] = name;
       json[r'owned'] = owned;
     return json;
   }
@@ -55,10 +55,10 @@ class GetBuyerCollectionSetResponseDataLeaderboard {
     if (value is Map) {
       final json = value.cast<String, dynamic>();
       return GetBuyerCollectionSetResponseDataLeaderboard(
-        name: mapValueOfType<String>(json, r'name'),
         rank: json[r'rank'] == null
           ? null
           : num.parse(json[r'rank'].toString()),
+        name: mapValueOfType<String>(json, r'name'),
         owned: json[r'owned'] == null
           ? null
           : num.parse(json[r'owned'].toString()),

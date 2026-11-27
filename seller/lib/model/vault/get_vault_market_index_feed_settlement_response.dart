@@ -18,7 +18,7 @@ class GetVaultMarketIndexFeedSettlementResponse {
     this.series = const [],
   });
 
-  SlugName index;
+  NameSlug index;
 
   String method;
 
@@ -55,7 +55,7 @@ class GetVaultMarketIndexFeedSettlementResponse {
     if (value is Map) {
       final json = value.cast<String, dynamic>();
       return GetVaultMarketIndexFeedSettlementResponse(
-        index: SlugName.fromJson(json[r'index']),
+        index: NameSlug.fromJson(json[r'index']),
         method: mapValueOfType<String>(json, r'method'),
         series: GetVaultMarketIndexFeedSettlementResponseSeries.listFromJson(json[r'series']),
       );

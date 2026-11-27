@@ -14,73 +14,73 @@ class ListBuyerListingSellerReviewsItem {
   /// Returns a new [ListBuyerListingSellerReviewsItem] instance.
   ListBuyerListingSellerReviewsItem({
     @required this.id,
-    @required this.createdAt,
-    @required this.item,
-    this.body,
     @required this.rating,
-    this.sellerReply,
+    this.body,
     this.media = const [],
+    this.sellerReply,
     this.reviewer,
+    @required this.item,
+    @required this.createdAt,
   });
 
   String id;
 
-  String createdAt;
-
-  ListBuyerListingSellerReviewsItemItem item;
+  num rating;
 
   String body;
 
-  num rating;
+  List<ListBuyerListingSellerReviewsItemMedia> media;
 
   String sellerReply;
 
-  List<ListBuyerListingSellerReviewsItemMedia> media;
-
   String reviewer;
+
+  ListBuyerListingSellerReviewsItemItem item;
+
+  String createdAt;
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is ListBuyerListingSellerReviewsItem &&
      other.id == id &&
-     other.createdAt == createdAt &&
-     other.item == item &&
-     other.body == body &&
      other.rating == rating &&
-     other.sellerReply == sellerReply &&
+     other.body == body &&
      other.media == media &&
-     other.reviewer == reviewer;
+     other.sellerReply == sellerReply &&
+     other.reviewer == reviewer &&
+     other.item == item &&
+     other.createdAt == createdAt;
 
   @override
   int get hashCode =>
   // ignore: unnecessary_parenthesis
     (id == null ? 0 : id.hashCode) +
-    (createdAt == null ? 0 : createdAt.hashCode) +
-    (item == null ? 0 : item.hashCode) +
-    (body == null ? 0 : body.hashCode) +
     (rating == null ? 0 : rating.hashCode) +
-    (sellerReply == null ? 0 : sellerReply.hashCode) +
+    (body == null ? 0 : body.hashCode) +
     (media == null ? 0 : media.hashCode) +
-    (reviewer == null ? 0 : reviewer.hashCode);
+    (sellerReply == null ? 0 : sellerReply.hashCode) +
+    (reviewer == null ? 0 : reviewer.hashCode) +
+    (item == null ? 0 : item.hashCode) +
+    (createdAt == null ? 0 : createdAt.hashCode);
 
   @override
-  String toString() => 'ListBuyerListingSellerReviewsItem[id=$id, createdAt=$createdAt, item=$item, body=$body, rating=$rating, sellerReply=$sellerReply, media=$media, reviewer=$reviewer]';
+  String toString() => 'ListBuyerListingSellerReviewsItem[id=$id, rating=$rating, body=$body, media=$media, sellerReply=$sellerReply, reviewer=$reviewer, item=$item, createdAt=$createdAt]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
       json[r'id'] = id;
-      json[r'createdAt'] = createdAt;
-      json[r'item'] = item;
+      json[r'rating'] = rating;
     if (body != null) {
       json[r'body'] = body;
     }
-      json[r'rating'] = rating;
+      json[r'media'] = media;
     if (sellerReply != null) {
       json[r'sellerReply'] = sellerReply;
     }
-      json[r'media'] = media;
     if (reviewer != null) {
       json[r'reviewer'] = reviewer;
     }
+      json[r'item'] = item;
+      json[r'createdAt'] = createdAt;
     return json;
   }
 
@@ -92,15 +92,15 @@ class ListBuyerListingSellerReviewsItem {
       final json = value.cast<String, dynamic>();
       return ListBuyerListingSellerReviewsItem(
         id: mapValueOfType<String>(json, r'id'),
-        createdAt: mapValueOfType<String>(json, r'createdAt'),
-        item: ListBuyerListingSellerReviewsItemItem.fromJson(json[r'item']),
-        body: mapValueOfType<String>(json, r'body'),
         rating: json[r'rating'] == null
           ? null
           : num.parse(json[r'rating'].toString()),
-        sellerReply: mapValueOfType<String>(json, r'sellerReply'),
+        body: mapValueOfType<String>(json, r'body'),
         media: ListBuyerListingSellerReviewsItemMedia.listFromJson(json[r'media']),
+        sellerReply: mapValueOfType<String>(json, r'sellerReply'),
         reviewer: mapValueOfType<String>(json, r'reviewer'),
+        item: ListBuyerListingSellerReviewsItemItem.fromJson(json[r'item']),
+        createdAt: mapValueOfType<String>(json, r'createdAt'),
       );
     }
     return null;

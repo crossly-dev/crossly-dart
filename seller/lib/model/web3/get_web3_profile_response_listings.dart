@@ -174,18 +174,18 @@ class GetWeb3ProfileResponseListingsKindEnum {
   String toJson() => value;
 
   static const bundle = GetWeb3ProfileResponseListingsKindEnum._(r'bundle');
+  static const offer = GetWeb3ProfileResponseListingsKindEnum._(r'offer');
   static const listing = GetWeb3ProfileResponseListingsKindEnum._(r'listing');
   static const privateListing = GetWeb3ProfileResponseListingsKindEnum._(r'private_listing');
-  static const offer = GetWeb3ProfileResponseListingsKindEnum._(r'offer');
   static const collectionOffer = GetWeb3ProfileResponseListingsKindEnum._(r'collection_offer');
   static const traitOffer = GetWeb3ProfileResponseListingsKindEnum._(r'trait_offer');
 
   /// List of all possible values in this [enum][GetWeb3ProfileResponseListingsKindEnum].
   static const values = <GetWeb3ProfileResponseListingsKindEnum>[
     bundle,
+    offer,
     listing,
     privateListing,
-    offer,
     collectionOffer,
     traitOffer,
   ];
@@ -220,9 +220,9 @@ class GetWeb3ProfileResponseListingsKindEnumTypeTransformer {
     if (data != null) {
       switch (data.toString()) {
         case r'bundle': return GetWeb3ProfileResponseListingsKindEnum.bundle;
+        case r'offer': return GetWeb3ProfileResponseListingsKindEnum.offer;
         case r'listing': return GetWeb3ProfileResponseListingsKindEnum.listing;
         case r'private_listing': return GetWeb3ProfileResponseListingsKindEnum.privateListing;
-        case r'offer': return GetWeb3ProfileResponseListingsKindEnum.offer;
         case r'collection_offer': return GetWeb3ProfileResponseListingsKindEnum.collectionOffer;
         case r'trait_offer': return GetWeb3ProfileResponseListingsKindEnum.traitOffer;
         default:

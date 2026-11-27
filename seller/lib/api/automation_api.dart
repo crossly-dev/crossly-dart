@@ -18,6 +18,8 @@ class AutomationApi {
 
   /// Create an automation rule.
   ///
+  /// Deprecated: automation rules are workflows now. Use /v1/workflows.
+  ///
   /// Note: This method returns the HTTP [Response].
   Future<Response> createAutomationRuleWithHttpInfo() async {
     // ignore: prefer_const_declarations
@@ -47,6 +49,8 @@ class AutomationApi {
   }
 
   /// Create an automation rule.
+  ///
+  /// Deprecated: automation rules are workflows now. Use /v1/workflows.
   Future<ListAutomationRulesItem> createAutomationRule() async {
     final response = await createAutomationRuleWithHttpInfo();
     if (response.statusCode >= HttpStatus.badRequest) {
@@ -63,6 +67,8 @@ class AutomationApi {
   }
 
   /// Import one or more rules from recipe JSON (single or bundle).
+  ///
+  /// Deprecated: automation rules are workflows now. Use /v1/workflows.
   ///
   /// Note: This method returns the HTTP [Response].
   ///
@@ -104,6 +110,8 @@ class AutomationApi {
 
   /// Import one or more rules from recipe JSON (single or bundle).
   ///
+  /// Deprecated: automation rules are workflows now. Use /v1/workflows.
+  ///
   /// Parameters:
   ///
   /// * [bool] activate:
@@ -123,6 +131,8 @@ class AutomationApi {
   }
 
   /// Fire an automation rule immediately.
+  ///
+  /// Deprecated: automation rules are workflows now. Use /v1/workflows.
   ///
   /// Note: This method returns the HTTP [Response].
   ///
@@ -164,6 +174,8 @@ class AutomationApi {
 
   /// Fire an automation rule immediately.
   ///
+  /// Deprecated: automation rules are workflows now. Use /v1/workflows.
+  ///
   /// Parameters:
   ///
   /// * [String] id (required):
@@ -183,6 +195,8 @@ class AutomationApi {
   }
 
   /// Flip an automation rule between active and inactive.
+  ///
+  /// Deprecated: automation rules are workflows now. Use /v1/workflows.
   ///
   /// Note: This method returns the HTTP [Response].
   ///
@@ -224,10 +238,12 @@ class AutomationApi {
 
   /// Flip an automation rule between active and inactive.
   ///
+  /// Deprecated: automation rules are workflows now. Use /v1/workflows.
+  ///
   /// Parameters:
   ///
   /// * [String] id (required):
-  Future<UpdateAutomationRuleResponse> createAutomationRuleToggle(String id,) async {
+  Future<GetAutomationRuleResponse> createAutomationRuleToggle(String id,) async {
     final response = await createAutomationRuleToggleWithHttpInfo(id,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
@@ -236,13 +252,15 @@ class AutomationApi {
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
     if (response.body != null && response.statusCode != HttpStatus.noContent) {
-      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'UpdateAutomationRuleResponse',) as UpdateAutomationRuleResponse;
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'GetAutomationRuleResponse',) as GetAutomationRuleResponse;
     
     }
-    return Future<UpdateAutomationRuleResponse>.value();
+    return Future<GetAutomationRuleResponse>.value();
   }
 
   /// Dry-run validate one or more recipes against the live catalog.
+  ///
+  /// Deprecated: automation rules are workflows now. Use /v1/workflows.
   ///
   /// Note: This method returns the HTTP [Response].
   Future<Response> createAutomationRuleValidateRecipeWithHttpInfo() async {
@@ -273,6 +291,8 @@ class AutomationApi {
   }
 
   /// Dry-run validate one or more recipes against the live catalog.
+  ///
+  /// Deprecated: automation rules are workflows now. Use /v1/workflows.
   Future<CreateAutomationRuleValidateRecipeResponse> createAutomationRuleValidateRecipe() async {
     final response = await createAutomationRuleValidateRecipeWithHttpInfo();
     if (response.statusCode >= HttpStatus.badRequest) {
@@ -410,6 +430,8 @@ class AutomationApi {
 
   /// Delete an automation rule.
   ///
+  /// Deprecated: automation rules are workflows now. Use /v1/workflows.
+  ///
   /// Note: This method returns the HTTP [Response].
   ///
   /// Parameters:
@@ -449,6 +471,8 @@ class AutomationApi {
   }
 
   /// Delete an automation rule.
+  ///
+  /// Deprecated: automation rules are workflows now. Use /v1/workflows.
   ///
   /// Parameters:
   ///
@@ -516,6 +540,8 @@ class AutomationApi {
 
   /// Get a single automation rule.
   ///
+  /// Deprecated: automation rules are workflows now. Use /v1/workflows.
+  ///
   /// Note: This method returns the HTTP [Response].
   ///
   /// Parameters:
@@ -556,6 +582,8 @@ class AutomationApi {
 
   /// Get a single automation rule.
   ///
+  /// Deprecated: automation rules are workflows now. Use /v1/workflows.
+  ///
   /// Parameters:
   ///
   /// * [String] id (required):
@@ -575,6 +603,8 @@ class AutomationApi {
   }
 
   /// Export the user's full rule library as a portable recipe bundle.
+  ///
+  /// Deprecated: automation rules are workflows now. Use /v1/workflows.
   ///
   /// Note: This method returns the HTTP [Response].
   Future<Response> getAutomationRuleExportWithHttpInfo() async {
@@ -605,6 +635,8 @@ class AutomationApi {
   }
 
   /// Export the user's full rule library as a portable recipe bundle.
+  ///
+  /// Deprecated: automation rules are workflows now. Use /v1/workflows.
   Future<GetAutomationRuleExportResponse> getAutomationRuleExport() async {
     final response = await getAutomationRuleExportWithHttpInfo();
     if (response.statusCode >= HttpStatus.badRequest) {
@@ -621,6 +653,8 @@ class AutomationApi {
   }
 
   /// Export a single automation rule as a portable recipe.
+  ///
+  /// Deprecated: automation rules are workflows now. Use /v1/workflows.
   ///
   /// Note: This method returns the HTTP [Response].
   ///
@@ -662,6 +696,8 @@ class AutomationApi {
 
   /// Export a single automation rule as a portable recipe.
   ///
+  /// Deprecated: automation rules are workflows now. Use /v1/workflows.
+  ///
   /// Parameters:
   ///
   /// * [String] id (required):
@@ -681,6 +717,8 @@ class AutomationApi {
   }
 
   /// List automation rules.
+  ///
+  /// Deprecated: automation rules are workflows now. Use /v1/workflows.
   ///
   /// Note: This method returns the HTTP [Response].
   Future<Response> listAutomationRulesWithHttpInfo() async {
@@ -711,6 +749,8 @@ class AutomationApi {
   }
 
   /// List automation rules.
+  ///
+  /// Deprecated: automation rules are workflows now. Use /v1/workflows.
   Future<ListAutomationRulesResponse> listAutomationRules() async {
     final response = await listAutomationRulesWithHttpInfo();
     if (response.statusCode >= HttpStatus.badRequest) {
@@ -727,6 +767,8 @@ class AutomationApi {
   }
 
   /// Per-fire history for automation rules and workflow chain runs.
+  ///
+  /// Deprecated: use /v1/workflow-runs.
   ///
   /// Note: This method returns the HTTP [Response].
   ///
@@ -777,6 +819,8 @@ class AutomationApi {
   }
 
   /// Per-fire history for automation rules and workflow chain runs.
+  ///
+  /// Deprecated: use /v1/workflow-runs.
   ///
   /// Parameters:
   ///
@@ -848,6 +892,8 @@ class AutomationApi {
 
   /// Update an automation rule (full replace).
   ///
+  /// Deprecated: automation rules are workflows now. Use /v1/workflows.
+  ///
   /// Note: This method returns the HTTP [Response].
   ///
   /// Parameters:
@@ -888,10 +934,12 @@ class AutomationApi {
 
   /// Update an automation rule (full replace).
   ///
+  /// Deprecated: automation rules are workflows now. Use /v1/workflows.
+  ///
   /// Parameters:
   ///
   /// * [String] id (required):
-  Future<UpdateAutomationRuleResponse> updateAutomationRule(String id,) async {
+  Future<GetAutomationRuleResponse> updateAutomationRule(String id,) async {
     final response = await updateAutomationRuleWithHttpInfo(id,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
@@ -900,9 +948,9 @@ class AutomationApi {
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
     if (response.body != null && response.statusCode != HttpStatus.noContent) {
-      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'UpdateAutomationRuleResponse',) as UpdateAutomationRuleResponse;
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'GetAutomationRuleResponse',) as GetAutomationRuleResponse;
     
     }
-    return Future<UpdateAutomationRuleResponse>.value();
+    return Future<GetAutomationRuleResponse>.value();
   }
 }

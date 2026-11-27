@@ -14,60 +14,60 @@ class GetBuyerCatalogListingPriceResponseDataPriceCheck {
   /// Returns a new [GetBuyerCatalogListingPriceResponseDataPriceCheck] instance.
   GetBuyerCatalogListingPriceResponseDataPriceCheck({
     @required this.verdict,
-    @required this.sales,
     @required this.medianCents,
-    @required this.days,
     @required this.lowCents,
     @required this.highCents,
+    @required this.sales,
+    @required this.days,
     @required this.lastSoldAt,
   });
 
   GetBuyerCatalogListingPriceResponseDataPriceCheckVerdictEnum verdict;
 
-  num sales;
-
   num medianCents;
-
-  num days;
 
   num lowCents;
 
   num highCents;
+
+  num sales;
+
+  num days;
 
   String lastSoldAt;
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is GetBuyerCatalogListingPriceResponseDataPriceCheck &&
      other.verdict == verdict &&
-     other.sales == sales &&
      other.medianCents == medianCents &&
-     other.days == days &&
      other.lowCents == lowCents &&
      other.highCents == highCents &&
+     other.sales == sales &&
+     other.days == days &&
      other.lastSoldAt == lastSoldAt;
 
   @override
   int get hashCode =>
   // ignore: unnecessary_parenthesis
     (verdict == null ? 0 : verdict.hashCode) +
-    (sales == null ? 0 : sales.hashCode) +
     (medianCents == null ? 0 : medianCents.hashCode) +
-    (days == null ? 0 : days.hashCode) +
     (lowCents == null ? 0 : lowCents.hashCode) +
     (highCents == null ? 0 : highCents.hashCode) +
+    (sales == null ? 0 : sales.hashCode) +
+    (days == null ? 0 : days.hashCode) +
     (lastSoldAt == null ? 0 : lastSoldAt.hashCode);
 
   @override
-  String toString() => 'GetBuyerCatalogListingPriceResponseDataPriceCheck[verdict=$verdict, sales=$sales, medianCents=$medianCents, days=$days, lowCents=$lowCents, highCents=$highCents, lastSoldAt=$lastSoldAt]';
+  String toString() => 'GetBuyerCatalogListingPriceResponseDataPriceCheck[verdict=$verdict, medianCents=$medianCents, lowCents=$lowCents, highCents=$highCents, sales=$sales, days=$days, lastSoldAt=$lastSoldAt]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
       json[r'verdict'] = verdict;
-      json[r'sales'] = sales;
       json[r'medianCents'] = medianCents;
-      json[r'days'] = days;
       json[r'lowCents'] = lowCents;
       json[r'highCents'] = highCents;
+      json[r'sales'] = sales;
+      json[r'days'] = days;
       json[r'lastSoldAt'] = lastSoldAt;
     return json;
   }
@@ -80,21 +80,21 @@ class GetBuyerCatalogListingPriceResponseDataPriceCheck {
       final json = value.cast<String, dynamic>();
       return GetBuyerCatalogListingPriceResponseDataPriceCheck(
         verdict: GetBuyerCatalogListingPriceResponseDataPriceCheckVerdictEnum.fromJson(json[r'verdict']),
-        sales: json[r'sales'] == null
-          ? null
-          : num.parse(json[r'sales'].toString()),
         medianCents: json[r'medianCents'] == null
           ? null
           : num.parse(json[r'medianCents'].toString()),
-        days: json[r'days'] == null
-          ? null
-          : num.parse(json[r'days'].toString()),
         lowCents: json[r'lowCents'] == null
           ? null
           : num.parse(json[r'lowCents'].toString()),
         highCents: json[r'highCents'] == null
           ? null
           : num.parse(json[r'highCents'].toString()),
+        sales: json[r'sales'] == null
+          ? null
+          : num.parse(json[r'sales'].toString()),
+        days: json[r'days'] == null
+          ? null
+          : num.parse(json[r'days'].toString()),
         lastSoldAt: mapValueOfType<String>(json, r'lastSoldAt'),
       );
     }
@@ -147,16 +147,16 @@ class GetBuyerCatalogListingPriceResponseDataPriceCheckVerdictEnum {
 
   String toJson() => value;
 
-  static const high = GetBuyerCatalogListingPriceResponseDataPriceCheckVerdictEnum._(r'high');
-  static const fair = GetBuyerCatalogListingPriceResponseDataPriceCheckVerdictEnum._(r'fair');
   static const good = GetBuyerCatalogListingPriceResponseDataPriceCheckVerdictEnum._(r'good');
+  static const fair = GetBuyerCatalogListingPriceResponseDataPriceCheckVerdictEnum._(r'fair');
+  static const high = GetBuyerCatalogListingPriceResponseDataPriceCheckVerdictEnum._(r'high');
   static const great = GetBuyerCatalogListingPriceResponseDataPriceCheckVerdictEnum._(r'great');
 
   /// List of all possible values in this [enum][GetBuyerCatalogListingPriceResponseDataPriceCheckVerdictEnum].
   static const values = <GetBuyerCatalogListingPriceResponseDataPriceCheckVerdictEnum>[
-    high,
-    fair,
     good,
+    fair,
+    high,
     great,
   ];
 
@@ -189,9 +189,9 @@ class GetBuyerCatalogListingPriceResponseDataPriceCheckVerdictEnumTypeTransforme
   GetBuyerCatalogListingPriceResponseDataPriceCheckVerdictEnum decode(dynamic data, {bool allowNull}) {
     if (data != null) {
       switch (data.toString()) {
-        case r'high': return GetBuyerCatalogListingPriceResponseDataPriceCheckVerdictEnum.high;
-        case r'fair': return GetBuyerCatalogListingPriceResponseDataPriceCheckVerdictEnum.fair;
         case r'good': return GetBuyerCatalogListingPriceResponseDataPriceCheckVerdictEnum.good;
+        case r'fair': return GetBuyerCatalogListingPriceResponseDataPriceCheckVerdictEnum.fair;
+        case r'high': return GetBuyerCatalogListingPriceResponseDataPriceCheckVerdictEnum.high;
         case r'great': return GetBuyerCatalogListingPriceResponseDataPriceCheckVerdictEnum.great;
         default:
           if (allowNull == false) {

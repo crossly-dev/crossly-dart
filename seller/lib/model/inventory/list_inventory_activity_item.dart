@@ -17,9 +17,9 @@ class ListInventoryActivityItem {
     @required this.createdAt,
     @required this.userId,
     this.platform,
-    @required this.type,
-    this.orderId,
     this.inventoryItemId,
+    this.orderId,
+    @required this.type,
     this.delta,
     this.quantityBefore,
     this.quantityAfter,
@@ -34,11 +34,11 @@ class ListInventoryActivityItem {
 
   String platform;
 
-  String type;
+  String inventoryItemId;
 
   String orderId;
 
-  String inventoryItemId;
+  String type;
 
   num delta;
 
@@ -54,9 +54,9 @@ class ListInventoryActivityItem {
      other.createdAt == createdAt &&
      other.userId == userId &&
      other.platform == platform &&
-     other.type == type &&
-     other.orderId == orderId &&
      other.inventoryItemId == inventoryItemId &&
+     other.orderId == orderId &&
+     other.type == type &&
      other.delta == delta &&
      other.quantityBefore == quantityBefore &&
      other.quantityAfter == quantityAfter &&
@@ -69,16 +69,16 @@ class ListInventoryActivityItem {
     (createdAt == null ? 0 : createdAt.hashCode) +
     (userId == null ? 0 : userId.hashCode) +
     (platform == null ? 0 : platform.hashCode) +
-    (type == null ? 0 : type.hashCode) +
-    (orderId == null ? 0 : orderId.hashCode) +
     (inventoryItemId == null ? 0 : inventoryItemId.hashCode) +
+    (orderId == null ? 0 : orderId.hashCode) +
+    (type == null ? 0 : type.hashCode) +
     (delta == null ? 0 : delta.hashCode) +
     (quantityBefore == null ? 0 : quantityBefore.hashCode) +
     (quantityAfter == null ? 0 : quantityAfter.hashCode) +
     (saleId == null ? 0 : saleId.hashCode);
 
   @override
-  String toString() => 'ListInventoryActivityItem[id=$id, createdAt=$createdAt, userId=$userId, platform=$platform, type=$type, orderId=$orderId, inventoryItemId=$inventoryItemId, delta=$delta, quantityBefore=$quantityBefore, quantityAfter=$quantityAfter, saleId=$saleId]';
+  String toString() => 'ListInventoryActivityItem[id=$id, createdAt=$createdAt, userId=$userId, platform=$platform, inventoryItemId=$inventoryItemId, orderId=$orderId, type=$type, delta=$delta, quantityBefore=$quantityBefore, quantityAfter=$quantityAfter, saleId=$saleId]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -88,13 +88,13 @@ class ListInventoryActivityItem {
     if (platform != null) {
       json[r'platform'] = platform;
     }
-      json[r'type'] = type;
-    if (orderId != null) {
-      json[r'orderId'] = orderId;
-    }
     if (inventoryItemId != null) {
       json[r'inventoryItemId'] = inventoryItemId;
     }
+    if (orderId != null) {
+      json[r'orderId'] = orderId;
+    }
+      json[r'type'] = type;
     if (delta != null) {
       json[r'delta'] = delta;
     }
@@ -121,9 +121,9 @@ class ListInventoryActivityItem {
         createdAt: mapDateTime(json, r'createdAt', ''),
         userId: mapValueOfType<String>(json, r'userId'),
         platform: mapValueOfType<String>(json, r'platform'),
-        type: mapValueOfType<String>(json, r'type'),
-        orderId: mapValueOfType<String>(json, r'orderId'),
         inventoryItemId: mapValueOfType<String>(json, r'inventoryItemId'),
+        orderId: mapValueOfType<String>(json, r'orderId'),
+        type: mapValueOfType<String>(json, r'type'),
         delta: json[r'delta'] == null
           ? null
           : num.parse(json[r'delta'].toString()),

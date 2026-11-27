@@ -18,9 +18,9 @@ class ListCompWatchlistsItem {
     @required this.name,
     @required this.createdAt,
     @required this.userId,
+    this.platform,
     this.condition,
     this.categoryMain,
-    this.platform,
     this.minPrice,
     this.maxPrice,
     this.lastMatchedAt,
@@ -37,11 +37,11 @@ class ListCompWatchlistsItem {
 
   String userId;
 
+  String platform;
+
   String condition;
 
   String categoryMain;
-
-  String platform;
 
   String minPrice;
 
@@ -58,9 +58,9 @@ class ListCompWatchlistsItem {
      other.name == name &&
      other.createdAt == createdAt &&
      other.userId == userId &&
+     other.platform == platform &&
      other.condition == condition &&
      other.categoryMain == categoryMain &&
-     other.platform == platform &&
      other.minPrice == minPrice &&
      other.maxPrice == maxPrice &&
      other.lastMatchedAt == lastMatchedAt &&
@@ -74,16 +74,16 @@ class ListCompWatchlistsItem {
     (name == null ? 0 : name.hashCode) +
     (createdAt == null ? 0 : createdAt.hashCode) +
     (userId == null ? 0 : userId.hashCode) +
+    (platform == null ? 0 : platform.hashCode) +
     (condition == null ? 0 : condition.hashCode) +
     (categoryMain == null ? 0 : categoryMain.hashCode) +
-    (platform == null ? 0 : platform.hashCode) +
     (minPrice == null ? 0 : minPrice.hashCode) +
     (maxPrice == null ? 0 : maxPrice.hashCode) +
     (lastMatchedAt == null ? 0 : lastMatchedAt.hashCode) +
     (lastScrapedAt == null ? 0 : lastScrapedAt.hashCode);
 
   @override
-  String toString() => 'ListCompWatchlistsItem[id=$id, brand=$brand, name=$name, createdAt=$createdAt, userId=$userId, condition=$condition, categoryMain=$categoryMain, platform=$platform, minPrice=$minPrice, maxPrice=$maxPrice, lastMatchedAt=$lastMatchedAt, lastScrapedAt=$lastScrapedAt]';
+  String toString() => 'ListCompWatchlistsItem[id=$id, brand=$brand, name=$name, createdAt=$createdAt, userId=$userId, platform=$platform, condition=$condition, categoryMain=$categoryMain, minPrice=$minPrice, maxPrice=$maxPrice, lastMatchedAt=$lastMatchedAt, lastScrapedAt=$lastScrapedAt]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -94,14 +94,14 @@ class ListCompWatchlistsItem {
       json[r'name'] = name;
       json[r'createdAt'] = createdAt.toUtc().toIso8601String();
       json[r'userId'] = userId;
+    if (platform != null) {
+      json[r'platform'] = platform;
+    }
     if (condition != null) {
       json[r'condition'] = condition;
     }
     if (categoryMain != null) {
       json[r'categoryMain'] = categoryMain;
-    }
-    if (platform != null) {
-      json[r'platform'] = platform;
     }
     if (minPrice != null) {
       json[r'minPrice'] = minPrice;
@@ -130,9 +130,9 @@ class ListCompWatchlistsItem {
         name: mapValueOfType<String>(json, r'name'),
         createdAt: mapDateTime(json, r'createdAt', ''),
         userId: mapValueOfType<String>(json, r'userId'),
+        platform: mapValueOfType<String>(json, r'platform'),
         condition: mapValueOfType<String>(json, r'condition'),
         categoryMain: mapValueOfType<String>(json, r'categoryMain'),
-        platform: mapValueOfType<String>(json, r'platform'),
         minPrice: mapValueOfType<String>(json, r'minPrice'),
         maxPrice: mapValueOfType<String>(json, r'maxPrice'),
         lastMatchedAt: mapDateTime(json, r'lastMatchedAt', ''),

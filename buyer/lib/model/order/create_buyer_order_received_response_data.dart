@@ -15,8 +15,8 @@ class CreateBuyerOrderReceivedResponseData {
   CreateBuyerOrderReceivedResponseData({
     @required this.ok,
     @required this.canReview,
-    this.buyerReceivedAt,
     this.alreadyConfirmed,
+    this.buyerReceivedAt,
   });
 
   bool ok;
@@ -24,37 +24,37 @@ class CreateBuyerOrderReceivedResponseData {
   /// Feedback can now be left on this order.
   bool canReview;
 
-  String buyerReceivedAt;
-
   bool alreadyConfirmed;
+
+  String buyerReceivedAt;
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is CreateBuyerOrderReceivedResponseData &&
      other.ok == ok &&
      other.canReview == canReview &&
-     other.buyerReceivedAt == buyerReceivedAt &&
-     other.alreadyConfirmed == alreadyConfirmed;
+     other.alreadyConfirmed == alreadyConfirmed &&
+     other.buyerReceivedAt == buyerReceivedAt;
 
   @override
   int get hashCode =>
   // ignore: unnecessary_parenthesis
     (ok == null ? 0 : ok.hashCode) +
     (canReview == null ? 0 : canReview.hashCode) +
-    (buyerReceivedAt == null ? 0 : buyerReceivedAt.hashCode) +
-    (alreadyConfirmed == null ? 0 : alreadyConfirmed.hashCode);
+    (alreadyConfirmed == null ? 0 : alreadyConfirmed.hashCode) +
+    (buyerReceivedAt == null ? 0 : buyerReceivedAt.hashCode);
 
   @override
-  String toString() => 'CreateBuyerOrderReceivedResponseData[ok=$ok, canReview=$canReview, buyerReceivedAt=$buyerReceivedAt, alreadyConfirmed=$alreadyConfirmed]';
+  String toString() => 'CreateBuyerOrderReceivedResponseData[ok=$ok, canReview=$canReview, alreadyConfirmed=$alreadyConfirmed, buyerReceivedAt=$buyerReceivedAt]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
       json[r'ok'] = ok;
       json[r'canReview'] = canReview;
-    if (buyerReceivedAt != null) {
-      json[r'buyerReceivedAt'] = buyerReceivedAt;
-    }
     if (alreadyConfirmed != null) {
       json[r'alreadyConfirmed'] = alreadyConfirmed;
+    }
+    if (buyerReceivedAt != null) {
+      json[r'buyerReceivedAt'] = buyerReceivedAt;
     }
     return json;
   }
@@ -68,8 +68,8 @@ class CreateBuyerOrderReceivedResponseData {
       return CreateBuyerOrderReceivedResponseData(
         ok: mapValueOfType<bool>(json, r'ok'),
         canReview: mapValueOfType<bool>(json, r'canReview'),
-        buyerReceivedAt: mapValueOfType<String>(json, r'buyerReceivedAt'),
         alreadyConfirmed: mapValueOfType<bool>(json, r'alreadyConfirmed'),
+        buyerReceivedAt: mapValueOfType<String>(json, r'buyerReceivedAt'),
       );
     }
     return null;

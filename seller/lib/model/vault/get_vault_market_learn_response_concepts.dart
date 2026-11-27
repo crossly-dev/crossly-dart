@@ -134,6 +134,7 @@ class GetVaultMarketLearnResponseConceptsSlugEnum {
   static const auctions = GetVaultMarketLearnResponseConceptsSlugEnum._(r'auctions');
   static const indexes = GetVaultMarketLearnResponseConceptsSlugEnum._(r'indexes');
   static const marks = GetVaultMarketLearnResponseConceptsSlugEnum._(r'marks');
+  static const vaultShares = GetVaultMarketLearnResponseConceptsSlugEnum._(r'vault-shares');
 
   /// List of all possible values in this [enum][GetVaultMarketLearnResponseConceptsSlugEnum].
   static const values = <GetVaultMarketLearnResponseConceptsSlugEnum>[
@@ -144,6 +145,7 @@ class GetVaultMarketLearnResponseConceptsSlugEnum {
     auctions,
     indexes,
     marks,
+    vaultShares,
   ];
 
   static GetVaultMarketLearnResponseConceptsSlugEnum fromJson(dynamic value) =>
@@ -182,6 +184,7 @@ class GetVaultMarketLearnResponseConceptsSlugEnumTypeTransformer {
         case r'auctions': return GetVaultMarketLearnResponseConceptsSlugEnum.auctions;
         case r'indexes': return GetVaultMarketLearnResponseConceptsSlugEnum.indexes;
         case r'marks': return GetVaultMarketLearnResponseConceptsSlugEnum.marks;
+        case r'vault-shares': return GetVaultMarketLearnResponseConceptsSlugEnum.vaultShares;
         default:
           if (allowNull == false) {
             throw ArgumentError('Unknown enum value to decode: $data');

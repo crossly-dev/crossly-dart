@@ -30,7 +30,7 @@ class GetVaultMarketUnitStoryResponse {
 
   GetVaultMarketUnitStoryResponseHolder holder;
 
-  ListVaultMarketFeedItemMark mark;
+  ListVaultMarketOpeningItemMark mark;
 
   /// 'holder' sees everything about their unit; 'public' is the share page.
   GetVaultMarketUnitStoryResponseViewerEnum viewer;
@@ -111,7 +111,7 @@ class GetVaultMarketUnitStoryResponse {
       return GetVaultMarketUnitStoryResponse(
         unit: GetVaultMarketUnitStoryResponseUnit.fromJson(json[r'unit']),
         holder: GetVaultMarketUnitStoryResponseHolder.fromJson(json[r'holder']),
-        mark: ListVaultMarketFeedItemMark.fromJson(json[r'mark']),
+        mark: ListVaultMarketOpeningItemMark.fromJson(json[r'mark']),
         viewer: GetVaultMarketUnitStoryResponseViewerEnum.fromJson(json[r'viewer']),
         shareable: mapValueOfType<bool>(json, r'shareable'),
         shareUrl: mapValueOfType<String>(json, r'shareUrl'),
@@ -171,13 +171,13 @@ class GetVaultMarketUnitStoryResponseViewerEnum {
 
   String toJson() => value;
 
-  static const holder = GetVaultMarketUnitStoryResponseViewerEnum._(r'holder');
   static const public = GetVaultMarketUnitStoryResponseViewerEnum._(r'public');
+  static const holder = GetVaultMarketUnitStoryResponseViewerEnum._(r'holder');
 
   /// List of all possible values in this [enum][GetVaultMarketUnitStoryResponseViewerEnum].
   static const values = <GetVaultMarketUnitStoryResponseViewerEnum>[
-    holder,
     public,
+    holder,
   ];
 
   static GetVaultMarketUnitStoryResponseViewerEnum fromJson(dynamic value) =>
@@ -209,8 +209,8 @@ class GetVaultMarketUnitStoryResponseViewerEnumTypeTransformer {
   GetVaultMarketUnitStoryResponseViewerEnum decode(dynamic data, {bool allowNull}) {
     if (data != null) {
       switch (data.toString()) {
-        case r'holder': return GetVaultMarketUnitStoryResponseViewerEnum.holder;
         case r'public': return GetVaultMarketUnitStoryResponseViewerEnum.public;
+        case r'holder': return GetVaultMarketUnitStoryResponseViewerEnum.holder;
         default:
           if (allowNull == false) {
             throw ArgumentError('Unknown enum value to decode: $data');

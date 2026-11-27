@@ -29,7 +29,7 @@ class ListWorldPlaceTradeTablesItem {
     @required this.version,
   });
 
-  ListWorldPlaceTradeTablesItemVisitor visitor;
+  GetWorldExperiencePlaceCollabOpResponseDataFramesBy visitor;
 
   ListWorldPlaceTradeTablesItemTotals totals;
 
@@ -131,7 +131,7 @@ class ListWorldPlaceTradeTablesItem {
     if (value is Map) {
       final json = value.cast<String, dynamic>();
       return ListWorldPlaceTradeTablesItem(
-        visitor: ListWorldPlaceTradeTablesItemVisitor.fromJson(json[r'visitor']),
+        visitor: GetWorldExperiencePlaceCollabOpResponseDataFramesBy.fromJson(json[r'visitor']),
         totals: ListWorldPlaceTradeTablesItemTotals.fromJson(json[r'totals']),
         you: ListWorldPlaceTradeTablesItemYouEnum.fromJson(json[r'you']),
         line: ListWorldPlaceTradeTablesItemLine.fromJson(json[r'line']),
@@ -266,14 +266,14 @@ class ListWorldPlaceTradeTablesItemStatusEnum {
   String toJson() => value;
 
   static const open = ListWorldPlaceTradeTablesItemStatusEnum._(r'open');
-  static const done = ListWorldPlaceTradeTablesItemStatusEnum._(r'done');
   static const closed = ListWorldPlaceTradeTablesItemStatusEnum._(r'closed');
+  static const done = ListWorldPlaceTradeTablesItemStatusEnum._(r'done');
 
   /// List of all possible values in this [enum][ListWorldPlaceTradeTablesItemStatusEnum].
   static const values = <ListWorldPlaceTradeTablesItemStatusEnum>[
     open,
-    done,
     closed,
+    done,
   ];
 
   static ListWorldPlaceTradeTablesItemStatusEnum fromJson(dynamic value) =>
@@ -306,8 +306,8 @@ class ListWorldPlaceTradeTablesItemStatusEnumTypeTransformer {
     if (data != null) {
       switch (data.toString()) {
         case r'open': return ListWorldPlaceTradeTablesItemStatusEnum.open;
-        case r'done': return ListWorldPlaceTradeTablesItemStatusEnum.done;
         case r'closed': return ListWorldPlaceTradeTablesItemStatusEnum.closed;
+        case r'done': return ListWorldPlaceTradeTablesItemStatusEnum.done;
         default:
           if (allowNull == false) {
             throw ArgumentError('Unknown enum value to decode: $data');

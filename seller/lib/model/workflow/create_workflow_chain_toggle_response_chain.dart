@@ -17,8 +17,10 @@ class CreateWorkflowChainToggleResponseChain {
     @required this.userId,
     @required this.name,
     @required this.triggerId,
+    this.triggerConfig = const {},
     @required this.isActive,
     @required this.createdAt,
+    @required this.workflowId,
   });
 
   String id;
@@ -29,9 +31,13 @@ class CreateWorkflowChainToggleResponseChain {
 
   String triggerId;
 
+  Map<String, Object> triggerConfig;
+
   bool isActive;
 
   DateTime createdAt;
+
+  String workflowId;
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is CreateWorkflowChainToggleResponseChain &&
@@ -39,8 +45,10 @@ class CreateWorkflowChainToggleResponseChain {
      other.userId == userId &&
      other.name == name &&
      other.triggerId == triggerId &&
+     other.triggerConfig == triggerConfig &&
      other.isActive == isActive &&
-     other.createdAt == createdAt;
+     other.createdAt == createdAt &&
+     other.workflowId == workflowId;
 
   @override
   int get hashCode =>
@@ -49,11 +57,13 @@ class CreateWorkflowChainToggleResponseChain {
     (userId == null ? 0 : userId.hashCode) +
     (name == null ? 0 : name.hashCode) +
     (triggerId == null ? 0 : triggerId.hashCode) +
+    (triggerConfig == null ? 0 : triggerConfig.hashCode) +
     (isActive == null ? 0 : isActive.hashCode) +
-    (createdAt == null ? 0 : createdAt.hashCode);
+    (createdAt == null ? 0 : createdAt.hashCode) +
+    (workflowId == null ? 0 : workflowId.hashCode);
 
   @override
-  String toString() => 'CreateWorkflowChainToggleResponseChain[id=$id, userId=$userId, name=$name, triggerId=$triggerId, isActive=$isActive, createdAt=$createdAt]';
+  String toString() => 'CreateWorkflowChainToggleResponseChain[id=$id, userId=$userId, name=$name, triggerId=$triggerId, triggerConfig=$triggerConfig, isActive=$isActive, createdAt=$createdAt, workflowId=$workflowId]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -61,8 +71,10 @@ class CreateWorkflowChainToggleResponseChain {
       json[r'userId'] = userId;
       json[r'name'] = name;
       json[r'triggerId'] = triggerId;
+      json[r'triggerConfig'] = triggerConfig;
       json[r'isActive'] = isActive;
       json[r'createdAt'] = createdAt.toUtc().toIso8601String();
+      json[r'workflowId'] = workflowId;
     return json;
   }
 
@@ -77,8 +89,10 @@ class CreateWorkflowChainToggleResponseChain {
         userId: mapValueOfType<String>(json, r'userId'),
         name: mapValueOfType<String>(json, r'name'),
         triggerId: mapValueOfType<String>(json, r'triggerId'),
+        triggerConfig: mapValueOfType<Map<String, Object>>(json, r'triggerConfig'),
         isActive: mapValueOfType<bool>(json, r'isActive'),
         createdAt: mapDateTime(json, r'createdAt', ''),
+        workflowId: mapValueOfType<String>(json, r'workflowId'),
       );
     }
     return null;

@@ -112,15 +112,15 @@ class CreateBuyerLockonConfirmResponseHudFactsToneEnum {
 
   String toJson() => value;
 
-  static const good = CreateBuyerLockonConfirmResponseHudFactsToneEnum._(r'good');
-  static const warn = CreateBuyerLockonConfirmResponseHudFactsToneEnum._(r'warn');
   static const neutral = CreateBuyerLockonConfirmResponseHudFactsToneEnum._(r'neutral');
+  static const warn = CreateBuyerLockonConfirmResponseHudFactsToneEnum._(r'warn');
+  static const good = CreateBuyerLockonConfirmResponseHudFactsToneEnum._(r'good');
 
   /// List of all possible values in this [enum][CreateBuyerLockonConfirmResponseHudFactsToneEnum].
   static const values = <CreateBuyerLockonConfirmResponseHudFactsToneEnum>[
-    good,
-    warn,
     neutral,
+    warn,
+    good,
   ];
 
   static CreateBuyerLockonConfirmResponseHudFactsToneEnum fromJson(dynamic value) =>
@@ -152,9 +152,9 @@ class CreateBuyerLockonConfirmResponseHudFactsToneEnumTypeTransformer {
   CreateBuyerLockonConfirmResponseHudFactsToneEnum decode(dynamic data, {bool allowNull}) {
     if (data != null) {
       switch (data.toString()) {
-        case r'good': return CreateBuyerLockonConfirmResponseHudFactsToneEnum.good;
-        case r'warn': return CreateBuyerLockonConfirmResponseHudFactsToneEnum.warn;
         case r'neutral': return CreateBuyerLockonConfirmResponseHudFactsToneEnum.neutral;
+        case r'warn': return CreateBuyerLockonConfirmResponseHudFactsToneEnum.warn;
+        case r'good': return CreateBuyerLockonConfirmResponseHudFactsToneEnum.good;
         default:
           if (allowNull == false) {
             throw ArgumentError('Unknown enum value to decode: $data');

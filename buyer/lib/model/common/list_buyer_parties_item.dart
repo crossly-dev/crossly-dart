@@ -14,55 +14,55 @@ class ListBuyerPartiesItem {
   /// Returns a new [ListBuyerPartiesItem] instance.
   ListBuyerPartiesItem({
     @required this.id,
-    @required this.status,
-    @required this.endsAt,
     @required this.slug,
-    @required this.startsAt,
     @required this.theme,
+    @required this.startsAt,
+    @required this.endsAt,
+    @required this.status,
   });
 
   String id;
 
-  String status;
-
-  String endsAt;
-
   String slug;
+
+  String theme;
 
   String startsAt;
 
-  String theme;
+  String endsAt;
+
+  String status;
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is ListBuyerPartiesItem &&
      other.id == id &&
-     other.status == status &&
-     other.endsAt == endsAt &&
      other.slug == slug &&
+     other.theme == theme &&
      other.startsAt == startsAt &&
-     other.theme == theme;
+     other.endsAt == endsAt &&
+     other.status == status;
 
   @override
   int get hashCode =>
   // ignore: unnecessary_parenthesis
     (id == null ? 0 : id.hashCode) +
-    (status == null ? 0 : status.hashCode) +
-    (endsAt == null ? 0 : endsAt.hashCode) +
     (slug == null ? 0 : slug.hashCode) +
+    (theme == null ? 0 : theme.hashCode) +
     (startsAt == null ? 0 : startsAt.hashCode) +
-    (theme == null ? 0 : theme.hashCode);
+    (endsAt == null ? 0 : endsAt.hashCode) +
+    (status == null ? 0 : status.hashCode);
 
   @override
-  String toString() => 'ListBuyerPartiesItem[id=$id, status=$status, endsAt=$endsAt, slug=$slug, startsAt=$startsAt, theme=$theme]';
+  String toString() => 'ListBuyerPartiesItem[id=$id, slug=$slug, theme=$theme, startsAt=$startsAt, endsAt=$endsAt, status=$status]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
       json[r'id'] = id;
-      json[r'status'] = status;
-      json[r'endsAt'] = endsAt;
       json[r'slug'] = slug;
-      json[r'startsAt'] = startsAt;
       json[r'theme'] = theme;
+      json[r'startsAt'] = startsAt;
+      json[r'endsAt'] = endsAt;
+      json[r'status'] = status;
     return json;
   }
 
@@ -74,11 +74,11 @@ class ListBuyerPartiesItem {
       final json = value.cast<String, dynamic>();
       return ListBuyerPartiesItem(
         id: mapValueOfType<String>(json, r'id'),
-        status: mapValueOfType<String>(json, r'status'),
-        endsAt: mapValueOfType<String>(json, r'endsAt'),
         slug: mapValueOfType<String>(json, r'slug'),
-        startsAt: mapValueOfType<String>(json, r'startsAt'),
         theme: mapValueOfType<String>(json, r'theme'),
+        startsAt: mapValueOfType<String>(json, r'startsAt'),
+        endsAt: mapValueOfType<String>(json, r'endsAt'),
+        status: mapValueOfType<String>(json, r'status'),
       );
     }
     return null;

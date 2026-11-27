@@ -15,7 +15,7 @@ class CreateWorldGamePackageResponseDataVersion {
   CreateWorldGamePackageResponseDataVersion({
     @required this.id,
     @required this.semver,
-    @required this.designVersion,
+    this.designVersion,
     @required this.state,
   });
 
@@ -49,7 +49,9 @@ class CreateWorldGamePackageResponseDataVersion {
     final json = <String, dynamic>{};
       json[r'id'] = id;
       json[r'semver'] = semver;
+    if (designVersion != null) {
       json[r'designVersion'] = designVersion;
+    }
       json[r'state'] = state;
     return json;
   }

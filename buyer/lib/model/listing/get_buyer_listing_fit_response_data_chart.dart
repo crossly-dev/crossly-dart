@@ -14,37 +14,37 @@ class GetBuyerListingFitResponseDataChart {
   /// Returns a new [GetBuyerListingFitResponseDataChart] instance.
   GetBuyerListingFitResponseDataChart({
     @required this.kind,
-    this.rows = const [],
     @required this.kindLabel,
+    this.rows = const [],
   });
 
   String kind;
 
-  List<GetBuyerListingFitResponseDataChartRows> rows;
-
   String kindLabel;
+
+  List<GetBuyerListingFitResponseDataChartRows> rows;
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is GetBuyerListingFitResponseDataChart &&
      other.kind == kind &&
-     other.rows == rows &&
-     other.kindLabel == kindLabel;
+     other.kindLabel == kindLabel &&
+     other.rows == rows;
 
   @override
   int get hashCode =>
   // ignore: unnecessary_parenthesis
     (kind == null ? 0 : kind.hashCode) +
-    (rows == null ? 0 : rows.hashCode) +
-    (kindLabel == null ? 0 : kindLabel.hashCode);
+    (kindLabel == null ? 0 : kindLabel.hashCode) +
+    (rows == null ? 0 : rows.hashCode);
 
   @override
-  String toString() => 'GetBuyerListingFitResponseDataChart[kind=$kind, rows=$rows, kindLabel=$kindLabel]';
+  String toString() => 'GetBuyerListingFitResponseDataChart[kind=$kind, kindLabel=$kindLabel, rows=$rows]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
       json[r'kind'] = kind;
-      json[r'rows'] = rows;
       json[r'kindLabel'] = kindLabel;
+      json[r'rows'] = rows;
     return json;
   }
 
@@ -56,8 +56,8 @@ class GetBuyerListingFitResponseDataChart {
       final json = value.cast<String, dynamic>();
       return GetBuyerListingFitResponseDataChart(
         kind: mapValueOfType<String>(json, r'kind'),
-        rows: GetBuyerListingFitResponseDataChartRows.listFromJson(json[r'rows']),
         kindLabel: mapValueOfType<String>(json, r'kindLabel'),
+        rows: GetBuyerListingFitResponseDataChartRows.listFromJson(json[r'rows']),
       );
     }
     return null;

@@ -20,6 +20,9 @@ class GetBuyerCatalogListingShippingResponseServices {
     @required this.costType,
     this.minDays,
     this.maxDays,
+    this.carrier,
+    this.carrierService,
+    this.handlingFeeCents,
   });
 
   String id;
@@ -36,6 +39,13 @@ class GetBuyerCatalogListingShippingResponseServices {
 
   num maxDays;
 
+  /// Buyer pays: calculated: the carrier and service token the label is bought with, and the handling fee inside `cents`.
+  String carrier;
+
+  String carrierService;
+
+  num handlingFeeCents;
+
   @override
   bool operator ==(Object other) => identical(this, other) || other is GetBuyerCatalogListingShippingResponseServices &&
      other.id == id &&
@@ -44,7 +54,10 @@ class GetBuyerCatalogListingShippingResponseServices {
      other.scope == scope &&
      other.costType == costType &&
      other.minDays == minDays &&
-     other.maxDays == maxDays;
+     other.maxDays == maxDays &&
+     other.carrier == carrier &&
+     other.carrierService == carrierService &&
+     other.handlingFeeCents == handlingFeeCents;
 
   @override
   int get hashCode =>
@@ -55,10 +68,13 @@ class GetBuyerCatalogListingShippingResponseServices {
     (scope == null ? 0 : scope.hashCode) +
     (costType == null ? 0 : costType.hashCode) +
     (minDays == null ? 0 : minDays.hashCode) +
-    (maxDays == null ? 0 : maxDays.hashCode);
+    (maxDays == null ? 0 : maxDays.hashCode) +
+    (carrier == null ? 0 : carrier.hashCode) +
+    (carrierService == null ? 0 : carrierService.hashCode) +
+    (handlingFeeCents == null ? 0 : handlingFeeCents.hashCode);
 
   @override
-  String toString() => 'GetBuyerCatalogListingShippingResponseServices[id=$id, name=$name, cents=$cents, scope=$scope, costType=$costType, minDays=$minDays, maxDays=$maxDays]';
+  String toString() => 'GetBuyerCatalogListingShippingResponseServices[id=$id, name=$name, cents=$cents, scope=$scope, costType=$costType, minDays=$minDays, maxDays=$maxDays, carrier=$carrier, carrierService=$carrierService, handlingFeeCents=$handlingFeeCents]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -72,6 +88,15 @@ class GetBuyerCatalogListingShippingResponseServices {
     }
     if (maxDays != null) {
       json[r'maxDays'] = maxDays;
+    }
+    if (carrier != null) {
+      json[r'carrier'] = carrier;
+    }
+    if (carrierService != null) {
+      json[r'carrierService'] = carrierService;
+    }
+    if (handlingFeeCents != null) {
+      json[r'handlingFeeCents'] = handlingFeeCents;
     }
     return json;
   }
@@ -96,6 +121,11 @@ class GetBuyerCatalogListingShippingResponseServices {
         maxDays: json[r'maxDays'] == null
           ? null
           : num.parse(json[r'maxDays'].toString()),
+        carrier: mapValueOfType<String>(json, r'carrier'),
+        carrierService: mapValueOfType<String>(json, r'carrierService'),
+        handlingFeeCents: json[r'handlingFeeCents'] == null
+          ? null
+          : num.parse(json[r'handlingFeeCents'].toString()),
       );
     }
     return null;

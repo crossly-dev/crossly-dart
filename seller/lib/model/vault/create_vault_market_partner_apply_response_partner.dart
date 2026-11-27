@@ -26,6 +26,10 @@ class CreateVaultMarketPartnerApplyResponsePartner {
     @required this.appliedAt,
     this.decidedAt,
     this.decisionNote,
+    this.postalCode,
+    this.hours,
+    this.services = const [],
+    @required this.listed,
   });
 
   String id;
@@ -54,6 +58,14 @@ class CreateVaultMarketPartnerApplyResponsePartner {
 
   String decisionNote;
 
+  String postalCode;
+
+  Map<String, Object> hours;
+
+  List<String> services;
+
+  bool listed;
+
   @override
   bool operator ==(Object other) => identical(this, other) || other is CreateVaultMarketPartnerApplyResponsePartner &&
      other.id == id &&
@@ -68,7 +80,11 @@ class CreateVaultMarketPartnerApplyResponsePartner {
      other.capCents == capCents &&
      other.appliedAt == appliedAt &&
      other.decidedAt == decidedAt &&
-     other.decisionNote == decisionNote;
+     other.decisionNote == decisionNote &&
+     other.postalCode == postalCode &&
+     other.hours == hours &&
+     other.services == services &&
+     other.listed == listed;
 
   @override
   int get hashCode =>
@@ -85,10 +101,14 @@ class CreateVaultMarketPartnerApplyResponsePartner {
     (capCents == null ? 0 : capCents.hashCode) +
     (appliedAt == null ? 0 : appliedAt.hashCode) +
     (decidedAt == null ? 0 : decidedAt.hashCode) +
-    (decisionNote == null ? 0 : decisionNote.hashCode);
+    (decisionNote == null ? 0 : decisionNote.hashCode) +
+    (postalCode == null ? 0 : postalCode.hashCode) +
+    (hours == null ? 0 : hours.hashCode) +
+    (services == null ? 0 : services.hashCode) +
+    (listed == null ? 0 : listed.hashCode);
 
   @override
-  String toString() => 'CreateVaultMarketPartnerApplyResponsePartner[id=$id, userId=$userId, status=$status, shopName=$shopName, address=$address, website=$website, note=$note, code=$code, shareBps=$shareBps, capCents=$capCents, appliedAt=$appliedAt, decidedAt=$decidedAt, decisionNote=$decisionNote]';
+  String toString() => 'CreateVaultMarketPartnerApplyResponsePartner[id=$id, userId=$userId, status=$status, shopName=$shopName, address=$address, website=$website, note=$note, code=$code, shareBps=$shareBps, capCents=$capCents, appliedAt=$appliedAt, decidedAt=$decidedAt, decisionNote=$decisionNote, postalCode=$postalCode, hours=$hours, services=$services, listed=$listed]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -117,6 +137,14 @@ class CreateVaultMarketPartnerApplyResponsePartner {
     if (decisionNote != null) {
       json[r'decisionNote'] = decisionNote;
     }
+    if (postalCode != null) {
+      json[r'postalCode'] = postalCode;
+    }
+    if (hours != null) {
+      json[r'hours'] = hours;
+    }
+      json[r'services'] = services;
+      json[r'listed'] = listed;
     return json;
   }
 
@@ -144,6 +172,12 @@ class CreateVaultMarketPartnerApplyResponsePartner {
         appliedAt: mapValueOfType<String>(json, r'appliedAt'),
         decidedAt: mapValueOfType<String>(json, r'decidedAt'),
         decisionNote: mapValueOfType<String>(json, r'decisionNote'),
+        postalCode: mapValueOfType<String>(json, r'postalCode'),
+        hours: mapValueOfType<Map<String, Object>>(json, r'hours'),
+        services: json[r'services'] is List
+          ? (json[r'services'] as List).cast<String>()
+          : null,
+        listed: mapValueOfType<bool>(json, r'listed'),
       );
     }
     return null;
@@ -196,15 +230,15 @@ class CreateVaultMarketPartnerApplyResponsePartnerStatusEnum {
   String toJson() => value;
 
   static const applied = CreateVaultMarketPartnerApplyResponsePartnerStatusEnum._(r'applied');
-  static const approved = CreateVaultMarketPartnerApplyResponsePartnerStatusEnum._(r'approved');
   static const rejected = CreateVaultMarketPartnerApplyResponsePartnerStatusEnum._(r'rejected');
+  static const approved = CreateVaultMarketPartnerApplyResponsePartnerStatusEnum._(r'approved');
   static const suspended = CreateVaultMarketPartnerApplyResponsePartnerStatusEnum._(r'suspended');
 
   /// List of all possible values in this [enum][CreateVaultMarketPartnerApplyResponsePartnerStatusEnum].
   static const values = <CreateVaultMarketPartnerApplyResponsePartnerStatusEnum>[
     applied,
-    approved,
     rejected,
+    approved,
     suspended,
   ];
 
@@ -238,8 +272,8 @@ class CreateVaultMarketPartnerApplyResponsePartnerStatusEnumTypeTransformer {
     if (data != null) {
       switch (data.toString()) {
         case r'applied': return CreateVaultMarketPartnerApplyResponsePartnerStatusEnum.applied;
-        case r'approved': return CreateVaultMarketPartnerApplyResponsePartnerStatusEnum.approved;
         case r'rejected': return CreateVaultMarketPartnerApplyResponsePartnerStatusEnum.rejected;
+        case r'approved': return CreateVaultMarketPartnerApplyResponsePartnerStatusEnum.approved;
         case r'suspended': return CreateVaultMarketPartnerApplyResponsePartnerStatusEnum.suspended;
         default:
           if (allowNull == false) {

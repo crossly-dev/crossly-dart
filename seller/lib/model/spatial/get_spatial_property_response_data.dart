@@ -22,7 +22,7 @@ class GetSpatialPropertyResponseData {
 
   List<GetSpatialPropertyResponseDataDeeds> deeds;
 
-  List<CreateSpatialPropertyDeedLeaseResponseData> tenancies;
+  List<GetSpatialPropertyResponseDataTenancies> tenancies;
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is GetSpatialPropertyResponseData &&
@@ -57,7 +57,7 @@ class GetSpatialPropertyResponseData {
       return GetSpatialPropertyResponseData(
         enabled: mapValueOfType<bool>(json, r'enabled'),
         deeds: GetSpatialPropertyResponseDataDeeds.listFromJson(json[r'deeds']),
-        tenancies: CreateSpatialPropertyDeedLeaseResponseData.listFromJson(json[r'tenancies']),
+        tenancies: GetSpatialPropertyResponseDataTenancies.listFromJson(json[r'tenancies']),
       );
     }
     return null;

@@ -120,15 +120,15 @@ class GetVaultMarketSetGoalResponseTargetGradeModeEnum {
 
   String toJson() => value;
 
+  static const any = GetVaultMarketSetGoalResponseTargetGradeModeEnum._(r'any');
   static const exact = GetVaultMarketSetGoalResponseTargetGradeModeEnum._(r'exact');
   static const ungraded = GetVaultMarketSetGoalResponseTargetGradeModeEnum._(r'ungraded');
-  static const any = GetVaultMarketSetGoalResponseTargetGradeModeEnum._(r'any');
 
   /// List of all possible values in this [enum][GetVaultMarketSetGoalResponseTargetGradeModeEnum].
   static const values = <GetVaultMarketSetGoalResponseTargetGradeModeEnum>[
+    any,
     exact,
     ungraded,
-    any,
   ];
 
   static GetVaultMarketSetGoalResponseTargetGradeModeEnum fromJson(dynamic value) =>
@@ -160,9 +160,9 @@ class GetVaultMarketSetGoalResponseTargetGradeModeEnumTypeTransformer {
   GetVaultMarketSetGoalResponseTargetGradeModeEnum decode(dynamic data, {bool allowNull}) {
     if (data != null) {
       switch (data.toString()) {
+        case r'any': return GetVaultMarketSetGoalResponseTargetGradeModeEnum.any;
         case r'exact': return GetVaultMarketSetGoalResponseTargetGradeModeEnum.exact;
         case r'ungraded': return GetVaultMarketSetGoalResponseTargetGradeModeEnum.ungraded;
-        case r'any': return GetVaultMarketSetGoalResponseTargetGradeModeEnum.any;
         default:
           if (allowNull == false) {
             throw ArgumentError('Unknown enum value to decode: $data');

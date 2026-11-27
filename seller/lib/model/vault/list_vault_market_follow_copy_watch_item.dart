@@ -13,9 +13,12 @@ part of openapi.api;
 class ListVaultMarketFollowCopyWatchItem {
   /// Returns a new [ListVaultMarketFollowCopyWatchItem] instance.
   ListVaultMarketFollowCopyWatchItem({
+    @required this.person,
     @required this.since,
     @required this.active,
   });
+
+  ListVaultMarketFollowCopyWatchItemPerson person;
 
   String since;
 
@@ -23,20 +26,23 @@ class ListVaultMarketFollowCopyWatchItem {
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is ListVaultMarketFollowCopyWatchItem &&
+     other.person == person &&
      other.since == since &&
      other.active == active;
 
   @override
   int get hashCode =>
   // ignore: unnecessary_parenthesis
+    (person == null ? 0 : person.hashCode) +
     (since == null ? 0 : since.hashCode) +
     (active == null ? 0 : active.hashCode);
 
   @override
-  String toString() => 'ListVaultMarketFollowCopyWatchItem[since=$since, active=$active]';
+  String toString() => 'ListVaultMarketFollowCopyWatchItem[person=$person, since=$since, active=$active]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
+      json[r'person'] = person;
       json[r'since'] = since;
       json[r'active'] = active;
     return json;
@@ -49,6 +55,7 @@ class ListVaultMarketFollowCopyWatchItem {
     if (value is Map) {
       final json = value.cast<String, dynamic>();
       return ListVaultMarketFollowCopyWatchItem(
+        person: ListVaultMarketFollowCopyWatchItemPerson.fromJson(json[r'person']),
         since: mapValueOfType<String>(json, r'since'),
         active: mapValueOfType<bool>(json, r'active'),
       );

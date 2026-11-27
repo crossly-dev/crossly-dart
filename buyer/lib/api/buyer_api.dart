@@ -1339,6 +1339,204 @@ class BuyerApi {
     return Future<CreateBuyerCatalogListingVideoRequestResponse>.value();
   }
 
+  /// Create a buyer company: name, taxId?, website?. You become its owner; a user is in at most one company.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  Future<Response> createBuyerCompanyWithHttpInfo() async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/buyer/company';
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['BuyerOAuth'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'POST',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Create a buyer company: name, taxId?, website?. You become its owner; a user is in at most one company.
+  Future<BuyerCompanyResponse> createBuyerCompany() async {
+    final response = await createBuyerCompanyWithHttpInfo();
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'BuyerCompanyResponse',) as BuyerCompanyResponse;
+    
+    }
+    return Future<BuyerCompanyResponse>.value();
+  }
+
+  /// Ask for approval of a trade order above your limit: sellerUserId, amountCents, note?, poReference?. Good for 7 days, used once at checkout.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  Future<Response> createBuyerCompanyApprovalWithHttpInfo() async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/buyer/company/approvals';
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['BuyerOAuth'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'POST',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Ask for approval of a trade order above your limit: sellerUserId, amountCents, note?, poReference?. Good for 7 days, used once at checkout.
+  Future<CreateBuyerCompanyApprovalResponse> createBuyerCompanyApproval() async {
+    final response = await createBuyerCompanyApprovalWithHttpInfo();
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'CreateBuyerCompanyApprovalResponse',) as CreateBuyerCompanyApprovalResponse;
+    
+    }
+    return Future<CreateBuyerCompanyApprovalResponse>.value();
+  }
+
+  /// Approve or decline a pending request (owner, accounts payable): decision approved | declined, note?.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<Response> createBuyerCompanyApprovalDecideWithHttpInfo(String id,) async {
+    // Verify required params are set.
+    if (id == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: id');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/buyer/company/approvals/{id}/decide'
+      .replaceAll('{id}', id);
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['BuyerOAuth'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'POST',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Approve or decline a pending request (owner, accounts payable): decision approved | declined, note?.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<CreateBuyerCompanyApprovalResponse> createBuyerCompanyApprovalDecide(String id,) async {
+    final response = await createBuyerCompanyApprovalDecideWithHttpInfo(id,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'CreateBuyerCompanyApprovalResponse',) as CreateBuyerCompanyApprovalResponse;
+    
+    }
+    return Future<CreateBuyerCompanyApprovalResponse>.value();
+  }
+
+  /// Invite a teammate by email (owner): role owner | buyer | accounts_payable | viewer, approvalLimitCents for a buyer (orders above it need an approval).
+  ///
+  /// Note: This method returns the HTTP [Response].
+  Future<Response> createBuyerCompanyMemberWithHttpInfo() async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/buyer/company/members';
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['BuyerOAuth'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'POST',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Invite a teammate by email (owner): role owner | buyer | accounts_payable | viewer, approvalLimitCents for a buyer (orders above it need an approval).
+  Future<BuyerCompanyResponse> createBuyerCompanyMember() async {
+    final response = await createBuyerCompanyMemberWithHttpInfo();
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'BuyerCompanyResponse',) as BuyerCompanyResponse;
+    
+    }
+    return Future<BuyerCompanyResponse>.value();
+  }
+
   /// Invite a friend into a chat with a seller: a single-use link (7 days) that makes whoever opens it a guest who can read and post. Only the thread’s buyer can invite; at most 5 guests.
   ///
   /// Note: This method returns the HTTP [Response].
@@ -1457,6 +1655,66 @@ class BuyerApi {
     
     }
     return Future<CreateBuyerConversationJoinResponse>.value();
+  }
+
+  /// RSVP to an event: going (counts against its capacity) or interested.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] slug (required):
+  Future<Response> createBuyerEventRsvpWithHttpInfo(String slug,) async {
+    // Verify required params are set.
+    if (slug == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: slug');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/buyer/events/{slug}/rsvp'
+      .replaceAll('{slug}', slug);
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['BuyerOAuth'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'POST',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// RSVP to an event: going (counts against its capacity) or interested.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] slug (required):
+  Future<CreateBuyerEventRsvpResponse> createBuyerEventRsvp(String slug,) async {
+    final response = await createBuyerEventRsvpWithHttpInfo(slug,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'CreateBuyerEventRsvpResponse',) as CreateBuyerEventRsvpResponse;
+    
+    }
+    return Future<CreateBuyerEventRsvpResponse>.value();
   }
 
   /// Leave feedback on up to 25 orders at once, with optional detailed seller ratings.
@@ -1753,7 +2011,7 @@ class BuyerApi {
     return Future<CreateBuyerGiftCardRedeemResponse>.value();
   }
 
-  /// Join a group buy: a hold at the starting price, captured at the price the group reaches. Checked against this key’s spending controls; send an Idempotency-Key.
+  /// Join a group buy with a quantity (up to its per-buyer max): a hold (or, for pay-now pools, a charge refunded the difference) at the starting price, settled at the price the group reaches. `linkToken` opens a link-only pool. Checked against this key’s spending controls; send an Idempotency-Key.
   ///
   /// Note: This method returns the HTTP [Response].
   ///
@@ -1793,7 +2051,7 @@ class BuyerApi {
     );
   }
 
-  /// Join a group buy: a hold at the starting price, captured at the price the group reaches. Checked against this key’s spending controls; send an Idempotency-Key.
+  /// Join a group buy with a quantity (up to its per-buyer max): a hold (or, for pay-now pools, a charge refunded the difference) at the starting price, settled at the price the group reaches. `linkToken` opens a link-only pool. Checked against this key’s spending controls; send an Idempotency-Key.
   ///
   /// Parameters:
   ///
@@ -2998,7 +3256,7 @@ class BuyerApi {
     return Future<CreateBuyerPackOpeningSellBackResponse>.value();
   }
 
-  /// Claim a passport as the item’s current owner (the buyer of its latest sale) — shown as “in its owner’s hands” until it sells again.
+  /// Claim a passport as the item’s current owner — the buyer of its latest Crossly sale, or (after a sale on another marketplace) with the transfer code from the card in the box — shown as “in its owner’s hands” until it sells again.
   ///
   /// Note: This method returns the HTTP [Response].
   ///
@@ -3038,7 +3296,7 @@ class BuyerApi {
     );
   }
 
-  /// Claim a passport as the item’s current owner (the buyer of its latest sale) — shown as “in its owner’s hands” until it sells again.
+  /// Claim a passport as the item’s current owner — the buyer of its latest Crossly sale, or (after a sale on another marketplace) with the transfer code from the card in the box — shown as “in its owner’s hands” until it sells again.
   ///
   /// Parameters:
   ///
@@ -3116,66 +3374,6 @@ class BuyerApi {
     
     }
     return Future<CreateBuyerProtectionPlanCancelResponse>.value();
-  }
-
-  /// A ten-minute link to a digital purchase’s file; each call uses one of its downloads.
-  ///
-  /// Note: This method returns the HTTP [Response].
-  ///
-  /// Parameters:
-  ///
-  /// * [String] id (required):
-  Future<Response> createBuyerPurchaseDownloadWithHttpInfo(String id,) async {
-    // Verify required params are set.
-    if (id == null) {
-     throw ApiException(HttpStatus.badRequest, 'Missing required param: id');
-    }
-
-    // ignore: prefer_const_declarations
-    final path = r'/v1/buyer/purchases/{id}/download'
-      .replaceAll('{id}', id);
-
-    // ignore: prefer_final_locals
-    Object postBody;
-
-    final queryParams = <QueryParam>[];
-    final headerParams = <String, String>{};
-    final formParams = <String, String>{};
-
-    const authNames = <String>['BuyerOAuth'];
-    const contentTypes = <String>[];
-
-
-    return apiClient.invokeAPI(
-      path,
-      'POST',
-      queryParams,
-      postBody,
-      headerParams,
-      formParams,
-      contentTypes.isEmpty ? null : contentTypes[0],
-      authNames,
-    );
-  }
-
-  /// A ten-minute link to a digital purchase’s file; each call uses one of its downloads.
-  ///
-  /// Parameters:
-  ///
-  /// * [String] id (required):
-  Future<CreateBuyerPurchaseDownloadResponse> createBuyerPurchaseDownload(String id,) async {
-    final response = await createBuyerPurchaseDownloadWithHttpInfo(id,);
-    if (response.statusCode >= HttpStatus.badRequest) {
-      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
-    }
-    // When a remote server returns no body with a status of 204, we shall not decode it.
-    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
-    // FormatException when trying to decode an empty string.
-    if (response.body != null && response.statusCode != HttpStatus.noContent) {
-      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'CreateBuyerPurchaseDownloadResponse',) as CreateBuyerPurchaseDownloadResponse;
-    
-    }
-    return Future<CreateBuyerPurchaseDownloadResponse>.value();
   }
 
   /// Say how a delivered purchase fit: true_to_size, small or large. It teaches your size memory and, pooled with other buyers, how the brand runs.
@@ -3457,7 +3655,7 @@ class BuyerApi {
   /// Parameters:
   ///
   /// * [String] id (required):
-  Future<CreateBuyerRentalArrivalPhotoResponse> createBuyerRentalArrivalPhoto(String id,) async {
+  Future<BuyerRentalResponse> createBuyerRentalArrivalPhoto(String id,) async {
     final response = await createBuyerRentalArrivalPhotoWithHttpInfo(id,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
@@ -3466,10 +3664,70 @@ class BuyerApi {
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
     if (response.body != null && response.statusCode != HttpStatus.noContent) {
-      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'CreateBuyerRentalArrivalPhotoResponse',) as CreateBuyerRentalArrivalPhotoResponse;
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'BuyerRentalResponse',) as BuyerRentalResponse;
     
     }
-    return Future<CreateBuyerRentalArrivalPhotoResponse>.value();
+    return Future<BuyerRentalResponse>.value();
+  }
+
+  /// Buy the item you are renting: the price less the rent-to-own credit → clientSecret.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<Response> createBuyerRentalBuyoutWithHttpInfo(String id,) async {
+    // Verify required params are set.
+    if (id == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: id');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/buyer/rentals/{id}/buyout'
+      .replaceAll('{id}', id);
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['BuyerOAuth'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'POST',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Buy the item you are renting: the price less the rent-to-own credit → clientSecret.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<CreateBuyerRentalBuyoutResponse> createBuyerRentalBuyout(String id,) async {
+    final response = await createBuyerRentalBuyoutWithHttpInfo(id,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'CreateBuyerRentalBuyoutResponse',) as CreateBuyerRentalBuyoutResponse;
+    
+    }
+    return Future<CreateBuyerRentalBuyoutResponse>.value();
   }
 
   /// Cancel a rental that has not shipped: everything is refunded.
@@ -3592,6 +3850,194 @@ class BuyerApi {
     return Future<BuyerResponse>.value();
   }
 
+  /// Confirm your rental arrived.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<Response> createBuyerRentalDeliveredWithHttpInfo(String id,) async {
+    // Verify required params are set.
+    if (id == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: id');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/buyer/rentals/{id}/delivered'
+      .replaceAll('{id}', id);
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['BuyerOAuth'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'POST',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Confirm your rental arrived.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<BuyerRentalResponse> createBuyerRentalDelivered(String id,) async {
+    final response = await createBuyerRentalDeliveredWithHttpInfo(id,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'BuyerRentalResponse',) as BuyerRentalResponse;
+    
+    }
+    return Future<BuyerRentalResponse>.value();
+  }
+
+  /// Ask for more days. Auto-approved extensions return a clientSecret to pay with Stripe.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<Response> createBuyerRentalExtensionWithHttpInfo(String id,) async {
+    // Verify required params are set.
+    if (id == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: id');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/buyer/rentals/{id}/extensions'
+      .replaceAll('{id}', id);
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['BuyerOAuth'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'POST',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Ask for more days. Auto-approved extensions return a clientSecret to pay with Stripe.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<CreateBuyerRentalExtensionResponse> createBuyerRentalExtension(String id,) async {
+    final response = await createBuyerRentalExtensionWithHttpInfo(id,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'CreateBuyerRentalExtensionResponse',) as CreateBuyerRentalExtensionResponse;
+    
+    }
+    return Future<CreateBuyerRentalExtensionResponse>.value();
+  }
+
+  /// Pay for an extension the seller approved → clientSecret.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  ///
+  /// * [String] extensionId (required):
+  Future<Response> createBuyerRentalExtensionPayWithHttpInfo(String id, String extensionId,) async {
+    // Verify required params are set.
+    if (id == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: id');
+    }
+    if (extensionId == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: extensionId');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/buyer/rentals/{id}/extensions/{extensionId}/pay'
+      .replaceAll('{id}', id)
+      .replaceAll('{extensionId}', extensionId);
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['BuyerOAuth'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'POST',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Pay for an extension the seller approved → clientSecret.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  ///
+  /// * [String] extensionId (required):
+  Future<CreateBuyerRentalExtensionPayResponse> createBuyerRentalExtensionPay(String id, String extensionId,) async {
+    final response = await createBuyerRentalExtensionPayWithHttpInfo(id, extensionId,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'CreateBuyerRentalExtensionPayResponse',) as CreateBuyerRentalExtensionPayResponse;
+    
+    }
+    return Future<CreateBuyerRentalExtensionPayResponse>.value();
+  }
+
   /// Start the ID check renting needs (Stripe Identity: photo ID + selfie). Open `url` (hosted) or use `clientSecret` with Stripe.js.
   ///
   /// Note: This method returns the HTTP [Response].
@@ -3636,6 +4082,66 @@ class BuyerApi {
     
     }
     return Future<CreateBuyerRentalIdentityStartResponse>.value();
+  }
+
+  /// Say you sent your rental back (optionally with photos).
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<Response> createBuyerRentalReturnShippedWithHttpInfo(String id,) async {
+    // Verify required params are set.
+    if (id == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: id');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/buyer/rentals/{id}/return-shipped'
+      .replaceAll('{id}', id);
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['BuyerOAuth'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'POST',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Say you sent your rental back (optionally with photos).
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<BuyerRentalResponse> createBuyerRentalReturnShipped(String id,) async {
+    final response = await createBuyerRentalReturnShippedWithHttpInfo(id,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'BuyerRentalResponse',) as BuyerRentalResponse;
+    
+    }
+    return Future<BuyerRentalResponse>.value();
   }
 
   /// Cancel a return before it ships.
@@ -3818,6 +4324,66 @@ class BuyerApi {
     return Future<CreateBuyerSellerClubJoinResponse>.value();
   }
 
+  /// Join a seller’s loyalty club. Invite-only clubs take only invited buyers. Your tier and its perks are granted at once.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] sellerUserId (required):
+  Future<Response> createBuyerSellerLoyaltyJoinWithHttpInfo(String sellerUserId,) async {
+    // Verify required params are set.
+    if (sellerUserId == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: sellerUserId');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/buyer/sellers/{sellerUserId}/loyalty/join'
+      .replaceAll('{sellerUserId}', sellerUserId);
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['BuyerOAuth'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'POST',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Join a seller’s loyalty club. Invite-only clubs take only invited buyers. Your tier and its perks are granted at once.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] sellerUserId (required):
+  Future<GetBuyerSellerLoyaltyResponse> createBuyerSellerLoyaltyJoin(String sellerUserId,) async {
+    final response = await createBuyerSellerLoyaltyJoinWithHttpInfo(sellerUserId,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'GetBuyerSellerLoyaltyResponse',) as GetBuyerSellerLoyaltyResponse;
+    
+    }
+    return Future<GetBuyerSellerLoyaltyResponse>.value();
+  }
+
   /// Report a seller to Crossly’s trust team.
   ///
   /// A second report while your first is still under review updates that report instead of filing another. `purchaseId` is attached only if it is your order from this seller.
@@ -3876,7 +4442,7 @@ class BuyerApi {
   ///   The seller’s shop handle.
   ///
   /// * [CreateBuyerSellerReportRequest] createBuyerSellerReportRequest (required):
-  Future<CreateBuyerSellerReportResponse> createBuyerSellerReport(String username, CreateBuyerSellerReportRequest createBuyerSellerReportRequest,) async {
+  Future<CreateBuyerStoreReportResponse> createBuyerSellerReport(String username, CreateBuyerSellerReportRequest createBuyerSellerReportRequest,) async {
     final response = await createBuyerSellerReportWithHttpInfo(username, createBuyerSellerReportRequest,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
@@ -3885,10 +4451,10 @@ class BuyerApi {
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
     if (response.body != null && response.statusCode != HttpStatus.noContent) {
-      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'CreateBuyerSellerReportResponse',) as CreateBuyerSellerReportResponse;
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'CreateBuyerStoreReportResponse',) as CreateBuyerStoreReportResponse;
     
     }
-    return Future<CreateBuyerSellerReportResponse>.value();
+    return Future<CreateBuyerStoreReportResponse>.value();
   }
 
   /// Cancel a split you organised; every held share is released.
@@ -3949,6 +4515,79 @@ class BuyerApi {
     
     }
     return Future<BuyerResponse>.value();
+  }
+
+  /// Report a store to Crossly’s trust team.
+  ///
+  /// Files against whoever runs the store. A second report while your first is still under review updates that report instead of filing another. `purchaseId` is attached only if it is your order from this seller.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] slug (required):
+  ///   The store’s slug (its /shop/s/<slug> address).
+  ///
+  /// * [CreateBuyerSellerReportRequest] createBuyerSellerReportRequest (required):
+  Future<Response> createBuyerStoreReportWithHttpInfo(String slug, CreateBuyerSellerReportRequest createBuyerSellerReportRequest,) async {
+    // Verify required params are set.
+    if (slug == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: slug');
+    }
+    if (createBuyerSellerReportRequest == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: createBuyerSellerReportRequest');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/buyer/stores/{slug}/report'
+      .replaceAll('{slug}', slug);
+
+    // ignore: prefer_final_locals
+    Object postBody = createBuyerSellerReportRequest;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['BuyerOAuth'];
+    const contentTypes = <String>['application/json'];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'POST',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Report a store to Crossly’s trust team.
+  ///
+  /// Files against whoever runs the store. A second report while your first is still under review updates that report instead of filing another. `purchaseId` is attached only if it is your order from this seller.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] slug (required):
+  ///   The store’s slug (its /shop/s/<slug> address).
+  ///
+  /// * [CreateBuyerSellerReportRequest] createBuyerSellerReportRequest (required):
+  Future<CreateBuyerStoreReportResponse> createBuyerStoreReport(String slug, CreateBuyerSellerReportRequest createBuyerSellerReportRequest,) async {
+    final response = await createBuyerStoreReportWithHttpInfo(slug, createBuyerSellerReportRequest,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'CreateBuyerStoreReportResponse',) as CreateBuyerStoreReportResponse;
+    
+    }
+    return Future<CreateBuyerStoreReportResponse>.value();
   }
 
   /// Start a shop-together room.
@@ -4546,6 +5185,438 @@ class BuyerApi {
     
     }
     return Future<CreateBuyerVaultWithdrawResponse>.value();
+  }
+
+  /// Apply to a store's wholesale catalog: { message?, answers [{ id, value }], resaleCertUrl?, resaleCertState?, taxId?, businessInfo? }. The seller's requirements are enforced (400 trade_apply_requirements names the first one missing); the seller reviews the request.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] storeSlug (required):
+  ///
+  /// * [String] catalogSlug (required):
+  Future<Response> createBuyerWholesaleCatalogApplyWithHttpInfo(String storeSlug, String catalogSlug,) async {
+    // Verify required params are set.
+    if (storeSlug == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: storeSlug');
+    }
+    if (catalogSlug == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: catalogSlug');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/buyer/wholesale/catalogs/{storeSlug}/{catalogSlug}/apply'
+      .replaceAll('{storeSlug}', storeSlug)
+      .replaceAll('{catalogSlug}', catalogSlug);
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['BuyerOAuth'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'POST',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Apply to a store's wholesale catalog: { message?, answers [{ id, value }], resaleCertUrl?, resaleCertState?, taxId?, businessInfo? }. The seller's requirements are enforced (400 trade_apply_requirements names the first one missing); the seller reviews the request.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] storeSlug (required):
+  ///
+  /// * [String] catalogSlug (required):
+  Future<CreateBuyerWholesaleCatalogApplyResponse> createBuyerWholesaleCatalogApply(String storeSlug, String catalogSlug,) async {
+    final response = await createBuyerWholesaleCatalogApplyWithHttpInfo(storeSlug, catalogSlug,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'CreateBuyerWholesaleCatalogApplyResponse',) as CreateBuyerWholesaleCatalogApplyResponse;
+    
+    }
+    return Future<CreateBuyerWholesaleCatalogApplyResponse>.value();
+  }
+
+  /// Ask a seller to quote freight for their lines in your cart (an order over their pallet threshold): { sellerUserId, weightLbs?, shipTo? { postalCode, country, city?, region?, liftgate?, dock? }, note? }. One open request per seller.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  Future<Response> createBuyerWholesaleFreightRequestWithHttpInfo() async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/buyer/wholesale/freight-requests';
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['BuyerOAuth'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'POST',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Ask a seller to quote freight for their lines in your cart (an order over their pallet threshold): { sellerUserId, weightLbs?, shipTo? { postalCode, country, city?, region?, liftgate?, dock? }, note? }. One open request per seller.
+  Future<CreateBuyerWholesaleFreightRequestResponse> createBuyerWholesaleFreightRequest() async {
+    final response = await createBuyerWholesaleFreightRequestWithHttpInfo();
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'CreateBuyerWholesaleFreightRequestResponse',) as CreateBuyerWholesaleFreightRequestResponse;
+    
+    }
+    return Future<CreateBuyerWholesaleFreightRequestResponse>.value();
+  }
+
+  /// A hosted payment page for an on-account invoice: amountCents? (part of the balance, at least $1), method? card | ach. Nothing is charged until the buyer completes the page.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<Response> createBuyerWholesaleInvoicePayLinkWithHttpInfo(String id,) async {
+    // Verify required params are set.
+    if (id == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: id');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/buyer/wholesale/invoices/{id}/pay-link'
+      .replaceAll('{id}', id);
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['BuyerOAuth'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'POST',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// A hosted payment page for an on-account invoice: amountCents? (part of the balance, at least $1), method? card | ach. Nothing is charged until the buyer completes the page.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<CreateBuyerWholesaleInvoicePayLinkResponse> createBuyerWholesaleInvoicePayLink(String id,) async {
+    final response = await createBuyerWholesaleInvoicePayLinkWithHttpInfo(id,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'CreateBuyerWholesaleInvoicePayLinkResponse',) as CreateBuyerWholesaleInvoicePayLinkResponse;
+    
+    }
+    return Future<CreateBuyerWholesaleInvoicePayLinkResponse>.value();
+  }
+
+  /// Save an order sheet: name, lines [{ platformListingId, listingVariantId?, catalogId?, quantity }] from one seller, optional catalogId, poReference, note.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  Future<Response> createBuyerWholesaleOrderSheetWithHttpInfo() async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/buyer/wholesale/order-sheets';
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['BuyerOAuth'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'POST',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Save an order sheet: name, lines [{ platformListingId, listingVariantId?, catalogId?, quantity }] from one seller, optional catalogId, poReference, note.
+  Future<BuyerWholesaleOrderSheetResponse> createBuyerWholesaleOrderSheet() async {
+    final response = await createBuyerWholesaleOrderSheetWithHttpInfo();
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'BuyerWholesaleOrderSheetResponse',) as BuyerWholesaleOrderSheetResponse;
+    
+    }
+    return Future<BuyerWholesaleOrderSheetResponse>.value();
+  }
+
+  /// Ask one seller for a quote: items [{ platformListingId, listingVariantId?, quantity, targetUnitPriceCents? }] (one seller per quote), optional catalogId, note, poReference.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  Future<Response> createBuyerWholesaleQuoteWithHttpInfo() async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/buyer/wholesale/quotes';
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['BuyerOAuth'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'POST',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Ask one seller for a quote: items [{ platformListingId, listingVariantId?, quantity, targetUnitPriceCents? }] (one seller per quote), optional catalogId, note, poReference.
+  Future<BuyerWholesaleQuoteResponse> createBuyerWholesaleQuote() async {
+    final response = await createBuyerWholesaleQuoteWithHttpInfo();
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'BuyerWholesaleQuoteResponse',) as BuyerWholesaleQuoteResponse;
+    
+    }
+    return Future<BuyerWholesaleQuoteResponse>.value();
+  }
+
+  /// Accept an answered quote: its priced items go into your cart at the quoted quantities, locked at the quoted prices until the quote expires (changing a line's quantity drops the lock). Paying happens at checkout on Crossly.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<Response> createBuyerWholesaleQuoteAcceptWithHttpInfo(String id,) async {
+    // Verify required params are set.
+    if (id == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: id');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/buyer/wholesale/quotes/{id}/accept'
+      .replaceAll('{id}', id);
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['BuyerOAuth'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'POST',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Accept an answered quote: its priced items go into your cart at the quoted quantities, locked at the quoted prices until the quote expires (changing a line's quantity drops the lock). Paying happens at checkout on Crossly.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<CreateBuyerWholesaleQuoteAcceptResponse> createBuyerWholesaleQuoteAccept(String id,) async {
+    final response = await createBuyerWholesaleQuoteAcceptWithHttpInfo(id,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'CreateBuyerWholesaleQuoteAcceptResponse',) as CreateBuyerWholesaleQuoteAcceptResponse;
+    
+    }
+    return Future<CreateBuyerWholesaleQuoteAcceptResponse>.value();
+  }
+
+  /// Withdraw a quote request that is still requested or answered.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<Response> createBuyerWholesaleQuoteWithdrawWithHttpInfo(String id,) async {
+    // Verify required params are set.
+    if (id == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: id');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/buyer/wholesale/quotes/{id}/withdraw'
+      .replaceAll('{id}', id);
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['BuyerOAuth'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'POST',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Withdraw a quote request that is still requested or answered.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<BuyerWholesaleQuoteResponse> createBuyerWholesaleQuoteWithdraw(String id,) async {
+    final response = await createBuyerWholesaleQuoteWithdrawWithHttpInfo(id,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'BuyerWholesaleQuoteResponse',) as BuyerWholesaleQuoteResponse;
+    
+    }
+    return Future<BuyerWholesaleQuoteResponse>.value();
+  }
+
+  /// Validate a CSV / PO against one catalog: rows [{ line, sku, quantity }] are matched by SKU (item or option SKU, or listing slug), merged per item and priced today; unmatched rows come back by line.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  Future<Response> createBuyerWholesaleUploadValidateWithHttpInfo() async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/buyer/wholesale/upload/validate';
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['BuyerOAuth'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'POST',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Validate a CSV / PO against one catalog: rows [{ line, sku, quantity }] are matched by SKU (item or option SKU, or listing slug), merged per item and priced today; unmatched rows come back by line.
+  Future<CreateBuyerWholesaleUploadValidateResponse> createBuyerWholesaleUploadValidate() async {
+    final response = await createBuyerWholesaleUploadValidateWithHttpInfo();
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'CreateBuyerWholesaleUploadValidateResponse',) as CreateBuyerWholesaleUploadValidateResponse;
+    
+    }
+    return Future<CreateBuyerWholesaleUploadValidateResponse>.value();
   }
 
   /// Create a wishlist.
@@ -5177,6 +6248,66 @@ class BuyerApi {
     return Future<BuyerCartResponse>.value();
   }
 
+  /// Remove a member or cancel an invite (owner), or leave the company (your own member id).
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<Response> deleteBuyerCompanyMemberWithHttpInfo(String id,) async {
+    // Verify required params are set.
+    if (id == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: id');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/buyer/company/members/{id}'
+      .replaceAll('{id}', id);
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['BuyerOAuth'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'DELETE',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Remove a member or cancel an invite (owner), or leave the company (your own member id).
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<BuyerCompanyResponse> deleteBuyerCompanyMember(String id,) async {
+    final response = await deleteBuyerCompanyMemberWithHttpInfo(id,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'BuyerCompanyResponse',) as BuyerCompanyResponse;
+    
+    }
+    return Future<BuyerCompanyResponse>.value();
+  }
+
   /// Remove a guest (the thread’s buyer), or leave (a guest, with your own user id).
   ///
   /// Note: This method returns the HTTP [Response].
@@ -5232,6 +6363,138 @@ class BuyerApi {
   /// * [String] userId (required):
   Future<BuyerResponse> deleteBuyerConversationGuest(String id, String userId,) async {
     final response = await deleteBuyerConversationGuestWithHttpInfo(id, userId,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'BuyerResponse',) as BuyerResponse;
+    
+    }
+    return Future<BuyerResponse>.value();
+  }
+
+  /// Remove your review of a creation (its vote leaves the rating with it).
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] format (required):
+  ///   The creation format.
+  ///
+  /// * [String] id (required):
+  ///   The creation id (a card is <setId>.<slug>).
+  Future<Response> deleteBuyerCreationReviewWithHttpInfo(String format, String id,) async {
+    // Verify required params are set.
+    if (format == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: format');
+    }
+    if (id == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: id');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/buyer/creations/{format}/{id}/review'
+      .replaceAll('{format}', format)
+      .replaceAll('{id}', id);
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['BuyerOAuth'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'DELETE',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Remove your review of a creation (its vote leaves the rating with it).
+  ///
+  /// Parameters:
+  ///
+  /// * [String] format (required):
+  ///   The creation format.
+  ///
+  /// * [String] id (required):
+  ///   The creation id (a card is <setId>.<slug>).
+  Future<BuyerResponse> deleteBuyerCreationReview(String format, String id,) async {
+    final response = await deleteBuyerCreationReviewWithHttpInfo(format, id,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'BuyerResponse',) as BuyerResponse;
+    
+    }
+    return Future<BuyerResponse>.value();
+  }
+
+  /// Take back your RSVP.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] slug (required):
+  Future<Response> deleteBuyerEventRsvpWithHttpInfo(String slug,) async {
+    // Verify required params are set.
+    if (slug == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: slug');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/buyer/events/{slug}/rsvp'
+      .replaceAll('{slug}', slug);
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['BuyerOAuth'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'DELETE',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Take back your RSVP.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] slug (required):
+  Future<BuyerResponse> deleteBuyerEventRsvp(String slug,) async {
+    final response = await deleteBuyerEventRsvpWithHttpInfo(slug,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -5303,6 +6566,58 @@ class BuyerApi {
     
     }
     return Future<BuyerResponse>.value();
+  }
+
+  /// Hide a line from your home’s guestbook.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<Response> deleteBuyerHomeGuestbookWithHttpInfo(String id,) async {
+    // Verify required params are set.
+    if (id == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: id');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/buyer/home/guestbook/{id}'
+      .replaceAll('{id}', id);
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['BuyerOAuth'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'DELETE',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Hide a line from your home’s guestbook.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<void> deleteBuyerHomeGuestbook(String id,) async {
+    final response = await deleteBuyerHomeGuestbookWithHttpInfo(id,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
   }
 
   /// Cancel a resting market bid.
@@ -5723,6 +7038,66 @@ class BuyerApi {
     return Future<BuyerResponse>.value();
   }
 
+  /// Leave a seller’s loyalty club.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] sellerUserId (required):
+  Future<Response> deleteBuyerSellerLoyaltyJoinWithHttpInfo(String sellerUserId,) async {
+    // Verify required params are set.
+    if (sellerUserId == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: sellerUserId');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/buyer/sellers/{sellerUserId}/loyalty/join'
+      .replaceAll('{sellerUserId}', sellerUserId);
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['BuyerOAuth'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'DELETE',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Leave a seller’s loyalty club.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] sellerUserId (required):
+  Future<BuyerResponse> deleteBuyerSellerLoyaltyJoin(String sellerUserId,) async {
+    final response = await deleteBuyerSellerLoyaltyJoinWithHttpInfo(sellerUserId,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'BuyerResponse',) as BuyerResponse;
+    
+    }
+    return Future<BuyerResponse>.value();
+  }
+
   /// Take an item you added off a room’s board.
   ///
   /// Note: This method returns the HTTP [Response].
@@ -5911,6 +7286,66 @@ class BuyerApi {
     
     }
     return Future<DeleteBuyerTryOnResponse>.value();
+  }
+
+  /// Delete an order sheet.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<Response> deleteBuyerWholesaleOrderSheetWithHttpInfo(String id,) async {
+    // Verify required params are set.
+    if (id == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: id');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/buyer/wholesale/order-sheets/{id}'
+      .replaceAll('{id}', id);
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['BuyerOAuth'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'DELETE',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Delete an order sheet.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<DeleteBuyerWholesaleOrderSheetResponse> deleteBuyerWholesaleOrderSheet(String id,) async {
+    final response = await deleteBuyerWholesaleOrderSheetWithHttpInfo(id,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'DeleteBuyerWholesaleOrderSheetResponse',) as DeleteBuyerWholesaleOrderSheetResponse;
+    
+    }
+    return Future<DeleteBuyerWholesaleOrderSheetResponse>.value();
   }
 
   /// Delete a wishlist and everything on it.
@@ -6827,6 +8262,124 @@ class BuyerApi {
     return Future<GetBuyerCollectionSetResponse>.value();
   }
 
+  /// Your buyer company (members, roles, approval limits, shared addresses), or null when you are in none.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  Future<Response> getBuyerCompanyWithHttpInfo() async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/buyer/company';
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['BuyerOAuth'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Your buyer company (members, roles, approval limits, shared addresses), or null when you are in none.
+  Future<BuyerCompanyResponse> getBuyerCompany() async {
+    final response = await getBuyerCompanyWithHttpInfo();
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'BuyerCompanyResponse',) as BuyerCompanyResponse;
+    
+    }
+    return Future<BuyerCompanyResponse>.value();
+  }
+
+  /// A live creation's public page: its rating breakdown, recent reviews and whether you can review it.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] format (required):
+  ///   The creation format.
+  ///
+  /// * [String] id (required):
+  ///   The creation id (a card is <setId>.<slug>).
+  Future<Response> getBuyerCreationWithHttpInfo(String format, String id,) async {
+    // Verify required params are set.
+    if (format == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: format');
+    }
+    if (id == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: id');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/buyer/creations/{format}/{id}'
+      .replaceAll('{format}', format)
+      .replaceAll('{id}', id);
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['BuyerOAuth'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// A live creation's public page: its rating breakdown, recent reviews and whether you can review it.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] format (required):
+  ///   The creation format.
+  ///
+  /// * [String] id (required):
+  ///   The creation id (a card is <setId>.<slug>).
+  Future<GetBuyerCreationResponse> getBuyerCreation(String format, String id,) async {
+    final response = await getBuyerCreationWithHttpInfo(format, id,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'GetBuyerCreationResponse',) as GetBuyerCreationResponse;
+    
+    }
+    return Future<GetBuyerCreationResponse>.value();
+  }
+
   /// A creator storefront: profile, affiliate code, and shelves of live picks.
   ///
   /// Note: This method returns the HTTP [Response].
@@ -6885,6 +8438,66 @@ class BuyerApi {
     
     }
     return Future<GetBuyerCreatorResponse>.value();
+  }
+
+  /// A seller event: schedule, location, host, linked listings, live show, promo code, RSVP counts and your own RSVP.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] slug (required):
+  Future<Response> getBuyerEventWithHttpInfo(String slug,) async {
+    // Verify required params are set.
+    if (slug == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: slug');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/buyer/events/{slug}'
+      .replaceAll('{slug}', slug);
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['BuyerOAuth'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// A seller event: schedule, location, host, linked listings, live show, promo code, RSVP counts and your own RSVP.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] slug (required):
+  Future<GetBuyerEventResponse> getBuyerEvent(String slug,) async {
+    final response = await getBuyerEventWithHttpInfo(slug,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'GetBuyerEventResponse',) as GetBuyerEventResponse;
+    
+    }
+    return Future<GetBuyerEventResponse>.value();
   }
 
   /// Garment kinds and the measurements each takes.
@@ -6977,6 +8590,98 @@ class BuyerApi {
     
     }
     return Future<GetBuyerGiftFinderOptionResponse>.value();
+  }
+
+  /// Your home in Crossly World (made on first read).
+  ///
+  /// Note: This method returns the HTTP [Response].
+  Future<Response> getBuyerHomeWithHttpInfo() async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/buyer/home';
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['BuyerOAuth'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Your home in Crossly World (made on first read).
+  Future<BuyerHomeResponse> getBuyerHome() async {
+    final response = await getBuyerHomeWithHttpInfo();
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'BuyerHomeResponse',) as BuyerHomeResponse;
+    
+    }
+    return Future<BuyerHomeResponse>.value();
+  }
+
+  /// What you could place in your home: your items and delivered furniture.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  Future<Response> getBuyerHomePlaceableWithHttpInfo() async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/buyer/home/placeable';
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['BuyerOAuth'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// What you could place in your home: your items and delivered furniture.
+  Future<GetBuyerHomePlaceableResponse> getBuyerHomePlaceable() async {
+    final response = await getBuyerHomePlaceableWithHttpInfo();
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'GetBuyerHomePlaceableResponse',) as GetBuyerHomePlaceableResponse;
+    
+    }
+    return Future<GetBuyerHomePlaceableResponse>.value();
   }
 
   /// The sourced footprint your secondhand purchases avoided.
@@ -8158,7 +9863,7 @@ class BuyerApi {
     return Future<GetBuyerPartyResponse>.value();
   }
 
-  /// What a product passport tag opens: the item, whether it was authenticated, how many owners on Crossly and since when — never who or for how much.
+  /// What a product passport tag opens: the item, the verify verdict (registered, tag bound, tag matches with ?uid=, authenticated, graded, in its owner’s hands), how many owners and since when — never who or for how much.
   ///
   /// Note: This method returns the HTTP [Response].
   ///
@@ -8198,7 +9903,7 @@ class BuyerApi {
     );
   }
 
-  /// What a product passport tag opens: the item, whether it was authenticated, how many owners on Crossly and since when — never who or for how much.
+  /// What a product passport tag opens: the item, the verify verdict (registered, tag bound, tag matches with ?uid=, authenticated, graded, in its owner’s hands), how many owners and since when — never who or for how much.
   ///
   /// Parameters:
   ///
@@ -8720,6 +10425,66 @@ class BuyerApi {
     return Future<BuyerRegistryResponse>.value();
   }
 
+  /// One of your rentals: timeline, payments, the return label, extension and buy-out terms.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<Response> getBuyerRentalWithHttpInfo(String id,) async {
+    // Verify required params are set.
+    if (id == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: id');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/buyer/rentals/{id}'
+      .replaceAll('{id}', id);
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['BuyerOAuth'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// One of your rentals: timeline, payments, the return label, extension and buy-out terms.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<GetBuyerRentalResponse> getBuyerRental(String id,) async {
+    final response = await getBuyerRentalWithHttpInfo(id,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'GetBuyerRentalResponse',) as GetBuyerRentalResponse;
+    
+    }
+    return Future<GetBuyerRentalResponse>.value();
+  }
+
   /// Can you rent right now: ID-verified (a photo ID and a matching selfie, once), the verified name rentals ship to, and your standing (one rental at a time until your first comes back; none after one that never did).
   ///
   /// Note: This method returns the HTTP [Response].
@@ -8824,6 +10589,66 @@ class BuyerApi {
     
     }
     return Future<GetBuyerSellerClubResponse>.value();
+  }
+
+  /// A seller’s loyalty club with its typed perks per tier, its join mode (automatic, opt-in, invite-only) and your standing. null when they run none.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] sellerUserId (required):
+  Future<Response> getBuyerSellerLoyaltyWithHttpInfo(String sellerUserId,) async {
+    // Verify required params are set.
+    if (sellerUserId == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: sellerUserId');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/buyer/sellers/{sellerUserId}/loyalty'
+      .replaceAll('{sellerUserId}', sellerUserId);
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['BuyerOAuth'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// A seller’s loyalty club with its typed perks per tier, its join mode (automatic, opt-in, invite-only) and your standing. null when they run none.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] sellerUserId (required):
+  Future<GetBuyerSellerLoyaltyResponse> getBuyerSellerLoyalty(String sellerUserId,) async {
+    final response = await getBuyerSellerLoyaltyWithHttpInfo(sellerUserId,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'GetBuyerSellerLoyaltyResponse',) as GetBuyerSellerLoyaltyResponse;
+    
+    }
+    return Future<GetBuyerSellerLoyaltyResponse>.value();
   }
 
   /// Seller at a glance: member since, completed sales, independent rating, typical handling time, dispute rate, trust tier, badges — and the plain sentences the profile shows.
@@ -9112,6 +10937,836 @@ class BuyerApi {
     return Future<GetBuyerVaultMarketInstantExitResponse>.value();
   }
 
+  /// Options analytics on an underlying: vol surface and smile, IV rank and percentile, open interest and volume by strike and expiry, put/call ratios, expected move and historical vol. Derived, display only. Read only.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] underlying (required):
+  Future<Response> getBuyerVaultMarketOptionAnalyticWithHttpInfo(String underlying,) async {
+    // Verify required params are set.
+    if (underlying == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: underlying');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/buyer/vault-markets/options/analytics/{underlying}'
+      .replaceAll('{underlying}', underlying);
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['BuyerOAuth'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Options analytics on an underlying: vol surface and smile, IV rank and percentile, open interest and volume by strike and expiry, put/call ratios, expected move and historical vol. Derived, display only. Read only.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] underlying (required):
+  Future<GetBuyerVaultMarketOptionAnalyticResponse> getBuyerVaultMarketOptionAnalytic(String underlying,) async {
+    final response = await getBuyerVaultMarketOptionAnalyticWithHttpInfo(underlying,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'GetBuyerVaultMarketOptionAnalyticResponse',) as GetBuyerVaultMarketOptionAnalyticResponse;
+    
+    }
+    return Future<GetBuyerVaultMarketOptionAnalyticResponse>.value();
+  }
+
+  /// The option chain for an underlying (index slug or book key): expiries, and for one expiry each strike’s call and put with bid / ask, last, open interest, theoretical price, implied vol (display only) and Greeks. Prices are cents per contract.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] underlying (required):
+  Future<Response> getBuyerVaultMarketOptionChainWithHttpInfo(String underlying,) async {
+    // Verify required params are set.
+    if (underlying == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: underlying');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/buyer/vault-markets/options/chain/{underlying}'
+      .replaceAll('{underlying}', underlying);
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['BuyerOAuth'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// The option chain for an underlying (index slug or book key): expiries, and for one expiry each strike’s call and put with bid / ask, last, open interest, theoretical price, implied vol (display only) and Greeks. Prices are cents per contract.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] underlying (required):
+  Future<GetBuyerVaultMarketOptionChainResponse> getBuyerVaultMarketOptionChain(String underlying,) async {
+    final response = await getBuyerVaultMarketOptionChainWithHttpInfo(underlying,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'GetBuyerVaultMarketOptionChainResponse',) as GetBuyerVaultMarketOptionChainResponse;
+    
+    }
+    return Future<GetBuyerVaultMarketOptionChainResponse>.value();
+  }
+
+  /// The at-the-money implied vol on an underlying’s nearest expiry, for display: derived from the options book, quality C, never a mark.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] underlying (required):
+  Future<Response> getBuyerVaultMarketOptionIvWithHttpInfo(String underlying,) async {
+    // Verify required params are set.
+    if (underlying == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: underlying');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/buyer/vault-markets/options/iv/{underlying}'
+      .replaceAll('{underlying}', underlying);
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['BuyerOAuth'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// The at-the-money implied vol on an underlying’s nearest expiry, for display: derived from the options book, quality C, never a mark.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] underlying (required):
+  Future<GetBuyerVaultMarketOptionIvResponse> getBuyerVaultMarketOptionIv(String underlying,) async {
+    final response = await getBuyerVaultMarketOptionIvWithHttpInfo(underlying,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'GetBuyerVaultMarketOptionIvResponse',) as GetBuyerVaultMarketOptionIvResponse;
+    
+    }
+    return Future<GetBuyerVaultMarketOptionIvResponse>.value();
+  }
+
+  /// Your fractional options positions with their marks, P&L and Greeks (open by default; `status` all for closed and settled too). Read only.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  Future<Response> getBuyerVaultMarketOptionPositionWithHttpInfo() async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/buyer/vault-markets/options/positions';
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['BuyerOAuth'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Your fractional options positions with their marks, P&L and Greeks (open by default; `status` all for closed and settled too). Read only.
+  Future<GetBuyerVaultMarketOptionPositionResponse> getBuyerVaultMarketOptionPosition() async {
+    final response = await getBuyerVaultMarketOptionPositionWithHttpInfo();
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'GetBuyerVaultMarketOptionPositionResponse',) as GetBuyerVaultMarketOptionPositionResponse;
+    
+    }
+    return Future<GetBuyerVaultMarketOptionPositionResponse>.value();
+  }
+
+  /// Your options portfolio Greeks, a scenario's P&L (`priceShift`, `volShift`, `daysForward`) and the beta-weighted delta against an index. Read only.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  Future<Response> getBuyerVaultMarketOptionRiskWithHttpInfo() async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/buyer/vault-markets/options/risk';
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['BuyerOAuth'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Your options portfolio Greeks, a scenario's P&L (`priceShift`, `volShift`, `daysForward`) and the beta-weighted delta against an index. Read only.
+  Future<GetBuyerVaultMarketOptionRiskResponse> getBuyerVaultMarketOptionRisk() async {
+    final response = await getBuyerVaultMarketOptionRiskWithHttpInfo();
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'GetBuyerVaultMarketOptionRiskResponse',) as GetBuyerVaultMarketOptionRiskResponse;
+    
+    }
+    return Future<GetBuyerVaultMarketOptionRiskResponse>.value();
+  }
+
+  /// The busiest open prediction markets and their odds (the Trading Floor board). Anonymous.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  Future<Response> getBuyerVaultMarketPredictionBoardWithHttpInfo() async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/buyer/vault-markets/predictions/board';
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['BuyerOAuth'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// The busiest open prediction markets and their odds (the Trading Floor board). Anonymous.
+  Future<GetBuyerVaultMarketPredictionBoardResponse> getBuyerVaultMarketPredictionBoard() async {
+    final response = await getBuyerVaultMarketPredictionBoardWithHttpInfo();
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'GetBuyerVaultMarketPredictionBoardResponse',) as GetBuyerVaultMarketPredictionBoardResponse;
+    
+    }
+    return Future<GetBuyerVaultMarketPredictionBoardResponse>.value();
+  }
+
+  /// One expiry’s markets with your holdings in each and their real worst and best case across them.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<Response> getBuyerVaultMarketPredictionEventWithHttpInfo(String id,) async {
+    // Verify required params are set.
+    if (id == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: id');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/buyer/vault-markets/predictions/events/{id}'
+      .replaceAll('{id}', id);
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['BuyerOAuth'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// One expiry’s markets with your holdings in each and their real worst and best case across them.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<GetBuyerVaultMarketPredictionEventResponse> getBuyerVaultMarketPredictionEvent(String id,) async {
+    final response = await getBuyerVaultMarketPredictionEventWithHttpInfo(id,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'GetBuyerVaultMarketPredictionEventResponse',) as GetBuyerVaultMarketPredictionEventResponse;
+    
+    }
+    return Future<GetBuyerVaultMarketPredictionEventResponse>.value();
+  }
+
+  /// Opt-in forecaster leaderboards (`period` week | month | all; `metric` pnl | accuracy | brier; `venue` live | paper).
+  ///
+  /// Note: This method returns the HTTP [Response].
+  Future<Response> getBuyerVaultMarketPredictionLeaderboardWithHttpInfo() async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/buyer/vault-markets/predictions/leaderboard';
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['BuyerOAuth'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Opt-in forecaster leaderboards (`period` week | month | all; `metric` pnl | accuracy | brier; `venue` live | paper).
+  Future<GetBuyerVaultMarketPredictionLeaderboardResponse> getBuyerVaultMarketPredictionLeaderboard() async {
+    final response = await getBuyerVaultMarketPredictionLeaderboardWithHttpInfo();
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'GetBuyerVaultMarketPredictionLeaderboardResponse',) as GetBuyerVaultMarketPredictionLeaderboardResponse;
+    
+    }
+    return Future<GetBuyerVaultMarketPredictionLeaderboardResponse>.value();
+  }
+
+  /// One prediction market: terms, the Yes ladder (live and practice), recent trades, settlement history and the series rules with their hash.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<Response> getBuyerVaultMarketPredictionMarketWithHttpInfo(String id,) async {
+    // Verify required params are set.
+    if (id == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: id');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/buyer/vault-markets/predictions/markets/{id}'
+      .replaceAll('{id}', id);
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['BuyerOAuth'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// One prediction market: terms, the Yes ladder (live and practice), recent trades, settlement history and the series rules with their hash.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<GetBuyerVaultMarketPredictionMarketResponse> getBuyerVaultMarketPredictionMarket(String id,) async {
+    final response = await getBuyerVaultMarketPredictionMarketWithHttpInfo(id,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'GetBuyerVaultMarketPredictionMarketResponse',) as GetBuyerVaultMarketPredictionMarketResponse;
+    
+    }
+    return Future<GetBuyerVaultMarketPredictionMarketResponse>.value();
+  }
+
+  /// A prediction market’s probability over time (display only, never a mark), candles on the Yes price, volume and open interest (`range` 1d, 1w, 1m, all; `venue` live or paper).
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<Response> getBuyerVaultMarketPredictionMarketHistoryWithHttpInfo(String id,) async {
+    // Verify required params are set.
+    if (id == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: id');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/buyer/vault-markets/predictions/markets/{id}/history'
+      .replaceAll('{id}', id);
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['BuyerOAuth'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// A prediction market’s probability over time (display only, never a mark), candles on the Yes price, volume and open interest (`range` 1d, 1w, 1m, all; `venue` live or paper).
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<GetBuyerVaultMarketPredictionMarketHistoryResponse> getBuyerVaultMarketPredictionMarketHistory(String id,) async {
+    final response = await getBuyerVaultMarketPredictionMarketHistoryWithHttpInfo(id,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'GetBuyerVaultMarketPredictionMarketHistoryResponse',) as GetBuyerVaultMarketPredictionMarketHistoryResponse;
+    
+    }
+    return Future<GetBuyerVaultMarketPredictionMarketHistoryResponse>.value();
+  }
+
+  /// Your Vault Shares: shares and percent of each item, cost, implied value at the last share price (display only, never a mark), subscriptions and payouts.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  Future<Response> getBuyerVaultMarketShareWithHttpInfo() async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/buyer/vault-markets/shares';
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['BuyerOAuth'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Your Vault Shares: shares and percent of each item, cost, implied value at the last share price (display only, never a mark), subscriptions and payouts.
+  Future<GetBuyerVaultMarketShareResponse> getBuyerVaultMarketShare() async {
+    final response = await getBuyerVaultMarketShareWithHttpInfo();
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'GetBuyerVaultMarketShareResponse',) as GetBuyerVaultMarketShareResponse;
+    
+    }
+    return Future<GetBuyerVaultMarketShareResponse>.value();
+  }
+
+  /// One theme basket: its series, weights and prices, and your holdings against them.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<Response> getBuyerVaultMarketShareBasketWithHttpInfo(String id,) async {
+    // Verify required params are set.
+    if (id == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: id');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/buyer/vault-markets/shares/baskets/{id}'
+      .replaceAll('{id}', id);
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['BuyerOAuth'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// One theme basket: its series, weights and prices, and your holdings against them.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<GetBuyerVaultMarketShareBasketResponse> getBuyerVaultMarketShareBasket(String id,) async {
+    final response = await getBuyerVaultMarketShareBasketWithHttpInfo(id,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'GetBuyerVaultMarketShareBasketResponse',) as GetBuyerVaultMarketShareBasketResponse;
+    
+    }
+    return Future<GetBuyerVaultMarketShareBasketResponse>.value();
+  }
+
+  /// One Vault Shares series: the offering, the share book, the latest fills, holders as percentages (nobody named) and buyouts.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<Response> getBuyerVaultMarketShareSeryWithHttpInfo(String id,) async {
+    // Verify required params are set.
+    if (id == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: id');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/buyer/vault-markets/shares/series/{id}'
+      .replaceAll('{id}', id);
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['BuyerOAuth'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// One Vault Shares series: the offering, the share book, the latest fills, holders as percentages (nobody named) and buyouts.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<GetBuyerVaultMarketShareSeryResponse> getBuyerVaultMarketShareSery(String id,) async {
+    final response = await getBuyerVaultMarketShareSeryWithHttpInfo(id,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'GetBuyerVaultMarketShareSeryResponse',) as GetBuyerVaultMarketShareSeryResponse;
+    
+    }
+    return Future<GetBuyerVaultMarketShareSeryResponse>.value();
+  }
+
+  /// A Vault Shares series’ full price history (candles), the offering price and the appraisal history. Display only, never a mark.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<Response> getBuyerVaultMarketShareSeryHistoryWithHttpInfo(String id,) async {
+    // Verify required params are set.
+    if (id == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: id');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/buyer/vault-markets/shares/series/{id}/history'
+      .replaceAll('{id}', id);
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['BuyerOAuth'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// A Vault Shares series’ full price history (candles), the offering price and the appraisal history. Display only, never a mark.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<GetBuyerVaultMarketShareSeryHistoryResponse> getBuyerVaultMarketShareSeryHistory(String id,) async {
+    final response = await getBuyerVaultMarketShareSeryHistoryWithHttpInfo(id,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'GetBuyerVaultMarketShareSeryHistoryResponse',) as GetBuyerVaultMarketShareSeryHistoryResponse;
+    
+    }
+    return Future<GetBuyerVaultMarketShareSeryHistoryResponse>.value();
+  }
+
+  /// Your holder perks on a series: badge, visit links, viewing days and your bookings.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<Response> getBuyerVaultMarketShareSeryPerkWithHttpInfo(String id,) async {
+    // Verify required params are set.
+    if (id == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: id');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/buyer/vault-markets/shares/series/{id}/perks'
+      .replaceAll('{id}', id);
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['BuyerOAuth'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Your holder perks on a series: badge, visit links, viewing days and your bookings.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<GetBuyerVaultMarketShareSeryPerkResponse> getBuyerVaultMarketShareSeryPerk(String id,) async {
+    final response = await getBuyerVaultMarketShareSeryPerkWithHttpInfo(id,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'GetBuyerVaultMarketShareSeryPerkResponse',) as GetBuyerVaultMarketShareSeryPerkResponse;
+    
+    }
+    return Future<GetBuyerVaultMarketShareSeryPerkResponse>.value();
+  }
+
   /// What your vault is worth now: value at the market prices (marks come only from trades) split into reliable and indicative marks, cost and P&L, today’s change, and an estimate of what the units free to sell would fetch from the bids resting on the book now. Read only.
   ///
   /// Note: This method returns the HTTP [Response].
@@ -9156,6 +11811,420 @@ class BuyerApi {
     
     }
     return Future<GetBuyerVaultMarketWorthResponse>.value();
+  }
+
+  /// Your cart grouped per seller: trade terms, the order-minimum progress, every rule the cart breaks (the messages checkout would refuse with), PO reference, quote-locked lines, and the checkout methods, deposit and freight threshold for each group.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  Future<Response> getBuyerWholesaleCartWithHttpInfo() async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/buyer/wholesale/cart';
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['BuyerOAuth'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Your cart grouped per seller: trade terms, the order-minimum progress, every rule the cart breaks (the messages checkout would refuse with), PO reference, quote-locked lines, and the checkout methods, deposit and freight threshold for each group.
+  Future<GetBuyerWholesaleCartResponse> getBuyerWholesaleCart() async {
+    final response = await getBuyerWholesaleCartWithHttpInfo();
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'GetBuyerWholesaleCartResponse',) as GetBuyerWholesaleCartResponse;
+    
+    }
+    return Future<GetBuyerWholesaleCartResponse>.value();
+  }
+
+  /// The application form for a store's wholesale catalog: the seller's requirements (resale certificate and accepted states, tax id, their custom questions) and your business info pre-filled. applicable=false for a catalog you cannot apply to.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] storeSlug (required):
+  ///
+  /// * [String] catalogSlug (required):
+  Future<Response> getBuyerWholesaleCatalogApplyWithHttpInfo(String storeSlug, String catalogSlug,) async {
+    // Verify required params are set.
+    if (storeSlug == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: storeSlug');
+    }
+    if (catalogSlug == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: catalogSlug');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/buyer/wholesale/catalogs/{storeSlug}/{catalogSlug}/apply'
+      .replaceAll('{storeSlug}', storeSlug)
+      .replaceAll('{catalogSlug}', catalogSlug);
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['BuyerOAuth'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// The application form for a store's wholesale catalog: the seller's requirements (resale certificate and accepted states, tax id, their custom questions) and your business info pre-filled. applicable=false for a catalog you cannot apply to.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] storeSlug (required):
+  ///
+  /// * [String] catalogSlug (required):
+  Future<GetBuyerWholesaleCatalogApplyResponse> getBuyerWholesaleCatalogApply(String storeSlug, String catalogSlug,) async {
+    final response = await getBuyerWholesaleCatalogApplyWithHttpInfo(storeSlug, catalogSlug,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'GetBuyerWholesaleCatalogApplyResponse',) as GetBuyerWholesaleCatalogApplyResponse;
+    
+    }
+    return Future<GetBuyerWholesaleCatalogApplyResponse>.value();
+  }
+
+  /// One trade drop open to you: its listings once live (add one to your cart to reserve or buy it), and your reservations in it. 404 for a drop not open to you.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<Response> getBuyerWholesaleDropWithHttpInfo(String id,) async {
+    // Verify required params are set.
+    if (id == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: id');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/buyer/wholesale/drops/{id}'
+      .replaceAll('{id}', id);
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['BuyerOAuth'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// One trade drop open to you: its listings once live (add one to your cart to reserve or buy it), and your reservations in it. 404 for a drop not open to you.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<GetBuyerWholesaleDropResponse> getBuyerWholesaleDrop(String id,) async {
+    final response = await getBuyerWholesaleDropWithHttpInfo(id,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'GetBuyerWholesaleDropResponse',) as GetBuyerWholesaleDropResponse;
+    
+    }
+    return Future<GetBuyerWholesaleDropResponse>.value();
+  }
+
+  /// What paying an on-account invoice costs now: balance due, the early-pay discount if still open, the minimum part payment and the methods (card, ach).
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<Response> getBuyerWholesaleInvoicePayQuoteWithHttpInfo(String id,) async {
+    // Verify required params are set.
+    if (id == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: id');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/buyer/wholesale/invoices/{id}/pay-quote'
+      .replaceAll('{id}', id);
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['BuyerOAuth'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// What paying an on-account invoice costs now: balance due, the early-pay discount if still open, the minimum part payment and the methods (card, ach).
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<GetBuyerWholesaleInvoicePayQuoteResponse> getBuyerWholesaleInvoicePayQuote(String id,) async {
+    final response = await getBuyerWholesaleInvoicePayQuoteWithHttpInfo(id,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'GetBuyerWholesaleInvoicePayQuoteResponse',) as GetBuyerWholesaleInvoicePayQuoteResponse;
+    
+    }
+    return Future<GetBuyerWholesaleInvoicePayQuoteResponse>.value();
+  }
+
+  /// One order sheet priced TODAY at its quantities, with stock, trade terms and flags (unavailable, out_of_stock, short_stock, price_hidden, needs_option).
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<Response> getBuyerWholesaleOrderSheetWithHttpInfo(String id,) async {
+    // Verify required params are set.
+    if (id == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: id');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/buyer/wholesale/order-sheets/{id}'
+      .replaceAll('{id}', id);
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['BuyerOAuth'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// One order sheet priced TODAY at its quantities, with stock, trade terms and flags (unavailable, out_of_stock, short_stock, price_hidden, needs_option).
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<BuyerWholesaleOrderSheetResponse> getBuyerWholesaleOrderSheet(String id,) async {
+    final response = await getBuyerWholesaleOrderSheetWithHttpInfo(id,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'BuyerWholesaleOrderSheetResponse',) as BuyerWholesaleOrderSheetResponse;
+    
+    }
+    return Future<BuyerWholesaleOrderSheetResponse>.value();
+  }
+
+  /// One of your quotes with its items, the seller's prices and expiry.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<Response> getBuyerWholesaleQuoteWithHttpInfo(String id,) async {
+    // Verify required params are set.
+    if (id == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: id');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/buyer/wholesale/quotes/{id}'
+      .replaceAll('{id}', id);
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['BuyerOAuth'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// One of your quotes with its items, the seller's prices and expiry.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<BuyerWholesaleQuoteResponse> getBuyerWholesaleQuote(String id,) async {
+    final response = await getBuyerWholesaleQuoteWithHttpInfo(id,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'BuyerWholesaleQuoteResponse',) as BuyerWholesaleQuoteResponse;
+    
+    }
+    return Future<BuyerWholesaleQuoteResponse>.value();
+  }
+
+  /// Buy again: a past wholesale order (purchase or order id) as order-sheet lines at the same quantities, priced today, out-of-stock flagged.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<Response> getBuyerWholesaleReorderWithHttpInfo(String id,) async {
+    // Verify required params are set.
+    if (id == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: id');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/buyer/wholesale/reorder/{id}'
+      .replaceAll('{id}', id);
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['BuyerOAuth'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Buy again: a past wholesale order (purchase or order id) as order-sheet lines at the same quantities, priced today, out-of-stock flagged.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<GetBuyerWholesaleReorderResponse> getBuyerWholesaleReorder(String id,) async {
+    final response = await getBuyerWholesaleReorderWithHttpInfo(id,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'GetBuyerWholesaleReorderResponse',) as GetBuyerWholesaleReorderResponse;
+    
+    }
+    return Future<GetBuyerWholesaleReorderResponse>.value();
   }
 
   /// What this buyer has compared lately.
@@ -9862,6 +12931,52 @@ class BuyerApi {
     return Future<BuyerResponse3>.value();
   }
 
+  /// Spend approval requests (owners and accounts payable see all; others their own). ?status=pending|approved|declined|used|expired.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  Future<Response> listBuyerCompanyApprovalsWithHttpInfo() async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/buyer/company/approvals';
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['BuyerOAuth'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Spend approval requests (owners and accounts payable see all; others their own). ?status=pending|approved|declined|used|expired.
+  Future<BuyerResponse3> listBuyerCompanyApprovals() async {
+    final response = await listBuyerCompanyApprovalsWithHttpInfo();
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'BuyerResponse3',) as BuyerResponse3;
+    
+    }
+    return Future<BuyerResponse3>.value();
+  }
+
   /// Your ship-together orders: parcels at the hub, and the one box out.
   ///
   /// Note: This method returns the HTTP [Response].
@@ -9966,6 +13081,114 @@ class BuyerApi {
     
     }
     return Future<ListBuyerWishlistMembersResponse>.value();
+  }
+
+  /// Creations you bought (decor, wearables, interactive objects, cards from packs) and your review of each.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] purchaseRef:
+  ///   Only the creation this purchase bought.
+  Future<Response> listBuyerCreationReviewableWithHttpInfo({ String purchaseRef, }) async {
+    // Verify required params are set.
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/buyer/creations/reviewable';
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    if (purchaseRef != null) {
+      queryParams.addAll(_convertParametersForCollectionFormat('', 'purchaseRef', purchaseRef));
+    }
+
+    const authNames = <String>['BuyerOAuth'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Creations you bought (decor, wearables, interactive objects, cards from packs) and your review of each.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] purchaseRef:
+  ///   Only the creation this purchase bought.
+  Future<ListBuyerCreationReviewableResponse> listBuyerCreationReviewable({ String purchaseRef, }) async {
+    final response = await listBuyerCreationReviewableWithHttpInfo( purchaseRef: purchaseRef, );
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'ListBuyerCreationReviewableResponse',) as ListBuyerCreationReviewableResponse;
+    
+    }
+    return Future<ListBuyerCreationReviewableResponse>.value();
+  }
+
+  /// Upcoming and live seller events across Crossly, soonest first.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  Future<Response> listBuyerEventsWithHttpInfo() async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/buyer/events';
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['BuyerOAuth'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Upcoming and live seller events across Crossly, soonest first.
+  Future<ListBuyerEventsResponse> listBuyerEvents() async {
+    final response = await listBuyerEventsWithHttpInfo();
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'ListBuyerEventsResponse',) as ListBuyerEventsResponse;
+    
+    }
+    return Future<ListBuyerEventsResponse>.value();
   }
 
   /// Feedback you have left sellers, newest first — with the ids you revise by.
@@ -10342,6 +13565,98 @@ class BuyerApi {
     
     }
     return Future<ListBuyerGiftSentResponse>.value();
+  }
+
+  /// Your co-builders: friends who may arrange your home with you.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  Future<Response> listBuyerHomeBuildersWithHttpInfo() async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/buyer/home/builders';
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['BuyerOAuth'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Your co-builders: friends who may arrange your home with you.
+  Future<ListBuyerHomeBuildersResponse> listBuyerHomeBuilders() async {
+    final response = await listBuyerHomeBuildersWithHttpInfo();
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'ListBuyerHomeBuildersResponse',) as ListBuyerHomeBuildersResponse;
+    
+    }
+    return Future<ListBuyerHomeBuildersResponse>.value();
+  }
+
+  /// The homes you co-build, to visit and arrange.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  Future<Response> listBuyerHomeBuildingWithHttpInfo() async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/buyer/homes/building';
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['BuyerOAuth'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// The homes you co-build, to visit and arrange.
+  Future<ListBuyerHomeBuildingResponse> listBuyerHomeBuilding() async {
+    final response = await listBuyerHomeBuildingWithHttpInfo();
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'ListBuyerHomeBuildingResponse',) as ListBuyerHomeBuildingResponse;
+    
+    }
+    return Future<ListBuyerHomeBuildingResponse>.value();
   }
 
   /// Shop-the-look tags on a story or lookbook photo: each tagged listing and where it sits on the image (x, y as fractions).
@@ -10752,6 +14067,52 @@ class BuyerApi {
     
     }
     return Future<ListBuyerLiveStreamLineupResponse>.value();
+  }
+
+  /// Your loyalty clubs: the tier you hold, progress and how to reach the next tier, the typed perks you hold now, and your history.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  Future<Response> listBuyerLoyaltyWithHttpInfo() async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/buyer/loyalty';
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['BuyerOAuth'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Your loyalty clubs: the tier you hold, progress and how to reach the next tier, the typed perks you hold now, and your history.
+  Future<ListBuyerLoyaltyResponse> listBuyerLoyalty() async {
+    final response = await listBuyerLoyaltyWithHttpInfo();
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'ListBuyerLoyaltyResponse',) as ListBuyerLoyaltyResponse;
+    
+    }
+    return Future<ListBuyerLoyaltyResponse>.value();
   }
 
   /// Your resting market bids.
@@ -11175,6 +14536,56 @@ class BuyerApi {
     
     }
     return Future<BuyerResponse3>.value();
+  }
+
+  /// Your saved cards, the default first.
+  ///
+  /// Brand, last 4, expiry and whether it is your default. The `id` is what checkout and auction bids take as `paymentMethodId`.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  Future<Response> listBuyerPaymentMethodsWithHttpInfo() async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/buyer/payment-methods';
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['BuyerOAuth'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Your saved cards, the default first.
+  ///
+  /// Brand, last 4, expiry and whether it is your default. The `id` is what checkout and auction bids take as `paymentMethodId`.
+  Future<ListBuyerPaymentMethodsResponse> listBuyerPaymentMethods() async {
+    final response = await listBuyerPaymentMethodsWithHttpInfo();
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'ListBuyerPaymentMethodsResponse',) as ListBuyerPaymentMethodsResponse;
+    
+    }
+    return Future<ListBuyerPaymentMethodsResponse>.value();
   }
 
   /// Carrier pickup points (UPS Access Point / FedEx Hold at Location) near an address; pass one as `pickupPoint` to POST /v1/buyer/checkout.
@@ -11605,6 +15016,66 @@ class BuyerApi {
     return Future<BuyerResponse3>.value();
   }
 
+  /// A store's live listings, filtered by tag, category, text and program chips (f: on_sale, discount_eligible, code_eligible, group_buy_active, rentable, wholesale_available…; all must hold), sorted; each card carries its program badges.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] slug (required):
+  Future<Response> listBuyerStoreListingsWithHttpInfo(String slug,) async {
+    // Verify required params are set.
+    if (slug == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: slug');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/buyer/stores/{slug}/listings'
+      .replaceAll('{slug}', slug);
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['BuyerOAuth'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// A store's live listings, filtered by tag, category, text and program chips (f: on_sale, discount_eligible, code_eligible, group_buy_active, rentable, wholesale_available…; all must hold), sorted; each card carries its program badges.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] slug (required):
+  Future<ListBuyerStoreListingsResponse> listBuyerStoreListings(String slug,) async {
+    final response = await listBuyerStoreListingsWithHttpInfo(slug,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'ListBuyerStoreListingsResponse',) as ListBuyerStoreListingsResponse;
+    
+    }
+    return Future<ListBuyerStoreListingsResponse>.value();
+  }
+
   /// Your subscribe & save standing orders.
   ///
   /// Note: This method returns the HTTP [Response].
@@ -11977,6 +15448,558 @@ class BuyerApi {
     return Future<ListBuyerVaultMarketInstantExitResponse>.value();
   }
 
+  /// Your options strategies (working by default) with their legs, net price per unit and fills. Read only.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  Future<Response> listBuyerVaultMarketOptionCombosWithHttpInfo() async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/buyer/vault-markets/options/combos';
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['BuyerOAuth'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Your options strategies (working by default) with their legs, net price per unit and fills. Read only.
+  Future<ListBuyerVaultMarketOptionCombosResponse> listBuyerVaultMarketOptionCombos() async {
+    final response = await listBuyerVaultMarketOptionCombosWithHttpInfo();
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'ListBuyerVaultMarketOptionCombosResponse',) as ListBuyerVaultMarketOptionCombosResponse;
+    
+    }
+    return Future<ListBuyerVaultMarketOptionCombosResponse>.value();
+  }
+
+  /// Your options notices: expiry warnings, auto-closes, exercises, assignments, expiries worthless and rolls. Read only.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  Future<Response> listBuyerVaultMarketOptionNoticesWithHttpInfo() async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/buyer/vault-markets/options/notices';
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['BuyerOAuth'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Your options notices: expiry warnings, auto-closes, exercises, assignments, expiries worthless and rolls. Read only.
+  Future<ListBuyerVaultMarketOptionNoticesResponse> listBuyerVaultMarketOptionNotices() async {
+    final response = await listBuyerVaultMarketOptionNoticesWithHttpInfo();
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'ListBuyerVaultMarketOptionNoticesResponse',) as ListBuyerVaultMarketOptionNoticesResponse;
+    
+    }
+    return Future<ListBuyerVaultMarketOptionNoticesResponse>.value();
+  }
+
+  /// Fractional options series on Crossly prices (indexes, and tier A item keys with 90 days of reliable marks): underlying, status and eligibility. Read only.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  Future<Response> listBuyerVaultMarketOptionSeriesWithHttpInfo() async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/buyer/vault-markets/options/series';
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['BuyerOAuth'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Fractional options series on Crossly prices (indexes, and tier A item keys with 90 days of reliable marks): underlying, status and eligibility. Read only.
+  Future<ListBuyerVaultMarketOptionSeriesResponse> listBuyerVaultMarketOptionSeries() async {
+    final response = await listBuyerVaultMarketOptionSeriesWithHttpInfo();
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'ListBuyerVaultMarketOptionSeriesResponse',) as ListBuyerVaultMarketOptionSeriesResponse;
+    
+    }
+    return Future<ListBuyerVaultMarketOptionSeriesResponse>.value();
+  }
+
+  /// The options strategies the picker builds (vertical, calendar, diagonal, straddle, strangle, butterfly, iron condor, collar) and what each does. Read only.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  Future<Response> listBuyerVaultMarketOptionStrategiesWithHttpInfo() async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/buyer/vault-markets/options/strategies';
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['BuyerOAuth'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// The options strategies the picker builds (vertical, calendar, diagonal, straddle, strangle, butterfly, iron condor, collar) and what each does. Read only.
+  Future<ListBuyerVaultMarketOptionStrategiesResponse> listBuyerVaultMarketOptionStrategies() async {
+    final response = await listBuyerVaultMarketOptionStrategiesWithHttpInfo();
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'ListBuyerVaultMarketOptionStrategiesResponse',) as ListBuyerVaultMarketOptionStrategiesResponse;
+    
+    }
+    return Future<ListBuyerVaultMarketOptionStrategiesResponse>.value();
+  }
+
+  /// A prediction market’s (or series’) discussion thread. Read only.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  Future<Response> listBuyerVaultMarketPredictionCommentsWithHttpInfo() async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/buyer/vault-markets/predictions/comments';
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['BuyerOAuth'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// A prediction market’s (or series’) discussion thread. Read only.
+  Future<ListBuyerVaultMarketPredictionCommentsResponse> listBuyerVaultMarketPredictionComments() async {
+    final response = await listBuyerVaultMarketPredictionCommentsWithHttpInfo();
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'ListBuyerVaultMarketPredictionCommentsResponse',) as ListBuyerVaultMarketPredictionCommentsResponse;
+    
+    }
+    return Future<ListBuyerVaultMarketPredictionCommentsResponse>.value();
+  }
+
+  /// \"Will it hit?\" prediction markets on Crossly prices (filter by book key, index slug, kind, status, expiry or text): strike, expiry, best Yes bid and ask, last price and the probability (the market's own price, display only).
+  ///
+  /// Note: This method returns the HTTP [Response].
+  Future<Response> listBuyerVaultMarketPredictionMarketsWithHttpInfo() async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/buyer/vault-markets/predictions/markets';
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['BuyerOAuth'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// \"Will it hit?\" prediction markets on Crossly prices (filter by book key, index slug, kind, status, expiry or text): strike, expiry, best Yes bid and ask, last price and the probability (the market's own price, display only).
+  Future<ListBuyerVaultMarketPredictionMarketsResponse> listBuyerVaultMarketPredictionMarkets() async {
+    final response = await listBuyerVaultMarketPredictionMarketsWithHttpInfo();
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'ListBuyerVaultMarketPredictionMarketsResponse',) as ListBuyerVaultMarketPredictionMarketsResponse;
+    
+    }
+    return Future<ListBuyerVaultMarketPredictionMarketsResponse>.value();
+  }
+
+  /// Your prediction positions (practice and live): side, contracts, cost, value at the last price, payout or refund once settled.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  Future<Response> listBuyerVaultMarketPredictionPositionsWithHttpInfo() async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/buyer/vault-markets/predictions/positions';
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['BuyerOAuth'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Your prediction positions (practice and live): side, contracts, cost, value at the last price, payout or refund once settled.
+  Future<ListBuyerVaultMarketPredictionPositionsResponse> listBuyerVaultMarketPredictionPositions() async {
+    final response = await listBuyerVaultMarketPredictionPositionsWithHttpInfo();
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'ListBuyerVaultMarketPredictionPositionsResponse',) as ListBuyerVaultMarketPredictionPositionsResponse;
+    
+    }
+    return Future<ListBuyerVaultMarketPredictionPositionsResponse>.value();
+  }
+
+  /// Your recurring Vault Shares auto-invest plans.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  Future<Response> listBuyerVaultMarketShareAutoInvestWithHttpInfo() async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/buyer/vault-markets/shares/auto-invest';
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['BuyerOAuth'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Your recurring Vault Shares auto-invest plans.
+  Future<ListBuyerVaultMarketShareAutoInvestResponse> listBuyerVaultMarketShareAutoInvest() async {
+    final response = await listBuyerVaultMarketShareAutoInvestWithHttpInfo();
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'ListBuyerVaultMarketShareAutoInvestResponse',) as ListBuyerVaultMarketShareAutoInvestResponse;
+    
+    }
+    return Future<ListBuyerVaultMarketShareAutoInvestResponse>.value();
+  }
+
+  /// Theme baskets: model portfolios of Vault Shares series you would own directly, never a fund.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  Future<Response> listBuyerVaultMarketShareBasketsWithHttpInfo() async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/buyer/vault-markets/shares/baskets';
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['BuyerOAuth'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Theme baskets: model portfolios of Vault Shares series you would own directly, never a fund.
+  Future<ListBuyerVaultMarketShareBasketsResponse> listBuyerVaultMarketShareBaskets() async {
+    final response = await listBuyerVaultMarketShareBasketsWithHttpInfo();
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'ListBuyerVaultMarketShareBasketsResponse',) as ListBuyerVaultMarketShareBasketsResponse;
+    
+    }
+    return Future<ListBuyerVaultMarketShareBasketsResponse>.value();
+  }
+
+  /// Upcoming and open Vault Shares drops: phase, countdown, allocation (first come, pro-rata or lottery), your Crossly One early-access time (never a better price).
+  ///
+  /// Note: This method returns the HTTP [Response].
+  Future<Response> listBuyerVaultMarketShareDropsWithHttpInfo() async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/buyer/vault-markets/shares/drops';
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['BuyerOAuth'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Upcoming and open Vault Shares drops: phase, countdown, allocation (first come, pro-rata or lottery), your Crossly One early-access time (never a better price).
+  Future<ListBuyerVaultMarketShareDropsResponse> listBuyerVaultMarketShareDrops() async {
+    final response = await listBuyerVaultMarketShareDropsWithHttpInfo();
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'ListBuyerVaultMarketShareDropsResponse',) as ListBuyerVaultMarketShareDropsResponse;
+    
+    }
+    return Future<ListBuyerVaultMarketShareDropsResponse>.value();
+  }
+
+  /// Vault Shares gifts you sent or were offered.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  Future<Response> listBuyerVaultMarketShareGiftsWithHttpInfo() async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/buyer/vault-markets/shares/gifts';
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['BuyerOAuth'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Vault Shares gifts you sent or were offered.
+  Future<ListBuyerVaultMarketShareGiftsResponse> listBuyerVaultMarketShareGifts() async {
+    final response = await listBuyerVaultMarketShareGiftsWithHttpInfo();
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'ListBuyerVaultMarketShareGiftsResponse',) as ListBuyerVaultMarketShareGiftsResponse;
+    
+    }
+    return Future<ListBuyerVaultMarketShareGiftsResponse>.value();
+  }
+
+  /// Vault Shares series: open offerings first, then trading. Terms, progress, last share price and implied item value, and your holding.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  Future<Response> listBuyerVaultMarketShareSeriesWithHttpInfo() async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/buyer/vault-markets/shares/series';
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['BuyerOAuth'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Vault Shares series: open offerings first, then trading. Terms, progress, last share price and implied item value, and your holding.
+  Future<ListBuyerVaultMarketShareSeriesResponse> listBuyerVaultMarketShareSeries() async {
+    final response = await listBuyerVaultMarketShareSeriesWithHttpInfo();
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'ListBuyerVaultMarketShareSeriesResponse',) as ListBuyerVaultMarketShareSeriesResponse;
+    
+    }
+    return Future<ListBuyerVaultMarketShareSeriesResponse>.value();
+  }
+
   /// The book keys you watch, with mark and its quality, 24 h and 7 d change, and the last 30 daily marks.
   ///
   /// Note: This method returns the HTTP [Response].
@@ -12067,6 +16090,420 @@ class BuyerApi {
     
     }
     return Future<ListBuyerVideoRequestsResponse>.value();
+  }
+
+  /// The perks your wallets unlock: each Collection holders deal (a shop’s percent off for holders of a collection) and creator shop perk on a collection a linked wallet or your Crossly wallet holds, best first. Checkout applies the best one; perks never stack with each other.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  Future<Response> listBuyerWalletPerksWithHttpInfo() async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/buyer/wallet/perks';
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['BuyerOAuth'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// The perks your wallets unlock: each Collection holders deal (a shop’s percent off for holders of a collection) and creator shop perk on a collection a linked wallet or your Crossly wallet holds, best first. Checkout applies the best one; perks never stack with each other.
+  Future<ListBuyerWalletPerksResponse> listBuyerWalletPerks() async {
+    final response = await listBuyerWalletPerksWithHttpInfo();
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'ListBuyerWalletPerksResponse',) as ListBuyerWalletPerksResponse;
+    
+    }
+    return Future<ListBuyerWalletPerksResponse>.value();
+  }
+
+  /// Upcoming and live trade drops open to you: drops sellers release only to their approved trade buyers or to a catalog audience. kind prebook = reserve quantity now with a deposit (depositBps) at checkout; the balance is invoiced when the seller releases the stock.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  Future<Response> listBuyerWholesaleDropsWithHttpInfo() async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/buyer/wholesale/drops';
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['BuyerOAuth'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Upcoming and live trade drops open to you: drops sellers release only to their approved trade buyers or to a catalog audience. kind prebook = reserve quantity now with a deposit (depositBps) at checkout; the balance is invoiced when the seller releases the stock.
+  Future<ListBuyerWholesaleDropsResponse> listBuyerWholesaleDrops() async {
+    final response = await listBuyerWholesaleDropsWithHttpInfo();
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'ListBuyerWholesaleDropsResponse',) as ListBuyerWholesaleDropsResponse;
+    
+    }
+    return Future<ListBuyerWholesaleDropsResponse>.value();
+  }
+
+  /// Your freight (LTL) quote requests to sellers, with the seller's figure in cents once quoted.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  Future<Response> listBuyerWholesaleFreightRequestsWithHttpInfo() async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/buyer/wholesale/freight-requests';
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['BuyerOAuth'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Your freight (LTL) quote requests to sellers, with the seller's figure in cents once quoted.
+  Future<BuyerResponse3> listBuyerWholesaleFreightRequests() async {
+    final response = await listBuyerWholesaleFreightRequestsWithHttpInfo();
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'BuyerResponse3',) as BuyerResponse3;
+    
+    }
+    return Future<BuyerResponse3>.value();
+  }
+
+  /// Your saved wholesale order sheets (one seller each), newest first.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  Future<Response> listBuyerWholesaleOrderSheetsWithHttpInfo() async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/buyer/wholesale/order-sheets';
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['BuyerOAuth'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Your saved wholesale order sheets (one seller each), newest first.
+  Future<BuyerResponse3> listBuyerWholesaleOrderSheets() async {
+    final response = await listBuyerWholesaleOrderSheetsWithHttpInfo();
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'BuyerResponse3',) as BuyerResponse3;
+    
+    }
+    return Future<BuyerResponse3>.value();
+  }
+
+  /// Your past wholesale orders (trade-priced or on account), newest first — the starting point for reorder.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  Future<Response> listBuyerWholesaleOrdersWithHttpInfo() async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/buyer/wholesale/orders';
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['BuyerOAuth'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Your past wholesale orders (trade-priced or on account), newest first — the starting point for reorder.
+  Future<BuyerResponse3> listBuyerWholesaleOrders() async {
+    final response = await listBuyerWholesaleOrdersWithHttpInfo();
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'BuyerResponse3',) as BuyerResponse3;
+    
+    }
+    return Future<BuyerResponse3>.value();
+  }
+
+  /// Your pre-books: the drop, item, quantity, deposit paid, balance, status (awaiting_release, invoiced, paid, cancelled, failed) and the balance invoice once the seller released the stock.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  Future<Response> listBuyerWholesalePrebooksWithHttpInfo() async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/buyer/wholesale/prebooks';
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['BuyerOAuth'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Your pre-books: the drop, item, quantity, deposit paid, balance, status (awaiting_release, invoiced, paid, cancelled, failed) and the balance invoice once the seller released the stock.
+  Future<ListBuyerWholesalePrebooksResponse> listBuyerWholesalePrebooks() async {
+    final response = await listBuyerWholesalePrebooksWithHttpInfo();
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'ListBuyerWholesalePrebooksResponse',) as ListBuyerWholesalePrebooksResponse;
+    
+    }
+    return Future<ListBuyerWholesalePrebooksResponse>.value();
+  }
+
+  /// Your requests for a quote (RFQ) to wholesale sellers. ?status=open|all|requested|answered|accepted|declined|withdrawn|expired. An answered or accepted quote past expiresAt reads expired.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  Future<Response> listBuyerWholesaleQuotesWithHttpInfo() async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/buyer/wholesale/quotes';
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['BuyerOAuth'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Your requests for a quote (RFQ) to wholesale sellers. ?status=open|all|requested|answered|accepted|declined|withdrawn|expired. An answered or accepted quote past expiresAt reads expired.
+  Future<BuyerResponse3> listBuyerWholesaleQuotes() async {
+    final response = await listBuyerWholesaleQuotesWithHttpInfo();
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'BuyerResponse3',) as BuyerResponse3;
+    
+    }
+    return Future<BuyerResponse3>.value();
+  }
+
+  /// Your open trade balances per seller in aging buckets (current, 1-30, 31-60, 61-90, 90+ days past due), with the invoices behind them.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  Future<Response> listBuyerWholesaleStatementWithHttpInfo() async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/buyer/wholesale/statement';
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['BuyerOAuth'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Your open trade balances per seller in aging buckets (current, 1-30, 31-60, 61-90, 90+ days past due), with the invoices behind them.
+  Future<BuyerResponse3> listBuyerWholesaleStatement() async {
+    final response = await listBuyerWholesaleStatementWithHttpInfo();
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'BuyerResponse3',) as BuyerResponse3;
+    
+    }
+    return Future<BuyerResponse3>.value();
+  }
+
+  /// The sellers you trade with: catalogs you can open, your terms (net days, credit limit, discount), customer groups, and what you owe each.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  Future<Response> listBuyerWholesaleSuppliersWithHttpInfo() async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/buyer/wholesale/suppliers';
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['BuyerOAuth'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// The sellers you trade with: catalogs you can open, your terms (net days, credit limit, discount), customer groups, and what you owe each.
+  Future<BuyerResponse3> listBuyerWholesaleSuppliers() async {
+    final response = await listBuyerWholesaleSuppliersWithHttpInfo();
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'BuyerResponse3',) as BuyerResponse3;
+    
+    }
+    return Future<BuyerResponse3>.value();
   }
 
   /// What is on one wishlist.
@@ -12401,6 +16838,241 @@ class BuyerApi {
     return Future<UpdateBuyerCollectionSetLeaderboardResponse>.value();
   }
 
+  /// Rename the company or change its tax id / website (owner).
+  ///
+  /// Note: This method returns the HTTP [Response].
+  Future<Response> updateBuyerCompanyWithHttpInfo() async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/buyer/company';
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['BuyerOAuth'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'PATCH',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Rename the company or change its tax id / website (owner).
+  Future<BuyerCompanyResponse> updateBuyerCompany() async {
+    final response = await updateBuyerCompanyWithHttpInfo();
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'BuyerCompanyResponse',) as BuyerCompanyResponse;
+    
+    }
+    return Future<BuyerCompanyResponse>.value();
+  }
+
+  /// Replace the shared address book (owner): addresses [{ id, label, name, line1, line2?, city, region, postalCode, country, phone?, isDefault? }], at most 20.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  Future<Response> updateBuyerCompanyAddressWithHttpInfo() async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/buyer/company/addresses';
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['BuyerOAuth'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'PUT',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Replace the shared address book (owner): addresses [{ id, label, name, line1, line2?, city, region, postalCode, country, phone?, isDefault? }], at most 20.
+  Future<BuyerCompanyResponse> updateBuyerCompanyAddress() async {
+    final response = await updateBuyerCompanyAddressWithHttpInfo();
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'BuyerCompanyResponse',) as BuyerCompanyResponse;
+    
+    }
+    return Future<BuyerCompanyResponse>.value();
+  }
+
+  /// Change a member's role or approval limit (owner). The last owner stays an owner.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<Response> updateBuyerCompanyMemberWithHttpInfo(String id,) async {
+    // Verify required params are set.
+    if (id == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: id');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/buyer/company/members/{id}'
+      .replaceAll('{id}', id);
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['BuyerOAuth'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'PATCH',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Change a member's role or approval limit (owner). The last owner stays an owner.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<BuyerCompanyResponse> updateBuyerCompanyMember(String id,) async {
+    final response = await updateBuyerCompanyMemberWithHttpInfo(id,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'BuyerCompanyResponse',) as BuyerCompanyResponse;
+    
+    }
+    return Future<BuyerCompanyResponse>.value();
+  }
+
+  /// Review a creation you bought (or change your review): 1-5 stars and an optional comment.
+  ///
+  /// Only a buyer of it may review it (a bought copy, or a pack that held the card). One review per creation; a second call replaces it. The comment is moderated.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] format (required):
+  ///   The creation format.
+  ///
+  /// * [String] id (required):
+  ///   The creation id (a card is <setId>.<slug>).
+  ///
+  /// * [UpdateBuyerCreationReviewRequest] updateBuyerCreationReviewRequest (required):
+  Future<Response> updateBuyerCreationReviewWithHttpInfo(String format, String id, UpdateBuyerCreationReviewRequest updateBuyerCreationReviewRequest,) async {
+    // Verify required params are set.
+    if (format == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: format');
+    }
+    if (id == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: id');
+    }
+    if (updateBuyerCreationReviewRequest == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: updateBuyerCreationReviewRequest');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/buyer/creations/{format}/{id}/review'
+      .replaceAll('{format}', format)
+      .replaceAll('{id}', id);
+
+    // ignore: prefer_final_locals
+    Object postBody = updateBuyerCreationReviewRequest;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['BuyerOAuth'];
+    const contentTypes = <String>['application/json'];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'PUT',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Review a creation you bought (or change your review): 1-5 stars and an optional comment.
+  ///
+  /// Only a buyer of it may review it (a bought copy, or a pack that held the card). One review per creation; a second call replaces it. The comment is moderated.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] format (required):
+  ///   The creation format.
+  ///
+  /// * [String] id (required):
+  ///   The creation id (a card is <setId>.<slug>).
+  ///
+  /// * [UpdateBuyerCreationReviewRequest] updateBuyerCreationReviewRequest (required):
+  Future<UpdateBuyerCreationReviewResponse> updateBuyerCreationReview(String format, String id, UpdateBuyerCreationReviewRequest updateBuyerCreationReviewRequest,) async {
+    final response = await updateBuyerCreationReviewWithHttpInfo(format, id, updateBuyerCreationReviewRequest,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'UpdateBuyerCreationReviewResponse',) as UpdateBuyerCreationReviewResponse;
+    
+    }
+    return Future<UpdateBuyerCreationReviewResponse>.value();
+  }
+
   /// Revise feedback you left, within 60 days.
   ///
   /// Replaces the stars and comment; detailed ratings you omit stay as they were.
@@ -12474,6 +17146,144 @@ class BuyerApi {
     return Future<BuyerResponse>.value();
   }
 
+  /// Who may walk in (privacy), the lighting (theme), wallpaper/floor/mood decor and whether visitors see your vault wall values.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  Future<Response> updateBuyerHomeWithHttpInfo() async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/buyer/home';
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['BuyerOAuth'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'PATCH',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Who may walk in (privacy), the lighting (theme), wallpaper/floor/mood decor and whether visitors see your vault wall values.
+  Future<BuyerHomeResponse> updateBuyerHome() async {
+    final response = await updateBuyerHomeWithHttpInfo();
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'BuyerHomeResponse',) as BuyerHomeResponse;
+    
+    }
+    return Future<BuyerHomeResponse>.value();
+  }
+
+  /// Set your co-builders (friends only, at most 4).
+  ///
+  /// Note: This method returns the HTTP [Response].
+  Future<Response> updateBuyerHomeBuilderWithHttpInfo() async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/buyer/home/builders';
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['BuyerOAuth'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'PUT',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Set your co-builders (friends only, at most 4).
+  Future<ListBuyerHomeBuildersResponse> updateBuyerHomeBuilder() async {
+    final response = await updateBuyerHomeBuilderWithHttpInfo();
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'ListBuyerHomeBuildersResponse',) as ListBuyerHomeBuildersResponse;
+    
+    }
+    return Future<ListBuyerHomeBuildersResponse>.value();
+  }
+
+  /// Arrange your home: the whole layout, checked against what you own.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  Future<Response> updateBuyerHomeLayoutWithHttpInfo() async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/buyer/home/layout';
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['BuyerOAuth'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'PUT',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Arrange your home: the whole layout, checked against what you own.
+  Future<BuyerHomeResponse> updateBuyerHomeLayout() async {
+    final response = await updateBuyerHomeLayoutWithHttpInfo();
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'BuyerHomeResponse',) as BuyerHomeResponse;
+    
+    }
+    return Future<BuyerHomeResponse>.value();
+  }
+
   /// Pause, resume or stop a hunt.
   ///
   /// Note: This method returns the HTTP [Response].
@@ -12532,6 +17342,70 @@ class BuyerApi {
     
     }
     return Future<BuyerResponse>.value();
+  }
+
+  /// Make one of your saved cards the default.
+  ///
+  /// The default is the card express checkout offers first. Only your own saved card: any other id is a 404.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<Response> updateBuyerPaymentMethodDefaultWithHttpInfo(String id,) async {
+    // Verify required params are set.
+    if (id == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: id');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/buyer/payment-methods/{id}/default'
+      .replaceAll('{id}', id);
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['BuyerOAuth'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'PUT',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Make one of your saved cards the default.
+  ///
+  /// The default is the card express checkout offers first. Only your own saved card: any other id is a 404.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<UpdateBuyerPaymentMethodDefaultResponse> updateBuyerPaymentMethodDefault(String id,) async {
+    final response = await updateBuyerPaymentMethodDefaultWithHttpInfo(id,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'UpdateBuyerPaymentMethodDefaultResponse',) as UpdateBuyerPaymentMethodDefaultResponse;
+    
+    }
+    return Future<UpdateBuyerPaymentMethodDefaultResponse>.value();
   }
 
   /// Write your owner story (280 characters); it travels with the item if you resell it.
@@ -12780,6 +17654,112 @@ class BuyerApi {
     
     }
     return Future<BuyerResponse>.value();
+  }
+
+  /// Set the PO reference for one seller's group of your cart: { sellerUserId, poReference } (empty clears it).
+  ///
+  /// Note: This method returns the HTTP [Response].
+  Future<Response> updateBuyerWholesaleCartPoWithHttpInfo() async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/buyer/wholesale/cart/po';
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['BuyerOAuth'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'PUT',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Set the PO reference for one seller's group of your cart: { sellerUserId, poReference } (empty clears it).
+  Future<UpdateBuyerWholesaleCartPoResponse> updateBuyerWholesaleCartPo() async {
+    final response = await updateBuyerWholesaleCartPoWithHttpInfo();
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'UpdateBuyerWholesaleCartPoResponse',) as UpdateBuyerWholesaleCartPoResponse;
+    
+    }
+    return Future<UpdateBuyerWholesaleCartPoResponse>.value();
+  }
+
+  /// Rename an order sheet, change its PO reference or note, or replace its lines.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<Response> updateBuyerWholesaleOrderSheetWithHttpInfo(String id,) async {
+    // Verify required params are set.
+    if (id == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: id');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/buyer/wholesale/order-sheets/{id}'
+      .replaceAll('{id}', id);
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['BuyerOAuth'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'PATCH',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Rename an order sheet, change its PO reference or note, or replace its lines.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<BuyerWholesaleOrderSheetResponse> updateBuyerWholesaleOrderSheet(String id,) async {
+    final response = await updateBuyerWholesaleOrderSheetWithHttpInfo(id,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'BuyerWholesaleOrderSheetResponse',) as BuyerWholesaleOrderSheetResponse;
+    
+    }
+    return Future<BuyerWholesaleOrderSheetResponse>.value();
   }
 
   /// Rename a wishlist, or make it public / private.

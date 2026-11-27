@@ -19,7 +19,7 @@ class CreateAutomationRuleImportResponseErrors {
 
   String name;
 
-  List<Map<String, Object>> errors;
+  List<Object> errors;
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is CreateAutomationRuleImportResponseErrors &&
@@ -50,7 +50,7 @@ class CreateAutomationRuleImportResponseErrors {
       final json = value.cast<String, dynamic>();
       return CreateAutomationRuleImportResponseErrors(
         name: mapValueOfType<String>(json, r'name'),
-        errors: json[r'errors'] is List ? (json[r'errors'] as List).cast<Map<String, Object>>() : const [],
+        errors: json[r'errors'] is List ? (json[r'errors'] as List).cast<Object>() : const [],
       );
     }
     return null;

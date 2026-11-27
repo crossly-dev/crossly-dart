@@ -154,14 +154,14 @@ class CreateBuyerLockonConfirmResponseHudToneEnum {
 
   String toJson() => value;
 
-  static const none = CreateBuyerLockonConfirmResponseHudToneEnum._(r'none');
   static const info = CreateBuyerLockonConfirmResponseHudToneEnum._(r'info');
+  static const none = CreateBuyerLockonConfirmResponseHudToneEnum._(r'none');
   static const win = CreateBuyerLockonConfirmResponseHudToneEnum._(r'win');
 
   /// List of all possible values in this [enum][CreateBuyerLockonConfirmResponseHudToneEnum].
   static const values = <CreateBuyerLockonConfirmResponseHudToneEnum>[
-    none,
     info,
+    none,
     win,
   ];
 
@@ -194,8 +194,8 @@ class CreateBuyerLockonConfirmResponseHudToneEnumTypeTransformer {
   CreateBuyerLockonConfirmResponseHudToneEnum decode(dynamic data, {bool allowNull}) {
     if (data != null) {
       switch (data.toString()) {
-        case r'none': return CreateBuyerLockonConfirmResponseHudToneEnum.none;
         case r'info': return CreateBuyerLockonConfirmResponseHudToneEnum.info;
+        case r'none': return CreateBuyerLockonConfirmResponseHudToneEnum.none;
         case r'win': return CreateBuyerLockonConfirmResponseHudToneEnum.win;
         default:
           if (allowNull == false) {

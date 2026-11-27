@@ -16,7 +16,7 @@ class GetPatScopeResponse {
     this.scopes = const [],
   });
 
-  List<GetPatScopeResponseScopes> scopes;
+  List<ListAppsItemCapabilities> scopes;
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is GetPatScopeResponse &&
@@ -43,7 +43,7 @@ class GetPatScopeResponse {
     if (value is Map) {
       final json = value.cast<String, dynamic>();
       return GetPatScopeResponse(
-        scopes: GetPatScopeResponseScopes.listFromJson(json[r'scopes']),
+        scopes: ListAppsItemCapabilities.listFromJson(json[r'scopes']),
       );
     }
     return null;

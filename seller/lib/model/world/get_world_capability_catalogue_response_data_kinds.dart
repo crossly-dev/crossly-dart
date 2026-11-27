@@ -128,14 +128,14 @@ class GetWorldCapabilityCatalogueResponseDataKindsReviewEnum {
   String toJson() => value;
 
   static const always = GetWorldCapabilityCatalogueResponseDataKindsReviewEnum._(r'always');
-  static const asset = GetWorldCapabilityCatalogueResponseDataKindsReviewEnum._(r'asset');
   static const never = GetWorldCapabilityCatalogueResponseDataKindsReviewEnum._(r'never');
+  static const asset = GetWorldCapabilityCatalogueResponseDataKindsReviewEnum._(r'asset');
 
   /// List of all possible values in this [enum][GetWorldCapabilityCatalogueResponseDataKindsReviewEnum].
   static const values = <GetWorldCapabilityCatalogueResponseDataKindsReviewEnum>[
     always,
-    asset,
     never,
+    asset,
   ];
 
   static GetWorldCapabilityCatalogueResponseDataKindsReviewEnum fromJson(dynamic value) =>
@@ -168,8 +168,8 @@ class GetWorldCapabilityCatalogueResponseDataKindsReviewEnumTypeTransformer {
     if (data != null) {
       switch (data.toString()) {
         case r'always': return GetWorldCapabilityCatalogueResponseDataKindsReviewEnum.always;
-        case r'asset': return GetWorldCapabilityCatalogueResponseDataKindsReviewEnum.asset;
         case r'never': return GetWorldCapabilityCatalogueResponseDataKindsReviewEnum.never;
+        case r'asset': return GetWorldCapabilityCatalogueResponseDataKindsReviewEnum.asset;
         default:
           if (allowNull == false) {
             throw ArgumentError('Unknown enum value to decode: $data');
@@ -198,9 +198,11 @@ class GetWorldCapabilityCatalogueResponseDataKindsKindEnum {
   String toJson() => value;
 
   static const portal = GetWorldCapabilityCatalogueResponseDataKindsKindEnum._(r'portal');
-  static const display = GetWorldCapabilityCatalogueResponseDataKindsKindEnum._(r'display');
+  static const interactive = GetWorldCapabilityCatalogueResponseDataKindsKindEnum._(r'interactive');
   static const place = GetWorldCapabilityCatalogueResponseDataKindsKindEnum._(r'place');
+  static const display = GetWorldCapabilityCatalogueResponseDataKindsKindEnum._(r'display');
   static const badge = GetWorldCapabilityCatalogueResponseDataKindsKindEnum._(r'badge');
+  static const perk = GetWorldCapabilityCatalogueResponseDataKindsKindEnum._(r'perk');
   static const wear = GetWorldCapabilityCatalogueResponseDataKindsKindEnum._(r'wear');
   static const emote = GetWorldCapabilityCatalogueResponseDataKindsKindEnum._(r'emote');
   static const roomTheme = GetWorldCapabilityCatalogueResponseDataKindsKindEnum._(r'room_theme');
@@ -208,15 +210,15 @@ class GetWorldCapabilityCatalogueResponseDataKindsKindEnum {
   static const gate = GetWorldCapabilityCatalogueResponseDataKindsKindEnum._(r'gate');
   static const quest = GetWorldCapabilityCatalogueResponseDataKindsKindEnum._(r'quest');
   static const gamePass = GetWorldCapabilityCatalogueResponseDataKindsKindEnum._(r'game_pass');
-  static const perk = GetWorldCapabilityCatalogueResponseDataKindsKindEnum._(r'perk');
-  static const interactive = GetWorldCapabilityCatalogueResponseDataKindsKindEnum._(r'interactive');
 
   /// List of all possible values in this [enum][GetWorldCapabilityCatalogueResponseDataKindsKindEnum].
   static const values = <GetWorldCapabilityCatalogueResponseDataKindsKindEnum>[
     portal,
-    display,
+    interactive,
     place,
+    display,
     badge,
+    perk,
     wear,
     emote,
     roomTheme,
@@ -224,8 +226,6 @@ class GetWorldCapabilityCatalogueResponseDataKindsKindEnum {
     gate,
     quest,
     gamePass,
-    perk,
-    interactive,
   ];
 
   static GetWorldCapabilityCatalogueResponseDataKindsKindEnum fromJson(dynamic value) =>
@@ -258,9 +258,11 @@ class GetWorldCapabilityCatalogueResponseDataKindsKindEnumTypeTransformer {
     if (data != null) {
       switch (data.toString()) {
         case r'portal': return GetWorldCapabilityCatalogueResponseDataKindsKindEnum.portal;
-        case r'display': return GetWorldCapabilityCatalogueResponseDataKindsKindEnum.display;
+        case r'interactive': return GetWorldCapabilityCatalogueResponseDataKindsKindEnum.interactive;
         case r'place': return GetWorldCapabilityCatalogueResponseDataKindsKindEnum.place;
+        case r'display': return GetWorldCapabilityCatalogueResponseDataKindsKindEnum.display;
         case r'badge': return GetWorldCapabilityCatalogueResponseDataKindsKindEnum.badge;
+        case r'perk': return GetWorldCapabilityCatalogueResponseDataKindsKindEnum.perk;
         case r'wear': return GetWorldCapabilityCatalogueResponseDataKindsKindEnum.wear;
         case r'emote': return GetWorldCapabilityCatalogueResponseDataKindsKindEnum.emote;
         case r'room_theme': return GetWorldCapabilityCatalogueResponseDataKindsKindEnum.roomTheme;
@@ -268,8 +270,6 @@ class GetWorldCapabilityCatalogueResponseDataKindsKindEnumTypeTransformer {
         case r'gate': return GetWorldCapabilityCatalogueResponseDataKindsKindEnum.gate;
         case r'quest': return GetWorldCapabilityCatalogueResponseDataKindsKindEnum.quest;
         case r'game_pass': return GetWorldCapabilityCatalogueResponseDataKindsKindEnum.gamePass;
-        case r'perk': return GetWorldCapabilityCatalogueResponseDataKindsKindEnum.perk;
-        case r'interactive': return GetWorldCapabilityCatalogueResponseDataKindsKindEnum.interactive;
         default:
           if (allowNull == false) {
             throw ArgumentError('Unknown enum value to decode: $data');

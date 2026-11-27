@@ -15,8 +15,8 @@ class CreateBuyerAuctionPayResponseData {
   CreateBuyerAuctionPayResponseData({
     @required this.paid,
     this.clientSecret,
-    this.amountCents,
     this.paymentIntentId,
+    this.amountCents,
   });
 
   bool paid;
@@ -24,27 +24,27 @@ class CreateBuyerAuctionPayResponseData {
   /// Stripe PaymentIntent client secret — confirm it with Stripe on the buyer's device.
   String clientSecret;
 
-  num amountCents;
-
   String paymentIntentId;
+
+  num amountCents;
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is CreateBuyerAuctionPayResponseData &&
      other.paid == paid &&
      other.clientSecret == clientSecret &&
-     other.amountCents == amountCents &&
-     other.paymentIntentId == paymentIntentId;
+     other.paymentIntentId == paymentIntentId &&
+     other.amountCents == amountCents;
 
   @override
   int get hashCode =>
   // ignore: unnecessary_parenthesis
     (paid == null ? 0 : paid.hashCode) +
     (clientSecret == null ? 0 : clientSecret.hashCode) +
-    (amountCents == null ? 0 : amountCents.hashCode) +
-    (paymentIntentId == null ? 0 : paymentIntentId.hashCode);
+    (paymentIntentId == null ? 0 : paymentIntentId.hashCode) +
+    (amountCents == null ? 0 : amountCents.hashCode);
 
   @override
-  String toString() => 'CreateBuyerAuctionPayResponseData[paid=$paid, clientSecret=$clientSecret, amountCents=$amountCents, paymentIntentId=$paymentIntentId]';
+  String toString() => 'CreateBuyerAuctionPayResponseData[paid=$paid, clientSecret=$clientSecret, paymentIntentId=$paymentIntentId, amountCents=$amountCents]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -52,11 +52,11 @@ class CreateBuyerAuctionPayResponseData {
     if (clientSecret != null) {
       json[r'clientSecret'] = clientSecret;
     }
-    if (amountCents != null) {
-      json[r'amountCents'] = amountCents;
-    }
     if (paymentIntentId != null) {
       json[r'paymentIntentId'] = paymentIntentId;
+    }
+    if (amountCents != null) {
+      json[r'amountCents'] = amountCents;
     }
     return json;
   }
@@ -70,10 +70,10 @@ class CreateBuyerAuctionPayResponseData {
       return CreateBuyerAuctionPayResponseData(
         paid: mapValueOfType<bool>(json, r'paid'),
         clientSecret: mapValueOfType<String>(json, r'clientSecret'),
+        paymentIntentId: mapValueOfType<String>(json, r'paymentIntentId'),
         amountCents: json[r'amountCents'] == null
           ? null
           : num.parse(json[r'amountCents'].toString()),
-        paymentIntentId: mapValueOfType<String>(json, r'paymentIntentId'),
       );
     }
     return null;

@@ -17,21 +17,21 @@ class CreateWeb3OrderResponseOrder {
     @required this.createdAt,
     @required this.updatedAt,
     this.userId,
-    @required this.quantity,
     @required this.status,
+    @required this.quantity,
     this.inventoryItemId,
     @required this.currency,
     this.bundle,
     this.lastCheckedAt,
+    this.storefrontId,
     @required this.kind,
+    @required this.marketplace,
+    this.tokenId,
     this.externalUrl,
-    this.walletId,
     @required this.chain,
     @required this.contract,
-    this.tokenId,
-    this.collectionName,
     @required this.orderHash,
-    @required this.marketplace,
+    this.walletId,
     @required this.maker,
     @required this.priceWei,
     this.endPriceWei,
@@ -41,6 +41,7 @@ class CreateWeb3OrderResponseOrder {
     this.statusReason,
     this.itemName,
     this.itemImage,
+    this.collectionName,
     this.taker,
     this.filledTx,
     this.filledAt,
@@ -56,9 +57,9 @@ class CreateWeb3OrderResponseOrder {
 
   String userId;
 
-  num quantity;
-
   CreateWeb3OrderResponseOrderStatusEnum status;
+
+  num quantity;
 
   String inventoryItemId;
 
@@ -68,23 +69,23 @@ class CreateWeb3OrderResponseOrder {
 
   DateTime lastCheckedAt;
 
+  String storefrontId;
+
   CreateWeb3OrderResponseOrderKindEnum kind;
 
-  String externalUrl;
+  String marketplace;
 
-  String walletId;
+  String tokenId;
+
+  String externalUrl;
 
   String chain;
 
   String contract;
 
-  String tokenId;
-
-  String collectionName;
-
   String orderHash;
 
-  String marketplace;
+  String walletId;
 
   String maker;
 
@@ -104,6 +105,8 @@ class CreateWeb3OrderResponseOrder {
 
   String itemImage;
 
+  String collectionName;
+
   String taker;
 
   String filledTx;
@@ -120,21 +123,21 @@ class CreateWeb3OrderResponseOrder {
      other.createdAt == createdAt &&
      other.updatedAt == updatedAt &&
      other.userId == userId &&
-     other.quantity == quantity &&
      other.status == status &&
+     other.quantity == quantity &&
      other.inventoryItemId == inventoryItemId &&
      other.currency == currency &&
      other.bundle == bundle &&
      other.lastCheckedAt == lastCheckedAt &&
+     other.storefrontId == storefrontId &&
      other.kind == kind &&
+     other.marketplace == marketplace &&
+     other.tokenId == tokenId &&
      other.externalUrl == externalUrl &&
-     other.walletId == walletId &&
      other.chain == chain &&
      other.contract == contract &&
-     other.tokenId == tokenId &&
-     other.collectionName == collectionName &&
      other.orderHash == orderHash &&
-     other.marketplace == marketplace &&
+     other.walletId == walletId &&
      other.maker == maker &&
      other.priceWei == priceWei &&
      other.endPriceWei == endPriceWei &&
@@ -144,6 +147,7 @@ class CreateWeb3OrderResponseOrder {
      other.statusReason == statusReason &&
      other.itemName == itemName &&
      other.itemImage == itemImage &&
+     other.collectionName == collectionName &&
      other.taker == taker &&
      other.filledTx == filledTx &&
      other.filledAt == filledAt &&
@@ -157,21 +161,21 @@ class CreateWeb3OrderResponseOrder {
     (createdAt == null ? 0 : createdAt.hashCode) +
     (updatedAt == null ? 0 : updatedAt.hashCode) +
     (userId == null ? 0 : userId.hashCode) +
-    (quantity == null ? 0 : quantity.hashCode) +
     (status == null ? 0 : status.hashCode) +
+    (quantity == null ? 0 : quantity.hashCode) +
     (inventoryItemId == null ? 0 : inventoryItemId.hashCode) +
     (currency == null ? 0 : currency.hashCode) +
     (bundle == null ? 0 : bundle.hashCode) +
     (lastCheckedAt == null ? 0 : lastCheckedAt.hashCode) +
+    (storefrontId == null ? 0 : storefrontId.hashCode) +
     (kind == null ? 0 : kind.hashCode) +
+    (marketplace == null ? 0 : marketplace.hashCode) +
+    (tokenId == null ? 0 : tokenId.hashCode) +
     (externalUrl == null ? 0 : externalUrl.hashCode) +
-    (walletId == null ? 0 : walletId.hashCode) +
     (chain == null ? 0 : chain.hashCode) +
     (contract == null ? 0 : contract.hashCode) +
-    (tokenId == null ? 0 : tokenId.hashCode) +
-    (collectionName == null ? 0 : collectionName.hashCode) +
     (orderHash == null ? 0 : orderHash.hashCode) +
-    (marketplace == null ? 0 : marketplace.hashCode) +
+    (walletId == null ? 0 : walletId.hashCode) +
     (maker == null ? 0 : maker.hashCode) +
     (priceWei == null ? 0 : priceWei.hashCode) +
     (endPriceWei == null ? 0 : endPriceWei.hashCode) +
@@ -181,6 +185,7 @@ class CreateWeb3OrderResponseOrder {
     (statusReason == null ? 0 : statusReason.hashCode) +
     (itemName == null ? 0 : itemName.hashCode) +
     (itemImage == null ? 0 : itemImage.hashCode) +
+    (collectionName == null ? 0 : collectionName.hashCode) +
     (taker == null ? 0 : taker.hashCode) +
     (filledTx == null ? 0 : filledTx.hashCode) +
     (filledAt == null ? 0 : filledAt.hashCode) +
@@ -188,7 +193,7 @@ class CreateWeb3OrderResponseOrder {
     (reservedFor == null ? 0 : reservedFor.hashCode);
 
   @override
-  String toString() => 'CreateWeb3OrderResponseOrder[id=$id, createdAt=$createdAt, updatedAt=$updatedAt, userId=$userId, quantity=$quantity, status=$status, inventoryItemId=$inventoryItemId, currency=$currency, bundle=$bundle, lastCheckedAt=$lastCheckedAt, kind=$kind, externalUrl=$externalUrl, walletId=$walletId, chain=$chain, contract=$contract, tokenId=$tokenId, collectionName=$collectionName, orderHash=$orderHash, marketplace=$marketplace, maker=$maker, priceWei=$priceWei, endPriceWei=$endPriceWei, startTime=$startTime, endTime=$endTime, signature=$signature, statusReason=$statusReason, itemName=$itemName, itemImage=$itemImage, taker=$taker, filledTx=$filledTx, filledAt=$filledAt, criteria=$criteria, reservedFor=$reservedFor]';
+  String toString() => 'CreateWeb3OrderResponseOrder[id=$id, createdAt=$createdAt, updatedAt=$updatedAt, userId=$userId, status=$status, quantity=$quantity, inventoryItemId=$inventoryItemId, currency=$currency, bundle=$bundle, lastCheckedAt=$lastCheckedAt, storefrontId=$storefrontId, kind=$kind, marketplace=$marketplace, tokenId=$tokenId, externalUrl=$externalUrl, chain=$chain, contract=$contract, orderHash=$orderHash, walletId=$walletId, maker=$maker, priceWei=$priceWei, endPriceWei=$endPriceWei, startTime=$startTime, endTime=$endTime, signature=$signature, statusReason=$statusReason, itemName=$itemName, itemImage=$itemImage, collectionName=$collectionName, taker=$taker, filledTx=$filledTx, filledAt=$filledAt, criteria=$criteria, reservedFor=$reservedFor]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -198,8 +203,8 @@ class CreateWeb3OrderResponseOrder {
     if (userId != null) {
       json[r'userId'] = userId;
     }
-      json[r'quantity'] = quantity;
       json[r'status'] = status;
+      json[r'quantity'] = quantity;
     if (inventoryItemId != null) {
       json[r'inventoryItemId'] = inventoryItemId;
     }
@@ -210,23 +215,23 @@ class CreateWeb3OrderResponseOrder {
     if (lastCheckedAt != null) {
       json[r'lastCheckedAt'] = lastCheckedAt.toUtc().toIso8601String();
     }
+    if (storefrontId != null) {
+      json[r'storefrontId'] = storefrontId;
+    }
       json[r'kind'] = kind;
-    if (externalUrl != null) {
-      json[r'externalUrl'] = externalUrl;
-    }
-    if (walletId != null) {
-      json[r'walletId'] = walletId;
-    }
-      json[r'chain'] = chain;
-      json[r'contract'] = contract;
+      json[r'marketplace'] = marketplace;
     if (tokenId != null) {
       json[r'tokenId'] = tokenId;
     }
-    if (collectionName != null) {
-      json[r'collectionName'] = collectionName;
+    if (externalUrl != null) {
+      json[r'externalUrl'] = externalUrl;
     }
+      json[r'chain'] = chain;
+      json[r'contract'] = contract;
       json[r'orderHash'] = orderHash;
-      json[r'marketplace'] = marketplace;
+    if (walletId != null) {
+      json[r'walletId'] = walletId;
+    }
       json[r'maker'] = maker;
       json[r'priceWei'] = priceWei;
     if (endPriceWei != null) {
@@ -243,6 +248,9 @@ class CreateWeb3OrderResponseOrder {
     }
     if (itemImage != null) {
       json[r'itemImage'] = itemImage;
+    }
+    if (collectionName != null) {
+      json[r'collectionName'] = collectionName;
     }
     if (taker != null) {
       json[r'taker'] = taker;
@@ -273,23 +281,23 @@ class CreateWeb3OrderResponseOrder {
         createdAt: mapDateTime(json, r'createdAt', ''),
         updatedAt: mapDateTime(json, r'updatedAt', ''),
         userId: mapValueOfType<String>(json, r'userId'),
+        status: CreateWeb3OrderResponseOrderStatusEnum.fromJson(json[r'status']),
         quantity: json[r'quantity'] == null
           ? null
           : num.parse(json[r'quantity'].toString()),
-        status: CreateWeb3OrderResponseOrderStatusEnum.fromJson(json[r'status']),
         inventoryItemId: mapValueOfType<String>(json, r'inventoryItemId'),
         currency: mapValueOfType<String>(json, r'currency'),
         bundle: CreateWeb3OrderResponseOrderBundle.listFromJson(json[r'bundle']),
         lastCheckedAt: mapDateTime(json, r'lastCheckedAt', ''),
+        storefrontId: mapValueOfType<String>(json, r'storefrontId'),
         kind: CreateWeb3OrderResponseOrderKindEnum.fromJson(json[r'kind']),
+        marketplace: mapValueOfType<String>(json, r'marketplace'),
+        tokenId: mapValueOfType<String>(json, r'tokenId'),
         externalUrl: mapValueOfType<String>(json, r'externalUrl'),
-        walletId: mapValueOfType<String>(json, r'walletId'),
         chain: mapValueOfType<String>(json, r'chain'),
         contract: mapValueOfType<String>(json, r'contract'),
-        tokenId: mapValueOfType<String>(json, r'tokenId'),
-        collectionName: mapValueOfType<String>(json, r'collectionName'),
         orderHash: mapValueOfType<String>(json, r'orderHash'),
-        marketplace: mapValueOfType<String>(json, r'marketplace'),
+        walletId: mapValueOfType<String>(json, r'walletId'),
         maker: mapValueOfType<String>(json, r'maker'),
         priceWei: mapValueOfType<String>(json, r'priceWei'),
         endPriceWei: mapValueOfType<String>(json, r'endPriceWei'),
@@ -299,6 +307,7 @@ class CreateWeb3OrderResponseOrder {
         statusReason: mapValueOfType<String>(json, r'statusReason'),
         itemName: mapValueOfType<String>(json, r'itemName'),
         itemImage: mapValueOfType<String>(json, r'itemImage'),
+        collectionName: mapValueOfType<String>(json, r'collectionName'),
         taker: mapValueOfType<String>(json, r'taker'),
         filledTx: mapValueOfType<String>(json, r'filledTx'),
         filledAt: mapDateTime(json, r'filledAt', ''),
@@ -355,18 +364,18 @@ class CreateWeb3OrderResponseOrderStatusEnum {
 
   String toJson() => value;
 
-  static const open = CreateWeb3OrderResponseOrderStatusEnum._(r'open');
-  static const filled = CreateWeb3OrderResponseOrderStatusEnum._(r'filled');
   static const cancelled = CreateWeb3OrderResponseOrderStatusEnum._(r'cancelled');
+  static const open = CreateWeb3OrderResponseOrderStatusEnum._(r'open');
   static const expired = CreateWeb3OrderResponseOrderStatusEnum._(r'expired');
+  static const filled = CreateWeb3OrderResponseOrderStatusEnum._(r'filled');
   static const invalid = CreateWeb3OrderResponseOrderStatusEnum._(r'invalid');
 
   /// List of all possible values in this [enum][CreateWeb3OrderResponseOrderStatusEnum].
   static const values = <CreateWeb3OrderResponseOrderStatusEnum>[
-    open,
-    filled,
     cancelled,
+    open,
     expired,
+    filled,
     invalid,
   ];
 
@@ -399,10 +408,10 @@ class CreateWeb3OrderResponseOrderStatusEnumTypeTransformer {
   CreateWeb3OrderResponseOrderStatusEnum decode(dynamic data, {bool allowNull}) {
     if (data != null) {
       switch (data.toString()) {
-        case r'open': return CreateWeb3OrderResponseOrderStatusEnum.open;
-        case r'filled': return CreateWeb3OrderResponseOrderStatusEnum.filled;
         case r'cancelled': return CreateWeb3OrderResponseOrderStatusEnum.cancelled;
+        case r'open': return CreateWeb3OrderResponseOrderStatusEnum.open;
         case r'expired': return CreateWeb3OrderResponseOrderStatusEnum.expired;
+        case r'filled': return CreateWeb3OrderResponseOrderStatusEnum.filled;
         case r'invalid': return CreateWeb3OrderResponseOrderStatusEnum.invalid;
         default:
           if (allowNull == false) {
@@ -432,18 +441,18 @@ class CreateWeb3OrderResponseOrderKindEnum {
   String toJson() => value;
 
   static const bundle = CreateWeb3OrderResponseOrderKindEnum._(r'bundle');
+  static const offer = CreateWeb3OrderResponseOrderKindEnum._(r'offer');
   static const listing = CreateWeb3OrderResponseOrderKindEnum._(r'listing');
   static const privateListing = CreateWeb3OrderResponseOrderKindEnum._(r'private_listing');
-  static const offer = CreateWeb3OrderResponseOrderKindEnum._(r'offer');
   static const collectionOffer = CreateWeb3OrderResponseOrderKindEnum._(r'collection_offer');
   static const traitOffer = CreateWeb3OrderResponseOrderKindEnum._(r'trait_offer');
 
   /// List of all possible values in this [enum][CreateWeb3OrderResponseOrderKindEnum].
   static const values = <CreateWeb3OrderResponseOrderKindEnum>[
     bundle,
+    offer,
     listing,
     privateListing,
-    offer,
     collectionOffer,
     traitOffer,
   ];
@@ -478,9 +487,9 @@ class CreateWeb3OrderResponseOrderKindEnumTypeTransformer {
     if (data != null) {
       switch (data.toString()) {
         case r'bundle': return CreateWeb3OrderResponseOrderKindEnum.bundle;
+        case r'offer': return CreateWeb3OrderResponseOrderKindEnum.offer;
         case r'listing': return CreateWeb3OrderResponseOrderKindEnum.listing;
         case r'private_listing': return CreateWeb3OrderResponseOrderKindEnum.privateListing;
-        case r'offer': return CreateWeb3OrderResponseOrderKindEnum.offer;
         case r'collection_offer': return CreateWeb3OrderResponseOrderKindEnum.collectionOffer;
         case r'trait_offer': return CreateWeb3OrderResponseOrderKindEnum.traitOffer;
         default:

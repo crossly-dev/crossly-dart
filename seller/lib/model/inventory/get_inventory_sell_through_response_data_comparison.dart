@@ -14,41 +14,55 @@ class GetInventorySellThroughResponseDataComparison {
   /// Returns a new [GetInventorySellThroughResponseDataComparison] instance.
   GetInventorySellThroughResponseDataComparison({
     this.pctChange,
+    this.pp,
     @required this.comparable,
     this.reason,
+    @required this.delta,
   });
 
-  num pctChange;
+  /// Always null: a relative change of a rate is not reported. Read `pp`.
+  Object pctChange;
+
+  /// Percentage points, null when not comparable.
+  num pp;
 
   bool comparable;
 
   String reason;
 
+  GetAnalyticOverviewResponseDataKpisNetSalesDelta delta;
+
   @override
   bool operator ==(Object other) => identical(this, other) || other is GetInventorySellThroughResponseDataComparison &&
      other.pctChange == pctChange &&
+     other.pp == pp &&
      other.comparable == comparable &&
-     other.reason == reason;
+     other.reason == reason &&
+     other.delta == delta;
 
   @override
   int get hashCode =>
   // ignore: unnecessary_parenthesis
     (pctChange == null ? 0 : pctChange.hashCode) +
+    (pp == null ? 0 : pp.hashCode) +
     (comparable == null ? 0 : comparable.hashCode) +
-    (reason == null ? 0 : reason.hashCode);
+    (reason == null ? 0 : reason.hashCode) +
+    (delta == null ? 0 : delta.hashCode);
 
   @override
-  String toString() => 'GetInventorySellThroughResponseDataComparison[pctChange=$pctChange, comparable=$comparable, reason=$reason]';
+  String toString() => 'GetInventorySellThroughResponseDataComparison[pctChange=$pctChange, pp=$pp, comparable=$comparable, reason=$reason, delta=$delta]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (pctChange != null) {
-      json[r'pctChange'] = pctChange;
+      json[r'pctChange'] = pctChange == null ? null : pctChange;
+    if (pp != null) {
+      json[r'pp'] = pp;
     }
       json[r'comparable'] = comparable;
     if (reason != null) {
       json[r'reason'] = reason;
     }
+      json[r'delta'] = delta;
     return json;
   }
 
@@ -59,11 +73,13 @@ class GetInventorySellThroughResponseDataComparison {
     if (value is Map) {
       final json = value.cast<String, dynamic>();
       return GetInventorySellThroughResponseDataComparison(
-        pctChange: json[r'pctChange'] == null
+        pctChange: mapValueOfType<Object>(json, r'pctChange'),
+        pp: json[r'pp'] == null
           ? null
-          : num.parse(json[r'pctChange'].toString()),
+          : num.parse(json[r'pp'].toString()),
         comparable: mapValueOfType<bool>(json, r'comparable'),
         reason: mapValueOfType<String>(json, r'reason'),
+        delta: GetAnalyticOverviewResponseDataKpisNetSalesDelta.fromJson(json[r'delta']),
       );
     }
     return null;

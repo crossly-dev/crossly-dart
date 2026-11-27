@@ -14,7 +14,7 @@ class GetInventoryValueHistoryResponseData {
   /// Returns a new [GetInventoryValueHistoryResponseData] instance.
   GetInventoryValueHistoryResponseData({
     this.points = const [],
-    @required this.collectingSince,
+    this.collectingSince,
   });
 
   List<GetInventoryValueHistoryResponseDataPoints> points;
@@ -38,7 +38,9 @@ class GetInventoryValueHistoryResponseData {
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
       json[r'points'] = points;
+    if (collectingSince != null) {
       json[r'collectingSince'] = collectingSince;
+    }
     return json;
   }
 

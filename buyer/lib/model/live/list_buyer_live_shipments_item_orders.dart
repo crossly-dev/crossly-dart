@@ -14,17 +14,17 @@ class ListBuyerLiveShipmentsItemOrders {
   /// Returns a new [ListBuyerLiveShipmentsItemOrders] instance.
   ListBuyerLiveShipmentsItemOrders({
     @required this.orderId,
-    this.title,
     @required this.purchaseId,
+    this.title,
     @required this.shippingCents,
     this.orderStatus,
   });
 
   String orderId;
 
-  String title;
-
   String purchaseId;
+
+  String title;
 
   num shippingCents;
 
@@ -33,8 +33,8 @@ class ListBuyerLiveShipmentsItemOrders {
   @override
   bool operator ==(Object other) => identical(this, other) || other is ListBuyerLiveShipmentsItemOrders &&
      other.orderId == orderId &&
-     other.title == title &&
      other.purchaseId == purchaseId &&
+     other.title == title &&
      other.shippingCents == shippingCents &&
      other.orderStatus == orderStatus;
 
@@ -42,21 +42,21 @@ class ListBuyerLiveShipmentsItemOrders {
   int get hashCode =>
   // ignore: unnecessary_parenthesis
     (orderId == null ? 0 : orderId.hashCode) +
-    (title == null ? 0 : title.hashCode) +
     (purchaseId == null ? 0 : purchaseId.hashCode) +
+    (title == null ? 0 : title.hashCode) +
     (shippingCents == null ? 0 : shippingCents.hashCode) +
     (orderStatus == null ? 0 : orderStatus.hashCode);
 
   @override
-  String toString() => 'ListBuyerLiveShipmentsItemOrders[orderId=$orderId, title=$title, purchaseId=$purchaseId, shippingCents=$shippingCents, orderStatus=$orderStatus]';
+  String toString() => 'ListBuyerLiveShipmentsItemOrders[orderId=$orderId, purchaseId=$purchaseId, title=$title, shippingCents=$shippingCents, orderStatus=$orderStatus]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
       json[r'orderId'] = orderId;
+      json[r'purchaseId'] = purchaseId;
     if (title != null) {
       json[r'title'] = title;
     }
-      json[r'purchaseId'] = purchaseId;
       json[r'shippingCents'] = shippingCents;
     if (orderStatus != null) {
       json[r'orderStatus'] = orderStatus;
@@ -72,8 +72,8 @@ class ListBuyerLiveShipmentsItemOrders {
       final json = value.cast<String, dynamic>();
       return ListBuyerLiveShipmentsItemOrders(
         orderId: mapValueOfType<String>(json, r'orderId'),
-        title: mapValueOfType<String>(json, r'title'),
         purchaseId: mapValueOfType<String>(json, r'purchaseId'),
+        title: mapValueOfType<String>(json, r'title'),
         shippingCents: json[r'shippingCents'] == null
           ? null
           : num.parse(json[r'shippingCents'].toString()),

@@ -195,17 +195,17 @@ class ListVaultMarketAgentWatchesItemMetricEnum {
 
   String toJson() => value;
 
-  static const mark = ListVaultMarketAgentWatchesItemMetricEnum._(r'mark');
   static const ask = ListVaultMarketAgentWatchesItemMetricEnum._(r'ask');
-  static const bid = ListVaultMarketAgentWatchesItemMetricEnum._(r'bid');
   static const last = ListVaultMarketAgentWatchesItemMetricEnum._(r'last');
+  static const mark = ListVaultMarketAgentWatchesItemMetricEnum._(r'mark');
+  static const bid = ListVaultMarketAgentWatchesItemMetricEnum._(r'bid');
 
   /// List of all possible values in this [enum][ListVaultMarketAgentWatchesItemMetricEnum].
   static const values = <ListVaultMarketAgentWatchesItemMetricEnum>[
-    mark,
     ask,
-    bid,
     last,
+    mark,
+    bid,
   ];
 
   static ListVaultMarketAgentWatchesItemMetricEnum fromJson(dynamic value) =>
@@ -237,10 +237,10 @@ class ListVaultMarketAgentWatchesItemMetricEnumTypeTransformer {
   ListVaultMarketAgentWatchesItemMetricEnum decode(dynamic data, {bool allowNull}) {
     if (data != null) {
       switch (data.toString()) {
-        case r'mark': return ListVaultMarketAgentWatchesItemMetricEnum.mark;
         case r'ask': return ListVaultMarketAgentWatchesItemMetricEnum.ask;
-        case r'bid': return ListVaultMarketAgentWatchesItemMetricEnum.bid;
         case r'last': return ListVaultMarketAgentWatchesItemMetricEnum.last;
+        case r'mark': return ListVaultMarketAgentWatchesItemMetricEnum.mark;
+        case r'bid': return ListVaultMarketAgentWatchesItemMetricEnum.bid;
         default:
           if (allowNull == false) {
             throw ArgumentError('Unknown enum value to decode: $data');

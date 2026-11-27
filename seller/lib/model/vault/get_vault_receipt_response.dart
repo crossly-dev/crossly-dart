@@ -245,19 +245,19 @@ class GetVaultReceiptResponseStatusEnum {
 
   String toJson() => value;
 
+  static const void_ = GetVaultReceiptResponseStatusEnum._(r'void');
   static const pledged = GetVaultReceiptResponseStatusEnum._(r'pledged');
   static const issued = GetVaultReceiptResponseStatusEnum._(r'issued');
   static const transferred = GetVaultReceiptResponseStatusEnum._(r'transferred');
   static const surrendered = GetVaultReceiptResponseStatusEnum._(r'surrendered');
-  static const void_ = GetVaultReceiptResponseStatusEnum._(r'void');
 
   /// List of all possible values in this [enum][GetVaultReceiptResponseStatusEnum].
   static const values = <GetVaultReceiptResponseStatusEnum>[
+    void_,
     pledged,
     issued,
     transferred,
     surrendered,
-    void_,
   ];
 
   static GetVaultReceiptResponseStatusEnum fromJson(dynamic value) =>
@@ -289,11 +289,11 @@ class GetVaultReceiptResponseStatusEnumTypeTransformer {
   GetVaultReceiptResponseStatusEnum decode(dynamic data, {bool allowNull}) {
     if (data != null) {
       switch (data.toString()) {
+        case r'void': return GetVaultReceiptResponseStatusEnum.void_;
         case r'pledged': return GetVaultReceiptResponseStatusEnum.pledged;
         case r'issued': return GetVaultReceiptResponseStatusEnum.issued;
         case r'transferred': return GetVaultReceiptResponseStatusEnum.transferred;
         case r'surrendered': return GetVaultReceiptResponseStatusEnum.surrendered;
-        case r'void': return GetVaultReceiptResponseStatusEnum.void_;
         default:
           if (allowNull == false) {
             throw ArgumentError('Unknown enum value to decode: $data');

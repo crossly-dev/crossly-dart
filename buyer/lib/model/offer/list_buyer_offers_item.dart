@@ -14,35 +14,27 @@ class ListBuyerOffersItem {
   /// Returns a new [ListBuyerOffersItem] instance.
   ListBuyerOffersItem({
     @required this.id,
-    @required this.createdAt,
-    @required this.status,
-    @required this.expiresAt,
-    @required this.isBundle,
     @required this.platformListingId,
     @required this.sellerUserId,
     @required this.amountCents,
-    @required this.expired,
+    @required this.status,
+    @required this.expiresAt,
+    @required this.createdAt,
     this.items = const [],
-    @required this.awaitingBuyer,
+    @required this.isBundle,
     @required this.redeemable,
-    this.decidedAt,
+    @required this.expired,
+    @required this.awaitingBuyer,
+    this.platformListingIds,
+    this.listedTotalCents,
     this.message,
     this.parentOfferId,
-    this.platformListingIds,
-    this.consumedAt,
-    this.listedTotalCents,
     this.origin,
+    this.decidedAt,
+    this.consumedAt,
   });
 
   String id;
-
-  String createdAt;
-
-  String status;
-
-  String expiresAt;
-
-  bool isBundle;
 
   String platformListingId;
 
@@ -51,96 +43,107 @@ class ListBuyerOffersItem {
   /// The offer amount for the whole set, in cents.
   num amountCents;
 
-  bool expired;
+  String status;
+
+  String expiresAt;
+
+  String createdAt;
 
   List<ListBuyerOffersItemItems> items;
 
-  /// A seller counter waiting on YOU: accept, decline or counter back.
-  bool awaitingBuyer;
+  bool isBundle;
 
   /// Accepted, unpaid, unexpired and every item still live — pay for it now.
   bool redeemable;
 
-  String decidedAt;
+  bool expired;
+
+  /// A seller counter waiting on YOU: accept, decline or counter back.
+  bool awaitingBuyer;
+
+  List<String> platformListingIds;
+
+  /// Asking-price total when the offer was made, in cents.
+  num listedTotalCents;
 
   String message;
 
   String parentOfferId;
 
-  List<String> platformListingIds;
-
-  String consumedAt;
-
-  /// Asking-price total when the offer was made, in cents.
-  num listedTotalCents;
-
   /// null = you made it; seller_counter / buyer_counter / second_chance / seller_offer (to watchers) / live_auction otherwise.
   String origin;
+
+  String decidedAt;
+
+  String consumedAt;
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is ListBuyerOffersItem &&
      other.id == id &&
-     other.createdAt == createdAt &&
-     other.status == status &&
-     other.expiresAt == expiresAt &&
-     other.isBundle == isBundle &&
      other.platformListingId == platformListingId &&
      other.sellerUserId == sellerUserId &&
      other.amountCents == amountCents &&
-     other.expired == expired &&
+     other.status == status &&
+     other.expiresAt == expiresAt &&
+     other.createdAt == createdAt &&
      other.items == items &&
-     other.awaitingBuyer == awaitingBuyer &&
+     other.isBundle == isBundle &&
      other.redeemable == redeemable &&
-     other.decidedAt == decidedAt &&
+     other.expired == expired &&
+     other.awaitingBuyer == awaitingBuyer &&
+     other.platformListingIds == platformListingIds &&
+     other.listedTotalCents == listedTotalCents &&
      other.message == message &&
      other.parentOfferId == parentOfferId &&
-     other.platformListingIds == platformListingIds &&
-     other.consumedAt == consumedAt &&
-     other.listedTotalCents == listedTotalCents &&
-     other.origin == origin;
+     other.origin == origin &&
+     other.decidedAt == decidedAt &&
+     other.consumedAt == consumedAt;
 
   @override
   int get hashCode =>
   // ignore: unnecessary_parenthesis
     (id == null ? 0 : id.hashCode) +
-    (createdAt == null ? 0 : createdAt.hashCode) +
-    (status == null ? 0 : status.hashCode) +
-    (expiresAt == null ? 0 : expiresAt.hashCode) +
-    (isBundle == null ? 0 : isBundle.hashCode) +
     (platformListingId == null ? 0 : platformListingId.hashCode) +
     (sellerUserId == null ? 0 : sellerUserId.hashCode) +
     (amountCents == null ? 0 : amountCents.hashCode) +
-    (expired == null ? 0 : expired.hashCode) +
+    (status == null ? 0 : status.hashCode) +
+    (expiresAt == null ? 0 : expiresAt.hashCode) +
+    (createdAt == null ? 0 : createdAt.hashCode) +
     (items == null ? 0 : items.hashCode) +
-    (awaitingBuyer == null ? 0 : awaitingBuyer.hashCode) +
+    (isBundle == null ? 0 : isBundle.hashCode) +
     (redeemable == null ? 0 : redeemable.hashCode) +
-    (decidedAt == null ? 0 : decidedAt.hashCode) +
+    (expired == null ? 0 : expired.hashCode) +
+    (awaitingBuyer == null ? 0 : awaitingBuyer.hashCode) +
+    (platformListingIds == null ? 0 : platformListingIds.hashCode) +
+    (listedTotalCents == null ? 0 : listedTotalCents.hashCode) +
     (message == null ? 0 : message.hashCode) +
     (parentOfferId == null ? 0 : parentOfferId.hashCode) +
-    (platformListingIds == null ? 0 : platformListingIds.hashCode) +
-    (consumedAt == null ? 0 : consumedAt.hashCode) +
-    (listedTotalCents == null ? 0 : listedTotalCents.hashCode) +
-    (origin == null ? 0 : origin.hashCode);
+    (origin == null ? 0 : origin.hashCode) +
+    (decidedAt == null ? 0 : decidedAt.hashCode) +
+    (consumedAt == null ? 0 : consumedAt.hashCode);
 
   @override
-  String toString() => 'ListBuyerOffersItem[id=$id, createdAt=$createdAt, status=$status, expiresAt=$expiresAt, isBundle=$isBundle, platformListingId=$platformListingId, sellerUserId=$sellerUserId, amountCents=$amountCents, expired=$expired, items=$items, awaitingBuyer=$awaitingBuyer, redeemable=$redeemable, decidedAt=$decidedAt, message=$message, parentOfferId=$parentOfferId, platformListingIds=$platformListingIds, consumedAt=$consumedAt, listedTotalCents=$listedTotalCents, origin=$origin]';
+  String toString() => 'ListBuyerOffersItem[id=$id, platformListingId=$platformListingId, sellerUserId=$sellerUserId, amountCents=$amountCents, status=$status, expiresAt=$expiresAt, createdAt=$createdAt, items=$items, isBundle=$isBundle, redeemable=$redeemable, expired=$expired, awaitingBuyer=$awaitingBuyer, platformListingIds=$platformListingIds, listedTotalCents=$listedTotalCents, message=$message, parentOfferId=$parentOfferId, origin=$origin, decidedAt=$decidedAt, consumedAt=$consumedAt]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
       json[r'id'] = id;
-      json[r'createdAt'] = createdAt;
-      json[r'status'] = status;
-      json[r'expiresAt'] = expiresAt;
-      json[r'isBundle'] = isBundle;
       json[r'platformListingId'] = platformListingId;
       json[r'sellerUserId'] = sellerUserId;
       json[r'amountCents'] = amountCents;
-      json[r'expired'] = expired;
+      json[r'status'] = status;
+      json[r'expiresAt'] = expiresAt;
+      json[r'createdAt'] = createdAt;
       json[r'items'] = items;
-      json[r'awaitingBuyer'] = awaitingBuyer;
+      json[r'isBundle'] = isBundle;
       json[r'redeemable'] = redeemable;
-    if (decidedAt != null) {
-      json[r'decidedAt'] = decidedAt;
+      json[r'expired'] = expired;
+      json[r'awaitingBuyer'] = awaitingBuyer;
+    if (platformListingIds != null) {
+      json[r'platformListingIds'] = platformListingIds;
+    }
+    if (listedTotalCents != null) {
+      json[r'listedTotalCents'] = listedTotalCents;
     }
     if (message != null) {
       json[r'message'] = message;
@@ -148,17 +151,14 @@ class ListBuyerOffersItem {
     if (parentOfferId != null) {
       json[r'parentOfferId'] = parentOfferId;
     }
-    if (platformListingIds != null) {
-      json[r'platformListingIds'] = platformListingIds;
+    if (origin != null) {
+      json[r'origin'] = origin;
+    }
+    if (decidedAt != null) {
+      json[r'decidedAt'] = decidedAt;
     }
     if (consumedAt != null) {
       json[r'consumedAt'] = consumedAt;
-    }
-    if (listedTotalCents != null) {
-      json[r'listedTotalCents'] = listedTotalCents;
-    }
-    if (origin != null) {
-      json[r'origin'] = origin;
     }
     return json;
   }
@@ -171,30 +171,30 @@ class ListBuyerOffersItem {
       final json = value.cast<String, dynamic>();
       return ListBuyerOffersItem(
         id: mapValueOfType<String>(json, r'id'),
-        createdAt: mapValueOfType<String>(json, r'createdAt'),
-        status: mapValueOfType<String>(json, r'status'),
-        expiresAt: mapValueOfType<String>(json, r'expiresAt'),
-        isBundle: mapValueOfType<bool>(json, r'isBundle'),
         platformListingId: mapValueOfType<String>(json, r'platformListingId'),
         sellerUserId: mapValueOfType<String>(json, r'sellerUserId'),
         amountCents: json[r'amountCents'] == null
           ? null
           : num.parse(json[r'amountCents'].toString()),
-        expired: mapValueOfType<bool>(json, r'expired'),
+        status: mapValueOfType<String>(json, r'status'),
+        expiresAt: mapValueOfType<String>(json, r'expiresAt'),
+        createdAt: mapValueOfType<String>(json, r'createdAt'),
         items: ListBuyerOffersItemItems.listFromJson(json[r'items']),
-        awaitingBuyer: mapValueOfType<bool>(json, r'awaitingBuyer'),
+        isBundle: mapValueOfType<bool>(json, r'isBundle'),
         redeemable: mapValueOfType<bool>(json, r'redeemable'),
-        decidedAt: mapValueOfType<String>(json, r'decidedAt'),
-        message: mapValueOfType<String>(json, r'message'),
-        parentOfferId: mapValueOfType<String>(json, r'parentOfferId'),
+        expired: mapValueOfType<bool>(json, r'expired'),
+        awaitingBuyer: mapValueOfType<bool>(json, r'awaitingBuyer'),
         platformListingIds: json[r'platformListingIds'] is List
           ? (json[r'platformListingIds'] as List).cast<String>()
           : null,
-        consumedAt: mapValueOfType<String>(json, r'consumedAt'),
         listedTotalCents: json[r'listedTotalCents'] == null
           ? null
           : num.parse(json[r'listedTotalCents'].toString()),
+        message: mapValueOfType<String>(json, r'message'),
+        parentOfferId: mapValueOfType<String>(json, r'parentOfferId'),
         origin: mapValueOfType<String>(json, r'origin'),
+        decidedAt: mapValueOfType<String>(json, r'decidedAt'),
+        consumedAt: mapValueOfType<String>(json, r'consumedAt'),
       );
     }
     return null;

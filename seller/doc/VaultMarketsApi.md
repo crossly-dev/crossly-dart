@@ -21,6 +21,8 @@ Method | HTTP request | Description
 [**createVaultMarketAuctionLot**](VaultMarketsApi.md#createvaultmarketauctionlot) | **POST** /v1/vault-markets/auctions/lots | Consign a stored, authenticated unit to the next weekly or premier event, with an optional opening price and reserve. The unit is held until the close. Returns `{ lotId, eventId, endsAt }`.
 [**createVaultMarketAuctionLotBid**](VaultMarketsApi.md#createvaultmarketauctionlotbid) | **POST** /v1/vault-markets/auctions/lots/{id}/bids | Leave or raise your maximum on a lot; the system bids for you up to it. A bid in the last 2 minutes extends the lot by 2 minutes. The winner's saved card is charged at the close through the order book. ID needed above $10,000.
 [**createVaultMarketAuctionLotWithdraw**](VaultMarketsApi.md#createvaultmarketauctionlotwithdraw) | **POST** /v1/vault-markets/auctions/lots/{id}/withdraw | Withdraw your lot before any bid; the unit goes back on your shelf. Returns `{ ok }`.
+[**createVaultMarketAutoBuyPause**](VaultMarketsApi.md#createvaultmarketautobuypause) | **POST** /v1/vault-markets/auto-buy/pause | Pause Auto-buy with payouts: the budget and want list stay; no payouts are counted and nothing is bought.
+[**createVaultMarketAutoBuyResume**](VaultMarketsApi.md#createvaultmarketautobuyresume) | **POST** /v1/vault-markets/auto-buy/resume | Resume Auto-buy with payouts: payouts released from now on count.
 [**createVaultMarketBlock**](VaultMarketsApi.md#createvaultmarketblock) | **POST** /v1/vault-markets/blocks | Place a block buy for an entity: one order booked to the first sub-account in `plan` (it pays from its custodian account), split across every sub-account in the plan at the average price, fees included, once it is done and the custodian confirmed each payment. Each share's cash moves between the entity's own custodian accounts; its units move only after that settles. Every sub-account must be one you may trade, and its share must fit its limits.
 [**createVaultMarketBlockAllocate**](VaultMarketsApi.md#createvaultmarketblockallocate) | **POST** /v1/vault-markets/blocks/{orderId}/allocate | Allocate a done block now (the keeper does it too). Returns `{ outcome, block }`: allocated, waiting (a payment or transfer is not settled yet), nothing_filled or none.
 [**createVaultMarketBullionFamilyPeg**](VaultMarketsApi.md#createvaultmarketbullionfamilypeg) | **POST** /v1/vault-markets/bullion/family-pegs | Set a family-wide spot-pegged quote: one \"any 1 oz gold coin\" quote resting on each product book of a bullion family at the chosen condition (DS, VNDS or Used). When any leg fills it comes off the others and goes back on only for what is left; two fills at once are settled one at a time against what is left. A bid pays from your custodian account. Replaces your live family quote on the same family, condition and side. ID required.
@@ -98,6 +100,32 @@ Method | HTTP request | Description
 [**createVaultMarketMmMassCancel**](VaultMarketsApi.md#createvaultmarketmmmasscancel) | **POST** /v1/vault-markets/mm/mass-cancel | Cancel every open order (one key, or only quotes) and every resting leg in one statement: nothing fills between the first cancel and the last.
 [**createVaultMarketMmMmpReset**](VaultMarketsApi.md#createvaultmarketmmmmpreset) | **POST** /v1/vault-markets/mm/mmp/reset | End a market-maker protection freeze early.
 [**createVaultMarketOpeningWaitlist**](VaultMarketsApi.md#createvaultmarketopeningwaitlist) | **POST** /v1/vault-markets/opening/{slug}/waitlist | Join a key's waitlist, optionally with a friend's invite code (`ref`). Inviting moves you up the queue; nobody is paid. Returns your place and your own code.
+[**createVaultMarketOptionCombo**](VaultMarketsApi.md#createvaultmarketoptioncombo) | **POST** /v1/vault-markets/options/combos | Place a strategy: 2 to 4 legs on one underlying with ratios, a quantity (units, three decimals) and ONE signed net limit per unit (+ the most you pay, - the least credit you take). Margined on the combined scenario loss of all its legs; matched against the combo book, then the legs' own books; every leg fills at once or none does. Crossly venue only (409 combos_self_venue_only on the partner venue).
+[**createVaultMarketOptionComboCancel**](VaultMarketsApi.md#createvaultmarketoptioncombocancel) | **POST** /v1/vault-markets/options/combos/{id}/cancel | Cancel a working strategy.
+[**createVaultMarketOptionComboRfq**](VaultMarketsApi.md#createvaultmarketoptioncomborfq) | **POST** /v1/vault-markets/options/combos/rfq | Ask makers for a firm net price on a whole strategy (legs, quantity, an optional limit that is never shown). Crossly venue only.
+[**createVaultMarketOptionComboRfqAccept**](VaultMarketsApi.md#createvaultmarketoptioncomborfqaccept) | **POST** /v1/vault-markets/options/combos/rfq/{id}/accept | Take a live, firm answer: both strategies go through the normal path (margin, pre-trade risk), every leg at once.
+[**createVaultMarketOptionComboRfqCancel**](VaultMarketsApi.md#createvaultmarketoptioncomborfqcancel) | **POST** /v1/vault-markets/options/combos/rfq/{id}/cancel | Cancel your open strategy quote request.
+[**createVaultMarketOptionComboRfqRespond**](VaultMarketsApi.md#createvaultmarketoptioncomborfqrespond) | **POST** /v1/vault-markets/options/combos/rfq/{id}/respond | Answer a strategy quote request with a firm net price per unit in the canonical terms, good for 60 seconds; a new answer replaces your last.
+[**createVaultMarketOptionComboRfqResponseWithdraw**](VaultMarketsApi.md#createvaultmarketoptioncomborfqresponsewithdraw) | **POST** /v1/vault-markets/options/combos/rfq/responses/{id}/withdraw | Withdraw your live answer to a strategy quote request.
+[**createVaultMarketOptionCoveredCall**](VaultMarketsApi.md#createvaultmarketoptioncoveredcall) | **POST** /v1/vault-markets/options/covered-calls | Write a covered call: lock a stored vault unit (`vaultItemId`) as collateral and sell up to one call on its own key (`contractId`, `quantity` <= 1) at a price or an implied vol. The unit cannot be sold, moved, lent or withdrawn until the call is bought back or expires; if assigned you pay cash, or the unit sells at the vault auction to cover.
+[**createVaultMarketOptionCoveredCallRelease**](VaultMarketsApi.md#createvaultmarketoptioncoveredcallrelease) | **POST** /v1/vault-markets/options/covered-calls/{id}/release | Free a covered call's vault unit once the call it covers is closed (or covered by other units).
+[**createVaultMarketOptionMmHeartbeat**](VaultMarketsApi.md#createvaultmarketoptionmmheartbeat) | **POST** /v1/vault-markets/options/mm/heartbeat | Keep your option quotes alive (cancel-on-disconnect pulls them after 30 s without a heartbeat).
+[**createVaultMarketOptionMmQuote**](VaultMarketsApi.md#createvaultmarketoptionmmquote) | **POST** /v1/vault-markets/options/mm/quotes | Set (replace) a two-sided quote on an option contract: `bid` and / or `ask` each { priceCents, quantity in contracts }, posted as post-only GTC orders on the Crossly venue. Market-maker protection counts their fills; a quote inside 20% of its mid earns liquidity rewards (CBX).
+[**createVaultMarketOptionMmQuotePull**](VaultMarketsApi.md#createvaultmarketoptionmmquotepull) | **POST** /v1/vault-markets/options/mm/quotes/pull | Pull your option quotes on one contract (`contractId`) or all of them.
+[**createVaultMarketOptionOrder**](VaultMarketsApi.md#createvaultmarketoptionorder) | **POST** /v1/vault-markets/options/orders | Place an options order: `contractId`, `side`, `quantity` in contracts (three decimals), a `priceCents` or an `iv` (`quoteMode`), `tif` gtc / gtd (with `expiresAt`) / ioc, `postOnly`. Idempotent on `clientOrderId`. On the Crossly venue it matches price-time with self-trade prevention after a scenario-margin check; on the partner venue it routes to the partner (accept its `termsVersion`). `subaccountId` trades for a firm sub-account you may trade.
+[**createVaultMarketOptionOrderCancel**](VaultMarketsApi.md#createvaultmarketoptionordercancel) | **POST** /v1/vault-markets/options/orders/{id}/cancel | Cancel a working options order (on the partner venue it is cancelled there first). A liquidation order cannot be cancelled.
+[**createVaultMarketOptionPracticeCombo**](VaultMarketsApi.md#createvaultmarketoptionpracticecombo) | **POST** /v1/vault-markets/options/practice/combos | A practice strategy (play money): the same ticket as a real one, filled at the practice maker's quotes when the net is inside the limit.
+[**createVaultMarketOptionPracticeOrder**](VaultMarketsApi.md#createvaultmarketoptionpracticeorder) | **POST** /v1/vault-markets/options/practice/orders | Place a practice options order (the same ticket as a real one; fills against the practice maker at the reference vol). Play money only.
+[**createVaultMarketOptionPracticeOrderCancel**](VaultMarketsApi.md#createvaultmarketoptionpracticeordercancel) | **POST** /v1/vault-markets/options/practice/orders/{id}/cancel | Cancel a working practice options order.
+[**createVaultMarketOptionPracticeReset**](VaultMarketsApi.md#createvaultmarketoptionpracticereset) | **POST** /v1/vault-markets/options/practice/reset | Start the options practice account again with $10,000: positions and working orders are cleared.
+[**createVaultMarketOptionQuote**](VaultMarketsApi.md#createvaultmarketoptionquote) | **POST** /v1/vault-markets/options/quote | Price a ticket without placing it: give a price per contract or an implied vol (`quoteMode`), get the other back, the premium and fee, the Greeks for your size, the payoff at expiry and the margin it would need on your account (authoritative on the Crossly venue, an estimate when the partner clears). A bad entry is reported, not thrown.
+[**createVaultMarketOptionRfq**](VaultMarketsApi.md#createvaultmarketoptionrfq) | **POST** /v1/vault-markets/options/rfq | Ask for a quote on an option contract: `side`, `quantity` in contracts, an optional `limitCents` (never shown). Makers quoting the series, the underlying's DMM and LPs and approved dealers are told anonymously; answers are firm for 60 s.
+[**createVaultMarketOptionRfqAccept**](VaultMarketsApi.md#createvaultmarketoptionrfqaccept) | **POST** /v1/vault-markets/options/rfq/{id}/accept | Take a live answer (`responseId`) to your option quote request: it trades through the options book at that price or better, with margin and self-trade prevention.
+[**createVaultMarketOptionRfqCancel**](VaultMarketsApi.md#createvaultmarketoptionrfqcancel) | **POST** /v1/vault-markets/options/rfq/{id}/cancel | Cancel your open option quote request.
+[**createVaultMarketOptionRfqRespond**](VaultMarketsApi.md#createvaultmarketoptionrfqrespond) | **POST** /v1/vault-markets/options/rfq/{id}/respond | Answer an option quote request with a firm price per contract for its full size (good for 60 s; a new answer replaces your last).
+[**createVaultMarketOptionRfqResponseWithdraw**](VaultMarketsApi.md#createvaultmarketoptionrfqresponsewithdraw) | **POST** /v1/vault-markets/options/rfq/responses/{id}/withdraw | Withdraw your live answer to an option quote request.
+[**createVaultMarketOptionRoll**](VaultMarketsApi.md#createvaultmarketoptionroll) | **POST** /v1/vault-markets/options/roll | Roll a position to another contract as one strategy order at one net price (+ you pay, - you receive): the close and the open fill together or not at all. `practice` rolls a practice position.
+[**createVaultMarketOptionStrategyPreview**](VaultMarketsApi.md#createvaultmarketoptionstrategypreview) | **POST** /v1/vault-markets/options/strategies/preview | Preview a strategy before placing it: by template (underlying, kind, direction, strikes, expiries) or by legs. Returns each leg at its bid / ask, the net per unit (+ debit, - credit), the payoff at the first expiry, max profit and max loss (null = unbounded), breakevens, net Greeks, and the scenario margin of the whole strategy next to its legs margined one by one.
 [**createVaultMarketP2pLoanCall**](VaultMarketsApi.md#createvaultmarketp2ploancall) | **POST** /v1/vault-markets/p2p/loans/{id}/call | Lender: call the loan (once it is a day old). A refinancing auction runs for about 30 hours, the rate a new lender gets climbing to the ceiling; repaid or refinanced, you are paid in full; neither by the end, the unit moves to your vault.
 [**createVaultMarketP2pLoanCancelCall**](VaultMarketsApi.md#createvaultmarketp2ploancancelcall) | **POST** /v1/vault-markets/p2p/loans/{id}/cancel-call | Lender: take back your call before any other lender has taken the loan over. The refinancing auction stops and the loan carries on as before on its terms.
 [**createVaultMarketP2pLoanRefiAuction**](VaultMarketsApi.md#createvaultmarketp2ploanrefiauction) | **POST** /v1/vault-markets/p2p/loans/{id}/refi-auction | Borrower: look for a cheaper lender. A refinancing auction runs for `hours` (1-72, default 24); the rate a new lender gets climbs from `startAprBps` (default half the loan rate) to just under the loan rate now. The first lender to take it pays your lender off and the loan carries on at that lower rate. Nobody by the end: nothing changes.
@@ -122,6 +150,34 @@ Method | HTTP request | Description
 [**createVaultMarketPositionClose**](VaultMarketsApi.md#createvaultmarketpositionclose) | **POST** /v1/vault-markets/positions/{id}/close | Close a leveraged long: all its units, or `units` of them, each sold for at least `minCents`; each sale repays the pool first.
 [**createVaultMarketPositionCollateral**](VaultMarketsApi.md#createvaultmarketpositioncollateral) | **POST** /v1/vault-markets/positions/{id}/collateral | Answer a margin call: a short posts more collateral (USD, or CBX at half value); a leveraged long pays down its pool loan. Returns the position.
 [**createVaultMarketPositionCover**](VaultMarketsApi.md#createvaultmarketpositioncover) | **POST** /v1/vault-markets/positions/{id}/cover | Cover a short: all its units, or `units` of them, each buying any unit of the key into the vault for up to `maxCents`; each goes back to its lender.
+[**createVaultMarketPredictionAccount**](VaultMarketsApi.md#createvaultmarketpredictionaccount) | **POST** /v1/vault-markets/predictions/account | Open your account at the live prediction venue (the partner DCM, or your own segregated account at the settlement bank). Returns `{ venue, status, opened }`.
+[**createVaultMarketPredictionAlert**](VaultMarketsApi.md#createvaultmarketpredictionalert) | **POST** /v1/vault-markets/predictions/alerts | Tell me when a market's probability crosses a level: `{ marketId, levelPercent, direction }`. Returns the alert.
+[**createVaultMarketPredictionCard**](VaultMarketsApi.md#createvaultmarketpredictioncard) | **POST** /v1/vault-markets/predictions/cards | Make an \"I called it\" share card for a position of yours that settled in your favour (`showAmounts` to include what you paid and won). Returns the card with its public URL.
+[**createVaultMarketPredictionComboRfq**](VaultMarketsApi.md#createvaultmarketpredictioncomborfq) | **POST** /v1/vault-markets/predictions/combos/rfqs | Ask makers for a price on a combo: 2 to 6 legs (a market and a side each) on different underlyings, a size, and an optional limit makers never see. Pays $1 a contract if every leg comes true. `venue` paper or live.
+[**createVaultMarketPredictionComboRfqAccept**](VaultMarketsApi.md#createvaultmarketpredictioncomborfqaccept) | **POST** /v1/vault-markets/predictions/combos/rfqs/{id}/accept | Take one live, firm answer to your combo request (`quoteId`): both stakes are locked and the combo opens. Returns the combo.
+[**createVaultMarketPredictionComboRfqCancel**](VaultMarketsApi.md#createvaultmarketpredictioncomborfqcancel) | **POST** /v1/vault-markets/predictions/combos/rfqs/{id}/cancel | Withdraw your combo request; its answers are withdrawn too.
+[**createVaultMarketPredictionComboRfqQuote**](VaultMarketsApi.md#createvaultmarketpredictioncomborfqquote) | **POST** /v1/vault-markets/predictions/combos/rfqs/{id}/quotes | Answer a combo request with a firm price a contract for the full size (good for 30 seconds; a new answer replaces yours). Real money needs an active prediction maker programme or approved dealer status.
+[**createVaultMarketPredictionComment**](VaultMarketsApi.md#createvaultmarketpredictioncomment) | **POST** /v1/vault-markets/predictions/comments | Comment on a market or a series, or reply to a comment (`parentId`). Moderated like every comment on Crossly.
+[**createVaultMarketPredictionCommentReport**](VaultMarketsApi.md#createvaultmarketpredictioncommentreport) | **POST** /v1/vault-markets/predictions/comments/{id}/report | Report a comment with a reason; enough reports hide it until ops look.
+[**createVaultMarketPredictionConversion**](VaultMarketsApi.md#createvaultmarketpredictionconversion) | **POST** /v1/vault-markets/predictions/conversions | Split ($1 a set buys one Yes in every bucket of an expiry), merge (one Yes in every bucket gives back $1 a set before settlement) or convert (No in one bucket becomes Yes in every other) on a full bucket set. `venue` paper or live. Returns the conversion and the event after it.
+[**createVaultMarketPredictionForecast**](VaultMarketsApi.md#createvaultmarketpredictionforecast) | **POST** /v1/vault-markets/predictions/forecasts | Forecast a market: `probabilityPercent` 0 to 100. The one standing when trading closes is scored (Brier).
+[**createVaultMarketPredictionForecasterFollow**](VaultMarketsApi.md#createvaultmarketpredictionforecasterfollow) | **POST** /v1/vault-markets/predictions/forecasters/{id}/follow | Follow a public forecaster: you are told when they open a position or forecast (copy-watch only; nothing is ever traded for you).
+[**createVaultMarketPredictionMaker**](VaultMarketsApi.md#createvaultmarketpredictionmaker) | **POST** /v1/vault-markets/predictions/makers | Apply to make markets in prediction ladders (one series, or all with `seriesId` null). Needs the ID check; ops approve. Returns the application.
+[**createVaultMarketPredictionMakerQuote**](VaultMarketsApi.md#createvaultmarketpredictionmakerquote) | **POST** /v1/vault-markets/predictions/makers/quotes | Mass quote: replace your resting maker quotes on up to 50 markets with one Yes bid and one Yes ask each (post-only; an ask rests as a No bid at 100 minus it). Live quotes need an active maker programme. Returns what rests.
+[**createVaultMarketPredictionOrder**](VaultMarketsApi.md#createvaultmarketpredictionorder) | **POST** /v1/vault-markets/predictions/orders | Place a prediction order: buy_yes, sell_yes, buy_no or sell_no; limit (priceCents 1-99 in the action's own terms) or market (IOC 10 cents through the best price); GTC, GTD (expiresAt) or IOC; post-only. Sells only what you hold. `venue` paper (practice) or live (503 until a venue is registered). Returns the order with its fills.
+[**createVaultMarketPredictionOrderAmend**](VaultMarketsApi.md#createvaultmarketpredictionorderamend) | **POST** /v1/vault-markets/predictions/orders/{id}/amend | Amend a resting order's price (in its own terms) and/or whole size. It keeps its place in the queue only when the size goes down at the same price; otherwise it is re-queued and may trade at once. Returns the order with `keptPriority`.
+[**createVaultMarketPredictionOrderBatch**](VaultMarketsApi.md#createvaultmarketpredictionorderbatch) | **POST** /v1/vault-markets/predictions/orders/batch | Place up to 20 orders in one call; each answers on its own (`results[]`), one refused never stops the rest.
+[**createVaultMarketPredictionOrderBatchCancel**](VaultMarketsApi.md#createvaultmarketpredictionorderbatchcancel) | **POST** /v1/vault-markets/predictions/orders/batch-cancel | Cancel up to 20 orders in one call; each answers on its own.
+[**createVaultMarketPredictionOrderCancel**](VaultMarketsApi.md#createvaultmarketpredictionordercancel) | **POST** /v1/vault-markets/predictions/orders/{id}/cancel | Cancel a working prediction order; the money (or practice money) it locked comes back. Returns the order.
+[**createVaultMarketPredictionOrderCancelAll**](VaultMarketsApi.md#createvaultmarketpredictionordercancelall) | **POST** /v1/vault-markets/predictions/orders/cancel-all | Cancel every working prediction order you have, or only those on one market (`marketId`). Returns `{ cancelled }`.
+[**createVaultMarketPredictionPaperReset**](VaultMarketsApi.md#createvaultmarketpredictionpaperreset) | **POST** /v1/vault-markets/predictions/paper/reset | Reset your practice prediction account to $1,000 of play money: working practice orders cancelled, practice positions cleared. Once a day.
+[**createVaultMarketPredictionPositionClose**](VaultMarketsApi.md#createvaultmarketpredictionpositionclose) | **POST** /v1/vault-markets/predictions/positions/close | Close a position: your resting sells on the market are cancelled and everything you hold is sold now (market, 10-cent band) or at `priceCents`. Returns the sell order.
+[**createVaultMarketPredictionPositionCloseAll**](VaultMarketsApi.md#createvaultmarketpredictionpositioncloseall) | **POST** /v1/vault-markets/predictions/positions/close-all | Sell all: close every open position on a venue, or only one event's (`eventId`). Each answers on its own.
+[**createVaultMarketPredictionProposal**](VaultMarketsApi.md#createvaultmarketpredictionproposal) | **POST** /v1/vault-markets/predictions/proposals | Propose a market: an index slug or a book key, a shape (close at or above / at or below, between, touch), its strike(s) and an expiry. Ops review it; once listed you earn the creator share of Crossly's take on its fees.
+[**createVaultMarketPredictionProposalCheck**](VaultMarketsApi.md#createvaultmarketpredictionproposalcheck) | **POST** /v1/vault-markets/predictions/proposals/check | Check a market proposal without sending it: whether the underlying may carry markets (a built-in index or a tier A key), and what is wrong with the strike or expiry.
+[**createVaultMarketPredictionProposalWithdraw**](VaultMarketsApi.md#createvaultmarketpredictionproposalwithdraw) | **POST** /v1/vault-markets/predictions/proposals/{id}/withdraw | Withdraw a proposal still waiting for review.
+[**createVaultMarketPredictionSettlementDispute**](VaultMarketsApi.md#createvaultmarketpredictionsettlementdispute) | **POST** /v1/vault-markets/predictions/settlements/{id}/dispute | Dispute a settlement inside its 24-hour review window (you must hold a position in the market). Payout waits for the venue's decision. Returns `{ settlementId, status }`.
+[**createVaultMarketPredictionTerm**](VaultMarketsApi.md#createvaultmarketpredictionterm) | **POST** /v1/vault-markets/predictions/terms | Accept the current prediction-market contract terms (PREDICTION_TERMS_VERSION), needed for every real-money order. Returns `{ termsVersion, venue }`.
 [**createVaultMarketPriceWidget**](VaultMarketsApi.md#createvaultmarketpricewidget) | **POST** /v1/vault-markets/price-widgets | Make a price widget for one vault market (`kind` mark + `bookKey`) or one public index (`kind` index + `indexSlug`): range, layout (compact or chart), theme (auto, light, dark), optionally your own affiliate code for the link back and the sites allowed to show it (empty = any). Returns the widget with its snippets.
 [**createVaultMarketPriceWidgetPreview**](VaultMarketsApi.md#createvaultmarketpricewidgetpreview) | **POST** /v1/vault-markets/price-widgets/preview | What a widget would show before you save it: `view` (value, move, quality, n, as-of, link back) and `html`, the exact page the iframe serves. Nothing is stored.
 [**createVaultMarketProBracket**](VaultMarketsApi.md#createvaultmarketprobracket) | **POST** /v1/vault-markets/pro/brackets | A buy order with a take-profit and/or stop-loss attached; the exits arm as an OCO pair for what the entry fills.
@@ -144,11 +200,43 @@ Method | HTTP request | Description
 [**createVaultMarketSetGoal**](VaultMarketsApi.md#createvaultmarketsetgoal) | **POST** /v1/vault-markets/set-goals | Start a goal on a catalogue set (category, brandSlug, modelSlug from the set search), optionally with a target: one condition, and any grade, ungraded, or one exact grade. One live goal per set.
 [**createVaultMarketSetGoalBasket**](VaultMarketsApi.md#createvaultmarketsetgoalbasket) | **POST** /v1/vault-markets/set-goals/{id}/basket | Place the \"complete my set\" basket bid: one GTC limit buy per missing piece, under a hard budget, paid by one of your saved cards or your custodian account. Every leg passes pre-trade risk and the ID line like any order. Idempotent on clientBasketId. One working basket per goal; its legs are cancelled once the set is complete.
 [**createVaultMarketSetGoalBasketCancel**](VaultMarketsApi.md#createvaultmarketsetgoalbasketcancel) | **POST** /v1/vault-markets/set-goals/{id}/basket/cancel | Cancel the goal working basket bid: every working leg comes off the book; what already filled stays in your vault.
+[**createVaultMarketShareAutoInvest**](VaultMarketsApi.md#createvaultmarketshareautoinvest) | **POST** /v1/vault-markets/shares/auto-invest | Start auto-invest: `amountCents` ($5-$10,000) `every` week or month into `seriesIds` (equal weights) or `targets` (seriesId + weightBps summing to 10,000) or a `basketId` (with `rebalance` to keep your own shares on its weights). Whole shares only; the rest rolls over. Offerings are subscribed at their price; trading books are bought at the best ask up to `maxPremiumBps` over the indicative value. `practice` runs it on paper.
+[**createVaultMarketShareAutoInvestRun**](VaultMarketsApi.md#createvaultmarketshareautoinvestrun) | **POST** /v1/vault-markets/shares/auto-invest/{id}/run | Run a plan now (once a minute at most); the schedule does not move.
+[**createVaultMarketShareAutoInvestUpdate**](VaultMarketsApi.md#createvaultmarketshareautoinvestupdate) | **POST** /v1/vault-markets/shares/auto-invest/{id}/update | Change a plan (amount, cadence, series or weights, cap, rebalance) or set its `status` active, paused or cancelled.
+[**createVaultMarketShareBasketBuy**](VaultMarketsApi.md#createvaultmarketsharebasketbuy) | **POST** /v1/vault-markets/shares/baskets/{id}/buy | Buy a basket once: `amountCents` split by its live weights into whole shares of each series, in your own name (offerings subscribed, trading books at the best ask up to `maxPremiumBps`). `practice` buys on paper.
+[**createVaultMarketShareBuyoutFund**](VaultMarketsApi.md#createvaultmarketsharebuyoutfund) | **POST** /v1/vault-markets/shares/buyouts/{id}/fund | Your whole-unit bid reached the reserve: fund the price through your investor account within 72 hours to buy the item from its holders (no vote).
+[**createVaultMarketShareBuyoutVote**](VaultMarketsApi.md#createvaultmarketsharebuyoutvote) | **POST** /v1/vault-markets/shares/buyouts/{id}/vote | Vote `yes` or `no` on a buyout with the shares you held when the vote opened. You can change your vote while it is open.
+[**createVaultMarketShareBuyoutWithdraw**](VaultMarketsApi.md#createvaultmarketsharebuyoutwithdraw) | **POST** /v1/vault-markets/shares/buyouts/{id}/withdraw | Withdraw your buyout bid before its vote opens; the escrow is refunded.
 [**createVaultMarketShareCard**](VaultMarketsApi.md#createvaultmarketsharecard) | **POST** /v1/vault-markets/share-cards | Make a verified share card of a position, a vault unit, a public index or your portfolio (`kind`, `refId`). The % on it is the price move since your real fill; amounts stay hidden unless `showAmounts`.
+[**createVaultMarketShareGiftAccept**](VaultMarketsApi.md#createvaultmarketsharegiftaccept) | **POST** /v1/vault-markets/shares/gifts/{id}/accept | Accept a share gift. Needs your own verified Vault Shares investor account; the venue then moves the shares to you on the register.
+[**createVaultMarketShareGiftCancel**](VaultMarketsApi.md#createvaultmarketsharegiftcancel) | **POST** /v1/vault-markets/shares/gifts/{id}/cancel | Cancel a gift you offered, before it is accepted: the shares are free again.
+[**createVaultMarketShareGiftDecline**](VaultMarketsApi.md#createvaultmarketsharegiftdecline) | **POST** /v1/vault-markets/shares/gifts/{id}/decline | Decline a share gift offered to you.
+[**createVaultMarketShareInvestor**](VaultMarketsApi.md#createvaultmarketshareinvestor) | **POST** /v1/vault-markets/shares/investor | Open or update your investor account at the venue: accept the current investor terms (`acceptTerms`), and state accredited status or your annual income and net worth for the Reg A+ limit. Needs a verified ID.
+[**createVaultMarketShareOrderCancel**](VaultMarketsApi.md#createvaultmarketshareordercancel) | **POST** /v1/vault-markets/shares/orders/{id}/cancel | Cancel one of your open share-book orders.
+[**createVaultMarketSharePaperOrderCancel**](VaultMarketsApi.md#createvaultmarketsharepaperordercancel) | **POST** /v1/vault-markets/shares/paper/orders/{id}/cancel | Cancel an open practice order.
+[**createVaultMarketSharePaperReset**](VaultMarketsApi.md#createvaultmarketsharepaperreset) | **POST** /v1/vault-markets/shares/paper/reset | Start the practice account over with fresh play money (once a day).
+[**createVaultMarketSharePaperSeryOrder**](VaultMarketsApi.md#createvaultmarketsharepaperseryorder) | **POST** /v1/vault-markets/shares/paper/series/{id}/orders | Place a practice order (play money) with the same rules as the real share book.
+[**createVaultMarketSharePaperSerySubscribe**](VaultMarketsApi.md#createvaultmarketsharepaperserysubscribe) | **POST** /v1/vault-markets/shares/paper/series/{id}/subscribe | Subscribe with play money to a practice series’ offering.
+[**createVaultMarketShareRoomHide**](VaultMarketsApi.md#createvaultmarketshareroomhide) | **POST** /v1/vault-markets/shares/room/{id}/hide | Take down one of your own holder-room posts (`reason`).
+[**createVaultMarketShareSery**](VaultMarketsApi.md#createvaultmarketsharesery) | **POST** /v1/vault-markets/shares/series | Propose a Vault Shares series for one of your units (`vaultItemId`), keeping `retainedShares` (0-50%), with an optional minimum raise, offering length (7-60 days) and reserve. Ops then qualify it, attach the offering circular and open the offering. With no venue it is a practice series. Pass `requestId` to make a retry safe.
+[**createVaultMarketShareSeryBuyout**](VaultMarketsApi.md#createvaultmarketshareserybuyout) | **POST** /v1/vault-markets/shares/series/{id}/buyouts | Bid for the whole item (`offerCents`, at least the mark x 1.10). The bid is escrowed at the venue, then holders vote by shares: two-thirds yes accepts, a majority against rejects, 14 days with no majority against accepts. Accepted, the item is yours and the price is paid out pro rata after storage and insurance.
+[**createVaultMarketShareSeryGift**](VaultMarketsApi.md#createvaultmarketshareserygift) | **POST** /v1/vault-markets/shares/series/{id}/gifts | Give whole `shares` of a series to someone (`to`: their @handle, email or user id), with an optional `message`. The shares are set aside until they accept (14 days). On acceptance the broker-dealer or transfer agent verifies them and moves the shares on the register: no money moves, and your cost basis and holding date carry over.
+[**createVaultMarketShareSeryOrder**](VaultMarketsApi.md#createvaultmarketshareseryorder) | **POST** /v1/vault-markets/shares/series/{id}/orders | Place an order on a series’ share book: `side`, `type` limit or market (immediate-or-cancel inside a 10% band), `tif` gtc / gtd (`expiresAt`) / ioc, whole `shares` or a buy’s `amountCents` (turned into whole shares at the most it could pay), integer `limitCents` a share, `postOnly`. Fees: maker 0, taker 100 bps plus the broker-dealer pass-through. Self-trades are prevented. Pass `requestId` to make a retry safe.
+[**createVaultMarketShareSeryRecombine**](VaultMarketsApi.md#createvaultmarketshareseryrecombine) | **POST** /v1/vault-markets/shares/series/{id}/recombine | You hold every share: take the item back whole. With `withdraw`, it ships home at once (any receipt token is burned as it leaves). Storage and insurance the series owed stay with the unit.
+[**createVaultMarketShareSeryRoom**](VaultMarketsApi.md#createvaultmarketshareseryroom) | **POST** /v1/vault-markets/shares/series/{id}/room | Post in the holder room (shareholders only), up to 1,000 characters.
+[**createVaultMarketShareSerySubscribe**](VaultMarketsApi.md#createvaultmarketshareserysubscribe) | **POST** /v1/vault-markets/shares/series/{id}/subscribe | Subscribe for whole `shares` in an open offering at its fixed price. The money goes into the venue’s escrow in your own name and is refunded if the offering misses its minimum. Reg A+ limits apply. A joint vault member with trade rights may pass `jointVaultId`. Pass `requestId` to make a retry safe.
+[**createVaultMarketShareSeryUnwatch**](VaultMarketsApi.md#createvaultmarketshareseryunwatch) | **POST** /v1/vault-markets/shares/series/{id}/unwatch | Stop being told about a drop (`kind` notify) or leave its waitlist (`kind` waitlist).
+[**createVaultMarketShareSeryUpdate**](VaultMarketsApi.md#createvaultmarketshareseryupdate) | **POST** /v1/vault-markets/shares/series/{id}/updates | Post an update on your own item’s series (you are its originator): `kind` story, provenance, condition, appraisal, exhibition or event, a `title`, a `body`, an optional https `mediaUrl`, `holdersOnly`. Holders are told.
+[**createVaultMarketShareSeryWatch**](VaultMarketsApi.md#createvaultmarketshareserywatch) | **POST** /v1/vault-markets/shares/series/{id}/watch | Ask to be told about a drop (`kind` notify: when your early access opens and when it opens to everyone) or join the waitlist of a sold-out first-come offering (`kind` waitlist, with the `shares` you want).
+[**createVaultMarketShareSeryWithdrawProposal**](VaultMarketsApi.md#createvaultmarketshareserywithdrawproposal) | **POST** /v1/vault-markets/shares/series/{id}/withdraw-proposal | Withdraw your own proposal before its offering opens.
+[**createVaultMarketShareSubscriptionCancel**](VaultMarketsApi.md#createvaultmarketsharesubscriptioncancel) | **POST** /v1/vault-markets/shares/subscriptions/{id}/cancel | Cancel an escrowed subscription while its offering is still open: the escrow is refunded.
+[**createVaultMarketShareViewingBook**](VaultMarketsApi.md#createvaultmarketshareviewingbook) | **POST** /v1/vault-markets/shares/viewings/{id}/book | Book a place on a viewing day (shareholders only), with up to the day’s `guests`. Bookings close a day before; booking again changes your guests.
+[**createVaultMarketShareViewingBookingCancel**](VaultMarketsApi.md#createvaultmarketshareviewingbookingcancel) | **POST** /v1/vault-markets/shares/viewing-bookings/{id}/cancel | Cancel your viewing-day booking.
 [**createVaultMarketShort**](VaultMarketsApi.md#createvaultmarketshort) | **POST** /v1/vault-markets/shorts | Short a book key: borrow `units` lent units (default 1; at most 25/10/3/1 by liquidity tier A/B/C/D) and sell each at `limitCents` or better, posting collateral for all of them (50% of the mark each; CBX counts at half, up to 30%). All units are borrowed or none unless `allowPartial`. A partial sale opens with the units sold. Returns `{ positionId, matched, units }`.
 [**createVaultMarketSupplyBatchLabel**](VaultMarketsApi.md#createvaultmarketsupplybatchlabel) | **POST** /v1/vault-markets/supply/batches/{id}/label | Buy a box's prepaid label again after it failed (for example once a ship-from address is saved). A box that has a label keeps it.
 [**createVaultMarketSupplyInvite**](VaultMarketsApi.md#createvaultmarketsupplyinvite) | **POST** /v1/vault-markets/supply/invites/{id} | Accept or decline a Market Open invite (`accept`).
 [**createVaultMarketSupplySend**](VaultMarketsApi.md#createvaultmarketsupplysend) | **POST** /v1/vault-markets/supply/send | Send inventory items matched to a catalogue variant to the vault as one box: each becomes an inbound vault unit, and the box gets one prepaid inbound label (a PDF to print). Optional: auto-list each unit in the vault book at a share of the mark once stored, and lend when idle. Items that cannot go say why. Crosslisted listings stay live.
+[**createVaultMarketSupplySendIn**](VaultMarketsApi.md#createvaultmarketsupplysendin) | **POST** /v1/vault-markets/supply/send-in | Send inventory items to the vault: `method: label` (one box on a prepaid label) or `dropoff` at a partner (`partnerId`, from the finder; you get a counter code). Each item can carry its declared value; `insured` insures the box for it.
 [**createVaultMarketTerm**](VaultMarketsApi.md#createvaultmarketterm) | **POST** /v1/vault-markets/terms | Accept the current lending terms (needed to lend or short). Returns `{ termsVersion }`.
 [**createVaultMarketTodClaimObject**](VaultMarketsApi.md#createvaultmarkettodclaimobject) | **POST** /v1/vault-markets/tod/claims/{id}/object | Stop a transfer-on-death claim made on your own account. Returns `{ id, status, estateUnlocked }`.
 [**createVaultMarketTodMyClaim**](VaultMarketsApi.md#createvaultmarkettodmyclaim) | **POST** /v1/vault-markets/tod/my-claims | Start a claim as a named beneficiary (ID first), naming the account holder by @username or email. It stays a draft until you add documents and submit. Returns `{ id, status, existing }`.
@@ -168,6 +256,7 @@ Method | HTTP request | Description
 [**createVaultReceiptTokenWalletAllow**](VaultMarketsApi.md#createvaultreceipttokenwalletallow) | **POST** /v1/vault/receipt-tokens/wallets/allow | Put one of your verified Solana wallets (`wallet`) on the receipt-token allow-list so it can hold and receive receipt tokens. Returns a base64 transaction already signed by the receipts authority: the wallet pays the small rent (about 0.001 SOL) and must sign and send it within about two minutes. Needs a verified ID and a wallet that passes the sanctions screen.
 [**deleteVaultMarketAgentWatch**](VaultMarketsApi.md#deletevaultmarketagentwatch) | **DELETE** /v1/vault-markets/agent/watches/{id} | Cancel a live price watch. Returns the watch.
 [**deleteVaultMarketAlert**](VaultMarketsApi.md#deletevaultmarketalert) | **DELETE** /v1/vault-markets/alerts/{id} | Delete a price alert. Returns `{ ok }`.
+[**deleteVaultMarketAutoBuy**](VaultMarketsApi.md#deletevaultmarketautobuy) | **DELETE** /v1/vault-markets/auto-buy | Stop Auto-buy with payouts. The history stays.
 [**deleteVaultMarketBullionFamilyPeg**](VaultMarketsApi.md#deletevaultmarketbullionfamilypeg) | **DELETE** /v1/vault-markets/bullion/family-pegs/{id} | Stop a family-wide quote: every leg order comes off the book; what filled stays filled.
 [**deleteVaultMarketBullionPeg**](VaultMarketsApi.md#deletevaultmarketbullionpeg) | **DELETE** /v1/vault-markets/bullion/pegs/{id} | Stop a spot-pegged quote: its resting order comes off the book; what filled stays filled.
 [**deleteVaultMarketDealerBand**](VaultMarketsApi.md#deletevaultmarketdealerband) | **DELETE** /v1/vault-markets/dealer/bands | Stop a band on a key; its standing bid comes off.
@@ -176,6 +265,10 @@ Method | HTTP request | Description
 [**deleteVaultMarketIndex**](VaultMarketsApi.md#deletevaultmarketindex) | **DELETE** /v1/vault-markets/indexes/{slug} | Delete an index of your own. Returns `{ ok }`.
 [**deleteVaultMarketLocate**](VaultMarketsApi.md#deletevaultmarketlocate) | **DELETE** /v1/vault-markets/locates/{id} | Release a live locate before it lapses.
 [**deleteVaultMarketOpeningWaitlist**](VaultMarketsApi.md#deletevaultmarketopeningwaitlist) | **DELETE** /v1/vault-markets/opening/{slug}/waitlist | Leave a key's waitlist.
+[**deleteVaultMarketPredictionAlert**](VaultMarketsApi.md#deletevaultmarketpredictionalert) | **DELETE** /v1/vault-markets/predictions/alerts/{id} | Remove a probability alert. Returns `{ ok }`.
+[**deleteVaultMarketPredictionCard**](VaultMarketsApi.md#deletevaultmarketpredictioncard) | **DELETE** /v1/vault-markets/predictions/cards/{id} | Take an \"I called it\" card down; its link stops working. Returns `{ ok }`.
+[**deleteVaultMarketPredictionComment**](VaultMarketsApi.md#deletevaultmarketpredictioncomment) | **DELETE** /v1/vault-markets/predictions/comments/{id} | Delete your comment.
+[**deleteVaultMarketPredictionForecasterFollow**](VaultMarketsApi.md#deletevaultmarketpredictionforecasterfollow) | **DELETE** /v1/vault-markets/predictions/forecasters/{id}/follow | Stop following a forecaster.
 [**deleteVaultMarketPriceWidget**](VaultMarketsApi.md#deletevaultmarketpricewidget) | **DELETE** /v1/vault-markets/price-widgets/{id} | Delete a widget. Pages that still paste it show that it is no longer available. Returns `{ id, archived }`.
 [**deleteVaultMarketProQuote**](VaultMarketsApi.md#deletevaultmarketproquote) | **DELETE** /v1/vault-markets/pro/quotes | Pull your quote on a book key, or every quote. Returns `{ pulled }`.
 [**deleteVaultMarketProfileFollow**](VaultMarketsApi.md#deletevaultmarketprofilefollow) | **DELETE** /v1/vault-markets/profiles/{handle}/follow | Stop following someone.
@@ -196,6 +289,7 @@ Method | HTTP request | Description
 [**getVaultMarketAlertPref**](VaultMarketsApi.md#getvaultmarketalertpref) | **GET** /v1/vault-markets/alert-prefs | Your vault alert settings: every kind (price, fill, margin_call, adl, p2p_loan, auction, market_open, receipt_token, set_goal, follow, account), every channel (push, telegram, terminal, email, webhook) with whether it is set up, the full on/off grid, the locked switches (a critical kind always pushes) and quiet hours.
 [**getVaultMarketAuctionLot**](VaultMarketsApi.md#getvaultmarketauctionlot) | **GET** /v1/vault-markets/auctions/lots/{id} | One lot: the price showing, the next minimum bid, whether a reserve exists and is met, the end (extended by late bids), the bid history and your standing.
 [**getVaultMarketAuctionMine**](VaultMarketsApi.md#getvaultmarketauctionmine) | **GET** /v1/vault-markets/auctions/mine | Lots you consigned (with your reserve) and lots you bid on (with your maximum and whether you lead).
+[**getVaultMarketAutoBuy**](VaultMarketsApi.md#getvaultmarketautobuy) | **GET** /v1/vault-markets/auto-buy | Auto-buy with payouts: the share of each payout set aside as a vault buying budget, the budget, your want list with max prices, the purchase history and whether it is paused. `autoBuy` is null when it is not set up.
 [**getVaultMarketBlock**](VaultMarketsApi.md#getvaultmarketblock) | **GET** /v1/vault-markets/blocks/{orderId} | One block order: its order, plan lines (planned and allocated units, average price, cash share, status).
 [**getVaultMarketBullionFor**](VaultMarketsApi.md#getvaultmarketbullionfor) | **GET** /v1/vault-markets/bullion/for | The bullion key families one book key belongs to, with spot for its metal as a labelled reference and its melt value at that spot. Empty families when the item is not keyed bullion.
 [**getVaultMarketBullionKey**](VaultMarketsApi.md#getvaultmarketbullionkey) | **GET** /v1/vault-markets/bullion/keys/{slug} | One bullion key family: its catalogue products, every live book key with best bid, best ask, vault units and its mark (from the book only), live pegged quote counts, and spot as a labelled reference.
@@ -234,6 +328,8 @@ Method | HTTP request | Description
 [**getVaultMarketHallLoan**](VaultMarketsApi.md#getvaultmarkethallloan) | **GET** /v1/vault-markets/hall/loans | Your Hall of Grails desk: this week's exhibition, the rules (maxLive loans, shownPerHolder per exhibition, repPoints per exhibition shown), reputation (exhibitions finished), your loans (status active, ending or ended; onShowNow, showingUntil, exhibitions, the next exhibition it fits, the Lent to the Hall badge) and the vault units you could lend (canLend, or the blocker in words, and the next exhibition each fits). Display only.
 [**getVaultMarketHealth**](VaultMarketsApi.md#getvaultmarkethealth) | **GET** /v1/vault-markets/health | Portfolio health of your vault holdings at Crossly marks: concentration by single item, category, grade and grader (shares, HHI on 0 to 10000, its band and effective number of holdings), value by liquidity tier, the stress grid (each category and everything down 10, 20 and 30 percent), value by mark quality, plain observations, and the held items a what-if can run on. Information only, not advice.
 [**getVaultMarketHealthWhatIf**](VaultMarketsApi.md#getvaultmarkethealthwhatif) | **GET** /v1/vault-markets/health/what-if | What if one held item moved by moveBps (-10000 to 10000 basis points of its mark): the item, your vault total, the item and its category share of the vault, and the single-item HHI, before and after. A scenario on the mark, not a price you could sell at.
+[**getVaultMarketHoldingInventoryItem**](VaultMarketsApi.md#getvaultmarketholdinginventoryitem) | **GET** /v1/vault-markets/holdings/{id}/inventory-item | The inventory item a vault unit of yours came from (null for a unit bought on the book).
+[**getVaultMarketHoldingWithdrawQuote**](VaultMarketsApi.md#getvaultmarketholdingwithdrawquote) | **GET** /v1/vault-markets/holdings/{id}/withdraw-quote | What shipping one unit you own home would charge now, for `standard` and `expedited`: shipping, the storage it owes and the early-withdrawal fee (within 90 days of arriving), and the total. Read-only; ship it home with POST /api/v1/buyer/vault/:id/withdraw.
 [**getVaultMarketHomeUnit**](VaultMarketsApi.md#getvaultmarkethomeunit) | **GET** /v1/vault-markets/home/units | \"Show my vault\": the vault units you hold, the ones standing in your Crossly World home first. Each: vaultItemId, title, grade, imageUrl, bookKey (its market), inHome, visitors (visitors to your home see it). Also your home (slug, privacy, path), max units one home shows, shown, visitorsSee and a note on who sees what. Your home is made on first read. No prices.
 [**getVaultMarketIndex**](VaultMarketsApi.md#getvaultmarketindex) | **GET** /v1/vault-markets/indexes/{slug} | One index with its daily closes (oldest first) and its level now.
 [**getVaultMarketIndexCalendar**](VaultMarketsApi.md#getvaultmarketindexcalendar) | **GET** /v1/vault-markets/index-calendar | The next four quarterly reviews: reference day (2nd Friday of Mar/Jun/Sep/Dec), announcement day, last close under the old membership and the effective day; June and December also review the Blue-chip 50.
@@ -245,6 +341,7 @@ Method | HTTP request | Description
 [**getVaultMarketIndexLicenceUsage**](VaultMarketsApi.md#getvaultmarketindexlicenceusage) | **GET** /v1/vault-markets/index-licence/usage | Your licensed index feed reads over `days`, per index and endpoint (licence-usage report).
 [**getVaultMarketIndexMethodology**](VaultMarketsApi.md#getvaultmarketindexmethodology) | **GET** /v1/vault-markets/index-methodology | The index method in machine-readable form: version (semver), inputs, weightings and caps, the family and its screens, the engines and their publication gate, revisions and the settlement series, the calendar, governance and limitations.
 [**getVaultMarketInstantExit**](VaultMarketsApi.md#getvaultmarketinstantexit) | **GET** /v1/vault-markets/instant-exit | The Instant Exit quote for one vault unit you hold: the best resting bid on its book key (anyone's, dealers' included), its share of the mark, the bid depth, and whether it can be taken now.
+[**getVaultMarketItemLocation**](VaultMarketsApi.md#getvaultmarketitemlocation) | **GET** /v1/vault-markets/items/{inventoryItemId}/location | Where one inventory item's units are: in your own stock (warehouse) and in the vault per location, each vault unit's status (in transit, received, authenticated, graded, listed, shipped out), its Sell from first choice and whether it can be sent to the vault now (with the reason when not).
 [**getVaultMarketJoint**](VaultMarketsApi.md#getvaultmarketjoint) | **GET** /v1/vault-markets/joint | Your joint vaults and the invitations waiting for you, with the gate (open, missing env), the joint terms in words and what each right allows. A JointVaultsHome object, not a collection.
 [**getVaultMarketJointById**](VaultMarketsApi.md#getvaultmarketjointbyid) | **GET** /v1/vault-markets/joint/{id} | One joint vault (active members only): members and rights, the units in it at the mark with each owner of record, totals, recent joint trades, and the activity from the audit trail.
 [**getVaultMarketKeyStat**](VaultMarketsApi.md#getvaultmarketkeystat) | **GET** /v1/vault-markets/key-stats/{bookKey} | Everything derived about one book key in one read: the Crossly Estimate, the liquidity score, risk statistics and the gem rate. A part that cannot be read is `{ error }`.
@@ -267,6 +364,23 @@ Method | HTTP request | Description
 [**getVaultMarketNav**](VaultMarketsApi.md#getvaultmarketnav) | **GET** /v1/vault-markets/nav | Mark NAV, bid NAV (the resting bids) and liquidation NAV (the bids at 20% of ADV for 10 days), holding by holding, each with its ASC 820 level, mark quality and source, and your administrator's price when uploaded.
 [**getVaultMarketNavFile**](VaultMarketsApi.md#getvaultmarketnavfile) | **GET** /v1/vault-markets/nav/file/{format} | The NAV as a csv, pdf or json file.
 [**getVaultMarketOpening**](VaultMarketsApi.md#getvaultmarketopening) | **GET** /v1/vault-markets/opening/{slug} | One opening key.
+[**getVaultMarketOption**](VaultMarketsApi.md#getvaultmarketoption) | **GET** /v1/vault-markets/options | Fractional options: the venue mode (self = Crossly is the venue and clearing house, partner = routed to the index DCM, paper = practice only) with the env each mode still needs, the active series and the rule book in force.
+[**getVaultMarketOptionAnalytic**](VaultMarketsApi.md#getvaultmarketoptionanalytic) | **GET** /v1/vault-markets/options/analytics/{underlying} | Options analytics on an underlying: the vol surface (expiry x moneyness) and one expiry's smile (`expiry`), IV rank and percentile against the series' own year, open interest and volume by strike and expiry, put/call ratios, the expected move to each expiry, and the historical vol of the underlying's own published series. Every implied vol is derived and display only.
+[**getVaultMarketOptionAutoClose**](VaultMarketsApi.md#getvaultmarketoptionautoclose) | **GET** /v1/vault-markets/options/auto-close | Your auto-close rule: close positions (or only in-the-money ones) a set time before expiry with a marketable limit.
+[**getVaultMarketOptionChain**](VaultMarketsApi.md#getvaultmarketoptionchain) | **GET** /v1/vault-markets/options/chain/{underlying} | The option chain for an underlying (index slug or book key): its expiries, and for one expiry (`expiry`, default the nearest) each strike's call and put with best bid / ask, last, open interest, the theoretical price at the reference vol, the implied vol of the mid (display only, never a mark) and the Greeks. Prices are cents per contract.
+[**getVaultMarketOptionComboBook**](VaultMarketsApi.md#getvaultmarketoptioncombobook) | **GET** /v1/vault-markets/options/combos/book | One strategy's combo book by its canonical key (`key`, from the preview or an order): bids and asks by net price and recent strategy trades.
+[**getVaultMarketOptionComboRfq**](VaultMarketsApi.md#getvaultmarketoptioncomborfq) | **GET** /v1/vault-markets/options/combos/rfq/{id} | One strategy quote request and its answers (all of them to the requester, your own to a responder).
+[**getVaultMarketOptionContract**](VaultMarketsApi.md#getvaultmarketoptioncontract) | **GET** /v1/vault-markets/options/contracts/{id} | One option contract: its terms, the self-venue book and tape, its published daily settlement prices and, once settled, its settlement (value, source, flagged, and the hash chained to the previous settlement).
+[**getVaultMarketOptionContractBook**](VaultMarketsApi.md#getvaultmarketoptioncontractbook) | **GET** /v1/vault-markets/options/contracts/{id}/book | A contract's order book on the Crossly venue (`levels`, default 20): bids and asks by price with milli-contract sizes, and the last 50 prints.
+[**getVaultMarketOptionContractSettlement**](VaultMarketsApi.md#getvaultmarketoptioncontractsettlement) | **GET** /v1/vault-markets/options/contracts/{id}/settlement | A settled contract's settlement: the value (cents per unit of the underlying), its source (the index's frozen 7-day TWAP, the item's expiry-day A/B mark, or the last reliable value, flagged), and the hash chained to the previous settlement. Null until it settles.
+[**getVaultMarketOptionHedge**](VaultMarketsApi.md#getvaultmarketoptionhedge) | **GET** /v1/vault-markets/options/hedges | Your hedges: long puts protecting vault units you hold (protective puts) and the vault units locked as collateral for calls you wrote (covered calls).
+[**getVaultMarketOptionIv**](VaultMarketsApi.md#getvaultmarketoptioniv) | **GET** /v1/vault-markets/options/iv/{underlying} | The at-the-money implied volatility of the nearest expiry on an underlying, for display on its page: derived from the options book, quality C, never written as a mark.
+[**getVaultMarketOptionMargin**](VaultMarketsApi.md#getvaultmarketoptionmargin) | **GET** /v1/vault-markets/options/margin | Your options margin: the scenario requirement (worst loss over a +/-40% price x +/-50% vol grid, with offsets from vault units and positions you hold), initial margin, equity and state (ok / call / liquidate) per underlying. Authoritative on the Crossly venue; on the partner venue the partner's figure decides and this is an estimate.
+[**getVaultMarketOptionPayoff**](VaultMarketsApi.md#getvaultmarketoptionpayoff) | **GET** /v1/vault-markets/options/payoff | Your whole options position on one `underlying` at expiry: the P&L curve over 50%..150% of spot, breakevens, and the maximum gain and loss (null when unbounded).
+[**getVaultMarketOptionPosition**](VaultMarketsApi.md#getvaultmarketoptionposition) | **GET** /v1/vault-markets/options/positions | Your options positions: signed milli-contracts, average open price, the price it is settled to (Crossly venue), the theoretical mark, unrealised and realised P&L in cents, the Greeks for your size, the protective-put flag and your auto-deleveraging queue lights. `status` open (default) / all, `subaccountId`.
+[**getVaultMarketOptionPractice**](VaultMarketsApi.md#getvaultmarketoptionpractice) | **GET** /v1/vault-markets/options/practice | Your options practice account (play money only, $10,000 to start): cash, positions at the practice maker's price, equity and P&L.
+[**getVaultMarketOptionRfq**](VaultMarketsApi.md#getvaultmarketoptionrfq) | **GET** /v1/vault-markets/options/rfq/{id} | One option quote request: yours with every answer, or one you were sent with your own answer.
+[**getVaultMarketOptionRisk**](VaultMarketsApi.md#getvaultmarketoptionrisk) | **GET** /v1/vault-markets/options/risk | Your options portfolio's Greeks (per underlying and total, with dollar delta and 1% gamma), a scenario's P&L (`priceShift`, `volShift`, `daysForward`), a price x vol P&L grid, and the beta-weighted delta against an index (`betaIndex`, default the deepest). `book` live (default) or practice.
 [**getVaultMarketOracle**](VaultMarketsApi.md#getvaultmarketoracle) | **GET** /v1/vault-markets/oracle | Crossly as an oracle publisher (needs CROSSLY_ORACLE_PUBLISHER_KEY + CROSSLY_ORACLE_NETWORK): the network (pyth or switchboard), the ed25519 key every value is signed with, each published index feed with its latest attempt, and 24 h counts of published, skipped and failed. Only built-in indexes priced from A/B marks are published; Crossly never reads its own feed back.
 [**getVaultMarketOracleBySlug**](VaultMarketsApi.md#getvaultmarketoraclebyslug) | **GET** /v1/vault-markets/oracle/{slug} | The latest published oracle value for an index: level, fixed-point price and confidence at the feed exponent, confidence in bps, staleness in seconds, coverage, the exact signed message and its ed25519 signature with the signer key, and whether it is fresh.
 [**getVaultMarketOrderHandling**](VaultMarketsApi.md#getvaultmarketorderhandling) | **GET** /v1/vault-markets/order-handling | How orders are handled (the 606/607-style disclosure): one book, self-trade prevention, protected market orders, liquidations by auction, halts, dealers and fees.
@@ -274,7 +388,7 @@ Method | HTTP request | Description
 [**getVaultMarketP2pLoan**](VaultMarketsApi.md#getvaultmarketp2ploan) | **GET** /v1/vault-markets/p2p/loans/{id} | One P2P loan with its money log (fund, repay, refinance). A loan in a running refinancing auction can be read by any lender, without the log.
 [**getVaultMarketPaper**](VaultMarketsApi.md#getvaultmarketpaper) | **GET** /v1/vault-markets/paper | Your paper trading account (play money only, never real or convertible; opened at $10,000 the first time): play cash, buying power, paper positions at the real marks, P&L, working paper orders, recent paper fills and this week on the leaderboard.
 [**getVaultMarketPaperQuote**](VaultMarketsApi.md#getvaultmarketpaperquote) | **GET** /v1/vault-markets/paper/quote | What a paper order would fill against the real book now, without placing it: units fillable inside the limit (a market order uses the 5% protection band around the mark), average price, simulated fee, and the queue ahead of any rest.
-[**getVaultMarketPartnerMe**](VaultMarketsApi.md#getvaultmarketpartnerme) | **GET** /v1/vault-markets/partners/me | Your Vault Drop-off Partnership (null when you never applied): status, partner code, fee share and cap, totals and batches.
+[**getVaultMarketPartnerMe**](VaultMarketsApi.md#getvaultmarketpartnerme) | **GET** /v1/vault-markets/partners/me | Your Vault Drop-off Partnership (null when you never applied): status, partner code, fee share and cap, finder profile, totals and batches; and whether your one-time ID check is done.
 [**getVaultMarketPool**](VaultMarketsApi.md#getvaultmarketpool) | **GET** /v1/vault-markets/pool | The CBX market staking pool: size, value, what it lends, utilisation, rate, insurance fund.
 [**getVaultMarketPopReport**](VaultMarketsApi.md#getvaultmarketpopreport) | **GET** /v1/vault-markets/pop-reports | Grading population report for one market (`bookKey`): focus (on a graded market: its grade, pop = copies graded at exactly that grade, higher = copies graded better by the same grader, total, asOf and source), graders (each grader ladder for the card, best grade first, from one report: the newest, the population feed over a hand entry on the same date), provider.connected, and status (ok, not_synced, no_report or no_source) with explain, which says in plain words what is missing. source is provider (the population feed) or ops (entered by Crossly from the grader published report). Counts only, never a price.
 [**getVaultMarketPortfolio**](VaultMarketsApi.md#getvaultmarketportfolio) | **GET** /v1/vault-markets/portfolio | Your vault holdings at the market price, with cost and P&L, and units you have out on loan.
@@ -283,6 +397,30 @@ Method | HTTP request | Description
 [**getVaultMarketPosition**](VaultMarketsApi.md#getvaultmarketposition) | **GET** /v1/vault-markets/positions/{id} | One position with its loans, auctions and custodian instruction log.
 [**getVaultMarketPositionExit**](VaultMarketsApi.md#getvaultmarketpositionexit) | **GET** /v1/vault-markets/positions/{id}/exits | A position's take-profit / stop-loss, if set.
 [**getVaultMarketPositionRisk**](VaultMarketsApi.md#getvaultmarketpositionrisk) | **GET** /v1/vault-markets/positions/{id}/risk | One position's call and liquidation marks.
+[**getVaultMarketPrediction**](VaultMarketsApi.md#getvaultmarketprediction) | **GET** /v1/vault-markets/predictions | The prediction markets home: the busiest and soonest-expiring \"Will it hit?\" markets with their probability (each market's own price, display only), the underlyings with markets, which venue is live, and how many positions you hold.
+[**getVaultMarketPredictionAccount**](VaultMarketsApi.md#getvaultmarketpredictionaccount) | **GET** /v1/vault-markets/predictions/account | Your prediction-market account: the live venue, your account there and the terms you accepted, whether you may trade real money (region, age, self-exclusion) and why not, your self-set limits, and the practice account line.
+[**getVaultMarketPredictionBoard**](VaultMarketsApi.md#getvaultmarketpredictionboard) | **GET** /v1/vault-markets/predictions/board | The prediction board the Trading Floor and the Market Open plank show: the busiest open markets and their odds. Anonymous: never who holds what.
+[**getVaultMarketPredictionCombo**](VaultMarketsApi.md#getvaultmarketpredictioncombo) | **GET** /v1/vault-markets/predictions/combos/{id} | One of your combos.
+[**getVaultMarketPredictionComboRfq**](VaultMarketsApi.md#getvaultmarketpredictioncomborfq) | **GET** /v1/vault-markets/predictions/combos/rfqs/{id} | One combo request: its legs and size, and the answers you can see (all of them if you asked; yours if you quoted).
+[**getVaultMarketPredictionDailyPrice**](VaultMarketsApi.md#getvaultmarketpredictiondailyprice) | **GET** /v1/vault-markets/predictions/daily-prices | The published daily settlement price of every listed market for a day (default yesterday): the last hour's volume-weighted Yes price, else the book mid, else the prior day's, with volume and open interest.
+[**getVaultMarketPredictionEvent**](VaultMarketsApi.md#getvaultmarketpredictionevent) | **GET** /v1/vault-markets/predictions/events/{id} | One expiry of a series (an event): its markets, what you hold in each, the real worst and best case of your holdings across them (what your limit counts), and, for a full bucket set, how many sets you could merge. `venue` paper or live.
+[**getVaultMarketPredictionForecaster**](VaultMarketsApi.md#getvaultmarketpredictionforecaster) | **GET** /v1/vault-markets/predictions/forecaster | Your forecaster profile: display name, whether it is public (opt-in) and since when, and your followers.
+[**getVaultMarketPredictionForecasterById**](VaultMarketsApi.md#getvaultmarketpredictionforecasterbyid) | **GET** /v1/vault-markets/predictions/forecasters/{id} | A public forecaster: scores (all time and this month), open sides (never sizes), recent settled calls, followers. 404 when private.
+[**getVaultMarketPredictionLeaderboard**](VaultMarketsApi.md#getvaultmarketpredictionleaderboard) | **GET** /v1/vault-markets/predictions/leaderboard | Opt-in forecaster leaderboards: `period` week, month or all; `metric` pnl, accuracy or brier; `venue` live or paper (practice has its own board).
+[**getVaultMarketPredictionLimit**](VaultMarketsApi.md#getvaultmarketpredictionlimit) | **GET** /v1/vault-markets/predictions/limits | Your self-set prediction limits: daily loss limit, self-exclusion, a raise waiting its 24 hours, and any hold the venue placed.
+[**getVaultMarketPredictionMarket**](VaultMarketsApi.md#getvaultmarketpredictionmarket) | **GET** /v1/vault-markets/predictions/markets/{id} | One prediction market: its terms, the Yes ladder of the live venue and of the practice book, recent trades, settlement history (outcome, value, hash, review), the series rules text and hash, and your positions in it.
+[**getVaultMarketPredictionMarketForecast**](VaultMarketsApi.md#getvaultmarketpredictionmarketforecast) | **GET** /v1/vault-markets/predictions/markets/{id}/forecasts | How many people forecast a market and their median probability (no names).
+[**getVaultMarketPredictionMarketHistory**](VaultMarketsApi.md#getvaultmarketpredictionmarkethistory) | **GET** /v1/vault-markets/predictions/markets/{id}/history | A market's history: probability points (display only, never a mark), candles on the Yes price, volume and open interest over `range` 1d, 1w, 1m or all; `venue` live or paper.
+[**getVaultMarketPredictionMarketStream**](VaultMarketsApi.md#getvaultmarketpredictionmarketstream) | **GET** /v1/vault-markets/predictions/markets/{id}/stream | A server-sent event stream for one prediction market: `snapshot` first, then `pm_depth`, `pm_trades`, `pm_probability`, `pm_status` and `pm_settlement` as they change.
+[**getVaultMarketPredictionMarketTrade**](VaultMarketsApi.md#getvaultmarketpredictionmarkettrade) | **GET** /v1/vault-markets/predictions/markets/{id}/trades | The trade tape, newest first: Yes price, size, which side took, venue. Page with `before` (the last `seq`).
+[**getVaultMarketPredictionMeStream**](VaultMarketsApi.md#getvaultmarketpredictionmestream) | **GET** /v1/vault-markets/predictions/me/stream | A server-sent event stream of your own prediction events: `pm_order` (placed, filled, amended, cancelled, expired), `pm_fill` (your side, price and fee), `pm_position`, `pm_combo` and `pm_conversion`.
+[**getVaultMarketPredictionMission**](VaultMarketsApi.md#getvaultmarketpredictionmission) | **GET** /v1/vault-markets/predictions/missions | The two \"Will it hit?\" practice missions (your first call; see one settle), whether the server saw each done, and the pin they lead to. Pins only.
+[**getVaultMarketPredictionPaper**](VaultMarketsApi.md#getvaultmarketpredictionpaper) | **GET** /v1/vault-markets/predictions/paper | Your practice prediction account (play money only, $1,000 to start, never real or convertible): cash, money locked by working orders, positions and working orders.
+[**getVaultMarketPredictionQuote**](VaultMarketsApi.md#getvaultmarketpredictionquote) | **GET** /v1/vault-markets/predictions/quote | What an order would do now without placing it: contracts fillable inside the limit (a market order uses the 10-cent band), average price, estimated fee (Kalshi's formula), the money it would lock, and the most it could pay out.
+[**getVaultMarketPredictionRulebook**](VaultMarketsApi.md#getvaultmarketpredictionrulebook) | **GET** /v1/vault-markets/predictions/rulebook | The prediction venue's rule book now and every version, each hashed and chained to the one before (`chainOk`).
+[**getVaultMarketPredictionStream**](VaultMarketsApi.md#getvaultmarketpredictionstream) | **GET** /v1/vault-markets/predictions/stream | A server-sent event stream for up to 50 markets (`markets`=id,id): `ready`, then `pm_depth`, `pm_trades`, `pm_probability`, `pm_status` and `pm_settlement`, each carrying its marketId.
+[**getVaultMarketPredictionVenue**](VaultMarketsApi.md#getvaultmarketpredictionvenue) | **GET** /v1/vault-markets/predictions/venue | Which prediction venue is live: self (Crossly as the DCM, money at the segregated settlement bank), partner (a partner DCM) or paper (practice only), who runs the book, where money sits, and the env each real mode still needs.
+[**getVaultMarketPredictionWillItHit**](VaultMarketsApi.md#getvaultmarketpredictionwillithit) | **GET** /v1/vault-markets/predictions/will-it-hit | The \"Will it hit?\" panel for a key (`bookKey`) or an index (`index` slug): its open markets grouped by expiry, each with its probability. `eligible` is false when nothing is listed on it.
 [**getVaultMarketPress**](VaultMarketsApi.md#getvaultmarketpress) | **GET** /v1/vault-markets/press | The press kit: each built-in index with level, quality, n, CSV link and a \"cite as\" line, plus the methodology links.
 [**getVaultMarketPriceWidget**](VaultMarketsApi.md#getvaultmarketpricewidget) | **GET** /v1/vault-markets/price-widgets/{id} | One of your price widgets, with its iframe and script-tag snippets and URLs.
 [**getVaultMarketProDepth**](VaultMarketsApi.md#getvaultmarketprodepth) | **GET** /v1/vault-markets/pro/depth | The L2 depth ladder: price levels and units per side, best first; asks show how many units are authenticated vault stock.
@@ -302,17 +440,34 @@ Method | HTTP request | Description
 [**getVaultMarketRiskStat**](VaultMarketsApi.md#getvaultmarketriskstat) | **GET** /v1/vault-markets/risk-stats/{bookKey} | Risk statistics for a book key (weekly returns from A-quality marks only) or an index slug (its closes): annualised volatility raw and Geltner-desmoothed (labelled), max drawdown and beta to the Composite. Needs 26 weekly returns, else no numbers.
 [**getVaultMarketSetGoal**](VaultMarketsApi.md#getvaultmarketsetgoal) | **GET** /v1/vault-markets/set-goals/{id} | One set goal: every piece in the set order, held (with the vault unit) or missing (with the cheapest marked book key that meets the target and its mark), the conditions and grades seen, and the working basket bid with its legs.
 [**getVaultMarketSetGoalBasketPlan**](VaultMarketsApi.md#getvaultmarketsetgoalbasketplan) | **GET** /v1/vault-markets/set-goals/{id}/basket-plan | What a basket bid would place now, without placing it: one leg per missing piece (cheapest first, the mark plus maxBpsOverMark as the limit), the pieces skipped and why, and the most it can cost (limits plus the worst-case buyer fee), never more than budgetCents.
+[**getVaultMarketSetting**](VaultMarketsApi.md#getvaultmarketsetting) | **GET** /v1/vault-markets/settings | Your vault defaults: Sell from first, new-inventory suggestions, the insurance rule and the default grading service.
+[**getVaultMarketShare**](VaultMarketsApi.md#getvaultmarketshare) | **GET** /v1/vault-markets/shares | Vault Shares at a glance: the venue mode in force (self, partner or paper) and the env it still needs, the rules (about $5 a share, 100 to 100,000 shares, originator keeps 0-50%, 3% origination, maker 0 / taker 100 bps, 90-day lockup, buyouts at the mark x 1.10 with a two-thirds vote) and the disclosure.
+[**getVaultMarketShareBasket**](VaultMarketsApi.md#getvaultmarketsharebasket) | **GET** /v1/vault-markets/shares/baskets/{id} | One theme basket (id or slug): its series, target and live weights, prices, and your own holdings against the weights.
 [**getVaultMarketShareCard**](VaultMarketsApi.md#getvaultmarketsharecard) | **GET** /v1/vault-markets/share-cards/{id} | One share card as the public sees it, with its image and link paths.
+[**getVaultMarketShareInvestor**](VaultMarketsApi.md#getvaultmarketshareinvestor) | **GET** /v1/vault-markets/shares/investor | Your investor account at the venue in force: its status, the investor terms you accepted, and your Reg A+ limit for one offering (10% of the greater of income and net worth unless accredited).
+[**getVaultMarketShareMe**](VaultMarketsApi.md#getvaultmarketshareme) | **GET** /v1/vault-markets/shares/me | Your Vault Shares: shares and percent of each item, cost, implied value at the last price, your subscriptions and the payouts you were sent.
+[**getVaultMarketSharePaper**](VaultMarketsApi.md#getvaultmarketsharepaper) | **GET** /v1/vault-markets/shares/paper | Your practice account for Vault Shares (play money only, never real, never convertible): cash, practice holdings, open practice orders, recent practice fills.
+[**getVaultMarketSharePaperSeryBook**](VaultMarketsApi.md#getvaultmarketsharepaperserybook) | **GET** /v1/vault-markets/shares/paper/series/{id}/book | A series’ practice book: practice orders and the house quote 1% either side of the reference price.
+[**getVaultMarketSharePreview**](VaultMarketsApi.md#getvaultmarketsharepreview) | **GET** /v1/vault-markets/shares/preview | Fractionalize instead: whether one of your vault units can become a Vault Shares series now (stored, tier A or B, reliable mark of $1,000 or more, declared and insured, free) and the offering terms it would get.
+[**getVaultMarketShareSery**](VaultMarketsApi.md#getvaultmarketsharesery) | **GET** /v1/vault-markets/shares/series/{id} | One series: the offering, the share book depth, the latest fills, holders as share percentages (nobody named), buyouts and your vote, your orders and subscriptions.
+[**getVaultMarketShareSeryBook**](VaultMarketsApi.md#getvaultmarketshareserybook) | **GET** /v1/vault-markets/shares/series/{id}/book | A share book’s depth: whole shares per price level (integer cents a share), best first.
+[**getVaultMarketShareSeryHistory**](VaultMarketsApi.md#getvaultmarketshareseryhistory) | **GET** /v1/vault-markets/shares/series/{id}/history | A series’ full price history: OHLC candles of every share-book fill (`interval` 1h, 1d or 1w), the offering price, the change since the offering, and the appraisal history beside it. Share prices are display only, never a mark.
+[**getVaultMarketShareSeryPerk**](VaultMarketsApi.md#getvaultmarketshareseryperk) | **GET** /v1/vault-markets/shares/series/{id}/perks | Holder perks on a series: whether you hold it, your holder badge, the links to visit the item in the world vault room and in AR, the viewing days with places left and your bookings.
+[**getVaultMarketShareSeryRoom**](VaultMarketsApi.md#getvaultmarketshareseryroom) | **GET** /v1/vault-markets/shares/series/{id}/room | The holder room for a series (shareholders only): posts newest first under per-series aliases, never account names. `before` pages back.
 [**getVaultMarketStatement**](VaultMarketsApi.md#getvaultmarketstatement) | **GET** /v1/vault-markets/statements | The last 24 months with whether each statement is issued (frozen, with its sha256).
 [**getVaultMarketStatementByMonth**](VaultMarketsApi.md#getvaultmarketstatementbymonth) | **GET** /v1/vault-markets/statements/{month} | A monthly statement (`month` like 2026-10): units held at month end, loans, pledges, positions, fills, fees, storage, and cash quoted from the custodian and labelled as its record. Issued (frozen) once the month ends.
 [**getVaultMarketStatementFile**](VaultMarketsApi.md#getvaultmarketstatementfile) | **GET** /v1/vault-markets/statements/{month}/file/{format} | A monthly statement as a csv, pdf or json file.
 [**getVaultMarketSupply**](VaultMarketsApi.md#getvaultmarketsupply) | **GET** /v1/vault-markets/supply | A book key's units in the vault and authentications passed, by day (oldest first, today live).
 [**getVaultMarketSupplyBatch**](VaultMarketsApi.md#getvaultmarketsupplybatch) | **GET** /v1/vault-markets/supply/batches/{id} | A box sent to the vault: its prepaid label and tracking, or why it has no label.
 [**getVaultMarketSupplyRoundUp**](VaultMarketsApi.md#getvaultmarketsupplyroundup) | **GET** /v1/vault-markets/supply/round-up | Your seller round-up: the share of each payout that sets a vault buy's budget, the budget so far and what it is doing. `roundUp` is null when none is set.
+[**getVaultMarketSupplyShipment**](VaultMarketsApi.md#getvaultmarketsupplyshipment) | **GET** /v1/vault-markets/supply/shipments/{id} | One shipment into the vault, with each unit and whether it was received.
 [**getVaultMarketTax**](VaultMarketsApi.md#getvaultmarkettax) | **GET** /v1/vault-markets/tax | Your tax year on the vault markets: units bought and sold with cost, proceeds, gain and term; lending fees, staking interest (estimate), market-maker rewards; closed positions. Links to the CSV and PDF.
 [**getVaultMarketTaxCsv**](VaultMarketsApi.md#getvaultmarkettaxcsv) | **GET** /v1/vault-markets/tax.csv | The tax year as a CSV: one row per sale, purchase, gift, income line and closed position.
 [**getVaultMarketTaxLossSuggestion**](VaultMarketsApi.md#getvaultmarkettaxlosssuggestion) | **GET** /v1/vault-markets/tax/loss-suggestions | Tax-loss suggestions: the units you hold whose mark is below your cost, each with its lot (acquired when and how, cost in cents), short or long term if sold today and the day a short lot turns long, the estimated loss at the mark before selling fees, mark quality, what stops a sale, and a link to the ordinary sell ticket. With totals by term, the gains realised so far this year, and a not-tax-advice disclosure. Never sells.
+[**getVaultMarketTaxOption**](VaultMarketsApi.md#getvaultmarkettaxoption) | **GET** /v1/vault-markets/tax/options | Your fractional options tax lots for a calendar year (`year`, default this year): FIFO disposals (closed or settled) with proceeds, cost, gain in cents and holding term, each flagged as a possible Section 1256 contract, the totals with the 60/40 split, and the positions open at year end. Real fills only; practice never appears. Not tax advice.
 [**getVaultMarketTaxPdf**](VaultMarketsApi.md#getvaultmarkettaxpdf) | **GET** /v1/vault-markets/tax.pdf | The tax year as a PDF summary.
+[**getVaultMarketTaxPrediction**](VaultMarketsApi.md#getvaultmarkettaxprediction) | **GET** /v1/vault-markets/tax/predictions | Your prediction-market results for a calendar year (`year`), as the venue reports them: each settled or voided real-money position with its venue, cost, fees, payout, refund, closing-trade gains and net in cents, and the totals. Practice never appears. Not tax advice.
+[**getVaultMarketTaxShare**](VaultMarketsApi.md#getvaultmarkettaxshare) | **GET** /v1/vault-markets/tax/shares | Your Vault Shares tax lots for a calendar year (`year`): disposals (share-book sales, exit payouts) with holding periods, proceeds, cost and gain in cents, the open lots and the totals. The broker-dealer issues the 1099-B; not tax advice.
 [**getVaultMarketTca**](VaultMarketsApi.md#getvaultmarkettca) | **GET** /v1/vault-markets/tca | Your pro orders in a window (`from`, `to`; default 90 days) with arrival mark and mid, average fill, implementation shortfall, slippage, fill rate and time to fill.
 [**getVaultMarketTcaByOrderId**](VaultMarketsApi.md#getvaultmarkettcabyorderid) | **GET** /v1/vault-markets/tca/{orderId} | One order's TCA, including slippage against the VWAP of eligible trades while it worked.
 [**getVaultMarketTod**](VaultMarketsApi.md#getvaultmarkettod) | **GET** /v1/vault-markets/tod | Your transfer-on-death setup: the gate and terms, whether you accepted them, your beneficiaries and shares, units with their designations and who the plan gives them to today, and open claims on your account (which you can stop). A TodOverview object, not a collection.
@@ -331,6 +486,7 @@ Method | HTTP request | Description
 [**getVaultMarketWidgetMark**](VaultMarketsApi.md#getvaultmarketwidgetmark) | **GET** /v1/vault-markets/widgets/mark | What the <crossly-mark> widget shows for `bookKey`: mark, quality, trades over 30 days, as-of, sparkline, or `insufficient`.
 [**getVaultMarketWidgetSummary**](VaultMarketsApi.md#getvaultmarketwidgetsummary) | **GET** /v1/vault-markets/widget/summary | The home-screen widget summary: portfolio value at the mark with its move since the previous marks (cents and bps) and the share resting on reliable A/B marks, the three biggest movers among what you hold (the market movers when you hold nothing; `movers.source` says which), and one watchlist key (`?key=` a book key on your watchlist; else your newest watch) with a 14-day sparkline. Every price is from the Crossly order book and carries its mark quality (A, B, C or none). Cached for five minutes.
 [**getVaultMarketWorldFloor**](VaultMarketsApi.md#getvaultmarketworldfloor) | **GET** /v1/vault-markets/world/floor | The Trading Floor in Crossly World: trades (the newest trades on every vault book in the last day, at most 40, newest first: bookKey, name, priceCents, priceText, side -- buy when a buyer took an ask, sell when a seller hit a bid, cross for an auction -- and ageS), tickers (the big board: the most-traded markets, each with its last trade price, the change from the last trade before today in basis points, trades today and the display mark with its quality), bell (Market Open: ringing for ten minutes after a new key opens, with the key and its market link, and what opens next) and trades24h. Every price is a trade on the Crossly order book; it never shows who traded. Nothing can be traded in the room.
+[**getVaultMarketWorldFloorBoard**](VaultMarketsApi.md#getvaultmarketworldfloorboard) | **GET** /v1/vault-markets/world/floor/boards | The Trading Floor boards for the round-13 products: odds (the probability ladder: the busiest open \"Will it hit?\" markets with probabilityBps, the market’s own price as a probability, display only), heat (option-chain heat: per listed underlying, open interest and the last day’s volume in milli-contracts in strike buckets around the underlying, a 0..1 heat per bucket and the at-the-money implied vol, display only) and shares (Vault Shares tickers: last share price in cents, changeBps from the last fill before today, shares traded today and the implied item value, display only). quality is always C: none of these is ever a mark. It never shows who traded.
 [**getVaultMarketWorldLounge**](VaultMarketsApi.md#getvaultmarketworldlounge) | **GET** /v1/vault-markets/world/lounge | The Vault Holders Lounge: the rule to join (held value at reliable marks, or a unit count), whether you may join now and what you hold toward it. Anyone may look in; only holders are seen there. No perks, nothing to trade.
 [**getVaultMarketWorldPlaceVaultGate**](VaultMarketsApi.md#getvaultmarketworldplacevaultgate) | **GET** /v1/vault-markets/world/places/{place}/vault-gate | The vault-holder door on a Crossly World room or Space, by its presence slug (a room share slug, or space-<slug>): the rule (minValueCents held at reliable A/B marks and/or minUnits units, mode any or all, optionally one product, bullion family or category), the rule in words, and whether you may join now with what you hold toward it. gate is null when the place has no vault door. Anyone may look in; only holders join.
 [**getVaultMarketWorth**](VaultMarketsApi.md#getvaultmarketworth) | **GET** /v1/vault-markets/worth | What one book key (variantId:condition:gradeKey, `bookKey`) is worth: the mark in cents with its quality (A from trades, B from firm quotes, C indicative, none) and band, what Instant Exit would pay for one unit now from the best resting bid (yours left out), and your units: how many you hold, how many are free to sell, their value at the mark and what selling every free one now would fetch from today’s bids. Plain-words `headline` and `lines`. Read only.
@@ -373,6 +529,7 @@ Method | HTTP request | Description
 [**listVaultMarketGradeToVault**](VaultMarketsApi.md#listvaultmarketgradetovault) | **GET** /v1/vault-markets/grade-to-vault | Your Grade to Vault flows, newest first, each brought up to date: its step, the grading submission, the unit, the grade, the market for it, and the ask once listed. `live=1` for those still going.
 [**listVaultMarketGrading**](VaultMarketsApi.md#listvaultmarketgrading) | **GET** /v1/vault-markets/grading | Your vault units sent to grading: where each card is in its run, and the grade once it is back.
 [**listVaultMarketHallLenders**](VaultMarketsApi.md#listvaultmarkethalllenders) | **GET** /v1/vault-markets/hall/lenders | The vault units lent to this week's Hall of Grails exhibition and on show now, in plinth order: the item (skuId, name, imageUrl, grade), the lender as the plate names them (a display name, or \"a collector\"), the plate lines and how many exhibitions the unit has stood in. meta.exhibition is the week (key, title, endsAt). Names no ids and no amounts.
+[**listVaultMarketHoldings**](VaultMarketsApi.md#listvaultmarketholdings) | **GET** /v1/vault-markets/holdings | Everything you own in the Crossly vault, newest activity first: each unit with its status (inbound, stored, listed, withdraw_requested…) and situation (lent, pledged, in_grading…), what it is worth (`valueCents` with `valueSource` mark | last_sale | declared | none), declared and insured value, storage owed, its open ask, the deposit toggles when you sent it in, and what you may do with it now (`actions`). Units sold or shipped home in the last 90 days have `past: true`. `meta` carries the totals (units, value, declared, insured, storage owed), your recent boxes and their labels, the ship-home prices and the lending gate.
 [**listVaultMarketIndexCommitteeMinutes**](VaultMarketsApi.md#listvaultmarketindexcommitteeminutes) | **GET** /v1/vault-markets/index-committee/minutes | Published Index Committee minutes, newest first: attendees (names and roles), quorum, agenda, minutes and decisions.
 [**listVaultMarketIndexComplaints**](VaultMarketsApi.md#listvaultmarketindexcomplaints) | **GET** /v1/vault-markets/index-complaints | Your complaints and their answers, newest first.
 [**listVaultMarketIndexConstituents**](VaultMarketsApi.md#listvaultmarketindexconstituents) | **GET** /v1/vault-markets/indexes/{slug}/constituents | The book keys in an index with their weight, move since the last close and contribution to the index's move (basis points).
@@ -397,6 +554,20 @@ Method | HTTP request | Description
 [**listVaultMarketNavHistory**](VaultMarketsApi.md#listvaultmarketnavhistory) | **GET** /v1/vault-markets/nav/history | Daily NAV snapshots (mark, bid, liquidation, Level 2 / Level 3).
 [**listVaultMarketOffers**](VaultMarketsApi.md#listvaultmarketoffers) | **GET** /v1/vault-markets/offers | The offers inbox: for each book key you hold, the best bid from someone else, units at it, the top bid levels, the mark, and your alert.
 [**listVaultMarketOpening**](VaultMarketsApi.md#listvaultmarketopening) | **GET** /v1/vault-markets/opening | Keys opening soon on the vault book (and just opened): units on the shelf, dealers quoting, the waitlist, the mark when the book has one, and your place.
+[**listVaultMarketOptionComboRfq**](VaultMarketsApi.md#listvaultmarketoptioncomborfq) | **GET** /v1/vault-markets/options/combos/rfq | Your strategy quote requests, newest first.
+[**listVaultMarketOptionComboRfqInbox**](VaultMarketsApi.md#listvaultmarketoptioncomborfqinbox) | **GET** /v1/vault-markets/options/combos/rfq/inbox | Open strategy quote requests you may answer (never your own; the requester stays anonymous).
+[**listVaultMarketOptionCombos**](VaultMarketsApi.md#listvaultmarketoptioncombos) | **GET** /v1/vault-markets/options/combos | Your strategies: `status` working (default), done or all, with their legs as you hold them, net per unit, filled size and status.
+[**listVaultMarketOptionContractDaily**](VaultMarketsApi.md#listvaultmarketoptioncontractdaily) | **GET** /v1/vault-markets/options/contracts/{id}/daily | A contract's published daily settlement prices, newest first (`days`, default 30): the price, how it was set (volume-weighted fills, the mid, or Black-Scholes at the reference vol), its implied vol, the underlying, open interest and volume, and each row's chain hash.
+[**listVaultMarketOptionMmQuotes**](VaultMarketsApi.md#listvaultmarketoptionmmquotes) | **GET** /v1/vault-markets/options/mm/quotes | Your two-sided option quotes: the contract, the bid and ask orders behind them, cancel-on-disconnect and the last heartbeat.
+[**listVaultMarketOptionNotices**](VaultMarketsApi.md#listvaultmarketoptionnotices) | **GET** /v1/vault-markets/options/notices | Your options notices, newest first: expiry warnings, auto-closes, exercises (a long settled in the money), assignments (a short settled in the money), expiries worthless and rolls.
+[**listVaultMarketOptionOrders**](VaultMarketsApi.md#listvaultmarketoptionorders) | **GET** /v1/vault-markets/options/orders | Your options orders, newest first: `status` working (default) / done / all, `limit`, `subaccountId`.
+[**listVaultMarketOptionPracticeCombos**](VaultMarketsApi.md#listvaultmarketoptionpracticecombos) | **GET** /v1/vault-markets/options/practice/combos | Your practice strategies.
+[**listVaultMarketOptionPracticeFills**](VaultMarketsApi.md#listvaultmarketoptionpracticefills) | **GET** /v1/vault-markets/options/practice/fills | Your practice options fills, newest first (`limit`).
+[**listVaultMarketOptionPracticeOrders**](VaultMarketsApi.md#listvaultmarketoptionpracticeorders) | **GET** /v1/vault-markets/options/practice/orders | Your practice options orders: `status` working (default) / done / all, `limit`.
+[**listVaultMarketOptionRfq**](VaultMarketsApi.md#listvaultmarketoptionrfq) | **GET** /v1/vault-markets/options/rfq | Your option quote requests, newest first.
+[**listVaultMarketOptionRfqInbox**](VaultMarketsApi.md#listvaultmarketoptionrfqinbox) | **GET** /v1/vault-markets/options/rfq/inbox | Open option quote requests you can answer.
+[**listVaultMarketOptionSeries**](VaultMarketsApi.md#listvaultmarketoptionseries) | **GET** /v1/vault-markets/options/series | Every options series: its underlying (a Crossly index, or a tier A item key with 90 days of reliable marks), status and the eligibility snapshot it last passed. `status`: active (default) or all.
+[**listVaultMarketOptionStrategies**](VaultMarketsApi.md#listvaultmarketoptionstrategies) | **GET** /v1/vault-markets/options/strategies | The strategies the picker builds (vertical, calendar, diagonal, straddle, strangle, butterfly, iron condor, collar): how many strikes and expiries each takes, whether it needs calls or puts, and what it does in plain words.
 [**listVaultMarketOracleHistory**](VaultMarketsApi.md#listvaultmarketoraclehistory) | **GET** /v1/vault-markets/oracle/{slug}/history | Recent publish attempts for an index over 30 days, newest first: published, skipped (with the reason: too few items priced, stale marks, confidence too wide...) or failed (with the error). Filter with `status`, cap with `limit` (default 100).
 [**listVaultMarketP2pAuctions**](VaultMarketsApi.md#listvaultmarketp2pauctions) | **GET** /v1/vault-markets/p2p/auctions | Running refinancing auctions, soonest to end first: lenders calls (`auction`) and borrowers looking for a cheaper lender (`refiAuction`). The payoff now, the rate a new lender gets now, when it ends, and the item.
 [**listVaultMarketP2pLoans**](VaultMarketsApi.md#listvaultmarketp2ploans) | **GET** /v1/vault-markets/p2p/loans | Your P2P loans as borrower and/or lender (`role`), live by default (`status`): what is owed now, daily interest, the refinancing auction when called, and the item mark for information only (it never triggers anything).
@@ -408,11 +579,26 @@ Method | HTTP request | Description
 [**listVaultMarketPaperMissions**](VaultMarketsApi.md#listvaultmarketpapermissions) | **GET** /v1/vault-markets/paper/missions | Your paper-trading missions (play money only): each mission with what to do, your count toward its target, whether it is done and when, plus a suggested market for the \"Read the mark\" mission. Progress is observed by the server from your paper orders and fills, price watches, set goals and graded mark checks. Missions earn world quest progress and cosmetic pins, never money.
 [**listVaultMarketPaperOrders**](VaultMarketsApi.md#listvaultmarketpaperorders) | **GET** /v1/vault-markets/paper/orders | Your paper orders since your last reset, newest first: working, done (filled, cancelled, expired) or all. Play money only.
 [**listVaultMarketPartnerAccruals**](VaultMarketsApi.md#listvaultmarketpartneraccruals) | **GET** /v1/vault-markets/partners/accruals | Your partner fee shares, newest first: accrued on a unit's first sale, paid in Bucks once the sale is final, void if it was refunded.
+[**listVaultMarketPartnerFinder**](VaultMarketsApi.md#listvaultmarketpartnerfinder) | **GET** /v1/vault-markets/partners/finder | Vault drop-off partners near a `postalCode`, optionally offering a `service`: address, hours and services.
 [**listVaultMarketPoolStakes**](VaultMarketsApi.md#listvaultmarketpoolstakes) | **GET** /v1/vault-markets/pool/stakes | Your stakes in the market pool and what each redeems for now.
 [**listVaultMarketPortfolioMarginHistory**](VaultMarketsApi.md#listvaultmarketportfoliomarginhistory) | **GET** /v1/vault-markets/portfolio-margin/history | The 5-minute portfolio margin recalculations for a firm sub-account over the last `hours` (default 24, at most 720), newest first: equity, requirement, excess, scenario and floor figures, gross and state.
 [**listVaultMarketPositionUnits**](VaultMarketsApi.md#listvaultmarketpositionunits) | **GET** /v1/vault-markets/positions/{id}/units | The vault units of one of your positions that you hold (a leveraged long's collateral), each with its story link.
 [**listVaultMarketPositions**](VaultMarketsApi.md#listvaultmarketpositions) | **GET** /v1/vault-markets/positions | Your positions, live (default) or closed.
 [**listVaultMarketPositionsRisk**](VaultMarketsApi.md#listvaultmarketpositionsrisk) | **GET** /v1/vault-markets/positions-risk | For each live position: its tier, health, margin state, the mark at which it is called and the mark at which it is liquidated, and the distance to it.
+[**listVaultMarketPredictionAlerts**](VaultMarketsApi.md#listvaultmarketpredictionalerts) | **GET** /v1/vault-markets/predictions/alerts | Your probability alerts: a market, a level (percent) and a direction; each fires once through the alerts hub (kind prediction_odds).
+[**listVaultMarketPredictionComboMyRfqs**](VaultMarketsApi.md#listvaultmarketpredictioncombomyrfqs) | **GET** /v1/vault-markets/predictions/combos/my-rfqs | Your combo requests with every answer they got.
+[**listVaultMarketPredictionComboRfqs**](VaultMarketsApi.md#listvaultmarketpredictioncomborfqs) | **GET** /v1/vault-markets/predictions/combos/rfqs | Open combo requests makers can answer: legs, size and the legs' own combined price; never who asked. Your own answers are shown on them.
+[**listVaultMarketPredictionCombos**](VaultMarketsApi.md#listvaultmarketpredictioncombos) | **GET** /v1/vault-markets/predictions/combos | Your combos, as buyer or maker: legs and their outcomes, stakes, the pot, any reprice after a voided leg, and how each settled.
+[**listVaultMarketPredictionComments**](VaultMarketsApi.md#listvaultmarketpredictioncomments) | **GET** /v1/vault-markets/predictions/comments | A discussion thread on a market (`marketId`) or a series (`seriesId`): comments newest first with their replies. A commenter's side shows only when their forecaster profile is public.
+[**listVaultMarketPredictionConversions**](VaultMarketsApi.md#listvaultmarketpredictionconversions) | **GET** /v1/vault-markets/predictions/conversions | Your bucket-set conversions (split, merge, convert), newest first.
+[**listVaultMarketPredictionFollowing**](VaultMarketsApi.md#listvaultmarketpredictionfollowing) | **GET** /v1/vault-markets/predictions/following | The forecasters you follow.
+[**listVaultMarketPredictionForecasts**](VaultMarketsApi.md#listvaultmarketpredictionforecasts) | **GET** /v1/vault-markets/predictions/forecasts | Your forecasts (a probability you attached to a market, money or not) and how the markets came out.
+[**listVaultMarketPredictionMakers**](VaultMarketsApi.md#listvaultmarketpredictionmakers) | **GET** /v1/vault-markets/predictions/makers | Your prediction maker programme applications and their status (applied, active, suspended, revoked) and rebate.
+[**listVaultMarketPredictionMarkets**](VaultMarketsApi.md#listvaultmarketpredictionmarkets) | **GET** /v1/vault-markets/predictions/markets | Prediction markets, filtered by a book key, an index slug, an underlying kind (index | book_key | category_pair), a status (open | closed | settled | all), an expiry day or text. Each with its strike, expiry, best Yes bid and ask, last price, volume, open interest and probability.
+[**listVaultMarketPredictionOrders**](VaultMarketsApi.md#listvaultmarketpredictionorders) | **GET** /v1/vault-markets/predictions/orders | Your prediction orders, newest first: working, done or all; practice, live or all.
+[**listVaultMarketPredictionPositions**](VaultMarketsApi.md#listvaultmarketpredictionpositions) | **GET** /v1/vault-markets/predictions/positions | Your prediction positions (practice, live or all; open, settled or all): side, contracts, cost, value at the last price, fees, realised P&L, payout or refund once settled, and the share card if you made one.
+[**listVaultMarketPredictionProposalListed**](VaultMarketsApi.md#listvaultmarketpredictionproposallisted) | **GET** /v1/vault-markets/predictions/proposals/listed | The markets you proposed that are listed: volume, status and what the creator share has earned you.
+[**listVaultMarketPredictionProposals**](VaultMarketsApi.md#listvaultmarketpredictionproposals) | **GET** /v1/vault-markets/predictions/proposals | Your market proposals and where each stands (pending, listed, rejected, withdrawn).
 [**listVaultMarketPriceWidgets**](VaultMarketsApi.md#listvaultmarketpricewidgets) | **GET** /v1/vault-markets/price-widgets | Your price widgets, newest first, each with its iframe and script-tag snippets. `meta.codes` lists your affiliate codes a widget can link through; `meta.max` is the cap on live widgets.
 [**listVaultMarketProCandles**](VaultMarketsApi.md#listvaultmarketprocandles) | **GET** /v1/vault-markets/pro/candles | OHLCV candles (1m, 5m, 15m, 1h, 4h, 1d) from the trades on a book key.
 [**listVaultMarketProEvents**](VaultMarketsApi.md#listvaultmarketproevents) | **GET** /v1/vault-markets/pro/events | Your order event log after a sequence number (new, leg, fill, replaced, cancelled, expired, done): a replayable drop copy.
@@ -431,9 +617,24 @@ Method | HTTP request | Description
 [**listVaultMarketSetGoalBaskets**](VaultMarketsApi.md#listvaultmarketsetgoalbaskets) | **GET** /v1/vault-markets/set-goals/{id}/baskets | A set goal basket bids, newest first, each with its budget, what it committed and spent, and every leg (piece, book key, limit, pro order id, status).
 [**listVaultMarketSetGoalSets**](VaultMarketsApi.md#listvaultmarketsetgoalsets) | **GET** /v1/vault-markets/set-goals/sets | Sets to start a goal on. With q (2+ characters): a word-start search of every catalogue set. Without: the sets you hold pieces of in the vault, then the collections you are building. Each with your live goal on it, if any.
 [**listVaultMarketSetGoals**](VaultMarketsApi.md#listvaultmarketsetgoals) | **GET** /v1/vault-markets/set-goals | Your set goals: the set, the target a piece must meet, pieces held of the total (from your vault), and the working basket bid.
+[**listVaultMarketShareAutoInvest**](VaultMarketsApi.md#listvaultmarketshareautoinvest) | **GET** /v1/vault-markets/shares/auto-invest | Your recurring auto-invest plans: amount, weekly or monthly, the series and weights or the basket, what rolled over (budget too small for a whole share; your money stays at the venue), the next run.
+[**listVaultMarketShareAutoInvestRuns**](VaultMarketsApi.md#listvaultmarketshareautoinvestruns) | **GET** /v1/vault-markets/shares/auto-invest/{id}/runs | A plan’s runs, newest first: the budget, what each series bought, what was spent and what rolled over; rebalances too.
+[**listVaultMarketShareBaskets**](VaultMarketsApi.md#listvaultmarketsharebaskets) | **GET** /v1/vault-markets/shares/baskets | Theme baskets: curated model portfolios of Vault Shares series with target weights. You buy and own every share directly in your own name; a basket is never a fund.
 [**listVaultMarketShareCards**](VaultMarketsApi.md#listvaultmarketsharecards) | **GET** /v1/vault-markets/share-cards | Your share cards (not taken down), each as the public sees it.
+[**listVaultMarketShareDrops**](VaultMarketsApi.md#listvaultmarketsharedrops) | **GET** /v1/vault-markets/shares/drops | The Vault Shares drops calendar: announced and open offerings, soonest first, each with its phase (announced, early_access, requests, open), the countdown, the allocation (fcfs, pro_rata or lottery with a per-person cap), your Crossly One early-access time (it moves when you may ask, never the price) and whether you asked to be told.
+[**listVaultMarketShareGifts**](VaultMarketsApi.md#listvaultmarketsharegifts) | **GET** /v1/vault-markets/shares/gifts | Your share gifts, sent and received, newest first, with where each stands (offered, instructed, settled, declined, cancelled, expired, rejected).
+[**listVaultMarketShareOrders**](VaultMarketsApi.md#listvaultmarketshareorders) | **GET** /v1/vault-markets/shares/orders | Your share-book orders, newest first; `seriesId` and `open` narrow it.
+[**listVaultMarketShareSeries**](VaultMarketsApi.md#listvaultmarketshareseries) | **GET** /v1/vault-markets/shares/series | Vault Shares series: open offerings first, then trading, then the rest. `status` and `bookKey` narrow it. Each with its terms, progress, last share price and implied item value (display only, never a mark), and your holding.
+[**listVaultMarketShareSeryAppraisals**](VaultMarketsApi.md#listvaultmarketshareseryappraisals) | **GET** /v1/vault-markets/shares/series/{id}/appraisals | The item’s appraisal history: the offering valuation (sealed valuation statement), independent and insurance appraisals, and any buyout or exit price.
+[**listVaultMarketShareSeryTape**](VaultMarketsApi.md#listvaultmarketshareserytape) | **GET** /v1/vault-markets/shares/series/{id}/tape | The latest fills on a share book, newest first, with which side made the market.
+[**listVaultMarketShareSeryUpdates**](VaultMarketsApi.md#listvaultmarketshareseryupdates) | **GET** /v1/vault-markets/shares/series/{id}/updates | The item’s story, provenance, condition reports, appraisals and exhibitions, newest first. Holders also see holders-only updates.
+[**listVaultMarketShareSubscriptions**](VaultMarketsApi.md#listvaultmarketsharesubscriptions) | **GET** /v1/vault-markets/shares/subscriptions | Your offering subscriptions, newest first, with where each stands (pending, escrowed, allocated, refunded).
+[**listVaultMarketShareWorld**](VaultMarketsApi.md#listvaultmarketshareworld) | **GET** /v1/vault-markets/shares/world | The world vault home’s fractional tiles: each item you own a share of, with \"you own 3.2%\".
+[**listVaultMarketSupplyDeclaredValues**](VaultMarketsApi.md#listvaultmarketsupplydeclaredvalues) | **GET** /v1/vault-markets/supply/declared-values | What each item's declared value starts at, by your insurance rule (market, cost or price). `inventoryItemIds` comma-separated.
 [**listVaultMarketSupplyDeposits**](VaultMarketsApi.md#listvaultmarketsupplydeposits) | **GET** /v1/vault-markets/supply/deposits | Your units sent to the vault, newest first, each with its state and its key's Instant Exit line (\"Instant Exit now: $X (N% of mark)\" or \"No market yet\"). Filter with `inventoryItemIds` (comma-separated).
+[**listVaultMarketSupplyEligibility**](VaultMarketsApi.md#listvaultmarketsupplyeligibility) | **GET** /v1/vault-markets/supply/eligibility | Can these inventory items (`inventoryItemIds`, comma-separated, or every item linked to `listingId`) be sent to the vault now? Each says why not.
 [**listVaultMarketSupplyInvites**](VaultMarketsApi.md#listvaultmarketsupplyinvites) | **GET** /v1/vault-markets/supply/invites | Market Open invites to you as a dealer: keys Crossly is opening and asks you to quote.
+[**listVaultMarketSupplyShipments**](VaultMarketsApi.md#listvaultmarketsupplyshipments) | **GET** /v1/vault-markets/supply/shipments | Your shipments into the vault, newest first: method, label or drop-off code, tracking and how many units were received.
 [**listVaultMarketValuationStatements**](VaultMarketsApi.md#listvaultmarketvaluationstatements) | **GET** /v1/vault-markets/valuation-statements | The insurance and appraisal statements you issued, newest first: purpose, date, units, total at the marks, hash and verify link.
 [**listVaultMarketVaultSuggestions**](VaultMarketsApi.md#listvaultmarketvaultsuggestions) | **GET** /v1/vault-markets/vault-suggestions | What to send to the vault: your inventory items whose book key has a liquid vault market (tier A, B or C), best first. Each has a score (0 to 100) and its reasons, the market (tier, mark and its quality, best bid, best vault ask, spread), Instant Exit now, your list price, days listed without selling, and the vault fee. `meta.summary` counts what was left out and why. Inform only; send with POST /api/v1/vault-markets/supply/send.
 [**listVaultMarketWatchlist**](VaultMarketsApi.md#listvaultmarketwatchlist) | **GET** /v1/vault-markets/watchlist | Your watched book keys with mark, 24 h and 7 d change, and the last 30 daily marks (sparkline).
@@ -446,6 +647,7 @@ Method | HTTP request | Description
 [**listVaultReceipts**](VaultMarketsApi.md#listvaultreceipts) | **GET** /v1/vault/receipts | Your warehouse receipts (documents of title for your vault units), live first. meta.receipts says whether receipts are registered (VAULT_WAREHOUSE_ISSUER) and their terms version.
 [**listVaultUnitList**](VaultMarketsApi.md#listvaultunitlist) | **GET** /v1/vault/unit-list | The published unit list (bar-list equivalent): every unit on a vault shelf with its warehouse receipt number (when receipts are registered), book key, shelf location code, insured value, status, pledged / on-loan flags and a per-receipt hashed holder (never a name or id). Filter with `bookKey`; pages with `page` / `limit`.
 [**updateVaultMarketAlertPref**](VaultMarketsApi.md#updatevaultmarketalertpref) | **PUT** /v1/vault-markets/alert-prefs | Change vault alert settings: `matrix` ({ kind: { channel: true|false } }, merged onto what is set), `quietHours` ({ start: \"HH:MM\", end: \"HH:MM\", tz } or null to clear) and `telegram` (the Telegram master switch). Locked switches are ignored. Returns the new settings.
+[**updateVaultMarketAutoBuy**](VaultMarketsApi.md#updatevaultmarketautobuy) | **PUT** /v1/vault-markets/auto-buy | Set up or change Auto-buy with payouts: `shareBps` (1–50%) and the whole want list in order, each with an optional `maxPriceCents` (fee included).
 [**updateVaultMarketBlockAllocation**](VaultMarketsApi.md#updatevaultmarketblockallocation) | **PUT** /v1/vault-markets/blocks/{orderId}/allocation | Post-trade allocation: set or replace the plan for a buy you placed for one of the entity's sub-accounts (that sub-account leads). Refused once any share has moved.
 [**updateVaultMarketChannel**](VaultMarketsApi.md#updatevaultmarketchannel) | **PUT** /v1/vault-markets/channels | Change the switches: `telegramAlerts`, `telegramDigest`, `pushCapPerDay` (0 to 20). Margin calls and recalls are never capped. Returns the new view.
 [**updateVaultMarketDealerBand**](VaultMarketsApi.md#updatevaultmarketdealerband) | **PUT** /v1/vault-markets/dealer/bands | Commit to an Instant Exit band on a key: a standing bid for `units` kept at `bandBps` of the mark, never above `maxPriceCents`, re-quoted as the mark moves.
@@ -457,16 +659,23 @@ Method | HTTP request | Description
 [**updateVaultMarketFollowSharing**](VaultMarketsApi.md#updatevaultmarketfollowsharing) | **PUT** /v1/vault-markets/follows/sharing | Turn sharing switches on or off (`isPublic`, `showBuys`, `deposits`, `sales`, `hallLoans`, `orders`, `leaderboard`). A switch shows only what happens after it goes on; all but the profile itself need the profile public.
 [**updateVaultMarketHomeUnit**](VaultMarketsApi.md#updatevaultmarkethomeunit) | **PUT** /v1/vault-markets/home/units | Show exactly these vault units in your Crossly World home: { units: [{ vaultItemId, visitors }] }. Units left out come out of their cases; units already standing stay where they are; new ones go into a free display-case or shelf slot, else a glass case of their own along a wall. visitors: true lets people who may enter your home see that unit (default false: only you). Returns placed, unplaced (no free case: the home is full), refused (with why) and the desk. Display only: nothing moves.
 [**updateVaultMarketIndex**](VaultMarketsApi.md#updatevaultmarketindex) | **PATCH** /v1/vault-markets/indexes/{slug} | Rename, re-weight, share or change the keys of an index of your own; its level carries on.
+[**updateVaultMarketItemSellFrom**](VaultMarketsApi.md#updatevaultmarketitemsellfrom) | **PUT** /v1/vault-markets/items/{inventoryItemId}/sell-from | Set which unit a sale of this item ships first: `vault_first`, `warehouse_first` or `cheapest` (to ship); null = your default. Quantities stay the same on every channel: only who ships changes.
 [**updateVaultMarketLendingElection**](VaultMarketsApi.md#updatevaultmarketlendingelection) | **PUT** /v1/vault-markets/lending/election | Change your lender election (applies to loans opened after the change). Needs lending.
 [**updateVaultMarketMmMmp**](VaultMarketsApi.md#updatevaultmarketmmmmp) | **PUT** /v1/vault-markets/mm/mmp | Set market-maker protection: N units or $X filled on your quotes within T seconds pulls every quote and freezes quoting for a set time.
 [**updateVaultMarketMode**](VaultMarketsApi.md#updatevaultmarketmode) | **PUT** /v1/vault-markets/mode | Choose your Vault Markets mode: `mode` simple or pro. Remembered for you on the web and in the app. A display preference only: it places nothing and moves no money.
 [**updateVaultMarketOfferAlert**](VaultMarketsApi.md#updatevaultmarketofferalert) | **PUT** /v1/vault-markets/offers/alert | Set (or clear with null) the bid price that should always notify you on a key you hold, and mute or unmute offer notices on it.
+[**updateVaultMarketOptionAutoClose**](VaultMarketsApi.md#updatevaultmarketoptionautoclose) | **PUT** /v1/vault-markets/options/auto-close | Set your auto-close rule: `enabled`, `minutesBefore` (30 to 10080), `onlyItm`, `maxSlippageBps` (0 to 2000).
 [**updateVaultMarketPaperLeaderboard**](VaultMarketsApi.md#updatevaultmarketpaperleaderboard) | **PUT** /v1/vault-markets/paper/leaderboard | Join or leave the weekly paper leaderboard. Joining needs a display name (2 to 24 letters, numbers, spaces, dots, dashes or underscores), never your real name. Returns `{ optIn, displayName }`.
+[**updateVaultMarketPartnerMe**](VaultMarketsApi.md#updatevaultmarketpartnerme) | **PATCH** /v1/vault-markets/partners/me | Your drop-off partnership's finder profile: postal code, opening hours, services and whether you are listed.
 [**updateVaultMarketPositionExit**](VaultMarketsApi.md#updatevaultmarketpositionexit) | **PUT** /v1/vault-markets/positions/{id}/exits | Set a position's take-profit / stop-loss: a long is closed, a short covered, when the last trade reaches one. Both null clears them.
+[**updateVaultMarketPredictionComment**](VaultMarketsApi.md#updatevaultmarketpredictioncomment) | **PATCH** /v1/vault-markets/predictions/comments/{id} | Edit your comment.
+[**updateVaultMarketPredictionForecaster**](VaultMarketsApi.md#updatevaultmarketpredictionforecaster) | **PUT** /v1/vault-markets/predictions/forecaster | Go public under a display name (`public: true`), rename, or go private (`public: false`: nothing is shown again).
+[**updateVaultMarketPredictionLimit**](VaultMarketsApi.md#updatevaultmarketpredictionlimit) | **PUT** /v1/vault-markets/predictions/limits | Set your daily loss limit (`dailyLossLimitCents`, null = none) or exclude yourself (`excludeDays`, `excludedUntil` or \"forever\"). Tighter takes effect at once; looser waits 24 hours.
 [**updateVaultMarketPriceWidget**](VaultMarketsApi.md#updatevaultmarketpricewidget) | **PATCH** /v1/vault-markets/price-widgets/{id} | Change a widget: name, range, layout, theme, affiliate code (null for none) or allowed sites. The market or index it shows never changes: make a new widget for another.
 [**updateVaultMarketProfile**](VaultMarketsApi.md#updatevaultmarketprofile) | **PUT** /v1/vault-markets/profile | Turn your public vault profile on or off (`isPublic`) and whether followers see your new buys (`showBuys`). It shows weights by market, never dollars.
 [**updateVaultMarketRecurring**](VaultMarketsApi.md#updatevaultmarketrecurring) | **PATCH** /v1/vault-markets/recurring/{id} | Change a recurring buy's schedule, caps, cards or auto-lend, or pause / resume it.
 [**updateVaultMarketSetGoal**](VaultMarketsApi.md#updatevaultmarketsetgoal) | **PATCH** /v1/vault-markets/set-goals/{id} | Change what a piece must be to count (condition, grade mode, grade). Refused while a basket bid works: cancel it first.
+[**updateVaultMarketSetting**](VaultMarketsApi.md#updatevaultmarketsetting) | **PUT** /v1/vault-markets/settings | Change your vault defaults; send only the fields you change.
 [**updateVaultMarketShareCard**](VaultMarketsApi.md#updatevaultmarketsharecard) | **PATCH** /v1/vault-markets/share-cards/{id} | Show or hide the dollar amounts on one of your share cards (`showAmounts`).
 [**updateVaultMarketSupplyDeposit**](VaultMarketsApi.md#updatevaultmarketsupplydeposit) | **PATCH** /v1/vault-markets/supply/deposits/{id} | Change a deposit's toggles: `autoListBps` (list at that share of the mark once stored; null = do not) and `lendWhenIdle`.
 [**updateVaultMarketSupplyRoundUp**](VaultMarketsApi.md#updatevaultmarketsupplyroundup) | **PUT** /v1/vault-markets/supply/round-up | Set the round-up: `shareBps` (1%-50%) of each payout released to you adds to a budget; when it covers the cheapest vault unit on `bookKey`, one unit is bought with your saved card, never above the budget.
@@ -1000,6 +1209,92 @@ Name | Type | Description  | Notes
 ### Return type
 
 **OkResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+# **createVaultMarketAutoBuyPause**
+> CreateVaultMarketAutoBuyPauseResponse createVaultMarketAutoBuyPause()
+
+Pause Auto-buy with payouts: the budget and want list stay; no payouts are counted and nothing is bought.
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = VaultMarketsApi();
+
+try {
+    final result = api_instance.createVaultMarketAutoBuyPause();
+    print(result);
+} catch (e) {
+    print('Exception when calling VaultMarketsApi->createVaultMarketAutoBuyPause: $e\n');
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+**CreateVaultMarketAutoBuyPauseResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+# **createVaultMarketAutoBuyResume**
+> CreateVaultMarketAutoBuyResumeResponse createVaultMarketAutoBuyResume()
+
+Resume Auto-buy with payouts: payouts released from now on count.
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = VaultMarketsApi();
+
+try {
+    final result = api_instance.createVaultMarketAutoBuyResume();
+    print(result);
+} catch (e) {
+    print('Exception when calling VaultMarketsApi->createVaultMarketAutoBuyResume: $e\n');
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+**CreateVaultMarketAutoBuyResumeResponse**
 
 ### Authorization
 
@@ -4517,6 +4812,1172 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
+# **createVaultMarketOptionCombo**
+> CreateVaultMarketOptionComboResponse createVaultMarketOptionCombo()
+
+Place a strategy: 2 to 4 legs on one underlying with ratios, a quantity (units, three decimals) and ONE signed net limit per unit (+ the most you pay, - the least credit you take). Margined on the combined scenario loss of all its legs; matched against the combo book, then the legs' own books; every leg fills at once or none does. Crossly venue only (409 combos_self_venue_only on the partner venue).
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = VaultMarketsApi();
+
+try {
+    final result = api_instance.createVaultMarketOptionCombo();
+    print(result);
+} catch (e) {
+    print('Exception when calling VaultMarketsApi->createVaultMarketOptionCombo: $e\n');
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+**CreateVaultMarketOptionComboResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+# **createVaultMarketOptionComboCancel**
+> ListVaultMarketOptionCombosItem createVaultMarketOptionComboCancel(id)
+
+Cancel a working strategy.
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = VaultMarketsApi();
+final id = id_example; // String | 
+
+try {
+    final result = api_instance.createVaultMarketOptionComboCancel(id);
+    print(result);
+} catch (e) {
+    print('Exception when calling VaultMarketsApi->createVaultMarketOptionComboCancel: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **String**|  | 
+
+### Return type
+
+**ListVaultMarketOptionCombosItem**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+# **createVaultMarketOptionComboRfq**
+> CreateVaultMarketOptionComboRfqResponse createVaultMarketOptionComboRfq()
+
+Ask makers for a firm net price on a whole strategy (legs, quantity, an optional limit that is never shown). Crossly venue only.
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = VaultMarketsApi();
+
+try {
+    final result = api_instance.createVaultMarketOptionComboRfq();
+    print(result);
+} catch (e) {
+    print('Exception when calling VaultMarketsApi->createVaultMarketOptionComboRfq: $e\n');
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+**CreateVaultMarketOptionComboRfqResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+# **createVaultMarketOptionComboRfqAccept**
+> CreateVaultMarketOptionComboRfqAcceptResponse createVaultMarketOptionComboRfqAccept(id)
+
+Take a live, firm answer: both strategies go through the normal path (margin, pre-trade risk), every leg at once.
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = VaultMarketsApi();
+final id = id_example; // String | 
+
+try {
+    final result = api_instance.createVaultMarketOptionComboRfqAccept(id);
+    print(result);
+} catch (e) {
+    print('Exception when calling VaultMarketsApi->createVaultMarketOptionComboRfqAccept: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **String**|  | 
+
+### Return type
+
+**CreateVaultMarketOptionComboRfqAcceptResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+# **createVaultMarketOptionComboRfqCancel**
+> IdStatusResponse createVaultMarketOptionComboRfqCancel(id)
+
+Cancel your open strategy quote request.
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = VaultMarketsApi();
+final id = id_example; // String | 
+
+try {
+    final result = api_instance.createVaultMarketOptionComboRfqCancel(id);
+    print(result);
+} catch (e) {
+    print('Exception when calling VaultMarketsApi->createVaultMarketOptionComboRfqCancel: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **String**|  | 
+
+### Return type
+
+**IdStatusResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+# **createVaultMarketOptionComboRfqRespond**
+> CreateVaultMarketOptionRfqRespondResponse createVaultMarketOptionComboRfqRespond(id)
+
+Answer a strategy quote request with a firm net price per unit in the canonical terms, good for 60 seconds; a new answer replaces your last.
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = VaultMarketsApi();
+final id = id_example; // String | 
+
+try {
+    final result = api_instance.createVaultMarketOptionComboRfqRespond(id);
+    print(result);
+} catch (e) {
+    print('Exception when calling VaultMarketsApi->createVaultMarketOptionComboRfqRespond: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **String**|  | 
+
+### Return type
+
+**CreateVaultMarketOptionRfqRespondResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+# **createVaultMarketOptionComboRfqResponseWithdraw**
+> IdStatusResponse createVaultMarketOptionComboRfqResponseWithdraw(id)
+
+Withdraw your live answer to a strategy quote request.
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = VaultMarketsApi();
+final id = id_example; // String | 
+
+try {
+    final result = api_instance.createVaultMarketOptionComboRfqResponseWithdraw(id);
+    print(result);
+} catch (e) {
+    print('Exception when calling VaultMarketsApi->createVaultMarketOptionComboRfqResponseWithdraw: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **String**|  | 
+
+### Return type
+
+**IdStatusResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+# **createVaultMarketOptionCoveredCall**
+> CreateVaultMarketOptionCoveredCallResponse createVaultMarketOptionCoveredCall()
+
+Write a covered call: lock a stored vault unit (`vaultItemId`) as collateral and sell up to one call on its own key (`contractId`, `quantity` <= 1) at a price or an implied vol. The unit cannot be sold, moved, lent or withdrawn until the call is bought back or expires; if assigned you pay cash, or the unit sells at the vault auction to cover.
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = VaultMarketsApi();
+
+try {
+    final result = api_instance.createVaultMarketOptionCoveredCall();
+    print(result);
+} catch (e) {
+    print('Exception when calling VaultMarketsApi->createVaultMarketOptionCoveredCall: $e\n');
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+**CreateVaultMarketOptionCoveredCallResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+# **createVaultMarketOptionCoveredCallRelease**
+> CreateVaultMarketOptionCoveredCallReleaseResponse createVaultMarketOptionCoveredCallRelease(id)
+
+Free a covered call's vault unit once the call it covers is closed (or covered by other units).
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = VaultMarketsApi();
+final id = id_example; // String | 
+
+try {
+    final result = api_instance.createVaultMarketOptionCoveredCallRelease(id);
+    print(result);
+} catch (e) {
+    print('Exception when calling VaultMarketsApi->createVaultMarketOptionCoveredCallRelease: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **String**|  | 
+
+### Return type
+
+**CreateVaultMarketOptionCoveredCallReleaseResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+# **createVaultMarketOptionMmHeartbeat**
+> CreateVaultMarketOptionMmHeartbeatResponse createVaultMarketOptionMmHeartbeat()
+
+Keep your option quotes alive (cancel-on-disconnect pulls them after 30 s without a heartbeat).
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = VaultMarketsApi();
+
+try {
+    final result = api_instance.createVaultMarketOptionMmHeartbeat();
+    print(result);
+} catch (e) {
+    print('Exception when calling VaultMarketsApi->createVaultMarketOptionMmHeartbeat: $e\n');
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+**CreateVaultMarketOptionMmHeartbeatResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+# **createVaultMarketOptionMmQuote**
+> CreateVaultMarketOptionMmQuoteResponse createVaultMarketOptionMmQuote()
+
+Set (replace) a two-sided quote on an option contract: `bid` and / or `ask` each { priceCents, quantity in contracts }, posted as post-only GTC orders on the Crossly venue. Market-maker protection counts their fills; a quote inside 20% of its mid earns liquidity rewards (CBX).
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = VaultMarketsApi();
+
+try {
+    final result = api_instance.createVaultMarketOptionMmQuote();
+    print(result);
+} catch (e) {
+    print('Exception when calling VaultMarketsApi->createVaultMarketOptionMmQuote: $e\n');
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+**CreateVaultMarketOptionMmQuoteResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+# **createVaultMarketOptionMmQuotePull**
+> DeleteVaultMarketProQuoteResponse createVaultMarketOptionMmQuotePull()
+
+Pull your option quotes on one contract (`contractId`) or all of them.
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = VaultMarketsApi();
+
+try {
+    final result = api_instance.createVaultMarketOptionMmQuotePull();
+    print(result);
+} catch (e) {
+    print('Exception when calling VaultMarketsApi->createVaultMarketOptionMmQuotePull: $e\n');
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+**DeleteVaultMarketProQuoteResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+# **createVaultMarketOptionOrder**
+> CreateVaultMarketOptionOrderResponse createVaultMarketOptionOrder()
+
+Place an options order: `contractId`, `side`, `quantity` in contracts (three decimals), a `priceCents` or an `iv` (`quoteMode`), `tif` gtc / gtd (with `expiresAt`) / ioc, `postOnly`. Idempotent on `clientOrderId`. On the Crossly venue it matches price-time with self-trade prevention after a scenario-margin check; on the partner venue it routes to the partner (accept its `termsVersion`). `subaccountId` trades for a firm sub-account you may trade.
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = VaultMarketsApi();
+
+try {
+    final result = api_instance.createVaultMarketOptionOrder();
+    print(result);
+} catch (e) {
+    print('Exception when calling VaultMarketsApi->createVaultMarketOptionOrder: $e\n');
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+**CreateVaultMarketOptionOrderResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+# **createVaultMarketOptionOrderCancel**
+> CreateVaultMarketOptionOrderCancelResponse createVaultMarketOptionOrderCancel(id)
+
+Cancel a working options order (on the partner venue it is cancelled there first). A liquidation order cannot be cancelled.
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = VaultMarketsApi();
+final id = id_example; // String | 
+
+try {
+    final result = api_instance.createVaultMarketOptionOrderCancel(id);
+    print(result);
+} catch (e) {
+    print('Exception when calling VaultMarketsApi->createVaultMarketOptionOrderCancel: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **String**|  | 
+
+### Return type
+
+**CreateVaultMarketOptionOrderCancelResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+# **createVaultMarketOptionPracticeCombo**
+> CreateVaultMarketOptionPracticeComboResponse createVaultMarketOptionPracticeCombo()
+
+A practice strategy (play money): the same ticket as a real one, filled at the practice maker's quotes when the net is inside the limit.
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = VaultMarketsApi();
+
+try {
+    final result = api_instance.createVaultMarketOptionPracticeCombo();
+    print(result);
+} catch (e) {
+    print('Exception when calling VaultMarketsApi->createVaultMarketOptionPracticeCombo: $e\n');
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+**CreateVaultMarketOptionPracticeComboResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+# **createVaultMarketOptionPracticeOrder**
+> CreateVaultMarketOptionPracticeOrderResponse createVaultMarketOptionPracticeOrder()
+
+Place a practice options order (the same ticket as a real one; fills against the practice maker at the reference vol). Play money only.
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = VaultMarketsApi();
+
+try {
+    final result = api_instance.createVaultMarketOptionPracticeOrder();
+    print(result);
+} catch (e) {
+    print('Exception when calling VaultMarketsApi->createVaultMarketOptionPracticeOrder: $e\n');
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+**CreateVaultMarketOptionPracticeOrderResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+# **createVaultMarketOptionPracticeOrderCancel**
+> ListVaultMarketOptionPracticeOrdersItem createVaultMarketOptionPracticeOrderCancel(id)
+
+Cancel a working practice options order.
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = VaultMarketsApi();
+final id = id_example; // String | 
+
+try {
+    final result = api_instance.createVaultMarketOptionPracticeOrderCancel(id);
+    print(result);
+} catch (e) {
+    print('Exception when calling VaultMarketsApi->createVaultMarketOptionPracticeOrderCancel: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **String**|  | 
+
+### Return type
+
+**ListVaultMarketOptionPracticeOrdersItem**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+# **createVaultMarketOptionPracticeReset**
+> GetVaultMarketOptionPracticeResponse createVaultMarketOptionPracticeReset()
+
+Start the options practice account again with $10,000: positions and working orders are cleared.
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = VaultMarketsApi();
+
+try {
+    final result = api_instance.createVaultMarketOptionPracticeReset();
+    print(result);
+} catch (e) {
+    print('Exception when calling VaultMarketsApi->createVaultMarketOptionPracticeReset: $e\n');
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+**GetVaultMarketOptionPracticeResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+# **createVaultMarketOptionQuote**
+> CreateVaultMarketOptionQuoteResponse createVaultMarketOptionQuote()
+
+Price a ticket without placing it: give a price per contract or an implied vol (`quoteMode`), get the other back, the premium and fee, the Greeks for your size, the payoff at expiry and the margin it would need on your account (authoritative on the Crossly venue, an estimate when the partner clears). A bad entry is reported, not thrown.
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = VaultMarketsApi();
+
+try {
+    final result = api_instance.createVaultMarketOptionQuote();
+    print(result);
+} catch (e) {
+    print('Exception when calling VaultMarketsApi->createVaultMarketOptionQuote: $e\n');
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+**CreateVaultMarketOptionQuoteResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+# **createVaultMarketOptionRfq**
+> CreateVaultMarketRfqResponse createVaultMarketOptionRfq()
+
+Ask for a quote on an option contract: `side`, `quantity` in contracts, an optional `limitCents` (never shown). Makers quoting the series, the underlying's DMM and LPs and approved dealers are told anonymously; answers are firm for 60 s.
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = VaultMarketsApi();
+
+try {
+    final result = api_instance.createVaultMarketOptionRfq();
+    print(result);
+} catch (e) {
+    print('Exception when calling VaultMarketsApi->createVaultMarketOptionRfq: $e\n');
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+**CreateVaultMarketRfqResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+# **createVaultMarketOptionRfqAccept**
+> CreateVaultMarketOptionRfqAcceptResponse createVaultMarketOptionRfqAccept(id)
+
+Take a live answer (`responseId`) to your option quote request: it trades through the options book at that price or better, with margin and self-trade prevention.
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = VaultMarketsApi();
+final id = id_example; // String | 
+
+try {
+    final result = api_instance.createVaultMarketOptionRfqAccept(id);
+    print(result);
+} catch (e) {
+    print('Exception when calling VaultMarketsApi->createVaultMarketOptionRfqAccept: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **String**|  | 
+
+### Return type
+
+**CreateVaultMarketOptionRfqAcceptResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+# **createVaultMarketOptionRfqCancel**
+> IdStatusResponse createVaultMarketOptionRfqCancel(id)
+
+Cancel your open option quote request.
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = VaultMarketsApi();
+final id = id_example; // String | 
+
+try {
+    final result = api_instance.createVaultMarketOptionRfqCancel(id);
+    print(result);
+} catch (e) {
+    print('Exception when calling VaultMarketsApi->createVaultMarketOptionRfqCancel: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **String**|  | 
+
+### Return type
+
+**IdStatusResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+# **createVaultMarketOptionRfqRespond**
+> CreateVaultMarketOptionRfqRespondResponse createVaultMarketOptionRfqRespond(id)
+
+Answer an option quote request with a firm price per contract for its full size (good for 60 s; a new answer replaces your last).
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = VaultMarketsApi();
+final id = id_example; // String | 
+
+try {
+    final result = api_instance.createVaultMarketOptionRfqRespond(id);
+    print(result);
+} catch (e) {
+    print('Exception when calling VaultMarketsApi->createVaultMarketOptionRfqRespond: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **String**|  | 
+
+### Return type
+
+**CreateVaultMarketOptionRfqRespondResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+# **createVaultMarketOptionRfqResponseWithdraw**
+> IdStatusResponse createVaultMarketOptionRfqResponseWithdraw(id)
+
+Withdraw your live answer to an option quote request.
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = VaultMarketsApi();
+final id = id_example; // String | 
+
+try {
+    final result = api_instance.createVaultMarketOptionRfqResponseWithdraw(id);
+    print(result);
+} catch (e) {
+    print('Exception when calling VaultMarketsApi->createVaultMarketOptionRfqResponseWithdraw: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **String**|  | 
+
+### Return type
+
+**IdStatusResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+# **createVaultMarketOptionRoll**
+> CreateVaultMarketOptionRollResponse createVaultMarketOptionRoll()
+
+Roll a position to another contract as one strategy order at one net price (+ you pay, - you receive): the close and the open fill together or not at all. `practice` rolls a practice position.
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = VaultMarketsApi();
+
+try {
+    final result = api_instance.createVaultMarketOptionRoll();
+    print(result);
+} catch (e) {
+    print('Exception when calling VaultMarketsApi->createVaultMarketOptionRoll: $e\n');
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+**CreateVaultMarketOptionRollResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+# **createVaultMarketOptionStrategyPreview**
+> CreateVaultMarketOptionStrategyPreviewResponse createVaultMarketOptionStrategyPreview()
+
+Preview a strategy before placing it: by template (underlying, kind, direction, strikes, expiries) or by legs. Returns each leg at its bid / ask, the net per unit (+ debit, - credit), the payoff at the first expiry, max profit and max loss (null = unbounded), breakevens, net Greeks, and the scenario margin of the whole strategy next to its legs margined one by one.
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = VaultMarketsApi();
+
+try {
+    final result = api_instance.createVaultMarketOptionStrategyPreview();
+    print(result);
+} catch (e) {
+    print('Exception when calling VaultMarketsApi->createVaultMarketOptionStrategyPreview: $e\n');
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+**CreateVaultMarketOptionStrategyPreviewResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
 # **createVaultMarketP2pLoanCall**
 > GetVaultMarketP2pLoanResponse createVaultMarketP2pLoanCall(id)
 
@@ -5605,6 +7066,1246 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
+# **createVaultMarketPredictionAccount**
+> CreateVaultMarketPredictionAccountResponse createVaultMarketPredictionAccount()
+
+Open your account at the live prediction venue (the partner DCM, or your own segregated account at the settlement bank). Returns `{ venue, status, opened }`.
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = VaultMarketsApi();
+
+try {
+    final result = api_instance.createVaultMarketPredictionAccount();
+    print(result);
+} catch (e) {
+    print('Exception when calling VaultMarketsApi->createVaultMarketPredictionAccount: $e\n');
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+**CreateVaultMarketPredictionAccountResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+# **createVaultMarketPredictionAlert**
+> CreateVaultMarketPredictionAlertResponse createVaultMarketPredictionAlert()
+
+Tell me when a market's probability crosses a level: `{ marketId, levelPercent, direction }`. Returns the alert.
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = VaultMarketsApi();
+
+try {
+    final result = api_instance.createVaultMarketPredictionAlert();
+    print(result);
+} catch (e) {
+    print('Exception when calling VaultMarketsApi->createVaultMarketPredictionAlert: $e\n');
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+**CreateVaultMarketPredictionAlertResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+# **createVaultMarketPredictionCard**
+> CreateVaultMarketPredictionCardResponse createVaultMarketPredictionCard()
+
+Make an \"I called it\" share card for a position of yours that settled in your favour (`showAmounts` to include what you paid and won). Returns the card with its public URL.
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = VaultMarketsApi();
+
+try {
+    final result = api_instance.createVaultMarketPredictionCard();
+    print(result);
+} catch (e) {
+    print('Exception when calling VaultMarketsApi->createVaultMarketPredictionCard: $e\n');
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+**CreateVaultMarketPredictionCardResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+# **createVaultMarketPredictionComboRfq**
+> CreateVaultMarketPredictionComboRfqResponse createVaultMarketPredictionComboRfq()
+
+Ask makers for a price on a combo: 2 to 6 legs (a market and a side each) on different underlyings, a size, and an optional limit makers never see. Pays $1 a contract if every leg comes true. `venue` paper or live.
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = VaultMarketsApi();
+
+try {
+    final result = api_instance.createVaultMarketPredictionComboRfq();
+    print(result);
+} catch (e) {
+    print('Exception when calling VaultMarketsApi->createVaultMarketPredictionComboRfq: $e\n');
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+**CreateVaultMarketPredictionComboRfqResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+# **createVaultMarketPredictionComboRfqAccept**
+> ListVaultMarketPredictionCombosItem createVaultMarketPredictionComboRfqAccept(id)
+
+Take one live, firm answer to your combo request (`quoteId`): both stakes are locked and the combo opens. Returns the combo.
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = VaultMarketsApi();
+final id = id_example; // String | 
+
+try {
+    final result = api_instance.createVaultMarketPredictionComboRfqAccept(id);
+    print(result);
+} catch (e) {
+    print('Exception when calling VaultMarketsApi->createVaultMarketPredictionComboRfqAccept: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **String**|  | 
+
+### Return type
+
+**ListVaultMarketPredictionCombosItem**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+# **createVaultMarketPredictionComboRfqCancel**
+> ListVaultMarketPredictionComboRfqsItem createVaultMarketPredictionComboRfqCancel(id)
+
+Withdraw your combo request; its answers are withdrawn too.
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = VaultMarketsApi();
+final id = id_example; // String | 
+
+try {
+    final result = api_instance.createVaultMarketPredictionComboRfqCancel(id);
+    print(result);
+} catch (e) {
+    print('Exception when calling VaultMarketsApi->createVaultMarketPredictionComboRfqCancel: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **String**|  | 
+
+### Return type
+
+**ListVaultMarketPredictionComboRfqsItem**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+# **createVaultMarketPredictionComboRfqQuote**
+> CreateVaultMarketPredictionComboRfqQuoteResponse createVaultMarketPredictionComboRfqQuote(id)
+
+Answer a combo request with a firm price a contract for the full size (good for 30 seconds; a new answer replaces yours). Real money needs an active prediction maker programme or approved dealer status.
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = VaultMarketsApi();
+final id = id_example; // String | 
+
+try {
+    final result = api_instance.createVaultMarketPredictionComboRfqQuote(id);
+    print(result);
+} catch (e) {
+    print('Exception when calling VaultMarketsApi->createVaultMarketPredictionComboRfqQuote: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **String**|  | 
+
+### Return type
+
+**CreateVaultMarketPredictionComboRfqQuoteResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+# **createVaultMarketPredictionComment**
+> CreateVaultMarketPredictionCommentResponse createVaultMarketPredictionComment()
+
+Comment on a market or a series, or reply to a comment (`parentId`). Moderated like every comment on Crossly.
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = VaultMarketsApi();
+
+try {
+    final result = api_instance.createVaultMarketPredictionComment();
+    print(result);
+} catch (e) {
+    print('Exception when calling VaultMarketsApi->createVaultMarketPredictionComment: $e\n');
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+**CreateVaultMarketPredictionCommentResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+# **createVaultMarketPredictionCommentReport**
+> CreateVaultMarketPredictionCommentReportResponse createVaultMarketPredictionCommentReport(id)
+
+Report a comment with a reason; enough reports hide it until ops look.
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = VaultMarketsApi();
+final id = id_example; // String | 
+
+try {
+    final result = api_instance.createVaultMarketPredictionCommentReport(id);
+    print(result);
+} catch (e) {
+    print('Exception when calling VaultMarketsApi->createVaultMarketPredictionCommentReport: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **String**|  | 
+
+### Return type
+
+**CreateVaultMarketPredictionCommentReportResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+# **createVaultMarketPredictionConversion**
+> CreateVaultMarketPredictionConversionResponse createVaultMarketPredictionConversion()
+
+Split ($1 a set buys one Yes in every bucket of an expiry), merge (one Yes in every bucket gives back $1 a set before settlement) or convert (No in one bucket becomes Yes in every other) on a full bucket set. `venue` paper or live. Returns the conversion and the event after it.
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = VaultMarketsApi();
+
+try {
+    final result = api_instance.createVaultMarketPredictionConversion();
+    print(result);
+} catch (e) {
+    print('Exception when calling VaultMarketsApi->createVaultMarketPredictionConversion: $e\n');
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+**CreateVaultMarketPredictionConversionResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+# **createVaultMarketPredictionForecast**
+> CreateVaultMarketPredictionForecastResponse createVaultMarketPredictionForecast()
+
+Forecast a market: `probabilityPercent` 0 to 100. The one standing when trading closes is scored (Brier).
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = VaultMarketsApi();
+
+try {
+    final result = api_instance.createVaultMarketPredictionForecast();
+    print(result);
+} catch (e) {
+    print('Exception when calling VaultMarketsApi->createVaultMarketPredictionForecast: $e\n');
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+**CreateVaultMarketPredictionForecastResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+# **createVaultMarketPredictionForecasterFollow**
+> CreateVaultMarketPredictionForecasterFollowResponse createVaultMarketPredictionForecasterFollow(id)
+
+Follow a public forecaster: you are told when they open a position or forecast (copy-watch only; nothing is ever traded for you).
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = VaultMarketsApi();
+final id = id_example; // String | 
+
+try {
+    final result = api_instance.createVaultMarketPredictionForecasterFollow(id);
+    print(result);
+} catch (e) {
+    print('Exception when calling VaultMarketsApi->createVaultMarketPredictionForecasterFollow: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **String**|  | 
+
+### Return type
+
+**CreateVaultMarketPredictionForecasterFollowResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+# **createVaultMarketPredictionMaker**
+> ListVaultMarketPredictionMakersItem createVaultMarketPredictionMaker()
+
+Apply to make markets in prediction ladders (one series, or all with `seriesId` null). Needs the ID check; ops approve. Returns the application.
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = VaultMarketsApi();
+
+try {
+    final result = api_instance.createVaultMarketPredictionMaker();
+    print(result);
+} catch (e) {
+    print('Exception when calling VaultMarketsApi->createVaultMarketPredictionMaker: $e\n');
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+**ListVaultMarketPredictionMakersItem**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+# **createVaultMarketPredictionMakerQuote**
+> CreateVaultMarketPredictionMakerQuoteResponse createVaultMarketPredictionMakerQuote()
+
+Mass quote: replace your resting maker quotes on up to 50 markets with one Yes bid and one Yes ask each (post-only; an ask rests as a No bid at 100 minus it). Live quotes need an active maker programme. Returns what rests.
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = VaultMarketsApi();
+
+try {
+    final result = api_instance.createVaultMarketPredictionMakerQuote();
+    print(result);
+} catch (e) {
+    print('Exception when calling VaultMarketsApi->createVaultMarketPredictionMakerQuote: $e\n');
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+**CreateVaultMarketPredictionMakerQuoteResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+# **createVaultMarketPredictionOrder**
+> CreateVaultMarketPredictionOrderResponse createVaultMarketPredictionOrder()
+
+Place a prediction order: buy_yes, sell_yes, buy_no or sell_no; limit (priceCents 1-99 in the action's own terms) or market (IOC 10 cents through the best price); GTC, GTD (expiresAt) or IOC; post-only. Sells only what you hold. `venue` paper (practice) or live (503 until a venue is registered). Returns the order with its fills.
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = VaultMarketsApi();
+
+try {
+    final result = api_instance.createVaultMarketPredictionOrder();
+    print(result);
+} catch (e) {
+    print('Exception when calling VaultMarketsApi->createVaultMarketPredictionOrder: $e\n');
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+**CreateVaultMarketPredictionOrderResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+# **createVaultMarketPredictionOrderAmend**
+> CreateVaultMarketPredictionOrderAmendResponse createVaultMarketPredictionOrderAmend(id)
+
+Amend a resting order's price (in its own terms) and/or whole size. It keeps its place in the queue only when the size goes down at the same price; otherwise it is re-queued and may trade at once. Returns the order with `keptPriority`.
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = VaultMarketsApi();
+final id = id_example; // String | 
+
+try {
+    final result = api_instance.createVaultMarketPredictionOrderAmend(id);
+    print(result);
+} catch (e) {
+    print('Exception when calling VaultMarketsApi->createVaultMarketPredictionOrderAmend: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **String**|  | 
+
+### Return type
+
+**CreateVaultMarketPredictionOrderAmendResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+# **createVaultMarketPredictionOrderBatch**
+> CreateVaultMarketPredictionOrderBatchResponse createVaultMarketPredictionOrderBatch()
+
+Place up to 20 orders in one call; each answers on its own (`results[]`), one refused never stops the rest.
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = VaultMarketsApi();
+
+try {
+    final result = api_instance.createVaultMarketPredictionOrderBatch();
+    print(result);
+} catch (e) {
+    print('Exception when calling VaultMarketsApi->createVaultMarketPredictionOrderBatch: $e\n');
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+**CreateVaultMarketPredictionOrderBatchResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+# **createVaultMarketPredictionOrderBatchCancel**
+> CreateVaultMarketPredictionOrderBatchCancelResponse createVaultMarketPredictionOrderBatchCancel()
+
+Cancel up to 20 orders in one call; each answers on its own.
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = VaultMarketsApi();
+
+try {
+    final result = api_instance.createVaultMarketPredictionOrderBatchCancel();
+    print(result);
+} catch (e) {
+    print('Exception when calling VaultMarketsApi->createVaultMarketPredictionOrderBatchCancel: $e\n');
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+**CreateVaultMarketPredictionOrderBatchCancelResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+# **createVaultMarketPredictionOrderCancel**
+> CreateVaultMarketPredictionOrderResponse createVaultMarketPredictionOrderCancel(id)
+
+Cancel a working prediction order; the money (or practice money) it locked comes back. Returns the order.
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = VaultMarketsApi();
+final id = id_example; // String | 
+
+try {
+    final result = api_instance.createVaultMarketPredictionOrderCancel(id);
+    print(result);
+} catch (e) {
+    print('Exception when calling VaultMarketsApi->createVaultMarketPredictionOrderCancel: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **String**|  | 
+
+### Return type
+
+**CreateVaultMarketPredictionOrderResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+# **createVaultMarketPredictionOrderCancelAll**
+> CreateVaultMarketProOrderCancelAllResponse createVaultMarketPredictionOrderCancelAll()
+
+Cancel every working prediction order you have, or only those on one market (`marketId`). Returns `{ cancelled }`.
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = VaultMarketsApi();
+
+try {
+    final result = api_instance.createVaultMarketPredictionOrderCancelAll();
+    print(result);
+} catch (e) {
+    print('Exception when calling VaultMarketsApi->createVaultMarketPredictionOrderCancelAll: $e\n');
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+**CreateVaultMarketProOrderCancelAllResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+# **createVaultMarketPredictionPaperReset**
+> CreateVaultMarketPredictionPaperResetResponse createVaultMarketPredictionPaperReset()
+
+Reset your practice prediction account to $1,000 of play money: working practice orders cancelled, practice positions cleared. Once a day.
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = VaultMarketsApi();
+
+try {
+    final result = api_instance.createVaultMarketPredictionPaperReset();
+    print(result);
+} catch (e) {
+    print('Exception when calling VaultMarketsApi->createVaultMarketPredictionPaperReset: $e\n');
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+**CreateVaultMarketPredictionPaperResetResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+# **createVaultMarketPredictionPositionClose**
+> CreateVaultMarketPredictionOrderResponse createVaultMarketPredictionPositionClose()
+
+Close a position: your resting sells on the market are cancelled and everything you hold is sold now (market, 10-cent band) or at `priceCents`. Returns the sell order.
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = VaultMarketsApi();
+
+try {
+    final result = api_instance.createVaultMarketPredictionPositionClose();
+    print(result);
+} catch (e) {
+    print('Exception when calling VaultMarketsApi->createVaultMarketPredictionPositionClose: $e\n');
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+**CreateVaultMarketPredictionOrderResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+# **createVaultMarketPredictionPositionCloseAll**
+> CreateVaultMarketPredictionPositionCloseAllResponse createVaultMarketPredictionPositionCloseAll()
+
+Sell all: close every open position on a venue, or only one event's (`eventId`). Each answers on its own.
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = VaultMarketsApi();
+
+try {
+    final result = api_instance.createVaultMarketPredictionPositionCloseAll();
+    print(result);
+} catch (e) {
+    print('Exception when calling VaultMarketsApi->createVaultMarketPredictionPositionCloseAll: $e\n');
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+**CreateVaultMarketPredictionPositionCloseAllResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+# **createVaultMarketPredictionProposal**
+> ListVaultMarketPredictionProposalsItem createVaultMarketPredictionProposal()
+
+Propose a market: an index slug or a book key, a shape (close at or above / at or below, between, touch), its strike(s) and an expiry. Ops review it; once listed you earn the creator share of Crossly's take on its fees.
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = VaultMarketsApi();
+
+try {
+    final result = api_instance.createVaultMarketPredictionProposal();
+    print(result);
+} catch (e) {
+    print('Exception when calling VaultMarketsApi->createVaultMarketPredictionProposal: $e\n');
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+**ListVaultMarketPredictionProposalsItem**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+# **createVaultMarketPredictionProposalCheck**
+> CreateVaultMarketPredictionProposalCheckResponse createVaultMarketPredictionProposalCheck()
+
+Check a market proposal without sending it: whether the underlying may carry markets (a built-in index or a tier A key), and what is wrong with the strike or expiry.
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = VaultMarketsApi();
+
+try {
+    final result = api_instance.createVaultMarketPredictionProposalCheck();
+    print(result);
+} catch (e) {
+    print('Exception when calling VaultMarketsApi->createVaultMarketPredictionProposalCheck: $e\n');
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+**CreateVaultMarketPredictionProposalCheckResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+# **createVaultMarketPredictionProposalWithdraw**
+> ListVaultMarketPredictionProposalsItem createVaultMarketPredictionProposalWithdraw(id)
+
+Withdraw a proposal still waiting for review.
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = VaultMarketsApi();
+final id = id_example; // String | 
+
+try {
+    final result = api_instance.createVaultMarketPredictionProposalWithdraw(id);
+    print(result);
+} catch (e) {
+    print('Exception when calling VaultMarketsApi->createVaultMarketPredictionProposalWithdraw: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **String**|  | 
+
+### Return type
+
+**ListVaultMarketPredictionProposalsItem**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+# **createVaultMarketPredictionSettlementDispute**
+> CreateVaultMarketPredictionSettlementDisputeResponse createVaultMarketPredictionSettlementDispute(id)
+
+Dispute a settlement inside its 24-hour review window (you must hold a position in the market). Payout waits for the venue's decision. Returns `{ settlementId, status }`.
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = VaultMarketsApi();
+final id = id_example; // String | 
+
+try {
+    final result = api_instance.createVaultMarketPredictionSettlementDispute(id);
+    print(result);
+} catch (e) {
+    print('Exception when calling VaultMarketsApi->createVaultMarketPredictionSettlementDispute: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **String**|  | 
+
+### Return type
+
+**CreateVaultMarketPredictionSettlementDisputeResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+# **createVaultMarketPredictionTerm**
+> CreateVaultMarketPredictionTermResponse createVaultMarketPredictionTerm()
+
+Accept the current prediction-market contract terms (PREDICTION_TERMS_VERSION), needed for every real-money order. Returns `{ termsVersion, venue }`.
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = VaultMarketsApi();
+
+try {
+    final result = api_instance.createVaultMarketPredictionTerm();
+    print(result);
+} catch (e) {
+    print('Exception when calling VaultMarketsApi->createVaultMarketPredictionTerm: $e\n');
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+**CreateVaultMarketPredictionTermResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
 # **createVaultMarketPriceWidget**
 > ListVaultMarketPriceWidgetsItem createVaultMarketPriceWidget()
 
@@ -6048,7 +8749,7 @@ This endpoint does not need any parameter.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
 # **createVaultMarketProQuoteHeartbeat**
-> CreateVaultMarketProQuoteHeartbeatResponse createVaultMarketProQuoteHeartbeat()
+> CreateVaultMarketOptionMmHeartbeatResponse createVaultMarketProQuoteHeartbeat()
 
 Keep your quotes alive (cancel-on-disconnect). Returns `{ quotes, at }`.
 
@@ -6077,7 +8778,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-**CreateVaultMarketProQuoteHeartbeatResponse**
+**CreateVaultMarketOptionMmHeartbeatResponse**
 
 ### Authorization
 
@@ -6591,6 +9292,331 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
+# **createVaultMarketShareAutoInvest**
+> ListVaultMarketShareAutoInvestItem createVaultMarketShareAutoInvest()
+
+Start auto-invest: `amountCents` ($5-$10,000) `every` week or month into `seriesIds` (equal weights) or `targets` (seriesId + weightBps summing to 10,000) or a `basketId` (with `rebalance` to keep your own shares on its weights). Whole shares only; the rest rolls over. Offerings are subscribed at their price; trading books are bought at the best ask up to `maxPremiumBps` over the indicative value. `practice` runs it on paper.
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = VaultMarketsApi();
+
+try {
+    final result = api_instance.createVaultMarketShareAutoInvest();
+    print(result);
+} catch (e) {
+    print('Exception when calling VaultMarketsApi->createVaultMarketShareAutoInvest: $e\n');
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+**ListVaultMarketShareAutoInvestItem**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+# **createVaultMarketShareAutoInvestRun**
+> CreateVaultMarketShareAutoInvestRunResponse createVaultMarketShareAutoInvestRun(id)
+
+Run a plan now (once a minute at most); the schedule does not move.
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = VaultMarketsApi();
+final id = id_example; // String | 
+
+try {
+    final result = api_instance.createVaultMarketShareAutoInvestRun(id);
+    print(result);
+} catch (e) {
+    print('Exception when calling VaultMarketsApi->createVaultMarketShareAutoInvestRun: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **String**|  | 
+
+### Return type
+
+**CreateVaultMarketShareAutoInvestRunResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+# **createVaultMarketShareAutoInvestUpdate**
+> ListVaultMarketShareAutoInvestItem createVaultMarketShareAutoInvestUpdate(id)
+
+Change a plan (amount, cadence, series or weights, cap, rebalance) or set its `status` active, paused or cancelled.
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = VaultMarketsApi();
+final id = id_example; // String | 
+
+try {
+    final result = api_instance.createVaultMarketShareAutoInvestUpdate(id);
+    print(result);
+} catch (e) {
+    print('Exception when calling VaultMarketsApi->createVaultMarketShareAutoInvestUpdate: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **String**|  | 
+
+### Return type
+
+**ListVaultMarketShareAutoInvestItem**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+# **createVaultMarketShareBasketBuy**
+> CreateVaultMarketShareBasketBuyResponse createVaultMarketShareBasketBuy(id)
+
+Buy a basket once: `amountCents` split by its live weights into whole shares of each series, in your own name (offerings subscribed, trading books at the best ask up to `maxPremiumBps`). `practice` buys on paper.
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = VaultMarketsApi();
+final id = id_example; // String | 
+
+try {
+    final result = api_instance.createVaultMarketShareBasketBuy(id);
+    print(result);
+} catch (e) {
+    print('Exception when calling VaultMarketsApi->createVaultMarketShareBasketBuy: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **String**|  | 
+
+### Return type
+
+**CreateVaultMarketShareBasketBuyResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+# **createVaultMarketShareBuyoutFund**
+> CreateVaultMarketShareBuyoutFundResponse createVaultMarketShareBuyoutFund(id)
+
+Your whole-unit bid reached the reserve: fund the price through your investor account within 72 hours to buy the item from its holders (no vote).
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = VaultMarketsApi();
+final id = id_example; // String | 
+
+try {
+    final result = api_instance.createVaultMarketShareBuyoutFund(id);
+    print(result);
+} catch (e) {
+    print('Exception when calling VaultMarketsApi->createVaultMarketShareBuyoutFund: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **String**|  | 
+
+### Return type
+
+**CreateVaultMarketShareBuyoutFundResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+# **createVaultMarketShareBuyoutVote**
+> CreateVaultMarketShareBuyoutFundResponse createVaultMarketShareBuyoutVote(id)
+
+Vote `yes` or `no` on a buyout with the shares you held when the vote opened. You can change your vote while it is open.
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = VaultMarketsApi();
+final id = id_example; // String | 
+
+try {
+    final result = api_instance.createVaultMarketShareBuyoutVote(id);
+    print(result);
+} catch (e) {
+    print('Exception when calling VaultMarketsApi->createVaultMarketShareBuyoutVote: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **String**|  | 
+
+### Return type
+
+**CreateVaultMarketShareBuyoutFundResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+# **createVaultMarketShareBuyoutWithdraw**
+> CreateVaultMarketShareBuyoutFundResponse createVaultMarketShareBuyoutWithdraw(id)
+
+Withdraw your buyout bid before its vote opens; the escrow is refunded.
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = VaultMarketsApi();
+final id = id_example; // String | 
+
+try {
+    final result = api_instance.createVaultMarketShareBuyoutWithdraw(id);
+    print(result);
+} catch (e) {
+    print('Exception when calling VaultMarketsApi->createVaultMarketShareBuyoutWithdraw: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **String**|  | 
+
+### Return type
+
+**CreateVaultMarketShareBuyoutFundResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
 # **createVaultMarketShareCard**
 > ListVaultMarketShareCardsItem createVaultMarketShareCard()
 
@@ -6622,6 +9648,1122 @@ This endpoint does not need any parameter.
 ### Return type
 
 **ListVaultMarketShareCardsItem**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+# **createVaultMarketShareGiftAccept**
+> ListVaultMarketShareGiftsItem createVaultMarketShareGiftAccept(id)
+
+Accept a share gift. Needs your own verified Vault Shares investor account; the venue then moves the shares to you on the register.
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = VaultMarketsApi();
+final id = id_example; // String | 
+
+try {
+    final result = api_instance.createVaultMarketShareGiftAccept(id);
+    print(result);
+} catch (e) {
+    print('Exception when calling VaultMarketsApi->createVaultMarketShareGiftAccept: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **String**|  | 
+
+### Return type
+
+**ListVaultMarketShareGiftsItem**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+# **createVaultMarketShareGiftCancel**
+> ListVaultMarketShareGiftsItem createVaultMarketShareGiftCancel(id)
+
+Cancel a gift you offered, before it is accepted: the shares are free again.
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = VaultMarketsApi();
+final id = id_example; // String | 
+
+try {
+    final result = api_instance.createVaultMarketShareGiftCancel(id);
+    print(result);
+} catch (e) {
+    print('Exception when calling VaultMarketsApi->createVaultMarketShareGiftCancel: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **String**|  | 
+
+### Return type
+
+**ListVaultMarketShareGiftsItem**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+# **createVaultMarketShareGiftDecline**
+> ListVaultMarketShareGiftsItem createVaultMarketShareGiftDecline(id)
+
+Decline a share gift offered to you.
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = VaultMarketsApi();
+final id = id_example; // String | 
+
+try {
+    final result = api_instance.createVaultMarketShareGiftDecline(id);
+    print(result);
+} catch (e) {
+    print('Exception when calling VaultMarketsApi->createVaultMarketShareGiftDecline: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **String**|  | 
+
+### Return type
+
+**ListVaultMarketShareGiftsItem**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+# **createVaultMarketShareInvestor**
+> GetVaultMarketShareInvestorResponse createVaultMarketShareInvestor()
+
+Open or update your investor account at the venue: accept the current investor terms (`acceptTerms`), and state accredited status or your annual income and net worth for the Reg A+ limit. Needs a verified ID.
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = VaultMarketsApi();
+
+try {
+    final result = api_instance.createVaultMarketShareInvestor();
+    print(result);
+} catch (e) {
+    print('Exception when calling VaultMarketsApi->createVaultMarketShareInvestor: $e\n');
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+**GetVaultMarketShareInvestorResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+# **createVaultMarketShareOrderCancel**
+> ListVaultMarketShareOrdersItem createVaultMarketShareOrderCancel(id)
+
+Cancel one of your open share-book orders.
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = VaultMarketsApi();
+final id = id_example; // String | 
+
+try {
+    final result = api_instance.createVaultMarketShareOrderCancel(id);
+    print(result);
+} catch (e) {
+    print('Exception when calling VaultMarketsApi->createVaultMarketShareOrderCancel: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **String**|  | 
+
+### Return type
+
+**ListVaultMarketShareOrdersItem**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+# **createVaultMarketSharePaperOrderCancel**
+> CreateVaultMarketSharePaperSeryOrderResponse createVaultMarketSharePaperOrderCancel(id)
+
+Cancel an open practice order.
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = VaultMarketsApi();
+final id = id_example; // String | 
+
+try {
+    final result = api_instance.createVaultMarketSharePaperOrderCancel(id);
+    print(result);
+} catch (e) {
+    print('Exception when calling VaultMarketsApi->createVaultMarketSharePaperOrderCancel: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **String**|  | 
+
+### Return type
+
+**CreateVaultMarketSharePaperSeryOrderResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+# **createVaultMarketSharePaperReset**
+> GetVaultMarketSharePaperResponse createVaultMarketSharePaperReset()
+
+Start the practice account over with fresh play money (once a day).
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = VaultMarketsApi();
+
+try {
+    final result = api_instance.createVaultMarketSharePaperReset();
+    print(result);
+} catch (e) {
+    print('Exception when calling VaultMarketsApi->createVaultMarketSharePaperReset: $e\n');
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+**GetVaultMarketSharePaperResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+# **createVaultMarketSharePaperSeryOrder**
+> CreateVaultMarketSharePaperSeryOrderResponse createVaultMarketSharePaperSeryOrder(id)
+
+Place a practice order (play money) with the same rules as the real share book.
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = VaultMarketsApi();
+final id = id_example; // String | 
+
+try {
+    final result = api_instance.createVaultMarketSharePaperSeryOrder(id);
+    print(result);
+} catch (e) {
+    print('Exception when calling VaultMarketsApi->createVaultMarketSharePaperSeryOrder: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **String**|  | 
+
+### Return type
+
+**CreateVaultMarketSharePaperSeryOrderResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+# **createVaultMarketSharePaperSerySubscribe**
+> GetVaultMarketSharePaperResponse createVaultMarketSharePaperSerySubscribe(id)
+
+Subscribe with play money to a practice series’ offering.
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = VaultMarketsApi();
+final id = id_example; // String | 
+
+try {
+    final result = api_instance.createVaultMarketSharePaperSerySubscribe(id);
+    print(result);
+} catch (e) {
+    print('Exception when calling VaultMarketsApi->createVaultMarketSharePaperSerySubscribe: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **String**|  | 
+
+### Return type
+
+**GetVaultMarketSharePaperResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+# **createVaultMarketShareRoomHide**
+> CreateVaultMarketShareRoomHideResponse createVaultMarketShareRoomHide(id)
+
+Take down one of your own holder-room posts (`reason`).
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = VaultMarketsApi();
+final id = id_example; // String | 
+
+try {
+    final result = api_instance.createVaultMarketShareRoomHide(id);
+    print(result);
+} catch (e) {
+    print('Exception when calling VaultMarketsApi->createVaultMarketShareRoomHide: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **String**|  | 
+
+### Return type
+
+**CreateVaultMarketShareRoomHideResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+# **createVaultMarketShareSery**
+> ListVaultMarketShareSeriesItem createVaultMarketShareSery()
+
+Propose a Vault Shares series for one of your units (`vaultItemId`), keeping `retainedShares` (0-50%), with an optional minimum raise, offering length (7-60 days) and reserve. Ops then qualify it, attach the offering circular and open the offering. With no venue it is a practice series. Pass `requestId` to make a retry safe.
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = VaultMarketsApi();
+
+try {
+    final result = api_instance.createVaultMarketShareSery();
+    print(result);
+} catch (e) {
+    print('Exception when calling VaultMarketsApi->createVaultMarketShareSery: $e\n');
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+**ListVaultMarketShareSeriesItem**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+# **createVaultMarketShareSeryBuyout**
+> CreateVaultMarketShareBuyoutFundResponse createVaultMarketShareSeryBuyout(id)
+
+Bid for the whole item (`offerCents`, at least the mark x 1.10). The bid is escrowed at the venue, then holders vote by shares: two-thirds yes accepts, a majority against rejects, 14 days with no majority against accepts. Accepted, the item is yours and the price is paid out pro rata after storage and insurance.
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = VaultMarketsApi();
+final id = id_example; // String | 
+
+try {
+    final result = api_instance.createVaultMarketShareSeryBuyout(id);
+    print(result);
+} catch (e) {
+    print('Exception when calling VaultMarketsApi->createVaultMarketShareSeryBuyout: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **String**|  | 
+
+### Return type
+
+**CreateVaultMarketShareBuyoutFundResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+# **createVaultMarketShareSeryGift**
+> ListVaultMarketShareGiftsItem createVaultMarketShareSeryGift(id)
+
+Give whole `shares` of a series to someone (`to`: their @handle, email or user id), with an optional `message`. The shares are set aside until they accept (14 days). On acceptance the broker-dealer or transfer agent verifies them and moves the shares on the register: no money moves, and your cost basis and holding date carry over.
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = VaultMarketsApi();
+final id = id_example; // String | 
+
+try {
+    final result = api_instance.createVaultMarketShareSeryGift(id);
+    print(result);
+} catch (e) {
+    print('Exception when calling VaultMarketsApi->createVaultMarketShareSeryGift: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **String**|  | 
+
+### Return type
+
+**ListVaultMarketShareGiftsItem**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+# **createVaultMarketShareSeryOrder**
+> ListVaultMarketShareOrdersItem createVaultMarketShareSeryOrder(id)
+
+Place an order on a series’ share book: `side`, `type` limit or market (immediate-or-cancel inside a 10% band), `tif` gtc / gtd (`expiresAt`) / ioc, whole `shares` or a buy’s `amountCents` (turned into whole shares at the most it could pay), integer `limitCents` a share, `postOnly`. Fees: maker 0, taker 100 bps plus the broker-dealer pass-through. Self-trades are prevented. Pass `requestId` to make a retry safe.
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = VaultMarketsApi();
+final id = id_example; // String | 
+
+try {
+    final result = api_instance.createVaultMarketShareSeryOrder(id);
+    print(result);
+} catch (e) {
+    print('Exception when calling VaultMarketsApi->createVaultMarketShareSeryOrder: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **String**|  | 
+
+### Return type
+
+**ListVaultMarketShareOrdersItem**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+# **createVaultMarketShareSeryRecombine**
+> CreateVaultMarketShareSeryRecombineResponse createVaultMarketShareSeryRecombine(id)
+
+You hold every share: take the item back whole. With `withdraw`, it ships home at once (any receipt token is burned as it leaves). Storage and insurance the series owed stay with the unit.
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = VaultMarketsApi();
+final id = id_example; // String | 
+
+try {
+    final result = api_instance.createVaultMarketShareSeryRecombine(id);
+    print(result);
+} catch (e) {
+    print('Exception when calling VaultMarketsApi->createVaultMarketShareSeryRecombine: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **String**|  | 
+
+### Return type
+
+**CreateVaultMarketShareSeryRecombineResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+# **createVaultMarketShareSeryRoom**
+> CreateVaultMarketShareSeryRoomResponse createVaultMarketShareSeryRoom(id)
+
+Post in the holder room (shareholders only), up to 1,000 characters.
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = VaultMarketsApi();
+final id = id_example; // String | 
+
+try {
+    final result = api_instance.createVaultMarketShareSeryRoom(id);
+    print(result);
+} catch (e) {
+    print('Exception when calling VaultMarketsApi->createVaultMarketShareSeryRoom: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **String**|  | 
+
+### Return type
+
+**CreateVaultMarketShareSeryRoomResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+# **createVaultMarketShareSerySubscribe**
+> ListVaultMarketShareSubscriptionsItem createVaultMarketShareSerySubscribe(id)
+
+Subscribe for whole `shares` in an open offering at its fixed price. The money goes into the venue’s escrow in your own name and is refunded if the offering misses its minimum. Reg A+ limits apply. A joint vault member with trade rights may pass `jointVaultId`. Pass `requestId` to make a retry safe.
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = VaultMarketsApi();
+final id = id_example; // String | 
+
+try {
+    final result = api_instance.createVaultMarketShareSerySubscribe(id);
+    print(result);
+} catch (e) {
+    print('Exception when calling VaultMarketsApi->createVaultMarketShareSerySubscribe: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **String**|  | 
+
+### Return type
+
+**ListVaultMarketShareSubscriptionsItem**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+# **createVaultMarketShareSeryUnwatch**
+> CreateVaultMarketShareSeryWatchResponse createVaultMarketShareSeryUnwatch(id)
+
+Stop being told about a drop (`kind` notify) or leave its waitlist (`kind` waitlist).
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = VaultMarketsApi();
+final id = id_example; // String | 
+
+try {
+    final result = api_instance.createVaultMarketShareSeryUnwatch(id);
+    print(result);
+} catch (e) {
+    print('Exception when calling VaultMarketsApi->createVaultMarketShareSeryUnwatch: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **String**|  | 
+
+### Return type
+
+**CreateVaultMarketShareSeryWatchResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+# **createVaultMarketShareSeryUpdate**
+> IdResponse createVaultMarketShareSeryUpdate(id)
+
+Post an update on your own item’s series (you are its originator): `kind` story, provenance, condition, appraisal, exhibition or event, a `title`, a `body`, an optional https `mediaUrl`, `holdersOnly`. Holders are told.
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = VaultMarketsApi();
+final id = id_example; // String | 
+
+try {
+    final result = api_instance.createVaultMarketShareSeryUpdate(id);
+    print(result);
+} catch (e) {
+    print('Exception when calling VaultMarketsApi->createVaultMarketShareSeryUpdate: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **String**|  | 
+
+### Return type
+
+**IdResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+# **createVaultMarketShareSeryWatch**
+> CreateVaultMarketShareSeryWatchResponse createVaultMarketShareSeryWatch(id)
+
+Ask to be told about a drop (`kind` notify: when your early access opens and when it opens to everyone) or join the waitlist of a sold-out first-come offering (`kind` waitlist, with the `shares` you want).
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = VaultMarketsApi();
+final id = id_example; // String | 
+
+try {
+    final result = api_instance.createVaultMarketShareSeryWatch(id);
+    print(result);
+} catch (e) {
+    print('Exception when calling VaultMarketsApi->createVaultMarketShareSeryWatch: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **String**|  | 
+
+### Return type
+
+**CreateVaultMarketShareSeryWatchResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+# **createVaultMarketShareSeryWithdrawProposal**
+> ListVaultMarketShareSeriesItem createVaultMarketShareSeryWithdrawProposal(id)
+
+Withdraw your own proposal before its offering opens.
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = VaultMarketsApi();
+final id = id_example; // String | 
+
+try {
+    final result = api_instance.createVaultMarketShareSeryWithdrawProposal(id);
+    print(result);
+} catch (e) {
+    print('Exception when calling VaultMarketsApi->createVaultMarketShareSeryWithdrawProposal: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **String**|  | 
+
+### Return type
+
+**ListVaultMarketShareSeriesItem**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+# **createVaultMarketShareSubscriptionCancel**
+> ListVaultMarketShareSubscriptionsItem createVaultMarketShareSubscriptionCancel(id)
+
+Cancel an escrowed subscription while its offering is still open: the escrow is refunded.
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = VaultMarketsApi();
+final id = id_example; // String | 
+
+try {
+    final result = api_instance.createVaultMarketShareSubscriptionCancel(id);
+    print(result);
+} catch (e) {
+    print('Exception when calling VaultMarketsApi->createVaultMarketShareSubscriptionCancel: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **String**|  | 
+
+### Return type
+
+**ListVaultMarketShareSubscriptionsItem**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+# **createVaultMarketShareViewingBook**
+> CreateVaultMarketShareViewingBookResponse createVaultMarketShareViewingBook(id)
+
+Book a place on a viewing day (shareholders only), with up to the day’s `guests`. Bookings close a day before; booking again changes your guests.
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = VaultMarketsApi();
+final id = id_example; // String | 
+
+try {
+    final result = api_instance.createVaultMarketShareViewingBook(id);
+    print(result);
+} catch (e) {
+    print('Exception when calling VaultMarketsApi->createVaultMarketShareViewingBook: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **String**|  | 
+
+### Return type
+
+**CreateVaultMarketShareViewingBookResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+# **createVaultMarketShareViewingBookingCancel**
+> CreateVaultMarketShareViewingBookingCancelResponse createVaultMarketShareViewingBookingCancel(id)
+
+Cancel your viewing-day booking.
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = VaultMarketsApi();
+final id = id_example; // String | 
+
+try {
+    final result = api_instance.createVaultMarketShareViewingBookingCancel(id);
+    print(result);
+} catch (e) {
+    print('Exception when calling VaultMarketsApi->createVaultMarketShareViewingBookingCancel: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **String**|  | 
+
+### Return type
+
+**CreateVaultMarketShareViewingBookingCancelResponse**
 
 ### Authorization
 
@@ -6802,6 +10944,49 @@ This endpoint does not need any parameter.
 ### Return type
 
 **CreateVaultMarketSupplySendResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+# **createVaultMarketSupplySendIn**
+> CreateVaultMarketSupplySendInResponse createVaultMarketSupplySendIn()
+
+Send inventory items to the vault: `method: label` (one box on a prepaid label) or `dropoff` at a partner (`partnerId`, from the finder; you get a counter code). Each item can carry its declared value; `insured` insures the box for it.
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = VaultMarketsApi();
+
+try {
+    final result = api_instance.createVaultMarketSupplySendIn();
+    print(result);
+} catch (e) {
+    print('Exception when calling VaultMarketsApi->createVaultMarketSupplySendIn: $e\n');
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+**CreateVaultMarketSupplySendInResponse**
 
 ### Authorization
 
@@ -7675,6 +11860,49 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
+# **deleteVaultMarketAutoBuy**
+> DeleteVaultMarketAutoBuyResponse deleteVaultMarketAutoBuy()
+
+Stop Auto-buy with payouts. The history stays.
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = VaultMarketsApi();
+
+try {
+    final result = api_instance.deleteVaultMarketAutoBuy();
+    print(result);
+} catch (e) {
+    print('Exception when calling VaultMarketsApi->deleteVaultMarketAutoBuy: $e\n');
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+**DeleteVaultMarketAutoBuyResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
 # **deleteVaultMarketBullionFamilyPeg**
 > ListVaultMarketBullionFamilyPegsItem deleteVaultMarketBullionFamilyPeg(id)
 
@@ -8037,6 +12265,194 @@ Name | Type | Description  | Notes
 ### Return type
 
 **DeleteVaultMarketOpeningWaitlistResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+# **deleteVaultMarketPredictionAlert**
+> OkResponse deleteVaultMarketPredictionAlert(id)
+
+Remove a probability alert. Returns `{ ok }`.
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = VaultMarketsApi();
+final id = id_example; // String | 
+
+try {
+    final result = api_instance.deleteVaultMarketPredictionAlert(id);
+    print(result);
+} catch (e) {
+    print('Exception when calling VaultMarketsApi->deleteVaultMarketPredictionAlert: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **String**|  | 
+
+### Return type
+
+**OkResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+# **deleteVaultMarketPredictionCard**
+> OkResponse deleteVaultMarketPredictionCard(id)
+
+Take an \"I called it\" card down; its link stops working. Returns `{ ok }`.
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = VaultMarketsApi();
+final id = id_example; // String | 
+
+try {
+    final result = api_instance.deleteVaultMarketPredictionCard(id);
+    print(result);
+} catch (e) {
+    print('Exception when calling VaultMarketsApi->deleteVaultMarketPredictionCard: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **String**|  | 
+
+### Return type
+
+**OkResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+# **deleteVaultMarketPredictionComment**
+> OkResponse deleteVaultMarketPredictionComment(id)
+
+Delete your comment.
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = VaultMarketsApi();
+final id = id_example; // String | 
+
+try {
+    final result = api_instance.deleteVaultMarketPredictionComment(id);
+    print(result);
+} catch (e) {
+    print('Exception when calling VaultMarketsApi->deleteVaultMarketPredictionComment: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **String**|  | 
+
+### Return type
+
+**OkResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+# **deleteVaultMarketPredictionForecasterFollow**
+> CreateVaultMarketPredictionForecasterFollowResponse deleteVaultMarketPredictionForecasterFollow(id)
+
+Stop following a forecaster.
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = VaultMarketsApi();
+final id = id_example; // String | 
+
+try {
+    final result = api_instance.deleteVaultMarketPredictionForecasterFollow(id);
+    print(result);
+} catch (e) {
+    print('Exception when calling VaultMarketsApi->deleteVaultMarketPredictionForecasterFollow: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **String**|  | 
+
+### Return type
+
+**CreateVaultMarketPredictionForecasterFollowResponse**
 
 ### Authorization
 
@@ -8939,6 +13355,49 @@ This endpoint does not need any parameter.
 ### Return type
 
 **GetVaultMarketAuctionMineResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+# **getVaultMarketAutoBuy**
+> GetVaultMarketAutoBuyResponse getVaultMarketAutoBuy()
+
+Auto-buy with payouts: the share of each payout set aside as a vault buying budget, the budget, your want list with max prices, the purchase history and whether it is paused. `autoBuy` is null when it is not set up.
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = VaultMarketsApi();
+
+try {
+    final result = api_instance.getVaultMarketAutoBuy();
+    print(result);
+} catch (e) {
+    print('Exception when calling VaultMarketsApi->getVaultMarketAutoBuy: $e\n');
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+**GetVaultMarketAutoBuyResponse**
 
 ### Authorization
 
@@ -10647,6 +15106,100 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
+# **getVaultMarketHoldingInventoryItem**
+> GetVaultMarketHoldingInventoryItemResponse getVaultMarketHoldingInventoryItem(id)
+
+The inventory item a vault unit of yours came from (null for a unit bought on the book).
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = VaultMarketsApi();
+final id = id_example; // String | 
+
+try {
+    final result = api_instance.getVaultMarketHoldingInventoryItem(id);
+    print(result);
+} catch (e) {
+    print('Exception when calling VaultMarketsApi->getVaultMarketHoldingInventoryItem: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **String**|  | 
+
+### Return type
+
+**GetVaultMarketHoldingInventoryItemResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+# **getVaultMarketHoldingWithdrawQuote**
+> GetVaultMarketHoldingWithdrawQuoteResponse getVaultMarketHoldingWithdrawQuote(id)
+
+What shipping one unit you own home would charge now, for `standard` and `expedited`: shipping, the storage it owes and the early-withdrawal fee (within 90 days of arriving), and the total. Read-only; ship it home with POST /api/v1/buyer/vault/:id/withdraw.
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = VaultMarketsApi();
+final id = id_example; // String | 
+
+try {
+    final result = api_instance.getVaultMarketHoldingWithdrawQuote(id);
+    print(result);
+} catch (e) {
+    print('Exception when calling VaultMarketsApi->getVaultMarketHoldingWithdrawQuote: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **String**|  | 
+
+### Return type
+
+**GetVaultMarketHoldingWithdrawQuoteResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
 # **getVaultMarketHomeUnit**
 > GetVaultMarketHomeUnitResponse getVaultMarketHomeUnit()
 
@@ -11132,6 +15685,53 @@ This endpoint does not need any parameter.
 ### Return type
 
 **GetVaultMarketInstantExitResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+# **getVaultMarketItemLocation**
+> GetVaultMarketItemLocationResponse getVaultMarketItemLocation(inventoryItemId)
+
+Where one inventory item's units are: in your own stock (warehouse) and in the vault per location, each vault unit's status (in transit, received, authenticated, graded, listed, shipped out), its Sell from first choice and whether it can be sent to the vault now (with the reason when not).
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = VaultMarketsApi();
+final inventoryItemId = inventoryItemId_example; // String | 
+
+try {
+    final result = api_instance.getVaultMarketItemLocation(inventoryItemId);
+    print(result);
+} catch (e) {
+    print('Exception when calling VaultMarketsApi->getVaultMarketItemLocation: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **inventoryItemId** | **String**|  | 
+
+### Return type
+
+**GetVaultMarketItemLocationResponse**
 
 ### Authorization
 
@@ -12128,6 +16728,769 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
+# **getVaultMarketOption**
+> GetVaultMarketOptionResponse getVaultMarketOption()
+
+Fractional options: the venue mode (self = Crossly is the venue and clearing house, partner = routed to the index DCM, paper = practice only) with the env each mode still needs, the active series and the rule book in force.
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = VaultMarketsApi();
+
+try {
+    final result = api_instance.getVaultMarketOption();
+    print(result);
+} catch (e) {
+    print('Exception when calling VaultMarketsApi->getVaultMarketOption: $e\n');
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+**GetVaultMarketOptionResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+# **getVaultMarketOptionAnalytic**
+> GetVaultMarketOptionAnalyticResponse getVaultMarketOptionAnalytic(underlying)
+
+Options analytics on an underlying: the vol surface (expiry x moneyness) and one expiry's smile (`expiry`), IV rank and percentile against the series' own year, open interest and volume by strike and expiry, put/call ratios, the expected move to each expiry, and the historical vol of the underlying's own published series. Every implied vol is derived and display only.
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = VaultMarketsApi();
+final underlying = underlying_example; // String | 
+
+try {
+    final result = api_instance.getVaultMarketOptionAnalytic(underlying);
+    print(result);
+} catch (e) {
+    print('Exception when calling VaultMarketsApi->getVaultMarketOptionAnalytic: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **underlying** | **String**|  | 
+
+### Return type
+
+**GetVaultMarketOptionAnalyticResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+# **getVaultMarketOptionAutoClose**
+> GetVaultMarketOptionAutoCloseResponse getVaultMarketOptionAutoClose()
+
+Your auto-close rule: close positions (or only in-the-money ones) a set time before expiry with a marketable limit.
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = VaultMarketsApi();
+
+try {
+    final result = api_instance.getVaultMarketOptionAutoClose();
+    print(result);
+} catch (e) {
+    print('Exception when calling VaultMarketsApi->getVaultMarketOptionAutoClose: $e\n');
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+**GetVaultMarketOptionAutoCloseResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+# **getVaultMarketOptionChain**
+> GetVaultMarketOptionChainResponse getVaultMarketOptionChain(underlying)
+
+The option chain for an underlying (index slug or book key): its expiries, and for one expiry (`expiry`, default the nearest) each strike's call and put with best bid / ask, last, open interest, the theoretical price at the reference vol, the implied vol of the mid (display only, never a mark) and the Greeks. Prices are cents per contract.
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = VaultMarketsApi();
+final underlying = underlying_example; // String | 
+
+try {
+    final result = api_instance.getVaultMarketOptionChain(underlying);
+    print(result);
+} catch (e) {
+    print('Exception when calling VaultMarketsApi->getVaultMarketOptionChain: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **underlying** | **String**|  | 
+
+### Return type
+
+**GetVaultMarketOptionChainResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+# **getVaultMarketOptionComboBook**
+> GetVaultMarketOptionComboBookResponse getVaultMarketOptionComboBook()
+
+One strategy's combo book by its canonical key (`key`, from the preview or an order): bids and asks by net price and recent strategy trades.
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = VaultMarketsApi();
+
+try {
+    final result = api_instance.getVaultMarketOptionComboBook();
+    print(result);
+} catch (e) {
+    print('Exception when calling VaultMarketsApi->getVaultMarketOptionComboBook: $e\n');
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+**GetVaultMarketOptionComboBookResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+# **getVaultMarketOptionComboRfq**
+> GetVaultMarketOptionComboRfqResponse getVaultMarketOptionComboRfq(id)
+
+One strategy quote request and its answers (all of them to the requester, your own to a responder).
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = VaultMarketsApi();
+final id = id_example; // String | 
+
+try {
+    final result = api_instance.getVaultMarketOptionComboRfq(id);
+    print(result);
+} catch (e) {
+    print('Exception when calling VaultMarketsApi->getVaultMarketOptionComboRfq: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **String**|  | 
+
+### Return type
+
+**GetVaultMarketOptionComboRfqResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+# **getVaultMarketOptionContract**
+> GetVaultMarketOptionContractResponse getVaultMarketOptionContract(id)
+
+One option contract: its terms, the self-venue book and tape, its published daily settlement prices and, once settled, its settlement (value, source, flagged, and the hash chained to the previous settlement).
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = VaultMarketsApi();
+final id = id_example; // String | 
+
+try {
+    final result = api_instance.getVaultMarketOptionContract(id);
+    print(result);
+} catch (e) {
+    print('Exception when calling VaultMarketsApi->getVaultMarketOptionContract: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **String**|  | 
+
+### Return type
+
+**GetVaultMarketOptionContractResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+# **getVaultMarketOptionContractBook**
+> GetVaultMarketOptionContractBookResponse getVaultMarketOptionContractBook(id)
+
+A contract's order book on the Crossly venue (`levels`, default 20): bids and asks by price with milli-contract sizes, and the last 50 prints.
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = VaultMarketsApi();
+final id = id_example; // String | 
+
+try {
+    final result = api_instance.getVaultMarketOptionContractBook(id);
+    print(result);
+} catch (e) {
+    print('Exception when calling VaultMarketsApi->getVaultMarketOptionContractBook: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **String**|  | 
+
+### Return type
+
+**GetVaultMarketOptionContractBookResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+# **getVaultMarketOptionContractSettlement**
+> GetVaultMarketOptionContractSettlementResponse getVaultMarketOptionContractSettlement(id)
+
+A settled contract's settlement: the value (cents per unit of the underlying), its source (the index's frozen 7-day TWAP, the item's expiry-day A/B mark, or the last reliable value, flagged), and the hash chained to the previous settlement. Null until it settles.
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = VaultMarketsApi();
+final id = id_example; // String | 
+
+try {
+    final result = api_instance.getVaultMarketOptionContractSettlement(id);
+    print(result);
+} catch (e) {
+    print('Exception when calling VaultMarketsApi->getVaultMarketOptionContractSettlement: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **String**|  | 
+
+### Return type
+
+**GetVaultMarketOptionContractSettlementResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+# **getVaultMarketOptionHedge**
+> GetVaultMarketOptionHedgeResponse getVaultMarketOptionHedge()
+
+Your hedges: long puts protecting vault units you hold (protective puts) and the vault units locked as collateral for calls you wrote (covered calls).
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = VaultMarketsApi();
+
+try {
+    final result = api_instance.getVaultMarketOptionHedge();
+    print(result);
+} catch (e) {
+    print('Exception when calling VaultMarketsApi->getVaultMarketOptionHedge: $e\n');
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+**GetVaultMarketOptionHedgeResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+# **getVaultMarketOptionIv**
+> GetVaultMarketOptionIvResponse getVaultMarketOptionIv(underlying)
+
+The at-the-money implied volatility of the nearest expiry on an underlying, for display on its page: derived from the options book, quality C, never written as a mark.
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = VaultMarketsApi();
+final underlying = underlying_example; // String | 
+
+try {
+    final result = api_instance.getVaultMarketOptionIv(underlying);
+    print(result);
+} catch (e) {
+    print('Exception when calling VaultMarketsApi->getVaultMarketOptionIv: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **underlying** | **String**|  | 
+
+### Return type
+
+**GetVaultMarketOptionIvResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+# **getVaultMarketOptionMargin**
+> GetVaultMarketOptionMarginResponse getVaultMarketOptionMargin()
+
+Your options margin: the scenario requirement (worst loss over a +/-40% price x +/-50% vol grid, with offsets from vault units and positions you hold), initial margin, equity and state (ok / call / liquidate) per underlying. Authoritative on the Crossly venue; on the partner venue the partner's figure decides and this is an estimate.
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = VaultMarketsApi();
+
+try {
+    final result = api_instance.getVaultMarketOptionMargin();
+    print(result);
+} catch (e) {
+    print('Exception when calling VaultMarketsApi->getVaultMarketOptionMargin: $e\n');
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+**GetVaultMarketOptionMarginResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+# **getVaultMarketOptionPayoff**
+> GetVaultMarketOptionPayoffResponse getVaultMarketOptionPayoff()
+
+Your whole options position on one `underlying` at expiry: the P&L curve over 50%..150% of spot, breakevens, and the maximum gain and loss (null when unbounded).
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = VaultMarketsApi();
+
+try {
+    final result = api_instance.getVaultMarketOptionPayoff();
+    print(result);
+} catch (e) {
+    print('Exception when calling VaultMarketsApi->getVaultMarketOptionPayoff: $e\n');
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+**GetVaultMarketOptionPayoffResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+# **getVaultMarketOptionPosition**
+> GetVaultMarketOptionPositionResponse getVaultMarketOptionPosition()
+
+Your options positions: signed milli-contracts, average open price, the price it is settled to (Crossly venue), the theoretical mark, unrealised and realised P&L in cents, the Greeks for your size, the protective-put flag and your auto-deleveraging queue lights. `status` open (default) / all, `subaccountId`.
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = VaultMarketsApi();
+
+try {
+    final result = api_instance.getVaultMarketOptionPosition();
+    print(result);
+} catch (e) {
+    print('Exception when calling VaultMarketsApi->getVaultMarketOptionPosition: $e\n');
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+**GetVaultMarketOptionPositionResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+# **getVaultMarketOptionPractice**
+> GetVaultMarketOptionPracticeResponse getVaultMarketOptionPractice()
+
+Your options practice account (play money only, $10,000 to start): cash, positions at the practice maker's price, equity and P&L.
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = VaultMarketsApi();
+
+try {
+    final result = api_instance.getVaultMarketOptionPractice();
+    print(result);
+} catch (e) {
+    print('Exception when calling VaultMarketsApi->getVaultMarketOptionPractice: $e\n');
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+**GetVaultMarketOptionPracticeResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+# **getVaultMarketOptionRfq**
+> GetVaultMarketOptionRfqResponse getVaultMarketOptionRfq(id)
+
+One option quote request: yours with every answer, or one you were sent with your own answer.
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = VaultMarketsApi();
+final id = id_example; // String | 
+
+try {
+    final result = api_instance.getVaultMarketOptionRfq(id);
+    print(result);
+} catch (e) {
+    print('Exception when calling VaultMarketsApi->getVaultMarketOptionRfq: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **String**|  | 
+
+### Return type
+
+**GetVaultMarketOptionRfqResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+# **getVaultMarketOptionRisk**
+> GetVaultMarketOptionRiskResponse getVaultMarketOptionRisk()
+
+Your options portfolio's Greeks (per underlying and total, with dollar delta and 1% gamma), a scenario's P&L (`priceShift`, `volShift`, `daysForward`), a price x vol P&L grid, and the beta-weighted delta against an index (`betaIndex`, default the deepest). `book` live (default) or practice.
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = VaultMarketsApi();
+
+try {
+    final result = api_instance.getVaultMarketOptionRisk();
+    print(result);
+} catch (e) {
+    print('Exception when calling VaultMarketsApi->getVaultMarketOptionRisk: $e\n');
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+**GetVaultMarketOptionRiskResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
 # **getVaultMarketOracle**
 > GetVaultMarketOracleResponse getVaultMarketOracle()
 
@@ -12440,7 +17803,7 @@ This endpoint does not need any parameter.
 # **getVaultMarketPartnerMe**
 > GetVaultMarketPartnerMeResponse getVaultMarketPartnerMe()
 
-Your Vault Drop-off Partnership (null when you never applied): status, partner code, fee share and cap, totals and batches.
+Your Vault Drop-off Partnership (null when you never applied): status, partner code, fee share and cap, finder profile, totals and batches; and whether your one-time ID check is done.
 
 ### Example
 ```dart
@@ -12828,6 +18191,1074 @@ Name | Type | Description  | Notes
 ### Return type
 
 **ListVaultMarketPositionsRiskItem**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+# **getVaultMarketPrediction**
+> GetVaultMarketPredictionResponse getVaultMarketPrediction()
+
+The prediction markets home: the busiest and soonest-expiring \"Will it hit?\" markets with their probability (each market's own price, display only), the underlyings with markets, which venue is live, and how many positions you hold.
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = VaultMarketsApi();
+
+try {
+    final result = api_instance.getVaultMarketPrediction();
+    print(result);
+} catch (e) {
+    print('Exception when calling VaultMarketsApi->getVaultMarketPrediction: $e\n');
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+**GetVaultMarketPredictionResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+# **getVaultMarketPredictionAccount**
+> GetVaultMarketPredictionAccountResponse getVaultMarketPredictionAccount()
+
+Your prediction-market account: the live venue, your account there and the terms you accepted, whether you may trade real money (region, age, self-exclusion) and why not, your self-set limits, and the practice account line.
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = VaultMarketsApi();
+
+try {
+    final result = api_instance.getVaultMarketPredictionAccount();
+    print(result);
+} catch (e) {
+    print('Exception when calling VaultMarketsApi->getVaultMarketPredictionAccount: $e\n');
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+**GetVaultMarketPredictionAccountResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+# **getVaultMarketPredictionBoard**
+> GetVaultMarketPredictionBoardResponse getVaultMarketPredictionBoard()
+
+The prediction board the Trading Floor and the Market Open plank show: the busiest open markets and their odds. Anonymous: never who holds what.
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = VaultMarketsApi();
+
+try {
+    final result = api_instance.getVaultMarketPredictionBoard();
+    print(result);
+} catch (e) {
+    print('Exception when calling VaultMarketsApi->getVaultMarketPredictionBoard: $e\n');
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+**GetVaultMarketPredictionBoardResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+# **getVaultMarketPredictionCombo**
+> ListVaultMarketPredictionCombosItem getVaultMarketPredictionCombo(id)
+
+One of your combos.
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = VaultMarketsApi();
+final id = id_example; // String | 
+
+try {
+    final result = api_instance.getVaultMarketPredictionCombo(id);
+    print(result);
+} catch (e) {
+    print('Exception when calling VaultMarketsApi->getVaultMarketPredictionCombo: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **String**|  | 
+
+### Return type
+
+**ListVaultMarketPredictionCombosItem**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+# **getVaultMarketPredictionComboRfq**
+> ListVaultMarketPredictionComboRfqsItem getVaultMarketPredictionComboRfq(id)
+
+One combo request: its legs and size, and the answers you can see (all of them if you asked; yours if you quoted).
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = VaultMarketsApi();
+final id = id_example; // String | 
+
+try {
+    final result = api_instance.getVaultMarketPredictionComboRfq(id);
+    print(result);
+} catch (e) {
+    print('Exception when calling VaultMarketsApi->getVaultMarketPredictionComboRfq: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **String**|  | 
+
+### Return type
+
+**ListVaultMarketPredictionComboRfqsItem**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+# **getVaultMarketPredictionDailyPrice**
+> GetVaultMarketPredictionDailyPriceResponse getVaultMarketPredictionDailyPrice()
+
+The published daily settlement price of every listed market for a day (default yesterday): the last hour's volume-weighted Yes price, else the book mid, else the prior day's, with volume and open interest.
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = VaultMarketsApi();
+
+try {
+    final result = api_instance.getVaultMarketPredictionDailyPrice();
+    print(result);
+} catch (e) {
+    print('Exception when calling VaultMarketsApi->getVaultMarketPredictionDailyPrice: $e\n');
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+**GetVaultMarketPredictionDailyPriceResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+# **getVaultMarketPredictionEvent**
+> GetVaultMarketPredictionEventResponse getVaultMarketPredictionEvent(id)
+
+One expiry of a series (an event): its markets, what you hold in each, the real worst and best case of your holdings across them (what your limit counts), and, for a full bucket set, how many sets you could merge. `venue` paper or live.
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = VaultMarketsApi();
+final id = id_example; // String | 
+
+try {
+    final result = api_instance.getVaultMarketPredictionEvent(id);
+    print(result);
+} catch (e) {
+    print('Exception when calling VaultMarketsApi->getVaultMarketPredictionEvent: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **String**|  | 
+
+### Return type
+
+**GetVaultMarketPredictionEventResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+# **getVaultMarketPredictionForecaster**
+> GetVaultMarketPredictionForecasterResponse getVaultMarketPredictionForecaster()
+
+Your forecaster profile: display name, whether it is public (opt-in) and since when, and your followers.
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = VaultMarketsApi();
+
+try {
+    final result = api_instance.getVaultMarketPredictionForecaster();
+    print(result);
+} catch (e) {
+    print('Exception when calling VaultMarketsApi->getVaultMarketPredictionForecaster: $e\n');
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+**GetVaultMarketPredictionForecasterResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+# **getVaultMarketPredictionForecasterById**
+> GetVaultMarketPredictionForecasterByIdResponse getVaultMarketPredictionForecasterById(id)
+
+A public forecaster: scores (all time and this month), open sides (never sizes), recent settled calls, followers. 404 when private.
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = VaultMarketsApi();
+final id = id_example; // String | 
+
+try {
+    final result = api_instance.getVaultMarketPredictionForecasterById(id);
+    print(result);
+} catch (e) {
+    print('Exception when calling VaultMarketsApi->getVaultMarketPredictionForecasterById: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **String**|  | 
+
+### Return type
+
+**GetVaultMarketPredictionForecasterByIdResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+# **getVaultMarketPredictionLeaderboard**
+> GetVaultMarketPredictionLeaderboardResponse getVaultMarketPredictionLeaderboard()
+
+Opt-in forecaster leaderboards: `period` week, month or all; `metric` pnl, accuracy or brier; `venue` live or paper (practice has its own board).
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = VaultMarketsApi();
+
+try {
+    final result = api_instance.getVaultMarketPredictionLeaderboard();
+    print(result);
+} catch (e) {
+    print('Exception when calling VaultMarketsApi->getVaultMarketPredictionLeaderboard: $e\n');
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+**GetVaultMarketPredictionLeaderboardResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+# **getVaultMarketPredictionLimit**
+> GetVaultMarketPredictionLimitResponse getVaultMarketPredictionLimit()
+
+Your self-set prediction limits: daily loss limit, self-exclusion, a raise waiting its 24 hours, and any hold the venue placed.
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = VaultMarketsApi();
+
+try {
+    final result = api_instance.getVaultMarketPredictionLimit();
+    print(result);
+} catch (e) {
+    print('Exception when calling VaultMarketsApi->getVaultMarketPredictionLimit: $e\n');
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+**GetVaultMarketPredictionLimitResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+# **getVaultMarketPredictionMarket**
+> GetVaultMarketPredictionMarketResponse getVaultMarketPredictionMarket(id)
+
+One prediction market: its terms, the Yes ladder of the live venue and of the practice book, recent trades, settlement history (outcome, value, hash, review), the series rules text and hash, and your positions in it.
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = VaultMarketsApi();
+final id = id_example; // String | 
+
+try {
+    final result = api_instance.getVaultMarketPredictionMarket(id);
+    print(result);
+} catch (e) {
+    print('Exception when calling VaultMarketsApi->getVaultMarketPredictionMarket: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **String**|  | 
+
+### Return type
+
+**GetVaultMarketPredictionMarketResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+# **getVaultMarketPredictionMarketForecast**
+> GetVaultMarketPredictionMarketForecastResponse getVaultMarketPredictionMarketForecast(id)
+
+How many people forecast a market and their median probability (no names).
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = VaultMarketsApi();
+final id = id_example; // String | 
+
+try {
+    final result = api_instance.getVaultMarketPredictionMarketForecast(id);
+    print(result);
+} catch (e) {
+    print('Exception when calling VaultMarketsApi->getVaultMarketPredictionMarketForecast: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **String**|  | 
+
+### Return type
+
+**GetVaultMarketPredictionMarketForecastResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+# **getVaultMarketPredictionMarketHistory**
+> GetVaultMarketPredictionMarketHistoryResponse getVaultMarketPredictionMarketHistory(id)
+
+A market's history: probability points (display only, never a mark), candles on the Yes price, volume and open interest over `range` 1d, 1w, 1m or all; `venue` live or paper.
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = VaultMarketsApi();
+final id = id_example; // String | 
+
+try {
+    final result = api_instance.getVaultMarketPredictionMarketHistory(id);
+    print(result);
+} catch (e) {
+    print('Exception when calling VaultMarketsApi->getVaultMarketPredictionMarketHistory: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **String**|  | 
+
+### Return type
+
+**GetVaultMarketPredictionMarketHistoryResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+# **getVaultMarketPredictionMarketStream**
+> String getVaultMarketPredictionMarketStream(id)
+
+A server-sent event stream for one prediction market: `snapshot` first, then `pm_depth`, `pm_trades`, `pm_probability`, `pm_status` and `pm_settlement` as they change.
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = VaultMarketsApi();
+final id = id_example; // String | 
+
+try {
+    final result = api_instance.getVaultMarketPredictionMarketStream(id);
+    print(result);
+} catch (e) {
+    print('Exception when calling VaultMarketsApi->getVaultMarketPredictionMarketStream: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **String**|  | 
+
+### Return type
+
+**String**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: text/event-stream, application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+# **getVaultMarketPredictionMarketTrade**
+> GetVaultMarketPredictionMarketTradeResponse getVaultMarketPredictionMarketTrade(id)
+
+The trade tape, newest first: Yes price, size, which side took, venue. Page with `before` (the last `seq`).
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = VaultMarketsApi();
+final id = id_example; // String | 
+
+try {
+    final result = api_instance.getVaultMarketPredictionMarketTrade(id);
+    print(result);
+} catch (e) {
+    print('Exception when calling VaultMarketsApi->getVaultMarketPredictionMarketTrade: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **String**|  | 
+
+### Return type
+
+**GetVaultMarketPredictionMarketTradeResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+# **getVaultMarketPredictionMeStream**
+> String getVaultMarketPredictionMeStream()
+
+A server-sent event stream of your own prediction events: `pm_order` (placed, filled, amended, cancelled, expired), `pm_fill` (your side, price and fee), `pm_position`, `pm_combo` and `pm_conversion`.
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = VaultMarketsApi();
+
+try {
+    final result = api_instance.getVaultMarketPredictionMeStream();
+    print(result);
+} catch (e) {
+    print('Exception when calling VaultMarketsApi->getVaultMarketPredictionMeStream: $e\n');
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+**String**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: text/event-stream, application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+# **getVaultMarketPredictionMission**
+> GetVaultMarketPredictionMissionResponse getVaultMarketPredictionMission()
+
+The two \"Will it hit?\" practice missions (your first call; see one settle), whether the server saw each done, and the pin they lead to. Pins only.
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = VaultMarketsApi();
+
+try {
+    final result = api_instance.getVaultMarketPredictionMission();
+    print(result);
+} catch (e) {
+    print('Exception when calling VaultMarketsApi->getVaultMarketPredictionMission: $e\n');
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+**GetVaultMarketPredictionMissionResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+# **getVaultMarketPredictionPaper**
+> GetVaultMarketPredictionPaperResponse getVaultMarketPredictionPaper()
+
+Your practice prediction account (play money only, $1,000 to start, never real or convertible): cash, money locked by working orders, positions and working orders.
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = VaultMarketsApi();
+
+try {
+    final result = api_instance.getVaultMarketPredictionPaper();
+    print(result);
+} catch (e) {
+    print('Exception when calling VaultMarketsApi->getVaultMarketPredictionPaper: $e\n');
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+**GetVaultMarketPredictionPaperResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+# **getVaultMarketPredictionQuote**
+> GetVaultMarketPredictionQuoteResponse getVaultMarketPredictionQuote()
+
+What an order would do now without placing it: contracts fillable inside the limit (a market order uses the 10-cent band), average price, estimated fee (Kalshi's formula), the money it would lock, and the most it could pay out.
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = VaultMarketsApi();
+
+try {
+    final result = api_instance.getVaultMarketPredictionQuote();
+    print(result);
+} catch (e) {
+    print('Exception when calling VaultMarketsApi->getVaultMarketPredictionQuote: $e\n');
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+**GetVaultMarketPredictionQuoteResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+# **getVaultMarketPredictionRulebook**
+> GetVaultMarketPredictionRulebookResponse getVaultMarketPredictionRulebook()
+
+The prediction venue's rule book now and every version, each hashed and chained to the one before (`chainOk`).
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = VaultMarketsApi();
+
+try {
+    final result = api_instance.getVaultMarketPredictionRulebook();
+    print(result);
+} catch (e) {
+    print('Exception when calling VaultMarketsApi->getVaultMarketPredictionRulebook: $e\n');
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+**GetVaultMarketPredictionRulebookResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+# **getVaultMarketPredictionStream**
+> String getVaultMarketPredictionStream()
+
+A server-sent event stream for up to 50 markets (`markets`=id,id): `ready`, then `pm_depth`, `pm_trades`, `pm_probability`, `pm_status` and `pm_settlement`, each carrying its marketId.
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = VaultMarketsApi();
+
+try {
+    final result = api_instance.getVaultMarketPredictionStream();
+    print(result);
+} catch (e) {
+    print('Exception when calling VaultMarketsApi->getVaultMarketPredictionStream: $e\n');
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+**String**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: text/event-stream, application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+# **getVaultMarketPredictionVenue**
+> GetVaultMarketPredictionVenueResponse getVaultMarketPredictionVenue()
+
+Which prediction venue is live: self (Crossly as the DCM, money at the segregated settlement bank), partner (a partner DCM) or paper (practice only), who runs the book, where money sits, and the env each real mode still needs.
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = VaultMarketsApi();
+
+try {
+    final result = api_instance.getVaultMarketPredictionVenue();
+    print(result);
+} catch (e) {
+    print('Exception when calling VaultMarketsApi->getVaultMarketPredictionVenue: $e\n');
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+**GetVaultMarketPredictionVenueResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+# **getVaultMarketPredictionWillItHit**
+> GetVaultMarketPredictionWillItHitResponse getVaultMarketPredictionWillItHit()
+
+The \"Will it hit?\" panel for a key (`bookKey`) or an index (`index` slug): its open markets grouped by expiry, each with its probability. `eligible` is false when nothing is listed on it.
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = VaultMarketsApi();
+
+try {
+    final result = api_instance.getVaultMarketPredictionWillItHit();
+    print(result);
+} catch (e) {
+    print('Exception when calling VaultMarketsApi->getVaultMarketPredictionWillItHit: $e\n');
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+**GetVaultMarketPredictionWillItHitResponse**
 
 ### Authorization
 
@@ -13689,6 +20120,139 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
+# **getVaultMarketSetting**
+> GetVaultMarketSettingResponse getVaultMarketSetting()
+
+Your vault defaults: Sell from first, new-inventory suggestions, the insurance rule and the default grading service.
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = VaultMarketsApi();
+
+try {
+    final result = api_instance.getVaultMarketSetting();
+    print(result);
+} catch (e) {
+    print('Exception when calling VaultMarketsApi->getVaultMarketSetting: $e\n');
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+**GetVaultMarketSettingResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+# **getVaultMarketShare**
+> GetVaultMarketShareResponse getVaultMarketShare()
+
+Vault Shares at a glance: the venue mode in force (self, partner or paper) and the env it still needs, the rules (about $5 a share, 100 to 100,000 shares, originator keeps 0-50%, 3% origination, maker 0 / taker 100 bps, 90-day lockup, buyouts at the mark x 1.10 with a two-thirds vote) and the disclosure.
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = VaultMarketsApi();
+
+try {
+    final result = api_instance.getVaultMarketShare();
+    print(result);
+} catch (e) {
+    print('Exception when calling VaultMarketsApi->getVaultMarketShare: $e\n');
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+**GetVaultMarketShareResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+# **getVaultMarketShareBasket**
+> GetVaultMarketShareBasketResponse getVaultMarketShareBasket(id)
+
+One theme basket (id or slug): its series, target and live weights, prices, and your own holdings against the weights.
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = VaultMarketsApi();
+final id = id_example; // String | 
+
+try {
+    final result = api_instance.getVaultMarketShareBasket(id);
+    print(result);
+} catch (e) {
+    print('Exception when calling VaultMarketsApi->getVaultMarketShareBasket: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **String**|  | 
+
+### Return type
+
+**GetVaultMarketShareBasketResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
 # **getVaultMarketShareCard**
 > ListVaultMarketShareCardsItem getVaultMarketShareCard(id)
 
@@ -13724,6 +20288,460 @@ Name | Type | Description  | Notes
 ### Return type
 
 **ListVaultMarketShareCardsItem**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+# **getVaultMarketShareInvestor**
+> GetVaultMarketShareInvestorResponse getVaultMarketShareInvestor()
+
+Your investor account at the venue in force: its status, the investor terms you accepted, and your Reg A+ limit for one offering (10% of the greater of income and net worth unless accredited).
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = VaultMarketsApi();
+
+try {
+    final result = api_instance.getVaultMarketShareInvestor();
+    print(result);
+} catch (e) {
+    print('Exception when calling VaultMarketsApi->getVaultMarketShareInvestor: $e\n');
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+**GetVaultMarketShareInvestorResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+# **getVaultMarketShareMe**
+> GetVaultMarketShareMeResponse getVaultMarketShareMe()
+
+Your Vault Shares: shares and percent of each item, cost, implied value at the last price, your subscriptions and the payouts you were sent.
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = VaultMarketsApi();
+
+try {
+    final result = api_instance.getVaultMarketShareMe();
+    print(result);
+} catch (e) {
+    print('Exception when calling VaultMarketsApi->getVaultMarketShareMe: $e\n');
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+**GetVaultMarketShareMeResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+# **getVaultMarketSharePaper**
+> GetVaultMarketSharePaperResponse getVaultMarketSharePaper()
+
+Your practice account for Vault Shares (play money only, never real, never convertible): cash, practice holdings, open practice orders, recent practice fills.
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = VaultMarketsApi();
+
+try {
+    final result = api_instance.getVaultMarketSharePaper();
+    print(result);
+} catch (e) {
+    print('Exception when calling VaultMarketsApi->getVaultMarketSharePaper: $e\n');
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+**GetVaultMarketSharePaperResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+# **getVaultMarketSharePaperSeryBook**
+> GetVaultMarketSharePaperSeryBookResponse getVaultMarketSharePaperSeryBook(id)
+
+A series’ practice book: practice orders and the house quote 1% either side of the reference price.
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = VaultMarketsApi();
+final id = id_example; // String | 
+
+try {
+    final result = api_instance.getVaultMarketSharePaperSeryBook(id);
+    print(result);
+} catch (e) {
+    print('Exception when calling VaultMarketsApi->getVaultMarketSharePaperSeryBook: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **String**|  | 
+
+### Return type
+
+**GetVaultMarketSharePaperSeryBookResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+# **getVaultMarketSharePreview**
+> GetVaultMarketSharePreviewResponse getVaultMarketSharePreview()
+
+Fractionalize instead: whether one of your vault units can become a Vault Shares series now (stored, tier A or B, reliable mark of $1,000 or more, declared and insured, free) and the offering terms it would get.
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = VaultMarketsApi();
+
+try {
+    final result = api_instance.getVaultMarketSharePreview();
+    print(result);
+} catch (e) {
+    print('Exception when calling VaultMarketsApi->getVaultMarketSharePreview: $e\n');
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+**GetVaultMarketSharePreviewResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+# **getVaultMarketShareSery**
+> GetVaultMarketShareSeryResponse getVaultMarketShareSery(id)
+
+One series: the offering, the share book depth, the latest fills, holders as share percentages (nobody named), buyouts and your vote, your orders and subscriptions.
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = VaultMarketsApi();
+final id = id_example; // String | 
+
+try {
+    final result = api_instance.getVaultMarketShareSery(id);
+    print(result);
+} catch (e) {
+    print('Exception when calling VaultMarketsApi->getVaultMarketShareSery: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **String**|  | 
+
+### Return type
+
+**GetVaultMarketShareSeryResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+# **getVaultMarketShareSeryBook**
+> GetVaultMarketShareSeryBookResponse getVaultMarketShareSeryBook(id)
+
+A share book’s depth: whole shares per price level (integer cents a share), best first.
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = VaultMarketsApi();
+final id = id_example; // String | 
+
+try {
+    final result = api_instance.getVaultMarketShareSeryBook(id);
+    print(result);
+} catch (e) {
+    print('Exception when calling VaultMarketsApi->getVaultMarketShareSeryBook: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **String**|  | 
+
+### Return type
+
+**GetVaultMarketShareSeryBookResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+# **getVaultMarketShareSeryHistory**
+> GetVaultMarketShareSeryHistoryResponse getVaultMarketShareSeryHistory(id)
+
+A series’ full price history: OHLC candles of every share-book fill (`interval` 1h, 1d or 1w), the offering price, the change since the offering, and the appraisal history beside it. Share prices are display only, never a mark.
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = VaultMarketsApi();
+final id = id_example; // String | 
+
+try {
+    final result = api_instance.getVaultMarketShareSeryHistory(id);
+    print(result);
+} catch (e) {
+    print('Exception when calling VaultMarketsApi->getVaultMarketShareSeryHistory: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **String**|  | 
+
+### Return type
+
+**GetVaultMarketShareSeryHistoryResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+# **getVaultMarketShareSeryPerk**
+> GetVaultMarketShareSeryPerkResponse getVaultMarketShareSeryPerk(id)
+
+Holder perks on a series: whether you hold it, your holder badge, the links to visit the item in the world vault room and in AR, the viewing days with places left and your bookings.
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = VaultMarketsApi();
+final id = id_example; // String | 
+
+try {
+    final result = api_instance.getVaultMarketShareSeryPerk(id);
+    print(result);
+} catch (e) {
+    print('Exception when calling VaultMarketsApi->getVaultMarketShareSeryPerk: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **String**|  | 
+
+### Return type
+
+**GetVaultMarketShareSeryPerkResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+# **getVaultMarketShareSeryRoom**
+> GetVaultMarketShareSeryRoomResponse getVaultMarketShareSeryRoom(id)
+
+The holder room for a series (shareholders only): posts newest first under per-series aliases, never account names. `before` pages back.
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = VaultMarketsApi();
+final id = id_example; // String | 
+
+try {
+    final result = api_instance.getVaultMarketShareSeryRoom(id);
+    print(result);
+} catch (e) {
+    print('Exception when calling VaultMarketsApi->getVaultMarketShareSeryRoom: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **String**|  | 
+
+### Return type
+
+**GetVaultMarketShareSeryRoomResponse**
 
 ### Authorization
 
@@ -14008,6 +21026,53 @@ This endpoint does not need any parameter.
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
+# **getVaultMarketSupplyShipment**
+> GetVaultMarketSupplyShipmentResponse getVaultMarketSupplyShipment(id)
+
+One shipment into the vault, with each unit and whether it was received.
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = VaultMarketsApi();
+final id = id_example; // String | 
+
+try {
+    final result = api_instance.getVaultMarketSupplyShipment(id);
+    print(result);
+} catch (e) {
+    print('Exception when calling VaultMarketsApi->getVaultMarketSupplyShipment: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **String**|  | 
+
+### Return type
+
+**GetVaultMarketSupplyShipmentResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
 # **getVaultMarketTax**
 > GetVaultMarketTaxResponse getVaultMarketTax()
 
@@ -14137,6 +21202,49 @@ This endpoint does not need any parameter.
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
+# **getVaultMarketTaxOption**
+> GetVaultMarketTaxOptionResponse getVaultMarketTaxOption()
+
+Your fractional options tax lots for a calendar year (`year`, default this year): FIFO disposals (closed or settled) with proceeds, cost, gain in cents and holding term, each flagged as a possible Section 1256 contract, the totals with the 60/40 split, and the positions open at year end. Real fills only; practice never appears. Not tax advice.
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = VaultMarketsApi();
+
+try {
+    final result = api_instance.getVaultMarketTaxOption();
+    print(result);
+} catch (e) {
+    print('Exception when calling VaultMarketsApi->getVaultMarketTaxOption: $e\n');
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+**GetVaultMarketTaxOptionResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
 # **getVaultMarketTaxPdf**
 > MultipartFile getVaultMarketTaxPdf()
 
@@ -14177,6 +21285,92 @@ This endpoint does not need any parameter.
 
  - **Content-Type**: Not defined
  - **Accept**: application/pdf, application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+# **getVaultMarketTaxPrediction**
+> GetVaultMarketTaxPredictionResponse getVaultMarketTaxPrediction()
+
+Your prediction-market results for a calendar year (`year`), as the venue reports them: each settled or voided real-money position with its venue, cost, fees, payout, refund, closing-trade gains and net in cents, and the totals. Practice never appears. Not tax advice.
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = VaultMarketsApi();
+
+try {
+    final result = api_instance.getVaultMarketTaxPrediction();
+    print(result);
+} catch (e) {
+    print('Exception when calling VaultMarketsApi->getVaultMarketTaxPrediction: $e\n');
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+**GetVaultMarketTaxPredictionResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+# **getVaultMarketTaxShare**
+> GetVaultMarketTaxShareResponse getVaultMarketTaxShare()
+
+Your Vault Shares tax lots for a calendar year (`year`): disposals (share-book sales, exit payouts) with holding periods, proceeds, cost and gain in cents, the open lots and the totals. The broker-dealer issues the 1099-B; not tax advice.
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = VaultMarketsApi();
+
+try {
+    final result = api_instance.getVaultMarketTaxShare();
+    print(result);
+} catch (e) {
+    print('Exception when calling VaultMarketsApi->getVaultMarketTaxShare: $e\n');
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+**GetVaultMarketTaxShareResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
@@ -14982,6 +22176,49 @@ This endpoint does not need any parameter.
 ### Return type
 
 **GetVaultMarketWorldFloorResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+# **getVaultMarketWorldFloorBoard**
+> GetVaultMarketWorldFloorBoardResponse getVaultMarketWorldFloorBoard()
+
+The Trading Floor boards for the round-13 products: odds (the probability ladder: the busiest open \"Will it hit?\" markets with probabilityBps, the market’s own price as a probability, display only), heat (option-chain heat: per listed underlying, open interest and the last day’s volume in milli-contracts in strike buckets around the underlying, a 0..1 heat per bucket and the at-the-money implied vol, display only) and shares (Vault Shares tickers: last share price in cents, changeBps from the last fill before today, shares traded today and the implied item value, display only). quality is always C: none of these is ever a mark. It never shows who traded.
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = VaultMarketsApi();
+
+try {
+    final result = api_instance.getVaultMarketWorldFloorBoard();
+    print(result);
+} catch (e) {
+    print('Exception when calling VaultMarketsApi->getVaultMarketWorldFloorBoard: $e\n');
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+**GetVaultMarketWorldFloorBoardResponse**
 
 ### Authorization
 
@@ -16832,6 +24069,49 @@ This endpoint does not need any parameter.
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
+# **listVaultMarketHoldings**
+> ListVaultMarketHoldingsResponse listVaultMarketHoldings()
+
+Everything you own in the Crossly vault, newest activity first: each unit with its status (inbound, stored, listed, withdraw_requested…) and situation (lent, pledged, in_grading…), what it is worth (`valueCents` with `valueSource` mark | last_sale | declared | none), declared and insured value, storage owed, its open ask, the deposit toggles when you sent it in, and what you may do with it now (`actions`). Units sold or shipped home in the last 90 days have `past: true`. `meta` carries the totals (units, value, declared, insured, storage owed), your recent boxes and their labels, the ship-home prices and the lending gate.
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = VaultMarketsApi();
+
+try {
+    final result = api_instance.listVaultMarketHoldings();
+    print(result);
+} catch (e) {
+    print('Exception when calling VaultMarketsApi->listVaultMarketHoldings: $e\n');
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+**ListVaultMarketHoldingsResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
 # **listVaultMarketIndexCommitteeMinutes**
 > ListVaultMarketIndexCommitteeMinutesResponse listVaultMarketIndexCommitteeMinutes()
 
@@ -17884,6 +25164,612 @@ This endpoint does not need any parameter.
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
+# **listVaultMarketOptionComboRfq**
+> ListVaultMarketOptionComboRfqResponse listVaultMarketOptionComboRfq()
+
+Your strategy quote requests, newest first.
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = VaultMarketsApi();
+
+try {
+    final result = api_instance.listVaultMarketOptionComboRfq();
+    print(result);
+} catch (e) {
+    print('Exception when calling VaultMarketsApi->listVaultMarketOptionComboRfq: $e\n');
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+**ListVaultMarketOptionComboRfqResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+# **listVaultMarketOptionComboRfqInbox**
+> ListVaultMarketOptionComboRfqResponse listVaultMarketOptionComboRfqInbox()
+
+Open strategy quote requests you may answer (never your own; the requester stays anonymous).
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = VaultMarketsApi();
+
+try {
+    final result = api_instance.listVaultMarketOptionComboRfqInbox();
+    print(result);
+} catch (e) {
+    print('Exception when calling VaultMarketsApi->listVaultMarketOptionComboRfqInbox: $e\n');
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+**ListVaultMarketOptionComboRfqResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+# **listVaultMarketOptionCombos**
+> ListVaultMarketOptionCombosResponse listVaultMarketOptionCombos()
+
+Your strategies: `status` working (default), done or all, with their legs as you hold them, net per unit, filled size and status.
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = VaultMarketsApi();
+
+try {
+    final result = api_instance.listVaultMarketOptionCombos();
+    print(result);
+} catch (e) {
+    print('Exception when calling VaultMarketsApi->listVaultMarketOptionCombos: $e\n');
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+**ListVaultMarketOptionCombosResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+# **listVaultMarketOptionContractDaily**
+> ListVaultMarketOptionContractDailyResponse listVaultMarketOptionContractDaily(id)
+
+A contract's published daily settlement prices, newest first (`days`, default 30): the price, how it was set (volume-weighted fills, the mid, or Black-Scholes at the reference vol), its implied vol, the underlying, open interest and volume, and each row's chain hash.
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = VaultMarketsApi();
+final id = id_example; // String | 
+
+try {
+    final result = api_instance.listVaultMarketOptionContractDaily(id);
+    print(result);
+} catch (e) {
+    print('Exception when calling VaultMarketsApi->listVaultMarketOptionContractDaily: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **String**|  | 
+
+### Return type
+
+**ListVaultMarketOptionContractDailyResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+# **listVaultMarketOptionMmQuotes**
+> ListVaultMarketOptionMmQuotesResponse listVaultMarketOptionMmQuotes()
+
+Your two-sided option quotes: the contract, the bid and ask orders behind them, cancel-on-disconnect and the last heartbeat.
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = VaultMarketsApi();
+
+try {
+    final result = api_instance.listVaultMarketOptionMmQuotes();
+    print(result);
+} catch (e) {
+    print('Exception when calling VaultMarketsApi->listVaultMarketOptionMmQuotes: $e\n');
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+**ListVaultMarketOptionMmQuotesResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+# **listVaultMarketOptionNotices**
+> ListVaultMarketOptionNoticesResponse listVaultMarketOptionNotices()
+
+Your options notices, newest first: expiry warnings, auto-closes, exercises (a long settled in the money), assignments (a short settled in the money), expiries worthless and rolls.
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = VaultMarketsApi();
+
+try {
+    final result = api_instance.listVaultMarketOptionNotices();
+    print(result);
+} catch (e) {
+    print('Exception when calling VaultMarketsApi->listVaultMarketOptionNotices: $e\n');
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+**ListVaultMarketOptionNoticesResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+# **listVaultMarketOptionOrders**
+> ListVaultMarketOptionOrdersResponse listVaultMarketOptionOrders()
+
+Your options orders, newest first: `status` working (default) / done / all, `limit`, `subaccountId`.
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = VaultMarketsApi();
+
+try {
+    final result = api_instance.listVaultMarketOptionOrders();
+    print(result);
+} catch (e) {
+    print('Exception when calling VaultMarketsApi->listVaultMarketOptionOrders: $e\n');
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+**ListVaultMarketOptionOrdersResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+# **listVaultMarketOptionPracticeCombos**
+> ListVaultMarketOptionCombosResponse listVaultMarketOptionPracticeCombos()
+
+Your practice strategies.
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = VaultMarketsApi();
+
+try {
+    final result = api_instance.listVaultMarketOptionPracticeCombos();
+    print(result);
+} catch (e) {
+    print('Exception when calling VaultMarketsApi->listVaultMarketOptionPracticeCombos: $e\n');
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+**ListVaultMarketOptionCombosResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+# **listVaultMarketOptionPracticeFills**
+> ListVaultMarketOptionPracticeFillsResponse listVaultMarketOptionPracticeFills()
+
+Your practice options fills, newest first (`limit`).
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = VaultMarketsApi();
+
+try {
+    final result = api_instance.listVaultMarketOptionPracticeFills();
+    print(result);
+} catch (e) {
+    print('Exception when calling VaultMarketsApi->listVaultMarketOptionPracticeFills: $e\n');
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+**ListVaultMarketOptionPracticeFillsResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+# **listVaultMarketOptionPracticeOrders**
+> ListVaultMarketOptionPracticeOrdersResponse listVaultMarketOptionPracticeOrders()
+
+Your practice options orders: `status` working (default) / done / all, `limit`.
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = VaultMarketsApi();
+
+try {
+    final result = api_instance.listVaultMarketOptionPracticeOrders();
+    print(result);
+} catch (e) {
+    print('Exception when calling VaultMarketsApi->listVaultMarketOptionPracticeOrders: $e\n');
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+**ListVaultMarketOptionPracticeOrdersResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+# **listVaultMarketOptionRfq**
+> ListVaultMarketOptionRfqResponse listVaultMarketOptionRfq()
+
+Your option quote requests, newest first.
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = VaultMarketsApi();
+
+try {
+    final result = api_instance.listVaultMarketOptionRfq();
+    print(result);
+} catch (e) {
+    print('Exception when calling VaultMarketsApi->listVaultMarketOptionRfq: $e\n');
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+**ListVaultMarketOptionRfqResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+# **listVaultMarketOptionRfqInbox**
+> ListVaultMarketOptionRfqResponse listVaultMarketOptionRfqInbox()
+
+Open option quote requests you can answer.
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = VaultMarketsApi();
+
+try {
+    final result = api_instance.listVaultMarketOptionRfqInbox();
+    print(result);
+} catch (e) {
+    print('Exception when calling VaultMarketsApi->listVaultMarketOptionRfqInbox: $e\n');
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+**ListVaultMarketOptionRfqResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+# **listVaultMarketOptionSeries**
+> ListVaultMarketOptionSeriesResponse listVaultMarketOptionSeries()
+
+Every options series: its underlying (a Crossly index, or a tier A item key with 90 days of reliable marks), status and the eligibility snapshot it last passed. `status`: active (default) or all.
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = VaultMarketsApi();
+
+try {
+    final result = api_instance.listVaultMarketOptionSeries();
+    print(result);
+} catch (e) {
+    print('Exception when calling VaultMarketsApi->listVaultMarketOptionSeries: $e\n');
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+**ListVaultMarketOptionSeriesResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+# **listVaultMarketOptionStrategies**
+> ListVaultMarketOptionStrategiesResponse listVaultMarketOptionStrategies()
+
+The strategies the picker builds (vertical, calendar, diagonal, straddle, strangle, butterfly, iron condor, collar): how many strikes and expiries each takes, whether it needs calls or puts, and what it does in plain words.
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = VaultMarketsApi();
+
+try {
+    final result = api_instance.listVaultMarketOptionStrategies();
+    print(result);
+} catch (e) {
+    print('Exception when calling VaultMarketsApi->listVaultMarketOptionStrategies: $e\n');
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+**ListVaultMarketOptionStrategiesResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
 # **listVaultMarketOracleHistory**
 > ListVaultMarketOracleHistoryResponse listVaultMarketOracleHistory(slug)
 
@@ -18361,6 +26247,49 @@ This endpoint does not need any parameter.
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
+# **listVaultMarketPartnerFinder**
+> ListVaultMarketPartnerFinderResponse listVaultMarketPartnerFinder()
+
+Vault drop-off partners near a `postalCode`, optionally offering a `service`: address, hours and services.
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = VaultMarketsApi();
+
+try {
+    final result = api_instance.listVaultMarketPartnerFinder();
+    print(result);
+} catch (e) {
+    print('Exception when calling VaultMarketsApi->listVaultMarketPartnerFinder: $e\n');
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+**ListVaultMarketPartnerFinderResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
 # **listVaultMarketPoolStakes**
 > ListVaultMarketPoolStakesResponse listVaultMarketPoolStakes()
 
@@ -18568,6 +26497,608 @@ This endpoint does not need any parameter.
 ### Return type
 
 **ListVaultMarketPositionsRiskResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+# **listVaultMarketPredictionAlerts**
+> ListVaultMarketPredictionAlertsResponse listVaultMarketPredictionAlerts()
+
+Your probability alerts: a market, a level (percent) and a direction; each fires once through the alerts hub (kind prediction_odds).
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = VaultMarketsApi();
+
+try {
+    final result = api_instance.listVaultMarketPredictionAlerts();
+    print(result);
+} catch (e) {
+    print('Exception when calling VaultMarketsApi->listVaultMarketPredictionAlerts: $e\n');
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+**ListVaultMarketPredictionAlertsResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+# **listVaultMarketPredictionComboMyRfqs**
+> ListVaultMarketPredictionComboRfqsResponse listVaultMarketPredictionComboMyRfqs()
+
+Your combo requests with every answer they got.
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = VaultMarketsApi();
+
+try {
+    final result = api_instance.listVaultMarketPredictionComboMyRfqs();
+    print(result);
+} catch (e) {
+    print('Exception when calling VaultMarketsApi->listVaultMarketPredictionComboMyRfqs: $e\n');
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+**ListVaultMarketPredictionComboRfqsResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+# **listVaultMarketPredictionComboRfqs**
+> ListVaultMarketPredictionComboRfqsResponse listVaultMarketPredictionComboRfqs()
+
+Open combo requests makers can answer: legs, size and the legs' own combined price; never who asked. Your own answers are shown on them.
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = VaultMarketsApi();
+
+try {
+    final result = api_instance.listVaultMarketPredictionComboRfqs();
+    print(result);
+} catch (e) {
+    print('Exception when calling VaultMarketsApi->listVaultMarketPredictionComboRfqs: $e\n');
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+**ListVaultMarketPredictionComboRfqsResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+# **listVaultMarketPredictionCombos**
+> ListVaultMarketPredictionCombosResponse listVaultMarketPredictionCombos()
+
+Your combos, as buyer or maker: legs and their outcomes, stakes, the pot, any reprice after a voided leg, and how each settled.
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = VaultMarketsApi();
+
+try {
+    final result = api_instance.listVaultMarketPredictionCombos();
+    print(result);
+} catch (e) {
+    print('Exception when calling VaultMarketsApi->listVaultMarketPredictionCombos: $e\n');
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+**ListVaultMarketPredictionCombosResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+# **listVaultMarketPredictionComments**
+> ListVaultMarketPredictionCommentsResponse listVaultMarketPredictionComments()
+
+A discussion thread on a market (`marketId`) or a series (`seriesId`): comments newest first with their replies. A commenter's side shows only when their forecaster profile is public.
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = VaultMarketsApi();
+
+try {
+    final result = api_instance.listVaultMarketPredictionComments();
+    print(result);
+} catch (e) {
+    print('Exception when calling VaultMarketsApi->listVaultMarketPredictionComments: $e\n');
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+**ListVaultMarketPredictionCommentsResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+# **listVaultMarketPredictionConversions**
+> ListVaultMarketPredictionConversionsResponse listVaultMarketPredictionConversions()
+
+Your bucket-set conversions (split, merge, convert), newest first.
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = VaultMarketsApi();
+
+try {
+    final result = api_instance.listVaultMarketPredictionConversions();
+    print(result);
+} catch (e) {
+    print('Exception when calling VaultMarketsApi->listVaultMarketPredictionConversions: $e\n');
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+**ListVaultMarketPredictionConversionsResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+# **listVaultMarketPredictionFollowing**
+> ListVaultMarketPredictionFollowingResponse listVaultMarketPredictionFollowing()
+
+The forecasters you follow.
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = VaultMarketsApi();
+
+try {
+    final result = api_instance.listVaultMarketPredictionFollowing();
+    print(result);
+} catch (e) {
+    print('Exception when calling VaultMarketsApi->listVaultMarketPredictionFollowing: $e\n');
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+**ListVaultMarketPredictionFollowingResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+# **listVaultMarketPredictionForecasts**
+> ListVaultMarketPredictionForecastsResponse listVaultMarketPredictionForecasts()
+
+Your forecasts (a probability you attached to a market, money or not) and how the markets came out.
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = VaultMarketsApi();
+
+try {
+    final result = api_instance.listVaultMarketPredictionForecasts();
+    print(result);
+} catch (e) {
+    print('Exception when calling VaultMarketsApi->listVaultMarketPredictionForecasts: $e\n');
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+**ListVaultMarketPredictionForecastsResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+# **listVaultMarketPredictionMakers**
+> ListVaultMarketPredictionMakersResponse listVaultMarketPredictionMakers()
+
+Your prediction maker programme applications and their status (applied, active, suspended, revoked) and rebate.
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = VaultMarketsApi();
+
+try {
+    final result = api_instance.listVaultMarketPredictionMakers();
+    print(result);
+} catch (e) {
+    print('Exception when calling VaultMarketsApi->listVaultMarketPredictionMakers: $e\n');
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+**ListVaultMarketPredictionMakersResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+# **listVaultMarketPredictionMarkets**
+> ListVaultMarketPredictionMarketsResponse listVaultMarketPredictionMarkets()
+
+Prediction markets, filtered by a book key, an index slug, an underlying kind (index | book_key | category_pair), a status (open | closed | settled | all), an expiry day or text. Each with its strike, expiry, best Yes bid and ask, last price, volume, open interest and probability.
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = VaultMarketsApi();
+
+try {
+    final result = api_instance.listVaultMarketPredictionMarkets();
+    print(result);
+} catch (e) {
+    print('Exception when calling VaultMarketsApi->listVaultMarketPredictionMarkets: $e\n');
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+**ListVaultMarketPredictionMarketsResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+# **listVaultMarketPredictionOrders**
+> ListVaultMarketPredictionOrdersResponse listVaultMarketPredictionOrders()
+
+Your prediction orders, newest first: working, done or all; practice, live or all.
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = VaultMarketsApi();
+
+try {
+    final result = api_instance.listVaultMarketPredictionOrders();
+    print(result);
+} catch (e) {
+    print('Exception when calling VaultMarketsApi->listVaultMarketPredictionOrders: $e\n');
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+**ListVaultMarketPredictionOrdersResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+# **listVaultMarketPredictionPositions**
+> ListVaultMarketPredictionPositionsResponse listVaultMarketPredictionPositions()
+
+Your prediction positions (practice, live or all; open, settled or all): side, contracts, cost, value at the last price, fees, realised P&L, payout or refund once settled, and the share card if you made one.
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = VaultMarketsApi();
+
+try {
+    final result = api_instance.listVaultMarketPredictionPositions();
+    print(result);
+} catch (e) {
+    print('Exception when calling VaultMarketsApi->listVaultMarketPredictionPositions: $e\n');
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+**ListVaultMarketPredictionPositionsResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+# **listVaultMarketPredictionProposalListed**
+> ListVaultMarketPredictionProposalListedResponse listVaultMarketPredictionProposalListed()
+
+The markets you proposed that are listed: volume, status and what the creator share has earned you.
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = VaultMarketsApi();
+
+try {
+    final result = api_instance.listVaultMarketPredictionProposalListed();
+    print(result);
+} catch (e) {
+    print('Exception when calling VaultMarketsApi->listVaultMarketPredictionProposalListed: $e\n');
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+**ListVaultMarketPredictionProposalListedResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+# **listVaultMarketPredictionProposals**
+> ListVaultMarketPredictionProposalsResponse listVaultMarketPredictionProposals()
+
+Your market proposals and where each stands (pending, listed, rejected, withdrawn).
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = VaultMarketsApi();
+
+try {
+    final result = api_instance.listVaultMarketPredictionProposals();
+    print(result);
+} catch (e) {
+    print('Exception when calling VaultMarketsApi->listVaultMarketPredictionProposals: $e\n');
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+**ListVaultMarketPredictionProposalsResponse**
 
 ### Authorization
 
@@ -19366,6 +27897,139 @@ This endpoint does not need any parameter.
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
+# **listVaultMarketShareAutoInvest**
+> ListVaultMarketShareAutoInvestResponse listVaultMarketShareAutoInvest()
+
+Your recurring auto-invest plans: amount, weekly or monthly, the series and weights or the basket, what rolled over (budget too small for a whole share; your money stays at the venue), the next run.
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = VaultMarketsApi();
+
+try {
+    final result = api_instance.listVaultMarketShareAutoInvest();
+    print(result);
+} catch (e) {
+    print('Exception when calling VaultMarketsApi->listVaultMarketShareAutoInvest: $e\n');
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+**ListVaultMarketShareAutoInvestResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+# **listVaultMarketShareAutoInvestRuns**
+> ListVaultMarketShareAutoInvestRunsResponse listVaultMarketShareAutoInvestRuns(id)
+
+A plan’s runs, newest first: the budget, what each series bought, what was spent and what rolled over; rebalances too.
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = VaultMarketsApi();
+final id = id_example; // String | 
+
+try {
+    final result = api_instance.listVaultMarketShareAutoInvestRuns(id);
+    print(result);
+} catch (e) {
+    print('Exception when calling VaultMarketsApi->listVaultMarketShareAutoInvestRuns: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **String**|  | 
+
+### Return type
+
+**ListVaultMarketShareAutoInvestRunsResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+# **listVaultMarketShareBaskets**
+> ListVaultMarketShareBasketsResponse listVaultMarketShareBaskets()
+
+Theme baskets: curated model portfolios of Vault Shares series with target weights. You buy and own every share directly in your own name; a basket is never a fund.
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = VaultMarketsApi();
+
+try {
+    final result = api_instance.listVaultMarketShareBaskets();
+    print(result);
+} catch (e) {
+    print('Exception when calling VaultMarketsApi->listVaultMarketShareBaskets: $e\n');
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+**ListVaultMarketShareBasketsResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
 # **listVaultMarketShareCards**
 > ListVaultMarketShareCardsResponse listVaultMarketShareCards()
 
@@ -19397,6 +28061,448 @@ This endpoint does not need any parameter.
 ### Return type
 
 **ListVaultMarketShareCardsResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+# **listVaultMarketShareDrops**
+> ListVaultMarketShareDropsResponse listVaultMarketShareDrops()
+
+The Vault Shares drops calendar: announced and open offerings, soonest first, each with its phase (announced, early_access, requests, open), the countdown, the allocation (fcfs, pro_rata or lottery with a per-person cap), your Crossly One early-access time (it moves when you may ask, never the price) and whether you asked to be told.
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = VaultMarketsApi();
+
+try {
+    final result = api_instance.listVaultMarketShareDrops();
+    print(result);
+} catch (e) {
+    print('Exception when calling VaultMarketsApi->listVaultMarketShareDrops: $e\n');
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+**ListVaultMarketShareDropsResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+# **listVaultMarketShareGifts**
+> ListVaultMarketShareGiftsResponse listVaultMarketShareGifts()
+
+Your share gifts, sent and received, newest first, with where each stands (offered, instructed, settled, declined, cancelled, expired, rejected).
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = VaultMarketsApi();
+
+try {
+    final result = api_instance.listVaultMarketShareGifts();
+    print(result);
+} catch (e) {
+    print('Exception when calling VaultMarketsApi->listVaultMarketShareGifts: $e\n');
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+**ListVaultMarketShareGiftsResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+# **listVaultMarketShareOrders**
+> ListVaultMarketShareOrdersResponse listVaultMarketShareOrders()
+
+Your share-book orders, newest first; `seriesId` and `open` narrow it.
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = VaultMarketsApi();
+
+try {
+    final result = api_instance.listVaultMarketShareOrders();
+    print(result);
+} catch (e) {
+    print('Exception when calling VaultMarketsApi->listVaultMarketShareOrders: $e\n');
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+**ListVaultMarketShareOrdersResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+# **listVaultMarketShareSeries**
+> ListVaultMarketShareSeriesResponse listVaultMarketShareSeries()
+
+Vault Shares series: open offerings first, then trading, then the rest. `status` and `bookKey` narrow it. Each with its terms, progress, last share price and implied item value (display only, never a mark), and your holding.
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = VaultMarketsApi();
+
+try {
+    final result = api_instance.listVaultMarketShareSeries();
+    print(result);
+} catch (e) {
+    print('Exception when calling VaultMarketsApi->listVaultMarketShareSeries: $e\n');
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+**ListVaultMarketShareSeriesResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+# **listVaultMarketShareSeryAppraisals**
+> ListVaultMarketShareSeryAppraisalsResponse listVaultMarketShareSeryAppraisals(id)
+
+The item’s appraisal history: the offering valuation (sealed valuation statement), independent and insurance appraisals, and any buyout or exit price.
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = VaultMarketsApi();
+final id = id_example; // String | 
+
+try {
+    final result = api_instance.listVaultMarketShareSeryAppraisals(id);
+    print(result);
+} catch (e) {
+    print('Exception when calling VaultMarketsApi->listVaultMarketShareSeryAppraisals: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **String**|  | 
+
+### Return type
+
+**ListVaultMarketShareSeryAppraisalsResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+# **listVaultMarketShareSeryTape**
+> ListVaultMarketShareSeryTapeResponse listVaultMarketShareSeryTape(id)
+
+The latest fills on a share book, newest first, with which side made the market.
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = VaultMarketsApi();
+final id = id_example; // String | 
+
+try {
+    final result = api_instance.listVaultMarketShareSeryTape(id);
+    print(result);
+} catch (e) {
+    print('Exception when calling VaultMarketsApi->listVaultMarketShareSeryTape: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **String**|  | 
+
+### Return type
+
+**ListVaultMarketShareSeryTapeResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+# **listVaultMarketShareSeryUpdates**
+> ListVaultMarketShareSeryUpdatesResponse listVaultMarketShareSeryUpdates(id)
+
+The item’s story, provenance, condition reports, appraisals and exhibitions, newest first. Holders also see holders-only updates.
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = VaultMarketsApi();
+final id = id_example; // String | 
+
+try {
+    final result = api_instance.listVaultMarketShareSeryUpdates(id);
+    print(result);
+} catch (e) {
+    print('Exception when calling VaultMarketsApi->listVaultMarketShareSeryUpdates: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **String**|  | 
+
+### Return type
+
+**ListVaultMarketShareSeryUpdatesResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+# **listVaultMarketShareSubscriptions**
+> ListVaultMarketShareSubscriptionsResponse listVaultMarketShareSubscriptions()
+
+Your offering subscriptions, newest first, with where each stands (pending, escrowed, allocated, refunded).
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = VaultMarketsApi();
+
+try {
+    final result = api_instance.listVaultMarketShareSubscriptions();
+    print(result);
+} catch (e) {
+    print('Exception when calling VaultMarketsApi->listVaultMarketShareSubscriptions: $e\n');
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+**ListVaultMarketShareSubscriptionsResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+# **listVaultMarketShareWorld**
+> ListVaultMarketShareWorldResponse listVaultMarketShareWorld()
+
+The world vault home’s fractional tiles: each item you own a share of, with \"you own 3.2%\".
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = VaultMarketsApi();
+
+try {
+    final result = api_instance.listVaultMarketShareWorld();
+    print(result);
+} catch (e) {
+    print('Exception when calling VaultMarketsApi->listVaultMarketShareWorld: $e\n');
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+**ListVaultMarketShareWorldResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+# **listVaultMarketSupplyDeclaredValues**
+> ListVaultMarketSupplyDeclaredValuesResponse listVaultMarketSupplyDeclaredValues()
+
+What each item's declared value starts at, by your insurance rule (market, cost or price). `inventoryItemIds` comma-separated.
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = VaultMarketsApi();
+
+try {
+    final result = api_instance.listVaultMarketSupplyDeclaredValues();
+    print(result);
+} catch (e) {
+    print('Exception when calling VaultMarketsApi->listVaultMarketSupplyDeclaredValues: $e\n');
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+**ListVaultMarketSupplyDeclaredValuesResponse**
 
 ### Authorization
 
@@ -19452,6 +28558,49 @@ This endpoint does not need any parameter.
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
+# **listVaultMarketSupplyEligibility**
+> ListVaultMarketSupplyEligibilityResponse listVaultMarketSupplyEligibility()
+
+Can these inventory items (`inventoryItemIds`, comma-separated, or every item linked to `listingId`) be sent to the vault now? Each says why not.
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = VaultMarketsApi();
+
+try {
+    final result = api_instance.listVaultMarketSupplyEligibility();
+    print(result);
+} catch (e) {
+    print('Exception when calling VaultMarketsApi->listVaultMarketSupplyEligibility: $e\n');
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+**ListVaultMarketSupplyEligibilityResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
 # **listVaultMarketSupplyInvites**
 > ListVaultMarketSupplyInvitesResponse listVaultMarketSupplyInvites()
 
@@ -19483,6 +28632,49 @@ This endpoint does not need any parameter.
 ### Return type
 
 **ListVaultMarketSupplyInvitesResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+# **listVaultMarketSupplyShipments**
+> ListVaultMarketSupplyShipmentsResponse listVaultMarketSupplyShipments()
+
+Your shipments into the vault, newest first: method, label or drop-off code, tracking and how many units were received.
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = VaultMarketsApi();
+
+try {
+    final result = api_instance.listVaultMarketSupplyShipments();
+    print(result);
+} catch (e) {
+    print('Exception when calling VaultMarketsApi->listVaultMarketSupplyShipments: $e\n');
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+**ListVaultMarketSupplyShipmentsResponse**
 
 ### Authorization
 
@@ -20011,6 +29203,49 @@ This endpoint does not need any parameter.
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
+# **updateVaultMarketAutoBuy**
+> UpdateVaultMarketAutoBuyResponse updateVaultMarketAutoBuy()
+
+Set up or change Auto-buy with payouts: `shareBps` (1–50%) and the whole want list in order, each with an optional `maxPriceCents` (fee included).
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = VaultMarketsApi();
+
+try {
+    final result = api_instance.updateVaultMarketAutoBuy();
+    print(result);
+} catch (e) {
+    print('Exception when calling VaultMarketsApi->updateVaultMarketAutoBuy: $e\n');
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+**UpdateVaultMarketAutoBuyResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
 # **updateVaultMarketBlockAllocation**
 > ListVaultMarketBlocksItem updateVaultMarketBlockAllocation(orderId)
 
@@ -20516,6 +29751,53 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
+# **updateVaultMarketItemSellFrom**
+> GetVaultMarketItemLocationResponse updateVaultMarketItemSellFrom(inventoryItemId)
+
+Set which unit a sale of this item ships first: `vault_first`, `warehouse_first` or `cheapest` (to ship); null = your default. Quantities stay the same on every channel: only who ships changes.
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = VaultMarketsApi();
+final inventoryItemId = inventoryItemId_example; // String | 
+
+try {
+    final result = api_instance.updateVaultMarketItemSellFrom(inventoryItemId);
+    print(result);
+} catch (e) {
+    print('Exception when calling VaultMarketsApi->updateVaultMarketItemSellFrom: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **inventoryItemId** | **String**|  | 
+
+### Return type
+
+**GetVaultMarketItemLocationResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
 # **updateVaultMarketLendingElection**
 > GetVaultMarketLendingElectionResponse updateVaultMarketLendingElection()
 
@@ -20688,6 +29970,49 @@ This endpoint does not need any parameter.
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
+# **updateVaultMarketOptionAutoClose**
+> GetVaultMarketOptionAutoCloseResponse updateVaultMarketOptionAutoClose()
+
+Set your auto-close rule: `enabled`, `minutesBefore` (30 to 10080), `onlyItm`, `maxSlippageBps` (0 to 2000).
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = VaultMarketsApi();
+
+try {
+    final result = api_instance.updateVaultMarketOptionAutoClose();
+    print(result);
+} catch (e) {
+    print('Exception when calling VaultMarketsApi->updateVaultMarketOptionAutoClose: $e\n');
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+**GetVaultMarketOptionAutoCloseResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
 # **updateVaultMarketPaperLeaderboard**
 > UpdateVaultMarketPaperLeaderboardResponse updateVaultMarketPaperLeaderboard()
 
@@ -20719,6 +30044,49 @@ This endpoint does not need any parameter.
 ### Return type
 
 **UpdateVaultMarketPaperLeaderboardResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+# **updateVaultMarketPartnerMe**
+> UpdateVaultMarketPartnerMeResponse updateVaultMarketPartnerMe()
+
+Your drop-off partnership's finder profile: postal code, opening hours, services and whether you are listed.
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = VaultMarketsApi();
+
+try {
+    final result = api_instance.updateVaultMarketPartnerMe();
+    print(result);
+} catch (e) {
+    print('Exception when calling VaultMarketsApi->updateVaultMarketPartnerMe: $e\n');
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+**UpdateVaultMarketPartnerMeResponse**
 
 ### Authorization
 
@@ -20766,6 +30134,139 @@ Name | Type | Description  | Notes
 ### Return type
 
 **UpdateVaultMarketPositionExitResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+# **updateVaultMarketPredictionComment**
+> CreateVaultMarketPredictionCommentResponse updateVaultMarketPredictionComment(id)
+
+Edit your comment.
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = VaultMarketsApi();
+final id = id_example; // String | 
+
+try {
+    final result = api_instance.updateVaultMarketPredictionComment(id);
+    print(result);
+} catch (e) {
+    print('Exception when calling VaultMarketsApi->updateVaultMarketPredictionComment: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **String**|  | 
+
+### Return type
+
+**CreateVaultMarketPredictionCommentResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+# **updateVaultMarketPredictionForecaster**
+> GetVaultMarketPredictionForecasterResponse updateVaultMarketPredictionForecaster()
+
+Go public under a display name (`public: true`), rename, or go private (`public: false`: nothing is shown again).
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = VaultMarketsApi();
+
+try {
+    final result = api_instance.updateVaultMarketPredictionForecaster();
+    print(result);
+} catch (e) {
+    print('Exception when calling VaultMarketsApi->updateVaultMarketPredictionForecaster: $e\n');
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+**GetVaultMarketPredictionForecasterResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+# **updateVaultMarketPredictionLimit**
+> GetVaultMarketPredictionLimitResponse updateVaultMarketPredictionLimit()
+
+Set your daily loss limit (`dailyLossLimitCents`, null = none) or exclude yourself (`excludeDays`, `excludedUntil` or \"forever\"). Tighter takes effect at once; looser waits 24 hours.
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = VaultMarketsApi();
+
+try {
+    final result = api_instance.updateVaultMarketPredictionLimit();
+    print(result);
+} catch (e) {
+    print('Exception when calling VaultMarketsApi->updateVaultMarketPredictionLimit: $e\n');
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+**GetVaultMarketPredictionLimitResponse**
 
 ### Authorization
 
@@ -20950,6 +30451,49 @@ Name | Type | Description  | Notes
 ### Return type
 
 **GetVaultMarketSetGoalResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+# **updateVaultMarketSetting**
+> GetVaultMarketSettingResponse updateVaultMarketSetting()
+
+Change your vault defaults; send only the fields you change.
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = VaultMarketsApi();
+
+try {
+    final result = api_instance.updateVaultMarketSetting();
+    print(result);
+} catch (e) {
+    print('Exception when calling VaultMarketsApi->updateVaultMarketSetting: $e\n');
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+**GetVaultMarketSettingResponse**
 
 ### Authorization
 

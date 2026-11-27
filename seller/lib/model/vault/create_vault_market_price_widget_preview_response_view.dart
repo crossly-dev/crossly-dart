@@ -268,13 +268,13 @@ class CreateVaultMarketPriceWidgetPreviewResponseViewKindEnum {
 
   String toJson() => value;
 
-  static const mark = CreateVaultMarketPriceWidgetPreviewResponseViewKindEnum._(r'mark');
   static const index = CreateVaultMarketPriceWidgetPreviewResponseViewKindEnum._(r'index');
+  static const mark = CreateVaultMarketPriceWidgetPreviewResponseViewKindEnum._(r'mark');
 
   /// List of all possible values in this [enum][CreateVaultMarketPriceWidgetPreviewResponseViewKindEnum].
   static const values = <CreateVaultMarketPriceWidgetPreviewResponseViewKindEnum>[
-    mark,
     index,
+    mark,
   ];
 
   static CreateVaultMarketPriceWidgetPreviewResponseViewKindEnum fromJson(dynamic value) =>
@@ -306,8 +306,8 @@ class CreateVaultMarketPriceWidgetPreviewResponseViewKindEnumTypeTransformer {
   CreateVaultMarketPriceWidgetPreviewResponseViewKindEnum decode(dynamic data, {bool allowNull}) {
     if (data != null) {
       switch (data.toString()) {
-        case r'mark': return CreateVaultMarketPriceWidgetPreviewResponseViewKindEnum.mark;
         case r'index': return CreateVaultMarketPriceWidgetPreviewResponseViewKindEnum.index;
+        case r'mark': return CreateVaultMarketPriceWidgetPreviewResponseViewKindEnum.mark;
         default:
           if (allowNull == false) {
             throw ArgumentError('Unknown enum value to decode: $data');
@@ -336,16 +336,16 @@ class CreateVaultMarketPriceWidgetPreviewResponseViewQualityEnum {
   String toJson() => value;
 
   static const none = CreateVaultMarketPriceWidgetPreviewResponseViewQualityEnum._(r'none');
+  static const C = CreateVaultMarketPriceWidgetPreviewResponseViewQualityEnum._(r'C');
   static const A = CreateVaultMarketPriceWidgetPreviewResponseViewQualityEnum._(r'A');
   static const B = CreateVaultMarketPriceWidgetPreviewResponseViewQualityEnum._(r'B');
-  static const C = CreateVaultMarketPriceWidgetPreviewResponseViewQualityEnum._(r'C');
 
   /// List of all possible values in this [enum][CreateVaultMarketPriceWidgetPreviewResponseViewQualityEnum].
   static const values = <CreateVaultMarketPriceWidgetPreviewResponseViewQualityEnum>[
     none,
+    C,
     A,
     B,
-    C,
   ];
 
   static CreateVaultMarketPriceWidgetPreviewResponseViewQualityEnum fromJson(dynamic value) =>
@@ -378,9 +378,9 @@ class CreateVaultMarketPriceWidgetPreviewResponseViewQualityEnumTypeTransformer 
     if (data != null) {
       switch (data.toString()) {
         case r'none': return CreateVaultMarketPriceWidgetPreviewResponseViewQualityEnum.none;
+        case r'C': return CreateVaultMarketPriceWidgetPreviewResponseViewQualityEnum.C;
         case r'A': return CreateVaultMarketPriceWidgetPreviewResponseViewQualityEnum.A;
         case r'B': return CreateVaultMarketPriceWidgetPreviewResponseViewQualityEnum.B;
-        case r'C': return CreateVaultMarketPriceWidgetPreviewResponseViewQualityEnum.C;
         default:
           if (allowNull == false) {
             throw ArgumentError('Unknown enum value to decode: $data');

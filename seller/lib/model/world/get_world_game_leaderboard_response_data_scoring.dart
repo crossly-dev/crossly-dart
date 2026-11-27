@@ -109,14 +109,14 @@ class GetWorldGameLeaderboardResponseDataScoringKindEnum {
 
   String toJson() => value;
 
-  static const wins = GetWorldGameLeaderboardResponseDataScoringKindEnum._(r'wins');
   static const points = GetWorldGameLeaderboardResponseDataScoringKindEnum._(r'points');
+  static const wins = GetWorldGameLeaderboardResponseDataScoringKindEnum._(r'wins');
   static const time = GetWorldGameLeaderboardResponseDataScoringKindEnum._(r'time');
 
   /// List of all possible values in this [enum][GetWorldGameLeaderboardResponseDataScoringKindEnum].
   static const values = <GetWorldGameLeaderboardResponseDataScoringKindEnum>[
-    wins,
     points,
+    wins,
     time,
   ];
 
@@ -149,8 +149,8 @@ class GetWorldGameLeaderboardResponseDataScoringKindEnumTypeTransformer {
   GetWorldGameLeaderboardResponseDataScoringKindEnum decode(dynamic data, {bool allowNull}) {
     if (data != null) {
       switch (data.toString()) {
-        case r'wins': return GetWorldGameLeaderboardResponseDataScoringKindEnum.wins;
         case r'points': return GetWorldGameLeaderboardResponseDataScoringKindEnum.points;
+        case r'wins': return GetWorldGameLeaderboardResponseDataScoringKindEnum.wins;
         case r'time': return GetWorldGameLeaderboardResponseDataScoringKindEnum.time;
         default:
           if (allowNull == false) {

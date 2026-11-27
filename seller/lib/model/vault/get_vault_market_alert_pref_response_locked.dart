@@ -102,10 +102,12 @@ class GetVaultMarketAlertPrefResponseLockedKindEnum {
 
   String toJson() => value;
 
-  static const price = GetVaultMarketAlertPrefResponseLockedKindEnum._(r'price');
-  static const auction = GetVaultMarketAlertPrefResponseLockedKindEnum._(r'auction');
-  static const fill = GetVaultMarketAlertPrefResponseLockedKindEnum._(r'fill');
   static const account = GetVaultMarketAlertPrefResponseLockedKindEnum._(r'account');
+  static const price = GetVaultMarketAlertPrefResponseLockedKindEnum._(r'price');
+  static const fill = GetVaultMarketAlertPrefResponseLockedKindEnum._(r'fill');
+  static const auction = GetVaultMarketAlertPrefResponseLockedKindEnum._(r'auction');
+  static const prediction = GetVaultMarketAlertPrefResponseLockedKindEnum._(r'prediction');
+  static const optionExpiry = GetVaultMarketAlertPrefResponseLockedKindEnum._(r'option_expiry');
   static const marginCall = GetVaultMarketAlertPrefResponseLockedKindEnum._(r'margin_call');
   static const adl = GetVaultMarketAlertPrefResponseLockedKindEnum._(r'adl');
   static const p2pLoan = GetVaultMarketAlertPrefResponseLockedKindEnum._(r'p2p_loan');
@@ -113,13 +115,19 @@ class GetVaultMarketAlertPrefResponseLockedKindEnum {
   static const receiptToken = GetVaultMarketAlertPrefResponseLockedKindEnum._(r'receipt_token');
   static const setGoal = GetVaultMarketAlertPrefResponseLockedKindEnum._(r'set_goal');
   static const follow = GetVaultMarketAlertPrefResponseLockedKindEnum._(r'follow');
+  static const shareOffering = GetVaultMarketAlertPrefResponseLockedKindEnum._(r'share_offering');
+  static const shareVote = GetVaultMarketAlertPrefResponseLockedKindEnum._(r'share_vote');
+  static const optionSettlement = GetVaultMarketAlertPrefResponseLockedKindEnum._(r'option_settlement');
+  static const predictionOdds = GetVaultMarketAlertPrefResponseLockedKindEnum._(r'prediction_odds');
 
   /// List of all possible values in this [enum][GetVaultMarketAlertPrefResponseLockedKindEnum].
   static const values = <GetVaultMarketAlertPrefResponseLockedKindEnum>[
-    price,
-    auction,
-    fill,
     account,
+    price,
+    fill,
+    auction,
+    prediction,
+    optionExpiry,
     marginCall,
     adl,
     p2pLoan,
@@ -127,6 +135,10 @@ class GetVaultMarketAlertPrefResponseLockedKindEnum {
     receiptToken,
     setGoal,
     follow,
+    shareOffering,
+    shareVote,
+    optionSettlement,
+    predictionOdds,
   ];
 
   static GetVaultMarketAlertPrefResponseLockedKindEnum fromJson(dynamic value) =>
@@ -158,10 +170,12 @@ class GetVaultMarketAlertPrefResponseLockedKindEnumTypeTransformer {
   GetVaultMarketAlertPrefResponseLockedKindEnum decode(dynamic data, {bool allowNull}) {
     if (data != null) {
       switch (data.toString()) {
-        case r'price': return GetVaultMarketAlertPrefResponseLockedKindEnum.price;
-        case r'auction': return GetVaultMarketAlertPrefResponseLockedKindEnum.auction;
-        case r'fill': return GetVaultMarketAlertPrefResponseLockedKindEnum.fill;
         case r'account': return GetVaultMarketAlertPrefResponseLockedKindEnum.account;
+        case r'price': return GetVaultMarketAlertPrefResponseLockedKindEnum.price;
+        case r'fill': return GetVaultMarketAlertPrefResponseLockedKindEnum.fill;
+        case r'auction': return GetVaultMarketAlertPrefResponseLockedKindEnum.auction;
+        case r'prediction': return GetVaultMarketAlertPrefResponseLockedKindEnum.prediction;
+        case r'option_expiry': return GetVaultMarketAlertPrefResponseLockedKindEnum.optionExpiry;
         case r'margin_call': return GetVaultMarketAlertPrefResponseLockedKindEnum.marginCall;
         case r'adl': return GetVaultMarketAlertPrefResponseLockedKindEnum.adl;
         case r'p2p_loan': return GetVaultMarketAlertPrefResponseLockedKindEnum.p2pLoan;
@@ -169,6 +183,10 @@ class GetVaultMarketAlertPrefResponseLockedKindEnumTypeTransformer {
         case r'receipt_token': return GetVaultMarketAlertPrefResponseLockedKindEnum.receiptToken;
         case r'set_goal': return GetVaultMarketAlertPrefResponseLockedKindEnum.setGoal;
         case r'follow': return GetVaultMarketAlertPrefResponseLockedKindEnum.follow;
+        case r'share_offering': return GetVaultMarketAlertPrefResponseLockedKindEnum.shareOffering;
+        case r'share_vote': return GetVaultMarketAlertPrefResponseLockedKindEnum.shareVote;
+        case r'option_settlement': return GetVaultMarketAlertPrefResponseLockedKindEnum.optionSettlement;
+        case r'prediction_odds': return GetVaultMarketAlertPrefResponseLockedKindEnum.predictionOdds;
         default:
           if (allowNull == false) {
             throw ArgumentError('Unknown enum value to decode: $data');

@@ -184,16 +184,16 @@ class ListVaultMarketWatchlistItemMarkQualityEnum {
   String toJson() => value;
 
   static const none = ListVaultMarketWatchlistItemMarkQualityEnum._(r'none');
+  static const C = ListVaultMarketWatchlistItemMarkQualityEnum._(r'C');
   static const A = ListVaultMarketWatchlistItemMarkQualityEnum._(r'A');
   static const B = ListVaultMarketWatchlistItemMarkQualityEnum._(r'B');
-  static const C = ListVaultMarketWatchlistItemMarkQualityEnum._(r'C');
 
   /// List of all possible values in this [enum][ListVaultMarketWatchlistItemMarkQualityEnum].
   static const values = <ListVaultMarketWatchlistItemMarkQualityEnum>[
     none,
+    C,
     A,
     B,
-    C,
   ];
 
   static ListVaultMarketWatchlistItemMarkQualityEnum fromJson(dynamic value) =>
@@ -226,9 +226,9 @@ class ListVaultMarketWatchlistItemMarkQualityEnumTypeTransformer {
     if (data != null) {
       switch (data.toString()) {
         case r'none': return ListVaultMarketWatchlistItemMarkQualityEnum.none;
+        case r'C': return ListVaultMarketWatchlistItemMarkQualityEnum.C;
         case r'A': return ListVaultMarketWatchlistItemMarkQualityEnum.A;
         case r'B': return ListVaultMarketWatchlistItemMarkQualityEnum.B;
-        case r'C': return ListVaultMarketWatchlistItemMarkQualityEnum.C;
         default:
           if (allowNull == false) {
             throw ArgumentError('Unknown enum value to decode: $data');

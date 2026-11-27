@@ -138,15 +138,15 @@ class GetVaultMarketHealthResponseConcentrationSingleItemBandEnum {
 
   String toJson() => value;
 
-  static const spread = GetVaultMarketHealthResponseConcentrationSingleItemBandEnum._(r'spread');
   static const moderate = GetVaultMarketHealthResponseConcentrationSingleItemBandEnum._(r'moderate');
+  static const spread = GetVaultMarketHealthResponseConcentrationSingleItemBandEnum._(r'spread');
   static const empty = GetVaultMarketHealthResponseConcentrationSingleItemBandEnum._(r'empty');
   static const concentrated = GetVaultMarketHealthResponseConcentrationSingleItemBandEnum._(r'concentrated');
 
   /// List of all possible values in this [enum][GetVaultMarketHealthResponseConcentrationSingleItemBandEnum].
   static const values = <GetVaultMarketHealthResponseConcentrationSingleItemBandEnum>[
-    spread,
     moderate,
+    spread,
     empty,
     concentrated,
   ];
@@ -180,8 +180,8 @@ class GetVaultMarketHealthResponseConcentrationSingleItemBandEnumTypeTransformer
   GetVaultMarketHealthResponseConcentrationSingleItemBandEnum decode(dynamic data, {bool allowNull}) {
     if (data != null) {
       switch (data.toString()) {
-        case r'spread': return GetVaultMarketHealthResponseConcentrationSingleItemBandEnum.spread;
         case r'moderate': return GetVaultMarketHealthResponseConcentrationSingleItemBandEnum.moderate;
+        case r'spread': return GetVaultMarketHealthResponseConcentrationSingleItemBandEnum.spread;
         case r'empty': return GetVaultMarketHealthResponseConcentrationSingleItemBandEnum.empty;
         case r'concentrated': return GetVaultMarketHealthResponseConcentrationSingleItemBandEnum.concentrated;
         default:

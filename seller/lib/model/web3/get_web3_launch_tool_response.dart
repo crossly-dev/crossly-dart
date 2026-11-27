@@ -13,10 +13,13 @@ part of openapi.api;
 class GetWeb3LaunchToolResponse {
   /// Returns a new [GetWeb3LaunchToolResponse] instance.
   GetWeb3LaunchToolResponse({
+    @required this.royalties,
     @required this.allowlist,
     @required this.art,
     @required this.supply,
   });
+
+  GetWeb3LaunchToolResponseRoyalties royalties;
 
   GetWeb3LaunchToolResponseAllowlist allowlist;
 
@@ -26,6 +29,7 @@ class GetWeb3LaunchToolResponse {
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is GetWeb3LaunchToolResponse &&
+     other.royalties == royalties &&
      other.allowlist == allowlist &&
      other.art == art &&
      other.supply == supply;
@@ -33,15 +37,17 @@ class GetWeb3LaunchToolResponse {
   @override
   int get hashCode =>
   // ignore: unnecessary_parenthesis
+    (royalties == null ? 0 : royalties.hashCode) +
     (allowlist == null ? 0 : allowlist.hashCode) +
     (art == null ? 0 : art.hashCode) +
     (supply == null ? 0 : supply.hashCode);
 
   @override
-  String toString() => 'GetWeb3LaunchToolResponse[allowlist=$allowlist, art=$art, supply=$supply]';
+  String toString() => 'GetWeb3LaunchToolResponse[royalties=$royalties, allowlist=$allowlist, art=$art, supply=$supply]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
+      json[r'royalties'] = royalties;
       json[r'allowlist'] = allowlist;
       json[r'art'] = art;
       json[r'supply'] = supply;
@@ -55,6 +61,7 @@ class GetWeb3LaunchToolResponse {
     if (value is Map) {
       final json = value.cast<String, dynamic>();
       return GetWeb3LaunchToolResponse(
+        royalties: GetWeb3LaunchToolResponseRoyalties.fromJson(json[r'royalties']),
         allowlist: GetWeb3LaunchToolResponseAllowlist.fromJson(json[r'allowlist']),
         art: GetWeb3LaunchToolResponseArt.fromJson(json[r'art']),
         supply: GetWeb3LaunchToolResponseSupply.fromJson(json[r'supply']),

@@ -22,6 +22,7 @@ class GetVaultMarketHealthResponse {
     @required this.marks,
     this.notes = const [],
     this.items = const [],
+    @required this.hedges,
   });
 
   String asOf;
@@ -43,6 +44,8 @@ class GetVaultMarketHealthResponse {
   /// The items a what-if can be run on, largest first.
   List<GetVaultMarketHealthResponseItems> items;
 
+  GetVaultMarketHealthResponseHedges hedges;
+
   @override
   bool operator ==(Object other) => identical(this, other) || other is GetVaultMarketHealthResponse &&
      other.asOf == asOf &&
@@ -53,7 +56,8 @@ class GetVaultMarketHealthResponse {
      other.stress == stress &&
      other.marks == marks &&
      other.notes == notes &&
-     other.items == items;
+     other.items == items &&
+     other.hedges == hedges;
 
   @override
   int get hashCode =>
@@ -66,10 +70,11 @@ class GetVaultMarketHealthResponse {
     (stress == null ? 0 : stress.hashCode) +
     (marks == null ? 0 : marks.hashCode) +
     (notes == null ? 0 : notes.hashCode) +
-    (items == null ? 0 : items.hashCode);
+    (items == null ? 0 : items.hashCode) +
+    (hedges == null ? 0 : hedges.hashCode);
 
   @override
-  String toString() => 'GetVaultMarketHealthResponse[asOf=$asOf, disclosure=$disclosure, totals=$totals, concentration=$concentration, liquidity=$liquidity, stress=$stress, marks=$marks, notes=$notes, items=$items]';
+  String toString() => 'GetVaultMarketHealthResponse[asOf=$asOf, disclosure=$disclosure, totals=$totals, concentration=$concentration, liquidity=$liquidity, stress=$stress, marks=$marks, notes=$notes, items=$items, hedges=$hedges]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -82,6 +87,7 @@ class GetVaultMarketHealthResponse {
       json[r'marks'] = marks;
       json[r'notes'] = notes;
       json[r'items'] = items;
+      json[r'hedges'] = hedges;
     return json;
   }
 
@@ -103,6 +109,7 @@ class GetVaultMarketHealthResponse {
           ? (json[r'notes'] as List).cast<String>()
           : null,
         items: GetVaultMarketHealthResponseItems.listFromJson(json[r'items']),
+        hedges: GetVaultMarketHealthResponseHedges.fromJson(json[r'hedges']),
       );
     }
     return null;

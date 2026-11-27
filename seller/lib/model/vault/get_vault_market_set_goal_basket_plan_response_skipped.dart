@@ -125,15 +125,15 @@ class GetVaultMarketSetGoalBasketPlanResponseSkippedReasonEnum {
 
   String toJson() => value;
 
-  static const tooMany = GetVaultMarketSetGoalBasketPlanResponseSkippedReasonEnum._(r'too_many');
   static const noPrice = GetVaultMarketSetGoalBasketPlanResponseSkippedReasonEnum._(r'no_price');
+  static const tooMany = GetVaultMarketSetGoalBasketPlanResponseSkippedReasonEnum._(r'too_many');
   static const overBudget = GetVaultMarketSetGoalBasketPlanResponseSkippedReasonEnum._(r'over_budget');
   static const notChosen = GetVaultMarketSetGoalBasketPlanResponseSkippedReasonEnum._(r'not_chosen');
 
   /// List of all possible values in this [enum][GetVaultMarketSetGoalBasketPlanResponseSkippedReasonEnum].
   static const values = <GetVaultMarketSetGoalBasketPlanResponseSkippedReasonEnum>[
-    tooMany,
     noPrice,
+    tooMany,
     overBudget,
     notChosen,
   ];
@@ -167,8 +167,8 @@ class GetVaultMarketSetGoalBasketPlanResponseSkippedReasonEnumTypeTransformer {
   GetVaultMarketSetGoalBasketPlanResponseSkippedReasonEnum decode(dynamic data, {bool allowNull}) {
     if (data != null) {
       switch (data.toString()) {
-        case r'too_many': return GetVaultMarketSetGoalBasketPlanResponseSkippedReasonEnum.tooMany;
         case r'no_price': return GetVaultMarketSetGoalBasketPlanResponseSkippedReasonEnum.noPrice;
+        case r'too_many': return GetVaultMarketSetGoalBasketPlanResponseSkippedReasonEnum.tooMany;
         case r'over_budget': return GetVaultMarketSetGoalBasketPlanResponseSkippedReasonEnum.overBudget;
         case r'not_chosen': return GetVaultMarketSetGoalBasketPlanResponseSkippedReasonEnum.notChosen;
         default:

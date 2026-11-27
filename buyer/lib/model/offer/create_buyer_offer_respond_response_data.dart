@@ -14,43 +14,43 @@ class CreateBuyerOfferRespondResponseData {
   /// Returns a new [CreateBuyerOfferRespondResponseData] instance.
   CreateBuyerOfferRespondResponseData({
     @required this.status,
-    this.offerId,
     this.redeemable,
+    this.offerId,
   });
 
   /// accepted | declined | countered.
   String status;
 
-  /// Countered: the id of YOUR new offer, now waiting on the seller.
-  String offerId;
-
   /// Accepted: you can now pay for it (48 hours).
   bool redeemable;
+
+  /// Countered: the id of YOUR new offer, now waiting on the seller.
+  String offerId;
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is CreateBuyerOfferRespondResponseData &&
      other.status == status &&
-     other.offerId == offerId &&
-     other.redeemable == redeemable;
+     other.redeemable == redeemable &&
+     other.offerId == offerId;
 
   @override
   int get hashCode =>
   // ignore: unnecessary_parenthesis
     (status == null ? 0 : status.hashCode) +
-    (offerId == null ? 0 : offerId.hashCode) +
-    (redeemable == null ? 0 : redeemable.hashCode);
+    (redeemable == null ? 0 : redeemable.hashCode) +
+    (offerId == null ? 0 : offerId.hashCode);
 
   @override
-  String toString() => 'CreateBuyerOfferRespondResponseData[status=$status, offerId=$offerId, redeemable=$redeemable]';
+  String toString() => 'CreateBuyerOfferRespondResponseData[status=$status, redeemable=$redeemable, offerId=$offerId]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
       json[r'status'] = status;
-    if (offerId != null) {
-      json[r'offerId'] = offerId;
-    }
     if (redeemable != null) {
       json[r'redeemable'] = redeemable;
+    }
+    if (offerId != null) {
+      json[r'offerId'] = offerId;
     }
     return json;
   }
@@ -63,8 +63,8 @@ class CreateBuyerOfferRespondResponseData {
       final json = value.cast<String, dynamic>();
       return CreateBuyerOfferRespondResponseData(
         status: mapValueOfType<String>(json, r'status'),
-        offerId: mapValueOfType<String>(json, r'offerId'),
         redeemable: mapValueOfType<bool>(json, r'redeemable'),
+        offerId: mapValueOfType<String>(json, r'offerId'),
       );
     }
     return null;

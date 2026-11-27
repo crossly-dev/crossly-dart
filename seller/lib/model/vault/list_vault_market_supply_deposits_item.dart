@@ -14,6 +14,7 @@ class ListVaultMarketSupplyDepositsItem {
   /// Returns a new [ListVaultMarketSupplyDepositsItem] instance.
   ListVaultMarketSupplyDepositsItem({
     @required this.id,
+    this.storefrontId,
     @required this.vaultItemId,
     this.inventoryItemId,
     this.batchId,
@@ -37,6 +38,8 @@ class ListVaultMarketSupplyDepositsItem {
   });
 
   String id;
+
+  String storefrontId;
 
   String vaultItemId;
 
@@ -81,6 +84,7 @@ class ListVaultMarketSupplyDepositsItem {
   @override
   bool operator ==(Object other) => identical(this, other) || other is ListVaultMarketSupplyDepositsItem &&
      other.id == id &&
+     other.storefrontId == storefrontId &&
      other.vaultItemId == vaultItemId &&
      other.inventoryItemId == inventoryItemId &&
      other.batchId == batchId &&
@@ -106,6 +110,7 @@ class ListVaultMarketSupplyDepositsItem {
   int get hashCode =>
   // ignore: unnecessary_parenthesis
     (id == null ? 0 : id.hashCode) +
+    (storefrontId == null ? 0 : storefrontId.hashCode) +
     (vaultItemId == null ? 0 : vaultItemId.hashCode) +
     (inventoryItemId == null ? 0 : inventoryItemId.hashCode) +
     (batchId == null ? 0 : batchId.hashCode) +
@@ -128,11 +133,14 @@ class ListVaultMarketSupplyDepositsItem {
     (createdAt == null ? 0 : createdAt.hashCode);
 
   @override
-  String toString() => 'ListVaultMarketSupplyDepositsItem[id=$id, vaultItemId=$vaultItemId, inventoryItemId=$inventoryItemId, batchId=$batchId, partnerId=$partnerId, bookKey=$bookKey, status=$status, unitStatus=$unitStatus, lendEnabled=$lendEnabled, name=$name, imageUrl=$imageUrl, variantLabel=$variantLabel, autoListBps=$autoListBps, lendWhenIdle=$lendWhenIdle, setupNote=$setupNote, setUpAt=$setUpAt, channelPlatform=$channelPlatform, channelSoldAt=$channelSoldAt, outboundTracking=$outboundTracking, exit=$exit, createdAt=$createdAt]';
+  String toString() => 'ListVaultMarketSupplyDepositsItem[id=$id, storefrontId=$storefrontId, vaultItemId=$vaultItemId, inventoryItemId=$inventoryItemId, batchId=$batchId, partnerId=$partnerId, bookKey=$bookKey, status=$status, unitStatus=$unitStatus, lendEnabled=$lendEnabled, name=$name, imageUrl=$imageUrl, variantLabel=$variantLabel, autoListBps=$autoListBps, lendWhenIdle=$lendWhenIdle, setupNote=$setupNote, setUpAt=$setUpAt, channelPlatform=$channelPlatform, channelSoldAt=$channelSoldAt, outboundTracking=$outboundTracking, exit=$exit, createdAt=$createdAt]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
       json[r'id'] = id;
+    if (storefrontId != null) {
+      json[r'storefrontId'] = storefrontId;
+    }
       json[r'vaultItemId'] = vaultItemId;
     if (inventoryItemId != null) {
       json[r'inventoryItemId'] = inventoryItemId;
@@ -190,6 +198,7 @@ class ListVaultMarketSupplyDepositsItem {
       final json = value.cast<String, dynamic>();
       return ListVaultMarketSupplyDepositsItem(
         id: mapValueOfType<String>(json, r'id'),
+        storefrontId: mapValueOfType<String>(json, r'storefrontId'),
         vaultItemId: mapValueOfType<String>(json, r'vaultItemId'),
         inventoryItemId: mapValueOfType<String>(json, r'inventoryItemId'),
         batchId: mapValueOfType<String>(json, r'batchId'),
@@ -264,22 +273,22 @@ class ListVaultMarketSupplyDepositsItemStatusEnum {
   String toJson() => value;
 
   static const stored = ListVaultMarketSupplyDepositsItemStatusEnum._(r'stored');
-  static const listed = ListVaultMarketSupplyDepositsItemStatusEnum._(r'listed');
-  static const inbound = ListVaultMarketSupplyDepositsItemStatusEnum._(r'inbound');
   static const cancelled = ListVaultMarketSupplyDepositsItemStatusEnum._(r'cancelled');
+  static const listed = ListVaultMarketSupplyDepositsItemStatusEnum._(r'listed');
+  static const shipped = ListVaultMarketSupplyDepositsItemStatusEnum._(r'shipped');
+  static const inbound = ListVaultMarketSupplyDepositsItemStatusEnum._(r'inbound');
   static const soldOnBook = ListVaultMarketSupplyDepositsItemStatusEnum._(r'sold_on_book');
   static const channelSold = ListVaultMarketSupplyDepositsItemStatusEnum._(r'channel_sold');
-  static const shipped = ListVaultMarketSupplyDepositsItemStatusEnum._(r'shipped');
 
   /// List of all possible values in this [enum][ListVaultMarketSupplyDepositsItemStatusEnum].
   static const values = <ListVaultMarketSupplyDepositsItemStatusEnum>[
     stored,
-    listed,
-    inbound,
     cancelled,
+    listed,
+    shipped,
+    inbound,
     soldOnBook,
     channelSold,
-    shipped,
   ];
 
   static ListVaultMarketSupplyDepositsItemStatusEnum fromJson(dynamic value) =>
@@ -312,12 +321,12 @@ class ListVaultMarketSupplyDepositsItemStatusEnumTypeTransformer {
     if (data != null) {
       switch (data.toString()) {
         case r'stored': return ListVaultMarketSupplyDepositsItemStatusEnum.stored;
-        case r'listed': return ListVaultMarketSupplyDepositsItemStatusEnum.listed;
-        case r'inbound': return ListVaultMarketSupplyDepositsItemStatusEnum.inbound;
         case r'cancelled': return ListVaultMarketSupplyDepositsItemStatusEnum.cancelled;
+        case r'listed': return ListVaultMarketSupplyDepositsItemStatusEnum.listed;
+        case r'shipped': return ListVaultMarketSupplyDepositsItemStatusEnum.shipped;
+        case r'inbound': return ListVaultMarketSupplyDepositsItemStatusEnum.inbound;
         case r'sold_on_book': return ListVaultMarketSupplyDepositsItemStatusEnum.soldOnBook;
         case r'channel_sold': return ListVaultMarketSupplyDepositsItemStatusEnum.channelSold;
-        case r'shipped': return ListVaultMarketSupplyDepositsItemStatusEnum.shipped;
         default:
           if (allowNull == false) {
             throw ArgumentError('Unknown enum value to decode: $data');

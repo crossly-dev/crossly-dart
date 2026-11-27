@@ -111,15 +111,15 @@ class CreateInboxReplyResponseDeliveryStatusEnum {
 
   String toJson() => value;
 
-  static const failed = CreateInboxReplyResponseDeliveryStatusEnum._(r'failed');
-  static const sent = CreateInboxReplyResponseDeliveryStatusEnum._(r'sent');
   static const sending = CreateInboxReplyResponseDeliveryStatusEnum._(r'sending');
+  static const sent = CreateInboxReplyResponseDeliveryStatusEnum._(r'sent');
+  static const failed = CreateInboxReplyResponseDeliveryStatusEnum._(r'failed');
 
   /// List of all possible values in this [enum][CreateInboxReplyResponseDeliveryStatusEnum].
   static const values = <CreateInboxReplyResponseDeliveryStatusEnum>[
-    failed,
-    sent,
     sending,
+    sent,
+    failed,
   ];
 
   static CreateInboxReplyResponseDeliveryStatusEnum fromJson(dynamic value) =>
@@ -151,9 +151,9 @@ class CreateInboxReplyResponseDeliveryStatusEnumTypeTransformer {
   CreateInboxReplyResponseDeliveryStatusEnum decode(dynamic data, {bool allowNull}) {
     if (data != null) {
       switch (data.toString()) {
-        case r'failed': return CreateInboxReplyResponseDeliveryStatusEnum.failed;
-        case r'sent': return CreateInboxReplyResponseDeliveryStatusEnum.sent;
         case r'sending': return CreateInboxReplyResponseDeliveryStatusEnum.sending;
+        case r'sent': return CreateInboxReplyResponseDeliveryStatusEnum.sent;
+        case r'failed': return CreateInboxReplyResponseDeliveryStatusEnum.failed;
         default:
           if (allowNull == false) {
             throw ArgumentError('Unknown enum value to decode: $data');

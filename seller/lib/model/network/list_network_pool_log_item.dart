@@ -15,26 +15,24 @@ class ListNetworkPoolLogItem {
   ListNetworkPoolLogItem({
     @required this.id,
     @required this.platform,
-    this.ruleId,
     @required this.actionType,
     @required this.targetUserId,
-    @required this.performedAt,
+    this.ruleId,
     @required this.engagerUserId,
     this.targetListingId,
     this.targetPlatformListingId,
+    @required this.performedAt,
   });
 
   String id;
 
   String platform;
 
-  String ruleId;
-
   String actionType;
 
   String targetUserId;
 
-  DateTime performedAt;
+  String ruleId;
 
   String engagerUserId;
 
@@ -42,44 +40,45 @@ class ListNetworkPoolLogItem {
 
   String targetPlatformListingId;
 
+  DateTime performedAt;
+
   @override
   bool operator ==(Object other) => identical(this, other) || other is ListNetworkPoolLogItem &&
      other.id == id &&
      other.platform == platform &&
-     other.ruleId == ruleId &&
      other.actionType == actionType &&
      other.targetUserId == targetUserId &&
-     other.performedAt == performedAt &&
+     other.ruleId == ruleId &&
      other.engagerUserId == engagerUserId &&
      other.targetListingId == targetListingId &&
-     other.targetPlatformListingId == targetPlatformListingId;
+     other.targetPlatformListingId == targetPlatformListingId &&
+     other.performedAt == performedAt;
 
   @override
   int get hashCode =>
   // ignore: unnecessary_parenthesis
     (id == null ? 0 : id.hashCode) +
     (platform == null ? 0 : platform.hashCode) +
-    (ruleId == null ? 0 : ruleId.hashCode) +
     (actionType == null ? 0 : actionType.hashCode) +
     (targetUserId == null ? 0 : targetUserId.hashCode) +
-    (performedAt == null ? 0 : performedAt.hashCode) +
+    (ruleId == null ? 0 : ruleId.hashCode) +
     (engagerUserId == null ? 0 : engagerUserId.hashCode) +
     (targetListingId == null ? 0 : targetListingId.hashCode) +
-    (targetPlatformListingId == null ? 0 : targetPlatformListingId.hashCode);
+    (targetPlatformListingId == null ? 0 : targetPlatformListingId.hashCode) +
+    (performedAt == null ? 0 : performedAt.hashCode);
 
   @override
-  String toString() => 'ListNetworkPoolLogItem[id=$id, platform=$platform, ruleId=$ruleId, actionType=$actionType, targetUserId=$targetUserId, performedAt=$performedAt, engagerUserId=$engagerUserId, targetListingId=$targetListingId, targetPlatformListingId=$targetPlatformListingId]';
+  String toString() => 'ListNetworkPoolLogItem[id=$id, platform=$platform, actionType=$actionType, targetUserId=$targetUserId, ruleId=$ruleId, engagerUserId=$engagerUserId, targetListingId=$targetListingId, targetPlatformListingId=$targetPlatformListingId, performedAt=$performedAt]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
       json[r'id'] = id;
       json[r'platform'] = platform;
+      json[r'actionType'] = actionType;
+      json[r'targetUserId'] = targetUserId;
     if (ruleId != null) {
       json[r'ruleId'] = ruleId;
     }
-      json[r'actionType'] = actionType;
-      json[r'targetUserId'] = targetUserId;
-      json[r'performedAt'] = performedAt.toUtc().toIso8601String();
       json[r'engagerUserId'] = engagerUserId;
     if (targetListingId != null) {
       json[r'targetListingId'] = targetListingId;
@@ -87,6 +86,7 @@ class ListNetworkPoolLogItem {
     if (targetPlatformListingId != null) {
       json[r'targetPlatformListingId'] = targetPlatformListingId;
     }
+      json[r'performedAt'] = performedAt.toUtc().toIso8601String();
     return json;
   }
 
@@ -99,13 +99,13 @@ class ListNetworkPoolLogItem {
       return ListNetworkPoolLogItem(
         id: mapValueOfType<String>(json, r'id'),
         platform: mapValueOfType<String>(json, r'platform'),
-        ruleId: mapValueOfType<String>(json, r'ruleId'),
         actionType: mapValueOfType<String>(json, r'actionType'),
         targetUserId: mapValueOfType<String>(json, r'targetUserId'),
-        performedAt: mapDateTime(json, r'performedAt', ''),
+        ruleId: mapValueOfType<String>(json, r'ruleId'),
         engagerUserId: mapValueOfType<String>(json, r'engagerUserId'),
         targetListingId: mapValueOfType<String>(json, r'targetListingId'),
         targetPlatformListingId: mapValueOfType<String>(json, r'targetPlatformListingId'),
+        performedAt: mapDateTime(json, r'performedAt', ''),
       );
     }
     return null;

@@ -13,34 +13,34 @@ part of openapi.api;
 class CreateBuyerBreakSpotHoldResponseData {
   /// Returns a new [CreateBuyerBreakSpotHoldResponseData] instance.
   CreateBuyerBreakSpotHoldResponseData({
-    this.slug,
     @required this.heldUntil,
+    this.slug,
   });
-
-  String slug;
 
   String heldUntil;
 
+  String slug;
+
   @override
   bool operator ==(Object other) => identical(this, other) || other is CreateBuyerBreakSpotHoldResponseData &&
-     other.slug == slug &&
-     other.heldUntil == heldUntil;
+     other.heldUntil == heldUntil &&
+     other.slug == slug;
 
   @override
   int get hashCode =>
   // ignore: unnecessary_parenthesis
-    (slug == null ? 0 : slug.hashCode) +
-    (heldUntil == null ? 0 : heldUntil.hashCode);
+    (heldUntil == null ? 0 : heldUntil.hashCode) +
+    (slug == null ? 0 : slug.hashCode);
 
   @override
-  String toString() => 'CreateBuyerBreakSpotHoldResponseData[slug=$slug, heldUntil=$heldUntil]';
+  String toString() => 'CreateBuyerBreakSpotHoldResponseData[heldUntil=$heldUntil, slug=$slug]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
+      json[r'heldUntil'] = heldUntil;
     if (slug != null) {
       json[r'slug'] = slug;
     }
-      json[r'heldUntil'] = heldUntil;
     return json;
   }
 
@@ -51,8 +51,8 @@ class CreateBuyerBreakSpotHoldResponseData {
     if (value is Map) {
       final json = value.cast<String, dynamic>();
       return CreateBuyerBreakSpotHoldResponseData(
-        slug: mapValueOfType<String>(json, r'slug'),
         heldUntil: mapValueOfType<String>(json, r'heldUntil'),
+        slug: mapValueOfType<String>(json, r'slug'),
       );
     }
     return null;

@@ -14,11 +14,14 @@ class GetVaultMarketPortfolioResponse {
   /// Returns a new [GetVaultMarketPortfolioResponse] instance.
   GetVaultMarketPortfolioResponse({
     this.holdings = const [],
+    @required this.shares,
     this.onLoan = const [],
     @required this.totals,
   });
 
   List<GetVaultMarketPortfolioResponseHoldings> holdings;
+
+  GetVaultMarketPortfolioResponseShares shares;
 
   List<GetVaultMarketPortfolioResponseOnLoan> onLoan;
 
@@ -27,6 +30,7 @@ class GetVaultMarketPortfolioResponse {
   @override
   bool operator ==(Object other) => identical(this, other) || other is GetVaultMarketPortfolioResponse &&
      other.holdings == holdings &&
+     other.shares == shares &&
      other.onLoan == onLoan &&
      other.totals == totals;
 
@@ -34,15 +38,17 @@ class GetVaultMarketPortfolioResponse {
   int get hashCode =>
   // ignore: unnecessary_parenthesis
     (holdings == null ? 0 : holdings.hashCode) +
+    (shares == null ? 0 : shares.hashCode) +
     (onLoan == null ? 0 : onLoan.hashCode) +
     (totals == null ? 0 : totals.hashCode);
 
   @override
-  String toString() => 'GetVaultMarketPortfolioResponse[holdings=$holdings, onLoan=$onLoan, totals=$totals]';
+  String toString() => 'GetVaultMarketPortfolioResponse[holdings=$holdings, shares=$shares, onLoan=$onLoan, totals=$totals]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
       json[r'holdings'] = holdings;
+      json[r'shares'] = shares;
       json[r'onLoan'] = onLoan;
       json[r'totals'] = totals;
     return json;
@@ -56,6 +62,7 @@ class GetVaultMarketPortfolioResponse {
       final json = value.cast<String, dynamic>();
       return GetVaultMarketPortfolioResponse(
         holdings: GetVaultMarketPortfolioResponseHoldings.listFromJson(json[r'holdings']),
+        shares: GetVaultMarketPortfolioResponseShares.fromJson(json[r'shares']),
         onLoan: GetVaultMarketPortfolioResponseOnLoan.listFromJson(json[r'onLoan']),
         totals: GetVaultMarketPortfolioResponseTotals.fromJson(json[r'totals']),
       );

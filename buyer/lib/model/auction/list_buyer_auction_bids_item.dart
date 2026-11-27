@@ -13,38 +13,38 @@ part of openapi.api;
 class ListBuyerAuctionBidsItem {
   /// Returns a new [ListBuyerAuctionBidsItem] instance.
   ListBuyerAuctionBidsItem({
-    @required this.amountCents,
     @required this.bidder,
+    @required this.amountCents,
     this.placedAt,
   });
 
-  num amountCents;
-
   /// \"You\" for your own bids; otherwise anonymised, e.g. \"a***e (12)\".
   String bidder;
+
+  num amountCents;
 
   String placedAt;
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is ListBuyerAuctionBidsItem &&
-     other.amountCents == amountCents &&
      other.bidder == bidder &&
+     other.amountCents == amountCents &&
      other.placedAt == placedAt;
 
   @override
   int get hashCode =>
   // ignore: unnecessary_parenthesis
-    (amountCents == null ? 0 : amountCents.hashCode) +
     (bidder == null ? 0 : bidder.hashCode) +
+    (amountCents == null ? 0 : amountCents.hashCode) +
     (placedAt == null ? 0 : placedAt.hashCode);
 
   @override
-  String toString() => 'ListBuyerAuctionBidsItem[amountCents=$amountCents, bidder=$bidder, placedAt=$placedAt]';
+  String toString() => 'ListBuyerAuctionBidsItem[bidder=$bidder, amountCents=$amountCents, placedAt=$placedAt]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-      json[r'amountCents'] = amountCents;
       json[r'bidder'] = bidder;
+      json[r'amountCents'] = amountCents;
     if (placedAt != null) {
       json[r'placedAt'] = placedAt;
     }
@@ -58,10 +58,10 @@ class ListBuyerAuctionBidsItem {
     if (value is Map) {
       final json = value.cast<String, dynamic>();
       return ListBuyerAuctionBidsItem(
+        bidder: mapValueOfType<String>(json, r'bidder'),
         amountCents: json[r'amountCents'] == null
           ? null
           : num.parse(json[r'amountCents'].toString()),
-        bidder: mapValueOfType<String>(json, r'bidder'),
         placedAt: mapValueOfType<String>(json, r'placedAt'),
       );
     }

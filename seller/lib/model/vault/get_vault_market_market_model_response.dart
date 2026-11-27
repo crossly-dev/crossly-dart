@@ -191,16 +191,16 @@ class GetVaultMarketMarketModelResponseTierEnum {
 
   String toJson() => value;
 
+  static const C = GetVaultMarketMarketModelResponseTierEnum._(r'C');
   static const A = GetVaultMarketMarketModelResponseTierEnum._(r'A');
   static const B = GetVaultMarketMarketModelResponseTierEnum._(r'B');
-  static const C = GetVaultMarketMarketModelResponseTierEnum._(r'C');
   static const D = GetVaultMarketMarketModelResponseTierEnum._(r'D');
 
   /// List of all possible values in this [enum][GetVaultMarketMarketModelResponseTierEnum].
   static const values = <GetVaultMarketMarketModelResponseTierEnum>[
+    C,
     A,
     B,
-    C,
     D,
   ];
 
@@ -233,9 +233,9 @@ class GetVaultMarketMarketModelResponseTierEnumTypeTransformer {
   GetVaultMarketMarketModelResponseTierEnum decode(dynamic data, {bool allowNull}) {
     if (data != null) {
       switch (data.toString()) {
+        case r'C': return GetVaultMarketMarketModelResponseTierEnum.C;
         case r'A': return GetVaultMarketMarketModelResponseTierEnum.A;
         case r'B': return GetVaultMarketMarketModelResponseTierEnum.B;
-        case r'C': return GetVaultMarketMarketModelResponseTierEnum.C;
         case r'D': return GetVaultMarketMarketModelResponseTierEnum.D;
         default:
           if (allowNull == false) {

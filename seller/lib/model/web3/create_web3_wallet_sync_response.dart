@@ -16,7 +16,7 @@ class CreateWeb3WalletSyncResponse {
     @required this.summary,
   });
 
-  CreateWeb3WalletSyncResponseSummary summary;
+  CreateWeb3StoreWalletSyncResponseData summary;
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is CreateWeb3WalletSyncResponse &&
@@ -43,7 +43,7 @@ class CreateWeb3WalletSyncResponse {
     if (value is Map) {
       final json = value.cast<String, dynamic>();
       return CreateWeb3WalletSyncResponse(
-        summary: CreateWeb3WalletSyncResponseSummary.fromJson(json[r'summary']),
+        summary: CreateWeb3StoreWalletSyncResponseData.fromJson(json[r'summary']),
       );
     }
     return null;

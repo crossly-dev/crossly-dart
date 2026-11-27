@@ -16,19 +16,19 @@ class ListVaultMarketSetGoalsItem {
     @required this.id,
     @required this.createdAt,
     @required this.status,
-    @required this.title,
     @required this.category,
+    @required this.title,
     this.completedAt,
-    @required this.progress,
-    @required this.brandSlug,
-    @required this.modelSlug,
     @required this.target,
-    @required this.held,
-    @required this.complete,
-    @required this.href,
     @required this.total,
-    @required this.setFound,
+    @required this.href,
+    @required this.brandSlug,
+    @required this.progress,
+    @required this.held,
+    @required this.modelSlug,
     this.basket,
+    @required this.complete,
+    @required this.setFound,
     @required this.cardSetHref,
   });
 
@@ -38,31 +38,31 @@ class ListVaultMarketSetGoalsItem {
 
   ListVaultMarketSetGoalsItemStatusEnum status;
 
-  String title;
-
   String category;
+
+  String title;
 
   String completedAt;
 
-  String progress;
-
-  String brandSlug;
-
-  String modelSlug;
-
   GetVaultMarketSetGoalResponseTarget target;
-
-  num held;
-
-  bool complete;
-
-  String href;
 
   num total;
 
-  bool setFound;
+  String href;
+
+  String brandSlug;
+
+  String progress;
+
+  num held;
+
+  String modelSlug;
 
   ListVaultMarketSetGoalsItemBasket basket;
+
+  bool complete;
+
+  bool setFound;
 
   String cardSetHref;
 
@@ -71,19 +71,19 @@ class ListVaultMarketSetGoalsItem {
      other.id == id &&
      other.createdAt == createdAt &&
      other.status == status &&
-     other.title == title &&
      other.category == category &&
+     other.title == title &&
      other.completedAt == completedAt &&
-     other.progress == progress &&
-     other.brandSlug == brandSlug &&
-     other.modelSlug == modelSlug &&
      other.target == target &&
-     other.held == held &&
-     other.complete == complete &&
-     other.href == href &&
      other.total == total &&
-     other.setFound == setFound &&
+     other.href == href &&
+     other.brandSlug == brandSlug &&
+     other.progress == progress &&
+     other.held == held &&
+     other.modelSlug == modelSlug &&
      other.basket == basket &&
+     other.complete == complete &&
+     other.setFound == setFound &&
      other.cardSetHref == cardSetHref;
 
   @override
@@ -92,46 +92,46 @@ class ListVaultMarketSetGoalsItem {
     (id == null ? 0 : id.hashCode) +
     (createdAt == null ? 0 : createdAt.hashCode) +
     (status == null ? 0 : status.hashCode) +
-    (title == null ? 0 : title.hashCode) +
     (category == null ? 0 : category.hashCode) +
+    (title == null ? 0 : title.hashCode) +
     (completedAt == null ? 0 : completedAt.hashCode) +
-    (progress == null ? 0 : progress.hashCode) +
-    (brandSlug == null ? 0 : brandSlug.hashCode) +
-    (modelSlug == null ? 0 : modelSlug.hashCode) +
     (target == null ? 0 : target.hashCode) +
-    (held == null ? 0 : held.hashCode) +
-    (complete == null ? 0 : complete.hashCode) +
-    (href == null ? 0 : href.hashCode) +
     (total == null ? 0 : total.hashCode) +
-    (setFound == null ? 0 : setFound.hashCode) +
+    (href == null ? 0 : href.hashCode) +
+    (brandSlug == null ? 0 : brandSlug.hashCode) +
+    (progress == null ? 0 : progress.hashCode) +
+    (held == null ? 0 : held.hashCode) +
+    (modelSlug == null ? 0 : modelSlug.hashCode) +
     (basket == null ? 0 : basket.hashCode) +
+    (complete == null ? 0 : complete.hashCode) +
+    (setFound == null ? 0 : setFound.hashCode) +
     (cardSetHref == null ? 0 : cardSetHref.hashCode);
 
   @override
-  String toString() => 'ListVaultMarketSetGoalsItem[id=$id, createdAt=$createdAt, status=$status, title=$title, category=$category, completedAt=$completedAt, progress=$progress, brandSlug=$brandSlug, modelSlug=$modelSlug, target=$target, held=$held, complete=$complete, href=$href, total=$total, setFound=$setFound, basket=$basket, cardSetHref=$cardSetHref]';
+  String toString() => 'ListVaultMarketSetGoalsItem[id=$id, createdAt=$createdAt, status=$status, category=$category, title=$title, completedAt=$completedAt, target=$target, total=$total, href=$href, brandSlug=$brandSlug, progress=$progress, held=$held, modelSlug=$modelSlug, basket=$basket, complete=$complete, setFound=$setFound, cardSetHref=$cardSetHref]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
       json[r'id'] = id;
       json[r'createdAt'] = createdAt;
       json[r'status'] = status;
-      json[r'title'] = title;
       json[r'category'] = category;
+      json[r'title'] = title;
     if (completedAt != null) {
       json[r'completedAt'] = completedAt;
     }
-      json[r'progress'] = progress;
-      json[r'brandSlug'] = brandSlug;
-      json[r'modelSlug'] = modelSlug;
       json[r'target'] = target;
-      json[r'held'] = held;
-      json[r'complete'] = complete;
-      json[r'href'] = href;
       json[r'total'] = total;
-      json[r'setFound'] = setFound;
+      json[r'href'] = href;
+      json[r'brandSlug'] = brandSlug;
+      json[r'progress'] = progress;
+      json[r'held'] = held;
+      json[r'modelSlug'] = modelSlug;
     if (basket != null) {
       json[r'basket'] = basket;
     }
+      json[r'complete'] = complete;
+      json[r'setFound'] = setFound;
       json[r'cardSetHref'] = cardSetHref;
     return json;
   }
@@ -146,23 +146,23 @@ class ListVaultMarketSetGoalsItem {
         id: mapValueOfType<String>(json, r'id'),
         createdAt: mapValueOfType<String>(json, r'createdAt'),
         status: ListVaultMarketSetGoalsItemStatusEnum.fromJson(json[r'status']),
-        title: mapValueOfType<String>(json, r'title'),
         category: mapValueOfType<String>(json, r'category'),
+        title: mapValueOfType<String>(json, r'title'),
         completedAt: mapValueOfType<String>(json, r'completedAt'),
-        progress: mapValueOfType<String>(json, r'progress'),
-        brandSlug: mapValueOfType<String>(json, r'brandSlug'),
-        modelSlug: mapValueOfType<String>(json, r'modelSlug'),
         target: GetVaultMarketSetGoalResponseTarget.fromJson(json[r'target']),
-        held: json[r'held'] == null
-          ? null
-          : num.parse(json[r'held'].toString()),
-        complete: mapValueOfType<bool>(json, r'complete'),
-        href: mapValueOfType<String>(json, r'href'),
         total: json[r'total'] == null
           ? null
           : num.parse(json[r'total'].toString()),
-        setFound: mapValueOfType<bool>(json, r'setFound'),
+        href: mapValueOfType<String>(json, r'href'),
+        brandSlug: mapValueOfType<String>(json, r'brandSlug'),
+        progress: mapValueOfType<String>(json, r'progress'),
+        held: json[r'held'] == null
+          ? null
+          : num.parse(json[r'held'].toString()),
+        modelSlug: mapValueOfType<String>(json, r'modelSlug'),
         basket: ListVaultMarketSetGoalsItemBasket.fromJson(json[r'basket']),
+        complete: mapValueOfType<bool>(json, r'complete'),
+        setFound: mapValueOfType<bool>(json, r'setFound'),
         cardSetHref: mapValueOfType<String>(json, r'cardSetHref'),
       );
     }
@@ -216,14 +216,14 @@ class ListVaultMarketSetGoalsItemStatusEnum {
   String toJson() => value;
 
   static const active = ListVaultMarketSetGoalsItemStatusEnum._(r'active');
-  static const complete = ListVaultMarketSetGoalsItemStatusEnum._(r'complete');
   static const archived = ListVaultMarketSetGoalsItemStatusEnum._(r'archived');
+  static const complete = ListVaultMarketSetGoalsItemStatusEnum._(r'complete');
 
   /// List of all possible values in this [enum][ListVaultMarketSetGoalsItemStatusEnum].
   static const values = <ListVaultMarketSetGoalsItemStatusEnum>[
     active,
-    complete,
     archived,
+    complete,
   ];
 
   static ListVaultMarketSetGoalsItemStatusEnum fromJson(dynamic value) =>
@@ -256,8 +256,8 @@ class ListVaultMarketSetGoalsItemStatusEnumTypeTransformer {
     if (data != null) {
       switch (data.toString()) {
         case r'active': return ListVaultMarketSetGoalsItemStatusEnum.active;
-        case r'complete': return ListVaultMarketSetGoalsItemStatusEnum.complete;
         case r'archived': return ListVaultMarketSetGoalsItemStatusEnum.archived;
+        case r'complete': return ListVaultMarketSetGoalsItemStatusEnum.complete;
         default:
           if (allowNull == false) {
             throw ArgumentError('Unknown enum value to decode: $data');

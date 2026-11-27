@@ -24,43 +24,43 @@ class GetSpatialSpaceResponseDataSpacesFacetsItem {
   String toJson() => value;
 
   static const brand = GetSpatialSpaceResponseDataSpacesFacetsItem._(r'brand');
+  static const label = GetSpatialSpaceResponseDataSpacesFacetsItem._(r'label');
+  static const status = GetSpatialSpaceResponseDataSpacesFacetsItem._(r'status');
+  static const age = GetSpatialSpaceResponseDataSpacesFacetsItem._(r'age');
   static const condition = GetSpatialSpaceResponseDataSpacesFacetsItem._(r'condition');
   static const size = GetSpatialSpaceResponseDataSpacesFacetsItem._(r'size');
-  static const status = GetSpatialSpaceResponseDataSpacesFacetsItem._(r'status');
-  static const label = GetSpatialSpaceResponseDataSpacesFacetsItem._(r'label');
   static const title = GetSpatialSpaceResponseDataSpacesFacetsItem._(r'title');
   static const valueOption = GetSpatialSpaceResponseDataSpacesFacetsItem._(r'value');
+  static const set = GetSpatialSpaceResponseDataSpacesFacetsItem._(r'set');
+  static const team = GetSpatialSpaceResponseDataSpacesFacetsItem._(r'team');
   static const year = GetSpatialSpaceResponseDataSpacesFacetsItem._(r'year');
   static const grade = GetSpatialSpaceResponseDataSpacesFacetsItem._(r'grade');
   static const game = GetSpatialSpaceResponseDataSpacesFacetsItem._(r'game');
-  static const set = GetSpatialSpaceResponseDataSpacesFacetsItem._(r'set');
   static const franchise = GetSpatialSpaceResponseDataSpacesFacetsItem._(r'franchise');
-  static const team = GetSpatialSpaceResponseDataSpacesFacetsItem._(r'team');
   static const era = GetSpatialSpaceResponseDataSpacesFacetsItem._(r'era');
   static const genre = GetSpatialSpaceResponseDataSpacesFacetsItem._(r'genre');
   static const colour = GetSpatialSpaceResponseDataSpacesFacetsItem._(r'colour');
-  static const age = GetSpatialSpaceResponseDataSpacesFacetsItem._(r'age');
   static const exhibitor = GetSpatialSpaceResponseDataSpacesFacetsItem._(r'exhibitor');
 
   /// List of all possible values in this [enum][GetSpatialSpaceResponseDataSpacesFacetsItem].
   static const values = <GetSpatialSpaceResponseDataSpacesFacetsItem>[
     brand,
+    label,
+    status,
+    age,
     condition,
     size,
-    status,
-    label,
     title,
     valueOption,
+    set,
+    team,
     year,
     grade,
     game,
-    set,
     franchise,
-    team,
     era,
     genre,
     colour,
-    age,
     exhibitor,
   ];
 
@@ -94,22 +94,22 @@ class GetSpatialSpaceResponseDataSpacesFacetsItemTypeTransformer {
     if (data != null) {
       switch (data.toString()) {
         case r'brand': return GetSpatialSpaceResponseDataSpacesFacetsItem.brand;
+        case r'label': return GetSpatialSpaceResponseDataSpacesFacetsItem.label;
+        case r'status': return GetSpatialSpaceResponseDataSpacesFacetsItem.status;
+        case r'age': return GetSpatialSpaceResponseDataSpacesFacetsItem.age;
         case r'condition': return GetSpatialSpaceResponseDataSpacesFacetsItem.condition;
         case r'size': return GetSpatialSpaceResponseDataSpacesFacetsItem.size;
-        case r'status': return GetSpatialSpaceResponseDataSpacesFacetsItem.status;
-        case r'label': return GetSpatialSpaceResponseDataSpacesFacetsItem.label;
         case r'title': return GetSpatialSpaceResponseDataSpacesFacetsItem.title;
         case r'value': return GetSpatialSpaceResponseDataSpacesFacetsItem.valueOption;
+        case r'set': return GetSpatialSpaceResponseDataSpacesFacetsItem.set;
+        case r'team': return GetSpatialSpaceResponseDataSpacesFacetsItem.team;
         case r'year': return GetSpatialSpaceResponseDataSpacesFacetsItem.year;
         case r'grade': return GetSpatialSpaceResponseDataSpacesFacetsItem.grade;
         case r'game': return GetSpatialSpaceResponseDataSpacesFacetsItem.game;
-        case r'set': return GetSpatialSpaceResponseDataSpacesFacetsItem.set;
         case r'franchise': return GetSpatialSpaceResponseDataSpacesFacetsItem.franchise;
-        case r'team': return GetSpatialSpaceResponseDataSpacesFacetsItem.team;
         case r'era': return GetSpatialSpaceResponseDataSpacesFacetsItem.era;
         case r'genre': return GetSpatialSpaceResponseDataSpacesFacetsItem.genre;
         case r'colour': return GetSpatialSpaceResponseDataSpacesFacetsItem.colour;
-        case r'age': return GetSpatialSpaceResponseDataSpacesFacetsItem.age;
         case r'exhibitor': return GetSpatialSpaceResponseDataSpacesFacetsItem.exhibitor;
         default:
           if (allowNull == false) {

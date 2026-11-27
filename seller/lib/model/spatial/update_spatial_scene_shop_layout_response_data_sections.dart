@@ -19,6 +19,8 @@ class UpdateSpatialSceneShopLayoutResponseDataSections {
     this.rotationY,
     this.sign,
     this.hidden,
+    this.units,
+    this.holder,
   });
 
   /// Stable id, `[a-z0-9-]{1,16}`. Pins and signs key on it.
@@ -38,6 +40,12 @@ class UpdateSpatialSceneShopLayoutResponseDataSections {
   /// Shown to visitors? A hidden section keeps its stock off the floor.
   bool hidden;
 
+  /// How many units (cases, bays, pages) it stands with, at least; absent = as many as its stock needs. Set from the showroom organizer so an empty display has slots to fill (shared showroom/).
+  num units;
+
+  /// The holder model it stands as (showroom/fixtures.ts FIXTURE_HOLDERS); absent = its type's free holder.
+  String holder;
+
   @override
   bool operator ==(Object other) => identical(this, other) || other is UpdateSpatialSceneShopLayoutResponseDataSections &&
      other.id == id &&
@@ -45,7 +53,9 @@ class UpdateSpatialSceneShopLayoutResponseDataSections {
      other.position == position &&
      other.rotationY == rotationY &&
      other.sign == sign &&
-     other.hidden == hidden;
+     other.hidden == hidden &&
+     other.units == units &&
+     other.holder == holder;
 
   @override
   int get hashCode =>
@@ -55,10 +65,12 @@ class UpdateSpatialSceneShopLayoutResponseDataSections {
     (position == null ? 0 : position.hashCode) +
     (rotationY == null ? 0 : rotationY.hashCode) +
     (sign == null ? 0 : sign.hashCode) +
-    (hidden == null ? 0 : hidden.hashCode);
+    (hidden == null ? 0 : hidden.hashCode) +
+    (units == null ? 0 : units.hashCode) +
+    (holder == null ? 0 : holder.hashCode);
 
   @override
-  String toString() => 'UpdateSpatialSceneShopLayoutResponseDataSections[id=$id, profile=$profile, position=$position, rotationY=$rotationY, sign=$sign, hidden=$hidden]';
+  String toString() => 'UpdateSpatialSceneShopLayoutResponseDataSections[id=$id, profile=$profile, position=$position, rotationY=$rotationY, sign=$sign, hidden=$hidden, units=$units, holder=$holder]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -75,6 +87,12 @@ class UpdateSpatialSceneShopLayoutResponseDataSections {
     }
     if (hidden != null) {
       json[r'hidden'] = hidden;
+    }
+    if (units != null) {
+      json[r'units'] = units;
+    }
+    if (holder != null) {
+      json[r'holder'] = holder;
     }
     return json;
   }
@@ -96,6 +114,10 @@ class UpdateSpatialSceneShopLayoutResponseDataSections {
           : num.parse(json[r'rotationY'].toString()),
         sign: mapValueOfType<String>(json, r'sign'),
         hidden: mapValueOfType<bool>(json, r'hidden'),
+        units: json[r'units'] == null
+          ? null
+          : num.parse(json[r'units'].toString()),
+        holder: mapValueOfType<String>(json, r'holder'),
       );
     }
     return null;

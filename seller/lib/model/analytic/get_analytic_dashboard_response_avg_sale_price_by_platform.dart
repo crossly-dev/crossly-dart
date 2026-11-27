@@ -22,7 +22,7 @@ class GetAnalyticDashboardResponseAvgSalePriceByPlatform {
 
   num avgPrice;
 
-  String count;
+  num count;
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is GetAnalyticDashboardResponseAvgSalePriceByPlatform &&
@@ -59,7 +59,9 @@ class GetAnalyticDashboardResponseAvgSalePriceByPlatform {
         avgPrice: json[r'avgPrice'] == null
           ? null
           : num.parse(json[r'avgPrice'].toString()),
-        count: mapValueOfType<String>(json, r'count'),
+        count: json[r'count'] == null
+          ? null
+          : num.parse(json[r'count'].toString()),
       );
     }
     return null;

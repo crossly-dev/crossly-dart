@@ -107,7 +107,7 @@ class BreaksApi {
   /// Parameters:
   ///
   /// * [String] id (required):
-  Future<CreateBreakCancelResponse> createBreakCancel(String id,) async {
+  Future<UpdateGroupBuyResponse> createBreakCancel(String id,) async {
     final response = await createBreakCancelWithHttpInfo(id,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
@@ -116,10 +116,10 @@ class BreaksApi {
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
     if (response.body != null && response.statusCode != HttpStatus.noContent) {
-      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'CreateBreakCancelResponse',) as CreateBreakCancelResponse;
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'UpdateGroupBuyResponse',) as UpdateGroupBuyResponse;
     
     }
-    return Future<CreateBreakCancelResponse>.value();
+    return Future<UpdateGroupBuyResponse>.value();
   }
 
   /// Draw a sold-out random break: assigns spots from the committed seed and reveals it.
@@ -227,7 +227,7 @@ class BreaksApi {
   /// Parameters:
   ///
   /// * [String] id (required):
-  Future<CreateBreakCancelResponse> createBreakOpened(String id,) async {
+  Future<UpdateGroupBuyResponse> createBreakOpened(String id,) async {
     final response = await createBreakOpenedWithHttpInfo(id,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
@@ -236,10 +236,10 @@ class BreaksApi {
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
     if (response.body != null && response.statusCode != HttpStatus.noContent) {
-      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'CreateBreakCancelResponse',) as CreateBreakCancelResponse;
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'UpdateGroupBuyResponse',) as UpdateGroupBuyResponse;
     
     }
-    return Future<CreateBreakCancelResponse>.value();
+    return Future<UpdateGroupBuyResponse>.value();
   }
 
   /// Record what a spot pulled.
@@ -295,7 +295,7 @@ class BreaksApi {
   /// * [String] id (required):
   ///
   /// * [String] spotId (required):
-  Future<CreateBreakCancelResponse> createBreakSpotHit(String id, String spotId,) async {
+  Future<UpdateGroupBuyResponse> createBreakSpotHit(String id, String spotId,) async {
     final response = await createBreakSpotHitWithHttpInfo(id, spotId,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
@@ -304,10 +304,10 @@ class BreaksApi {
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
     if (response.body != null && response.statusCode != HttpStatus.noContent) {
-      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'CreateBreakCancelResponse',) as CreateBreakCancelResponse;
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'UpdateGroupBuyResponse',) as UpdateGroupBuyResponse;
     
     }
-    return Future<CreateBreakCancelResponse>.value();
+    return Future<UpdateGroupBuyResponse>.value();
   }
 
   /// A break’s board with every spot, its buyer and its hits.

@@ -138,6 +138,7 @@ class GetSpatialEmoteResponseViewSlotEnum {
 
   String toJson() => value;
 
+  static const phone = GetSpatialEmoteResponseViewSlotEnum._(r'phone');
   static const spin = GetSpatialEmoteResponseViewSlotEnum._(r'spin');
   static const wave = GetSpatialEmoteResponseViewSlotEnum._(r'wave');
   static const point = GetSpatialEmoteResponseViewSlotEnum._(r'point');
@@ -158,6 +159,33 @@ class GetSpatialEmoteResponseViewSlotEnum {
   static const hug = GetSpatialEmoteResponseViewSlotEnum._(r'hug');
   static const highFive = GetSpatialEmoteResponseViewSlotEnum._(r'high_five');
   static const handshake = GetSpatialEmoteResponseViewSlotEnum._(r'handshake');
+  static const facepalm = GetSpatialEmoteResponseViewSlotEnum._(r'facepalm');
+  static const think = GetSpatialEmoteResponseViewSlotEnum._(r'think');
+  static const laugh = GetSpatialEmoteResponseViewSlotEnum._(r'laugh');
+  static const sigh = GetSpatialEmoteResponseViewSlotEnum._(r'sigh');
+  static const no = GetSpatialEmoteResponseViewSlotEnum._(r'no');
+  static const fistPump = GetSpatialEmoteResponseViewSlotEnum._(r'fist_pump');
+  static const victory = GetSpatialEmoteResponseViewSlotEnum._(r'victory');
+  static const yawn = GetSpatialEmoteResponseViewSlotEnum._(r'yawn');
+  static const salute = GetSpatialEmoteResponseViewSlotEnum._(r'salute');
+  static const bigWave = GetSpatialEmoteResponseViewSlotEnum._(r'big_wave');
+  static const beckon = GetSpatialEmoteResponseViewSlotEnum._(r'beckon');
+  static const shush = GetSpatialEmoteResponseViewSlotEnum._(r'shush');
+  static const kiss = GetSpatialEmoteResponseViewSlotEnum._(r'kiss');
+  static const peace = GetSpatialEmoteResponseViewSlotEnum._(r'peace');
+  static const heart = GetSpatialEmoteResponseViewSlotEnum._(r'heart');
+  static const sway = GetSpatialEmoteResponseViewSlotEnum._(r'sway');
+  static const vibe = GetSpatialEmoteResponseViewSlotEnum._(r'vibe');
+  static const airGuitar = GetSpatialEmoteResponseViewSlotEnum._(r'air_guitar');
+  static const robot = GetSpatialEmoteResponseViewSlotEnum._(r'robot');
+  static const disco = GetSpatialEmoteResponseViewSlotEnum._(r'disco');
+  static const gavel = GetSpatialEmoteResponseViewSlotEnum._(r'gavel');
+  static const haggle = GetSpatialEmoteResponseViewSlotEnum._(r'haggle');
+  static const armsCrossed = GetSpatialEmoteResponseViewSlotEnum._(r'arms_crossed');
+  static const handsOnHips = GetSpatialEmoteResponseViewSlotEnum._(r'hands_on_hips');
+  static const kneel = GetSpatialEmoteResponseViewSlotEnum._(r'kneel');
+  static const fistBump = GetSpatialEmoteResponseViewSlotEnum._(r'fist_bump');
+  static const danceOff = GetSpatialEmoteResponseViewSlotEnum._(r'dance_off');
   static const showoff = GetSpatialEmoteResponseViewSlotEnum._(r'showoff');
   static const momentColonHandshake = GetSpatialEmoteResponseViewSlotEnum._(r'moment:handshake');
   static const momentColonUnbox = GetSpatialEmoteResponseViewSlotEnum._(r'moment:unbox');
@@ -165,6 +193,7 @@ class GetSpatialEmoteResponseViewSlotEnum {
 
   /// List of all possible values in this [enum][GetSpatialEmoteResponseViewSlotEnum].
   static const values = <GetSpatialEmoteResponseViewSlotEnum>[
+    phone,
     spin,
     wave,
     point,
@@ -185,6 +214,33 @@ class GetSpatialEmoteResponseViewSlotEnum {
     hug,
     highFive,
     handshake,
+    facepalm,
+    think,
+    laugh,
+    sigh,
+    no,
+    fistPump,
+    victory,
+    yawn,
+    salute,
+    bigWave,
+    beckon,
+    shush,
+    kiss,
+    peace,
+    heart,
+    sway,
+    vibe,
+    airGuitar,
+    robot,
+    disco,
+    gavel,
+    haggle,
+    armsCrossed,
+    handsOnHips,
+    kneel,
+    fistBump,
+    danceOff,
     showoff,
     momentColonHandshake,
     momentColonUnbox,
@@ -220,6 +276,7 @@ class GetSpatialEmoteResponseViewSlotEnumTypeTransformer {
   GetSpatialEmoteResponseViewSlotEnum decode(dynamic data, {bool allowNull}) {
     if (data != null) {
       switch (data.toString()) {
+        case r'phone': return GetSpatialEmoteResponseViewSlotEnum.phone;
         case r'spin': return GetSpatialEmoteResponseViewSlotEnum.spin;
         case r'wave': return GetSpatialEmoteResponseViewSlotEnum.wave;
         case r'point': return GetSpatialEmoteResponseViewSlotEnum.point;
@@ -240,6 +297,33 @@ class GetSpatialEmoteResponseViewSlotEnumTypeTransformer {
         case r'hug': return GetSpatialEmoteResponseViewSlotEnum.hug;
         case r'high_five': return GetSpatialEmoteResponseViewSlotEnum.highFive;
         case r'handshake': return GetSpatialEmoteResponseViewSlotEnum.handshake;
+        case r'facepalm': return GetSpatialEmoteResponseViewSlotEnum.facepalm;
+        case r'think': return GetSpatialEmoteResponseViewSlotEnum.think;
+        case r'laugh': return GetSpatialEmoteResponseViewSlotEnum.laugh;
+        case r'sigh': return GetSpatialEmoteResponseViewSlotEnum.sigh;
+        case r'no': return GetSpatialEmoteResponseViewSlotEnum.no;
+        case r'fist_pump': return GetSpatialEmoteResponseViewSlotEnum.fistPump;
+        case r'victory': return GetSpatialEmoteResponseViewSlotEnum.victory;
+        case r'yawn': return GetSpatialEmoteResponseViewSlotEnum.yawn;
+        case r'salute': return GetSpatialEmoteResponseViewSlotEnum.salute;
+        case r'big_wave': return GetSpatialEmoteResponseViewSlotEnum.bigWave;
+        case r'beckon': return GetSpatialEmoteResponseViewSlotEnum.beckon;
+        case r'shush': return GetSpatialEmoteResponseViewSlotEnum.shush;
+        case r'kiss': return GetSpatialEmoteResponseViewSlotEnum.kiss;
+        case r'peace': return GetSpatialEmoteResponseViewSlotEnum.peace;
+        case r'heart': return GetSpatialEmoteResponseViewSlotEnum.heart;
+        case r'sway': return GetSpatialEmoteResponseViewSlotEnum.sway;
+        case r'vibe': return GetSpatialEmoteResponseViewSlotEnum.vibe;
+        case r'air_guitar': return GetSpatialEmoteResponseViewSlotEnum.airGuitar;
+        case r'robot': return GetSpatialEmoteResponseViewSlotEnum.robot;
+        case r'disco': return GetSpatialEmoteResponseViewSlotEnum.disco;
+        case r'gavel': return GetSpatialEmoteResponseViewSlotEnum.gavel;
+        case r'haggle': return GetSpatialEmoteResponseViewSlotEnum.haggle;
+        case r'arms_crossed': return GetSpatialEmoteResponseViewSlotEnum.armsCrossed;
+        case r'hands_on_hips': return GetSpatialEmoteResponseViewSlotEnum.handsOnHips;
+        case r'kneel': return GetSpatialEmoteResponseViewSlotEnum.kneel;
+        case r'fist_bump': return GetSpatialEmoteResponseViewSlotEnum.fistBump;
+        case r'dance_off': return GetSpatialEmoteResponseViewSlotEnum.danceOff;
         case r'showoff': return GetSpatialEmoteResponseViewSlotEnum.showoff;
         case r'moment:handshake': return GetSpatialEmoteResponseViewSlotEnum.momentColonHandshake;
         case r'moment:unbox': return GetSpatialEmoteResponseViewSlotEnum.momentColonUnbox;

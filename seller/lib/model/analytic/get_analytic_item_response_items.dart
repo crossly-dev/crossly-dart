@@ -14,22 +14,35 @@ class GetAnalyticItemResponseItems {
   /// Returns a new [GetAnalyticItemResponseItems] instance.
   GetAnalyticItemResponseItems({
     @required this.saleId,
+    this.inventoryItemId,
+    this.listingId,
+    this.platformListingId,
+    this.imageUrl,
     @required this.platform,
     this.platformOrderId,
     this.itemTitle,
     this.itemBrand,
     this.itemSku,
+    @required this.detailsPending,
     this.salePrice,
     this.platformFee,
     this.shippingCost,
     this.costOfGoods,
     this.netProfit,
-    @required this.marginPct,
+    this.marginPct,
     this.daysToSell,
     @required this.detectedAt,
   });
 
   String saleId;
+
+  String inventoryItemId;
+
+  String listingId;
+
+  String platformListingId;
+
+  String imageUrl;
 
   String platform;
 
@@ -40,6 +53,8 @@ class GetAnalyticItemResponseItems {
   String itemBrand;
 
   String itemSku;
+
+  bool detailsPending;
 
   num salePrice;
 
@@ -60,11 +75,16 @@ class GetAnalyticItemResponseItems {
   @override
   bool operator ==(Object other) => identical(this, other) || other is GetAnalyticItemResponseItems &&
      other.saleId == saleId &&
+     other.inventoryItemId == inventoryItemId &&
+     other.listingId == listingId &&
+     other.platformListingId == platformListingId &&
+     other.imageUrl == imageUrl &&
      other.platform == platform &&
      other.platformOrderId == platformOrderId &&
      other.itemTitle == itemTitle &&
      other.itemBrand == itemBrand &&
      other.itemSku == itemSku &&
+     other.detailsPending == detailsPending &&
      other.salePrice == salePrice &&
      other.platformFee == platformFee &&
      other.shippingCost == shippingCost &&
@@ -78,11 +98,16 @@ class GetAnalyticItemResponseItems {
   int get hashCode =>
   // ignore: unnecessary_parenthesis
     (saleId == null ? 0 : saleId.hashCode) +
+    (inventoryItemId == null ? 0 : inventoryItemId.hashCode) +
+    (listingId == null ? 0 : listingId.hashCode) +
+    (platformListingId == null ? 0 : platformListingId.hashCode) +
+    (imageUrl == null ? 0 : imageUrl.hashCode) +
     (platform == null ? 0 : platform.hashCode) +
     (platformOrderId == null ? 0 : platformOrderId.hashCode) +
     (itemTitle == null ? 0 : itemTitle.hashCode) +
     (itemBrand == null ? 0 : itemBrand.hashCode) +
     (itemSku == null ? 0 : itemSku.hashCode) +
+    (detailsPending == null ? 0 : detailsPending.hashCode) +
     (salePrice == null ? 0 : salePrice.hashCode) +
     (platformFee == null ? 0 : platformFee.hashCode) +
     (shippingCost == null ? 0 : shippingCost.hashCode) +
@@ -93,11 +118,23 @@ class GetAnalyticItemResponseItems {
     (detectedAt == null ? 0 : detectedAt.hashCode);
 
   @override
-  String toString() => 'GetAnalyticItemResponseItems[saleId=$saleId, platform=$platform, platformOrderId=$platformOrderId, itemTitle=$itemTitle, itemBrand=$itemBrand, itemSku=$itemSku, salePrice=$salePrice, platformFee=$platformFee, shippingCost=$shippingCost, costOfGoods=$costOfGoods, netProfit=$netProfit, marginPct=$marginPct, daysToSell=$daysToSell, detectedAt=$detectedAt]';
+  String toString() => 'GetAnalyticItemResponseItems[saleId=$saleId, inventoryItemId=$inventoryItemId, listingId=$listingId, platformListingId=$platformListingId, imageUrl=$imageUrl, platform=$platform, platformOrderId=$platformOrderId, itemTitle=$itemTitle, itemBrand=$itemBrand, itemSku=$itemSku, detailsPending=$detailsPending, salePrice=$salePrice, platformFee=$platformFee, shippingCost=$shippingCost, costOfGoods=$costOfGoods, netProfit=$netProfit, marginPct=$marginPct, daysToSell=$daysToSell, detectedAt=$detectedAt]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
       json[r'saleId'] = saleId;
+    if (inventoryItemId != null) {
+      json[r'inventoryItemId'] = inventoryItemId;
+    }
+    if (listingId != null) {
+      json[r'listingId'] = listingId;
+    }
+    if (platformListingId != null) {
+      json[r'platformListingId'] = platformListingId;
+    }
+    if (imageUrl != null) {
+      json[r'imageUrl'] = imageUrl;
+    }
       json[r'platform'] = platform;
     if (platformOrderId != null) {
       json[r'platformOrderId'] = platformOrderId;
@@ -111,6 +148,7 @@ class GetAnalyticItemResponseItems {
     if (itemSku != null) {
       json[r'itemSku'] = itemSku;
     }
+      json[r'detailsPending'] = detailsPending;
     if (salePrice != null) {
       json[r'salePrice'] = salePrice;
     }
@@ -126,7 +164,9 @@ class GetAnalyticItemResponseItems {
     if (netProfit != null) {
       json[r'netProfit'] = netProfit;
     }
+    if (marginPct != null) {
       json[r'marginPct'] = marginPct;
+    }
     if (daysToSell != null) {
       json[r'daysToSell'] = daysToSell;
     }
@@ -142,11 +182,16 @@ class GetAnalyticItemResponseItems {
       final json = value.cast<String, dynamic>();
       return GetAnalyticItemResponseItems(
         saleId: mapValueOfType<String>(json, r'saleId'),
+        inventoryItemId: mapValueOfType<String>(json, r'inventoryItemId'),
+        listingId: mapValueOfType<String>(json, r'listingId'),
+        platformListingId: mapValueOfType<String>(json, r'platformListingId'),
+        imageUrl: mapValueOfType<String>(json, r'imageUrl'),
         platform: mapValueOfType<String>(json, r'platform'),
         platformOrderId: mapValueOfType<String>(json, r'platformOrderId'),
         itemTitle: mapValueOfType<String>(json, r'itemTitle'),
         itemBrand: mapValueOfType<String>(json, r'itemBrand'),
         itemSku: mapValueOfType<String>(json, r'itemSku'),
+        detailsPending: mapValueOfType<bool>(json, r'detailsPending'),
         salePrice: json[r'salePrice'] == null
           ? null
           : num.parse(json[r'salePrice'].toString()),

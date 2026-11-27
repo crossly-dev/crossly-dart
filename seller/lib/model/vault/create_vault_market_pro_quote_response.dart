@@ -20,9 +20,9 @@ class CreateVaultMarketProQuoteResponse {
 
   String bookKey;
 
-  CreateVaultMarketProQuoteResponseBid bid;
+  OrderIdError bid;
 
-  CreateVaultMarketProQuoteResponseBid ask;
+  OrderIdError ask;
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is CreateVaultMarketProQuoteResponse &&
@@ -56,8 +56,8 @@ class CreateVaultMarketProQuoteResponse {
       final json = value.cast<String, dynamic>();
       return CreateVaultMarketProQuoteResponse(
         bookKey: mapValueOfType<String>(json, r'bookKey'),
-        bid: CreateVaultMarketProQuoteResponseBid.fromJson(json[r'bid']),
-        ask: CreateVaultMarketProQuoteResponseBid.fromJson(json[r'ask']),
+        bid: OrderIdError.fromJson(json[r'bid']),
+        ask: OrderIdError.fromJson(json[r'ask']),
       );
     }
     return null;

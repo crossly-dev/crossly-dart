@@ -173,17 +173,17 @@ class ListVaultMarketSetGoalBasketsItemLegsStatusEnum {
   String toJson() => value;
 
   static const pending = ListVaultMarketSetGoalBasketsItemLegsStatusEnum._(r'pending');
-  static const filled = ListVaultMarketSetGoalBasketsItemLegsStatusEnum._(r'filled');
   static const cancelled = ListVaultMarketSetGoalBasketsItemLegsStatusEnum._(r'cancelled');
   static const rejected = ListVaultMarketSetGoalBasketsItemLegsStatusEnum._(r'rejected');
+  static const filled = ListVaultMarketSetGoalBasketsItemLegsStatusEnum._(r'filled');
   static const working = ListVaultMarketSetGoalBasketsItemLegsStatusEnum._(r'working');
 
   /// List of all possible values in this [enum][ListVaultMarketSetGoalBasketsItemLegsStatusEnum].
   static const values = <ListVaultMarketSetGoalBasketsItemLegsStatusEnum>[
     pending,
-    filled,
     cancelled,
     rejected,
+    filled,
     working,
   ];
 
@@ -217,9 +217,9 @@ class ListVaultMarketSetGoalBasketsItemLegsStatusEnumTypeTransformer {
     if (data != null) {
       switch (data.toString()) {
         case r'pending': return ListVaultMarketSetGoalBasketsItemLegsStatusEnum.pending;
-        case r'filled': return ListVaultMarketSetGoalBasketsItemLegsStatusEnum.filled;
         case r'cancelled': return ListVaultMarketSetGoalBasketsItemLegsStatusEnum.cancelled;
         case r'rejected': return ListVaultMarketSetGoalBasketsItemLegsStatusEnum.rejected;
+        case r'filled': return ListVaultMarketSetGoalBasketsItemLegsStatusEnum.filled;
         case r'working': return ListVaultMarketSetGoalBasketsItemLegsStatusEnum.working;
         default:
           if (allowNull == false) {

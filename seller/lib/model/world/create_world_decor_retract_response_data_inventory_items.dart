@@ -202,19 +202,19 @@ class CreateWorldDecorRetractResponseDataInventoryItemsSurfaceEnum {
 
   String toJson() => value;
 
-  static const shop = CreateWorldDecorRetractResponseDataInventoryItemsSurfaceEnum._(r'shop');
   static const home = CreateWorldDecorRetractResponseDataInventoryItemsSurfaceEnum._(r'home');
   static const street = CreateWorldDecorRetractResponseDataInventoryItemsSurfaceEnum._(r'street');
-  static const stall = CreateWorldDecorRetractResponseDataInventoryItemsSurfaceEnum._(r'stall');
+  static const shop = CreateWorldDecorRetractResponseDataInventoryItemsSurfaceEnum._(r'shop');
   static const avatar = CreateWorldDecorRetractResponseDataInventoryItemsSurfaceEnum._(r'avatar');
+  static const stall = CreateWorldDecorRetractResponseDataInventoryItemsSurfaceEnum._(r'stall');
 
   /// List of all possible values in this [enum][CreateWorldDecorRetractResponseDataInventoryItemsSurfaceEnum].
   static const values = <CreateWorldDecorRetractResponseDataInventoryItemsSurfaceEnum>[
-    shop,
     home,
     street,
-    stall,
+    shop,
     avatar,
+    stall,
   ];
 
   static CreateWorldDecorRetractResponseDataInventoryItemsSurfaceEnum fromJson(dynamic value) =>
@@ -246,11 +246,11 @@ class CreateWorldDecorRetractResponseDataInventoryItemsSurfaceEnumTypeTransforme
   CreateWorldDecorRetractResponseDataInventoryItemsSurfaceEnum decode(dynamic data, {bool allowNull}) {
     if (data != null) {
       switch (data.toString()) {
-        case r'shop': return CreateWorldDecorRetractResponseDataInventoryItemsSurfaceEnum.shop;
         case r'home': return CreateWorldDecorRetractResponseDataInventoryItemsSurfaceEnum.home;
         case r'street': return CreateWorldDecorRetractResponseDataInventoryItemsSurfaceEnum.street;
-        case r'stall': return CreateWorldDecorRetractResponseDataInventoryItemsSurfaceEnum.stall;
+        case r'shop': return CreateWorldDecorRetractResponseDataInventoryItemsSurfaceEnum.shop;
         case r'avatar': return CreateWorldDecorRetractResponseDataInventoryItemsSurfaceEnum.avatar;
+        case r'stall': return CreateWorldDecorRetractResponseDataInventoryItemsSurfaceEnum.stall;
         default:
           if (allowNull == false) {
             throw ArgumentError('Unknown enum value to decode: $data');

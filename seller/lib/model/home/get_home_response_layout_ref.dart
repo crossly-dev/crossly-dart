@@ -102,23 +102,23 @@ class GetHomeResponseLayoutRefKindEnum {
 
   String toJson() => value;
 
-  static const token = GetHomeResponseLayoutRefKindEnum._(r'token');
-  static const portal = GetHomeResponseLayoutRefKindEnum._(r'portal');
-  static const portfolio = GetHomeResponseLayoutRefKindEnum._(r'portfolio');
   static const inventory = GetHomeResponseLayoutRefKindEnum._(r'inventory');
+  static const vault = GetHomeResponseLayoutRefKindEnum._(r'vault');
+  static const portal = GetHomeResponseLayoutRefKindEnum._(r'portal');
+  static const token = GetHomeResponseLayoutRefKindEnum._(r'token');
   static const purchase = GetHomeResponseLayoutRefKindEnum._(r'purchase');
   static const nft = GetHomeResponseLayoutRefKindEnum._(r'nft');
-  static const vault = GetHomeResponseLayoutRefKindEnum._(r'vault');
+  static const portfolio = GetHomeResponseLayoutRefKindEnum._(r'portfolio');
 
   /// List of all possible values in this [enum][GetHomeResponseLayoutRefKindEnum].
   static const values = <GetHomeResponseLayoutRefKindEnum>[
-    token,
-    portal,
-    portfolio,
     inventory,
+    vault,
+    portal,
+    token,
     purchase,
     nft,
-    vault,
+    portfolio,
   ];
 
   static GetHomeResponseLayoutRefKindEnum fromJson(dynamic value) =>
@@ -150,13 +150,13 @@ class GetHomeResponseLayoutRefKindEnumTypeTransformer {
   GetHomeResponseLayoutRefKindEnum decode(dynamic data, {bool allowNull}) {
     if (data != null) {
       switch (data.toString()) {
-        case r'token': return GetHomeResponseLayoutRefKindEnum.token;
-        case r'portal': return GetHomeResponseLayoutRefKindEnum.portal;
-        case r'portfolio': return GetHomeResponseLayoutRefKindEnum.portfolio;
         case r'inventory': return GetHomeResponseLayoutRefKindEnum.inventory;
+        case r'vault': return GetHomeResponseLayoutRefKindEnum.vault;
+        case r'portal': return GetHomeResponseLayoutRefKindEnum.portal;
+        case r'token': return GetHomeResponseLayoutRefKindEnum.token;
         case r'purchase': return GetHomeResponseLayoutRefKindEnum.purchase;
         case r'nft': return GetHomeResponseLayoutRefKindEnum.nft;
-        case r'vault': return GetHomeResponseLayoutRefKindEnum.vault;
+        case r'portfolio': return GetHomeResponseLayoutRefKindEnum.portfolio;
         default:
           if (allowNull == false) {
             throw ArgumentError('Unknown enum value to decode: $data');

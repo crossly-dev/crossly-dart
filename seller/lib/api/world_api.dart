@@ -16,6 +16,244 @@ class WorldApi {
 
   final ApiClient apiClient;
 
+  /// Pack Break: your open pack of five real market pieces, or a fresh one. No prices until you pick.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  Future<Response> createGamePackBreakWithHttpInfo() async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/games/pack-break';
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'POST',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Pack Break: your open pack of five real market pieces, or a fresh one. No prices until you pick.
+  Future<CreateGamePackBreakResponse> createGamePackBreak() async {
+    final response = await createGamePackBreakWithHttpInfo();
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'CreateGamePackBreakResponse',) as CreateGamePackBreakResponse;
+    
+    }
+    return Future<CreateGamePackBreakResponse>.value();
+  }
+
+  /// Pick the pull you think is worth the most: every lowest open ask is revealed, and a win earns a fee-back coupon.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<Response> createGamePackBreakPickWithHttpInfo(String id,) async {
+    // Verify required params are set.
+    if (id == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: id');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/games/pack-break/{id}/pick'
+      .replaceAll('{id}', id);
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'POST',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Pick the pull you think is worth the most: every lowest open ask is revealed, and a win earns a fee-back coupon.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<CreateGamePackBreakPickResponse> createGamePackBreakPick(String id,) async {
+    final response = await createGamePackBreakPickWithHttpInfo(id,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'CreateGamePackBreakPickResponse',) as CreateGamePackBreakPickResponse;
+    
+    }
+    return Future<CreateGamePackBreakPickResponse>.value();
+  }
+
+  /// Add a showroom. The first is included; an extra one has a monthly fee and is added in the dashboard (402 world_payment_failed here).
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] storefrontId:
+  ///   Which store (else X-Storefront-Id, else your default store).
+  Future<Response> createShowroomWithHttpInfo({ String storefrontId, }) async {
+    // Verify required params are set.
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/showrooms';
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    if (storefrontId != null) {
+      queryParams.addAll(_convertParametersForCollectionFormat('', 'storefrontId', storefrontId));
+    }
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'POST',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Add a showroom. The first is included; an extra one has a monthly fee and is added in the dashboard (402 world_payment_failed here).
+  ///
+  /// Parameters:
+  ///
+  /// * [String] storefrontId:
+  ///   Which store (else X-Storefront-Id, else your default store).
+  Future<CreateShowroomResponse> createShowroom({ String storefrontId, }) async {
+    final response = await createShowroomWithHttpInfo( storefrontId: storefrontId, );
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'CreateShowroomResponse',) as CreateShowroomResponse;
+    
+    }
+    return Future<CreateShowroomResponse>.value();
+  }
+
+  /// Stand a showroom on a plot your store owns or rents (403 when it does not; 409 when another showroom stands there).
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  ///
+  /// * [String] storefrontId:
+  ///   Which store (else X-Storefront-Id, else your default store).
+  Future<Response> createShowroomPlacementWithHttpInfo(String id, { String storefrontId, }) async {
+    // Verify required params are set.
+    if (id == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: id');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/showrooms/{id}/placement'
+      .replaceAll('{id}', id);
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    if (storefrontId != null) {
+      queryParams.addAll(_convertParametersForCollectionFormat('', 'storefrontId', storefrontId));
+    }
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'POST',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Stand a showroom on a plot your store owns or rents (403 when it does not; 409 when another showroom stands there).
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  ///
+  /// * [String] storefrontId:
+  ///   Which store (else X-Storefront-Id, else your default store).
+  Future<CreateShowroomPlacementResponse> createShowroomPlacement(String id, { String storefrontId, }) async {
+    final response = await createShowroomPlacementWithHttpInfo(id,  storefrontId: storefrontId, );
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'CreateShowroomPlacementResponse',) as CreateShowroomPlacementResponse;
+    
+    }
+    return Future<CreateShowroomPlacementResponse>.value();
+  }
+
   /// Redeem an invite code (dashes optional); returns the room it opens.
   ///
   /// Note: This method returns the HTTP [Response].
@@ -166,7 +404,7 @@ class WorldApi {
   /// Parameters:
   ///
   /// * [CreateSpatialSceneRequest] createSpatialSceneRequest (required):
-  Future<SpatialSceneResponse2> createSpatialScene(CreateSpatialSceneRequest createSpatialSceneRequest,) async {
+  Future<SpatialSceneResponse> createSpatialScene(CreateSpatialSceneRequest createSpatialSceneRequest,) async {
     final response = await createSpatialSceneWithHttpInfo(createSpatialSceneRequest,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
@@ -175,10 +413,10 @@ class WorldApi {
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
     if (response.body != null && response.statusCode != HttpStatus.noContent) {
-      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'SpatialSceneResponse2',) as SpatialSceneResponse2;
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'SpatialSceneResponse',) as SpatialSceneResponse;
     
     }
-    return Future<SpatialSceneResponse2>.value();
+    return Future<SpatialSceneResponse>.value();
   }
 
   /// Let a specific user into one of your rooms (visitor or staff), no code needed.
@@ -406,7 +644,7 @@ class WorldApi {
   /// Parameters:
   ///
   /// * [String] id (required):
-  Future<SpatialSceneResponse> createSpatialScenePlace(String id,) async {
+  Future<CreateSpatialScenePlaceResponse> createSpatialScenePlace(String id,) async {
     final response = await createSpatialScenePlaceWithHttpInfo(id,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
@@ -415,10 +653,10 @@ class WorldApi {
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
     if (response.body != null && response.statusCode != HttpStatus.noContent) {
-      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'SpatialSceneResponse',) as SpatialSceneResponse;
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'CreateSpatialScenePlaceResponse',) as CreateSpatialScenePlaceResponse;
     
     }
-    return Future<SpatialSceneResponse>.value();
+    return Future<CreateSpatialScenePlaceResponse>.value();
   }
 
   /// Rename one of your rooms.
@@ -473,7 +711,7 @@ class WorldApi {
   /// * [String] id (required):
   ///
   /// * [CreateSpatialSceneRenameRequest] createSpatialSceneRenameRequest (required):
-  Future<SpatialSceneResponse2> createSpatialSceneRename(String id, CreateSpatialSceneRenameRequest createSpatialSceneRenameRequest,) async {
+  Future<SpatialSceneResponse> createSpatialSceneRename(String id, CreateSpatialSceneRenameRequest createSpatialSceneRenameRequest,) async {
     final response = await createSpatialSceneRenameWithHttpInfo(id, createSpatialSceneRenameRequest,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
@@ -482,10 +720,10 @@ class WorldApi {
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
     if (response.body != null && response.statusCode != HttpStatus.noContent) {
-      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'SpatialSceneResponse2',) as SpatialSceneResponse2;
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'SpatialSceneResponse',) as SpatialSceneResponse;
     
     }
-    return Future<SpatialSceneResponse2>.value();
+    return Future<SpatialSceneResponse>.value();
   }
 
   /// Place an inventory item in a section and display of your shop room.
@@ -533,7 +771,7 @@ class WorldApi {
   /// Parameters:
   ///
   /// * [String] id (required):
-  Future<SpatialSceneResponse> createSpatialSceneShopPlace(String id,) async {
+  Future<CreateSpatialSceneShopPlaceResponse> createSpatialSceneShopPlace(String id,) async {
     final response = await createSpatialSceneShopPlaceWithHttpInfo(id,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
@@ -542,10 +780,10 @@ class WorldApi {
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
     if (response.body != null && response.statusCode != HttpStatus.noContent) {
-      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'SpatialSceneResponse',) as SpatialSceneResponse;
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'CreateSpatialSceneShopPlaceResponse',) as CreateSpatialSceneShopPlaceResponse;
     
     }
-    return Future<SpatialSceneResponse>.value();
+    return Future<CreateSpatialSceneShopPlaceResponse>.value();
   }
 
   /// Clear every pin in one of your rooms, so it arranges itself again.
@@ -660,7 +898,7 @@ class WorldApi {
   /// * [String] id (required):
   ///
   /// * [CreateSpatialSceneVisibilityRequest] createSpatialSceneVisibilityRequest (required):
-  Future<SpatialSceneResponse2> createSpatialSceneVisibility(String id, CreateSpatialSceneVisibilityRequest createSpatialSceneVisibilityRequest,) async {
+  Future<SpatialSceneResponse> createSpatialSceneVisibility(String id, CreateSpatialSceneVisibilityRequest createSpatialSceneVisibilityRequest,) async {
     final response = await createSpatialSceneVisibilityWithHttpInfo(id, createSpatialSceneVisibilityRequest,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
@@ -669,10 +907,10 @@ class WorldApi {
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
     if (response.body != null && response.statusCode != HttpStatus.noContent) {
-      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'SpatialSceneResponse2',) as SpatialSceneResponse2;
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'SpatialSceneResponse',) as SpatialSceneResponse;
     
     }
-    return Future<SpatialSceneResponse2>.value();
+    return Future<SpatialSceneResponse>.value();
   }
 
   /// Put an inventory item (or unit) on a rack in one of your warehouse rooms.
@@ -720,7 +958,7 @@ class WorldApi {
   /// Parameters:
   ///
   /// * [String] id (required):
-  Future<SpatialSceneResponse> createSpatialSceneWarehouseStock(String id,) async {
+  Future<CreateSpatialScenePlaceResponse> createSpatialSceneWarehouseStock(String id,) async {
     final response = await createSpatialSceneWarehouseStockWithHttpInfo(id,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
@@ -729,56 +967,10 @@ class WorldApi {
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
     if (response.body != null && response.statusCode != HttpStatus.noContent) {
-      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'SpatialSceneResponse',) as SpatialSceneResponse;
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'CreateSpatialScenePlaceResponse',) as CreateSpatialScenePlaceResponse;
     
     }
-    return Future<SpatialSceneResponse>.value();
-  }
-
-  /// Move your shop to another neighbourhood (by slug).
-  ///
-  /// Note: This method returns the HTTP [Response].
-  Future<Response> createSpatialShopNeighbourhoodWithHttpInfo() async {
-    // ignore: prefer_const_declarations
-    final path = r'/v1/spatial/shop/neighbourhood';
-
-    // ignore: prefer_final_locals
-    Object postBody;
-
-    final queryParams = <QueryParam>[];
-    final headerParams = <String, String>{};
-    final formParams = <String, String>{};
-
-    const authNames = <String>['PersonalAccessToken'];
-    const contentTypes = <String>[];
-
-
-    return apiClient.invokeAPI(
-      path,
-      'POST',
-      queryParams,
-      postBody,
-      headerParams,
-      formParams,
-      contentTypes.isEmpty ? null : contentTypes[0],
-      authNames,
-    );
-  }
-
-  /// Move your shop to another neighbourhood (by slug).
-  Future<CreateSpatialShopNeighbourhoodResponse> createSpatialShopNeighbourhood() async {
-    final response = await createSpatialShopNeighbourhoodWithHttpInfo();
-    if (response.statusCode >= HttpStatus.badRequest) {
-      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
-    }
-    // When a remote server returns no body with a status of 204, we shall not decode it.
-    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
-    // FormatException when trying to decode an empty string.
-    if (response.body != null && response.statusCode != HttpStatus.noContent) {
-      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'CreateSpatialShopNeighbourhoodResponse',) as CreateSpatialShopNeighbourhoodResponse;
-    
-    }
-    return Future<CreateSpatialShopNeighbourhoodResponse>.value();
+    return Future<CreateSpatialScenePlaceResponse>.value();
   }
 
   /// Ask to open your shop on a street whose owner reviews applications.
@@ -899,6 +1091,52 @@ class WorldApi {
     
     }
     return Future<CreateSpatialStreetApplyResponse>.value();
+  }
+
+  /// One test answer from your AI attendant, on your own AI key (409 ai_key_required without one).
+  ///
+  /// Note: This method returns the HTTP [Response].
+  Future<Response> createWorldAttendantTestChatWithHttpInfo() async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/world/attendant/test-chat';
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'POST',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// One test answer from your AI attendant, on your own AI key (409 ai_key_required without one).
+  Future<CreateWorldAttendantTestChatResponse> createWorldAttendantTestChat() async {
+    final response = await createWorldAttendantTestChatWithHttpInfo();
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'CreateWorldAttendantTestChatResponse',) as CreateWorldAttendantTestChatResponse;
+    
+    }
+    return Future<CreateWorldAttendantTestChatResponse>.value();
   }
 
   /// Wear something you already own -- exactly ONE of { cosmeticId } (a cosmetic you hold), { receiptId } (a Crossly purchase from your closet) or { inventoryItemId } (your own stock). The slot comes from the thing itself; slot is only a fallback for an item with no catalog shape. Replaces whatever was in that slot. Moves no money. Answers the slot and your loadout after the change.
@@ -1397,6 +1635,232 @@ class WorldApi {
     return Future<CreateWorldConventionApplyResponse>.value();
   }
 
+  /// Apply for a booth tier (or book it at once in open mode): { tierId, note?, categories? }.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<Response> createWorldConventionBoothApplyWithHttpInfo(String id,) async {
+    // Verify required params are set.
+    if (id == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: id');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/world/conventions/{id}/booths/apply'
+      .replaceAll('{id}', id);
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'POST',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Apply for a booth tier (or book it at once in open mode): { tierId, note?, categories? }.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<CreateWorldConventionBoothApplyResponse> createWorldConventionBoothApply(String id,) async {
+    final response = await createWorldConventionBoothApplyWithHttpInfo(id,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'CreateWorldConventionBoothApplyResponse',) as CreateWorldConventionBoothApplyResponse;
+    
+    }
+    return Future<CreateWorldConventionBoothApplyResponse>.value();
+  }
+
+  /// Pay your booth fee to the organiser on a Worlds rail: { rail: \"cash\" | \"cbx\" }. Once per booth. Full-access token and Idempotency-Key required.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<Response> createWorldConventionBoothFeeWithHttpInfo(String id,) async {
+    // Verify required params are set.
+    if (id == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: id');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/world/conventions/{id}/booth-fee'
+      .replaceAll('{id}', id);
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'POST',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Pay your booth fee to the organiser on a Worlds rail: { rail: \"cash\" | \"cbx\" }. Once per booth. Full-access token and Idempotency-Key required.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<CreateWorldConventionBoothFeeResponse> createWorldConventionBoothFee(String id,) async {
+    final response = await createWorldConventionBoothFeeWithHttpInfo(id,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'CreateWorldConventionBoothFeeResponse',) as CreateWorldConventionBoothFeeResponse;
+    
+    }
+    return Future<CreateWorldConventionBoothFeeResponse>.value();
+  }
+
+  /// Check in: the organiser names { exhibitorId }; an exhibitor checks themselves in with {}.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<Response> createWorldConventionCheckInWithHttpInfo(String id,) async {
+    // Verify required params are set.
+    if (id == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: id');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/world/conventions/{id}/check-in'
+      .replaceAll('{id}', id);
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'POST',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Check in: the organiser names { exhibitorId }; an exhibitor checks themselves in with {}.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<CreateWorldConventionCheckInResponse> createWorldConventionCheckIn(String id,) async {
+    final response = await createWorldConventionCheckInWithHttpInfo(id,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'CreateWorldConventionCheckInResponse',) as CreateWorldConventionCheckInResponse;
+    
+    }
+    return Future<CreateWorldConventionCheckInResponse>.value();
+  }
+
+  /// Create a convention in full: venue + days (rented and paid now on the rail), hours, theme, booth tiers and prices, application or open booking, seller limits, promotion. Full-access token and Idempotency-Key required.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  Future<Response> createWorldConventionFullWithHttpInfo() async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/world/conventions/full';
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'POST',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Create a convention in full: venue + days (rented and paid now on the rail), hours, theme, booth tiers and prices, application or open booking, seller limits, promotion. Full-access token and Idempotency-Key required.
+  Future<GetWorldConventionManageResponse> createWorldConventionFull() async {
+    final response = await createWorldConventionFullWithHttpInfo();
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'GetWorldConventionManageResponse',) as GetWorldConventionManageResponse;
+    
+    }
+    return Future<GetWorldConventionManageResponse>.value();
+  }
+
   /// Invite a seller (by shop handle) to a convention you host.
   ///
   /// Note: This method returns the HTTP [Response].
@@ -1457,6 +1921,66 @@ class WorldApi {
     return Future<CreateWorldSpaceInviteResponse>.value();
   }
 
+  /// Send a convention message: { body, toUserId? }. The organiser writes to one seller or every seller; an exhibitor writes to the organiser.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<Response> createWorldConventionMessageWithHttpInfo(String id,) async {
+    // Verify required params are set.
+    if (id == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: id');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/world/conventions/{id}/messages'
+      .replaceAll('{id}', id);
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'POST',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Send a convention message: { body, toUserId? }. The organiser writes to one seller or every seller; an exhibitor writes to the organiser.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<CreateWorldConventionMessageResponse> createWorldConventionMessage(String id,) async {
+    final response = await createWorldConventionMessageWithHttpInfo(id,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'CreateWorldConventionMessageResponse',) as CreateWorldConventionMessageResponse;
+    
+    }
+    return Future<CreateWorldConventionMessageResponse>.value();
+  }
+
   /// As host, record that a seller (username) paid their table fee off-platform. Moves no money.
   ///
   /// Note: This method returns the HTTP [Response].
@@ -1502,7 +2026,7 @@ class WorldApi {
   /// Parameters:
   ///
   /// * [String] id (required):
-  Future<CreateBreakCancelResponse> createWorldConventionPaid(String id,) async {
+  Future<UpdateGroupBuyResponse> createWorldConventionPaid(String id,) async {
     final response = await createWorldConventionPaidWithHttpInfo(id,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
@@ -1511,10 +2035,130 @@ class WorldApi {
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
     if (response.body != null && response.statusCode != HttpStatus.noContent) {
-      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'CreateBreakCancelResponse',) as CreateBreakCancelResponse;
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'UpdateGroupBuyResponse',) as UpdateGroupBuyResponse;
     
     }
-    return Future<CreateBreakCancelResponse>.value();
+    return Future<UpdateGroupBuyResponse>.value();
+  }
+
+  /// Move an accepted seller to another booth of their tier (swaps with whoever is there): { exhibitorId, boothKey }.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<Response> createWorldConventionSellerAssignWithHttpInfo(String id,) async {
+    // Verify required params are set.
+    if (id == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: id');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/world/conventions/{id}/sellers/assign'
+      .replaceAll('{id}', id);
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'POST',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Move an accepted seller to another booth of their tier (swaps with whoever is there): { exhibitorId, boothKey }.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<CreateWorldConventionSellerAssignResponse> createWorldConventionSellerAssign(String id,) async {
+    final response = await createWorldConventionSellerAssignWithHttpInfo(id,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'CreateWorldConventionSellerAssignResponse',) as CreateWorldConventionSellerAssignResponse;
+    
+    }
+    return Future<CreateWorldConventionSellerAssignResponse>.value();
+  }
+
+  /// Approve (terms frozen, a booth assigned) or decline an application: { exhibitorId, decision }.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<Response> createWorldConventionSellerDecideWithHttpInfo(String id,) async {
+    // Verify required params are set.
+    if (id == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: id');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/world/conventions/{id}/sellers/decide'
+      .replaceAll('{id}', id);
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'POST',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Approve (terms frozen, a booth assigned) or decline an application: { exhibitorId, decision }.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<CreateWorldConventionBoothApplyResponse> createWorldConventionSellerDecide(String id,) async {
+    final response = await createWorldConventionSellerDecideWithHttpInfo(id,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'CreateWorldConventionBoothApplyResponse',) as CreateWorldConventionBoothApplyResponse;
+    
+    }
+    return Future<CreateWorldConventionBoothApplyResponse>.value();
   }
 
   /// Withdraw your table or decline your invitation; as host, decline someone (username).
@@ -1562,7 +2206,7 @@ class WorldApi {
   /// Parameters:
   ///
   /// * [String] id (required):
-  Future<CreateBreakCancelResponse> createWorldConventionWithdraw(String id,) async {
+  Future<UpdateGroupBuyResponse> createWorldConventionWithdraw(String id,) async {
     final response = await createWorldConventionWithdrawWithHttpInfo(id,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
@@ -1571,10 +2215,10 @@ class WorldApi {
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
     if (response.body != null && response.statusCode != HttpStatus.noContent) {
-      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'CreateBreakCancelResponse',) as CreateBreakCancelResponse;
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'UpdateGroupBuyResponse',) as UpdateGroupBuyResponse;
     
     }
-    return Future<CreateBreakCancelResponse>.value();
+    return Future<UpdateGroupBuyResponse>.value();
   }
 
   /// Start a crew you own: { name (2-32 chars), tag (2-5 letters or digits, shown on members' nameplates) }. Answers its id and join code. 409 when you are already in a crew.
@@ -2238,6 +2882,254 @@ class WorldApi {
     return Future<CreateWorldGamePackageCheckResponse>.value();
   }
 
+  /// Make an approved version the one every placed copy runs (rollback or roll-forward; running copies restart on it) and list the game again if it was unpublished. Body { version }. Starter seller plan or higher.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<Response> createWorldGamePackagePublishWithHttpInfo(String id,) async {
+    // Verify required params are set.
+    if (id == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: id');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/world/games/packages/{id}/publish'
+      .replaceAll('{id}', id);
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'POST',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Make an approved version the one every placed copy runs (rollback or roll-forward; running copies restart on it) and list the game again if it was unpublished. Body { version }. Starter seller plan or higher.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<CreateWorldGamePackagePublishResponse> createWorldGamePackagePublish(String id,) async {
+    final response = await createWorldGamePackagePublishWithHttpInfo(id,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'CreateWorldGamePackagePublishResponse',) as CreateWorldGamePackagePublishResponse;
+    
+    }
+    return Future<CreateWorldGamePackagePublishResponse>.value();
+  }
+
+  /// Restore a deleted Classic game within 30 days (it comes back unpublished).
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<Response> createWorldGamePackageRestoreWithHttpInfo(String id,) async {
+    // Verify required params are set.
+    if (id == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: id');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/world/games/packages/{id}/restore'
+      .replaceAll('{id}', id);
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'POST',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Restore a deleted Classic game within 30 days (it comes back unpublished).
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<CreateWorldGamePackageRestoreResponse> createWorldGamePackageRestore(String id,) async {
+    final response = await createWorldGamePackageRestoreWithHttpInfo(id,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'CreateWorldGamePackageRestoreResponse',) as CreateWorldGamePackageRestoreResponse;
+    
+    }
+    return Future<CreateWorldGamePackageRestoreResponse>.value();
+  }
+
+  /// Take a Classic game off the Game Directory and the Carnival Plaza launcher, its store off sale. Copies people already placed keep running. Needs no plan: a lapsed creator can always take a game down.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<Response> createWorldGamePackageUnpublishWithHttpInfo(String id,) async {
+    // Verify required params are set.
+    if (id == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: id');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/world/games/packages/{id}/unpublish'
+      .replaceAll('{id}', id);
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'POST',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Take a Classic game off the Game Directory and the Carnival Plaza launcher, its store off sale. Copies people already placed keep running. Needs no plan: a lapsed creator can always take a game down.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<CreateWorldGamePackageUnpublishResponse> createWorldGamePackageUnpublish(String id,) async {
+    final response = await createWorldGamePackageUnpublishWithHttpInfo(id,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'CreateWorldGamePackageUnpublishResponse',) as CreateWorldGamePackageUnpublishResponse;
+    
+    }
+    return Future<CreateWorldGamePackageUnpublishResponse>.value();
+  }
+
+  /// Send a draft version (uploaded with submit: false) to review: the same static check, sandbox dry run and human review as an upload. Starter seller plan or higher.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  ///
+  /// * [String] semver (required):
+  Future<Response> createWorldGamePackageVersionSubmitWithHttpInfo(String id, String semver,) async {
+    // Verify required params are set.
+    if (id == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: id');
+    }
+    if (semver == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: semver');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/world/games/packages/{id}/versions/{semver}/submit'
+      .replaceAll('{id}', id)
+      .replaceAll('{semver}', semver);
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'POST',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Send a draft version (uploaded with submit: false) to review: the same static check, sandbox dry run and human review as an upload. Starter seller plan or higher.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  ///
+  /// * [String] semver (required):
+  Future<CreateWorldGamePackageVersionSubmitResponse> createWorldGamePackageVersionSubmit(String id, String semver,) async {
+    final response = await createWorldGamePackageVersionSubmitWithHttpInfo(id, semver,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'CreateWorldGamePackageVersionSubmitResponse',) as CreateWorldGamePackageVersionSubmitResponse;
+    
+    }
+    return Future<CreateWorldGamePackageVersionSubmitResponse>.value();
+  }
+
   /// Rate a game you played, 1 to 5 stars (rating again replaces it). Only players the runner recorded in that game can rate it.
   ///
   /// Note: This method returns the HTTP [Response].
@@ -2752,7 +3644,7 @@ class WorldApi {
     return Future<GetWorldHuntResponse>.value();
   }
 
-  /// Upload one asset for your designs: kind glb (4 MB), wav (4 MB) or png (1 MB), the file as base64. Answers its sha256 and the path to reference from MML.
+  /// Upload one asset: kind glb (4 MB), wav (4 MB) or png (1 MB), the file as base64; purpose product (your designs, the default) or game (Carnival Studio files such as badge icons). Answers its sha256 and the path to reference from MML.
   ///
   /// Note: This method returns the HTTP [Response].
   Future<Response> createWorldInteractiveAssetWithHttpInfo() async {
@@ -2782,7 +3674,7 @@ class WorldApi {
     );
   }
 
-  /// Upload one asset for your designs: kind glb (4 MB), wav (4 MB) or png (1 MB), the file as base64. Answers its sha256 and the path to reference from MML.
+  /// Upload one asset: kind glb (4 MB), wav (4 MB) or png (1 MB), the file as base64; purpose product (your designs, the default) or game (Carnival Studio files such as badge icons). Answers its sha256 and the path to reference from MML.
   Future<CreateWorldInteractiveAssetResponse> createWorldInteractiveAsset() async {
     final response = await createWorldInteractiveAssetWithHttpInfo();
     if (response.statusCode >= HttpStatus.badRequest) {
@@ -3248,6 +4140,180 @@ class WorldApi {
     
     }
     return Future<CreateWorldJobShiftReleaseResponse>.value();
+  }
+
+  /// Buy a plot or a street.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] kind (required):
+  ///
+  /// * [String] id (required):
+  Future<Response> createWorldMarketBuyWithHttpInfo(String kind, String id,) async {
+    // Verify required params are set.
+    if (kind == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: kind');
+    }
+    if (id == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: id');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/world/market/{kind}/{id}/buy'
+      .replaceAll('{kind}', kind)
+      .replaceAll('{id}', id);
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'POST',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Buy a plot or a street.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] kind (required):
+  ///
+  /// * [String] id (required):
+  Future<CreateWorldMarketBuyResponse> createWorldMarketBuy(String kind, String id,) async {
+    final response = await createWorldMarketBuyWithHttpInfo(kind, id,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'CreateWorldMarketBuyResponse',) as CreateWorldMarketBuyResponse;
+    
+    }
+    return Future<CreateWorldMarketBuyResponse>.value();
+  }
+
+  /// List a plot for sale or rent, or a street for sale.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  Future<Response> createWorldMarketListingWithHttpInfo() async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/world/market/listings';
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'POST',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// List a plot for sale or rent, or a street for sale.
+  Future<CreateWorldMarketListingResponse> createWorldMarketListing() async {
+    final response = await createWorldMarketListingWithHttpInfo();
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'CreateWorldMarketListingResponse',) as CreateWorldMarketListingResponse;
+    
+    }
+    return Future<CreateWorldMarketListingResponse>.value();
+  }
+
+  /// Rent a plot offered for lease.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<Response> createWorldMarketPlotRentWithHttpInfo(String id,) async {
+    // Verify required params are set.
+    if (id == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: id');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/world/market/plot/{id}/rent'
+      .replaceAll('{id}', id);
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'POST',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Rent a plot offered for lease.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<CreateWorldMarketPlotRentResponse> createWorldMarketPlotRent(String id,) async {
+    final response = await createWorldMarketPlotRentWithHttpInfo(id,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'CreateWorldMarketPlotRentResponse',) as CreateWorldMarketPlotRentResponse;
+    
+    }
+    return Future<CreateWorldMarketPlotRentResponse>.value();
   }
 
   /// Save what you are wearing now as a named look: { name (1-32 chars), appearance? (skin, hair, hairColour, eyes, build -- unknown keys fall back to the default) }. Each worn thing is recorded as the door it goes back on by; one that no longer traces to something you own is listed in skipped and not saved. 409 when you already keep 6.
@@ -4031,6 +5097,172 @@ class WorldApi {
     return Future<CreateWorldPlaceItemWantResponse>.value();
   }
 
+  /// A presigned upload for a plot's photo (WebP/PNG/JPEG, up to 4 MB): PUT the image to uploadUrl with the same Content-Type and exact Content-Length, then store publicUrl with PUT .../photo.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] plotId (required):
+  Future<Response> createWorldPropertyPlotPhotoUploadUrlWithHttpInfo(String plotId,) async {
+    // Verify required params are set.
+    if (plotId == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: plotId');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/world/property/plots/{plotId}/photo/upload-url'
+      .replaceAll('{plotId}', plotId);
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'POST',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// A presigned upload for a plot's photo (WebP/PNG/JPEG, up to 4 MB): PUT the image to uploadUrl with the same Content-Type and exact Content-Length, then store publicUrl with PUT .../photo.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] plotId (required):
+  Future<CreateWorldPropertyPlotPhotoUploadUrlResponse> createWorldPropertyPlotPhotoUploadUrl(String plotId,) async {
+    final response = await createWorldPropertyPlotPhotoUploadUrlWithHttpInfo(plotId,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'CreateWorldPropertyPlotPhotoUploadUrlResponse',) as CreateWorldPropertyPlotPhotoUploadUrlResponse;
+    
+    }
+    return Future<CreateWorldPropertyPlotPhotoUploadUrlResponse>.value();
+  }
+
+  /// Stand one of your showrooms on a plot you own or rent.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] plotId (required):
+  Future<Response> createWorldPropertyPlotShowroomWithHttpInfo(String plotId,) async {
+    // Verify required params are set.
+    if (plotId == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: plotId');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/world/property/plots/{plotId}/showroom'
+      .replaceAll('{plotId}', plotId);
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'POST',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Stand one of your showrooms on a plot you own or rent.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] plotId (required):
+  Future<CreateWorldPropertyPlotShowroomResponse> createWorldPropertyPlotShowroom(String plotId,) async {
+    final response = await createWorldPropertyPlotShowroomWithHttpInfo(plotId,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'CreateWorldPropertyPlotShowroomResponse',) as CreateWorldPropertyPlotShowroomResponse;
+    
+    }
+    return Future<CreateWorldPropertyPlotShowroomResponse>.value();
+  }
+
+  /// Ban someone owner-wide or from one showroom.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  Future<Response> createWorldPropertyTrespassedWithHttpInfo() async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/world/property/trespassed';
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'POST',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Ban someone owner-wide or from one showroom.
+  Future<ListWorldPropertyTrespassedResponse> createWorldPropertyTrespassed() async {
+    final response = await createWorldPropertyTrespassedWithHttpInfo();
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'ListWorldPropertyTrespassedResponse',) as ListWorldPropertyTrespassedResponse;
+    
+    }
+    return Future<ListWorldPropertyTrespassedResponse>.value();
+  }
+
   /// Open a Space (sellers only, at most two): slug, name, venue, optional membership and about.
   ///
   /// Note: This method returns the HTTP [Response].
@@ -4513,6 +5745,620 @@ class WorldApi {
     return Future<CreateWorldSpaceRoleResponse>.value();
   }
 
+  /// Accept or decline an application.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<Response> createWorldStaffApplicationDecideWithHttpInfo(String id,) async {
+    // Verify required params are set.
+    if (id == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: id');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/world/staff/applications/{id}/decide'
+      .replaceAll('{id}', id);
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'POST',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Accept or decline an application.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<CreateWorldStaffApplicationDecideResponse> createWorldStaffApplicationDecide(String id,) async {
+    final response = await createWorldStaffApplicationDecideWithHttpInfo(id,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'CreateWorldStaffApplicationDecideResponse',) as CreateWorldStaffApplicationDecideResponse;
+    
+    }
+    return Future<CreateWorldStaffApplicationDecideResponse>.value();
+  }
+
+  /// Rate the worker of one of your seats.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<Response> createWorldStaffAssignmentRateWorkerWithHttpInfo(String id,) async {
+    // Verify required params are set.
+    if (id == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: id');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/world/staff/assignments/{id}/rate-worker'
+      .replaceAll('{id}', id);
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'POST',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Rate the worker of one of your seats.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<CreateWorldStaffAssignmentRateWorkerResponse> createWorldStaffAssignmentRateWorker(String id,) async {
+    final response = await createWorldStaffAssignmentRateWorkerWithHttpInfo(id,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'CreateWorldStaffAssignmentRateWorkerResponse',) as CreateWorldStaffAssignmentRateWorkerResponse;
+    
+    }
+    return Future<CreateWorldStaffAssignmentRateWorkerResponse>.value();
+  }
+
+  /// Post a job: a showroom, stall or convention, pay, recurrence and rules.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  Future<Response> createWorldStaffPostingWithHttpInfo() async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/world/staff/postings';
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'POST',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Post a job: a showroom, stall or convention, pay, recurrence and rules.
+  Future<WorldStaffPostingResponse> createWorldStaffPosting() async {
+    final response = await createWorldStaffPostingWithHttpInfo();
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'WorldStaffPostingResponse',) as WorldStaffPostingResponse;
+    
+    }
+    return Future<WorldStaffPostingResponse>.value();
+  }
+
+  /// Open, pause or close a posting.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<Response> createWorldStaffPostingStatusWithHttpInfo(String id,) async {
+    // Verify required params are set.
+    if (id == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: id');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/world/staff/postings/{id}/status'
+      .replaceAll('{id}', id);
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'POST',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Open, pause or close a posting.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<WorldStaffPostingResponse> createWorldStaffPostingStatus(String id,) async {
+    final response = await createWorldStaffPostingStatusWithHttpInfo(id,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'WorldStaffPostingResponse',) as WorldStaffPostingResponse;
+    
+    }
+    return Future<WorldStaffPostingResponse>.value();
+  }
+
+  /// Pay your street's upkeep forward.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<Response> createWorldStreetOwnedUpkeepPayWithHttpInfo(String id,) async {
+    // Verify required params are set.
+    if (id == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: id');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/world/streets/owned/{id}/upkeep/pay'
+      .replaceAll('{id}', id);
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'POST',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Pay your street's upkeep forward.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<CreateWorldStreetOwnedUpkeepPayResponse> createWorldStreetOwnedUpkeepPay(String id,) async {
+    final response = await createWorldStreetOwnedUpkeepPayWithHttpInfo(id,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'CreateWorldStreetOwnedUpkeepPayResponse',) as CreateWorldStreetOwnedUpkeepPayResponse;
+    
+    }
+    return Future<CreateWorldStreetOwnedUpkeepPayResponse>.value();
+  }
+
+  /// Cancel a hall rental: the whole rent back until 7 days before the first day, nothing after.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<Response> createWorldVenueBookingCancelWithHttpInfo(String id,) async {
+    // Verify required params are set.
+    if (id == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: id');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/world/venue-bookings/{id}/cancel'
+      .replaceAll('{id}', id);
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'POST',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Cancel a hall rental: the whole rent back until 7 days before the first day, nothing after.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<CreateWorldVenueBookingCancelResponse> createWorldVenueBookingCancel(String id,) async {
+    final response = await createWorldVenueBookingCancelWithHttpInfo(id,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'CreateWorldVenueBookingCancelResponse',) as CreateWorldVenueBookingCancelResponse;
+    
+    }
+    return Future<CreateWorldVenueBookingCancelResponse>.value();
+  }
+
+  /// Rate the employer of a public-job shift you worked: paid on time, job as described, conduct.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<Response> createWorldWorkAssignmentRateEmployerWithHttpInfo(String id,) async {
+    // Verify required params are set.
+    if (id == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: id');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/world/work/assignments/{id}/rate-employer'
+      .replaceAll('{id}', id);
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'POST',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Rate the employer of a public-job shift you worked: paid on time, job as described, conduct.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<CreateWorldStaffAssignmentRateWorkerResponse> createWorldWorkAssignmentRateEmployer(String id,) async {
+    final response = await createWorldWorkAssignmentRateEmployerWithHttpInfo(id,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'CreateWorldStaffAssignmentRateWorkerResponse',) as CreateWorldStaffAssignmentRateWorkerResponse;
+    
+    }
+    return Future<CreateWorldStaffAssignmentRateWorkerResponse>.value();
+  }
+
+  /// Apply for a job.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<Response> createWorldWorkPostingApplyWithHttpInfo(String id,) async {
+    // Verify required params are set.
+    if (id == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: id');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/world/work/postings/{id}/apply'
+      .replaceAll('{id}', id);
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'POST',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Apply for a job.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<CreateWorldWorkPostingApplyResponse> createWorldWorkPostingApply(String id,) async {
+    final response = await createWorldWorkPostingApplyWithHttpInfo(id,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'CreateWorldWorkPostingApplyResponse',) as CreateWorldWorkPostingApplyResponse;
+    
+    }
+    return Future<CreateWorldWorkPostingApplyResponse>.value();
+  }
+
+  /// Archive a showroom: private, off its plots, billing stopped. Never deletes; the primary cannot be archived (409 showroom_primary).
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  ///
+  /// * [String] storefrontId:
+  ///   Which store (else X-Storefront-Id, else your default store).
+  Future<Response> deleteShowroomWithHttpInfo(String id, { String storefrontId, }) async {
+    // Verify required params are set.
+    if (id == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: id');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/showrooms/{id}'
+      .replaceAll('{id}', id);
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    if (storefrontId != null) {
+      queryParams.addAll(_convertParametersForCollectionFormat('', 'storefrontId', storefrontId));
+    }
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'DELETE',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Archive a showroom: private, off its plots, billing stopped. Never deletes; the primary cannot be archived (409 showroom_primary).
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  ///
+  /// * [String] storefrontId:
+  ///   Which store (else X-Storefront-Id, else your default store).
+  Future<DeleteShowroomResponse> deleteShowroom(String id, { String storefrontId, }) async {
+    final response = await deleteShowroomWithHttpInfo(id,  storefrontId: storefrontId, );
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'DeleteShowroomResponse',) as DeleteShowroomResponse;
+    
+    }
+    return Future<DeleteShowroomResponse>.value();
+  }
+
+  /// Take a showroom off a plot (the plot stays yours).
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  ///
+  /// * [String] plotId (required):
+  ///
+  /// * [String] storefrontId:
+  ///   Which store (else X-Storefront-Id, else your default store).
+  Future<Response> deleteShowroomPlacementWithHttpInfo(String id, String plotId, { String storefrontId, }) async {
+    // Verify required params are set.
+    if (id == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: id');
+    }
+    if (plotId == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: plotId');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/showrooms/{id}/placement/{plotId}'
+      .replaceAll('{id}', id)
+      .replaceAll('{plotId}', plotId);
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    if (storefrontId != null) {
+      queryParams.addAll(_convertParametersForCollectionFormat('', 'storefrontId', storefrontId));
+    }
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'DELETE',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Take a showroom off a plot (the plot stays yours).
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  ///
+  /// * [String] plotId (required):
+  ///
+  /// * [String] storefrontId:
+  ///   Which store (else X-Storefront-Id, else your default store).
+  Future<CreateShowroomPlacementResponse> deleteShowroomPlacement(String id, String plotId, { String storefrontId, }) async {
+    final response = await deleteShowroomPlacementWithHttpInfo(id, plotId,  storefrontId: storefrontId, );
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'CreateShowroomPlacementResponse',) as CreateShowroomPlacementResponse;
+    
+    }
+    return Future<CreateShowroomPlacementResponse>.value();
+  }
+
   /// Take somebody's access to your room away, or kill an invite nobody has used yet.
   ///
   /// Note: This method returns the HTTP [Response].
@@ -4941,6 +6787,66 @@ class WorldApi {
     return Future<CreateWorldFollowResponse>.value();
   }
 
+  /// Delete a Classic game: unpublished, then a tombstone restorable for 30 days.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<Response> deleteWorldGamePackageWithHttpInfo(String id,) async {
+    // Verify required params are set.
+    if (id == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: id');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/world/games/packages/{id}'
+      .replaceAll('{id}', id);
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'DELETE',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Delete a Classic game: unpublished, then a tombstone restorable for 30 days.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<DeleteWorldGamePackageResponse> deleteWorldGamePackage(String id,) async {
+    final response = await deleteWorldGamePackageWithHttpInfo(id,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'DeleteWorldGamePackageResponse',) as DeleteWorldGamePackageResponse;
+    
+    }
+    return Future<DeleteWorldGamePackageResponse>.value();
+  }
+
   /// Take one of your loans off show in the Hall of Grails.
   ///
   /// Note: This method returns the HTTP [Response].
@@ -5189,6 +7095,82 @@ class WorldApi {
     return Future<DeleteWorldJobShiftResponse>.value();
   }
 
+  /// Withdraw a plot or street from the Market.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] kind (required):
+  ///
+  /// * [String] id (required):
+  ///
+  /// * [String] mode (required):
+  Future<Response> deleteWorldMarketListingWithHttpInfo(String kind, String id, String mode,) async {
+    // Verify required params are set.
+    if (kind == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: kind');
+    }
+    if (id == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: id');
+    }
+    if (mode == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: mode');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/world/market/listings/{kind}/{id}/{mode}'
+      .replaceAll('{kind}', kind)
+      .replaceAll('{id}', id)
+      .replaceAll('{mode}', mode);
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'DELETE',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Withdraw a plot or street from the Market.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] kind (required):
+  ///
+  /// * [String] id (required):
+  ///
+  /// * [String] mode (required):
+  Future<DeleteWorldMarketListingResponse> deleteWorldMarketListing(String kind, String id, String mode,) async {
+    final response = await deleteWorldMarketListingWithHttpInfo(kind, id, mode,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'DeleteWorldMarketListingResponse',) as DeleteWorldMarketListingResponse;
+    
+    }
+    return Future<DeleteWorldMarketListingResponse>.value();
+  }
+
   /// Delete a saved look. 404 when it is not yours.
   ///
   /// Note: This method returns the HTTP [Response].
@@ -5385,6 +7367,126 @@ class WorldApi {
     return Future<DeleteWorldPlaceBanResponse>.value();
   }
 
+  /// Take the showroom off a plot.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] plotId (required):
+  Future<Response> deleteWorldPropertyPlotShowroomWithHttpInfo(String plotId,) async {
+    // Verify required params are set.
+    if (plotId == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: plotId');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/world/property/plots/{plotId}/showroom'
+      .replaceAll('{plotId}', plotId);
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'DELETE',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Take the showroom off a plot.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] plotId (required):
+  Future<DeleteWorldPropertyPlotShowroomResponse> deleteWorldPropertyPlotShowroom(String plotId,) async {
+    final response = await deleteWorldPropertyPlotShowroomWithHttpInfo(plotId,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'DeleteWorldPropertyPlotShowroomResponse',) as DeleteWorldPropertyPlotShowroomResponse;
+    
+    }
+    return Future<DeleteWorldPropertyPlotShowroomResponse>.value();
+  }
+
+  /// Lift a ban.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] userId (required):
+  Future<Response> deleteWorldPropertyTrespassedWithHttpInfo(String userId,) async {
+    // Verify required params are set.
+    if (userId == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: userId');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/world/property/trespassed/{userId}'
+      .replaceAll('{userId}', userId);
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'DELETE',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Lift a ban.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] userId (required):
+  Future<DeleteSpatialSceneGrantResponse> deleteWorldPropertyTrespassed(String userId,) async {
+    final response = await deleteWorldPropertyTrespassedWithHttpInfo(userId,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'DeleteSpatialSceneGrantResponse',) as DeleteSpatialSceneGrantResponse;
+    
+    }
+    return Future<DeleteSpatialSceneGrantResponse>.value();
+  }
+
   /// As host, close a Space.
   ///
   /// Note: This method returns the HTTP [Response].
@@ -5513,6 +7615,384 @@ class WorldApi {
     return Future<DeleteWorldJobShiftResponse>.value();
   }
 
+  /// Take a worker off a seat that has not started.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<Response> deleteWorldStaffAssignmentWithHttpInfo(String id,) async {
+    // Verify required params are set.
+    if (id == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: id');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/world/staff/assignments/{id}'
+      .replaceAll('{id}', id);
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'DELETE',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Take a worker off a seat that has not started.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<DeleteSpatialSceneGrantResponse> deleteWorldStaffAssignment(String id,) async {
+    final response = await deleteWorldStaffAssignmentWithHttpInfo(id,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'DeleteSpatialSceneGrantResponse',) as DeleteSpatialSceneGrantResponse;
+    
+    }
+    return Future<DeleteSpatialSceneGrantResponse>.value();
+  }
+
+  /// Your store's showroom in Crossly World: the room and its look, fixtures with their slot grids, where every item stands (pinned by a person or placed automatically), sharing settings and the stock that can stand there. The ETag is the version.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] storefrontId:
+  ///   Which store (else X-Storefront-Id, else your default store).
+  Future<Response> getShowroomWithHttpInfo({ String storefrontId, }) async {
+    // Verify required params are set.
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/showroom';
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    if (storefrontId != null) {
+      queryParams.addAll(_convertParametersForCollectionFormat('', 'storefrontId', storefrontId));
+    }
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Your store's showroom in Crossly World: the room and its look, fixtures with their slot grids, where every item stands (pinned by a person or placed automatically), sharing settings and the stock that can stand there. The ETag is the version.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] storefrontId:
+  ///   Which store (else X-Storefront-Id, else your default store).
+  Future<GetShowroomResponse> getShowroom({ String storefrontId, }) async {
+    final response = await getShowroomWithHttpInfo( storefrontId: storefrontId, );
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'GetShowroomResponse',) as GetShowroomResponse;
+    
+    }
+    return Future<GetShowroomResponse>.value();
+  }
+
+  /// A showroom's billing: included, active (paid through), past due or cancelled, and the rails a payment can use.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  ///
+  /// * [String] storefrontId:
+  ///   Which store (else X-Storefront-Id, else your default store).
+  Future<Response> getShowroomBillingWithHttpInfo(String id, { String storefrontId, }) async {
+    // Verify required params are set.
+    if (id == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: id');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/showrooms/{id}/billing'
+      .replaceAll('{id}', id);
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    if (storefrontId != null) {
+      queryParams.addAll(_convertParametersForCollectionFormat('', 'storefrontId', storefrontId));
+    }
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// A showroom's billing: included, active (paid through), past due or cancelled, and the rails a payment can use.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  ///
+  /// * [String] storefrontId:
+  ///   Which store (else X-Storefront-Id, else your default store).
+  Future<GetShowroomBillingResponse> getShowroomBilling(String id, { String storefrontId, }) async {
+    final response = await getShowroomBillingWithHttpInfo(id,  storefrontId: storefrontId, );
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'GetShowroomBillingResponse',) as GetShowroomBillingResponse;
+    
+    }
+    return Future<GetShowroomBillingResponse>.value();
+  }
+
+  /// One showroom: room and look, fixtures (with holders), placements, settings (hours, auto-include) and stock. The ETag is the version.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  ///
+  /// * [String] storefrontId:
+  ///   Which store (else X-Storefront-Id, else your default store).
+  Future<Response> getShowroomByIdWithHttpInfo(String id, { String storefrontId, }) async {
+    // Verify required params are set.
+    if (id == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: id');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/showrooms/{id}'
+      .replaceAll('{id}', id);
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    if (storefrontId != null) {
+      queryParams.addAll(_convertParametersForCollectionFormat('', 'storefrontId', storefrontId));
+    }
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// One showroom: room and look, fixtures (with holders), placements, settings (hours, auto-include) and stock. The ETag is the version.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  ///
+  /// * [String] storefrontId:
+  ///   Which store (else X-Storefront-Id, else your default store).
+  Future<GetShowroomResponse> getShowroomById(String id, { String storefrontId, }) async {
+    final response = await getShowroomByIdWithHttpInfo(id,  storefrontId: storefrontId, );
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'GetShowroomResponse',) as GetShowroomResponse;
+    
+    }
+    return Future<GetShowroomResponse>.value();
+  }
+
+  /// Everything a showroom can be made of: fixture displays (kind, slots per unit), room sizes, themes, surfaces, shopfronts, facades, sign styles and fonts, window moods, and `holders`: every fixture holder with `owned` (free, or a premium one you bought in the in-world cosmetics market; an unowned premium holder is refused with holder_not_owned).
+  ///
+  /// Note: This method returns the HTTP [Response].
+  Future<Response> getShowroomCatalogWithHttpInfo() async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/showroom/catalog';
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Everything a showroom can be made of: fixture displays (kind, slots per unit), room sizes, themes, surfaces, shopfronts, facades, sign styles and fonts, window moods, and `holders`: every fixture holder with `owned` (free, or a premium one you bought in the in-world cosmetics market; an unowned premium holder is refused with holder_not_owned).
+  Future<GetShowroomCatalogResponse> getShowroomCatalog() async {
+    final response = await getShowroomCatalogWithHttpInfo();
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'GetShowroomCatalogResponse',) as GetShowroomCatalogResponse;
+    
+    }
+    return Future<GetShowroomCatalogResponse>.value();
+  }
+
+  /// The plots a showroom stands on, and the plots your store owns or rents that it could stand on.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  ///
+  /// * [String] storefrontId:
+  ///   Which store (else X-Storefront-Id, else your default store).
+  Future<Response> getShowroomPlacementWithHttpInfo(String id, { String storefrontId, }) async {
+    // Verify required params are set.
+    if (id == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: id');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/showrooms/{id}/placement'
+      .replaceAll('{id}', id);
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    if (storefrontId != null) {
+      queryParams.addAll(_convertParametersForCollectionFormat('', 'storefrontId', storefrontId));
+    }
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// The plots a showroom stands on, and the plots your store owns or rents that it could stand on.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  ///
+  /// * [String] storefrontId:
+  ///   Which store (else X-Storefront-Id, else your default store).
+  Future<GetShowroomPlacementResponse> getShowroomPlacement(String id, { String storefrontId, }) async {
+    final response = await getShowroomPlacementWithHttpInfo(id,  storefrontId: storefrontId, );
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'GetShowroomPlacementResponse',) as GetShowroomPlacementResponse;
+    
+    }
+    return Future<GetShowroomPlacementResponse>.value();
+  }
+
   /// What visitors looked at in one of your rooms: viewers, looks, inspects and dwell per item over the last days (1-35, default 30).
   ///
   /// Note: This method returns the HTTP [Response].
@@ -5633,7 +8113,7 @@ class WorldApi {
     return Future<GetSpatialSceneWindowResponse>.value();
   }
 
-  /// Your shop's neighbourhood, and whether and where it may move.
+  /// Where your shop stands, and the district theme your stock fits.
   ///
   /// Note: This method returns the HTTP [Response].
   Future<Response> getSpatialShopNeighbourhoodWithHttpInfo() async {
@@ -5663,7 +8143,7 @@ class WorldApi {
     );
   }
 
-  /// Your shop's neighbourhood, and whether and where it may move.
+  /// Where your shop stands, and the district theme your stock fits.
   Future<GetSpatialShopNeighbourhoodResponse> getSpatialShopNeighbourhood() async {
     final response = await getSpatialShopNeighbourhoodWithHttpInfo();
     if (response.statusCode >= HttpStatus.badRequest) {
@@ -5877,6 +8357,52 @@ class WorldApi {
     return Future<GetWorldArcadeResponse>.value();
   }
 
+  /// Your AI attendant and whether your AI key is connected.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  Future<Response> getWorldAttendantWithHttpInfo() async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/world/attendant';
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Your AI attendant and whether your AI key is connected.
+  Future<GetWorldAttendantResponse> getWorldAttendant() async {
+    final response = await getWorldAttendantWithHttpInfo();
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'GetWorldAttendantResponse',) as GetWorldAttendantResponse;
+    
+    }
+    return Future<GetWorldAttendantResponse>.value();
+  }
+
   /// The Sales Aurora over the Commons in Crossly World: every real sale on Crossly in the last data.windowDays (30) days. data.total (sales in the window), data.families (key, label, colour, count per colour family: cards, coins, jewellery, electronics, media, fashion, toys, other) and data.sales (newest first, at most 48: family, ageHours, fresh -- sold in the last ten minutes, which shimmers). Aggregate only: no item, price, seller or platform. data.updatedAt is when it was read.
   ///
   /// Note: This method returns the HTTP [Response].
@@ -5923,12 +8449,12 @@ class WorldApi {
     return Future<GetWorldAuroraResponse>.value();
   }
 
-  /// Whether Crossly keeps a world shop for you automatically: enabled, and the shop (id, name, visibility, autoCreated, address, label) or null. Change it with PATCH /v1/world/auto-shop.
+  /// The free basic wardrobe every account owns: 25 garments (tees, hoodie, overshirt, polo, jacket, vest, jeans, shorts, skirt, sneakers, boots, loafers, caps...) by slot, each with its colourways. Wear one by saving appearance.outfit = { top, outer, bottom, shoes, hat } as \"garment:colour\" (outer and hat may be \"none\") with PUT /v1/world/avatar/look.
   ///
   /// Note: This method returns the HTTP [Response].
-  Future<Response> getWorldAutoShopWithHttpInfo() async {
+  Future<Response> getWorldAvatarBasicWithHttpInfo() async {
     // ignore: prefer_const_declarations
-    final path = r'/v1/world/auto-shop';
+    final path = r'/v1/world/avatar/basics';
 
     // ignore: prefer_final_locals
     Object postBody;
@@ -5953,9 +8479,9 @@ class WorldApi {
     );
   }
 
-  /// Whether Crossly keeps a world shop for you automatically: enabled, and the shop (id, name, visibility, autoCreated, address, label) or null. Change it with PATCH /v1/world/auto-shop.
-  Future<GetWorldAutoShopResponse> getWorldAutoShop() async {
-    final response = await getWorldAutoShopWithHttpInfo();
+  /// The free basic wardrobe every account owns: 25 garments (tees, hoodie, overshirt, polo, jacket, vest, jeans, shorts, skirt, sneakers, boots, loafers, caps...) by slot, each with its colourways. Wear one by saving appearance.outfit = { top, outer, bottom, shoes, hat } as \"garment:colour\" (outer and hat may be \"none\") with PUT /v1/world/avatar/look.
+  Future<GetWorldAvatarBasicResponse> getWorldAvatarBasic() async {
+    final response = await getWorldAvatarBasicWithHttpInfo();
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -5963,10 +8489,10 @@ class WorldApi {
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
     if (response.body != null && response.statusCode != HttpStatus.noContent) {
-      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'GetWorldAutoShopResponse',) as GetWorldAutoShopResponse;
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'GetWorldAvatarBasicResponse',) as GetWorldAvatarBasicResponse;
     
     }
-    return Future<GetWorldAutoShopResponse>.value();
+    return Future<GetWorldAvatarBasicResponse>.value();
   }
 
   /// Whether others see your name in the world (named), or not (anonymous); null if you have never chosen.
@@ -6211,6 +8737,52 @@ class WorldApi {
     
     }
     return Future<GetWorldAvatarNftBadgeResponse>.value();
+  }
+
+  /// Which rails (card, CBX) can pay in the world right now.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  Future<Response> getWorldBillingRailWithHttpInfo() async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/world/billing/rails';
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Which rails (card, CBX) can pay in the world right now.
+  Future<GetWorldBillingRailResponse> getWorldBillingRail() async {
+    final response = await getWorldBillingRailWithHttpInfo();
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'GetWorldBillingRailResponse',) as GetWorldBillingRailResponse;
+    
+    }
+    return Future<GetWorldBillingRailResponse>.value();
   }
 
   /// What your held NFTs unlock in Crossly World: each token with the capabilities its collection declared (wear, display, emote, gate, ...). Holding is your verified wallets (their synced tokens); the capabilities of a transferred token go within five minutes.
@@ -6511,6 +9083,52 @@ class WorldApi {
     return Future<GetWorldContestMineResponse>.value();
   }
 
+  /// Your world controls settings (look sensitivity, invert look, stick size, left-handed, camera distance, reduced camera motion, tap-to-walk, haptics) and whether you have seen the controls tutorial.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  Future<Response> getWorldControlWithHttpInfo() async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/world/controls';
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Your world controls settings (look sensitivity, invert look, stick size, left-handed, camera distance, reduced camera motion, tap-to-walk, haptics) and whether you have seen the controls tutorial.
+  Future<GetWorldControlResponse> getWorldControl() async {
+    final response = await getWorldControlWithHttpInfo();
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'GetWorldControlResponse',) as GetWorldControlResponse;
+    
+    }
+    return Future<GetWorldControlResponse>.value();
+  }
+
   /// One convention. 404 for an unknown or malformed id alike.
   ///
   /// Note: This method returns the HTTP [Response].
@@ -6569,6 +9187,246 @@ class WorldApi {
     
     }
     return Future<GetWorldConventionResponse>.value();
+  }
+
+  /// A convention from the exhibitor side: tiers with price, size, capacity and booths left, the rails that pay now, and your own booth (status, fee, paid, checked in, listings).
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<Response> getWorldConventionExhibitWithHttpInfo(String id,) async {
+    // Verify required params are set.
+    if (id == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: id');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/world/conventions/{id}/exhibit'
+      .replaceAll('{id}', id);
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// A convention from the exhibitor side: tiers with price, size, capacity and booths left, the rails that pay now, and your own booth (status, fee, paid, checked in, listings).
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<GetWorldConventionExhibitResponse> getWorldConventionExhibit(String id,) async {
+    final response = await getWorldConventionExhibitWithHttpInfo(id,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'GetWorldConventionExhibitResponse',) as GetWorldConventionExhibitResponse;
+    
+    }
+    return Future<GetWorldConventionExhibitResponse>.value();
+  }
+
+  /// The hall design (booths, stage, signs, entrance, kiosk), its version and any problems.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<Response> getWorldConventionHallWithHttpInfo(String id,) async {
+    // Verify required params are set.
+    if (id == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: id');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/world/conventions/{id}/hall'
+      .replaceAll('{id}', id);
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// The hall design (booths, stage, signs, entrance, kiosk), its version and any problems.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<GetWorldConventionHallResponse> getWorldConventionHall(String id,) async {
+    final response = await getWorldConventionHallWithHttpInfo(id,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'GetWorldConventionHallResponse',) as GetWorldConventionHallResponse;
+    
+    }
+    return Future<GetWorldConventionHallResponse>.value();
+  }
+
+  /// A convention you organise: its settings, booth tiers, every seller (status, booth, fee, paid, checked in) and the venue.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<Response> getWorldConventionManageWithHttpInfo(String id,) async {
+    // Verify required params are set.
+    if (id == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: id');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/world/conventions/{id}/manage'
+      .replaceAll('{id}', id);
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// A convention you organise: its settings, booth tiers, every seller (status, booth, fee, paid, checked in) and the venue.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<GetWorldConventionManageResponse> getWorldConventionManage(String id,) async {
+    final response = await getWorldConventionManageWithHttpInfo(id,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'GetWorldConventionManageResponse',) as GetWorldConventionManageResponse;
+    
+    }
+    return Future<GetWorldConventionManageResponse>.value();
+  }
+
+  /// The status page: sellers, booths filled per tier, walk-ins, sales of brought listings, booth fees paid and owed.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<Response> getWorldConventionStatusPageWithHttpInfo(String id,) async {
+    // Verify required params are set.
+    if (id == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: id');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/world/conventions/{id}/status-page'
+      .replaceAll('{id}', id);
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// The status page: sellers, booths filled per tier, walk-ins, sales of brought listings, booth fees paid and owed.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<GetWorldConventionStatusPageResponse> getWorldConventionStatusPage(String id,) async {
+    final response = await getWorldConventionStatusPageWithHttpInfo(id,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'GetWorldConventionStatusPageResponse',) as GetWorldConventionStatusPageResponse;
+    
+    }
+    return Future<GetWorldConventionStatusPageResponse>.value();
   }
 
   /// Your COSM balance: baseUnits (a STRING -- COSM has 6 decimals and overflows a JSON number), decimals, available (false = COSM is not provisioned on this deployment, not a zero balance).
@@ -7179,6 +10037,126 @@ class WorldApi {
     return Future<GetWorldGamePackageResponse>.value();
   }
 
+  /// Play stats for one of your Classic games: 30-day totals, the daily series the launcher ranks on (uniques, sessions, playtime, first-play bounces, D1/D7/D28), its ranking score, test impressions and players right now. ?days=1-90.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<Response> getWorldGamePackageStatWithHttpInfo(String id,) async {
+    // Verify required params are set.
+    if (id == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: id');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/world/games/packages/{id}/stats'
+      .replaceAll('{id}', id);
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Play stats for one of your Classic games: 30-day totals, the daily series the launcher ranks on (uniques, sessions, playtime, first-play bounces, D1/D7/D28), its ranking score, test impressions and players right now. ?days=1-90.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<GetWorldGamePackageStatResponse> getWorldGamePackageStat(String id,) async {
+    final response = await getWorldGamePackageStatWithHttpInfo(id,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'GetWorldGamePackageStatResponse',) as GetWorldGamePackageStatResponse;
+    
+    }
+    return Future<GetWorldGamePackageStatResponse>.value();
+  }
+
+  /// Every version of one of your Classic games: draft, pending, approved, rejected, withdrawn or cancelled, which one is live, its documents and report.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<Response> getWorldGamePackageVersionWithHttpInfo(String id,) async {
+    // Verify required params are set.
+    if (id == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: id');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/world/games/packages/{id}/versions'
+      .replaceAll('{id}', id);
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Every version of one of your Classic games: draft, pending, approved, rejected, withdrawn or cancelled, which one is live, its documents and report.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<GetWorldGamePackageVersionResponse> getWorldGamePackageVersion(String id,) async {
+    final response = await getWorldGamePackageVersionWithHttpInfo(id,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'GetWorldGamePackageVersionResponse',) as GetWorldGamePackageVersionResponse;
+    
+    }
+    return Future<GetWorldGamePackageVersionResponse>.value();
+  }
+
   /// A fresh game package from a template (table, arena, object; collection is an NFT capability declaration), as { path, base64 } files: the world-kit init, for an agent with no local kit. ?id=my-game&name=My Game.
   ///
   /// Note: This method returns the HTTP [Response].
@@ -7665,6 +10643,318 @@ class WorldApi {
     
     }
     return Future<GetWorldKiteResponse>.value();
+  }
+
+  /// The Carnival Plaza launcher: portals for Classic games, Crossly's own card games and the Commons card tables, each with players right now, your friends inside, its ranking score (published weights, retention-weighted, first-play bounce negative) and where Play goes. Twelve ring slots: friends' pick, new & rising (guaranteed test impressions), then the top, first-party capped at 25%.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  Future<Response> getWorldLauncherWithHttpInfo() async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/worlds/launcher';
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// The Carnival Plaza launcher: portals for Classic games, Crossly's own card games and the Commons card tables, each with players right now, your friends inside, its ranking score (published weights, retention-weighted, first-play bounce negative) and where Play goes. Twelve ring slots: friends' pick, new & rising (guaranteed test impressions), then the top, first-party capped at 25%.
+  Future<GetWorldLauncherResponse> getWorldLauncher() async {
+    final response = await getWorldLauncherWithHttpInfo();
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'GetWorldLauncherResponse',) as GetWorldLauncherResponse;
+    
+    }
+    return Future<GetWorldLauncherResponse>.value();
+  }
+
+  /// World money over 7, 30 or 90 days: plot purchases, maintenance, rent, deed sales, staff wages, shifts and stalls, in and out.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  Future<Response> getWorldManageLedgerWithHttpInfo() async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/world/manage/ledger';
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// World money over 7, 30 or 90 days: plot purchases, maintenance, rent, deed sales, staff wages, shifts and stalls, in and out.
+  Future<GetWorldManageLedgerResponse> getWorldManageLedger() async {
+    final response = await getWorldManageLedgerWithHttpInfo();
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'GetWorldManageLedgerResponse',) as GetWorldManageLedgerResponse;
+    
+    }
+    return Future<GetWorldManageLedgerResponse>.value();
+  }
+
+  /// Your Crossly World at a glance: shop and addresses, property, staff and shifts, conventions, stalls, 30-day visitors and money.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  Future<Response> getWorldManageOverviewWithHttpInfo() async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/world/manage/overview';
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Your Crossly World at a glance: shop and addresses, property, staff and shifts, conventions, stalls, 30-day visitors and money.
+  Future<GetWorldManageOverviewResponse> getWorldManageOverview() async {
+    final response = await getWorldManageOverviewWithHttpInfo();
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'GetWorldManageOverviewResponse',) as GetWorldManageOverviewResponse;
+    
+    }
+    return Future<GetWorldManageOverviewResponse>.value();
+  }
+
+  /// Who came to your world shop over 7, 30 or 90 days: the funnel, attention by day, most-looked and most-wanted items.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  Future<Response> getWorldManageVisitorWithHttpInfo() async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/world/manage/visitors';
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Who came to your world shop over 7, 30 or 90 days: the funnel, attention by day, most-looked and most-wanted items.
+  Future<GetWorldManageVisitorResponse> getWorldManageVisitor() async {
+    final response = await getWorldManageVisitorWithHttpInfo();
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'GetWorldManageVisitorResponse',) as GetWorldManageVisitorResponse;
+    
+    }
+    return Future<GetWorldManageVisitorResponse>.value();
+  }
+
+  /// One plot or street in the Market: price, renders, neighbours, foot traffic, history.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] kind (required):
+  ///
+  /// * [String] id (required):
+  Future<Response> getWorldMarketWithHttpInfo(String kind, String id,) async {
+    // Verify required params are set.
+    if (kind == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: kind');
+    }
+    if (id == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: id');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/world/market/{kind}/{id}'
+      .replaceAll('{kind}', kind)
+      .replaceAll('{id}', id);
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// One plot or street in the Market: price, renders, neighbours, foot traffic, history.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] kind (required):
+  ///
+  /// * [String] id (required):
+  Future<GetWorldMarketResponse> getWorldMarket(String kind, String id,) async {
+    final response = await getWorldMarketWithHttpInfo(kind, id,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'GetWorldMarketResponse',) as GetWorldMarketResponse;
+    
+    }
+    return Future<GetWorldMarketResponse>.value();
+  }
+
+  /// Whether you may claim a plot on a neighbourhood street (its top sellers by recent sales), and why not.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] slug (required):
+  Future<Response> getWorldNeighbourhoodClaimWithHttpInfo(String slug,) async {
+    // Verify required params are set.
+    if (slug == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: slug');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/world/neighbourhoods/{slug}/claim'
+      .replaceAll('{slug}', slug);
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Whether you may claim a plot on a neighbourhood street (its top sellers by recent sales), and why not.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] slug (required):
+  Future<GetWorldNeighbourhoodClaimResponse> getWorldNeighbourhoodClaim(String slug,) async {
+    final response = await getWorldNeighbourhoodClaimWithHttpInfo(slug,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'GetWorldNeighbourhoodClaimResponse',) as GetWorldNeighbourhoodClaimResponse;
+    
+    }
+    return Future<GetWorldNeighbourhoodClaimResponse>.value();
   }
 
   /// Your party chat: the recent lines. 404 when this is not your party.
@@ -8179,6 +11469,232 @@ class WorldApi {
     return Future<GetWorldPlaceShopPetResponse>.value();
   }
 
+  /// One plot of yours: showroom, rental, value, upkeep.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] plotId (required):
+  Future<Response> getWorldPropertyPlotWithHttpInfo(String plotId,) async {
+    // Verify required params are set.
+    if (plotId == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: plotId');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/world/property/plots/{plotId}'
+      .replaceAll('{plotId}', plotId);
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// One plot of yours: showroom, rental, value, upkeep.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] plotId (required):
+  Future<GetWorldPropertyPlotResponse> getWorldPropertyPlot(String plotId,) async {
+    final response = await getWorldPropertyPlotWithHttpInfo(plotId,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'GetWorldPropertyPlotResponse',) as GetWorldPropertyPlotResponse;
+    
+    }
+    return Future<GetWorldPropertyPlotResponse>.value();
+  }
+
+  /// One plot you rent out, with its payments.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] leaseId (required):
+  Future<Response> getWorldPropertyRentalWithHttpInfo(String leaseId,) async {
+    // Verify required params are set.
+    if (leaseId == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: leaseId');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/world/property/rentals/{leaseId}'
+      .replaceAll('{leaseId}', leaseId);
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// One plot you rent out, with its payments.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] leaseId (required):
+  Future<GetWorldPropertyRentalResponse> getWorldPropertyRental(String leaseId,) async {
+    final response = await getWorldPropertyRentalWithHttpInfo(leaseId,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'GetWorldPropertyRentalResponse',) as GetWorldPropertyRentalResponse;
+    
+    }
+    return Future<GetWorldPropertyRentalResponse>.value();
+  }
+
+  /// One plot you rent, with its payments.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] leaseId (required):
+  Future<Response> getWorldPropertyRentingWithHttpInfo(String leaseId,) async {
+    // Verify required params are set.
+    if (leaseId == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: leaseId');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/world/property/renting/{leaseId}'
+      .replaceAll('{leaseId}', leaseId);
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// One plot you rent, with its payments.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] leaseId (required):
+  Future<GetWorldPropertyRentalResponse> getWorldPropertyRenting(String leaseId,) async {
+    final response = await getWorldPropertyRentingWithHttpInfo(leaseId,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'GetWorldPropertyRentalResponse',) as GetWorldPropertyRentalResponse;
+    
+    }
+    return Future<GetWorldPropertyRentalResponse>.value();
+  }
+
+  /// Which Worlds payment rails are on now: cash (card), CBX, or both.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  Future<Response> getWorldRailWithHttpInfo() async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/world/rails';
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Which Worlds payment rails are on now: cash (card), CBX, or both.
+  Future<GetWorldRailResponse> getWorldRail() async {
+    final response = await getWorldRailWithHttpInfo();
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'GetWorldRailResponse',) as GetWorldRailResponse;
+    
+    }
+    return Future<GetWorldRailResponse>.value();
+  }
+
   /// One Space: its layout, host, events and your place in it.
   ///
   /// Note: This method returns the HTTP [Response].
@@ -8283,6 +11799,292 @@ class WorldApi {
     
     }
     return Future<GetWorldSpaceCanHostResponse>.value();
+  }
+
+  /// One of your postings, with its shifts.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<Response> getWorldStaffPostingWithHttpInfo(String id,) async {
+    // Verify required params are set.
+    if (id == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: id');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/world/staff/postings/{id}'
+      .replaceAll('{id}', id);
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// One of your postings, with its shifts.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<GetWorldStaffPostingResponse> getWorldStaffPosting(String id,) async {
+    final response = await getWorldStaffPostingWithHttpInfo(id,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'GetWorldStaffPostingResponse',) as GetWorldStaffPostingResponse;
+    
+    }
+    return Future<GetWorldStaffPostingResponse>.value();
+  }
+
+  /// Your employer reputation, rated by the people who worked your public jobs.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  Future<Response> getWorldStaffReputationWithHttpInfo() async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/world/staff/reputation';
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Your employer reputation, rated by the people who worked your public jobs.
+  Future<GetWorldStaffReputationResponse> getWorldStaffReputation() async {
+    final response = await getWorldStaffReputationWithHttpInfo();
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'GetWorldStaffReputationResponse',) as GetWorldStaffReputationResponse;
+    
+    }
+    return Future<GetWorldStaffReputationResponse>.value();
+  }
+
+  /// A street's fund: the CBX property payments on its plots over the last four weeks, and the street events it unlocked.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] slug (required):
+  Future<Response> getWorldStreetFundWithHttpInfo(String slug,) async {
+    // Verify required params are set.
+    if (slug == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: slug');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/world/streets/{slug}/fund'
+      .replaceAll('{slug}', slug);
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// A street's fund: the CBX property payments on its plots over the last four weeks, and the street events it unlocked.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] slug (required):
+  Future<GetWorldStreetFundResponse> getWorldStreetFund(String slug,) async {
+    final response = await getWorldStreetFundWithHttpInfo(slug,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'GetWorldStreetFundResponse',) as GetWorldStreetFundResponse;
+    
+    }
+    return Future<GetWorldStreetFundResponse>.value();
+  }
+
+  /// A street you own: tenants, applications, upkeep, look, fund.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<Response> getWorldStreetOwnedWithHttpInfo(String id,) async {
+    // Verify required params are set.
+    if (id == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: id');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/world/streets/owned/{id}'
+      .replaceAll('{id}', id);
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// A street you own: tenants, applications, upkeep, look, fund.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<GetWorldStreetOwnedResponse> getWorldStreetOwned(String id,) async {
+    final response = await getWorldStreetOwnedWithHttpInfo(id,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'GetWorldStreetOwnedResponse',) as GetWorldStreetOwnedResponse;
+    
+    }
+    return Future<GetWorldStreetOwnedResponse>.value();
+  }
+
+  /// Plot numbers on the street you are trespassed from.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] slug (required):
+  Future<Response> getWorldStreetTrespassBarrierWithHttpInfo(String slug,) async {
+    // Verify required params are set.
+    if (slug == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: slug');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/world/streets/{slug}/trespass-barriers'
+      .replaceAll('{slug}', slug);
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Plot numbers on the street you are trespassed from.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] slug (required):
+  Future<GetWorldStreetTrespassBarrierResponse> getWorldStreetTrespassBarrier(String slug,) async {
+    final response = await getWorldStreetTrespassBarrierWithHttpInfo(slug,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'GetWorldStreetTrespassBarrierResponse',) as GetWorldStreetTrespassBarrierResponse;
+    
+    }
+    return Future<GetWorldStreetTrespassBarrierResponse>.value();
   }
 
   /// A Time Trials course's boards, as the board beside it in the Commons shows them: data.course, week, weekly (this week's ten fastest: rank, name, short, named, ms, at) and allTime (the ten fastest ever, each person once). A name shows only for somebody who chose to be seen by name in the world; everyone else is \"A player\". 404 for an unknown course; course 1 is commons-loop.
@@ -8391,6 +12193,66 @@ class WorldApi {
     return Future<GetWorldTrialMineResponse>.value();
   }
 
+  /// What a hall costs for those days (startsOn, endsOn), the full-refund date, and whether it is free.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<Response> getWorldVenueQuoteWithHttpInfo(String id,) async {
+    // Verify required params are set.
+    if (id == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: id');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/world/venues/{id}/quote'
+      .replaceAll('{id}', id);
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// What a hall costs for those days (startsOn, endsOn), the full-refund date, and whether it is free.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<GetWorldVenueQuoteResponse> getWorldVenueQuote(String id,) async {
+    final response = await getWorldVenueQuoteWithHttpInfo(id,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'GetWorldVenueQuoteResponse',) as GetWorldVenueQuoteResponse;
+    
+    }
+    return Future<GetWorldVenueQuoteResponse>.value();
+  }
+
   /// Every balance you hold in Crossly World, read-only: bucksCents (Crossly Bucks, cents); cbx (available, decimals, and the three CBX balances kept apart as base-unit STRINGS -- granted (spend here only), earned (withdrawable once matured), connected (a delegation ceiling on your own wallet, not cash on hand) -- plus pendingCents of cashback not yet matured); cosm (available, decimals, baseUnits string). available:false means that currency is not provisioned on this deployment, not that you hold none.
   ///
   /// Note: This method returns the HTTP [Response].
@@ -8481,6 +12343,322 @@ class WorldApi {
     
     }
     return Future<GetWorldWishResponse>.value();
+  }
+
+  /// What your shifts paid, by rail.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  Future<Response> getWorldWorkEarningWithHttpInfo() async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/world/work/earnings';
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// What your shifts paid, by rail.
+  Future<GetWorldWorkEarningResponse> getWorldWorkEarning() async {
+    final response = await getWorldWorkEarningWithHttpInfo();
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'GetWorldWorkEarningResponse',) as GetWorldWorkEarningResponse;
+    
+    }
+    return Future<GetWorldWorkEarningResponse>.value();
+  }
+
+  /// Where you work: your seats, applications and your teams’ open jobs.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  Future<Response> getWorldWorkMineWithHttpInfo() async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/world/work/mine';
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Where you work: your seats, applications and your teams’ open jobs.
+  Future<GetWorldWorkMineResponse> getWorldWorkMine() async {
+    final response = await getWorldWorkMineWithHttpInfo();
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'GetWorldWorkMineResponse',) as GetWorldWorkMineResponse;
+    
+    }
+    return Future<GetWorldWorkMineResponse>.value();
+  }
+
+  /// Your fee-back coupons from house-game wins: Bucks paid out of the fee on your next market purchase.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  Future<Response> listGameCouponsWithHttpInfo() async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/games/coupons';
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Your fee-back coupons from house-game wins: Bucks paid out of the fee on your next market purchase.
+  Future<ListGameCouponsResponse> listGameCoupons() async {
+    final response = await listGameCouponsWithHttpInfo();
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'ListGameCouponsResponse',) as ListGameCouponsResponse;
+    
+    }
+    return Future<ListGameCouponsResponse>.value();
+  }
+
+  /// Search this store's in-stock items (title, brand, SKU) to put on a fixture or in a window slot; each with listed / passport / multi_unit badges.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  ///
+  /// * [String] storefrontId:
+  ///   Which store (else X-Storefront-Id, else your default store).
+  Future<Response> listShowroomItemSearchWithHttpInfo(String id, { String storefrontId, }) async {
+    // Verify required params are set.
+    if (id == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: id');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/showrooms/{id}/item-search'
+      .replaceAll('{id}', id);
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    if (storefrontId != null) {
+      queryParams.addAll(_convertParametersForCollectionFormat('', 'storefrontId', storefrontId));
+    }
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Search this store's in-stock items (title, brand, SKU) to put on a fixture or in a window slot; each with listed / passport / multi_unit badges.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  ///
+  /// * [String] storefrontId:
+  ///   Which store (else X-Storefront-Id, else your default store).
+  Future<ListShowroomItemSearchResponse> listShowroomItemSearch(String id, { String storefrontId, }) async {
+    final response = await listShowroomItemSearchWithHttpInfo(id,  storefrontId: storefrontId, );
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'ListShowroomItemSearchResponse',) as ListShowroomItemSearchResponse;
+    
+    }
+    return Future<ListShowroomItemSearchResponse>.value();
+  }
+
+  /// Your store's showrooms, primary first: name, visibility, auto-include, pinned items, fixtures, billing and the plots each stands on.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] storefrontId:
+  ///   Which store (else X-Storefront-Id, else your default store).
+  Future<Response> listShowroomsWithHttpInfo({ String storefrontId, }) async {
+    // Verify required params are set.
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/showrooms';
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    if (storefrontId != null) {
+      queryParams.addAll(_convertParametersForCollectionFormat('', 'storefrontId', storefrontId));
+    }
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Your store's showrooms, primary first: name, visibility, auto-include, pinned items, fixtures, billing and the plots each stands on.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] storefrontId:
+  ///   Which store (else X-Storefront-Id, else your default store).
+  Future<ListShowroomsResponse> listShowrooms({ String storefrontId, }) async {
+    final response = await listShowroomsWithHttpInfo( storefrontId: storefrontId, );
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'ListShowroomsResponse',) as ListShowroomsResponse;
+    
+    }
+    return Future<ListShowroomsResponse>.value();
+  }
+
+  /// Plots offered for lease on every street, cheapest first: address, weekly rent and maintenance in CENTS.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  Future<Response> listSpatialLeasesWithHttpInfo() async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/spatial/leases';
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Plots offered for lease on every street, cheapest first: address, weekly rent and maintenance in CENTS.
+  Future<ListSpatialLeasesResponse> listSpatialLeases() async {
+    final response = await listSpatialLeasesWithHttpInfo();
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'ListSpatialLeasesResponse',) as ListSpatialLeasesResponse;
+    
+    }
+    return Future<ListSpatialLeasesResponse>.value();
   }
 
   /// Everyone who can currently walk into one of your rooms, and unused invites. Never returns codes.
@@ -8694,7 +12872,7 @@ class WorldApi {
   /// Parameters:
   ///
   /// * [String] slug (required):
-  Future<ListSpatialStreetLeasesResponse> listSpatialStreetLeases(String slug,) async {
+  Future<ListSpatialLeasesResponse> listSpatialStreetLeases(String slug,) async {
     final response = await listSpatialStreetLeasesWithHttpInfo(slug,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
@@ -8703,10 +12881,56 @@ class WorldApi {
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
     if (response.body != null && response.statusCode != HttpStatus.noContent) {
-      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'ListSpatialStreetLeasesResponse',) as ListSpatialStreetLeasesResponse;
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'ListSpatialLeasesResponse',) as ListSpatialLeasesResponse;
     
     }
-    return Future<ListSpatialStreetLeasesResponse>.value();
+    return Future<ListSpatialLeasesResponse>.value();
+  }
+
+  /// Your AI attendant’s usage log.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  Future<Response> listWorldAttendantUsageWithHttpInfo() async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/world/attendant/usage';
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Your AI attendant’s usage log.
+  Future<ListWorldAttendantUsageResponse> listWorldAttendantUsage() async {
+    final response = await listWorldAttendantUsageWithHttpInfo();
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'ListWorldAttendantUsageResponse',) as ListWorldAttendantUsageResponse;
+    
+    }
+    return Future<ListWorldAttendantUsageResponse>.value();
   }
 
   /// Everything you can verifiably wear (your Crossly purchase receipts), newest first: receiptId, item title, brand, size, image, catalog sku/variant, quantity, purchasedAt. Pass a receiptId to POST /v1/world/avatar/equip to put one on. limit 1-200, offset for paging.
@@ -9124,6 +13348,66 @@ class WorldApi {
     
     }
     return Future<ListWorldConventionExhibitorsResponse>.value();
+  }
+
+  /// Convention messages you may read: the organiser all of them (?with=<userId> for one seller), an exhibitor theirs and the broadcasts.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<Response> listWorldConventionMessagesWithHttpInfo(String id,) async {
+    // Verify required params are set.
+    if (id == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: id');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/world/conventions/{id}/messages'
+      .replaceAll('{id}', id);
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Convention messages you may read: the organiser all of them (?with=<userId> for one seller), an exhibitor theirs and the broadcasts.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<ListWorldConventionMessagesResponse> listWorldConventionMessages(String id,) async {
+    final response = await listWorldConventionMessagesWithHttpInfo(id,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'ListWorldConventionMessagesResponse',) as ListWorldConventionMessagesResponse;
+    
+    }
+    return Future<ListWorldConventionMessagesResponse>.value();
   }
 
   /// Conventions you host and conventions you are exhibiting at.
@@ -9943,6 +14227,66 @@ class WorldApi {
     return Future<ListWorldFriendsResponse>.value();
   }
 
+  /// Store sales of one of your game packages, newest first: item, price paid, edition, when. Never who bought. Cursor-paged: pass pagination.nextCursor back as ?cursor=.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<Response> listWorldGamePackageReceiptsWithHttpInfo(String id,) async {
+    // Verify required params are set.
+    if (id == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: id');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/world/games/packages/{id}/receipts'
+      .replaceAll('{id}', id);
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Store sales of one of your game packages, newest first: item, price paid, edition, when. Never who bought. Cursor-paged: pass pagination.nextCursor back as ?cursor=.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<ListWorldGamePackageReceiptsResponse> listWorldGamePackageReceipts(String id,) async {
+    final response = await listWorldGamePackageReceiptsWithHttpInfo(id,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'ListWorldGamePackageReceiptsResponse',) as ListWorldGamePackageReceiptsResponse;
+    
+    }
+    return Future<ListWorldGamePackageReceiptsResponse>.value();
+  }
+
   /// Your game packages, each with its latest version and review state.
   ///
   /// Note: This method returns the HTTP [Response].
@@ -10173,7 +14517,7 @@ class WorldApi {
     return Future<ListWorldInteractiveCatalogueResponse>.value();
   }
 
-  /// Your interactive-object designs (MML documents you wrote), newest first: id, handle, name, footprint (s | m | l | f), tint, priceBaseUnits (COSM, base-unit string), maxSupply, model, decorValue, cosmeticId, liveVersion (the approved version every copy runs; null = none), withdrawnReason, archivedAt (you archived it: off sale, owned copies keep running; null = not archived), latestVersion { version, state: pending | approved | rejected | withdrawn | cancelled, decisionNote }, inReview. `archived`: exclude (default), include or only archived designs. Read-only: writing, previewing, submitting and archiving happen on crossly.net/shop/decor?tab=interactive.
+  /// Your interactive-object designs (MML documents you wrote), newest first: id, handle, name, footprint (s | m | l | f), tint, priceBaseUnits (COSM, base-unit string), maxSupply, model, decorValue, cosmeticId, liveVersion (the approved version every copy runs; null = none), withdrawnReason, archivedAt (you archived it: off sale, owned copies keep running; null = not archived), latestVersion { version, state: pending | approved | rejected | withdrawn | cancelled, decisionNote }, inReview. `archived`: exclude (default), include or only archived designs. Read-only: writing, previewing, submitting and archiving happen in the Creator Studio on crossly.net (/studio/creator/creations/interactive/new/edit).
   ///
   /// Note: This method returns the HTTP [Response].
   ///
@@ -10213,7 +14557,7 @@ class WorldApi {
     );
   }
 
-  /// Your interactive-object designs (MML documents you wrote), newest first: id, handle, name, footprint (s | m | l | f), tint, priceBaseUnits (COSM, base-unit string), maxSupply, model, decorValue, cosmeticId, liveVersion (the approved version every copy runs; null = none), withdrawnReason, archivedAt (you archived it: off sale, owned copies keep running; null = not archived), latestVersion { version, state: pending | approved | rejected | withdrawn | cancelled, decisionNote }, inReview. `archived`: exclude (default), include or only archived designs. Read-only: writing, previewing, submitting and archiving happen on crossly.net/shop/decor?tab=interactive.
+  /// Your interactive-object designs (MML documents you wrote), newest first: id, handle, name, footprint (s | m | l | f), tint, priceBaseUnits (COSM, base-unit string), maxSupply, model, decorValue, cosmeticId, liveVersion (the approved version every copy runs; null = none), withdrawnReason, archivedAt (you archived it: off sale, owned copies keep running; null = not archived), latestVersion { version, state: pending | approved | rejected | withdrawn | cancelled, decisionNote }, inReview. `archived`: exclude (default), include or only archived designs. Read-only: writing, previewing, submitting and archiving happen in the Creator Studio on crossly.net (/studio/creator/creations/interactive/new/edit).
   ///
   /// Parameters:
   ///
@@ -10231,6 +14575,52 @@ class WorldApi {
     
     }
     return Future<ListWorldInteractiveDesignsResponse>.value();
+  }
+
+  /// The public Job Board, filterable.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  Future<Response> listWorldJobBoardWithHttpInfo() async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/world/jobs/board';
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// The public Job Board, filterable.
+  Future<ListWorldJobBoardResponse> listWorldJobBoard() async {
+    final response = await listWorldJobBoardWithHttpInfo();
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'ListWorldJobBoardResponse',) as ListWorldJobBoardResponse;
+    
+    }
+    return Future<ListWorldJobBoardResponse>.value();
   }
 
   /// Shifts you posted for your rooms, with who claimed each and how it went.
@@ -10277,6 +14667,112 @@ class WorldApi {
     
     }
     return Future<ListJobShiftsResponse>.value();
+  }
+
+  /// Plots and streets for sale or rent in the Worlds Market.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  Future<Response> listWorldMarketWithHttpInfo() async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/world/market';
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Plots and streets for sale or rent in the Worlds Market.
+  Future<ListWorldMarketResponse> listWorldMarket() async {
+    final response = await listWorldMarketWithHttpInfo();
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'ListWorldMarketResponse',) as ListWorldMarketResponse;
+    
+    }
+    return Future<ListWorldMarketResponse>.value();
+  }
+
+  /// The street's for-sale and for-rent boards.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] slug (required):
+  Future<Response> listWorldMarketStreetSignsWithHttpInfo(String slug,) async {
+    // Verify required params are set.
+    if (slug == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: slug');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/world/market/streets/{slug}/signs'
+      .replaceAll('{slug}', slug);
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// The street's for-sale and for-rent boards.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] slug (required):
+  Future<ListWorldMarketStreetSignsResponse> listWorldMarketStreetSigns(String slug,) async {
+    final response = await listWorldMarketStreetSignsWithHttpInfo(slug,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'ListWorldMarketStreetSignsResponse',) as ListWorldMarketStreetSignsResponse;
+    
+    }
+    return Future<ListWorldMarketStreetSignsResponse>.value();
   }
 
   /// Your saved outfits (up to 6, oldest first): id, name, appearance (skin, hair, hairColour, eyes, build) and items -- each worn thing as the door it goes back on by (slot, door: cosmetic | receipt | stock, id, label). Put one on with POST /v1/world/outfits/:id/apply.
@@ -10745,6 +15241,236 @@ class WorldApi {
     return Future<ListWorldPlaceTradesResponse>.value();
   }
 
+  /// Promoted places in Crossly World: boosted showrooms and conventions (Sponsored, labelled \"Promoted\"), with the token to send when one is opened.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  Future<Response> listWorldPromotedWithHttpInfo() async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/world/promoted';
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Promoted places in Crossly World: boosted showrooms and conventions (Sponsored, labelled \"Promoted\"), with the token to send when one is opened.
+  Future<ListWorldPromotedResponse> listWorldPromoted() async {
+    final response = await listWorldPromotedWithHttpInfo();
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'ListWorldPromotedResponse',) as ListWorldPromotedResponse;
+    
+    }
+    return Future<ListWorldPromotedResponse>.value();
+  }
+
+  /// Plots your store owns or rents.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  Future<Response> listWorldPropertyPlotsWithHttpInfo() async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/world/property/plots';
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Plots your store owns or rents.
+  Future<ListWorldPropertyPlotsResponse> listWorldPropertyPlots() async {
+    final response = await listWorldPropertyPlotsWithHttpInfo();
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'ListWorldPropertyPlotsResponse',) as ListWorldPropertyPlotsResponse;
+    
+    }
+    return Future<ListWorldPropertyPlotsResponse>.value();
+  }
+
+  /// Plots you rent out.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  Future<Response> listWorldPropertyRentalsWithHttpInfo() async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/world/property/rentals';
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Plots you rent out.
+  Future<ListWorldPropertyRentalsResponse> listWorldPropertyRentals() async {
+    final response = await listWorldPropertyRentalsWithHttpInfo();
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'ListWorldPropertyRentalsResponse',) as ListWorldPropertyRentalsResponse;
+    
+    }
+    return Future<ListWorldPropertyRentalsResponse>.value();
+  }
+
+  /// Plots you rent.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  Future<Response> listWorldPropertyRentingWithHttpInfo() async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/world/property/renting';
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Plots you rent.
+  Future<ListWorldPropertyRentalsResponse> listWorldPropertyRenting() async {
+    final response = await listWorldPropertyRentingWithHttpInfo();
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'ListWorldPropertyRentalsResponse',) as ListWorldPropertyRentalsResponse;
+    
+    }
+    return Future<ListWorldPropertyRentalsResponse>.value();
+  }
+
+  /// People your store has banned, owner-wide or from one showroom.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  Future<Response> listWorldPropertyTrespassedWithHttpInfo() async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/world/property/trespassed';
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// People your store has banned, owner-wide or from one showroom.
+  Future<ListWorldPropertyTrespassedResponse> listWorldPropertyTrespassed() async {
+    final response = await listWorldPropertyTrespassedWithHttpInfo();
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'ListWorldPropertyTrespassedResponse',) as ListWorldPropertyTrespassedResponse;
+    
+    }
+    return Future<ListWorldPropertyTrespassedResponse>.value();
+  }
+
   /// Provenance trails: where in Crossly World your purchases were found, newest first (optionally ?listingIds=a,b -- platform listing ids). data: [{ platformListingId, slug (the listing public slug), kind (room | window | stall | space | drop | auction | worn | agent), place (its name, or null when gone), at, line -- e.g. \"Found at The Sneaker Vault, Oct 2026\" }]. Yours only.
   ///
   /// Note: This method returns the HTTP [Response].
@@ -11035,6 +15761,236 @@ class WorldApi {
     return Future<ListWorldSpacesResponse>.value();
   }
 
+  /// Who applied to your postings, with their worker reputation.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  Future<Response> listWorldStaffApplicantsWithHttpInfo() async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/world/staff/applicants';
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Who applied to your postings, with their worker reputation.
+  Future<ListWorldStaffApplicantsResponse> listWorldStaffApplicants() async {
+    final response = await listWorldStaffApplicantsWithHttpInfo();
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'ListWorldStaffApplicantsResponse',) as ListWorldStaffApplicantsResponse;
+    
+    }
+    return Future<ListWorldStaffApplicantsResponse>.value();
+  }
+
+  /// Everyone working for you: your Settings team and public workers, with their seats.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  Future<Response> listWorldStaffPeopleWithHttpInfo() async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/world/staff/people';
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Everyone working for you: your Settings team and public workers, with their seats.
+  Future<ListWorldStaffPeopleResponse> listWorldStaffPeople() async {
+    final response = await listWorldStaffPeopleWithHttpInfo();
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'ListWorldStaffPeopleResponse',) as ListWorldStaffPeopleResponse;
+    
+    }
+    return Future<ListWorldStaffPeopleResponse>.value();
+  }
+
+  /// The showrooms, stalls and conventions a job can be posted at, and the pay rails that are live.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  Future<Response> listWorldStaffPlacesWithHttpInfo() async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/world/staff/places';
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// The showrooms, stalls and conventions a job can be posted at, and the pay rails that are live.
+  Future<ListWorldStaffPlacesResponse> listWorldStaffPlaces() async {
+    final response = await listWorldStaffPlacesWithHttpInfo();
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'ListWorldStaffPlacesResponse',) as ListWorldStaffPlacesResponse;
+    
+    }
+    return Future<ListWorldStaffPlacesResponse>.value();
+  }
+
+  /// Your job postings, with their upcoming shifts.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  Future<Response> listWorldStaffPostingsWithHttpInfo() async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/world/staff/postings';
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Your job postings, with their upcoming shifts.
+  Future<ListWorldStaffPostingsResponse> listWorldStaffPostings() async {
+    final response = await listWorldStaffPostingsWithHttpInfo();
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'ListWorldStaffPostingsResponse',) as ListWorldStaffPostingsResponse;
+    
+    }
+    return Future<ListWorldStaffPostingsResponse>.value();
+  }
+
+  /// Your scheduled seats and who is on them.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  Future<Response> listWorldStaffShiftsWithHttpInfo() async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/world/staff/shifts';
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Your scheduled seats and who is on them.
+  Future<ListWorldStaffShiftsResponse> listWorldStaffShifts() async {
+    final response = await listWorldStaffShiftsWithHttpInfo();
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'ListWorldStaffShiftsResponse',) as ListWorldStaffShiftsResponse;
+    
+    }
+    return Future<ListWorldStaffShiftsResponse>.value();
+  }
+
   /// The longest current daily visit streaks (2+ days), top ten: name and days. Only people still choosing to be seen by name.
   ///
   /// Note: This method returns the HTTP [Response].
@@ -11219,6 +16175,316 @@ class WorldApi {
     return Future<ListWorldTradeTableListingsResponse>.value();
   }
 
+  /// The Convention Center halls for rent: size, floor, booths, price per day, and the days already taken (from, to).
+  ///
+  /// Note: This method returns the HTTP [Response].
+  Future<Response> listWorldVenuesWithHttpInfo() async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/world/venues';
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// The Convention Center halls for rent: size, floor, booths, price per day, and the days already taken (from, to).
+  Future<ListWorldVenuesResponse> listWorldVenues() async {
+    final response = await listWorldVenuesWithHttpInfo();
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'ListWorldVenuesResponse',) as ListWorldVenuesResponse;
+    
+    }
+    return Future<ListWorldVenuesResponse>.value();
+  }
+
+  /// Replace the whole showroom layout (room, fixtures, placements, settings). Validated as a whole: every item must be this store's, every pin must fit its fixture, no two pins share a slot. Send If-Match (or expectedVersion) to refuse with 409 version_conflict if it changed meanwhile.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] storefrontId:
+  ///   Which store (else X-Storefront-Id, else your default store).
+  Future<Response> updateShowroomWithHttpInfo({ String storefrontId, }) async {
+    // Verify required params are set.
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/showroom';
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    if (storefrontId != null) {
+      queryParams.addAll(_convertParametersForCollectionFormat('', 'storefrontId', storefrontId));
+    }
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'PUT',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Replace the whole showroom layout (room, fixtures, placements, settings). Validated as a whole: every item must be this store's, every pin must fit its fixture, no two pins share a slot. Send If-Match (or expectedVersion) to refuse with 409 version_conflict if it changed meanwhile.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] storefrontId:
+  ///   Which store (else X-Storefront-Id, else your default store).
+  Future<UpdateShowroomResponse> updateShowroom({ String storefrontId, }) async {
+    final response = await updateShowroomWithHttpInfo( storefrontId: storefrontId, );
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'UpdateShowroomResponse',) as UpdateShowroomResponse;
+    
+    }
+    return Future<UpdateShowroomResponse>.value();
+  }
+
+  /// Apply showroom ops in order, all or nothing: place, move, remove, fill (from a category / tag / brand / collection / search, in price, age, value or title order), sort, clear, add_fixture, update_fixture, remove_fixture, set_room, set_settings. Idempotent; refusals name the op (details.opIndex) with codes slot_occupied, item_not_in_store, fixture_capacity, unknown_fixture, unknown_display, version_conflict.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] storefrontId:
+  ///   Which store (else X-Storefront-Id, else your default store).
+  Future<Response> updateShowroom2WithHttpInfo({ String storefrontId, }) async {
+    // Verify required params are set.
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/showroom';
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    if (storefrontId != null) {
+      queryParams.addAll(_convertParametersForCollectionFormat('', 'storefrontId', storefrontId));
+    }
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'PATCH',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Apply showroom ops in order, all or nothing: place, move, remove, fill (from a category / tag / brand / collection / search, in price, age, value or title order), sort, clear, add_fixture, update_fixture, remove_fixture, set_room, set_settings. Idempotent; refusals name the op (details.opIndex) with codes slot_occupied, item_not_in_store, fixture_capacity, unknown_fixture, unknown_display, version_conflict.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] storefrontId:
+  ///   Which store (else X-Storefront-Id, else your default store).
+  Future<UpdateShowroom2Response> updateShowroom2({ String storefrontId, }) async {
+    final response = await updateShowroom2WithHttpInfo( storefrontId: storefrontId, );
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'UpdateShowroom2Response',) as UpdateShowroom2Response;
+    
+    }
+    return Future<UpdateShowroom2Response>.value();
+  }
+
+  /// Apply ops to one showroom in order, all or nothing (the same ops as PATCH /api/v1/showroom).
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  ///
+  /// * [String] storefrontId:
+  ///   Which store (else X-Storefront-Id, else your default store).
+  Future<Response> updateShowroom3WithHttpInfo(String id, { String storefrontId, }) async {
+    // Verify required params are set.
+    if (id == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: id');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/showrooms/{id}'
+      .replaceAll('{id}', id);
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    if (storefrontId != null) {
+      queryParams.addAll(_convertParametersForCollectionFormat('', 'storefrontId', storefrontId));
+    }
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'PATCH',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Apply ops to one showroom in order, all or nothing (the same ops as PATCH /api/v1/showroom).
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  ///
+  /// * [String] storefrontId:
+  ///   Which store (else X-Storefront-Id, else your default store).
+  Future<UpdateShowroom2Response> updateShowroom3(String id, { String storefrontId, }) async {
+    final response = await updateShowroom3WithHttpInfo(id,  storefrontId: storefrontId, );
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'UpdateShowroom2Response',) as UpdateShowroom2Response;
+    
+    }
+    return Future<UpdateShowroom2Response>.value();
+  }
+
+  /// Replace one showroom's whole layout. If-Match (or expectedVersion) refuses with 409 version_conflict on a concurrent edit.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  ///
+  /// * [String] storefrontId:
+  ///   Which store (else X-Storefront-Id, else your default store).
+  Future<Response> updateShowroomByIdWithHttpInfo(String id, { String storefrontId, }) async {
+    // Verify required params are set.
+    if (id == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: id');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/showrooms/{id}'
+      .replaceAll('{id}', id);
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    if (storefrontId != null) {
+      queryParams.addAll(_convertParametersForCollectionFormat('', 'storefrontId', storefrontId));
+    }
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'PUT',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Replace one showroom's whole layout. If-Match (or expectedVersion) refuses with 409 version_conflict on a concurrent edit.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  ///
+  /// * [String] storefrontId:
+  ///   Which store (else X-Storefront-Id, else your default store).
+  Future<UpdateShowroomResponse> updateShowroomById(String id, { String storefrontId, }) async {
+    final response = await updateShowroomByIdWithHttpInfo(id,  storefrontId: storefrontId, );
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'UpdateShowroomResponse',) as UpdateShowroomResponse;
+    
+    }
+    return Future<UpdateShowroomResponse>.value();
+  }
+
   /// Redecorate one of your rooms (wall, floor, lighting, trim...). Unknown keys are dropped; the response is what survived. `clear` lists keys to reset.
   ///
   /// Note: This method returns the HTTP [Response].
@@ -11392,7 +16658,7 @@ class WorldApi {
   /// Parameters:
   ///
   /// * [String] id (required):
-  Future<SpatialSceneResponse2> updateSpatialSceneSetting(String id,) async {
+  Future<SpatialSceneResponse> updateSpatialSceneSetting(String id,) async {
     final response = await updateSpatialSceneSettingWithHttpInfo(id,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
@@ -11401,10 +16667,10 @@ class WorldApi {
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
     if (response.body != null && response.statusCode != HttpStatus.noContent) {
-      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'SpatialSceneResponse2',) as SpatialSceneResponse2;
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'SpatialSceneResponse',) as SpatialSceneResponse;
     
     }
-    return Future<SpatialSceneResponse2>.value();
+    return Future<SpatialSceneResponse>.value();
   }
 
   /// Save your shop room's sections and displays (validated server-side; the response is the stored layout).
@@ -11647,36 +16913,27 @@ class WorldApi {
     return Future<SpatialStreetResponse>.value();
   }
 
-  /// Turn your automatic world shop off ({ enabled: false } -- an auto-created shop is made private, never deleted) or back on. Answers the new status.
+  /// Create or replace your AI attendant (BYOK: switching it on needs your AI key).
   ///
   /// Note: This method returns the HTTP [Response].
-  ///
-  /// Parameters:
-  ///
-  /// * [UpdateWorldAutoShopRequest] updateWorldAutoShopRequest (required):
-  Future<Response> updateWorldAutoShopWithHttpInfo(UpdateWorldAutoShopRequest updateWorldAutoShopRequest,) async {
-    // Verify required params are set.
-    if (updateWorldAutoShopRequest == null) {
-     throw ApiException(HttpStatus.badRequest, 'Missing required param: updateWorldAutoShopRequest');
-    }
-
+  Future<Response> updateWorldAttendantWithHttpInfo() async {
     // ignore: prefer_const_declarations
-    final path = r'/v1/world/auto-shop';
+    final path = r'/v1/world/attendant';
 
     // ignore: prefer_final_locals
-    Object postBody = updateWorldAutoShopRequest;
+    Object postBody;
 
     final queryParams = <QueryParam>[];
     final headerParams = <String, String>{};
     final formParams = <String, String>{};
 
     const authNames = <String>['PersonalAccessToken'];
-    const contentTypes = <String>['application/json'];
+    const contentTypes = <String>[];
 
 
     return apiClient.invokeAPI(
       path,
-      'PATCH',
+      'PUT',
       queryParams,
       postBody,
       headerParams,
@@ -11686,13 +16943,9 @@ class WorldApi {
     );
   }
 
-  /// Turn your automatic world shop off ({ enabled: false } -- an auto-created shop is made private, never deleted) or back on. Answers the new status.
-  ///
-  /// Parameters:
-  ///
-  /// * [UpdateWorldAutoShopRequest] updateWorldAutoShopRequest (required):
-  Future<GetWorldAutoShopResponse> updateWorldAutoShop(UpdateWorldAutoShopRequest updateWorldAutoShopRequest,) async {
-    final response = await updateWorldAutoShopWithHttpInfo(updateWorldAutoShopRequest,);
+  /// Create or replace your AI attendant (BYOK: switching it on needs your AI key).
+  Future<UpdateWorldAttendantResponse> updateWorldAttendant() async {
+    final response = await updateWorldAttendantWithHttpInfo();
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -11700,10 +16953,10 @@ class WorldApi {
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
     if (response.body != null && response.statusCode != HttpStatus.noContent) {
-      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'GetWorldAutoShopResponse',) as GetWorldAutoShopResponse;
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'UpdateWorldAttendantResponse',) as UpdateWorldAttendantResponse;
     
     }
-    return Future<GetWorldAutoShopResponse>.value();
+    return Future<UpdateWorldAttendantResponse>.value();
   }
 
   /// Choose named or anonymous. Rooms you are already in keep the old answer until you rejoin.
@@ -11752,7 +17005,7 @@ class WorldApi {
     return Future<UpdateWorldAvatarIdentityResponse>.value();
   }
 
-  /// Save your world look to the account, so every device starts from it. look: null stays anonymous.
+  /// Save your world look to the account, so every device starts from it. look: null stays anonymous. appearance.outfit = { top, outer, bottom, shoes, hat } picks the basic outfit (GET /v1/world/avatar/basics).
   ///
   /// Note: This method returns the HTTP [Response].
   Future<Response> updateWorldAvatarLookWithHttpInfo() async {
@@ -11782,7 +17035,7 @@ class WorldApi {
     );
   }
 
-  /// Save your world look to the account, so every device starts from it. look: null stays anonymous.
+  /// Save your world look to the account, so every device starts from it. look: null stays anonymous. appearance.outfit = { top, outer, bottom, shoes, hat } picks the basic outfit (GET /v1/world/avatar/basics).
   Future<UpdateWorldAvatarLookResponse> updateWorldAvatarLook() async {
     final response = await updateWorldAvatarLookWithHttpInfo();
     if (response.statusCode >= HttpStatus.badRequest) {
@@ -11956,6 +17209,172 @@ class WorldApi {
     
     }
     return Future<GetWorldCollectionCapabilityResponse>.value();
+  }
+
+  /// Save your world controls settings to the account (any subset of prefs; out-of-range values take the default) and/or mark the controls tutorial seen.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  Future<Response> updateWorldControlWithHttpInfo() async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/world/controls';
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'PUT',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Save your world controls settings to the account (any subset of prefs; out-of-range values take the default) and/or mark the controls tutorial seen.
+  Future<GetWorldControlResponse> updateWorldControl() async {
+    final response = await updateWorldControlWithHttpInfo();
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'GetWorldControlResponse',) as GetWorldControlResponse;
+    
+    }
+    return Future<GetWorldControlResponse>.value();
+  }
+
+  /// Save the hall design: { doc, expectedVersion }. Refused on overlaps, narrow aisles, too many booths or a booth with a seller removed.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<Response> updateWorldConventionHallWithHttpInfo(String id,) async {
+    // Verify required params are set.
+    if (id == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: id');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/world/conventions/{id}/hall'
+      .replaceAll('{id}', id);
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'PUT',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Save the hall design: { doc, expectedVersion }. Refused on overlaps, narrow aisles, too many booths or a booth with a seller removed.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<UpdateWorldConventionHallResponse> updateWorldConventionHall(String id,) async {
+    final response = await updateWorldConventionHallWithHttpInfo(id,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'UpdateWorldConventionHallResponse',) as UpdateWorldConventionHallResponse;
+    
+    }
+    return Future<UpdateWorldConventionHallResponse>.value();
+  }
+
+  /// Pick what your booth shows: { listingIds } — any of your live listings, up to the tier’s capacity.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<Response> updateWorldConventionMyBoothWithHttpInfo(String id,) async {
+    // Verify required params are set.
+    if (id == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: id');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/world/conventions/{id}/my-booth'
+      .replaceAll('{id}', id);
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'PUT',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Pick what your booth shows: { listingIds } — any of your live listings, up to the tier’s capacity.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<UpdateWorldConventionMyBoothResponse> updateWorldConventionMyBooth(String id,) async {
+    final response = await updateWorldConventionMyBoothWithHttpInfo(id,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'UpdateWorldConventionMyBoothResponse',) as UpdateWorldConventionMyBoothResponse;
+    
+    }
+    return Future<UpdateWorldConventionMyBoothResponse>.value();
   }
 
   /// Open, start, end or cancel a convention you host.
@@ -12640,6 +18059,126 @@ class WorldApi {
     return Future<UpdateWorldPetActiveResponse>.value();
   }
 
+  /// Store a plot's photo: an image of its frontage you uploaded through POST .../photo/upload-url, a render (buildKey must be the plot's current one) or an in-world capture.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] plotId (required):
+  Future<Response> updateWorldPropertyPlotPhotoWithHttpInfo(String plotId,) async {
+    // Verify required params are set.
+    if (plotId == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: plotId');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/world/property/plots/{plotId}/photo'
+      .replaceAll('{plotId}', plotId);
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'PUT',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Store a plot's photo: an image of its frontage you uploaded through POST .../photo/upload-url, a render (buildKey must be the plot's current one) or an in-world capture.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] plotId (required):
+  Future<UpdateWorldPropertyPlotPhotoResponse> updateWorldPropertyPlotPhoto(String plotId,) async {
+    final response = await updateWorldPropertyPlotPhotoWithHttpInfo(plotId,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'UpdateWorldPropertyPlotPhotoResponse',) as UpdateWorldPropertyPlotPhotoResponse;
+    
+    }
+    return Future<UpdateWorldPropertyPlotPhotoResponse>.value();
+  }
+
+  /// Turn weekly autopay on or off (card leases).
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] leaseId (required):
+  Future<Response> updateWorldPropertyRentingWithHttpInfo(String leaseId,) async {
+    // Verify required params are set.
+    if (leaseId == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: leaseId');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/world/property/renting/{leaseId}'
+      .replaceAll('{leaseId}', leaseId);
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'PATCH',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Turn weekly autopay on or off (card leases).
+  ///
+  /// Parameters:
+  ///
+  /// * [String] leaseId (required):
+  Future<UpdateWorldPropertyRentingResponse> updateWorldPropertyRenting(String leaseId,) async {
+    final response = await updateWorldPropertyRentingWithHttpInfo(leaseId,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'UpdateWorldPropertyRentingResponse',) as UpdateWorldPropertyRentingResponse;
+    
+    }
+    return Future<UpdateWorldPropertyRentingResponse>.value();
+  }
+
   /// Wear a pin you EARNED from a quest on your nameplate, or { pin: null } to wear none. 403 for a pin you have not earned. Shows from the next room you walk into.
   ///
   /// Note: This method returns the HTTP [Response].
@@ -12879,6 +18418,66 @@ class WorldApi {
     return Future<UpdateWorldRoomHolderGateResponse>.value();
   }
 
+  /// Replace a posting; its future unstaffed shifts are re-made.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<Response> updateWorldStaffPostingWithHttpInfo(String id,) async {
+    // Verify required params are set.
+    if (id == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: id');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/world/staff/postings/{id}'
+      .replaceAll('{id}', id);
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'PUT',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Replace a posting; its future unstaffed shifts are re-made.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<WorldStaffPostingResponse> updateWorldStaffPosting(String id,) async {
+    final response = await updateWorldStaffPostingWithHttpInfo(id,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'WorldStaffPostingResponse',) as WorldStaffPostingResponse;
+    
+    }
+    return Future<WorldStaffPostingResponse>.value();
+  }
+
   /// Dress the booth of a stall you booked (decor you hold).
   ///
   /// Note: This method returns the HTTP [Response].
@@ -12937,5 +18536,65 @@ class WorldApi {
     
     }
     return Future<UpdateWorldStallBookingBoothResponse>.value();
+  }
+
+  /// Set your street's theme.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<Response> updateWorldStreetOwnedThemeWithHttpInfo(String id,) async {
+    // Verify required params are set.
+    if (id == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: id');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/world/streets/owned/{id}/theme'
+      .replaceAll('{id}', id);
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'PUT',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Set your street's theme.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<UpdateWorldStreetOwnedThemeResponse> updateWorldStreetOwnedTheme(String id,) async {
+    final response = await updateWorldStreetOwnedThemeWithHttpInfo(id,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'UpdateWorldStreetOwnedThemeResponse',) as UpdateWorldStreetOwnedThemeResponse;
+    
+    }
+    return Future<UpdateWorldStreetOwnedThemeResponse>.value();
   }
 }

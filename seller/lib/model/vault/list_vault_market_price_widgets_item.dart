@@ -219,13 +219,13 @@ class ListVaultMarketPriceWidgetsItemKindEnum {
 
   String toJson() => value;
 
-  static const mark = ListVaultMarketPriceWidgetsItemKindEnum._(r'mark');
   static const index = ListVaultMarketPriceWidgetsItemKindEnum._(r'index');
+  static const mark = ListVaultMarketPriceWidgetsItemKindEnum._(r'mark');
 
   /// List of all possible values in this [enum][ListVaultMarketPriceWidgetsItemKindEnum].
   static const values = <ListVaultMarketPriceWidgetsItemKindEnum>[
-    mark,
     index,
+    mark,
   ];
 
   static ListVaultMarketPriceWidgetsItemKindEnum fromJson(dynamic value) =>
@@ -257,8 +257,8 @@ class ListVaultMarketPriceWidgetsItemKindEnumTypeTransformer {
   ListVaultMarketPriceWidgetsItemKindEnum decode(dynamic data, {bool allowNull}) {
     if (data != null) {
       switch (data.toString()) {
-        case r'mark': return ListVaultMarketPriceWidgetsItemKindEnum.mark;
         case r'index': return ListVaultMarketPriceWidgetsItemKindEnum.index;
+        case r'mark': return ListVaultMarketPriceWidgetsItemKindEnum.mark;
         default:
           if (allowNull == false) {
             throw ArgumentError('Unknown enum value to decode: $data');

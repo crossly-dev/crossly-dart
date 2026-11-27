@@ -394,13 +394,13 @@ class CreateVaultMarketPositionCollateralResponseKindEnum {
 
   String toJson() => value;
 
-  static const long = CreateVaultMarketPositionCollateralResponseKindEnum._(r'long');
   static const short = CreateVaultMarketPositionCollateralResponseKindEnum._(r'short');
+  static const long = CreateVaultMarketPositionCollateralResponseKindEnum._(r'long');
 
   /// List of all possible values in this [enum][CreateVaultMarketPositionCollateralResponseKindEnum].
   static const values = <CreateVaultMarketPositionCollateralResponseKindEnum>[
-    long,
     short,
+    long,
   ];
 
   static CreateVaultMarketPositionCollateralResponseKindEnum fromJson(dynamic value) =>
@@ -432,8 +432,8 @@ class CreateVaultMarketPositionCollateralResponseKindEnumTypeTransformer {
   CreateVaultMarketPositionCollateralResponseKindEnum decode(dynamic data, {bool allowNull}) {
     if (data != null) {
       switch (data.toString()) {
-        case r'long': return CreateVaultMarketPositionCollateralResponseKindEnum.long;
         case r'short': return CreateVaultMarketPositionCollateralResponseKindEnum.short;
+        case r'long': return CreateVaultMarketPositionCollateralResponseKindEnum.long;
         default:
           if (allowNull == false) {
             throw ArgumentError('Unknown enum value to decode: $data');

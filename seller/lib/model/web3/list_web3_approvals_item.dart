@@ -132,21 +132,21 @@ class ListWeb3ApprovalsItemChainEnum {
 
   String toJson() => value;
 
-  static const solana = ListWeb3ApprovalsItemChainEnum._(r'solana');
   static const ethereum = ListWeb3ApprovalsItemChainEnum._(r'ethereum');
   static const base = ListWeb3ApprovalsItemChainEnum._(r'base');
   static const polygon = ListWeb3ApprovalsItemChainEnum._(r'polygon');
   static const arbitrum = ListWeb3ApprovalsItemChainEnum._(r'arbitrum');
   static const optimism = ListWeb3ApprovalsItemChainEnum._(r'optimism');
+  static const solana = ListWeb3ApprovalsItemChainEnum._(r'solana');
 
   /// List of all possible values in this [enum][ListWeb3ApprovalsItemChainEnum].
   static const values = <ListWeb3ApprovalsItemChainEnum>[
-    solana,
     ethereum,
     base,
     polygon,
     arbitrum,
     optimism,
+    solana,
   ];
 
   static ListWeb3ApprovalsItemChainEnum fromJson(dynamic value) =>
@@ -178,12 +178,12 @@ class ListWeb3ApprovalsItemChainEnumTypeTransformer {
   ListWeb3ApprovalsItemChainEnum decode(dynamic data, {bool allowNull}) {
     if (data != null) {
       switch (data.toString()) {
-        case r'solana': return ListWeb3ApprovalsItemChainEnum.solana;
         case r'ethereum': return ListWeb3ApprovalsItemChainEnum.ethereum;
         case r'base': return ListWeb3ApprovalsItemChainEnum.base;
         case r'polygon': return ListWeb3ApprovalsItemChainEnum.polygon;
         case r'arbitrum': return ListWeb3ApprovalsItemChainEnum.arbitrum;
         case r'optimism': return ListWeb3ApprovalsItemChainEnum.optimism;
+        case r'solana': return ListWeb3ApprovalsItemChainEnum.solana;
         default:
           if (allowNull == false) {
             throw ArgumentError('Unknown enum value to decode: $data');

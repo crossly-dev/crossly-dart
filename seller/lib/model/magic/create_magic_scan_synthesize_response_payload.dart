@@ -64,7 +64,7 @@ class CreateMagicScanSynthesizeResponsePayload {
   /// Master form enum value — one of new/like_new/good/fair/poor. The heuristic synth maps eBay/Mercari/Poshmark condition strings into this canonical form so the UI's <Select> finds a match.
   CreateMagicScanSynthesizeResponsePayloadConditionEnum condition;
 
-  ListGradingSubmissionsItemGrading grading;
+  CreateBulkBatchItemResponseGrading grading;
 
   String color;
 
@@ -371,7 +371,7 @@ class CreateMagicScanSynthesizeResponsePayload {
         description: mapValueOfType<String>(json, r'description'),
         brand: mapValueOfType<String>(json, r'brand'),
         condition: CreateMagicScanSynthesizeResponsePayloadConditionEnum.fromJson(json[r'condition']),
-        grading: ListGradingSubmissionsItemGrading.fromJson(json[r'grading']),
+        grading: CreateBulkBatchItemResponseGrading.fromJson(json[r'grading']),
         color: mapValueOfType<String>(json, r'color'),
         material: mapValueOfType<String>(json, r'material'),
         size: mapValueOfType<String>(json, r'size'),
@@ -483,8 +483,8 @@ class CreateMagicScanSynthesizeResponsePayloadConditionEnum {
   String toJson() => value;
 
   static const new_ = CreateMagicScanSynthesizeResponsePayloadConditionEnum._(r'new');
-  static const fair = CreateMagicScanSynthesizeResponsePayloadConditionEnum._(r'fair');
   static const good = CreateMagicScanSynthesizeResponsePayloadConditionEnum._(r'good');
+  static const fair = CreateMagicScanSynthesizeResponsePayloadConditionEnum._(r'fair');
   static const likeNew = CreateMagicScanSynthesizeResponsePayloadConditionEnum._(r'like_new');
   static const poor = CreateMagicScanSynthesizeResponsePayloadConditionEnum._(r'poor');
   static const refurbished = CreateMagicScanSynthesizeResponsePayloadConditionEnum._(r'refurbished');
@@ -492,8 +492,8 @@ class CreateMagicScanSynthesizeResponsePayloadConditionEnum {
   /// List of all possible values in this [enum][CreateMagicScanSynthesizeResponsePayloadConditionEnum].
   static const values = <CreateMagicScanSynthesizeResponsePayloadConditionEnum>[
     new_,
-    fair,
     good,
+    fair,
     likeNew,
     poor,
     refurbished,
@@ -529,8 +529,8 @@ class CreateMagicScanSynthesizeResponsePayloadConditionEnumTypeTransformer {
     if (data != null) {
       switch (data.toString()) {
         case r'new': return CreateMagicScanSynthesizeResponsePayloadConditionEnum.new_;
-        case r'fair': return CreateMagicScanSynthesizeResponsePayloadConditionEnum.fair;
         case r'good': return CreateMagicScanSynthesizeResponsePayloadConditionEnum.good;
+        case r'fair': return CreateMagicScanSynthesizeResponsePayloadConditionEnum.fair;
         case r'like_new': return CreateMagicScanSynthesizeResponsePayloadConditionEnum.likeNew;
         case r'poor': return CreateMagicScanSynthesizeResponsePayloadConditionEnum.poor;
         case r'refurbished': return CreateMagicScanSynthesizeResponsePayloadConditionEnum.refurbished;
@@ -628,13 +628,13 @@ class CreateMagicScanSynthesizeResponsePayloadReturnsAcceptedEnum {
 
   String toJson() => value;
 
-  static const yes = CreateMagicScanSynthesizeResponsePayloadReturnsAcceptedEnum._(r'yes');
   static const no = CreateMagicScanSynthesizeResponsePayloadReturnsAcceptedEnum._(r'no');
+  static const yes = CreateMagicScanSynthesizeResponsePayloadReturnsAcceptedEnum._(r'yes');
 
   /// List of all possible values in this [enum][CreateMagicScanSynthesizeResponsePayloadReturnsAcceptedEnum].
   static const values = <CreateMagicScanSynthesizeResponsePayloadReturnsAcceptedEnum>[
-    yes,
     no,
+    yes,
   ];
 
   static CreateMagicScanSynthesizeResponsePayloadReturnsAcceptedEnum fromJson(dynamic value) =>
@@ -666,8 +666,8 @@ class CreateMagicScanSynthesizeResponsePayloadReturnsAcceptedEnumTypeTransformer
   CreateMagicScanSynthesizeResponsePayloadReturnsAcceptedEnum decode(dynamic data, {bool allowNull}) {
     if (data != null) {
       switch (data.toString()) {
-        case r'yes': return CreateMagicScanSynthesizeResponsePayloadReturnsAcceptedEnum.yes;
         case r'no': return CreateMagicScanSynthesizeResponsePayloadReturnsAcceptedEnum.no;
+        case r'yes': return CreateMagicScanSynthesizeResponsePayloadReturnsAcceptedEnum.yes;
         default:
           if (allowNull == false) {
             throw ArgumentError('Unknown enum value to decode: $data');

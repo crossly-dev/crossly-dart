@@ -16,7 +16,7 @@ class PassportResponse {
     @required this.data,
   });
 
-  ListPassportsItem data;
+  PassportResponseData data;
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is PassportResponse &&
@@ -43,7 +43,7 @@ class PassportResponse {
     if (value is Map) {
       final json = value.cast<String, dynamic>();
       return PassportResponse(
-        data: ListPassportsItem.fromJson(json[r'data']),
+        data: PassportResponseData.fromJson(json[r'data']),
       );
     }
     return null;

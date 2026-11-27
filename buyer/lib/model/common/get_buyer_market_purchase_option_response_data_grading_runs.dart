@@ -14,49 +14,49 @@ class GetBuyerMarketPurchaseOptionResponseDataGradingRuns {
   /// Returns a new [GetBuyerMarketPurchaseOptionResponseDataGradingRuns] instance.
   GetBuyerMarketPurchaseOptionResponseDataGradingRuns({
     @required this.id,
-    @required this.priceCents,
-    @required this.tierName,
-    @required this.cutoffAt,
     @required this.graderName,
+    @required this.tierName,
+    @required this.priceCents,
+    @required this.cutoffAt,
   });
 
   String id;
 
-  num priceCents;
+  String graderName;
 
   String tierName;
 
-  String cutoffAt;
+  num priceCents;
 
-  String graderName;
+  String cutoffAt;
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is GetBuyerMarketPurchaseOptionResponseDataGradingRuns &&
      other.id == id &&
-     other.priceCents == priceCents &&
+     other.graderName == graderName &&
      other.tierName == tierName &&
-     other.cutoffAt == cutoffAt &&
-     other.graderName == graderName;
+     other.priceCents == priceCents &&
+     other.cutoffAt == cutoffAt;
 
   @override
   int get hashCode =>
   // ignore: unnecessary_parenthesis
     (id == null ? 0 : id.hashCode) +
-    (priceCents == null ? 0 : priceCents.hashCode) +
+    (graderName == null ? 0 : graderName.hashCode) +
     (tierName == null ? 0 : tierName.hashCode) +
-    (cutoffAt == null ? 0 : cutoffAt.hashCode) +
-    (graderName == null ? 0 : graderName.hashCode);
+    (priceCents == null ? 0 : priceCents.hashCode) +
+    (cutoffAt == null ? 0 : cutoffAt.hashCode);
 
   @override
-  String toString() => 'GetBuyerMarketPurchaseOptionResponseDataGradingRuns[id=$id, priceCents=$priceCents, tierName=$tierName, cutoffAt=$cutoffAt, graderName=$graderName]';
+  String toString() => 'GetBuyerMarketPurchaseOptionResponseDataGradingRuns[id=$id, graderName=$graderName, tierName=$tierName, priceCents=$priceCents, cutoffAt=$cutoffAt]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
       json[r'id'] = id;
-      json[r'priceCents'] = priceCents;
-      json[r'tierName'] = tierName;
-      json[r'cutoffAt'] = cutoffAt;
       json[r'graderName'] = graderName;
+      json[r'tierName'] = tierName;
+      json[r'priceCents'] = priceCents;
+      json[r'cutoffAt'] = cutoffAt;
     return json;
   }
 
@@ -68,12 +68,12 @@ class GetBuyerMarketPurchaseOptionResponseDataGradingRuns {
       final json = value.cast<String, dynamic>();
       return GetBuyerMarketPurchaseOptionResponseDataGradingRuns(
         id: mapValueOfType<String>(json, r'id'),
+        graderName: mapValueOfType<String>(json, r'graderName'),
+        tierName: mapValueOfType<String>(json, r'tierName'),
         priceCents: json[r'priceCents'] == null
           ? null
           : num.parse(json[r'priceCents'].toString()),
-        tierName: mapValueOfType<String>(json, r'tierName'),
         cutoffAt: mapValueOfType<String>(json, r'cutoffAt'),
-        graderName: mapValueOfType<String>(json, r'graderName'),
       );
     }
     return null;

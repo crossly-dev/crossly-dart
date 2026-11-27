@@ -15,12 +15,20 @@ class CreateOrderMessageResponse {
   CreateOrderMessageResponse({
     @required this.orderId,
     @required this.sent,
-    @required this.platformConversationId,
+    this.relayed,
+    this.commandId,
+    this.platformConversationId,
   });
 
   String orderId;
 
   bool sent;
+
+  /// True when the managing app was asked to send it (action authority).
+  bool relayed;
+
+  /// The managing-app command id, on a relay.
+  String commandId;
 
   String platformConversationId;
 
@@ -28,6 +36,8 @@ class CreateOrderMessageResponse {
   bool operator ==(Object other) => identical(this, other) || other is CreateOrderMessageResponse &&
      other.orderId == orderId &&
      other.sent == sent &&
+     other.relayed == relayed &&
+     other.commandId == commandId &&
      other.platformConversationId == platformConversationId;
 
   @override
@@ -35,16 +45,26 @@ class CreateOrderMessageResponse {
   // ignore: unnecessary_parenthesis
     (orderId == null ? 0 : orderId.hashCode) +
     (sent == null ? 0 : sent.hashCode) +
+    (relayed == null ? 0 : relayed.hashCode) +
+    (commandId == null ? 0 : commandId.hashCode) +
     (platformConversationId == null ? 0 : platformConversationId.hashCode);
 
   @override
-  String toString() => 'CreateOrderMessageResponse[orderId=$orderId, sent=$sent, platformConversationId=$platformConversationId]';
+  String toString() => 'CreateOrderMessageResponse[orderId=$orderId, sent=$sent, relayed=$relayed, commandId=$commandId, platformConversationId=$platformConversationId]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
       json[r'orderId'] = orderId;
       json[r'sent'] = sent;
+    if (relayed != null) {
+      json[r'relayed'] = relayed;
+    }
+    if (commandId != null) {
+      json[r'commandId'] = commandId;
+    }
+    if (platformConversationId != null) {
       json[r'platformConversationId'] = platformConversationId;
+    }
     return json;
   }
 
@@ -57,6 +77,8 @@ class CreateOrderMessageResponse {
       return CreateOrderMessageResponse(
         orderId: mapValueOfType<String>(json, r'orderId'),
         sent: mapValueOfType<bool>(json, r'sent'),
+        relayed: mapValueOfType<bool>(json, r'relayed'),
+        commandId: mapValueOfType<String>(json, r'commandId'),
         platformConversationId: mapValueOfType<String>(json, r'platformConversationId'),
       );
     }

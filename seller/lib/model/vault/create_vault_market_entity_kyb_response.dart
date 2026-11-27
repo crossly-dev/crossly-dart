@@ -105,15 +105,15 @@ class CreateVaultMarketEntityKybResponseKybStatusEnum {
   String toJson() => value;
 
   static const pending = CreateVaultMarketEntityKybResponseKybStatusEnum._(r'pending');
-  static const approved = CreateVaultMarketEntityKybResponseKybStatusEnum._(r'approved');
   static const rejected = CreateVaultMarketEntityKybResponseKybStatusEnum._(r'rejected');
+  static const approved = CreateVaultMarketEntityKybResponseKybStatusEnum._(r'approved');
   static const restricted = CreateVaultMarketEntityKybResponseKybStatusEnum._(r'restricted');
 
   /// List of all possible values in this [enum][CreateVaultMarketEntityKybResponseKybStatusEnum].
   static const values = <CreateVaultMarketEntityKybResponseKybStatusEnum>[
     pending,
-    approved,
     rejected,
+    approved,
     restricted,
   ];
 
@@ -147,8 +147,8 @@ class CreateVaultMarketEntityKybResponseKybStatusEnumTypeTransformer {
     if (data != null) {
       switch (data.toString()) {
         case r'pending': return CreateVaultMarketEntityKybResponseKybStatusEnum.pending;
-        case r'approved': return CreateVaultMarketEntityKybResponseKybStatusEnum.approved;
         case r'rejected': return CreateVaultMarketEntityKybResponseKybStatusEnum.rejected;
+        case r'approved': return CreateVaultMarketEntityKybResponseKybStatusEnum.approved;
         case r'restricted': return CreateVaultMarketEntityKybResponseKybStatusEnum.restricted;
         default:
           if (allowNull == false) {

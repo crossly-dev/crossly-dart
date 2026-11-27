@@ -18,6 +18,8 @@ class GetAnalyticBookkeepingResponsePlatformBreakdown {
     @required this.count,
     @required this.platformFees,
     @required this.netProfit,
+    @required this.refunds,
+    @required this.taxCollected,
   });
 
   String platform;
@@ -30,13 +32,19 @@ class GetAnalyticBookkeepingResponsePlatformBreakdown {
 
   num netProfit;
 
+  num refunds;
+
+  num taxCollected;
+
   @override
   bool operator ==(Object other) => identical(this, other) || other is GetAnalyticBookkeepingResponsePlatformBreakdown &&
      other.platform == platform &&
      other.revenue == revenue &&
      other.count == count &&
      other.platformFees == platformFees &&
-     other.netProfit == netProfit;
+     other.netProfit == netProfit &&
+     other.refunds == refunds &&
+     other.taxCollected == taxCollected;
 
   @override
   int get hashCode =>
@@ -45,10 +53,12 @@ class GetAnalyticBookkeepingResponsePlatformBreakdown {
     (revenue == null ? 0 : revenue.hashCode) +
     (count == null ? 0 : count.hashCode) +
     (platformFees == null ? 0 : platformFees.hashCode) +
-    (netProfit == null ? 0 : netProfit.hashCode);
+    (netProfit == null ? 0 : netProfit.hashCode) +
+    (refunds == null ? 0 : refunds.hashCode) +
+    (taxCollected == null ? 0 : taxCollected.hashCode);
 
   @override
-  String toString() => 'GetAnalyticBookkeepingResponsePlatformBreakdown[platform=$platform, revenue=$revenue, count=$count, platformFees=$platformFees, netProfit=$netProfit]';
+  String toString() => 'GetAnalyticBookkeepingResponsePlatformBreakdown[platform=$platform, revenue=$revenue, count=$count, platformFees=$platformFees, netProfit=$netProfit, refunds=$refunds, taxCollected=$taxCollected]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -57,6 +67,8 @@ class GetAnalyticBookkeepingResponsePlatformBreakdown {
       json[r'count'] = count;
       json[r'platformFees'] = platformFees;
       json[r'netProfit'] = netProfit;
+      json[r'refunds'] = refunds;
+      json[r'taxCollected'] = taxCollected;
     return json;
   }
 
@@ -80,6 +92,12 @@ class GetAnalyticBookkeepingResponsePlatformBreakdown {
         netProfit: json[r'netProfit'] == null
           ? null
           : num.parse(json[r'netProfit'].toString()),
+        refunds: json[r'refunds'] == null
+          ? null
+          : num.parse(json[r'refunds'].toString()),
+        taxCollected: json[r'taxCollected'] == null
+          ? null
+          : num.parse(json[r'taxCollected'].toString()),
       );
     }
     return null;

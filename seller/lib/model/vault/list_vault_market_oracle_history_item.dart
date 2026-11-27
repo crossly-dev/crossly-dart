@@ -280,14 +280,14 @@ class ListVaultMarketOracleHistoryItemStatusEnum {
   String toJson() => value;
 
   static const skipped = ListVaultMarketOracleHistoryItemStatusEnum._(r'skipped');
-  static const failed = ListVaultMarketOracleHistoryItemStatusEnum._(r'failed');
   static const published = ListVaultMarketOracleHistoryItemStatusEnum._(r'published');
+  static const failed = ListVaultMarketOracleHistoryItemStatusEnum._(r'failed');
 
   /// List of all possible values in this [enum][ListVaultMarketOracleHistoryItemStatusEnum].
   static const values = <ListVaultMarketOracleHistoryItemStatusEnum>[
     skipped,
-    failed,
     published,
+    failed,
   ];
 
   static ListVaultMarketOracleHistoryItemStatusEnum fromJson(dynamic value) =>
@@ -320,8 +320,8 @@ class ListVaultMarketOracleHistoryItemStatusEnumTypeTransformer {
     if (data != null) {
       switch (data.toString()) {
         case r'skipped': return ListVaultMarketOracleHistoryItemStatusEnum.skipped;
-        case r'failed': return ListVaultMarketOracleHistoryItemStatusEnum.failed;
         case r'published': return ListVaultMarketOracleHistoryItemStatusEnum.published;
+        case r'failed': return ListVaultMarketOracleHistoryItemStatusEnum.failed;
         default:
           if (allowNull == false) {
             throw ArgumentError('Unknown enum value to decode: $data');

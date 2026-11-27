@@ -21,13 +21,14 @@ class ListGameHuntsItem {
     @required this.reward,
     @required this.endsAt,
     @required this.finishers,
+    this.rules,
   });
 
   String id;
 
   String title;
 
-  SlugName shop;
+  NameSlug shop;
 
   ListGameHuntsItemStall stall;
 
@@ -40,6 +41,8 @@ class ListGameHuntsItem {
 
   num finishers;
 
+  ListGameHuntsItemRules rules;
+
   @override
   bool operator ==(Object other) => identical(this, other) || other is ListGameHuntsItem &&
      other.id == id &&
@@ -49,7 +52,8 @@ class ListGameHuntsItem {
      other.tokens == tokens &&
      other.reward == reward &&
      other.endsAt == endsAt &&
-     other.finishers == finishers;
+     other.finishers == finishers &&
+     other.rules == rules;
 
   @override
   int get hashCode =>
@@ -61,10 +65,11 @@ class ListGameHuntsItem {
     (tokens == null ? 0 : tokens.hashCode) +
     (reward == null ? 0 : reward.hashCode) +
     (endsAt == null ? 0 : endsAt.hashCode) +
-    (finishers == null ? 0 : finishers.hashCode);
+    (finishers == null ? 0 : finishers.hashCode) +
+    (rules == null ? 0 : rules.hashCode);
 
   @override
-  String toString() => 'ListGameHuntsItem[id=$id, title=$title, shop=$shop, stall=$stall, tokens=$tokens, reward=$reward, endsAt=$endsAt, finishers=$finishers]';
+  String toString() => 'ListGameHuntsItem[id=$id, title=$title, shop=$shop, stall=$stall, tokens=$tokens, reward=$reward, endsAt=$endsAt, finishers=$finishers, rules=$rules]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -78,6 +83,9 @@ class ListGameHuntsItem {
       json[r'reward'] = reward;
       json[r'endsAt'] = endsAt;
       json[r'finishers'] = finishers;
+    if (rules != null) {
+      json[r'rules'] = rules;
+    }
     return json;
   }
 
@@ -90,7 +98,7 @@ class ListGameHuntsItem {
       return ListGameHuntsItem(
         id: mapValueOfType<String>(json, r'id'),
         title: mapValueOfType<String>(json, r'title'),
-        shop: SlugName.fromJson(json[r'shop']),
+        shop: NameSlug.fromJson(json[r'shop']),
         stall: ListGameHuntsItemStall.fromJson(json[r'stall']),
         tokens: json[r'tokens'] == null
           ? null
@@ -100,6 +108,7 @@ class ListGameHuntsItem {
         finishers: json[r'finishers'] == null
           ? null
           : num.parse(json[r'finishers'].toString()),
+        rules: ListGameHuntsItemRules.fromJson(json[r'rules']),
       );
     }
     return null;

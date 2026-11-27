@@ -24,14 +24,14 @@ class GetStallQuoteResponseQuoteRailsItem {
   String toJson() => value;
 
   static const card = GetStallQuoteResponseQuoteRailsItem._(r'card');
-  static const bucks = GetStallQuoteResponseQuoteRailsItem._(r'bucks');
   static const cbx = GetStallQuoteResponseQuoteRailsItem._(r'cbx');
+  static const bucks = GetStallQuoteResponseQuoteRailsItem._(r'bucks');
 
   /// List of all possible values in this [enum][GetStallQuoteResponseQuoteRailsItem].
   static const values = <GetStallQuoteResponseQuoteRailsItem>[
     card,
-    bucks,
     cbx,
+    bucks,
   ];
 
   static GetStallQuoteResponseQuoteRailsItem fromJson(dynamic value) =>
@@ -64,8 +64,8 @@ class GetStallQuoteResponseQuoteRailsItemTypeTransformer {
     if (data != null) {
       switch (data.toString()) {
         case r'card': return GetStallQuoteResponseQuoteRailsItem.card;
-        case r'bucks': return GetStallQuoteResponseQuoteRailsItem.bucks;
         case r'cbx': return GetStallQuoteResponseQuoteRailsItem.cbx;
+        case r'bucks': return GetStallQuoteResponseQuoteRailsItem.bucks;
         default:
           if (allowNull == false) {
             throw ArgumentError('Unknown enum value to decode: $data');

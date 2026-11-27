@@ -186,16 +186,16 @@ class GetVaultMarketWidgetSummaryResponseWatchMarkQualityEnum {
   String toJson() => value;
 
   static const none = GetVaultMarketWidgetSummaryResponseWatchMarkQualityEnum._(r'none');
+  static const C = GetVaultMarketWidgetSummaryResponseWatchMarkQualityEnum._(r'C');
   static const A = GetVaultMarketWidgetSummaryResponseWatchMarkQualityEnum._(r'A');
   static const B = GetVaultMarketWidgetSummaryResponseWatchMarkQualityEnum._(r'B');
-  static const C = GetVaultMarketWidgetSummaryResponseWatchMarkQualityEnum._(r'C');
 
   /// List of all possible values in this [enum][GetVaultMarketWidgetSummaryResponseWatchMarkQualityEnum].
   static const values = <GetVaultMarketWidgetSummaryResponseWatchMarkQualityEnum>[
     none,
+    C,
     A,
     B,
-    C,
   ];
 
   static GetVaultMarketWidgetSummaryResponseWatchMarkQualityEnum fromJson(dynamic value) =>
@@ -228,9 +228,9 @@ class GetVaultMarketWidgetSummaryResponseWatchMarkQualityEnumTypeTransformer {
     if (data != null) {
       switch (data.toString()) {
         case r'none': return GetVaultMarketWidgetSummaryResponseWatchMarkQualityEnum.none;
+        case r'C': return GetVaultMarketWidgetSummaryResponseWatchMarkQualityEnum.C;
         case r'A': return GetVaultMarketWidgetSummaryResponseWatchMarkQualityEnum.A;
         case r'B': return GetVaultMarketWidgetSummaryResponseWatchMarkQualityEnum.B;
-        case r'C': return GetVaultMarketWidgetSummaryResponseWatchMarkQualityEnum.C;
         default:
           if (allowNull == false) {
             throw ArgumentError('Unknown enum value to decode: $data');

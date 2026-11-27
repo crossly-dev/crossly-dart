@@ -15,10 +15,10 @@ class ListBuyerOffersItemItems {
   ListBuyerOffersItemItems({
     @required this.id,
     @required this.priceCents,
-    this.status,
-    this.title,
     this.slug,
+    this.title,
     this.thumbnail,
+    this.status,
   });
 
   String id;
@@ -26,51 +26,51 @@ class ListBuyerOffersItemItems {
   /// Listing price now, in cents.
   num priceCents;
 
-  String status;
+  String slug;
 
   String title;
 
-  String slug;
-
   String thumbnail;
+
+  String status;
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is ListBuyerOffersItemItems &&
      other.id == id &&
      other.priceCents == priceCents &&
-     other.status == status &&
-     other.title == title &&
      other.slug == slug &&
-     other.thumbnail == thumbnail;
+     other.title == title &&
+     other.thumbnail == thumbnail &&
+     other.status == status;
 
   @override
   int get hashCode =>
   // ignore: unnecessary_parenthesis
     (id == null ? 0 : id.hashCode) +
     (priceCents == null ? 0 : priceCents.hashCode) +
-    (status == null ? 0 : status.hashCode) +
-    (title == null ? 0 : title.hashCode) +
     (slug == null ? 0 : slug.hashCode) +
-    (thumbnail == null ? 0 : thumbnail.hashCode);
+    (title == null ? 0 : title.hashCode) +
+    (thumbnail == null ? 0 : thumbnail.hashCode) +
+    (status == null ? 0 : status.hashCode);
 
   @override
-  String toString() => 'ListBuyerOffersItemItems[id=$id, priceCents=$priceCents, status=$status, title=$title, slug=$slug, thumbnail=$thumbnail]';
+  String toString() => 'ListBuyerOffersItemItems[id=$id, priceCents=$priceCents, slug=$slug, title=$title, thumbnail=$thumbnail, status=$status]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
       json[r'id'] = id;
       json[r'priceCents'] = priceCents;
-    if (status != null) {
-      json[r'status'] = status;
+    if (slug != null) {
+      json[r'slug'] = slug;
     }
     if (title != null) {
       json[r'title'] = title;
     }
-    if (slug != null) {
-      json[r'slug'] = slug;
-    }
     if (thumbnail != null) {
       json[r'thumbnail'] = thumbnail;
+    }
+    if (status != null) {
+      json[r'status'] = status;
     }
     return json;
   }
@@ -86,10 +86,10 @@ class ListBuyerOffersItemItems {
         priceCents: json[r'priceCents'] == null
           ? null
           : num.parse(json[r'priceCents'].toString()),
-        status: mapValueOfType<String>(json, r'status'),
-        title: mapValueOfType<String>(json, r'title'),
         slug: mapValueOfType<String>(json, r'slug'),
+        title: mapValueOfType<String>(json, r'title'),
         thumbnail: mapValueOfType<String>(json, r'thumbnail'),
+        status: mapValueOfType<String>(json, r'status'),
       );
     }
     return null;

@@ -120,13 +120,13 @@ class GetVariationGroupPublishPlanResponsePlansModeEnum {
 
   String toJson() => value;
 
-  static const grouped = GetVariationGroupPublishPlanResponsePlansModeEnum._(r'grouped');
   static const separate = GetVariationGroupPublishPlanResponsePlansModeEnum._(r'separate');
+  static const grouped = GetVariationGroupPublishPlanResponsePlansModeEnum._(r'grouped');
 
   /// List of all possible values in this [enum][GetVariationGroupPublishPlanResponsePlansModeEnum].
   static const values = <GetVariationGroupPublishPlanResponsePlansModeEnum>[
-    grouped,
     separate,
+    grouped,
   ];
 
   static GetVariationGroupPublishPlanResponsePlansModeEnum fromJson(dynamic value) =>
@@ -158,8 +158,8 @@ class GetVariationGroupPublishPlanResponsePlansModeEnumTypeTransformer {
   GetVariationGroupPublishPlanResponsePlansModeEnum decode(dynamic data, {bool allowNull}) {
     if (data != null) {
       switch (data.toString()) {
-        case r'grouped': return GetVariationGroupPublishPlanResponsePlansModeEnum.grouped;
         case r'separate': return GetVariationGroupPublishPlanResponsePlansModeEnum.separate;
+        case r'grouped': return GetVariationGroupPublishPlanResponsePlansModeEnum.grouped;
         default:
           if (allowNull == false) {
             throw ArgumentError('Unknown enum value to decode: $data');

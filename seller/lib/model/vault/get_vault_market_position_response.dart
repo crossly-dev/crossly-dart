@@ -56,7 +56,7 @@ class GetVaultMarketPositionResponse {
 
   List<GetVaultMarketPositionResponseLoans> loans;
 
-  List<Object> auctions;
+  List<GetVaultMarketPositionResponseAuctionsItem> auctions;
 
   List<GetVaultMarketPositionResponseInstructions> instructions;
 
@@ -297,7 +297,7 @@ class GetVaultMarketPositionResponse {
       final json = value.cast<String, dynamic>();
       return GetVaultMarketPositionResponse(
         loans: GetVaultMarketPositionResponseLoans.listFromJson(json[r'loans']),
-        auctions: json[r'auctions'] is List ? (json[r'auctions'] as List).cast<Object>() : const [],
+        auctions: GetVaultMarketPositionResponseAuctionsItem.listFromJson(json[r'auctions']),
         instructions: GetVaultMarketPositionResponseInstructions.listFromJson(json[r'instructions']),
         legs: GetVaultMarketPositionResponseLegs.listFromJson(json[r'legs']),
         splits: GetVaultMarketPositionResponseSplits.listFromJson(json[r'splits']),
@@ -422,13 +422,13 @@ class GetVaultMarketPositionResponseKindEnum {
 
   String toJson() => value;
 
-  static const long = GetVaultMarketPositionResponseKindEnum._(r'long');
   static const short = GetVaultMarketPositionResponseKindEnum._(r'short');
+  static const long = GetVaultMarketPositionResponseKindEnum._(r'long');
 
   /// List of all possible values in this [enum][GetVaultMarketPositionResponseKindEnum].
   static const values = <GetVaultMarketPositionResponseKindEnum>[
-    long,
     short,
+    long,
   ];
 
   static GetVaultMarketPositionResponseKindEnum fromJson(dynamic value) =>
@@ -460,8 +460,8 @@ class GetVaultMarketPositionResponseKindEnumTypeTransformer {
   GetVaultMarketPositionResponseKindEnum decode(dynamic data, {bool allowNull}) {
     if (data != null) {
       switch (data.toString()) {
-        case r'long': return GetVaultMarketPositionResponseKindEnum.long;
         case r'short': return GetVaultMarketPositionResponseKindEnum.short;
+        case r'long': return GetVaultMarketPositionResponseKindEnum.long;
         default:
           if (allowNull == false) {
             throw ArgumentError('Unknown enum value to decode: $data');

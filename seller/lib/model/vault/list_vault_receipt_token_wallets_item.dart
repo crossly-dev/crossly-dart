@@ -127,14 +127,14 @@ class ListVaultReceiptTokenWalletsItemStatusEnum {
 
   String toJson() => value;
 
-  static const allowed = ListVaultReceiptTokenWalletsItemStatusEnum._(r'allowed');
   static const revoked = ListVaultReceiptTokenWalletsItemStatusEnum._(r'revoked');
+  static const allowed = ListVaultReceiptTokenWalletsItemStatusEnum._(r'allowed');
   static const notAllowed = ListVaultReceiptTokenWalletsItemStatusEnum._(r'not_allowed');
 
   /// List of all possible values in this [enum][ListVaultReceiptTokenWalletsItemStatusEnum].
   static const values = <ListVaultReceiptTokenWalletsItemStatusEnum>[
-    allowed,
     revoked,
+    allowed,
     notAllowed,
   ];
 
@@ -167,8 +167,8 @@ class ListVaultReceiptTokenWalletsItemStatusEnumTypeTransformer {
   ListVaultReceiptTokenWalletsItemStatusEnum decode(dynamic data, {bool allowNull}) {
     if (data != null) {
       switch (data.toString()) {
-        case r'allowed': return ListVaultReceiptTokenWalletsItemStatusEnum.allowed;
         case r'revoked': return ListVaultReceiptTokenWalletsItemStatusEnum.revoked;
+        case r'allowed': return ListVaultReceiptTokenWalletsItemStatusEnum.allowed;
         case r'not_allowed': return ListVaultReceiptTokenWalletsItemStatusEnum.notAllowed;
         default:
           if (allowNull == false) {

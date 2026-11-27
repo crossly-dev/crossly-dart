@@ -221,16 +221,16 @@ class CreateBuyerLockonConfirmResponseIdentitySourceEnum {
   String toJson() => value;
 
   static const confirmed = CreateBuyerLockonConfirmResponseIdentitySourceEnum._(r'confirmed');
+  static const barcode = CreateBuyerLockonConfirmResponseIdentitySourceEnum._(r'barcode');
   static const visual = CreateBuyerLockonConfirmResponseIdentitySourceEnum._(r'visual');
   static const ocr = CreateBuyerLockonConfirmResponseIdentitySourceEnum._(r'ocr');
-  static const barcode = CreateBuyerLockonConfirmResponseIdentitySourceEnum._(r'barcode');
 
   /// List of all possible values in this [enum][CreateBuyerLockonConfirmResponseIdentitySourceEnum].
   static const values = <CreateBuyerLockonConfirmResponseIdentitySourceEnum>[
     confirmed,
+    barcode,
     visual,
     ocr,
-    barcode,
   ];
 
   static CreateBuyerLockonConfirmResponseIdentitySourceEnum fromJson(dynamic value) =>
@@ -263,9 +263,9 @@ class CreateBuyerLockonConfirmResponseIdentitySourceEnumTypeTransformer {
     if (data != null) {
       switch (data.toString()) {
         case r'confirmed': return CreateBuyerLockonConfirmResponseIdentitySourceEnum.confirmed;
+        case r'barcode': return CreateBuyerLockonConfirmResponseIdentitySourceEnum.barcode;
         case r'visual': return CreateBuyerLockonConfirmResponseIdentitySourceEnum.visual;
         case r'ocr': return CreateBuyerLockonConfirmResponseIdentitySourceEnum.ocr;
-        case r'barcode': return CreateBuyerLockonConfirmResponseIdentitySourceEnum.barcode;
         default:
           if (allowNull == false) {
             throw ArgumentError('Unknown enum value to decode: $data');

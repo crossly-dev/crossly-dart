@@ -13,38 +13,38 @@ part of openapi.api;
 class GetBuyerMarketPurchaseOptionResponseData {
   /// Returns a new [GetBuyerMarketPurchaseOptionResponseData] instance.
   GetBuyerMarketPurchaseOptionResponseData({
+    @required this.vaultStock,
     @required this.fastShipCents,
     this.gradingRuns = const [],
-    @required this.vaultStock,
   });
+
+  bool vaultStock;
 
   num fastShipCents;
 
   List<GetBuyerMarketPurchaseOptionResponseDataGradingRuns> gradingRuns;
 
-  bool vaultStock;
-
   @override
   bool operator ==(Object other) => identical(this, other) || other is GetBuyerMarketPurchaseOptionResponseData &&
+     other.vaultStock == vaultStock &&
      other.fastShipCents == fastShipCents &&
-     other.gradingRuns == gradingRuns &&
-     other.vaultStock == vaultStock;
+     other.gradingRuns == gradingRuns;
 
   @override
   int get hashCode =>
   // ignore: unnecessary_parenthesis
+    (vaultStock == null ? 0 : vaultStock.hashCode) +
     (fastShipCents == null ? 0 : fastShipCents.hashCode) +
-    (gradingRuns == null ? 0 : gradingRuns.hashCode) +
-    (vaultStock == null ? 0 : vaultStock.hashCode);
+    (gradingRuns == null ? 0 : gradingRuns.hashCode);
 
   @override
-  String toString() => 'GetBuyerMarketPurchaseOptionResponseData[fastShipCents=$fastShipCents, gradingRuns=$gradingRuns, vaultStock=$vaultStock]';
+  String toString() => 'GetBuyerMarketPurchaseOptionResponseData[vaultStock=$vaultStock, fastShipCents=$fastShipCents, gradingRuns=$gradingRuns]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
+      json[r'vaultStock'] = vaultStock;
       json[r'fastShipCents'] = fastShipCents;
       json[r'gradingRuns'] = gradingRuns;
-      json[r'vaultStock'] = vaultStock;
     return json;
   }
 
@@ -55,11 +55,11 @@ class GetBuyerMarketPurchaseOptionResponseData {
     if (value is Map) {
       final json = value.cast<String, dynamic>();
       return GetBuyerMarketPurchaseOptionResponseData(
+        vaultStock: mapValueOfType<bool>(json, r'vaultStock'),
         fastShipCents: json[r'fastShipCents'] == null
           ? null
           : num.parse(json[r'fastShipCents'].toString()),
         gradingRuns: GetBuyerMarketPurchaseOptionResponseDataGradingRuns.listFromJson(json[r'gradingRuns']),
-        vaultStock: mapValueOfType<bool>(json, r'vaultStock'),
       );
     }
     return null;

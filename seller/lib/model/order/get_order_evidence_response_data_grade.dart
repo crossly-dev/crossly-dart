@@ -122,15 +122,15 @@ class GetOrderEvidenceResponseDataGradeGradeEnum {
   String toJson() => value;
 
   static const none = GetOrderEvidenceResponseDataGradeGradeEnum._(r'none');
-  static const strong = GetOrderEvidenceResponseDataGradeGradeEnum._(r'strong');
   static const basic = GetOrderEvidenceResponseDataGradeGradeEnum._(r'basic');
+  static const strong = GetOrderEvidenceResponseDataGradeGradeEnum._(r'strong');
   static const conclusive = GetOrderEvidenceResponseDataGradeGradeEnum._(r'conclusive');
 
   /// List of all possible values in this [enum][GetOrderEvidenceResponseDataGradeGradeEnum].
   static const values = <GetOrderEvidenceResponseDataGradeGradeEnum>[
     none,
-    strong,
     basic,
+    strong,
     conclusive,
   ];
 
@@ -164,8 +164,8 @@ class GetOrderEvidenceResponseDataGradeGradeEnumTypeTransformer {
     if (data != null) {
       switch (data.toString()) {
         case r'none': return GetOrderEvidenceResponseDataGradeGradeEnum.none;
-        case r'strong': return GetOrderEvidenceResponseDataGradeGradeEnum.strong;
         case r'basic': return GetOrderEvidenceResponseDataGradeGradeEnum.basic;
+        case r'strong': return GetOrderEvidenceResponseDataGradeGradeEnum.strong;
         case r'conclusive': return GetOrderEvidenceResponseDataGradeGradeEnum.conclusive;
         default:
           if (allowNull == false) {

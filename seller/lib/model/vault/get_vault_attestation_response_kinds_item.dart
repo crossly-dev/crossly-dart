@@ -23,19 +23,19 @@ class GetVaultAttestationResponseKindsItem {
 
   String toJson() => value;
 
+  static const other = GetVaultAttestationResponseKindsItem._(r'other');
   static const physicalCount = GetVaultAttestationResponseKindsItem._(r'physical_count');
   static const insuranceCertificate = GetVaultAttestationResponseKindsItem._(r'insurance_certificate');
   static const soc1Type2 = GetVaultAttestationResponseKindsItem._(r'soc1_type2');
   static const soc2 = GetVaultAttestationResponseKindsItem._(r'soc2');
-  static const other = GetVaultAttestationResponseKindsItem._(r'other');
 
   /// List of all possible values in this [enum][GetVaultAttestationResponseKindsItem].
   static const values = <GetVaultAttestationResponseKindsItem>[
+    other,
     physicalCount,
     insuranceCertificate,
     soc1Type2,
     soc2,
-    other,
   ];
 
   static GetVaultAttestationResponseKindsItem fromJson(dynamic value) =>
@@ -67,11 +67,11 @@ class GetVaultAttestationResponseKindsItemTypeTransformer {
   GetVaultAttestationResponseKindsItem decode(dynamic data, {bool allowNull}) {
     if (data != null) {
       switch (data.toString()) {
+        case r'other': return GetVaultAttestationResponseKindsItem.other;
         case r'physical_count': return GetVaultAttestationResponseKindsItem.physicalCount;
         case r'insurance_certificate': return GetVaultAttestationResponseKindsItem.insuranceCertificate;
         case r'soc1_type2': return GetVaultAttestationResponseKindsItem.soc1Type2;
         case r'soc2': return GetVaultAttestationResponseKindsItem.soc2;
-        case r'other': return GetVaultAttestationResponseKindsItem.other;
         default:
           if (allowNull == false) {
             throw ArgumentError('Unknown enum value to decode: $data');

@@ -165,16 +165,16 @@ class ListSpatialDeedListingsItemStatusEnum {
   String toJson() => value;
 
   static const active = ListSpatialDeedListingsItemStatusEnum._(r'active');
-  static const foreclosed = ListSpatialDeedListingsItemStatusEnum._(r'foreclosed');
   static const grace = ListSpatialDeedListingsItemStatusEnum._(r'grace');
   static const delinquent = ListSpatialDeedListingsItemStatusEnum._(r'delinquent');
+  static const foreclosed = ListSpatialDeedListingsItemStatusEnum._(r'foreclosed');
 
   /// List of all possible values in this [enum][ListSpatialDeedListingsItemStatusEnum].
   static const values = <ListSpatialDeedListingsItemStatusEnum>[
     active,
-    foreclosed,
     grace,
     delinquent,
+    foreclosed,
   ];
 
   static ListSpatialDeedListingsItemStatusEnum fromJson(dynamic value) =>
@@ -207,9 +207,9 @@ class ListSpatialDeedListingsItemStatusEnumTypeTransformer {
     if (data != null) {
       switch (data.toString()) {
         case r'active': return ListSpatialDeedListingsItemStatusEnum.active;
-        case r'foreclosed': return ListSpatialDeedListingsItemStatusEnum.foreclosed;
         case r'grace': return ListSpatialDeedListingsItemStatusEnum.grace;
         case r'delinquent': return ListSpatialDeedListingsItemStatusEnum.delinquent;
+        case r'foreclosed': return ListSpatialDeedListingsItemStatusEnum.foreclosed;
         default:
           if (allowNull == false) {
             throw ArgumentError('Unknown enum value to decode: $data');

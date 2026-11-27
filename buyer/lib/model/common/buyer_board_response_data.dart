@@ -14,85 +14,85 @@ class BuyerBoardResponseData {
   /// Returns a new [BuyerBoardResponseData] instance.
   BuyerBoardResponseData({
     @required this.id,
-    @required this.updatedAt,
-    @required this.isPublic,
-    this.description,
     @required this.title,
-    this.items = const [],
+    this.description,
+    @required this.isPublic,
     this.shareToken,
     this.coverUrl,
-    @required this.mine,
     @required this.ownerName,
+    @required this.mine,
+    this.items = const [],
+    @required this.updatedAt,
   });
 
   String id;
 
-  String updatedAt;
-
-  bool isPublic;
+  String title;
 
   String description;
 
-  String title;
-
-  List<BuyerBoardResponseDataItems> items;
+  bool isPublic;
 
   String shareToken;
 
   String coverUrl;
 
+  String ownerName;
+
   bool mine;
 
-  String ownerName;
+  List<BuyerBoardResponseDataItems> items;
+
+  String updatedAt;
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is BuyerBoardResponseData &&
      other.id == id &&
-     other.updatedAt == updatedAt &&
-     other.isPublic == isPublic &&
-     other.description == description &&
      other.title == title &&
-     other.items == items &&
+     other.description == description &&
+     other.isPublic == isPublic &&
      other.shareToken == shareToken &&
      other.coverUrl == coverUrl &&
+     other.ownerName == ownerName &&
      other.mine == mine &&
-     other.ownerName == ownerName;
+     other.items == items &&
+     other.updatedAt == updatedAt;
 
   @override
   int get hashCode =>
   // ignore: unnecessary_parenthesis
     (id == null ? 0 : id.hashCode) +
-    (updatedAt == null ? 0 : updatedAt.hashCode) +
-    (isPublic == null ? 0 : isPublic.hashCode) +
-    (description == null ? 0 : description.hashCode) +
     (title == null ? 0 : title.hashCode) +
-    (items == null ? 0 : items.hashCode) +
+    (description == null ? 0 : description.hashCode) +
+    (isPublic == null ? 0 : isPublic.hashCode) +
     (shareToken == null ? 0 : shareToken.hashCode) +
     (coverUrl == null ? 0 : coverUrl.hashCode) +
+    (ownerName == null ? 0 : ownerName.hashCode) +
     (mine == null ? 0 : mine.hashCode) +
-    (ownerName == null ? 0 : ownerName.hashCode);
+    (items == null ? 0 : items.hashCode) +
+    (updatedAt == null ? 0 : updatedAt.hashCode);
 
   @override
-  String toString() => 'BuyerBoardResponseData[id=$id, updatedAt=$updatedAt, isPublic=$isPublic, description=$description, title=$title, items=$items, shareToken=$shareToken, coverUrl=$coverUrl, mine=$mine, ownerName=$ownerName]';
+  String toString() => 'BuyerBoardResponseData[id=$id, title=$title, description=$description, isPublic=$isPublic, shareToken=$shareToken, coverUrl=$coverUrl, ownerName=$ownerName, mine=$mine, items=$items, updatedAt=$updatedAt]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
       json[r'id'] = id;
-      json[r'updatedAt'] = updatedAt;
-      json[r'isPublic'] = isPublic;
+      json[r'title'] = title;
     if (description != null) {
       json[r'description'] = description;
     }
-      json[r'title'] = title;
-      json[r'items'] = items;
+      json[r'isPublic'] = isPublic;
     if (shareToken != null) {
       json[r'shareToken'] = shareToken;
     }
     if (coverUrl != null) {
       json[r'coverUrl'] = coverUrl;
     }
-      json[r'mine'] = mine;
       json[r'ownerName'] = ownerName;
+      json[r'mine'] = mine;
+      json[r'items'] = items;
+      json[r'updatedAt'] = updatedAt;
     return json;
   }
 
@@ -104,15 +104,15 @@ class BuyerBoardResponseData {
       final json = value.cast<String, dynamic>();
       return BuyerBoardResponseData(
         id: mapValueOfType<String>(json, r'id'),
-        updatedAt: mapValueOfType<String>(json, r'updatedAt'),
-        isPublic: mapValueOfType<bool>(json, r'isPublic'),
-        description: mapValueOfType<String>(json, r'description'),
         title: mapValueOfType<String>(json, r'title'),
-        items: BuyerBoardResponseDataItems.listFromJson(json[r'items']),
+        description: mapValueOfType<String>(json, r'description'),
+        isPublic: mapValueOfType<bool>(json, r'isPublic'),
         shareToken: mapValueOfType<String>(json, r'shareToken'),
         coverUrl: mapValueOfType<String>(json, r'coverUrl'),
-        mine: mapValueOfType<bool>(json, r'mine'),
         ownerName: mapValueOfType<String>(json, r'ownerName'),
+        mine: mapValueOfType<bool>(json, r'mine'),
+        items: BuyerBoardResponseDataItems.listFromJson(json[r'items']),
+        updatedAt: mapValueOfType<String>(json, r'updatedAt'),
       );
     }
     return null;

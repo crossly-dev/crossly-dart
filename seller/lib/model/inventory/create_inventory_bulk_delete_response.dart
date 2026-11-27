@@ -13,38 +13,58 @@ part of openapi.api;
 class CreateInventoryBulkDeleteResponse {
   /// Returns a new [CreateInventoryBulkDeleteResponse] instance.
   CreateInventoryBulkDeleteResponse({
-    @required this.success,
     @required this.deleted,
+    this.deletedIds = const [],
+    this.refused = const [],
+    @required this.relayed,
     @required this.bulkJobId,
+    @required this.success,
   });
-
-  bool success;
 
   num deleted;
 
+  List<String> deletedIds;
+
+  /// Items NOT deleted: a live listing Crossly may not end (action authority).
+  List<CreateInventoryBulkDeleteResponseRefused> refused;
+
+  /// Live rows handed to their managing app as delist commands.
+  num relayed;
+
   String bulkJobId;
+
+  bool success;
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is CreateInventoryBulkDeleteResponse &&
-     other.success == success &&
      other.deleted == deleted &&
-     other.bulkJobId == bulkJobId;
+     other.deletedIds == deletedIds &&
+     other.refused == refused &&
+     other.relayed == relayed &&
+     other.bulkJobId == bulkJobId &&
+     other.success == success;
 
   @override
   int get hashCode =>
   // ignore: unnecessary_parenthesis
-    (success == null ? 0 : success.hashCode) +
     (deleted == null ? 0 : deleted.hashCode) +
-    (bulkJobId == null ? 0 : bulkJobId.hashCode);
+    (deletedIds == null ? 0 : deletedIds.hashCode) +
+    (refused == null ? 0 : refused.hashCode) +
+    (relayed == null ? 0 : relayed.hashCode) +
+    (bulkJobId == null ? 0 : bulkJobId.hashCode) +
+    (success == null ? 0 : success.hashCode);
 
   @override
-  String toString() => 'CreateInventoryBulkDeleteResponse[success=$success, deleted=$deleted, bulkJobId=$bulkJobId]';
+  String toString() => 'CreateInventoryBulkDeleteResponse[deleted=$deleted, deletedIds=$deletedIds, refused=$refused, relayed=$relayed, bulkJobId=$bulkJobId, success=$success]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-      json[r'success'] = success;
       json[r'deleted'] = deleted;
+      json[r'deletedIds'] = deletedIds;
+      json[r'refused'] = refused;
+      json[r'relayed'] = relayed;
       json[r'bulkJobId'] = bulkJobId;
+      json[r'success'] = success;
     return json;
   }
 
@@ -55,11 +75,18 @@ class CreateInventoryBulkDeleteResponse {
     if (value is Map) {
       final json = value.cast<String, dynamic>();
       return CreateInventoryBulkDeleteResponse(
-        success: mapValueOfType<bool>(json, r'success'),
         deleted: json[r'deleted'] == null
           ? null
           : num.parse(json[r'deleted'].toString()),
+        deletedIds: json[r'deletedIds'] is List
+          ? (json[r'deletedIds'] as List).cast<String>()
+          : null,
+        refused: CreateInventoryBulkDeleteResponseRefused.listFromJson(json[r'refused']),
+        relayed: json[r'relayed'] == null
+          ? null
+          : num.parse(json[r'relayed'].toString()),
         bulkJobId: mapValueOfType<String>(json, r'bulkJobId'),
+        success: mapValueOfType<bool>(json, r'success'),
       );
     }
     return null;

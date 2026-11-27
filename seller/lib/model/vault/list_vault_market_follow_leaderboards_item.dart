@@ -14,6 +14,7 @@ class ListVaultMarketFollowLeaderboardsItem {
   /// Returns a new [ListVaultMarketFollowLeaderboardsItem] instance.
   ListVaultMarketFollowLeaderboardsItem({
     @required this.rank,
+    @required this.person,
     @required this.returnBps,
     @required this.volatilityBps,
     @required this.riskAdjusted,
@@ -24,6 +25,8 @@ class ListVaultMarketFollowLeaderboardsItem {
   });
 
   num rank;
+
+  ListVaultMarketFollowLeaderboardsItemPerson person;
 
   num returnBps;
 
@@ -42,6 +45,7 @@ class ListVaultMarketFollowLeaderboardsItem {
   @override
   bool operator ==(Object other) => identical(this, other) || other is ListVaultMarketFollowLeaderboardsItem &&
      other.rank == rank &&
+     other.person == person &&
      other.returnBps == returnBps &&
      other.volatilityBps == volatilityBps &&
      other.riskAdjusted == riskAdjusted &&
@@ -54,6 +58,7 @@ class ListVaultMarketFollowLeaderboardsItem {
   int get hashCode =>
   // ignore: unnecessary_parenthesis
     (rank == null ? 0 : rank.hashCode) +
+    (person == null ? 0 : person.hashCode) +
     (returnBps == null ? 0 : returnBps.hashCode) +
     (volatilityBps == null ? 0 : volatilityBps.hashCode) +
     (riskAdjusted == null ? 0 : riskAdjusted.hashCode) +
@@ -63,11 +68,12 @@ class ListVaultMarketFollowLeaderboardsItem {
     (isMe == null ? 0 : isMe.hashCode);
 
   @override
-  String toString() => 'ListVaultMarketFollowLeaderboardsItem[rank=$rank, returnBps=$returnBps, volatilityBps=$volatilityBps, riskAdjusted=$riskAdjusted, maxDrawdownBps=$maxDrawdownBps, days=$days, markets=$markets, isMe=$isMe]';
+  String toString() => 'ListVaultMarketFollowLeaderboardsItem[rank=$rank, person=$person, returnBps=$returnBps, volatilityBps=$volatilityBps, riskAdjusted=$riskAdjusted, maxDrawdownBps=$maxDrawdownBps, days=$days, markets=$markets, isMe=$isMe]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
       json[r'rank'] = rank;
+      json[r'person'] = person;
       json[r'returnBps'] = returnBps;
       json[r'volatilityBps'] = volatilityBps;
       json[r'riskAdjusted'] = riskAdjusted;
@@ -88,6 +94,7 @@ class ListVaultMarketFollowLeaderboardsItem {
         rank: json[r'rank'] == null
           ? null
           : num.parse(json[r'rank'].toString()),
+        person: ListVaultMarketFollowLeaderboardsItemPerson.fromJson(json[r'person']),
         returnBps: json[r'returnBps'] == null
           ? null
           : num.parse(json[r'returnBps'].toString()),

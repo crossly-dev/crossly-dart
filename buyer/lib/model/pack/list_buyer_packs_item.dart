@@ -14,15 +14,15 @@ class ListBuyerPacksItem {
   /// Returns a new [ListBuyerPacksItem] instance.
   ListBuyerPacksItem({
     @required this.id,
-    @required this.status,
-    this.description,
-    @required this.title,
     @required this.slug,
-    @required this.priceCents,
+    @required this.title,
+    this.description,
     this.imageUrl,
-    this.tiers = const [],
+    @required this.priceCents,
+    @required this.status,
     @required this.buybackBps,
     @required this.buybackDays,
+    this.tiers = const [],
     @required this.expectedValueCents,
     @required this.openable,
     this.chase = const [],
@@ -30,23 +30,23 @@ class ListBuyerPacksItem {
 
   String id;
 
-  String status;
-
-  String description;
+  String slug;
 
   String title;
 
-  String slug;
-
-  num priceCents;
+  String description;
 
   String imageUrl;
 
-  List<ListBuyerPacksItemTiers> tiers;
+  num priceCents;
+
+  String status;
 
   num buybackBps;
 
   num buybackDays;
+
+  List<ListBuyerPacksItemTiers> tiers;
 
   num expectedValueCents;
 
@@ -57,15 +57,15 @@ class ListBuyerPacksItem {
   @override
   bool operator ==(Object other) => identical(this, other) || other is ListBuyerPacksItem &&
      other.id == id &&
-     other.status == status &&
-     other.description == description &&
-     other.title == title &&
      other.slug == slug &&
-     other.priceCents == priceCents &&
+     other.title == title &&
+     other.description == description &&
      other.imageUrl == imageUrl &&
-     other.tiers == tiers &&
+     other.priceCents == priceCents &&
+     other.status == status &&
      other.buybackBps == buybackBps &&
      other.buybackDays == buybackDays &&
+     other.tiers == tiers &&
      other.expectedValueCents == expectedValueCents &&
      other.openable == openable &&
      other.chase == chase;
@@ -74,38 +74,38 @@ class ListBuyerPacksItem {
   int get hashCode =>
   // ignore: unnecessary_parenthesis
     (id == null ? 0 : id.hashCode) +
-    (status == null ? 0 : status.hashCode) +
-    (description == null ? 0 : description.hashCode) +
-    (title == null ? 0 : title.hashCode) +
     (slug == null ? 0 : slug.hashCode) +
-    (priceCents == null ? 0 : priceCents.hashCode) +
+    (title == null ? 0 : title.hashCode) +
+    (description == null ? 0 : description.hashCode) +
     (imageUrl == null ? 0 : imageUrl.hashCode) +
-    (tiers == null ? 0 : tiers.hashCode) +
+    (priceCents == null ? 0 : priceCents.hashCode) +
+    (status == null ? 0 : status.hashCode) +
     (buybackBps == null ? 0 : buybackBps.hashCode) +
     (buybackDays == null ? 0 : buybackDays.hashCode) +
+    (tiers == null ? 0 : tiers.hashCode) +
     (expectedValueCents == null ? 0 : expectedValueCents.hashCode) +
     (openable == null ? 0 : openable.hashCode) +
     (chase == null ? 0 : chase.hashCode);
 
   @override
-  String toString() => 'ListBuyerPacksItem[id=$id, status=$status, description=$description, title=$title, slug=$slug, priceCents=$priceCents, imageUrl=$imageUrl, tiers=$tiers, buybackBps=$buybackBps, buybackDays=$buybackDays, expectedValueCents=$expectedValueCents, openable=$openable, chase=$chase]';
+  String toString() => 'ListBuyerPacksItem[id=$id, slug=$slug, title=$title, description=$description, imageUrl=$imageUrl, priceCents=$priceCents, status=$status, buybackBps=$buybackBps, buybackDays=$buybackDays, tiers=$tiers, expectedValueCents=$expectedValueCents, openable=$openable, chase=$chase]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
       json[r'id'] = id;
-      json[r'status'] = status;
+      json[r'slug'] = slug;
+      json[r'title'] = title;
     if (description != null) {
       json[r'description'] = description;
     }
-      json[r'title'] = title;
-      json[r'slug'] = slug;
-      json[r'priceCents'] = priceCents;
     if (imageUrl != null) {
       json[r'imageUrl'] = imageUrl;
     }
-      json[r'tiers'] = tiers;
+      json[r'priceCents'] = priceCents;
+      json[r'status'] = status;
       json[r'buybackBps'] = buybackBps;
       json[r'buybackDays'] = buybackDays;
+      json[r'tiers'] = tiers;
       json[r'expectedValueCents'] = expectedValueCents;
       json[r'openable'] = openable;
       json[r'chase'] = chase;
@@ -120,21 +120,21 @@ class ListBuyerPacksItem {
       final json = value.cast<String, dynamic>();
       return ListBuyerPacksItem(
         id: mapValueOfType<String>(json, r'id'),
-        status: mapValueOfType<String>(json, r'status'),
-        description: mapValueOfType<String>(json, r'description'),
-        title: mapValueOfType<String>(json, r'title'),
         slug: mapValueOfType<String>(json, r'slug'),
+        title: mapValueOfType<String>(json, r'title'),
+        description: mapValueOfType<String>(json, r'description'),
+        imageUrl: mapValueOfType<String>(json, r'imageUrl'),
         priceCents: json[r'priceCents'] == null
           ? null
           : num.parse(json[r'priceCents'].toString()),
-        imageUrl: mapValueOfType<String>(json, r'imageUrl'),
-        tiers: ListBuyerPacksItemTiers.listFromJson(json[r'tiers']),
+        status: mapValueOfType<String>(json, r'status'),
         buybackBps: json[r'buybackBps'] == null
           ? null
           : num.parse(json[r'buybackBps'].toString()),
         buybackDays: json[r'buybackDays'] == null
           ? null
           : num.parse(json[r'buybackDays'].toString()),
+        tiers: ListBuyerPacksItemTiers.listFromJson(json[r'tiers']),
         expectedValueCents: json[r'expectedValueCents'] == null
           ? null
           : num.parse(json[r'expectedValueCents'].toString()),

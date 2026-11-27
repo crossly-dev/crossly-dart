@@ -13,10 +13,19 @@ part of openapi.api;
 class CreateSpatialPropertyDeedMaintenanceResponseData {
   /// Returns a new [CreateSpatialPropertyDeedMaintenanceResponseData] instance.
   CreateSpatialPropertyDeedMaintenanceResponseData({
-    @required this.paidThrough,
-    @required this.status,
-    @required this.paidCents,
+    this.requiresAction,
+    this.paymentId,
+    this.clientSecret,
+    this.paidThrough,
+    this.status,
+    this.paidCents,
   });
+
+  bool requiresAction;
+
+  String paymentId;
+
+  String clientSecret;
 
   String paidThrough;
 
@@ -26,6 +35,9 @@ class CreateSpatialPropertyDeedMaintenanceResponseData {
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is CreateSpatialPropertyDeedMaintenanceResponseData &&
+     other.requiresAction == requiresAction &&
+     other.paymentId == paymentId &&
+     other.clientSecret == clientSecret &&
      other.paidThrough == paidThrough &&
      other.status == status &&
      other.paidCents == paidCents;
@@ -33,18 +45,36 @@ class CreateSpatialPropertyDeedMaintenanceResponseData {
   @override
   int get hashCode =>
   // ignore: unnecessary_parenthesis
+    (requiresAction == null ? 0 : requiresAction.hashCode) +
+    (paymentId == null ? 0 : paymentId.hashCode) +
+    (clientSecret == null ? 0 : clientSecret.hashCode) +
     (paidThrough == null ? 0 : paidThrough.hashCode) +
     (status == null ? 0 : status.hashCode) +
     (paidCents == null ? 0 : paidCents.hashCode);
 
   @override
-  String toString() => 'CreateSpatialPropertyDeedMaintenanceResponseData[paidThrough=$paidThrough, status=$status, paidCents=$paidCents]';
+  String toString() => 'CreateSpatialPropertyDeedMaintenanceResponseData[requiresAction=$requiresAction, paymentId=$paymentId, clientSecret=$clientSecret, paidThrough=$paidThrough, status=$status, paidCents=$paidCents]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
+    if (requiresAction != null) {
+      json[r'requiresAction'] = requiresAction;
+    }
+    if (paymentId != null) {
+      json[r'paymentId'] = paymentId;
+    }
+    if (clientSecret != null) {
+      json[r'clientSecret'] = clientSecret;
+    }
+    if (paidThrough != null) {
       json[r'paidThrough'] = paidThrough;
+    }
+    if (status != null) {
       json[r'status'] = status;
+    }
+    if (paidCents != null) {
       json[r'paidCents'] = paidCents;
+    }
     return json;
   }
 
@@ -55,6 +85,9 @@ class CreateSpatialPropertyDeedMaintenanceResponseData {
     if (value is Map) {
       final json = value.cast<String, dynamic>();
       return CreateSpatialPropertyDeedMaintenanceResponseData(
+        requiresAction: mapValueOfType<bool>(json, r'requiresAction'),
+        paymentId: mapValueOfType<String>(json, r'paymentId'),
+        clientSecret: mapValueOfType<String>(json, r'clientSecret'),
         paidThrough: mapValueOfType<String>(json, r'paidThrough'),
         status: CreateSpatialPropertyDeedMaintenanceResponseDataStatusEnum.fromJson(json[r'status']),
         paidCents: json[r'paidCents'] == null
@@ -112,16 +145,16 @@ class CreateSpatialPropertyDeedMaintenanceResponseDataStatusEnum {
   String toJson() => value;
 
   static const active = CreateSpatialPropertyDeedMaintenanceResponseDataStatusEnum._(r'active');
-  static const foreclosed = CreateSpatialPropertyDeedMaintenanceResponseDataStatusEnum._(r'foreclosed');
   static const grace = CreateSpatialPropertyDeedMaintenanceResponseDataStatusEnum._(r'grace');
   static const delinquent = CreateSpatialPropertyDeedMaintenanceResponseDataStatusEnum._(r'delinquent');
+  static const foreclosed = CreateSpatialPropertyDeedMaintenanceResponseDataStatusEnum._(r'foreclosed');
 
   /// List of all possible values in this [enum][CreateSpatialPropertyDeedMaintenanceResponseDataStatusEnum].
   static const values = <CreateSpatialPropertyDeedMaintenanceResponseDataStatusEnum>[
     active,
-    foreclosed,
     grace,
     delinquent,
+    foreclosed,
   ];
 
   static CreateSpatialPropertyDeedMaintenanceResponseDataStatusEnum fromJson(dynamic value) =>
@@ -154,9 +187,9 @@ class CreateSpatialPropertyDeedMaintenanceResponseDataStatusEnumTypeTransformer 
     if (data != null) {
       switch (data.toString()) {
         case r'active': return CreateSpatialPropertyDeedMaintenanceResponseDataStatusEnum.active;
-        case r'foreclosed': return CreateSpatialPropertyDeedMaintenanceResponseDataStatusEnum.foreclosed;
         case r'grace': return CreateSpatialPropertyDeedMaintenanceResponseDataStatusEnum.grace;
         case r'delinquent': return CreateSpatialPropertyDeedMaintenanceResponseDataStatusEnum.delinquent;
+        case r'foreclosed': return CreateSpatialPropertyDeedMaintenanceResponseDataStatusEnum.foreclosed;
         default:
           if (allowNull == false) {
             throw ArgumentError('Unknown enum value to decode: $data');

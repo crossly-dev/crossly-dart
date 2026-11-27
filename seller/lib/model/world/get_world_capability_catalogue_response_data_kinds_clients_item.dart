@@ -23,18 +23,18 @@ class GetWorldCapabilityCatalogueResponseDataKindsClientsItem {
 
   String toJson() => value;
 
-  static const web = GetWorldCapabilityCatalogueResponseDataKindsClientsItem._(r'web');
   static const app = GetWorldCapabilityCatalogueResponseDataKindsClientsItem._(r'app');
-  static const godot = GetWorldCapabilityCatalogueResponseDataKindsClientsItem._(r'godot');
   static const api = GetWorldCapabilityCatalogueResponseDataKindsClientsItem._(r'api');
+  static const web = GetWorldCapabilityCatalogueResponseDataKindsClientsItem._(r'web');
+  static const godot = GetWorldCapabilityCatalogueResponseDataKindsClientsItem._(r'godot');
   static const runner = GetWorldCapabilityCatalogueResponseDataKindsClientsItem._(r'runner');
 
   /// List of all possible values in this [enum][GetWorldCapabilityCatalogueResponseDataKindsClientsItem].
   static const values = <GetWorldCapabilityCatalogueResponseDataKindsClientsItem>[
-    web,
     app,
-    godot,
     api,
+    web,
+    godot,
     runner,
   ];
 
@@ -67,10 +67,10 @@ class GetWorldCapabilityCatalogueResponseDataKindsClientsItemTypeTransformer {
   GetWorldCapabilityCatalogueResponseDataKindsClientsItem decode(dynamic data, {bool allowNull}) {
     if (data != null) {
       switch (data.toString()) {
-        case r'web': return GetWorldCapabilityCatalogueResponseDataKindsClientsItem.web;
         case r'app': return GetWorldCapabilityCatalogueResponseDataKindsClientsItem.app;
-        case r'godot': return GetWorldCapabilityCatalogueResponseDataKindsClientsItem.godot;
         case r'api': return GetWorldCapabilityCatalogueResponseDataKindsClientsItem.api;
+        case r'web': return GetWorldCapabilityCatalogueResponseDataKindsClientsItem.web;
+        case r'godot': return GetWorldCapabilityCatalogueResponseDataKindsClientsItem.godot;
         case r'runner': return GetWorldCapabilityCatalogueResponseDataKindsClientsItem.runner;
         default:
           if (allowNull == false) {

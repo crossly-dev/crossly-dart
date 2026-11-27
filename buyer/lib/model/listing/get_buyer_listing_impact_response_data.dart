@@ -13,54 +13,54 @@ part of openapi.api;
 class GetBuyerListingImpactResponseData {
   /// Returns a new [GetBuyerListingImpactResponseData] instance.
   GetBuyerListingImpactResponseData({
-    @required this.source_,
-    @required this.label,
     @required this.key,
+    @required this.label,
     this.co2Kg,
     this.waterL,
+    @required this.source_,
   });
 
-  String source_;
+  String key;
 
   String label;
-
-  String key;
 
   num co2Kg;
 
   num waterL;
 
+  String source_;
+
   @override
   bool operator ==(Object other) => identical(this, other) || other is GetBuyerListingImpactResponseData &&
-     other.source_ == source_ &&
-     other.label == label &&
      other.key == key &&
+     other.label == label &&
      other.co2Kg == co2Kg &&
-     other.waterL == waterL;
+     other.waterL == waterL &&
+     other.source_ == source_;
 
   @override
   int get hashCode =>
   // ignore: unnecessary_parenthesis
-    (source_ == null ? 0 : source_.hashCode) +
-    (label == null ? 0 : label.hashCode) +
     (key == null ? 0 : key.hashCode) +
+    (label == null ? 0 : label.hashCode) +
     (co2Kg == null ? 0 : co2Kg.hashCode) +
-    (waterL == null ? 0 : waterL.hashCode);
+    (waterL == null ? 0 : waterL.hashCode) +
+    (source_ == null ? 0 : source_.hashCode);
 
   @override
-  String toString() => 'GetBuyerListingImpactResponseData[source_=$source_, label=$label, key=$key, co2Kg=$co2Kg, waterL=$waterL]';
+  String toString() => 'GetBuyerListingImpactResponseData[key=$key, label=$label, co2Kg=$co2Kg, waterL=$waterL, source_=$source_]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-      json[r'source'] = source_;
-      json[r'label'] = label;
       json[r'key'] = key;
+      json[r'label'] = label;
     if (co2Kg != null) {
       json[r'co2Kg'] = co2Kg;
     }
     if (waterL != null) {
       json[r'waterL'] = waterL;
     }
+      json[r'source'] = source_;
     return json;
   }
 
@@ -71,15 +71,15 @@ class GetBuyerListingImpactResponseData {
     if (value is Map) {
       final json = value.cast<String, dynamic>();
       return GetBuyerListingImpactResponseData(
-        source_: mapValueOfType<String>(json, r'source'),
-        label: mapValueOfType<String>(json, r'label'),
         key: mapValueOfType<String>(json, r'key'),
+        label: mapValueOfType<String>(json, r'label'),
         co2Kg: json[r'co2Kg'] == null
           ? null
           : num.parse(json[r'co2Kg'].toString()),
         waterL: json[r'waterL'] == null
           ? null
           : num.parse(json[r'waterL'].toString()),
+        source_: mapValueOfType<String>(json, r'source'),
       );
     }
     return null;

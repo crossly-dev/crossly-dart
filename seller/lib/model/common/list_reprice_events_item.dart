@@ -16,19 +16,19 @@ class ListRepriceEventsItem {
     @required this.id,
     @required this.createdAt,
     @required this.userId,
-    @required this.reason,
     this.platform,
     this.listingId,
     this.platformListingId,
-    this.decidedAt,
+    @required this.reason,
     this.ruleId,
-    this.floorCents,
     @required this.strategy,
     this.oldPriceCents,
     this.newPriceCents,
     @required this.changed,
+    this.floorCents,
     @required this.floorWasNet,
     this.approval,
+    this.decidedAt,
   });
 
   String id;
@@ -37,19 +37,15 @@ class ListRepriceEventsItem {
 
   String userId;
 
-  String reason;
-
   String platform;
 
   String listingId;
 
   String platformListingId;
 
-  DateTime decidedAt;
+  String reason;
 
   String ruleId;
-
-  num floorCents;
 
   String strategy;
 
@@ -59,28 +55,32 @@ class ListRepriceEventsItem {
 
   bool changed;
 
+  num floorCents;
+
   bool floorWasNet;
 
   String approval;
+
+  DateTime decidedAt;
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is ListRepriceEventsItem &&
      other.id == id &&
      other.createdAt == createdAt &&
      other.userId == userId &&
-     other.reason == reason &&
      other.platform == platform &&
      other.listingId == listingId &&
      other.platformListingId == platformListingId &&
-     other.decidedAt == decidedAt &&
+     other.reason == reason &&
      other.ruleId == ruleId &&
-     other.floorCents == floorCents &&
      other.strategy == strategy &&
      other.oldPriceCents == oldPriceCents &&
      other.newPriceCents == newPriceCents &&
      other.changed == changed &&
+     other.floorCents == floorCents &&
      other.floorWasNet == floorWasNet &&
-     other.approval == approval;
+     other.approval == approval &&
+     other.decidedAt == decidedAt;
 
   @override
   int get hashCode =>
@@ -88,29 +88,28 @@ class ListRepriceEventsItem {
     (id == null ? 0 : id.hashCode) +
     (createdAt == null ? 0 : createdAt.hashCode) +
     (userId == null ? 0 : userId.hashCode) +
-    (reason == null ? 0 : reason.hashCode) +
     (platform == null ? 0 : platform.hashCode) +
     (listingId == null ? 0 : listingId.hashCode) +
     (platformListingId == null ? 0 : platformListingId.hashCode) +
-    (decidedAt == null ? 0 : decidedAt.hashCode) +
+    (reason == null ? 0 : reason.hashCode) +
     (ruleId == null ? 0 : ruleId.hashCode) +
-    (floorCents == null ? 0 : floorCents.hashCode) +
     (strategy == null ? 0 : strategy.hashCode) +
     (oldPriceCents == null ? 0 : oldPriceCents.hashCode) +
     (newPriceCents == null ? 0 : newPriceCents.hashCode) +
     (changed == null ? 0 : changed.hashCode) +
+    (floorCents == null ? 0 : floorCents.hashCode) +
     (floorWasNet == null ? 0 : floorWasNet.hashCode) +
-    (approval == null ? 0 : approval.hashCode);
+    (approval == null ? 0 : approval.hashCode) +
+    (decidedAt == null ? 0 : decidedAt.hashCode);
 
   @override
-  String toString() => 'ListRepriceEventsItem[id=$id, createdAt=$createdAt, userId=$userId, reason=$reason, platform=$platform, listingId=$listingId, platformListingId=$platformListingId, decidedAt=$decidedAt, ruleId=$ruleId, floorCents=$floorCents, strategy=$strategy, oldPriceCents=$oldPriceCents, newPriceCents=$newPriceCents, changed=$changed, floorWasNet=$floorWasNet, approval=$approval]';
+  String toString() => 'ListRepriceEventsItem[id=$id, createdAt=$createdAt, userId=$userId, platform=$platform, listingId=$listingId, platformListingId=$platformListingId, reason=$reason, ruleId=$ruleId, strategy=$strategy, oldPriceCents=$oldPriceCents, newPriceCents=$newPriceCents, changed=$changed, floorCents=$floorCents, floorWasNet=$floorWasNet, approval=$approval, decidedAt=$decidedAt]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
       json[r'id'] = id;
       json[r'createdAt'] = createdAt.toUtc().toIso8601String();
       json[r'userId'] = userId;
-      json[r'reason'] = reason;
     if (platform != null) {
       json[r'platform'] = platform;
     }
@@ -120,14 +119,9 @@ class ListRepriceEventsItem {
     if (platformListingId != null) {
       json[r'platformListingId'] = platformListingId;
     }
-    if (decidedAt != null) {
-      json[r'decidedAt'] = decidedAt.toUtc().toIso8601String();
-    }
+      json[r'reason'] = reason;
     if (ruleId != null) {
       json[r'ruleId'] = ruleId;
-    }
-    if (floorCents != null) {
-      json[r'floorCents'] = floorCents;
     }
       json[r'strategy'] = strategy;
     if (oldPriceCents != null) {
@@ -137,9 +131,15 @@ class ListRepriceEventsItem {
       json[r'newPriceCents'] = newPriceCents;
     }
       json[r'changed'] = changed;
+    if (floorCents != null) {
+      json[r'floorCents'] = floorCents;
+    }
       json[r'floorWasNet'] = floorWasNet;
     if (approval != null) {
       json[r'approval'] = approval;
+    }
+    if (decidedAt != null) {
+      json[r'decidedAt'] = decidedAt.toUtc().toIso8601String();
     }
     return json;
   }
@@ -154,15 +154,11 @@ class ListRepriceEventsItem {
         id: mapValueOfType<String>(json, r'id'),
         createdAt: mapDateTime(json, r'createdAt', ''),
         userId: mapValueOfType<String>(json, r'userId'),
-        reason: mapValueOfType<String>(json, r'reason'),
         platform: mapValueOfType<String>(json, r'platform'),
         listingId: mapValueOfType<String>(json, r'listingId'),
         platformListingId: mapValueOfType<String>(json, r'platformListingId'),
-        decidedAt: mapDateTime(json, r'decidedAt', ''),
+        reason: mapValueOfType<String>(json, r'reason'),
         ruleId: mapValueOfType<String>(json, r'ruleId'),
-        floorCents: json[r'floorCents'] == null
-          ? null
-          : num.parse(json[r'floorCents'].toString()),
         strategy: mapValueOfType<String>(json, r'strategy'),
         oldPriceCents: json[r'oldPriceCents'] == null
           ? null
@@ -171,8 +167,12 @@ class ListRepriceEventsItem {
           ? null
           : num.parse(json[r'newPriceCents'].toString()),
         changed: mapValueOfType<bool>(json, r'changed'),
+        floorCents: json[r'floorCents'] == null
+          ? null
+          : num.parse(json[r'floorCents'].toString()),
         floorWasNet: mapValueOfType<bool>(json, r'floorWasNet'),
         approval: mapValueOfType<String>(json, r'approval'),
+        decidedAt: mapDateTime(json, r'decidedAt', ''),
       );
     }
     return null;

@@ -14,87 +14,87 @@ class ListBuyerGiftSentItem {
   /// Returns a new [ListBuyerGiftSentItem] instance.
   ListBuyerGiftSentItem({
     @required this.id,
-    @required this.createdAt,
-    @required this.status,
-    @required this.url,
-    this.openedAt,
-    this.revealedAt,
-    @required this.recipientEmail,
     @required this.recipientName,
+    @required this.recipientEmail,
+    @required this.status,
     this.teaserSentAt,
+    this.revealedAt,
+    this.openedAt,
     this.thanksMessage,
+    @required this.createdAt,
+    @required this.url,
   });
 
   String id;
 
-  String createdAt;
-
-  String status;
-
-  String url;
-
-  String openedAt;
-
-  String revealedAt;
+  String recipientName;
 
   String recipientEmail;
 
-  String recipientName;
+  String status;
 
   String teaserSentAt;
 
+  String revealedAt;
+
+  String openedAt;
+
   String thanksMessage;
+
+  String createdAt;
+
+  String url;
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is ListBuyerGiftSentItem &&
      other.id == id &&
-     other.createdAt == createdAt &&
-     other.status == status &&
-     other.url == url &&
-     other.openedAt == openedAt &&
-     other.revealedAt == revealedAt &&
-     other.recipientEmail == recipientEmail &&
      other.recipientName == recipientName &&
+     other.recipientEmail == recipientEmail &&
+     other.status == status &&
      other.teaserSentAt == teaserSentAt &&
-     other.thanksMessage == thanksMessage;
+     other.revealedAt == revealedAt &&
+     other.openedAt == openedAt &&
+     other.thanksMessage == thanksMessage &&
+     other.createdAt == createdAt &&
+     other.url == url;
 
   @override
   int get hashCode =>
   // ignore: unnecessary_parenthesis
     (id == null ? 0 : id.hashCode) +
-    (createdAt == null ? 0 : createdAt.hashCode) +
-    (status == null ? 0 : status.hashCode) +
-    (url == null ? 0 : url.hashCode) +
-    (openedAt == null ? 0 : openedAt.hashCode) +
-    (revealedAt == null ? 0 : revealedAt.hashCode) +
-    (recipientEmail == null ? 0 : recipientEmail.hashCode) +
     (recipientName == null ? 0 : recipientName.hashCode) +
+    (recipientEmail == null ? 0 : recipientEmail.hashCode) +
+    (status == null ? 0 : status.hashCode) +
     (teaserSentAt == null ? 0 : teaserSentAt.hashCode) +
-    (thanksMessage == null ? 0 : thanksMessage.hashCode);
+    (revealedAt == null ? 0 : revealedAt.hashCode) +
+    (openedAt == null ? 0 : openedAt.hashCode) +
+    (thanksMessage == null ? 0 : thanksMessage.hashCode) +
+    (createdAt == null ? 0 : createdAt.hashCode) +
+    (url == null ? 0 : url.hashCode);
 
   @override
-  String toString() => 'ListBuyerGiftSentItem[id=$id, createdAt=$createdAt, status=$status, url=$url, openedAt=$openedAt, revealedAt=$revealedAt, recipientEmail=$recipientEmail, recipientName=$recipientName, teaserSentAt=$teaserSentAt, thanksMessage=$thanksMessage]';
+  String toString() => 'ListBuyerGiftSentItem[id=$id, recipientName=$recipientName, recipientEmail=$recipientEmail, status=$status, teaserSentAt=$teaserSentAt, revealedAt=$revealedAt, openedAt=$openedAt, thanksMessage=$thanksMessage, createdAt=$createdAt, url=$url]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
       json[r'id'] = id;
-      json[r'createdAt'] = createdAt;
+      json[r'recipientName'] = recipientName;
+      json[r'recipientEmail'] = recipientEmail;
       json[r'status'] = status;
-      json[r'url'] = url;
-    if (openedAt != null) {
-      json[r'openedAt'] = openedAt;
+    if (teaserSentAt != null) {
+      json[r'teaserSentAt'] = teaserSentAt;
     }
     if (revealedAt != null) {
       json[r'revealedAt'] = revealedAt;
     }
-      json[r'recipientEmail'] = recipientEmail;
-      json[r'recipientName'] = recipientName;
-    if (teaserSentAt != null) {
-      json[r'teaserSentAt'] = teaserSentAt;
+    if (openedAt != null) {
+      json[r'openedAt'] = openedAt;
     }
     if (thanksMessage != null) {
       json[r'thanksMessage'] = thanksMessage;
     }
+      json[r'createdAt'] = createdAt;
+      json[r'url'] = url;
     return json;
   }
 
@@ -106,15 +106,15 @@ class ListBuyerGiftSentItem {
       final json = value.cast<String, dynamic>();
       return ListBuyerGiftSentItem(
         id: mapValueOfType<String>(json, r'id'),
-        createdAt: mapValueOfType<String>(json, r'createdAt'),
-        status: mapValueOfType<String>(json, r'status'),
-        url: mapValueOfType<String>(json, r'url'),
-        openedAt: mapValueOfType<String>(json, r'openedAt'),
-        revealedAt: mapValueOfType<String>(json, r'revealedAt'),
-        recipientEmail: mapValueOfType<String>(json, r'recipientEmail'),
         recipientName: mapValueOfType<String>(json, r'recipientName'),
+        recipientEmail: mapValueOfType<String>(json, r'recipientEmail'),
+        status: mapValueOfType<String>(json, r'status'),
         teaserSentAt: mapValueOfType<String>(json, r'teaserSentAt'),
+        revealedAt: mapValueOfType<String>(json, r'revealedAt'),
+        openedAt: mapValueOfType<String>(json, r'openedAt'),
         thanksMessage: mapValueOfType<String>(json, r'thanksMessage'),
+        createdAt: mapValueOfType<String>(json, r'createdAt'),
+        url: mapValueOfType<String>(json, r'url'),
       );
     }
     return null;

@@ -142,8 +142,8 @@ class ListVaultMarketIndexJudgmentsItemActionEnum {
   String toJson() => value;
 
   static const method = ListVaultMarketIndexJudgmentsItemActionEnum._(r'method');
-  static const halt = ListVaultMarketIndexJudgmentsItemActionEnum._(r'halt');
   static const resume = ListVaultMarketIndexJudgmentsItemActionEnum._(r'resume');
+  static const halt = ListVaultMarketIndexJudgmentsItemActionEnum._(r'halt');
   static const excludeKey = ListVaultMarketIndexJudgmentsItemActionEnum._(r'exclude_key');
   static const voidTrade = ListVaultMarketIndexJudgmentsItemActionEnum._(r'void_trade');
   static const restate = ListVaultMarketIndexJudgmentsItemActionEnum._(r'restate');
@@ -152,8 +152,8 @@ class ListVaultMarketIndexJudgmentsItemActionEnum {
   /// List of all possible values in this [enum][ListVaultMarketIndexJudgmentsItemActionEnum].
   static const values = <ListVaultMarketIndexJudgmentsItemActionEnum>[
     method,
-    halt,
     resume,
+    halt,
     excludeKey,
     voidTrade,
     restate,
@@ -190,8 +190,8 @@ class ListVaultMarketIndexJudgmentsItemActionEnumTypeTransformer {
     if (data != null) {
       switch (data.toString()) {
         case r'method': return ListVaultMarketIndexJudgmentsItemActionEnum.method;
-        case r'halt': return ListVaultMarketIndexJudgmentsItemActionEnum.halt;
         case r'resume': return ListVaultMarketIndexJudgmentsItemActionEnum.resume;
+        case r'halt': return ListVaultMarketIndexJudgmentsItemActionEnum.halt;
         case r'exclude_key': return ListVaultMarketIndexJudgmentsItemActionEnum.excludeKey;
         case r'void_trade': return ListVaultMarketIndexJudgmentsItemActionEnum.voidTrade;
         case r'restate': return ListVaultMarketIndexJudgmentsItemActionEnum.restate;

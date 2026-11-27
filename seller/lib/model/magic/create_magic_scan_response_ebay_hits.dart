@@ -35,14 +35,14 @@ class CreateMagicScanResponseEbayHits {
 
   String brand;
 
-  /// Normalized cents. eBay returns string + currency on `price.value`.
+  /// Integer cents.
   num priceCents;
 
   String currency;
 
   String condition;
 
-  /// Top-level category eBay assigned to the match (id + path).
+  /// The category the marketplace filed the match under (id + path), when the provider returns it.
   String categoryId;
 
   String categoryPath;
@@ -51,7 +51,7 @@ class CreateMagicScanResponseEbayHits {
 
   String thumbnailUrl;
 
-  /// Loosely-typed aspect bag — Brand, Color, Material, etc. when eBay inlines them. Always inspected defensively by the synthesizer.
+  /// Item specifics, when the provider returns them. Always read defensively.
   Map<String, Object> aspects;
 
   @override

@@ -133,17 +133,17 @@ class GetWeb3CollectorResponseMarksSource_Enum {
 
   static const crossly = GetWeb3CollectorResponseMarksSource_Enum._(r'crossly');
   static const card = GetWeb3CollectorResponseMarksSource_Enum._(r'card');
-  static const tensor = GetWeb3CollectorResponseMarksSource_Enum._(r'tensor');
-  static const magicEden = GetWeb3CollectorResponseMarksSource_Enum._(r'magic_eden');
   static const rarible = GetWeb3CollectorResponseMarksSource_Enum._(r'rarible');
+  static const magicEden = GetWeb3CollectorResponseMarksSource_Enum._(r'magic_eden');
+  static const tensor = GetWeb3CollectorResponseMarksSource_Enum._(r'tensor');
 
   /// List of all possible values in this [enum][GetWeb3CollectorResponseMarksSource_Enum].
   static const values = <GetWeb3CollectorResponseMarksSource_Enum>[
     crossly,
     card,
-    tensor,
-    magicEden,
     rarible,
+    magicEden,
+    tensor,
   ];
 
   static GetWeb3CollectorResponseMarksSource_Enum fromJson(dynamic value) =>
@@ -177,9 +177,9 @@ class GetWeb3CollectorResponseMarksSource_EnumTypeTransformer {
       switch (data.toString()) {
         case r'crossly': return GetWeb3CollectorResponseMarksSource_Enum.crossly;
         case r'card': return GetWeb3CollectorResponseMarksSource_Enum.card;
-        case r'tensor': return GetWeb3CollectorResponseMarksSource_Enum.tensor;
-        case r'magic_eden': return GetWeb3CollectorResponseMarksSource_Enum.magicEden;
         case r'rarible': return GetWeb3CollectorResponseMarksSource_Enum.rarible;
+        case r'magic_eden': return GetWeb3CollectorResponseMarksSource_Enum.magicEden;
+        case r'tensor': return GetWeb3CollectorResponseMarksSource_Enum.tensor;
         default:
           if (allowNull == false) {
             throw ArgumentError('Unknown enum value to decode: $data');

@@ -140,16 +140,16 @@ class CreateBuyerAgentSessionActResponseQuotePriceCheckVerdictEnum {
 
   String toJson() => value;
 
-  static const high = CreateBuyerAgentSessionActResponseQuotePriceCheckVerdictEnum._(r'high');
-  static const fair = CreateBuyerAgentSessionActResponseQuotePriceCheckVerdictEnum._(r'fair');
   static const good = CreateBuyerAgentSessionActResponseQuotePriceCheckVerdictEnum._(r'good');
+  static const fair = CreateBuyerAgentSessionActResponseQuotePriceCheckVerdictEnum._(r'fair');
+  static const high = CreateBuyerAgentSessionActResponseQuotePriceCheckVerdictEnum._(r'high');
   static const great = CreateBuyerAgentSessionActResponseQuotePriceCheckVerdictEnum._(r'great');
 
   /// List of all possible values in this [enum][CreateBuyerAgentSessionActResponseQuotePriceCheckVerdictEnum].
   static const values = <CreateBuyerAgentSessionActResponseQuotePriceCheckVerdictEnum>[
-    high,
-    fair,
     good,
+    fair,
+    high,
     great,
   ];
 
@@ -182,9 +182,9 @@ class CreateBuyerAgentSessionActResponseQuotePriceCheckVerdictEnumTypeTransforme
   CreateBuyerAgentSessionActResponseQuotePriceCheckVerdictEnum decode(dynamic data, {bool allowNull}) {
     if (data != null) {
       switch (data.toString()) {
-        case r'high': return CreateBuyerAgentSessionActResponseQuotePriceCheckVerdictEnum.high;
-        case r'fair': return CreateBuyerAgentSessionActResponseQuotePriceCheckVerdictEnum.fair;
         case r'good': return CreateBuyerAgentSessionActResponseQuotePriceCheckVerdictEnum.good;
+        case r'fair': return CreateBuyerAgentSessionActResponseQuotePriceCheckVerdictEnum.fair;
+        case r'high': return CreateBuyerAgentSessionActResponseQuotePriceCheckVerdictEnum.high;
         case r'great': return CreateBuyerAgentSessionActResponseQuotePriceCheckVerdictEnum.great;
         default:
           if (allowNull == false) {

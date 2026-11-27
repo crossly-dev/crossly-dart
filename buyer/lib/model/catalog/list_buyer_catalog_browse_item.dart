@@ -32,6 +32,7 @@ class ListBuyerCatalogBrowseItem {
     @required this.aiMedia,
     @required this.aiMediaDetected,
     @required this.shipsFromCountry,
+    this.hasPassport,
     this.soldAt,
     this.soldPriceCents,
     this.soldQuantity,
@@ -83,6 +84,9 @@ class ListBuyerCatalogBrowseItem {
   /// ISO alpha-2 the seller ships from (storefront ship-from, default US) —  the tile's \"Ships from {country}\" chip when it isn't the buyer's.
   String shipsFromCountry;
 
+  /// The item has an active Crossly Passport (the tile's \"Crossly Passport\" chip, docs/PASSPORTS.md §7.4).  Optional: only the main browse query reads it; other row builders leave it out.
+  bool hasPassport;
+
   /// ISO timestamp of the sale.
   String soldAt;
 
@@ -113,6 +117,7 @@ class ListBuyerCatalogBrowseItem {
      other.aiMedia == aiMedia &&
      other.aiMediaDetected == aiMediaDetected &&
      other.shipsFromCountry == shipsFromCountry &&
+     other.hasPassport == hasPassport &&
      other.soldAt == soldAt &&
      other.soldPriceCents == soldPriceCents &&
      other.soldQuantity == soldQuantity;
@@ -139,12 +144,13 @@ class ListBuyerCatalogBrowseItem {
     (aiMedia == null ? 0 : aiMedia.hashCode) +
     (aiMediaDetected == null ? 0 : aiMediaDetected.hashCode) +
     (shipsFromCountry == null ? 0 : shipsFromCountry.hashCode) +
+    (hasPassport == null ? 0 : hasPassport.hashCode) +
     (soldAt == null ? 0 : soldAt.hashCode) +
     (soldPriceCents == null ? 0 : soldPriceCents.hashCode) +
     (soldQuantity == null ? 0 : soldQuantity.hashCode);
 
   @override
-  String toString() => 'ListBuyerCatalogBrowseItem[slug=$slug, title=$title, priceCents=$priceCents, compareAtCents=$compareAtCents, thumbnail=$thumbnail, sellerDisplayName=$sellerDisplayName, sellerAvatarUrl=$sellerAvatarUrl, sellerHandle=$sellerHandle, brand=$brand, condition=$condition, promoted=$promoted, viewCount=$viewCount, watcherCount=$watcherCount, soldCount=$soldCount, salePriceCents=$salePriceCents, saleEndsAt=$saleEndsAt, aiMedia=$aiMedia, aiMediaDetected=$aiMediaDetected, shipsFromCountry=$shipsFromCountry, soldAt=$soldAt, soldPriceCents=$soldPriceCents, soldQuantity=$soldQuantity]';
+  String toString() => 'ListBuyerCatalogBrowseItem[slug=$slug, title=$title, priceCents=$priceCents, compareAtCents=$compareAtCents, thumbnail=$thumbnail, sellerDisplayName=$sellerDisplayName, sellerAvatarUrl=$sellerAvatarUrl, sellerHandle=$sellerHandle, brand=$brand, condition=$condition, promoted=$promoted, viewCount=$viewCount, watcherCount=$watcherCount, soldCount=$soldCount, salePriceCents=$salePriceCents, saleEndsAt=$saleEndsAt, aiMedia=$aiMedia, aiMediaDetected=$aiMediaDetected, shipsFromCountry=$shipsFromCountry, hasPassport=$hasPassport, soldAt=$soldAt, soldPriceCents=$soldPriceCents, soldQuantity=$soldQuantity]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -185,6 +191,9 @@ class ListBuyerCatalogBrowseItem {
       json[r'aiMedia'] = aiMedia;
       json[r'aiMediaDetected'] = aiMediaDetected;
       json[r'shipsFromCountry'] = shipsFromCountry;
+    if (hasPassport != null) {
+      json[r'hasPassport'] = hasPassport;
+    }
     if (soldAt != null) {
       json[r'soldAt'] = soldAt;
     }
@@ -235,6 +244,7 @@ class ListBuyerCatalogBrowseItem {
         aiMedia: mapValueOfType<bool>(json, r'aiMedia'),
         aiMediaDetected: mapValueOfType<bool>(json, r'aiMediaDetected'),
         shipsFromCountry: mapValueOfType<String>(json, r'shipsFromCountry'),
+        hasPassport: mapValueOfType<bool>(json, r'hasPassport'),
         soldAt: mapValueOfType<String>(json, r'soldAt'),
         soldPriceCents: json[r'soldPriceCents'] == null
           ? null

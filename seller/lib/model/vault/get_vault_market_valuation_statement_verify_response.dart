@@ -181,13 +181,13 @@ class GetVaultMarketValuationStatementVerifyResponsePurposeEnum {
 
   String toJson() => value;
 
-  static const insurance = GetVaultMarketValuationStatementVerifyResponsePurposeEnum._(r'insurance');
   static const appraisal = GetVaultMarketValuationStatementVerifyResponsePurposeEnum._(r'appraisal');
+  static const insurance = GetVaultMarketValuationStatementVerifyResponsePurposeEnum._(r'insurance');
 
   /// List of all possible values in this [enum][GetVaultMarketValuationStatementVerifyResponsePurposeEnum].
   static const values = <GetVaultMarketValuationStatementVerifyResponsePurposeEnum>[
-    insurance,
     appraisal,
+    insurance,
   ];
 
   static GetVaultMarketValuationStatementVerifyResponsePurposeEnum fromJson(dynamic value) =>
@@ -219,8 +219,8 @@ class GetVaultMarketValuationStatementVerifyResponsePurposeEnumTypeTransformer {
   GetVaultMarketValuationStatementVerifyResponsePurposeEnum decode(dynamic data, {bool allowNull}) {
     if (data != null) {
       switch (data.toString()) {
-        case r'insurance': return GetVaultMarketValuationStatementVerifyResponsePurposeEnum.insurance;
         case r'appraisal': return GetVaultMarketValuationStatementVerifyResponsePurposeEnum.appraisal;
+        case r'insurance': return GetVaultMarketValuationStatementVerifyResponsePurposeEnum.insurance;
         default:
           if (allowNull == false) {
             throw ArgumentError('Unknown enum value to decode: $data');
@@ -248,15 +248,15 @@ class GetVaultMarketValuationStatementVerifyResponseVerdictEnum {
 
   String toJson() => value;
 
-  static const valid = GetVaultMarketValuationStatementVerifyResponseVerdictEnum._(r'valid');
-  static const altered = GetVaultMarketValuationStatementVerifyResponseVerdictEnum._(r'altered');
   static const mismatch = GetVaultMarketValuationStatementVerifyResponseVerdictEnum._(r'mismatch');
+  static const altered = GetVaultMarketValuationStatementVerifyResponseVerdictEnum._(r'altered');
+  static const valid = GetVaultMarketValuationStatementVerifyResponseVerdictEnum._(r'valid');
 
   /// List of all possible values in this [enum][GetVaultMarketValuationStatementVerifyResponseVerdictEnum].
   static const values = <GetVaultMarketValuationStatementVerifyResponseVerdictEnum>[
-    valid,
-    altered,
     mismatch,
+    altered,
+    valid,
   ];
 
   static GetVaultMarketValuationStatementVerifyResponseVerdictEnum fromJson(dynamic value) =>
@@ -288,9 +288,9 @@ class GetVaultMarketValuationStatementVerifyResponseVerdictEnumTypeTransformer {
   GetVaultMarketValuationStatementVerifyResponseVerdictEnum decode(dynamic data, {bool allowNull}) {
     if (data != null) {
       switch (data.toString()) {
-        case r'valid': return GetVaultMarketValuationStatementVerifyResponseVerdictEnum.valid;
-        case r'altered': return GetVaultMarketValuationStatementVerifyResponseVerdictEnum.altered;
         case r'mismatch': return GetVaultMarketValuationStatementVerifyResponseVerdictEnum.mismatch;
+        case r'altered': return GetVaultMarketValuationStatementVerifyResponseVerdictEnum.altered;
+        case r'valid': return GetVaultMarketValuationStatementVerifyResponseVerdictEnum.valid;
         default:
           if (allowNull == false) {
             throw ArgumentError('Unknown enum value to decode: $data');

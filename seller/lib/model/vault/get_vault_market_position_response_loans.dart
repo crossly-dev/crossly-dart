@@ -16,14 +16,14 @@ class GetVaultMarketPositionResponseLoans {
     @required this.id,
     @required this.status,
     this.closedAt,
+    @required this.openedAt,
     @required this.vaultItemId,
     this.holderAccountId,
-    @required this.openedAt,
+    @required this.positionId,
     @required this.bookKey,
     @required this.feesPaidCents,
     @required this.latePenaltyPaidCents,
     @required this.lenderUserId,
-    @required this.positionId,
     @required this.aprBps,
     @required this.markCentsAtOpen,
     @required this.feesAccruedCents,
@@ -40,11 +40,13 @@ class GetVaultMarketPositionResponseLoans {
 
   DateTime closedAt;
 
+  DateTime openedAt;
+
   String vaultItemId;
 
   String holderAccountId;
 
-  DateTime openedAt;
+  String positionId;
 
   String bookKey;
 
@@ -53,8 +55,6 @@ class GetVaultMarketPositionResponseLoans {
   num latePenaltyPaidCents;
 
   String lenderUserId;
-
-  String positionId;
 
   num aprBps;
 
@@ -77,14 +77,14 @@ class GetVaultMarketPositionResponseLoans {
      other.id == id &&
      other.status == status &&
      other.closedAt == closedAt &&
+     other.openedAt == openedAt &&
      other.vaultItemId == vaultItemId &&
      other.holderAccountId == holderAccountId &&
-     other.openedAt == openedAt &&
+     other.positionId == positionId &&
      other.bookKey == bookKey &&
      other.feesPaidCents == feesPaidCents &&
      other.latePenaltyPaidCents == latePenaltyPaidCents &&
      other.lenderUserId == lenderUserId &&
-     other.positionId == positionId &&
      other.aprBps == aprBps &&
      other.markCentsAtOpen == markCentsAtOpen &&
      other.feesAccruedCents == feesAccruedCents &&
@@ -100,14 +100,14 @@ class GetVaultMarketPositionResponseLoans {
     (id == null ? 0 : id.hashCode) +
     (status == null ? 0 : status.hashCode) +
     (closedAt == null ? 0 : closedAt.hashCode) +
+    (openedAt == null ? 0 : openedAt.hashCode) +
     (vaultItemId == null ? 0 : vaultItemId.hashCode) +
     (holderAccountId == null ? 0 : holderAccountId.hashCode) +
-    (openedAt == null ? 0 : openedAt.hashCode) +
+    (positionId == null ? 0 : positionId.hashCode) +
     (bookKey == null ? 0 : bookKey.hashCode) +
     (feesPaidCents == null ? 0 : feesPaidCents.hashCode) +
     (latePenaltyPaidCents == null ? 0 : latePenaltyPaidCents.hashCode) +
     (lenderUserId == null ? 0 : lenderUserId.hashCode) +
-    (positionId == null ? 0 : positionId.hashCode) +
     (aprBps == null ? 0 : aprBps.hashCode) +
     (markCentsAtOpen == null ? 0 : markCentsAtOpen.hashCode) +
     (feesAccruedCents == null ? 0 : feesAccruedCents.hashCode) +
@@ -118,7 +118,7 @@ class GetVaultMarketPositionResponseLoans {
     (latePenaltyAccruedCents == null ? 0 : latePenaltyAccruedCents.hashCode);
 
   @override
-  String toString() => 'GetVaultMarketPositionResponseLoans[id=$id, status=$status, closedAt=$closedAt, vaultItemId=$vaultItemId, holderAccountId=$holderAccountId, openedAt=$openedAt, bookKey=$bookKey, feesPaidCents=$feesPaidCents, latePenaltyPaidCents=$latePenaltyPaidCents, lenderUserId=$lenderUserId, positionId=$positionId, aprBps=$aprBps, markCentsAtOpen=$markCentsAtOpen, feesAccruedCents=$feesAccruedCents, lenderStorageCents=$lenderStorageCents, recalledAt=$recalledAt, recallDueAt=$recallDueAt, returnedVaultItemId=$returnedVaultItemId, latePenaltyAccruedCents=$latePenaltyAccruedCents]';
+  String toString() => 'GetVaultMarketPositionResponseLoans[id=$id, status=$status, closedAt=$closedAt, openedAt=$openedAt, vaultItemId=$vaultItemId, holderAccountId=$holderAccountId, positionId=$positionId, bookKey=$bookKey, feesPaidCents=$feesPaidCents, latePenaltyPaidCents=$latePenaltyPaidCents, lenderUserId=$lenderUserId, aprBps=$aprBps, markCentsAtOpen=$markCentsAtOpen, feesAccruedCents=$feesAccruedCents, lenderStorageCents=$lenderStorageCents, recalledAt=$recalledAt, recallDueAt=$recallDueAt, returnedVaultItemId=$returnedVaultItemId, latePenaltyAccruedCents=$latePenaltyAccruedCents]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -127,16 +127,16 @@ class GetVaultMarketPositionResponseLoans {
     if (closedAt != null) {
       json[r'closedAt'] = closedAt.toUtc().toIso8601String();
     }
+      json[r'openedAt'] = openedAt.toUtc().toIso8601String();
       json[r'vaultItemId'] = vaultItemId;
     if (holderAccountId != null) {
       json[r'holderAccountId'] = holderAccountId;
     }
-      json[r'openedAt'] = openedAt.toUtc().toIso8601String();
+      json[r'positionId'] = positionId;
       json[r'bookKey'] = bookKey;
       json[r'feesPaidCents'] = feesPaidCents;
       json[r'latePenaltyPaidCents'] = latePenaltyPaidCents;
       json[r'lenderUserId'] = lenderUserId;
-      json[r'positionId'] = positionId;
       json[r'aprBps'] = aprBps;
       json[r'markCentsAtOpen'] = markCentsAtOpen;
       json[r'feesAccruedCents'] = feesAccruedCents;
@@ -164,9 +164,10 @@ class GetVaultMarketPositionResponseLoans {
         id: mapValueOfType<String>(json, r'id'),
         status: mapValueOfType<String>(json, r'status'),
         closedAt: mapDateTime(json, r'closedAt', ''),
+        openedAt: mapDateTime(json, r'openedAt', ''),
         vaultItemId: mapValueOfType<String>(json, r'vaultItemId'),
         holderAccountId: mapValueOfType<String>(json, r'holderAccountId'),
-        openedAt: mapDateTime(json, r'openedAt', ''),
+        positionId: mapValueOfType<String>(json, r'positionId'),
         bookKey: mapValueOfType<String>(json, r'bookKey'),
         feesPaidCents: json[r'feesPaidCents'] == null
           ? null
@@ -175,7 +176,6 @@ class GetVaultMarketPositionResponseLoans {
           ? null
           : num.parse(json[r'latePenaltyPaidCents'].toString()),
         lenderUserId: mapValueOfType<String>(json, r'lenderUserId'),
-        positionId: mapValueOfType<String>(json, r'positionId'),
         aprBps: json[r'aprBps'] == null
           ? null
           : num.parse(json[r'aprBps'].toString()),

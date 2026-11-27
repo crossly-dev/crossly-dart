@@ -43,7 +43,7 @@ class UpdateSpatialSceneCosmeticResponseData {
   num coveIntensity;
 
   /// Decorative props. Never containers — see CosmeticProp.
-  List<UpdateSpatialSceneCosmeticResponseDataProps> props;
+  List<GetShowroomResponseDataRoomProps> props;
 
   /// How this room's door presents itself in the hall. See SHOPFRONT_STYLES.  Undefined means \"never chosen\", which the renderer reads as SHOPFRONT_DEFAULT — NOT as `none`. The two are different answers and the distinction is the whole reason this is optional rather than defaulted here: a validator that filled in `fascia` would make \"I explicitly want a bare opening\" unrepresentable.
   UpdateSpatialSceneCosmeticResponseDataShopfrontEnum shopfront;
@@ -160,7 +160,7 @@ class UpdateSpatialSceneCosmeticResponseData {
         coveIntensity: json[r'coveIntensity'] == null
           ? null
           : num.parse(json[r'coveIntensity'].toString()),
-        props: UpdateSpatialSceneCosmeticResponseDataProps.listFromJson(json[r'props']),
+        props: GetShowroomResponseDataRoomProps.listFromJson(json[r'props']),
         shopfront: UpdateSpatialSceneCosmeticResponseDataShopfrontEnum.fromJson(json[r'shopfront']),
         shopfrontColour: mapValueOfType<String>(json, r'shopfrontColour'),
         facade: UpdateSpatialSceneCosmeticResponseDataFacadeEnum.fromJson(json[r'facade']),
@@ -427,8 +427,8 @@ class UpdateSpatialSceneCosmeticResponseDataShopfrontEnum {
 
   static const full = UpdateSpatialSceneCosmeticResponseDataShopfrontEnum._(r'full');
   static const none = UpdateSpatialSceneCosmeticResponseDataShopfrontEnum._(r'none');
-  static const awning = UpdateSpatialSceneCosmeticResponseDataShopfrontEnum._(r'awning');
   static const fascia = UpdateSpatialSceneCosmeticResponseDataShopfrontEnum._(r'fascia');
+  static const awning = UpdateSpatialSceneCosmeticResponseDataShopfrontEnum._(r'awning');
   static const neonFascia = UpdateSpatialSceneCosmeticResponseDataShopfrontEnum._(r'neon_fascia');
   static const gildedFascia = UpdateSpatialSceneCosmeticResponseDataShopfrontEnum._(r'gilded_fascia');
   static const scallopedAwning = UpdateSpatialSceneCosmeticResponseDataShopfrontEnum._(r'scalloped_awning');
@@ -437,8 +437,8 @@ class UpdateSpatialSceneCosmeticResponseDataShopfrontEnum {
   static const values = <UpdateSpatialSceneCosmeticResponseDataShopfrontEnum>[
     full,
     none,
-    awning,
     fascia,
+    awning,
     neonFascia,
     gildedFascia,
     scallopedAwning,
@@ -475,8 +475,8 @@ class UpdateSpatialSceneCosmeticResponseDataShopfrontEnumTypeTransformer {
       switch (data.toString()) {
         case r'full': return UpdateSpatialSceneCosmeticResponseDataShopfrontEnum.full;
         case r'none': return UpdateSpatialSceneCosmeticResponseDataShopfrontEnum.none;
-        case r'awning': return UpdateSpatialSceneCosmeticResponseDataShopfrontEnum.awning;
         case r'fascia': return UpdateSpatialSceneCosmeticResponseDataShopfrontEnum.fascia;
+        case r'awning': return UpdateSpatialSceneCosmeticResponseDataShopfrontEnum.awning;
         case r'neon_fascia': return UpdateSpatialSceneCosmeticResponseDataShopfrontEnum.neonFascia;
         case r'gilded_fascia': return UpdateSpatialSceneCosmeticResponseDataShopfrontEnum.gildedFascia;
         case r'scalloped_awning': return UpdateSpatialSceneCosmeticResponseDataShopfrontEnum.scallopedAwning;

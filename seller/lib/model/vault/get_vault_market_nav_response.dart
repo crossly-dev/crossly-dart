@@ -18,6 +18,7 @@ class GetVaultMarketNavResponse {
     @required this.currency,
     @required this.totals,
     this.holdings = const [],
+    this.options,
     this.policy = const [],
   });
 
@@ -31,6 +32,8 @@ class GetVaultMarketNavResponse {
 
   List<GetVaultMarketNavResponseHoldings> holdings;
 
+  GetVaultMarketNavResponseOptions options;
+
   List<String> policy;
 
   @override
@@ -40,6 +43,7 @@ class GetVaultMarketNavResponse {
      other.currency == currency &&
      other.totals == totals &&
      other.holdings == holdings &&
+     other.options == options &&
      other.policy == policy;
 
   @override
@@ -50,10 +54,11 @@ class GetVaultMarketNavResponse {
     (currency == null ? 0 : currency.hashCode) +
     (totals == null ? 0 : totals.hashCode) +
     (holdings == null ? 0 : holdings.hashCode) +
+    (options == null ? 0 : options.hashCode) +
     (policy == null ? 0 : policy.hashCode);
 
   @override
-  String toString() => 'GetVaultMarketNavResponse[account=$account, asOf=$asOf, currency=$currency, totals=$totals, holdings=$holdings, policy=$policy]';
+  String toString() => 'GetVaultMarketNavResponse[account=$account, asOf=$asOf, currency=$currency, totals=$totals, holdings=$holdings, options=$options, policy=$policy]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -62,6 +67,9 @@ class GetVaultMarketNavResponse {
       json[r'currency'] = currency;
       json[r'totals'] = totals;
       json[r'holdings'] = holdings;
+    if (options != null) {
+      json[r'options'] = options;
+    }
       json[r'policy'] = policy;
     return json;
   }
@@ -78,6 +86,7 @@ class GetVaultMarketNavResponse {
         currency: mapValueOfType<String>(json, r'currency'),
         totals: GetVaultMarketNavResponseTotals.fromJson(json[r'totals']),
         holdings: GetVaultMarketNavResponseHoldings.listFromJson(json[r'holdings']),
+        options: GetVaultMarketNavResponseOptions.fromJson(json[r'options']),
         policy: json[r'policy'] is List
           ? (json[r'policy'] as List).cast<String>()
           : null,

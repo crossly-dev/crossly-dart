@@ -162,17 +162,17 @@ class ListVaultMarketCreatorCohostInvitesItemStatusEnum {
 
   String toJson() => value;
 
-  static const invited = ListVaultMarketCreatorCohostInvitesItemStatusEnum._(r'invited');
-  static const withdrawn = ListVaultMarketCreatorCohostInvitesItemStatusEnum._(r'withdrawn');
   static const accepted = ListVaultMarketCreatorCohostInvitesItemStatusEnum._(r'accepted');
   static const declined = ListVaultMarketCreatorCohostInvitesItemStatusEnum._(r'declined');
+  static const withdrawn = ListVaultMarketCreatorCohostInvitesItemStatusEnum._(r'withdrawn');
+  static const invited = ListVaultMarketCreatorCohostInvitesItemStatusEnum._(r'invited');
 
   /// List of all possible values in this [enum][ListVaultMarketCreatorCohostInvitesItemStatusEnum].
   static const values = <ListVaultMarketCreatorCohostInvitesItemStatusEnum>[
-    invited,
-    withdrawn,
     accepted,
     declined,
+    withdrawn,
+    invited,
   ];
 
   static ListVaultMarketCreatorCohostInvitesItemStatusEnum fromJson(dynamic value) =>
@@ -204,10 +204,10 @@ class ListVaultMarketCreatorCohostInvitesItemStatusEnumTypeTransformer {
   ListVaultMarketCreatorCohostInvitesItemStatusEnum decode(dynamic data, {bool allowNull}) {
     if (data != null) {
       switch (data.toString()) {
-        case r'invited': return ListVaultMarketCreatorCohostInvitesItemStatusEnum.invited;
-        case r'withdrawn': return ListVaultMarketCreatorCohostInvitesItemStatusEnum.withdrawn;
         case r'accepted': return ListVaultMarketCreatorCohostInvitesItemStatusEnum.accepted;
         case r'declined': return ListVaultMarketCreatorCohostInvitesItemStatusEnum.declined;
+        case r'withdrawn': return ListVaultMarketCreatorCohostInvitesItemStatusEnum.withdrawn;
+        case r'invited': return ListVaultMarketCreatorCohostInvitesItemStatusEnum.invited;
         default:
           if (allowNull == false) {
             throw ArgumentError('Unknown enum value to decode: $data');

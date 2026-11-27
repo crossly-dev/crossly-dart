@@ -13,43 +13,43 @@ part of openapi.api;
 class GetBuyerListingSubscribeOfferResponseData {
   /// Returns a new [GetBuyerListingSubscribeOfferResponseData] instance.
   GetBuyerListingSubscribeOfferResponseData({
-    @required this.priceCents,
     @required this.discountBps,
     this.intervals = const [],
+    @required this.priceCents,
     @required this.subscribePriceCents,
   });
-
-  num priceCents;
 
   num discountBps;
 
   List<num> intervals;
 
+  num priceCents;
+
   num subscribePriceCents;
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is GetBuyerListingSubscribeOfferResponseData &&
-     other.priceCents == priceCents &&
      other.discountBps == discountBps &&
      other.intervals == intervals &&
+     other.priceCents == priceCents &&
      other.subscribePriceCents == subscribePriceCents;
 
   @override
   int get hashCode =>
   // ignore: unnecessary_parenthesis
-    (priceCents == null ? 0 : priceCents.hashCode) +
     (discountBps == null ? 0 : discountBps.hashCode) +
     (intervals == null ? 0 : intervals.hashCode) +
+    (priceCents == null ? 0 : priceCents.hashCode) +
     (subscribePriceCents == null ? 0 : subscribePriceCents.hashCode);
 
   @override
-  String toString() => 'GetBuyerListingSubscribeOfferResponseData[priceCents=$priceCents, discountBps=$discountBps, intervals=$intervals, subscribePriceCents=$subscribePriceCents]';
+  String toString() => 'GetBuyerListingSubscribeOfferResponseData[discountBps=$discountBps, intervals=$intervals, priceCents=$priceCents, subscribePriceCents=$subscribePriceCents]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-      json[r'priceCents'] = priceCents;
       json[r'discountBps'] = discountBps;
       json[r'intervals'] = intervals;
+      json[r'priceCents'] = priceCents;
       json[r'subscribePriceCents'] = subscribePriceCents;
     return json;
   }
@@ -61,15 +61,15 @@ class GetBuyerListingSubscribeOfferResponseData {
     if (value is Map) {
       final json = value.cast<String, dynamic>();
       return GetBuyerListingSubscribeOfferResponseData(
-        priceCents: json[r'priceCents'] == null
-          ? null
-          : num.parse(json[r'priceCents'].toString()),
         discountBps: json[r'discountBps'] == null
           ? null
           : num.parse(json[r'discountBps'].toString()),
         intervals: json[r'intervals'] is List
           ? (json[r'intervals'] as List).cast<num>()
           : null,
+        priceCents: json[r'priceCents'] == null
+          ? null
+          : num.parse(json[r'priceCents'].toString()),
         subscribePriceCents: json[r'subscribePriceCents'] == null
           ? null
           : num.parse(json[r'subscribePriceCents'].toString()),

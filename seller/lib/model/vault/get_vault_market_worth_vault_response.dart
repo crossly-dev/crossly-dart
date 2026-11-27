@@ -23,6 +23,7 @@ class GetVaultMarketWorthVaultResponse {
     @required this.marks,
     @required this.costCents,
     @required this.pnlCents,
+    @required this.today,
     @required this.sellNow,
     @required this.note,
   });
@@ -47,6 +48,8 @@ class GetVaultMarketWorthVaultResponse {
 
   num pnlCents;
 
+  GetVaultMarketWorthVaultResponseToday today;
+
   GetVaultMarketWorthVaultResponseSellNow sellNow;
 
   String note;
@@ -63,6 +66,7 @@ class GetVaultMarketWorthVaultResponse {
      other.marks == marks &&
      other.costCents == costCents &&
      other.pnlCents == pnlCents &&
+     other.today == today &&
      other.sellNow == sellNow &&
      other.note == note;
 
@@ -79,11 +83,12 @@ class GetVaultMarketWorthVaultResponse {
     (marks == null ? 0 : marks.hashCode) +
     (costCents == null ? 0 : costCents.hashCode) +
     (pnlCents == null ? 0 : pnlCents.hashCode) +
+    (today == null ? 0 : today.hashCode) +
     (sellNow == null ? 0 : sellNow.hashCode) +
     (note == null ? 0 : note.hashCode);
 
   @override
-  String toString() => 'GetVaultMarketWorthVaultResponse[asOf=$asOf, valueCents=$valueCents, vaultCents=$vaultCents, onLoanCents=$onLoanCents, positionsCents=$positionsCents, units=$units, unitsOnLoan=$unitsOnLoan, marks=$marks, costCents=$costCents, pnlCents=$pnlCents, sellNow=$sellNow, note=$note]';
+  String toString() => 'GetVaultMarketWorthVaultResponse[asOf=$asOf, valueCents=$valueCents, vaultCents=$vaultCents, onLoanCents=$onLoanCents, positionsCents=$positionsCents, units=$units, unitsOnLoan=$unitsOnLoan, marks=$marks, costCents=$costCents, pnlCents=$pnlCents, today=$today, sellNow=$sellNow, note=$note]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -97,6 +102,7 @@ class GetVaultMarketWorthVaultResponse {
       json[r'marks'] = marks;
       json[r'costCents'] = costCents;
       json[r'pnlCents'] = pnlCents;
+      json[r'today'] = today;
       json[r'sellNow'] = sellNow;
       json[r'note'] = note;
     return json;
@@ -135,6 +141,7 @@ class GetVaultMarketWorthVaultResponse {
         pnlCents: json[r'pnlCents'] == null
           ? null
           : num.parse(json[r'pnlCents'].toString()),
+        today: GetVaultMarketWorthVaultResponseToday.fromJson(json[r'today']),
         sellNow: GetVaultMarketWorthVaultResponseSellNow.fromJson(json[r'sellNow']),
         note: mapValueOfType<String>(json, r'note'),
       );

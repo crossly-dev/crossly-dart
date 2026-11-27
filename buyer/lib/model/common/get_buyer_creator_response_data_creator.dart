@@ -13,58 +13,58 @@ part of openapi.api;
 class GetBuyerCreatorResponseDataCreator {
   /// Returns a new [GetBuyerCreatorResponseDataCreator] instance.
   GetBuyerCreatorResponseDataCreator({
-    this.displayName,
-    this.avatarUrl,
-    this.bio,
-    this.code,
     @required this.handle,
+    this.displayName,
+    this.bio,
+    this.avatarUrl,
+    this.code,
   });
-
-  String displayName;
-
-  String avatarUrl;
-
-  String bio;
-
-  String code;
 
   String handle;
 
+  String displayName;
+
+  String bio;
+
+  String avatarUrl;
+
+  String code;
+
   @override
   bool operator ==(Object other) => identical(this, other) || other is GetBuyerCreatorResponseDataCreator &&
+     other.handle == handle &&
      other.displayName == displayName &&
-     other.avatarUrl == avatarUrl &&
      other.bio == bio &&
-     other.code == code &&
-     other.handle == handle;
+     other.avatarUrl == avatarUrl &&
+     other.code == code;
 
   @override
   int get hashCode =>
   // ignore: unnecessary_parenthesis
+    (handle == null ? 0 : handle.hashCode) +
     (displayName == null ? 0 : displayName.hashCode) +
-    (avatarUrl == null ? 0 : avatarUrl.hashCode) +
     (bio == null ? 0 : bio.hashCode) +
-    (code == null ? 0 : code.hashCode) +
-    (handle == null ? 0 : handle.hashCode);
+    (avatarUrl == null ? 0 : avatarUrl.hashCode) +
+    (code == null ? 0 : code.hashCode);
 
   @override
-  String toString() => 'GetBuyerCreatorResponseDataCreator[displayName=$displayName, avatarUrl=$avatarUrl, bio=$bio, code=$code, handle=$handle]';
+  String toString() => 'GetBuyerCreatorResponseDataCreator[handle=$handle, displayName=$displayName, bio=$bio, avatarUrl=$avatarUrl, code=$code]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
+      json[r'handle'] = handle;
     if (displayName != null) {
       json[r'displayName'] = displayName;
-    }
-    if (avatarUrl != null) {
-      json[r'avatarUrl'] = avatarUrl;
     }
     if (bio != null) {
       json[r'bio'] = bio;
     }
+    if (avatarUrl != null) {
+      json[r'avatarUrl'] = avatarUrl;
+    }
     if (code != null) {
       json[r'code'] = code;
     }
-      json[r'handle'] = handle;
     return json;
   }
 
@@ -75,11 +75,11 @@ class GetBuyerCreatorResponseDataCreator {
     if (value is Map) {
       final json = value.cast<String, dynamic>();
       return GetBuyerCreatorResponseDataCreator(
-        displayName: mapValueOfType<String>(json, r'displayName'),
-        avatarUrl: mapValueOfType<String>(json, r'avatarUrl'),
-        bio: mapValueOfType<String>(json, r'bio'),
-        code: mapValueOfType<String>(json, r'code'),
         handle: mapValueOfType<String>(json, r'handle'),
+        displayName: mapValueOfType<String>(json, r'displayName'),
+        bio: mapValueOfType<String>(json, r'bio'),
+        avatarUrl: mapValueOfType<String>(json, r'avatarUrl'),
+        code: mapValueOfType<String>(json, r'code'),
       );
     }
     return null;

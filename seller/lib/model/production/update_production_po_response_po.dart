@@ -16,12 +16,12 @@ class UpdateProductionPoResponsePo {
     @required this.id,
     @required this.createdAt,
     @required this.updatedAt,
-    this.notes,
     @required this.status,
+    this.notes,
+    this.supplierName,
+    this.trackingCode,
     @required this.merchantId,
     @required this.candidateId,
-    this.trackingCode,
-    this.supplierName,
     this.supplierContact,
     this.freightMode,
     this.estimateLandedCents,
@@ -44,17 +44,17 @@ class UpdateProductionPoResponsePo {
 
   DateTime updatedAt;
 
+  String status;
+
   String notes;
 
-  String status;
+  String supplierName;
+
+  String trackingCode;
 
   String merchantId;
 
   String candidateId;
-
-  String trackingCode;
-
-  String supplierName;
 
   String supplierContact;
 
@@ -89,12 +89,12 @@ class UpdateProductionPoResponsePo {
      other.id == id &&
      other.createdAt == createdAt &&
      other.updatedAt == updatedAt &&
-     other.notes == notes &&
      other.status == status &&
+     other.notes == notes &&
+     other.supplierName == supplierName &&
+     other.trackingCode == trackingCode &&
      other.merchantId == merchantId &&
      other.candidateId == candidateId &&
-     other.trackingCode == trackingCode &&
-     other.supplierName == supplierName &&
      other.supplierContact == supplierContact &&
      other.freightMode == freightMode &&
      other.estimateLandedCents == estimateLandedCents &&
@@ -116,12 +116,12 @@ class UpdateProductionPoResponsePo {
     (id == null ? 0 : id.hashCode) +
     (createdAt == null ? 0 : createdAt.hashCode) +
     (updatedAt == null ? 0 : updatedAt.hashCode) +
-    (notes == null ? 0 : notes.hashCode) +
     (status == null ? 0 : status.hashCode) +
+    (notes == null ? 0 : notes.hashCode) +
+    (supplierName == null ? 0 : supplierName.hashCode) +
+    (trackingCode == null ? 0 : trackingCode.hashCode) +
     (merchantId == null ? 0 : merchantId.hashCode) +
     (candidateId == null ? 0 : candidateId.hashCode) +
-    (trackingCode == null ? 0 : trackingCode.hashCode) +
-    (supplierName == null ? 0 : supplierName.hashCode) +
     (supplierContact == null ? 0 : supplierContact.hashCode) +
     (freightMode == null ? 0 : freightMode.hashCode) +
     (estimateLandedCents == null ? 0 : estimateLandedCents.hashCode) +
@@ -138,25 +138,25 @@ class UpdateProductionPoResponsePo {
     (qcNotes == null ? 0 : qcNotes.hashCode);
 
   @override
-  String toString() => 'UpdateProductionPoResponsePo[id=$id, createdAt=$createdAt, updatedAt=$updatedAt, notes=$notes, status=$status, merchantId=$merchantId, candidateId=$candidateId, trackingCode=$trackingCode, supplierName=$supplierName, supplierContact=$supplierContact, freightMode=$freightMode, estimateLandedCents=$estimateLandedCents, actualUnitFobCents=$actualUnitFobCents, actualToolingCents=$actualToolingCents, actualSamplesCents=$actualSamplesCents, actualFreightCents=$actualFreightCents, actualDutyCents=$actualDutyCents, actualQcCents=$actualQcCents, actualThreeplCents=$actualThreeplCents, actualLandedCents=$actualLandedCents, sampleRounds=$sampleRounds, qcStatus=$qcStatus, qcNotes=$qcNotes]';
+  String toString() => 'UpdateProductionPoResponsePo[id=$id, createdAt=$createdAt, updatedAt=$updatedAt, status=$status, notes=$notes, supplierName=$supplierName, trackingCode=$trackingCode, merchantId=$merchantId, candidateId=$candidateId, supplierContact=$supplierContact, freightMode=$freightMode, estimateLandedCents=$estimateLandedCents, actualUnitFobCents=$actualUnitFobCents, actualToolingCents=$actualToolingCents, actualSamplesCents=$actualSamplesCents, actualFreightCents=$actualFreightCents, actualDutyCents=$actualDutyCents, actualQcCents=$actualQcCents, actualThreeplCents=$actualThreeplCents, actualLandedCents=$actualLandedCents, sampleRounds=$sampleRounds, qcStatus=$qcStatus, qcNotes=$qcNotes]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
       json[r'id'] = id;
       json[r'createdAt'] = createdAt.toUtc().toIso8601String();
       json[r'updatedAt'] = updatedAt.toUtc().toIso8601String();
+      json[r'status'] = status;
     if (notes != null) {
       json[r'notes'] = notes;
-    }
-      json[r'status'] = status;
-      json[r'merchantId'] = merchantId;
-      json[r'candidateId'] = candidateId;
-    if (trackingCode != null) {
-      json[r'trackingCode'] = trackingCode;
     }
     if (supplierName != null) {
       json[r'supplierName'] = supplierName;
     }
+    if (trackingCode != null) {
+      json[r'trackingCode'] = trackingCode;
+    }
+      json[r'merchantId'] = merchantId;
+      json[r'candidateId'] = candidateId;
     if (supplierContact != null) {
       json[r'supplierContact'] = supplierContact;
     }
@@ -210,12 +210,12 @@ class UpdateProductionPoResponsePo {
         id: mapValueOfType<String>(json, r'id'),
         createdAt: mapDateTime(json, r'createdAt', ''),
         updatedAt: mapDateTime(json, r'updatedAt', ''),
-        notes: mapValueOfType<String>(json, r'notes'),
         status: mapValueOfType<String>(json, r'status'),
+        notes: mapValueOfType<String>(json, r'notes'),
+        supplierName: mapValueOfType<String>(json, r'supplierName'),
+        trackingCode: mapValueOfType<String>(json, r'trackingCode'),
         merchantId: mapValueOfType<String>(json, r'merchantId'),
         candidateId: mapValueOfType<String>(json, r'candidateId'),
-        trackingCode: mapValueOfType<String>(json, r'trackingCode'),
-        supplierName: mapValueOfType<String>(json, r'supplierName'),
         supplierContact: mapValueOfType<String>(json, r'supplierContact'),
         freightMode: mapValueOfType<String>(json, r'freightMode'),
         estimateLandedCents: json[r'estimateLandedCents'] == null

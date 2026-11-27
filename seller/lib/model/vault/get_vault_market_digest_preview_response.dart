@@ -18,6 +18,7 @@ class GetVaultMarketDigestPreviewResponse {
     @required this.value,
     this.offers = const [],
     this.firstMarks = const [],
+    @required this.learn,
   });
 
   List<String> lines;
@@ -30,13 +31,16 @@ class GetVaultMarketDigestPreviewResponse {
 
   List<GetVaultMarketDigestPreviewResponseFirstMarks> firstMarks;
 
+  GetVaultMarketDigestPreviewResponseLearn learn;
+
   @override
   bool operator ==(Object other) => identical(this, other) || other is GetVaultMarketDigestPreviewResponse &&
      other.lines == lines &&
      other.week == week &&
      other.value == value &&
      other.offers == offers &&
-     other.firstMarks == firstMarks;
+     other.firstMarks == firstMarks &&
+     other.learn == learn;
 
   @override
   int get hashCode =>
@@ -45,10 +49,11 @@ class GetVaultMarketDigestPreviewResponse {
     (week == null ? 0 : week.hashCode) +
     (value == null ? 0 : value.hashCode) +
     (offers == null ? 0 : offers.hashCode) +
-    (firstMarks == null ? 0 : firstMarks.hashCode);
+    (firstMarks == null ? 0 : firstMarks.hashCode) +
+    (learn == null ? 0 : learn.hashCode);
 
   @override
-  String toString() => 'GetVaultMarketDigestPreviewResponse[lines=$lines, week=$week, value=$value, offers=$offers, firstMarks=$firstMarks]';
+  String toString() => 'GetVaultMarketDigestPreviewResponse[lines=$lines, week=$week, value=$value, offers=$offers, firstMarks=$firstMarks, learn=$learn]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -57,6 +62,7 @@ class GetVaultMarketDigestPreviewResponse {
       json[r'value'] = value;
       json[r'offers'] = offers;
       json[r'firstMarks'] = firstMarks;
+      json[r'learn'] = learn;
     return json;
   }
 
@@ -74,6 +80,7 @@ class GetVaultMarketDigestPreviewResponse {
         value: GetVaultMarketDigestPreviewResponseValue.fromJson(json[r'value']),
         offers: GetVaultMarketDigestPreviewResponseOffers.listFromJson(json[r'offers']),
         firstMarks: GetVaultMarketDigestPreviewResponseFirstMarks.listFromJson(json[r'firstMarks']),
+        learn: GetVaultMarketDigestPreviewResponseLearn.fromJson(json[r'learn']),
       );
     }
     return null;

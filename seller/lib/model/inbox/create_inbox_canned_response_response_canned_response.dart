@@ -18,8 +18,9 @@ class CreateInboxCannedResponseResponseCannedResponse {
     @required this.createdAt,
     @required this.userId,
     this.title,
-    @required this.surface,
     @required this.body,
+    @required this.surface,
+    @required this.sortOrder,
   });
 
   String id;
@@ -32,9 +33,11 @@ class CreateInboxCannedResponseResponseCannedResponse {
 
   String title;
 
+  String body;
+
   String surface;
 
-  String body;
+  num sortOrder;
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is CreateInboxCannedResponseResponseCannedResponse &&
@@ -43,8 +46,9 @@ class CreateInboxCannedResponseResponseCannedResponse {
      other.createdAt == createdAt &&
      other.userId == userId &&
      other.title == title &&
+     other.body == body &&
      other.surface == surface &&
-     other.body == body;
+     other.sortOrder == sortOrder;
 
   @override
   int get hashCode =>
@@ -54,11 +58,12 @@ class CreateInboxCannedResponseResponseCannedResponse {
     (createdAt == null ? 0 : createdAt.hashCode) +
     (userId == null ? 0 : userId.hashCode) +
     (title == null ? 0 : title.hashCode) +
+    (body == null ? 0 : body.hashCode) +
     (surface == null ? 0 : surface.hashCode) +
-    (body == null ? 0 : body.hashCode);
+    (sortOrder == null ? 0 : sortOrder.hashCode);
 
   @override
-  String toString() => 'CreateInboxCannedResponseResponseCannedResponse[id=$id, name=$name, createdAt=$createdAt, userId=$userId, title=$title, surface=$surface, body=$body]';
+  String toString() => 'CreateInboxCannedResponseResponseCannedResponse[id=$id, name=$name, createdAt=$createdAt, userId=$userId, title=$title, body=$body, surface=$surface, sortOrder=$sortOrder]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -69,8 +74,9 @@ class CreateInboxCannedResponseResponseCannedResponse {
     if (title != null) {
       json[r'title'] = title;
     }
-      json[r'surface'] = surface;
       json[r'body'] = body;
+      json[r'surface'] = surface;
+      json[r'sortOrder'] = sortOrder;
     return json;
   }
 
@@ -86,8 +92,11 @@ class CreateInboxCannedResponseResponseCannedResponse {
         createdAt: mapDateTime(json, r'createdAt', ''),
         userId: mapValueOfType<String>(json, r'userId'),
         title: mapValueOfType<String>(json, r'title'),
-        surface: mapValueOfType<String>(json, r'surface'),
         body: mapValueOfType<String>(json, r'body'),
+        surface: mapValueOfType<String>(json, r'surface'),
+        sortOrder: json[r'sortOrder'] == null
+          ? null
+          : num.parse(json[r'sortOrder'].toString()),
       );
     }
     return null;

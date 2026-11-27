@@ -260,19 +260,19 @@ class ListDropMineItemStatusEnum {
 
   String toJson() => value;
 
-  static const scheduled = ListDropMineItemStatusEnum._(r'scheduled');
   static const cancelled = ListDropMineItemStatusEnum._(r'cancelled');
+  static const scheduled = ListDropMineItemStatusEnum._(r'scheduled');
   static const closed = ListDropMineItemStatusEnum._(r'closed');
-  static const released = ListDropMineItemStatusEnum._(r'released');
   static const lineOpen = ListDropMineItemStatusEnum._(r'line_open');
+  static const released = ListDropMineItemStatusEnum._(r'released');
 
   /// List of all possible values in this [enum][ListDropMineItemStatusEnum].
   static const values = <ListDropMineItemStatusEnum>[
-    scheduled,
     cancelled,
+    scheduled,
     closed,
-    released,
     lineOpen,
+    released,
   ];
 
   static ListDropMineItemStatusEnum fromJson(dynamic value) =>
@@ -304,11 +304,11 @@ class ListDropMineItemStatusEnumTypeTransformer {
   ListDropMineItemStatusEnum decode(dynamic data, {bool allowNull}) {
     if (data != null) {
       switch (data.toString()) {
-        case r'scheduled': return ListDropMineItemStatusEnum.scheduled;
         case r'cancelled': return ListDropMineItemStatusEnum.cancelled;
+        case r'scheduled': return ListDropMineItemStatusEnum.scheduled;
         case r'closed': return ListDropMineItemStatusEnum.closed;
-        case r'released': return ListDropMineItemStatusEnum.released;
         case r'line_open': return ListDropMineItemStatusEnum.lineOpen;
+        case r'released': return ListDropMineItemStatusEnum.released;
         default:
           if (allowNull == false) {
             throw ArgumentError('Unknown enum value to decode: $data');

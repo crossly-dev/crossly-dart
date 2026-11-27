@@ -1794,6 +1794,52 @@ class Web3Api {
     return Future<CreateWeb3SolanaTensorBidPlaceTxResponse>.value();
   }
 
+  /// After your wallet’s Tensor transaction confirms: `action` place, cancel or accept, with its `signature` and the `wallet` that signed. Checked on chain, then recorded in your Activity. Accept needs listings:write; place and cancel need buyer:offers:write.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  Future<Response> createWeb3SolanaTensorBidConfirmWithHttpInfo() async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/web3/solana/tensor-bids/confirm';
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'POST',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// After your wallet’s Tensor transaction confirms: `action` place, cancel or accept, with its `signature` and the `wallet` that signed. Checked on chain, then recorded in your Activity. Accept needs listings:write; place and cancel need buyer:offers:write.
+  Future<CreateWeb3SolanaTensorBidConfirmResponse> createWeb3SolanaTensorBidConfirm() async {
+    final response = await createWeb3SolanaTensorBidConfirmWithHttpInfo();
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'CreateWeb3SolanaTensorBidConfirmResponse',) as CreateWeb3SolanaTensorBidConfirmResponse;
+    
+    }
+    return Future<CreateWeb3SolanaTensorBidConfirmResponse>.value();
+  }
+
   /// Build a Tensor collection bid (or trait bid with `trait`) for your Solana wallet to sign. Price in lamports.
   ///
   /// Note: This method returns the HTTP [Response].
@@ -1838,6 +1884,356 @@ class Web3Api {
     
     }
     return Future<CreateWeb3SolanaTensorBidPlaceTxResponse>.value();
+  }
+
+  /// Lock earned CBX (`baseUnits`, a string) into the best tier it reaches. 409 while a stake or unstake is in progress.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  Future<Response> createWeb3StakingStakeWithHttpInfo() async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/web3/staking/stake';
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'POST',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Lock earned CBX (`baseUnits`, a string) into the best tier it reaches. 409 while a stake or unstake is in progress.
+  Future<CreateWeb3StakingStakeResponse> createWeb3StakingStake() async {
+    final response = await createWeb3StakingStakeWithHttpInfo();
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'CreateWeb3StakingStakeResponse',) as CreateWeb3StakingStakeResponse;
+    
+    }
+    return Future<CreateWeb3StakingStakeResponse>.value();
+  }
+
+  /// Start unstaking: the earn boost stops now, the tokens release when the tier’s cooldown ends. Returns `{ unlocksAt, cooldownDays }`.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  Future<Response> createWeb3StakingUnstakeWithHttpInfo() async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/web3/staking/unstake';
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'POST',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Start unstaking: the earn boost stops now, the tokens release when the tier’s cooldown ends. Returns `{ unlocksAt, cooldownDays }`.
+  Future<CreateWeb3StakingUnstakeResponse> createWeb3StakingUnstake() async {
+    final response = await createWeb3StakingUnstakeWithHttpInfo();
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'CreateWeb3StakingUnstakeResponse',) as CreateWeb3StakingUnstakeResponse;
+    
+    }
+    return Future<CreateWeb3StakingUnstakeResponse>.value();
+  }
+
+  /// Link one of your verified wallets to the store so it sells NFTs from it and is paid into it.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  Future<Response> createWeb3StoreWalletWithHttpInfo() async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/web3/store-wallets';
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'POST',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Link one of your verified wallets to the store so it sells NFTs from it and is paid into it.
+  Future<CreateWeb3StoreWalletResponse> createWeb3StoreWallet() async {
+    final response = await createWeb3StoreWalletWithHttpInfo();
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'CreateWeb3StoreWalletResponse',) as CreateWeb3StoreWalletResponse;
+    
+    }
+    return Future<CreateWeb3StoreWalletResponse>.value();
+  }
+
+  /// Start adding a selling wallet to the store: the message the wallet signs.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  Future<Response> createWeb3StoreWalletChallengeWithHttpInfo() async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/web3/store-wallets/challenge';
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'POST',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Start adding a selling wallet to the store: the message the wallet signs.
+  Future<CreateWeb3WalletChallengeResponse> createWeb3StoreWalletChallenge() async {
+    final response = await createWeb3StoreWalletChallengeWithHttpInfo();
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'CreateWeb3WalletChallengeResponse',) as CreateWeb3WalletChallengeResponse;
+    
+    }
+    return Future<CreateWeb3WalletChallengeResponse>.value();
+  }
+
+  /// Add picked NFTs (`tokens: [{ chain, contract, tokenId }]`) from a store wallet to inventory.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] walletId (required):
+  Future<Response> createWeb3StoreWalletImportWithHttpInfo(String walletId,) async {
+    // Verify required params are set.
+    if (walletId == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: walletId');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/web3/store-wallets/{walletId}/import'
+      .replaceAll('{walletId}', walletId);
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'POST',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Add picked NFTs (`tokens: [{ chain, contract, tokenId }]`) from a store wallet to inventory.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] walletId (required):
+  Future<CreateWeb3WalletImportResponse> createWeb3StoreWalletImport(String walletId,) async {
+    final response = await createWeb3StoreWalletImportWithHttpInfo(walletId,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'CreateWeb3WalletImportResponse',) as CreateWeb3WalletImportResponse;
+    
+    }
+    return Future<CreateWeb3WalletImportResponse>.value();
+  }
+
+  /// Sync a store wallet: refresh its NFTs in inventory; new ones are added when the store's link auto-imports.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] walletId (required):
+  Future<Response> createWeb3StoreWalletSyncWithHttpInfo(String walletId,) async {
+    // Verify required params are set.
+    if (walletId == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: walletId');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/web3/store-wallets/{walletId}/sync'
+      .replaceAll('{walletId}', walletId);
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'POST',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Sync a store wallet: refresh its NFTs in inventory; new ones are added when the store's link auto-imports.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] walletId (required):
+  Future<CreateWeb3StoreWalletSyncResponse> createWeb3StoreWalletSync(String walletId,) async {
+    final response = await createWeb3StoreWalletSyncWithHttpInfo(walletId,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'CreateWeb3StoreWalletSyncResponse',) as CreateWeb3StoreWalletSyncResponse;
+    
+    }
+    return Future<CreateWeb3StoreWalletSyncResponse>.value();
+  }
+
+  /// Finish adding a selling wallet: verify its signature and link it to the store.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  Future<Response> createWeb3StoreWalletVerifyWithHttpInfo() async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/web3/store-wallets/verify';
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'POST',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Finish adding a selling wallet: verify its signature and link it to the store.
+  Future<CreateWeb3StoreWalletResponse> createWeb3StoreWalletVerify() async {
+    final response = await createWeb3StoreWalletVerifyWithHttpInfo();
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'CreateWeb3StoreWalletResponse',) as CreateWeb3StoreWalletResponse;
+    
+    }
+    return Future<CreateWeb3StoreWalletResponse>.value();
   }
 
   /// Re-read a token's metadata from the chain's provider (name, traits, image — a new image is copied to Crossly's CDN). Once per token per 10 minutes.
@@ -2008,6 +2404,66 @@ class Web3Api {
     return Future<CreateWeb3WalletChallengeResponse>.value();
   }
 
+  /// Add picked NFTs (`tokens`: chain, contract, tokenId; up to 200) from a linked wallet to inventory. Tokens the wallet does not hold are counted in `notInWallet`, never added.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<Response> createWeb3WalletImportWithHttpInfo(String id,) async {
+    // Verify required params are set.
+    if (id == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: id');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/web3/wallets/{id}/import'
+      .replaceAll('{id}', id);
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'POST',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Add picked NFTs (`tokens`: chain, contract, tokenId; up to 200) from a linked wallet to inventory. Tokens the wallet does not hold are counted in `notInWallet`, never added.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<CreateWeb3WalletImportResponse> createWeb3WalletImport(String id,) async {
+    final response = await createWeb3WalletImportWithHttpInfo(id,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'CreateWeb3WalletImportResponse',) as CreateWeb3WalletImportResponse;
+    
+    }
+    return Future<CreateWeb3WalletImportResponse>.value();
+  }
+
   /// Import a linked wallet's NFTs into inventory; archives ones that have left the wallet.
   ///
   /// Note: This method returns the HTTP [Response].
@@ -2174,7 +2630,7 @@ class Web3Api {
     return Future<OkResponse>.value();
   }
 
-  /// Remove a holder perk. Returns `{ ok }`.
+  /// DEPRECATED: use /api/v1/discounts/holders/:id. Remove a Collection holders deal. Returns `{ ok }`.
   ///
   /// Note: This method returns the HTTP [Response].
   ///
@@ -2214,7 +2670,7 @@ class Web3Api {
     );
   }
 
-  /// Remove a holder perk. Returns `{ ok }`.
+  /// DEPRECATED: use /api/v1/discounts/holders/:id. Remove a Collection holders deal. Returns `{ ok }`.
   ///
   /// Parameters:
   ///
@@ -2354,6 +2810,66 @@ class Web3Api {
     return Future<CreateWeb3LaunchFollowCreatorResponse>.value();
   }
 
+  /// Remove every collection perk of a launch. Returns `{ ok }`.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<Response> deleteWeb3LaunchPerkWithHttpInfo(String id,) async {
+    // Verify required params are set.
+    if (id == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: id');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/web3/launches/{id}/perks'
+      .replaceAll('{id}', id);
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'DELETE',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Remove every collection perk of a launch. Returns `{ ok }`.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<OkResponse> deleteWeb3LaunchPerk(String id,) async {
+    final response = await deleteWeb3LaunchPerkWithHttpInfo(id,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'OkResponse',) as OkResponse;
+    
+    }
+    return Future<OkResponse>.value();
+  }
+
   /// Remove your own key for a marketplace; Crossly's key is used again.
   ///
   /// Note: This method returns the HTTP [Response].
@@ -2401,6 +2917,58 @@ class Web3Api {
   /// * [String] marketplace (required):
   Future<void> deleteWeb3MarketplaceKey(String marketplace,) async {
     final response = await deleteWeb3MarketplaceKeyWithHttpInfo(marketplace,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+  }
+
+  /// Stop the store selling from a wallet (the wallet and its other stores are unaffected).
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] walletId (required):
+  Future<Response> deleteWeb3StoreWalletWithHttpInfo(String walletId,) async {
+    // Verify required params are set.
+    if (walletId == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: walletId');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/web3/store-wallets/{walletId}'
+      .replaceAll('{walletId}', walletId);
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'DELETE',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Stop the store selling from a wallet (the wallet and its other stores are unaffected).
+  ///
+  /// Parameters:
+  ///
+  /// * [String] walletId (required):
+  Future<void> deleteWeb3StoreWallet(String walletId,) async {
+    final response = await deleteWeb3StoreWalletWithHttpInfo(walletId,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -2540,6 +3108,56 @@ class Web3Api {
     
     }
     return Future<GetWeb3AuctionResponse>.value();
+  }
+
+  /// Every CBX you have, in one read, with the three balances kept apart.
+  ///
+  /// `credit`: EARNED (withdrawable once matured; `withdrawableBaseUnits` is earned minus anything staked) and GRANTED (in-platform spend only, never withdrawable). `connected`: headroom on your connected-wallet delegation, a ceiling on what Crossly may pull, never a balance. `wallets`: each linked wallet with its own on-chain CBX (`status` read / not_solana / not_live / unavailable). `totals.allBaseUnits` is credit + wallets and never adds the delegation headroom. Amounts are base-unit strings (`decimals`).
+  ///
+  /// Note: This method returns the HTTP [Response].
+  Future<Response> getWeb3BalanceWithHttpInfo() async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/web3/balances';
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Every CBX you have, in one read, with the three balances kept apart.
+  ///
+  /// `credit`: EARNED (withdrawable once matured; `withdrawableBaseUnits` is earned minus anything staked) and GRANTED (in-platform spend only, never withdrawable). `connected`: headroom on your connected-wallet delegation, a ceiling on what Crossly may pull, never a balance. `wallets`: each linked wallet with its own on-chain CBX (`status` read / not_solana / not_live / unavailable). `totals.allBaseUnits` is credit + wallets and never adds the delegation headroom. Amounts are base-unit strings (`decimals`).
+  Future<GetWeb3BalanceResponse> getWeb3Balance() async {
+    final response = await getWeb3BalanceWithHttpInfo();
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'GetWeb3BalanceResponse',) as GetWeb3BalanceResponse;
+    
+    }
+    return Future<GetWeb3BalanceResponse>.value();
   }
 
   /// The Web3 directory's categories and chains, with how many collections each holds.
@@ -3382,6 +4000,66 @@ class Web3Api {
     return Future<GetWeb3LaunchDeployTxResponse>.value();
   }
 
+  /// A launch’s phase timeline, mint progress, proceeds (gross, Crossly’s cut, yours; airdrops excluded), allowlist and art counts, and recent mints.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<Response> getWeb3LaunchStatWithHttpInfo(String id,) async {
+    // Verify required params are set.
+    if (id == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: id');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/web3/launches/{id}/stats'
+      .replaceAll('{id}', id);
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// A launch’s phase timeline, mint progress, proceeds (gross, Crossly’s cut, yours; airdrops excluded), allowlist and art counts, and recent mints.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<GetWeb3LaunchStatResponse> getWeb3LaunchStat(String id,) async {
+    final response = await getWeb3LaunchStatWithHttpInfo(id,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'GetWeb3LaunchStatResponse',) as GetWeb3LaunchStatResponse;
+    
+    }
+    return Future<GetWeb3LaunchStatResponse>.value();
+  }
+
   /// A launch’s creator tools: allowlist size and root (and whether the contract has it yet), uploaded art and reveal, supply minted.
   ///
   /// Note: This method returns the HTTP [Response].
@@ -3912,6 +4590,162 @@ class Web3Api {
     return Future<GetWeb3SolanaCollectionTensorBidResponse>.value();
   }
 
+  /// Your CBX stake: what is locked, its tier, the tier ladder and your past positions.
+  ///
+  /// A stake locks EARNED CBX; it moves nothing and pays no yield. Each tier buys a withdrawal-fee discount and an earn-rate boost on future purchases, and has a cooldown before an unstake releases.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  Future<Response> getWeb3StakingWithHttpInfo() async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/web3/staking';
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Your CBX stake: what is locked, its tier, the tier ladder and your past positions.
+  ///
+  /// A stake locks EARNED CBX; it moves nothing and pays no yield. Each tier buys a withdrawal-fee discount and an earn-rate boost on future purchases, and has a cooldown before an unstake releases.
+  Future<GetWeb3StakingResponse> getWeb3Staking() async {
+    final response = await getWeb3StakingWithHttpInfo();
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'GetWeb3StakingResponse',) as GetWeb3StakingResponse;
+    
+    }
+    return Future<GetWeb3StakingResponse>.value();
+  }
+
+  /// What a store wallet holds (chain + contract + token id), each marked in-inventory or not.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] walletId (required):
+  Future<Response> getWeb3StoreWalletHoldingWithHttpInfo(String walletId,) async {
+    // Verify required params are set.
+    if (walletId == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: walletId');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/web3/store-wallets/{walletId}/holdings'
+      .replaceAll('{walletId}', walletId);
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// What a store wallet holds (chain + contract + token id), each marked in-inventory or not.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] walletId (required):
+  Future<GetWeb3WalletHoldingResponse> getWeb3StoreWalletHolding(String walletId,) async {
+    final response = await getWeb3StoreWalletHoldingWithHttpInfo(walletId,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'GetWeb3WalletHoldingResponse',) as GetWeb3WalletHoldingResponse;
+    
+    }
+    return Future<GetWeb3WalletHoldingResponse>.value();
+  }
+
+  /// The store's Crossly NFTs: plots (deeds and leases), streets its owner founded and vault receipt tokens in its wallets, with the wallets a plot purchase and a receipt export use.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  Future<Response> getWeb3StoreWalletNftWithHttpInfo() async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/web3/store-wallets/nfts';
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// The store's Crossly NFTs: plots (deeds and leases), streets its owner founded and vault receipt tokens in its wallets, with the wallets a plot purchase and a receipt export use.
+  Future<GetWeb3StoreWalletNftResponse> getWeb3StoreWalletNft() async {
+    final response = await getWeb3StoreWalletNftWithHttpInfo();
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'GetWeb3StoreWalletNftResponse',) as GetWeb3StoreWalletNftResponse;
+    
+    }
+    return Future<GetWeb3StoreWalletNftResponse>.value();
+  }
+
   /// One NFT: metadata, traits, owner, open listings and offers, activity.
   ///
   /// Note: This method returns the HTTP [Response].
@@ -3986,6 +4820,66 @@ class Web3Api {
     
     }
     return Future<GetWeb3TokenResponse>.value();
+  }
+
+  /// What a linked wallet holds right now, each NFT marked `inInventory` or not. Reads the chain; writes nothing.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<Response> getWeb3WalletHoldingWithHttpInfo(String id,) async {
+    // Verify required params are set.
+    if (id == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: id');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/web3/wallets/{id}/holdings'
+      .replaceAll('{id}', id);
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// What a linked wallet holds right now, each NFT marked `inInventory` or not. Reads the chain; writes nothing.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<GetWeb3WalletHoldingResponse> getWeb3WalletHolding(String id,) async {
+    final response = await getWeb3WalletHoldingWithHttpInfo(id,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'GetWeb3WalletHoldingResponse',) as GetWeb3WalletHoldingResponse;
+    
+    }
+    return Future<GetWeb3WalletHoldingResponse>.value();
   }
 
   /// Listings, offers, sales and cancels in the Crossly book, newest first.
@@ -4516,7 +5410,7 @@ class Web3Api {
     return Future<ListWeb3DropsResponse>.value();
   }
 
-  /// Your holder perks: percent off your Crossly shop for holders of an NFT collection, best first.
+  /// DEPRECATED: use /api/v1/discounts/holders. Your Collection holders deals in the old holder-perk shape, best first.
   ///
   /// Note: This method returns the HTTP [Response].
   Future<Response> listWeb3HolderPerksWithHttpInfo() async {
@@ -4546,7 +5440,7 @@ class Web3Api {
     );
   }
 
-  /// Your holder perks: percent off your Crossly shop for holders of an NFT collection, best first.
+  /// DEPRECATED: use /api/v1/discounts/holders. Your Collection holders deals in the old holder-perk shape, best first.
   Future<ListWeb3HolderPerksResponse> listWeb3HolderPerks() async {
     final response = await listWeb3HolderPerksWithHttpInfo();
     if (response.statusCode >= HttpStatus.badRequest) {
@@ -4560,6 +5454,66 @@ class Web3Api {
     
     }
     return Future<ListWeb3HolderPerksResponse>.value();
+  }
+
+  /// The perks holders of this launch’s collection get (percent off your shop, early drop access, a World item, a loyalty tier, live early entry, an event ticket).
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<Response> listWeb3LaunchPerksWithHttpInfo(String id,) async {
+    // Verify required params are set.
+    if (id == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: id');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/web3/launches/{id}/perks'
+      .replaceAll('{id}', id);
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// The perks holders of this launch’s collection get (percent off your shop, early drop access, a World item, a loyalty tier, live early entry, an event ticket).
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<ListWeb3LaunchPerksResponse> listWeb3LaunchPerks(String id,) async {
+    final response = await listWeb3LaunchPerksWithHttpInfo(id,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'ListWeb3LaunchPerksResponse',) as ListWeb3LaunchPerksResponse;
+    
+    }
+    return Future<ListWeb3LaunchPerksResponse>.value();
   }
 
   /// Your launchpad collections (drafts and live), newest first, with minted count and phase.
@@ -4781,7 +5735,7 @@ class Web3Api {
     return Future<ListWeb3NftsResponse>.value();
   }
 
-  /// Your orders in the Crossly book (listings and offers), any status.
+  /// Your orders in the Crossly book (listings and offers), any status. With X-Storefront-Id: that store's listings (offers always).
   ///
   /// Note: This method returns the HTTP [Response].
   Future<Response> listWeb3OrdersWithHttpInfo() async {
@@ -4811,7 +5765,7 @@ class Web3Api {
     );
   }
 
-  /// Your orders in the Crossly book (listings and offers), any status.
+  /// Your orders in the Crossly book (listings and offers), any status. With X-Storefront-Id: that store's listings (offers always).
   Future<ListWeb3OrdersResponse> listWeb3Orders() async {
     final response = await listWeb3OrdersWithHttpInfo();
     if (response.statusCode >= HttpStatus.badRequest) {
@@ -5103,6 +6057,98 @@ class Web3Api {
     return Future<ListWeb3SearchTokensResponse>.value();
   }
 
+  /// The native-coin balance (SOL, ETH, POL, …) of each of the store's selling wallets, read on chain.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  Future<Response> listWeb3StoreWalletBalancesWithHttpInfo() async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/web3/store-wallets/balances';
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// The native-coin balance (SOL, ETH, POL, …) of each of the store's selling wallets, read on chain.
+  Future<ListWeb3StoreWalletBalancesResponse> listWeb3StoreWalletBalances() async {
+    final response = await listWeb3StoreWalletBalancesWithHttpInfo();
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'ListWeb3StoreWalletBalancesResponse',) as ListWeb3StoreWalletBalancesResponse;
+    
+    }
+    return Future<ListWeb3StoreWalletBalancesResponse>.value();
+  }
+
+  /// List the store's selling wallets (X-Storefront-Id; default store when omitted).
+  ///
+  /// Note: This method returns the HTTP [Response].
+  Future<Response> listWeb3StoreWalletsWithHttpInfo() async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/web3/store-wallets';
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// List the store's selling wallets (X-Storefront-Id; default store when omitted).
+  Future<ListWeb3StoreWalletsResponse> listWeb3StoreWallets() async {
+    final response = await listWeb3StoreWalletsWithHttpInfo();
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'ListWeb3StoreWalletsResponse',) as ListWeb3StoreWalletsResponse;
+    
+    }
+    return Future<ListWeb3StoreWalletsResponse>.value();
+  }
+
   /// List your verified, linked wallets (EVM and Solana).
   ///
   /// Note: This method returns the HTTP [Response].
@@ -5195,7 +6241,7 @@ class Web3Api {
     return Future<ListWeb3WatchlistResponse>.value();
   }
 
-  /// Set the percent off (100–5000 bps) holders of a collection get across your Crossly shop; one perk per collection.
+  /// DEPRECATED: use /api/v1/discounts/holders. Set the percent off (100–5000 bps) holders of a collection get in your store (the key’s store, else the default); one per collection.
   ///
   /// Note: This method returns the HTTP [Response].
   Future<Response> updateWeb3HolderPerkWithHttpInfo() async {
@@ -5225,8 +6271,8 @@ class Web3Api {
     );
   }
 
-  /// Set the percent off (100–5000 bps) holders of a collection get across your Crossly shop; one perk per collection.
-  Future<ListWeb3HolderPerksItem> updateWeb3HolderPerk() async {
+  /// DEPRECATED: use /api/v1/discounts/holders. Set the percent off (100–5000 bps) holders of a collection get in your store (the key’s store, else the default); one per collection.
+  Future<UpdateWeb3HolderPerkResponse> updateWeb3HolderPerk() async {
     final response = await updateWeb3HolderPerkWithHttpInfo();
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
@@ -5235,10 +6281,70 @@ class Web3Api {
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
     if (response.body != null && response.statusCode != HttpStatus.noContent) {
-      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'ListWeb3HolderPerksItem',) as ListWeb3HolderPerksItem;
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'UpdateWeb3HolderPerkResponse',) as UpdateWeb3HolderPerkResponse;
     
     }
-    return Future<ListWeb3HolderPerksItem>.value();
+    return Future<UpdateWeb3HolderPerkResponse>.value();
+  }
+
+  /// Edit a launch draft (or a failed deploy) before it deploys: any creation field except chain and owner. The schedule is re-checked; 409 once live.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<Response> updateWeb3LaunchWithHttpInfo(String id,) async {
+    // Verify required params are set.
+    if (id == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: id');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/web3/launches/{id}'
+      .replaceAll('{id}', id);
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'PATCH',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Edit a launch draft (or a failed deploy) before it deploys: any creation field except chain and owner. The schedule is re-checked; 409 once live.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<UpdateWeb3LaunchResponse> updateWeb3Launch(String id,) async {
+    final response = await updateWeb3LaunchWithHttpInfo(id,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'UpdateWeb3LaunchResponse',) as UpdateWeb3LaunchResponse;
+    
+    }
+    return Future<UpdateWeb3LaunchResponse>.value();
   }
 
   /// Replace the early-phase allowlist (up to 10,000 wallets). EVM live launches get back `rootTx`, the setAllowlistRoot transaction for the owner wallet.
@@ -5301,6 +6407,66 @@ class Web3Api {
     return Future<UpdateWeb3LaunchAllowlistResponse>.value();
   }
 
+  /// Replace a launch’s collection perks: `{ perks: [{ config: { type, ... }, active }] }`, one per type; a type left out is removed.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<Response> updateWeb3LaunchPerkWithHttpInfo(String id,) async {
+    // Verify required params are set.
+    if (id == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: id');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/web3/launches/{id}/perks'
+      .replaceAll('{id}', id);
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'PUT',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Replace a launch’s collection perks: `{ perks: [{ config: { type, ... }, active }] }`, one per type; a type left out is removed.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<ListWeb3LaunchPerksResponse> updateWeb3LaunchPerk(String id,) async {
+    final response = await updateWeb3LaunchPerkWithHttpInfo(id,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'ListWeb3LaunchPerksResponse',) as ListWeb3LaunchPerksResponse;
+    
+    }
+    return Future<ListWeb3LaunchPerksResponse>.value();
+  }
+
   /// Save your own API key for a marketplace (checked against the marketplace first where it can be); stored encrypted.
   ///
   /// Note: This method returns the HTTP [Response].
@@ -5359,5 +6525,185 @@ class Web3Api {
     
     }
     return Future<ListWeb3MarketplaceKeysItem>.value();
+  }
+
+  /// Turn on or off whether syncing this store wallet adds new NFTs to the store’s inventory (X-Storefront-Id).
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] walletId (required):
+  Future<Response> updateWeb3StoreWalletWithHttpInfo(String walletId,) async {
+    // Verify required params are set.
+    if (walletId == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: walletId');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/web3/store-wallets/{walletId}'
+      .replaceAll('{walletId}', walletId);
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'PATCH',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Turn on or off whether syncing this store wallet adds new NFTs to the store’s inventory (X-Storefront-Id).
+  ///
+  /// Parameters:
+  ///
+  /// * [String] walletId (required):
+  Future<UpdateWeb3StoreWalletResponse> updateWeb3StoreWallet(String walletId,) async {
+    final response = await updateWeb3StoreWalletWithHttpInfo(walletId,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'UpdateWeb3StoreWalletResponse',) as UpdateWeb3StoreWalletResponse;
+    
+    }
+    return Future<UpdateWeb3StoreWalletResponse>.value();
+  }
+
+  /// Make a linked wallet the store's default selling wallet on its network (EVM or Solana).
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] walletId (required):
+  Future<Response> updateWeb3StoreWalletDefaultWithHttpInfo(String walletId,) async {
+    // Verify required params are set.
+    if (walletId == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: walletId');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/web3/store-wallets/{walletId}/default'
+      .replaceAll('{walletId}', walletId);
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'PUT',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Make a linked wallet the store's default selling wallet on its network (EVM or Solana).
+  ///
+  /// Parameters:
+  ///
+  /// * [String] walletId (required):
+  Future<ListWeb3StoreWalletsResponse> updateWeb3StoreWalletDefault(String walletId,) async {
+    final response = await updateWeb3StoreWalletDefaultWithHttpInfo(walletId,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'ListWeb3StoreWalletsResponse',) as ListWeb3StoreWalletsResponse;
+    
+    }
+    return Future<ListWeb3StoreWalletsResponse>.value();
+  }
+
+  /// Change a linked wallet: `autoImport` (a sync adds new NFTs to inventory; off, it only refreshes the ones there) and `label`.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<Response> updateWeb3WalletWithHttpInfo(String id,) async {
+    // Verify required params are set.
+    if (id == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: id');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/web3/wallets/{id}'
+      .replaceAll('{id}', id);
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'PATCH',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Change a linked wallet: `autoImport` (a sync adds new NFTs to inventory; off, it only refreshes the ones there) and `label`.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<UpdateWeb3WalletResponse> updateWeb3Wallet(String id,) async {
+    final response = await updateWeb3WalletWithHttpInfo(id,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'UpdateWeb3WalletResponse',) as UpdateWeb3WalletResponse;
+    
+    }
+    return Future<UpdateWeb3WalletResponse>.value();
   }
 }

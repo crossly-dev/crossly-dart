@@ -223,17 +223,17 @@ class ListVaultMarketSetGoalBasketsItemStatusEnum {
 
   String toJson() => value;
 
+  static const completed = ListVaultMarketSetGoalBasketsItemStatusEnum._(r'completed');
   static const cancelled = ListVaultMarketSetGoalBasketsItemStatusEnum._(r'cancelled');
   static const ended = ListVaultMarketSetGoalBasketsItemStatusEnum._(r'ended');
   static const working = ListVaultMarketSetGoalBasketsItemStatusEnum._(r'working');
-  static const completed = ListVaultMarketSetGoalBasketsItemStatusEnum._(r'completed');
 
   /// List of all possible values in this [enum][ListVaultMarketSetGoalBasketsItemStatusEnum].
   static const values = <ListVaultMarketSetGoalBasketsItemStatusEnum>[
+    completed,
     cancelled,
     ended,
     working,
-    completed,
   ];
 
   static ListVaultMarketSetGoalBasketsItemStatusEnum fromJson(dynamic value) =>
@@ -265,10 +265,10 @@ class ListVaultMarketSetGoalBasketsItemStatusEnumTypeTransformer {
   ListVaultMarketSetGoalBasketsItemStatusEnum decode(dynamic data, {bool allowNull}) {
     if (data != null) {
       switch (data.toString()) {
+        case r'completed': return ListVaultMarketSetGoalBasketsItemStatusEnum.completed;
         case r'cancelled': return ListVaultMarketSetGoalBasketsItemStatusEnum.cancelled;
         case r'ended': return ListVaultMarketSetGoalBasketsItemStatusEnum.ended;
         case r'working': return ListVaultMarketSetGoalBasketsItemStatusEnum.working;
-        case r'completed': return ListVaultMarketSetGoalBasketsItemStatusEnum.completed;
         default:
           if (allowNull == false) {
             throw ArgumentError('Unknown enum value to decode: $data');

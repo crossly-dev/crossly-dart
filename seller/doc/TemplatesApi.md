@@ -17,6 +17,7 @@ Method | HTTP request | Description
 [**deleteMeTemplateShare**](TemplatesApi.md#deletemetemplateshare) | **DELETE** /v1/me/templates/{id}/share | Revoke a template share link.
 [**getMeTemplate**](TemplatesApi.md#getmetemplate) | **GET** /v1/me/templates/{id} | Fetch one template in full.
 [**getMeTemplateSuggest**](TemplatesApi.md#getmetemplatesuggest) | **GET** /v1/me/templates/suggest | The seller's default template for a category.
+[**getPublicTemplate**](TemplatesApi.md#getpublictemplate) | **GET** /v1/public/templates/{token} | A shared template by its share token (public, no auth).
 [**listMeTemplates**](TemplatesApi.md#listmetemplates) | **GET** /v1/me/templates | List the seller's templates.
 [**updateMeTemplate**](TemplatesApi.md#updatemetemplate) | **PATCH** /v1/me/templates/{id} | Patch a template.
 
@@ -383,6 +384,47 @@ This endpoint does not need any parameter.
 ### Authorization
 
 [PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+# **getPublicTemplate**
+> GetPublicTemplateResponse getPublicTemplate(token)
+
+A shared template by its share token (public, no auth).
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+
+final api_instance = TemplatesApi();
+final token = token_example; // String | 
+
+try {
+    final result = api_instance.getPublicTemplate(token);
+    print(result);
+} catch (e) {
+    print('Exception when calling TemplatesApi->getPublicTemplate: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **token** | **String**|  | 
+
+### Return type
+
+**GetPublicTemplateResponse**
+
+### Authorization
+
+No authorization required
 
 ### HTTP request headers
 

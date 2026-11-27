@@ -132,15 +132,15 @@ class CreateBuyerAgentSessionResponseBriefPendingKindEnum {
 
   String toJson() => value;
 
-  static const dispute = CreateBuyerAgentSessionResponseBriefPendingKindEnum._(r'dispute');
-  static const cancel = CreateBuyerAgentSessionResponseBriefPendingKindEnum._(r'cancel');
   static const return_ = CreateBuyerAgentSessionResponseBriefPendingKindEnum._(r'return');
+  static const cancel = CreateBuyerAgentSessionResponseBriefPendingKindEnum._(r'cancel');
+  static const dispute = CreateBuyerAgentSessionResponseBriefPendingKindEnum._(r'dispute');
 
   /// List of all possible values in this [enum][CreateBuyerAgentSessionResponseBriefPendingKindEnum].
   static const values = <CreateBuyerAgentSessionResponseBriefPendingKindEnum>[
-    dispute,
-    cancel,
     return_,
+    cancel,
+    dispute,
   ];
 
   static CreateBuyerAgentSessionResponseBriefPendingKindEnum fromJson(dynamic value) =>
@@ -172,9 +172,9 @@ class CreateBuyerAgentSessionResponseBriefPendingKindEnumTypeTransformer {
   CreateBuyerAgentSessionResponseBriefPendingKindEnum decode(dynamic data, {bool allowNull}) {
     if (data != null) {
       switch (data.toString()) {
-        case r'dispute': return CreateBuyerAgentSessionResponseBriefPendingKindEnum.dispute;
-        case r'cancel': return CreateBuyerAgentSessionResponseBriefPendingKindEnum.cancel;
         case r'return': return CreateBuyerAgentSessionResponseBriefPendingKindEnum.return_;
+        case r'cancel': return CreateBuyerAgentSessionResponseBriefPendingKindEnum.cancel;
+        case r'dispute': return CreateBuyerAgentSessionResponseBriefPendingKindEnum.dispute;
         default:
           if (allowNull == false) {
             throw ArgumentError('Unknown enum value to decode: $data');

@@ -259,18 +259,18 @@ class CreateVaultReceiptTokenConfirmResponseTokenStatusEnum {
   static const pending = CreateVaultReceiptTokenConfirmResponseTokenStatusEnum._(r'pending');
   static const live = CreateVaultReceiptTokenConfirmResponseTokenStatusEnum._(r'live');
   static const expired = CreateVaultReceiptTokenConfirmResponseTokenStatusEnum._(r'expired');
+  static const conflict = CreateVaultReceiptTokenConfirmResponseTokenStatusEnum._(r'conflict');
   static const frozen = CreateVaultReceiptTokenConfirmResponseTokenStatusEnum._(r'frozen');
   static const burned = CreateVaultReceiptTokenConfirmResponseTokenStatusEnum._(r'burned');
-  static const conflict = CreateVaultReceiptTokenConfirmResponseTokenStatusEnum._(r'conflict');
 
   /// List of all possible values in this [enum][CreateVaultReceiptTokenConfirmResponseTokenStatusEnum].
   static const values = <CreateVaultReceiptTokenConfirmResponseTokenStatusEnum>[
     pending,
     live,
     expired,
+    conflict,
     frozen,
     burned,
-    conflict,
   ];
 
   static CreateVaultReceiptTokenConfirmResponseTokenStatusEnum fromJson(dynamic value) =>
@@ -305,9 +305,9 @@ class CreateVaultReceiptTokenConfirmResponseTokenStatusEnumTypeTransformer {
         case r'pending': return CreateVaultReceiptTokenConfirmResponseTokenStatusEnum.pending;
         case r'live': return CreateVaultReceiptTokenConfirmResponseTokenStatusEnum.live;
         case r'expired': return CreateVaultReceiptTokenConfirmResponseTokenStatusEnum.expired;
+        case r'conflict': return CreateVaultReceiptTokenConfirmResponseTokenStatusEnum.conflict;
         case r'frozen': return CreateVaultReceiptTokenConfirmResponseTokenStatusEnum.frozen;
         case r'burned': return CreateVaultReceiptTokenConfirmResponseTokenStatusEnum.burned;
-        case r'conflict': return CreateVaultReceiptTokenConfirmResponseTokenStatusEnum.conflict;
         default:
           if (allowNull == false) {
             throw ArgumentError('Unknown enum value to decode: $data');

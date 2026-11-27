@@ -120,14 +120,14 @@ class ListWorldOutfitsItemItemsDoorEnum {
   String toJson() => value;
 
   static const receipt = ListWorldOutfitsItemItemsDoorEnum._(r'receipt');
-  static const cosmetic = ListWorldOutfitsItemItemsDoorEnum._(r'cosmetic');
   static const stock = ListWorldOutfitsItemItemsDoorEnum._(r'stock');
+  static const cosmetic = ListWorldOutfitsItemItemsDoorEnum._(r'cosmetic');
 
   /// List of all possible values in this [enum][ListWorldOutfitsItemItemsDoorEnum].
   static const values = <ListWorldOutfitsItemItemsDoorEnum>[
     receipt,
-    cosmetic,
     stock,
+    cosmetic,
   ];
 
   static ListWorldOutfitsItemItemsDoorEnum fromJson(dynamic value) =>
@@ -160,8 +160,8 @@ class ListWorldOutfitsItemItemsDoorEnumTypeTransformer {
     if (data != null) {
       switch (data.toString()) {
         case r'receipt': return ListWorldOutfitsItemItemsDoorEnum.receipt;
-        case r'cosmetic': return ListWorldOutfitsItemItemsDoorEnum.cosmetic;
         case r'stock': return ListWorldOutfitsItemItemsDoorEnum.stock;
+        case r'cosmetic': return ListWorldOutfitsItemItemsDoorEnum.cosmetic;
         default:
           if (allowNull == false) {
             throw ArgumentError('Unknown enum value to decode: $data');

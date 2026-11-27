@@ -16,9 +16,9 @@ class ListBuyerHuntsItem {
     @required this.id,
     @required this.name,
     @required this.mode,
-    @required this.status,
     @required this.maxPriceCents,
     @required this.buysLeft,
+    @required this.status,
   });
 
   String id;
@@ -27,20 +27,20 @@ class ListBuyerHuntsItem {
 
   String mode;
 
-  String status;
-
   num maxPriceCents;
 
   num buysLeft;
+
+  String status;
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is ListBuyerHuntsItem &&
      other.id == id &&
      other.name == name &&
      other.mode == mode &&
-     other.status == status &&
      other.maxPriceCents == maxPriceCents &&
-     other.buysLeft == buysLeft;
+     other.buysLeft == buysLeft &&
+     other.status == status;
 
   @override
   int get hashCode =>
@@ -48,21 +48,21 @@ class ListBuyerHuntsItem {
     (id == null ? 0 : id.hashCode) +
     (name == null ? 0 : name.hashCode) +
     (mode == null ? 0 : mode.hashCode) +
-    (status == null ? 0 : status.hashCode) +
     (maxPriceCents == null ? 0 : maxPriceCents.hashCode) +
-    (buysLeft == null ? 0 : buysLeft.hashCode);
+    (buysLeft == null ? 0 : buysLeft.hashCode) +
+    (status == null ? 0 : status.hashCode);
 
   @override
-  String toString() => 'ListBuyerHuntsItem[id=$id, name=$name, mode=$mode, status=$status, maxPriceCents=$maxPriceCents, buysLeft=$buysLeft]';
+  String toString() => 'ListBuyerHuntsItem[id=$id, name=$name, mode=$mode, maxPriceCents=$maxPriceCents, buysLeft=$buysLeft, status=$status]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
       json[r'id'] = id;
       json[r'name'] = name;
       json[r'mode'] = mode;
-      json[r'status'] = status;
       json[r'maxPriceCents'] = maxPriceCents;
       json[r'buysLeft'] = buysLeft;
+      json[r'status'] = status;
     return json;
   }
 
@@ -76,13 +76,13 @@ class ListBuyerHuntsItem {
         id: mapValueOfType<String>(json, r'id'),
         name: mapValueOfType<String>(json, r'name'),
         mode: mapValueOfType<String>(json, r'mode'),
-        status: mapValueOfType<String>(json, r'status'),
         maxPriceCents: json[r'maxPriceCents'] == null
           ? null
           : num.parse(json[r'maxPriceCents'].toString()),
         buysLeft: json[r'buysLeft'] == null
           ? null
           : num.parse(json[r'buysLeft'].toString()),
+        status: mapValueOfType<String>(json, r'status'),
       );
     }
     return null;

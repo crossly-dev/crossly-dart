@@ -123,15 +123,15 @@ class CreateOrderImportResponseResultsReasonEnum {
 
   String toJson() => value;
 
-  static const unsupportedPlatform = CreateOrderImportResponseResultsReasonEnum._(r'unsupported_platform');
   static const notConnected = CreateOrderImportResponseResultsReasonEnum._(r'not_connected');
   static const unknownPlatform = CreateOrderImportResponseResultsReasonEnum._(r'unknown_platform');
+  static const unsupportedPlatform = CreateOrderImportResponseResultsReasonEnum._(r'unsupported_platform');
 
   /// List of all possible values in this [enum][CreateOrderImportResponseResultsReasonEnum].
   static const values = <CreateOrderImportResponseResultsReasonEnum>[
-    unsupportedPlatform,
     notConnected,
     unknownPlatform,
+    unsupportedPlatform,
   ];
 
   static CreateOrderImportResponseResultsReasonEnum fromJson(dynamic value) =>
@@ -163,9 +163,9 @@ class CreateOrderImportResponseResultsReasonEnumTypeTransformer {
   CreateOrderImportResponseResultsReasonEnum decode(dynamic data, {bool allowNull}) {
     if (data != null) {
       switch (data.toString()) {
-        case r'unsupported_platform': return CreateOrderImportResponseResultsReasonEnum.unsupportedPlatform;
         case r'not_connected': return CreateOrderImportResponseResultsReasonEnum.notConnected;
         case r'unknown_platform': return CreateOrderImportResponseResultsReasonEnum.unknownPlatform;
+        case r'unsupported_platform': return CreateOrderImportResponseResultsReasonEnum.unsupportedPlatform;
         default:
           if (allowNull == false) {
             throw ArgumentError('Unknown enum value to decode: $data');

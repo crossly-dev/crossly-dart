@@ -115,20 +115,20 @@ class GetSpatialEmployeeConfigResponseDataConfigRulesWhenEnum {
   String toJson() => value;
 
   static const entered = GetSpatialEmployeeConfigResponseDataConfigRulesWhenEnum._(r'entered');
+  static const asked = GetSpatialEmployeeConfigResponseDataConfigRulesWhenEnum._(r'asked');
   static const lingered = GetSpatialEmployeeConfigResponseDataConfigRulesWhenEnum._(r'lingered');
   static const inspected = GetSpatialEmployeeConfigResponseDataConfigRulesWhenEnum._(r'inspected');
   static const addedToCart = GetSpatialEmployeeConfigResponseDataConfigRulesWhenEnum._(r'added_to_cart');
   static const leavingWithCart = GetSpatialEmployeeConfigResponseDataConfigRulesWhenEnum._(r'leaving_with_cart');
-  static const asked = GetSpatialEmployeeConfigResponseDataConfigRulesWhenEnum._(r'asked');
 
   /// List of all possible values in this [enum][GetSpatialEmployeeConfigResponseDataConfigRulesWhenEnum].
   static const values = <GetSpatialEmployeeConfigResponseDataConfigRulesWhenEnum>[
     entered,
+    asked,
     lingered,
     inspected,
     addedToCart,
     leavingWithCart,
-    asked,
   ];
 
   static GetSpatialEmployeeConfigResponseDataConfigRulesWhenEnum fromJson(dynamic value) =>
@@ -161,11 +161,11 @@ class GetSpatialEmployeeConfigResponseDataConfigRulesWhenEnumTypeTransformer {
     if (data != null) {
       switch (data.toString()) {
         case r'entered': return GetSpatialEmployeeConfigResponseDataConfigRulesWhenEnum.entered;
+        case r'asked': return GetSpatialEmployeeConfigResponseDataConfigRulesWhenEnum.asked;
         case r'lingered': return GetSpatialEmployeeConfigResponseDataConfigRulesWhenEnum.lingered;
         case r'inspected': return GetSpatialEmployeeConfigResponseDataConfigRulesWhenEnum.inspected;
         case r'added_to_cart': return GetSpatialEmployeeConfigResponseDataConfigRulesWhenEnum.addedToCart;
         case r'leaving_with_cart': return GetSpatialEmployeeConfigResponseDataConfigRulesWhenEnum.leavingWithCart;
-        case r'asked': return GetSpatialEmployeeConfigResponseDataConfigRulesWhenEnum.asked;
         default:
           if (allowNull == false) {
             throw ArgumentError('Unknown enum value to decode: $data');

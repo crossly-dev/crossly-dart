@@ -18,6 +18,7 @@ class ListVaultMarketShareCardsItem {
     @required this.verified,
     @required this.createdAt,
     @required this.showAmounts,
+    @required this.owner,
     @required this.title,
     this.subtitle,
     this.imageUrl,
@@ -40,6 +41,8 @@ class ListVaultMarketShareCardsItem {
   String createdAt;
 
   bool showAmounts;
+
+  ListVaultMarketShareCardsItemOwner owner;
 
   String title;
 
@@ -70,6 +73,7 @@ class ListVaultMarketShareCardsItem {
      other.verified == verified &&
      other.createdAt == createdAt &&
      other.showAmounts == showAmounts &&
+     other.owner == owner &&
      other.title == title &&
      other.subtitle == subtitle &&
      other.imageUrl == imageUrl &&
@@ -90,6 +94,7 @@ class ListVaultMarketShareCardsItem {
     (verified == null ? 0 : verified.hashCode) +
     (createdAt == null ? 0 : createdAt.hashCode) +
     (showAmounts == null ? 0 : showAmounts.hashCode) +
+    (owner == null ? 0 : owner.hashCode) +
     (title == null ? 0 : title.hashCode) +
     (subtitle == null ? 0 : subtitle.hashCode) +
     (imageUrl == null ? 0 : imageUrl.hashCode) +
@@ -103,7 +108,7 @@ class ListVaultMarketShareCardsItem {
     (links == null ? 0 : links.hashCode);
 
   @override
-  String toString() => 'ListVaultMarketShareCardsItem[id=$id, kind=$kind, verified=$verified, createdAt=$createdAt, showAmounts=$showAmounts, title=$title, subtitle=$subtitle, imageUrl=$imageUrl, bookKey=$bookKey, indexSlug=$indexSlug, mark=$mark, level=$level, change=$change, amounts=$amounts, portfolio=$portfolio, links=$links]';
+  String toString() => 'ListVaultMarketShareCardsItem[id=$id, kind=$kind, verified=$verified, createdAt=$createdAt, showAmounts=$showAmounts, owner=$owner, title=$title, subtitle=$subtitle, imageUrl=$imageUrl, bookKey=$bookKey, indexSlug=$indexSlug, mark=$mark, level=$level, change=$change, amounts=$amounts, portfolio=$portfolio, links=$links]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -112,6 +117,7 @@ class ListVaultMarketShareCardsItem {
       json[r'verified'] = verified;
       json[r'createdAt'] = createdAt;
       json[r'showAmounts'] = showAmounts;
+      json[r'owner'] = owner;
       json[r'title'] = title;
     if (subtitle != null) {
       json[r'subtitle'] = subtitle;
@@ -154,6 +160,7 @@ class ListVaultMarketShareCardsItem {
         verified: mapValueOfType<bool>(json, r'verified'),
         createdAt: mapValueOfType<String>(json, r'createdAt'),
         showAmounts: mapValueOfType<bool>(json, r'showAmounts'),
+        owner: ListVaultMarketShareCardsItemOwner.fromJson(json[r'owner']),
         title: mapValueOfType<String>(json, r'title'),
         subtitle: mapValueOfType<String>(json, r'subtitle'),
         imageUrl: mapValueOfType<String>(json, r'imageUrl'),
@@ -218,15 +225,15 @@ class ListVaultMarketShareCardsItemKindEnum {
 
   static const position = ListVaultMarketShareCardsItemKindEnum._(r'position');
   static const unit = ListVaultMarketShareCardsItemKindEnum._(r'unit');
-  static const index = ListVaultMarketShareCardsItemKindEnum._(r'index');
   static const portfolio = ListVaultMarketShareCardsItemKindEnum._(r'portfolio');
+  static const index = ListVaultMarketShareCardsItemKindEnum._(r'index');
 
   /// List of all possible values in this [enum][ListVaultMarketShareCardsItemKindEnum].
   static const values = <ListVaultMarketShareCardsItemKindEnum>[
     position,
     unit,
-    index,
     portfolio,
+    index,
   ];
 
   static ListVaultMarketShareCardsItemKindEnum fromJson(dynamic value) =>
@@ -260,8 +267,8 @@ class ListVaultMarketShareCardsItemKindEnumTypeTransformer {
       switch (data.toString()) {
         case r'position': return ListVaultMarketShareCardsItemKindEnum.position;
         case r'unit': return ListVaultMarketShareCardsItemKindEnum.unit;
-        case r'index': return ListVaultMarketShareCardsItemKindEnum.index;
         case r'portfolio': return ListVaultMarketShareCardsItemKindEnum.portfolio;
+        case r'index': return ListVaultMarketShareCardsItemKindEnum.index;
         default:
           if (allowNull == false) {
             throw ArgumentError('Unknown enum value to decode: $data');

@@ -13,12 +13,12 @@ part of openapi.api;
 class CreateBuyerCartQuoteResponseData {
   /// Returns a new [CreateBuyerCartQuoteResponseData] instance.
   CreateBuyerCartQuoteResponseData({
-    @required this.currency,
     @required this.kind,
-    @required this.taxCents,
-    @required this.shippingCents,
-    @required this.totalCents,
     @required this.itemsTotalCents,
+    @required this.shippingCents,
+    @required this.taxCents,
+    @required this.totalCents,
+    @required this.currency,
     this.pickupCartItemIds = const [],
     @required this.taxComplete,
     this.dutiesCents,
@@ -29,17 +29,17 @@ class CreateBuyerCartQuoteResponseData {
     this.shippingDestinationCountry,
   });
 
-  String currency;
-
   String kind;
 
-  num taxCents;
+  num itemsTotalCents;
 
   num shippingCents;
 
+  num taxCents;
+
   num totalCents;
 
-  num itemsTotalCents;
+  String currency;
 
   /// Lines being collected in person, so a summary can name what ships free.
   List<String> pickupCartItemIds;
@@ -65,12 +65,12 @@ class CreateBuyerCartQuoteResponseData {
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is CreateBuyerCartQuoteResponseData &&
-     other.currency == currency &&
      other.kind == kind &&
-     other.taxCents == taxCents &&
-     other.shippingCents == shippingCents &&
-     other.totalCents == totalCents &&
      other.itemsTotalCents == itemsTotalCents &&
+     other.shippingCents == shippingCents &&
+     other.taxCents == taxCents &&
+     other.totalCents == totalCents &&
+     other.currency == currency &&
      other.pickupCartItemIds == pickupCartItemIds &&
      other.taxComplete == taxComplete &&
      other.dutiesCents == dutiesCents &&
@@ -83,12 +83,12 @@ class CreateBuyerCartQuoteResponseData {
   @override
   int get hashCode =>
   // ignore: unnecessary_parenthesis
-    (currency == null ? 0 : currency.hashCode) +
     (kind == null ? 0 : kind.hashCode) +
-    (taxCents == null ? 0 : taxCents.hashCode) +
-    (shippingCents == null ? 0 : shippingCents.hashCode) +
-    (totalCents == null ? 0 : totalCents.hashCode) +
     (itemsTotalCents == null ? 0 : itemsTotalCents.hashCode) +
+    (shippingCents == null ? 0 : shippingCents.hashCode) +
+    (taxCents == null ? 0 : taxCents.hashCode) +
+    (totalCents == null ? 0 : totalCents.hashCode) +
+    (currency == null ? 0 : currency.hashCode) +
     (pickupCartItemIds == null ? 0 : pickupCartItemIds.hashCode) +
     (taxComplete == null ? 0 : taxComplete.hashCode) +
     (dutiesCents == null ? 0 : dutiesCents.hashCode) +
@@ -99,16 +99,16 @@ class CreateBuyerCartQuoteResponseData {
     (shippingDestinationCountry == null ? 0 : shippingDestinationCountry.hashCode);
 
   @override
-  String toString() => 'CreateBuyerCartQuoteResponseData[currency=$currency, kind=$kind, taxCents=$taxCents, shippingCents=$shippingCents, totalCents=$totalCents, itemsTotalCents=$itemsTotalCents, pickupCartItemIds=$pickupCartItemIds, taxComplete=$taxComplete, dutiesCents=$dutiesCents, dutiesStatus=$dutiesStatus, dutiesNotice=$dutiesNotice, shippingOptions=$shippingOptions, shippingServiceBySeller=$shippingServiceBySeller, shippingDestinationCountry=$shippingDestinationCountry]';
+  String toString() => 'CreateBuyerCartQuoteResponseData[kind=$kind, itemsTotalCents=$itemsTotalCents, shippingCents=$shippingCents, taxCents=$taxCents, totalCents=$totalCents, currency=$currency, pickupCartItemIds=$pickupCartItemIds, taxComplete=$taxComplete, dutiesCents=$dutiesCents, dutiesStatus=$dutiesStatus, dutiesNotice=$dutiesNotice, shippingOptions=$shippingOptions, shippingServiceBySeller=$shippingServiceBySeller, shippingDestinationCountry=$shippingDestinationCountry]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-      json[r'currency'] = currency;
       json[r'kind'] = kind;
-      json[r'taxCents'] = taxCents;
-      json[r'shippingCents'] = shippingCents;
-      json[r'totalCents'] = totalCents;
       json[r'itemsTotalCents'] = itemsTotalCents;
+      json[r'shippingCents'] = shippingCents;
+      json[r'taxCents'] = taxCents;
+      json[r'totalCents'] = totalCents;
+      json[r'currency'] = currency;
       json[r'pickupCartItemIds'] = pickupCartItemIds;
       json[r'taxComplete'] = taxComplete;
     if (dutiesCents != null) {
@@ -139,20 +139,20 @@ class CreateBuyerCartQuoteResponseData {
     if (value is Map) {
       final json = value.cast<String, dynamic>();
       return CreateBuyerCartQuoteResponseData(
-        currency: mapValueOfType<String>(json, r'currency'),
         kind: mapValueOfType<String>(json, r'kind'),
-        taxCents: json[r'taxCents'] == null
-          ? null
-          : num.parse(json[r'taxCents'].toString()),
-        shippingCents: json[r'shippingCents'] == null
-          ? null
-          : num.parse(json[r'shippingCents'].toString()),
-        totalCents: json[r'totalCents'] == null
-          ? null
-          : num.parse(json[r'totalCents'].toString()),
         itemsTotalCents: json[r'itemsTotalCents'] == null
           ? null
           : num.parse(json[r'itemsTotalCents'].toString()),
+        shippingCents: json[r'shippingCents'] == null
+          ? null
+          : num.parse(json[r'shippingCents'].toString()),
+        taxCents: json[r'taxCents'] == null
+          ? null
+          : num.parse(json[r'taxCents'].toString()),
+        totalCents: json[r'totalCents'] == null
+          ? null
+          : num.parse(json[r'totalCents'].toString()),
+        currency: mapValueOfType<String>(json, r'currency'),
         pickupCartItemIds: json[r'pickupCartItemIds'] is List
           ? (json[r'pickupCartItemIds'] as List).cast<String>()
           : null,

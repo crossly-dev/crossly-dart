@@ -18,20 +18,20 @@ class GetWeb3CollectionResponseCollection {
     this.description,
     this.category,
     this.slug,
-    this.hiddenAt,
     this.imageUrl,
+    @required this.verified,
+    this.hiddenAt,
     @required this.refreshedAt,
     this.externalUrl,
     @required this.chain,
     @required this.contract,
-    @required this.firstSeenAt,
     this.tokenType,
     this.totalSupply,
     this.featuredRank,
+    @required this.firstSeenAt,
     this.bannerUrl,
     this.twitter,
     this.discord,
-    @required this.verified,
     this.deployedBlock,
     @required this.collectors,
     this.indexedAt,
@@ -55,9 +55,11 @@ class GetWeb3CollectionResponseCollection {
 
   String slug;
 
-  DateTime hiddenAt;
-
   String imageUrl;
+
+  bool verified;
+
+  DateTime hiddenAt;
 
   DateTime refreshedAt;
 
@@ -67,21 +69,19 @@ class GetWeb3CollectionResponseCollection {
 
   String contract;
 
-  DateTime firstSeenAt;
-
   String tokenType;
 
   String totalSupply;
 
   num featuredRank;
 
+  DateTime firstSeenAt;
+
   String bannerUrl;
 
   String twitter;
 
   String discord;
-
-  bool verified;
 
   num deployedBlock;
 
@@ -112,20 +112,20 @@ class GetWeb3CollectionResponseCollection {
      other.description == description &&
      other.category == category &&
      other.slug == slug &&
-     other.hiddenAt == hiddenAt &&
      other.imageUrl == imageUrl &&
+     other.verified == verified &&
+     other.hiddenAt == hiddenAt &&
      other.refreshedAt == refreshedAt &&
      other.externalUrl == externalUrl &&
      other.chain == chain &&
      other.contract == contract &&
-     other.firstSeenAt == firstSeenAt &&
      other.tokenType == tokenType &&
      other.totalSupply == totalSupply &&
      other.featuredRank == featuredRank &&
+     other.firstSeenAt == firstSeenAt &&
      other.bannerUrl == bannerUrl &&
      other.twitter == twitter &&
      other.discord == discord &&
-     other.verified == verified &&
      other.deployedBlock == deployedBlock &&
      other.collectors == collectors &&
      other.indexedAt == indexedAt &&
@@ -146,20 +146,20 @@ class GetWeb3CollectionResponseCollection {
     (description == null ? 0 : description.hashCode) +
     (category == null ? 0 : category.hashCode) +
     (slug == null ? 0 : slug.hashCode) +
-    (hiddenAt == null ? 0 : hiddenAt.hashCode) +
     (imageUrl == null ? 0 : imageUrl.hashCode) +
+    (verified == null ? 0 : verified.hashCode) +
+    (hiddenAt == null ? 0 : hiddenAt.hashCode) +
     (refreshedAt == null ? 0 : refreshedAt.hashCode) +
     (externalUrl == null ? 0 : externalUrl.hashCode) +
     (chain == null ? 0 : chain.hashCode) +
     (contract == null ? 0 : contract.hashCode) +
-    (firstSeenAt == null ? 0 : firstSeenAt.hashCode) +
     (tokenType == null ? 0 : tokenType.hashCode) +
     (totalSupply == null ? 0 : totalSupply.hashCode) +
     (featuredRank == null ? 0 : featuredRank.hashCode) +
+    (firstSeenAt == null ? 0 : firstSeenAt.hashCode) +
     (bannerUrl == null ? 0 : bannerUrl.hashCode) +
     (twitter == null ? 0 : twitter.hashCode) +
     (discord == null ? 0 : discord.hashCode) +
-    (verified == null ? 0 : verified.hashCode) +
     (deployedBlock == null ? 0 : deployedBlock.hashCode) +
     (collectors == null ? 0 : collectors.hashCode) +
     (indexedAt == null ? 0 : indexedAt.hashCode) +
@@ -173,7 +173,7 @@ class GetWeb3CollectionResponseCollection {
     (hiddenCategory == null ? 0 : hiddenCategory.hashCode);
 
   @override
-  String toString() => 'GetWeb3CollectionResponseCollection[symbol=$symbol, name=$name, description=$description, category=$category, slug=$slug, hiddenAt=$hiddenAt, imageUrl=$imageUrl, refreshedAt=$refreshedAt, externalUrl=$externalUrl, chain=$chain, contract=$contract, firstSeenAt=$firstSeenAt, tokenType=$tokenType, totalSupply=$totalSupply, featuredRank=$featuredRank, bannerUrl=$bannerUrl, twitter=$twitter, discord=$discord, verified=$verified, deployedBlock=$deployedBlock, collectors=$collectors, indexedAt=$indexedAt, indexedCount=$indexedCount, imageSource=$imageSource, bannerSource=$bannerSource, imageThumbUrl=$imageThumbUrl, bannerThumbUrl=$bannerThumbUrl, rehostCheckedAt=$rehostCheckedAt, hiddenReason=$hiddenReason, hiddenCategory=$hiddenCategory]';
+  String toString() => 'GetWeb3CollectionResponseCollection[symbol=$symbol, name=$name, description=$description, category=$category, slug=$slug, imageUrl=$imageUrl, verified=$verified, hiddenAt=$hiddenAt, refreshedAt=$refreshedAt, externalUrl=$externalUrl, chain=$chain, contract=$contract, tokenType=$tokenType, totalSupply=$totalSupply, featuredRank=$featuredRank, firstSeenAt=$firstSeenAt, bannerUrl=$bannerUrl, twitter=$twitter, discord=$discord, deployedBlock=$deployedBlock, collectors=$collectors, indexedAt=$indexedAt, indexedCount=$indexedCount, imageSource=$imageSource, bannerSource=$bannerSource, imageThumbUrl=$imageThumbUrl, bannerThumbUrl=$bannerThumbUrl, rehostCheckedAt=$rehostCheckedAt, hiddenReason=$hiddenReason, hiddenCategory=$hiddenCategory]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -192,11 +192,12 @@ class GetWeb3CollectionResponseCollection {
     if (slug != null) {
       json[r'slug'] = slug;
     }
-    if (hiddenAt != null) {
-      json[r'hiddenAt'] = hiddenAt.toUtc().toIso8601String();
-    }
     if (imageUrl != null) {
       json[r'imageUrl'] = imageUrl;
+    }
+      json[r'verified'] = verified;
+    if (hiddenAt != null) {
+      json[r'hiddenAt'] = hiddenAt.toUtc().toIso8601String();
     }
       json[r'refreshedAt'] = refreshedAt.toUtc().toIso8601String();
     if (externalUrl != null) {
@@ -204,7 +205,6 @@ class GetWeb3CollectionResponseCollection {
     }
       json[r'chain'] = chain;
       json[r'contract'] = contract;
-      json[r'firstSeenAt'] = firstSeenAt.toUtc().toIso8601String();
     if (tokenType != null) {
       json[r'tokenType'] = tokenType;
     }
@@ -214,6 +214,7 @@ class GetWeb3CollectionResponseCollection {
     if (featuredRank != null) {
       json[r'featuredRank'] = featuredRank;
     }
+      json[r'firstSeenAt'] = firstSeenAt.toUtc().toIso8601String();
     if (bannerUrl != null) {
       json[r'bannerUrl'] = bannerUrl;
     }
@@ -223,7 +224,6 @@ class GetWeb3CollectionResponseCollection {
     if (discord != null) {
       json[r'discord'] = discord;
     }
-      json[r'verified'] = verified;
     if (deployedBlock != null) {
       json[r'deployedBlock'] = deployedBlock;
     }
@@ -270,22 +270,22 @@ class GetWeb3CollectionResponseCollection {
         description: mapValueOfType<String>(json, r'description'),
         category: mapValueOfType<String>(json, r'category'),
         slug: mapValueOfType<String>(json, r'slug'),
-        hiddenAt: mapDateTime(json, r'hiddenAt', ''),
         imageUrl: mapValueOfType<String>(json, r'imageUrl'),
+        verified: mapValueOfType<bool>(json, r'verified'),
+        hiddenAt: mapDateTime(json, r'hiddenAt', ''),
         refreshedAt: mapDateTime(json, r'refreshedAt', ''),
         externalUrl: mapValueOfType<String>(json, r'externalUrl'),
         chain: mapValueOfType<String>(json, r'chain'),
         contract: mapValueOfType<String>(json, r'contract'),
-        firstSeenAt: mapDateTime(json, r'firstSeenAt', ''),
         tokenType: mapValueOfType<String>(json, r'tokenType'),
         totalSupply: mapValueOfType<String>(json, r'totalSupply'),
         featuredRank: json[r'featuredRank'] == null
           ? null
           : num.parse(json[r'featuredRank'].toString()),
+        firstSeenAt: mapDateTime(json, r'firstSeenAt', ''),
         bannerUrl: mapValueOfType<String>(json, r'bannerUrl'),
         twitter: mapValueOfType<String>(json, r'twitter'),
         discord: mapValueOfType<String>(json, r'discord'),
-        verified: mapValueOfType<bool>(json, r'verified'),
         deployedBlock: json[r'deployedBlock'] == null
           ? null
           : num.parse(json[r'deployedBlock'].toString()),

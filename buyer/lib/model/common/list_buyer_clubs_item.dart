@@ -13,24 +13,24 @@ part of openapi.api;
 class ListBuyerClubsItem {
   /// Returns a new [ListBuyerClubsItem] instance.
   ListBuyerClubsItem({
+    @required this.sellerUserId,
     @required this.name,
     this.description,
-    @required this.sellerUserId,
-    this.member,
     this.tiers = const [],
+    this.member,
     @required this.sellerName,
     this.sellerHandle,
   });
+
+  String sellerUserId;
 
   String name;
 
   String description;
 
-  String sellerUserId;
+  List<CreateBuyerSellerClubJoinResponseDataTiers> tiers;
 
   CreateBuyerSellerClubJoinResponseDataMember member;
-
-  List<CreateBuyerSellerClubJoinResponseDataTiers> tiers;
 
   String sellerName;
 
@@ -38,39 +38,39 @@ class ListBuyerClubsItem {
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is ListBuyerClubsItem &&
+     other.sellerUserId == sellerUserId &&
      other.name == name &&
      other.description == description &&
-     other.sellerUserId == sellerUserId &&
-     other.member == member &&
      other.tiers == tiers &&
+     other.member == member &&
      other.sellerName == sellerName &&
      other.sellerHandle == sellerHandle;
 
   @override
   int get hashCode =>
   // ignore: unnecessary_parenthesis
+    (sellerUserId == null ? 0 : sellerUserId.hashCode) +
     (name == null ? 0 : name.hashCode) +
     (description == null ? 0 : description.hashCode) +
-    (sellerUserId == null ? 0 : sellerUserId.hashCode) +
-    (member == null ? 0 : member.hashCode) +
     (tiers == null ? 0 : tiers.hashCode) +
+    (member == null ? 0 : member.hashCode) +
     (sellerName == null ? 0 : sellerName.hashCode) +
     (sellerHandle == null ? 0 : sellerHandle.hashCode);
 
   @override
-  String toString() => 'ListBuyerClubsItem[name=$name, description=$description, sellerUserId=$sellerUserId, member=$member, tiers=$tiers, sellerName=$sellerName, sellerHandle=$sellerHandle]';
+  String toString() => 'ListBuyerClubsItem[sellerUserId=$sellerUserId, name=$name, description=$description, tiers=$tiers, member=$member, sellerName=$sellerName, sellerHandle=$sellerHandle]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
+      json[r'sellerUserId'] = sellerUserId;
       json[r'name'] = name;
     if (description != null) {
       json[r'description'] = description;
     }
-      json[r'sellerUserId'] = sellerUserId;
+      json[r'tiers'] = tiers;
     if (member != null) {
       json[r'member'] = member;
     }
-      json[r'tiers'] = tiers;
       json[r'sellerName'] = sellerName;
     if (sellerHandle != null) {
       json[r'sellerHandle'] = sellerHandle;
@@ -85,11 +85,11 @@ class ListBuyerClubsItem {
     if (value is Map) {
       final json = value.cast<String, dynamic>();
       return ListBuyerClubsItem(
+        sellerUserId: mapValueOfType<String>(json, r'sellerUserId'),
         name: mapValueOfType<String>(json, r'name'),
         description: mapValueOfType<String>(json, r'description'),
-        sellerUserId: mapValueOfType<String>(json, r'sellerUserId'),
-        member: CreateBuyerSellerClubJoinResponseDataMember.fromJson(json[r'member']),
         tiers: CreateBuyerSellerClubJoinResponseDataTiers.listFromJson(json[r'tiers']),
+        member: CreateBuyerSellerClubJoinResponseDataMember.fromJson(json[r'member']),
         sellerName: mapValueOfType<String>(json, r'sellerName'),
         sellerHandle: mapValueOfType<String>(json, r'sellerHandle'),
       );

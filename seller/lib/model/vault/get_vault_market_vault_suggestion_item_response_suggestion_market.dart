@@ -153,16 +153,16 @@ class GetVaultMarketVaultSuggestionItemResponseSuggestionMarketTierEnum {
 
   String toJson() => value;
 
+  static const C = GetVaultMarketVaultSuggestionItemResponseSuggestionMarketTierEnum._(r'C');
   static const A = GetVaultMarketVaultSuggestionItemResponseSuggestionMarketTierEnum._(r'A');
   static const B = GetVaultMarketVaultSuggestionItemResponseSuggestionMarketTierEnum._(r'B');
-  static const C = GetVaultMarketVaultSuggestionItemResponseSuggestionMarketTierEnum._(r'C');
   static const D = GetVaultMarketVaultSuggestionItemResponseSuggestionMarketTierEnum._(r'D');
 
   /// List of all possible values in this [enum][GetVaultMarketVaultSuggestionItemResponseSuggestionMarketTierEnum].
   static const values = <GetVaultMarketVaultSuggestionItemResponseSuggestionMarketTierEnum>[
+    C,
     A,
     B,
-    C,
     D,
   ];
 
@@ -195,9 +195,9 @@ class GetVaultMarketVaultSuggestionItemResponseSuggestionMarketTierEnumTypeTrans
   GetVaultMarketVaultSuggestionItemResponseSuggestionMarketTierEnum decode(dynamic data, {bool allowNull}) {
     if (data != null) {
       switch (data.toString()) {
+        case r'C': return GetVaultMarketVaultSuggestionItemResponseSuggestionMarketTierEnum.C;
         case r'A': return GetVaultMarketVaultSuggestionItemResponseSuggestionMarketTierEnum.A;
         case r'B': return GetVaultMarketVaultSuggestionItemResponseSuggestionMarketTierEnum.B;
-        case r'C': return GetVaultMarketVaultSuggestionItemResponseSuggestionMarketTierEnum.C;
         case r'D': return GetVaultMarketVaultSuggestionItemResponseSuggestionMarketTierEnum.D;
         default:
           if (allowNull == false) {

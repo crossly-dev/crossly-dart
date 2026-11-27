@@ -133,11 +133,11 @@ class GetVaultMarketLiquidityResponseComponentsNameEnum {
 
   String toJson() => value;
 
-  static const spreadBps = GetVaultMarketLiquidityResponseComponentsNameEnum._(r'spreadBps');
   static const trades30d = GetVaultMarketLiquidityResponseComponentsNameEnum._(r'trades30d');
   static const trades90d = GetVaultMarketLiquidityResponseComponentsNameEnum._(r'trades90d');
   static const counterparties90d = GetVaultMarketLiquidityResponseComponentsNameEnum._(r'counterparties90d');
   static const medianGapDays = GetVaultMarketLiquidityResponseComponentsNameEnum._(r'medianGapDays');
+  static const spreadBps = GetVaultMarketLiquidityResponseComponentsNameEnum._(r'spreadBps');
   static const twoSidedShare = GetVaultMarketLiquidityResponseComponentsNameEnum._(r'twoSidedShare');
   static const depthCents = GetVaultMarketLiquidityResponseComponentsNameEnum._(r'depthCents');
   static const amihud = GetVaultMarketLiquidityResponseComponentsNameEnum._(r'amihud');
@@ -145,11 +145,11 @@ class GetVaultMarketLiquidityResponseComponentsNameEnum {
 
   /// List of all possible values in this [enum][GetVaultMarketLiquidityResponseComponentsNameEnum].
   static const values = <GetVaultMarketLiquidityResponseComponentsNameEnum>[
-    spreadBps,
     trades30d,
     trades90d,
     counterparties90d,
     medianGapDays,
+    spreadBps,
     twoSidedShare,
     depthCents,
     amihud,
@@ -185,11 +185,11 @@ class GetVaultMarketLiquidityResponseComponentsNameEnumTypeTransformer {
   GetVaultMarketLiquidityResponseComponentsNameEnum decode(dynamic data, {bool allowNull}) {
     if (data != null) {
       switch (data.toString()) {
-        case r'spreadBps': return GetVaultMarketLiquidityResponseComponentsNameEnum.spreadBps;
         case r'trades30d': return GetVaultMarketLiquidityResponseComponentsNameEnum.trades30d;
         case r'trades90d': return GetVaultMarketLiquidityResponseComponentsNameEnum.trades90d;
         case r'counterparties90d': return GetVaultMarketLiquidityResponseComponentsNameEnum.counterparties90d;
         case r'medianGapDays': return GetVaultMarketLiquidityResponseComponentsNameEnum.medianGapDays;
+        case r'spreadBps': return GetVaultMarketLiquidityResponseComponentsNameEnum.spreadBps;
         case r'twoSidedShare': return GetVaultMarketLiquidityResponseComponentsNameEnum.twoSidedShare;
         case r'depthCents': return GetVaultMarketLiquidityResponseComponentsNameEnum.depthCents;
         case r'amihud': return GetVaultMarketLiquidityResponseComponentsNameEnum.amihud;
@@ -221,13 +221,13 @@ class GetVaultMarketLiquidityResponseComponentsBetterEnum {
 
   String toJson() => value;
 
-  static const high = GetVaultMarketLiquidityResponseComponentsBetterEnum._(r'high');
   static const low = GetVaultMarketLiquidityResponseComponentsBetterEnum._(r'low');
+  static const high = GetVaultMarketLiquidityResponseComponentsBetterEnum._(r'high');
 
   /// List of all possible values in this [enum][GetVaultMarketLiquidityResponseComponentsBetterEnum].
   static const values = <GetVaultMarketLiquidityResponseComponentsBetterEnum>[
-    high,
     low,
+    high,
   ];
 
   static GetVaultMarketLiquidityResponseComponentsBetterEnum fromJson(dynamic value) =>
@@ -259,8 +259,8 @@ class GetVaultMarketLiquidityResponseComponentsBetterEnumTypeTransformer {
   GetVaultMarketLiquidityResponseComponentsBetterEnum decode(dynamic data, {bool allowNull}) {
     if (data != null) {
       switch (data.toString()) {
-        case r'high': return GetVaultMarketLiquidityResponseComponentsBetterEnum.high;
         case r'low': return GetVaultMarketLiquidityResponseComponentsBetterEnum.low;
+        case r'high': return GetVaultMarketLiquidityResponseComponentsBetterEnum.high;
         default:
           if (allowNull == false) {
             throw ArgumentError('Unknown enum value to decode: $data');

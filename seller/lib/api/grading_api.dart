@@ -16,52 +16,6 @@ class GradingApi {
 
   final ApiClient apiClient;
 
-  /// Track a card you sent on your own grader account (Direct). Crossly takes no money; it verifies the cert when it comes back.
-  ///
-  /// Note: This method returns the HTTP [Response].
-  Future<Response> createGradingDirectWithHttpInfo() async {
-    // ignore: prefer_const_declarations
-    final path = r'/v1/grading/direct';
-
-    // ignore: prefer_final_locals
-    Object postBody;
-
-    final queryParams = <QueryParam>[];
-    final headerParams = <String, String>{};
-    final formParams = <String, String>{};
-
-    const authNames = <String>['PersonalAccessToken'];
-    const contentTypes = <String>[];
-
-
-    return apiClient.invokeAPI(
-      path,
-      'POST',
-      queryParams,
-      postBody,
-      headerParams,
-      formParams,
-      contentTypes.isEmpty ? null : contentTypes[0],
-      authNames,
-    );
-  }
-
-  /// Track a card you sent on your own grader account (Direct). Crossly takes no money; it verifies the cert when it comes back.
-  Future<IdResponse> createGradingDirect() async {
-    final response = await createGradingDirectWithHttpInfo();
-    if (response.statusCode >= HttpStatus.badRequest) {
-      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
-    }
-    // When a remote server returns no body with a status of 204, we shall not decode it.
-    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
-    // FormatException when trying to decode an empty string.
-    if (response.body != null && response.statusCode != HttpStatus.noContent) {
-      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'IdResponse',) as IdResponse;
-    
-    }
-    return Future<IdResponse>.value();
-  }
-
   /// Hold a slot in a Grading Run. Free now; charged on your saved card only if the run locks. Full-access token and Idempotency-Key required.
   ///
   /// Note: This method returns the HTTP [Response].
@@ -182,66 +136,6 @@ class GradingApi {
     return Future<OkResponse>.value();
   }
 
-  /// Direct only: enter the grade that came back. Writes it to the item and its listings, verified when the cert agrees.
-  ///
-  /// Note: This method returns the HTTP [Response].
-  ///
-  /// Parameters:
-  ///
-  /// * [String] id (required):
-  Future<Response> createGradingSubmissionResultWithHttpInfo(String id,) async {
-    // Verify required params are set.
-    if (id == null) {
-     throw ApiException(HttpStatus.badRequest, 'Missing required param: id');
-    }
-
-    // ignore: prefer_const_declarations
-    final path = r'/v1/grading/submissions/{id}/result'
-      .replaceAll('{id}', id);
-
-    // ignore: prefer_final_locals
-    Object postBody;
-
-    final queryParams = <QueryParam>[];
-    final headerParams = <String, String>{};
-    final formParams = <String, String>{};
-
-    const authNames = <String>['PersonalAccessToken'];
-    const contentTypes = <String>[];
-
-
-    return apiClient.invokeAPI(
-      path,
-      'POST',
-      queryParams,
-      postBody,
-      headerParams,
-      formParams,
-      contentTypes.isEmpty ? null : contentTypes[0],
-      authNames,
-    );
-  }
-
-  /// Direct only: enter the grade that came back. Writes it to the item and its listings, verified when the cert agrees.
-  ///
-  /// Parameters:
-  ///
-  /// * [String] id (required):
-  Future<CreateGradingSubmissionResultResponse> createGradingSubmissionResult(String id,) async {
-    final response = await createGradingSubmissionResultWithHttpInfo(id,);
-    if (response.statusCode >= HttpStatus.badRequest) {
-      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
-    }
-    // When a remote server returns no body with a status of 204, we shall not decode it.
-    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
-    // FormatException when trying to decode an empty string.
-    if (response.body != null && response.statusCode != HttpStatus.noContent) {
-      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'CreateGradingSubmissionResultResponse',) as CreateGradingSubmissionResultResponse;
-    
-    }
-    return Future<CreateGradingSubmissionResultResponse>.value();
-  }
-
   /// Say you mailed a charged card to the hub, with optional tracking.
   ///
   /// Note: This method returns the HTTP [Response].
@@ -348,6 +242,278 @@ class GradingApi {
     return Future<CreateGradingVerifyCertResponse>.value();
   }
 
+  /// Start a grading submission: cards (vault units or inventory items) to one grader at one service. Priced from the price book; vault units are held. Nothing is charged until you pay.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  Future<Response> createVaultMarketGradingOrderWithHttpInfo() async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/vault-markets/grading/orders';
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'POST',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Start a grading submission: cards (vault units or inventory items) to one grader at one service. Priced from the price book; vault units are held. Nothing is charged until you pay.
+  Future<CreateVaultMarketGradingOrderResponse> createVaultMarketGradingOrder() async {
+    final response = await createVaultMarketGradingOrderWithHttpInfo();
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'CreateVaultMarketGradingOrderResponse',) as CreateVaultMarketGradingOrderResponse;
+    
+    }
+    return Future<CreateVaultMarketGradingOrderResponse>.value();
+  }
+
+  /// Cancel a draft submission; its vault units go back on their shelf. A paid submission cannot be cancelled here.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<Response> createVaultMarketGradingOrderCancelWithHttpInfo(String id,) async {
+    // Verify required params are set.
+    if (id == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: id');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/vault-markets/grading/orders/{id}/cancel'
+      .replaceAll('{id}', id);
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'POST',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Cancel a draft submission; its vault units go back on their shelf. A paid submission cannot be cancelled here.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<StatusResponse> createVaultMarketGradingOrderCancel(String id,) async {
+    final response = await createVaultMarketGradingOrderCancelWithHttpInfo(id,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'StatusResponse',) as StatusResponse;
+    
+    }
+    return Future<StatusResponse>.value();
+  }
+
+  /// Pay for a draft submission. savedCard: true charges your saved card (paid, or requires_action with a client secret for 3-D Secure). Full-access token and Idempotency-Key required.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<Response> createVaultMarketGradingOrderPayWithHttpInfo(String id,) async {
+    // Verify required params are set.
+    if (id == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: id');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/vault-markets/grading/orders/{id}/pay'
+      .replaceAll('{id}', id);
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'POST',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Pay for a draft submission. savedCard: true charges your saved card (paid, or requires_action with a client secret for 3-D Secure). Full-access token and Idempotency-Key required.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<CreateVaultMarketGradingOrderPayResponse> createVaultMarketGradingOrderPay(String id,) async {
+    final response = await createVaultMarketGradingOrderPayWithHttpInfo(id,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'CreateVaultMarketGradingOrderPayResponse',) as CreateVaultMarketGradingOrderPayResponse;
+    
+    }
+    return Future<CreateVaultMarketGradingOrderPayResponse>.value();
+  }
+
+  /// After a 3-D Secure step or a card form: confirm the PaymentIntent with Stripe and mark the submission paid.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<Response> createVaultMarketGradingOrderPayConfirmWithHttpInfo(String id,) async {
+    // Verify required params are set.
+    if (id == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: id');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/vault-markets/grading/orders/{id}/pay/confirm'
+      .replaceAll('{id}', id);
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'POST',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// After a 3-D Secure step or a card form: confirm the PaymentIntent with Stripe and mark the submission paid.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<StatusResponse> createVaultMarketGradingOrderPayConfirm(String id,) async {
+    final response = await createVaultMarketGradingOrderPayConfirmWithHttpInfo(id,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'StatusResponse',) as StatusResponse;
+    
+    }
+    return Future<StatusResponse>.value();
+  }
+
+  /// The grading price book: every grader, its services (per-card price, minimum cards, max declared value, turnaround) and add-ons, plus Crossly handling. The same data the dashboard prices from.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  Future<Response> getGradingPriceBookWithHttpInfo() async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/grading/price-book';
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// The grading price book: every grader, its services (per-card price, minimum cards, max declared value, turnaround) and add-ons, plus Crossly handling. The same data the dashboard prices from.
+  Future<GetGradingPriceBookResponse> getGradingPriceBook() async {
+    final response = await getGradingPriceBookWithHttpInfo();
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'GetGradingPriceBookResponse',) as GetGradingPriceBookResponse;
+    
+    }
+    return Future<GetGradingPriceBookResponse>.value();
+  }
+
   /// Worth grading? Raw value vs what each grade is worth at each grader, against the cost. Never predicts the grade.
   ///
   /// Note: This method returns the HTTP [Response].
@@ -406,6 +572,66 @@ class GradingApi {
     
     }
     return Future<GetGradingWorthResponse>.value();
+  }
+
+  /// One grading submission: its timeline, every card with its grade, cert number and photos, the costs and the tracking.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<Response> getVaultMarketGradingOrderWithHttpInfo(String id,) async {
+    // Verify required params are set.
+    if (id == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: id');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/vault-markets/grading/orders/{id}'
+      .replaceAll('{id}', id);
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// One grading submission: its timeline, every card with its grade, cert number and photos, the costs and the tracking.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<GetVaultMarketGradingOrderResponse> getVaultMarketGradingOrder(String id,) async {
+    final response = await getVaultMarketGradingOrderWithHttpInfo(id,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'GetVaultMarketGradingOrderResponse',) as GetVaultMarketGradingOrderResponse;
+    
+    }
+    return Future<GetVaultMarketGradingOrderResponse>.value();
   }
 
   /// Every grader and tier Crossly can send to, with the per-card price in cents (null = paused at the grader).
@@ -560,5 +786,97 @@ class GradingApi {
     
     }
     return Future<ListGradingSubmissionsResponse>.value();
+  }
+
+  /// What you can send to grading: raw units already in your vault and inventory items, each with a declared value to start from and the reason when one cannot go.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  Future<Response> listVaultMarketGradingCandidatesWithHttpInfo() async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/vault-markets/grading/candidates';
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// What you can send to grading: raw units already in your vault and inventory items, each with a declared value to start from and the reason when one cannot go.
+  Future<ListVaultMarketGradingCandidatesResponse> listVaultMarketGradingCandidates() async {
+    final response = await listVaultMarketGradingCandidatesWithHttpInfo();
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'ListVaultMarketGradingCandidatesResponse',) as ListVaultMarketGradingCandidatesResponse;
+    
+    }
+    return Future<ListVaultMarketGradingCandidatesResponse>.value();
+  }
+
+  /// Your grading submissions, newest first. Filter by status, active, grader, tier and dates; q searches the number, card names and cert numbers.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  Future<Response> listVaultMarketGradingOrdersWithHttpInfo() async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/vault-markets/grading/orders';
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Your grading submissions, newest first. Filter by status, active, grader, tier and dates; q searches the number, card names and cert numbers.
+  Future<ListVaultMarketGradingOrdersResponse> listVaultMarketGradingOrders() async {
+    final response = await listVaultMarketGradingOrdersWithHttpInfo();
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'ListVaultMarketGradingOrdersResponse',) as ListVaultMarketGradingOrdersResponse;
+    
+    }
+    return Future<ListVaultMarketGradingOrdersResponse>.value();
   }
 }

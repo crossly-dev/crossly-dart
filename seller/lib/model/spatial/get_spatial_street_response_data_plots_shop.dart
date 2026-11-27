@@ -84,7 +84,7 @@ class GetSpatialStreetResponseDataPlotsShop {
   /// How many people are standing in this room RIGHT NOW.  The single most metaverse-shaped number in this payload: a directory of rooms is a menu, and a directory that says somebody is already inside one is a place. `roomOccupancy` has been able to answer this since presence shipped — nothing asked it.  Live, never stored: it comes from the socket table in `presence.ts`, so it cannot drift the way a counter column does, and it is 0 for every room on a process that holds no sockets for it.
   num occupants;
 
-  /// The shop is shut — the seller is on vacation.  Sourced from `seller_profiles.vacation_mode`, which is the flag whose own schema comment says the storefront shows a banner and checkout blocks new orders. NOT `users.vacation_mode`, which pauses automation and share schedulers and has nothing to do with whether somebody is selling.  A closed room is still WALKABLE on purpose. Vacation pauses selling, it does not hide a collection, and a door that refuses to open is a worse answer than one that opens onto a shop with the shutter down — you can still look, you just cannot buy.
+  /// The shop is shut — the seller is on vacation.  Sourced from `users.vacation_mode` / `vacation_ends_at` — Settings › Vacation mode, the same flag checkout blocks new orders on (services/vacation/seller-vacation.ts, settings IA audit B3). The old `seller_profiles.vacation_mode` copy had no writer any client used.  A closed room is still WALKABLE on purpose. Vacation pauses selling, it does not hide a collection, and a door that refuses to open is a worse answer than one that opens onto a shop with the shutter down — you can still look, you just cannot buy.
   bool closed;
 
   @override
@@ -272,8 +272,8 @@ class GetSpatialStreetResponseDataPlotsShopShopfrontEnum {
 
   static const full = GetSpatialStreetResponseDataPlotsShopShopfrontEnum._(r'full');
   static const none = GetSpatialStreetResponseDataPlotsShopShopfrontEnum._(r'none');
-  static const awning = GetSpatialStreetResponseDataPlotsShopShopfrontEnum._(r'awning');
   static const fascia = GetSpatialStreetResponseDataPlotsShopShopfrontEnum._(r'fascia');
+  static const awning = GetSpatialStreetResponseDataPlotsShopShopfrontEnum._(r'awning');
   static const neonFascia = GetSpatialStreetResponseDataPlotsShopShopfrontEnum._(r'neon_fascia');
   static const gildedFascia = GetSpatialStreetResponseDataPlotsShopShopfrontEnum._(r'gilded_fascia');
   static const scallopedAwning = GetSpatialStreetResponseDataPlotsShopShopfrontEnum._(r'scalloped_awning');
@@ -282,8 +282,8 @@ class GetSpatialStreetResponseDataPlotsShopShopfrontEnum {
   static const values = <GetSpatialStreetResponseDataPlotsShopShopfrontEnum>[
     full,
     none,
-    awning,
     fascia,
+    awning,
     neonFascia,
     gildedFascia,
     scallopedAwning,
@@ -320,8 +320,8 @@ class GetSpatialStreetResponseDataPlotsShopShopfrontEnumTypeTransformer {
       switch (data.toString()) {
         case r'full': return GetSpatialStreetResponseDataPlotsShopShopfrontEnum.full;
         case r'none': return GetSpatialStreetResponseDataPlotsShopShopfrontEnum.none;
-        case r'awning': return GetSpatialStreetResponseDataPlotsShopShopfrontEnum.awning;
         case r'fascia': return GetSpatialStreetResponseDataPlotsShopShopfrontEnum.fascia;
+        case r'awning': return GetSpatialStreetResponseDataPlotsShopShopfrontEnum.awning;
         case r'neon_fascia': return GetSpatialStreetResponseDataPlotsShopShopfrontEnum.neonFascia;
         case r'gilded_fascia': return GetSpatialStreetResponseDataPlotsShopShopfrontEnum.gildedFascia;
         case r'scalloped_awning': return GetSpatialStreetResponseDataPlotsShopShopfrontEnum.scallopedAwning;

@@ -13,54 +13,54 @@ part of openapi.api;
 class CreateBuyerSellerClubJoinResponseDataMember {
   /// Returns a new [CreateBuyerSellerClubJoinResponseDataMember] instance.
   CreateBuyerSellerClubJoinResponseDataMember({
-    this.tier,
-    @required this.joinedAt,
-    @required this.discountBps,
     @required this.spendCents,
+    this.tier,
+    @required this.discountBps,
     this.next,
+    @required this.joinedAt,
   });
-
-  String tier;
-
-  String joinedAt;
-
-  num discountBps;
 
   num spendCents;
 
+  String tier;
+
+  num discountBps;
+
   CreateBuyerSellerClubJoinResponseDataMemberNext next;
+
+  String joinedAt;
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is CreateBuyerSellerClubJoinResponseDataMember &&
-     other.tier == tier &&
-     other.joinedAt == joinedAt &&
-     other.discountBps == discountBps &&
      other.spendCents == spendCents &&
-     other.next == next;
+     other.tier == tier &&
+     other.discountBps == discountBps &&
+     other.next == next &&
+     other.joinedAt == joinedAt;
 
   @override
   int get hashCode =>
   // ignore: unnecessary_parenthesis
-    (tier == null ? 0 : tier.hashCode) +
-    (joinedAt == null ? 0 : joinedAt.hashCode) +
-    (discountBps == null ? 0 : discountBps.hashCode) +
     (spendCents == null ? 0 : spendCents.hashCode) +
-    (next == null ? 0 : next.hashCode);
+    (tier == null ? 0 : tier.hashCode) +
+    (discountBps == null ? 0 : discountBps.hashCode) +
+    (next == null ? 0 : next.hashCode) +
+    (joinedAt == null ? 0 : joinedAt.hashCode);
 
   @override
-  String toString() => 'CreateBuyerSellerClubJoinResponseDataMember[tier=$tier, joinedAt=$joinedAt, discountBps=$discountBps, spendCents=$spendCents, next=$next]';
+  String toString() => 'CreateBuyerSellerClubJoinResponseDataMember[spendCents=$spendCents, tier=$tier, discountBps=$discountBps, next=$next, joinedAt=$joinedAt]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
+      json[r'spendCents'] = spendCents;
     if (tier != null) {
       json[r'tier'] = tier;
     }
-      json[r'joinedAt'] = joinedAt;
       json[r'discountBps'] = discountBps;
-      json[r'spendCents'] = spendCents;
     if (next != null) {
       json[r'next'] = next;
     }
+      json[r'joinedAt'] = joinedAt;
     return json;
   }
 
@@ -71,15 +71,15 @@ class CreateBuyerSellerClubJoinResponseDataMember {
     if (value is Map) {
       final json = value.cast<String, dynamic>();
       return CreateBuyerSellerClubJoinResponseDataMember(
-        tier: mapValueOfType<String>(json, r'tier'),
-        joinedAt: mapValueOfType<String>(json, r'joinedAt'),
-        discountBps: json[r'discountBps'] == null
-          ? null
-          : num.parse(json[r'discountBps'].toString()),
         spendCents: json[r'spendCents'] == null
           ? null
           : num.parse(json[r'spendCents'].toString()),
+        tier: mapValueOfType<String>(json, r'tier'),
+        discountBps: json[r'discountBps'] == null
+          ? null
+          : num.parse(json[r'discountBps'].toString()),
         next: CreateBuyerSellerClubJoinResponseDataMemberNext.fromJson(json[r'next']),
+        joinedAt: mapValueOfType<String>(json, r'joinedAt'),
       );
     }
     return null;

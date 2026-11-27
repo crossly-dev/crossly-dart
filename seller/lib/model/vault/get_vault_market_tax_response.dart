@@ -21,7 +21,10 @@ class GetVaultMarketTaxResponse {
     this.giftsOut = const [],
     @required this.income,
     this.positions = const [],
+    this.options,
     this.notes = const [],
+    this.shares,
+    this.predictions,
   });
 
   GetVaultMarketTaxResponseFiles files;
@@ -40,7 +43,13 @@ class GetVaultMarketTaxResponse {
 
   List<GetVaultMarketTaxResponsePositions> positions;
 
+  GetVaultMarketTaxResponseOptions options;
+
   List<String> notes;
+
+  GetVaultMarketTaxResponseShares shares;
+
+  GetVaultMarketTaxResponsePredictions predictions;
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is GetVaultMarketTaxResponse &&
@@ -52,7 +61,10 @@ class GetVaultMarketTaxResponse {
      other.giftsOut == giftsOut &&
      other.income == income &&
      other.positions == positions &&
-     other.notes == notes;
+     other.options == options &&
+     other.notes == notes &&
+     other.shares == shares &&
+     other.predictions == predictions;
 
   @override
   int get hashCode =>
@@ -65,10 +77,13 @@ class GetVaultMarketTaxResponse {
     (giftsOut == null ? 0 : giftsOut.hashCode) +
     (income == null ? 0 : income.hashCode) +
     (positions == null ? 0 : positions.hashCode) +
-    (notes == null ? 0 : notes.hashCode);
+    (options == null ? 0 : options.hashCode) +
+    (notes == null ? 0 : notes.hashCode) +
+    (shares == null ? 0 : shares.hashCode) +
+    (predictions == null ? 0 : predictions.hashCode);
 
   @override
-  String toString() => 'GetVaultMarketTaxResponse[files=$files, year=$year, totals=$totals, sales=$sales, purchases=$purchases, giftsOut=$giftsOut, income=$income, positions=$positions, notes=$notes]';
+  String toString() => 'GetVaultMarketTaxResponse[files=$files, year=$year, totals=$totals, sales=$sales, purchases=$purchases, giftsOut=$giftsOut, income=$income, positions=$positions, options=$options, notes=$notes, shares=$shares, predictions=$predictions]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -80,7 +95,16 @@ class GetVaultMarketTaxResponse {
       json[r'giftsOut'] = giftsOut;
       json[r'income'] = income;
       json[r'positions'] = positions;
+    if (options != null) {
+      json[r'options'] = options;
+    }
       json[r'notes'] = notes;
+    if (shares != null) {
+      json[r'shares'] = shares;
+    }
+    if (predictions != null) {
+      json[r'predictions'] = predictions;
+    }
     return json;
   }
 
@@ -101,9 +125,12 @@ class GetVaultMarketTaxResponse {
         giftsOut: GetVaultMarketTaxResponseGiftsOut.listFromJson(json[r'giftsOut']),
         income: GetVaultMarketTaxResponseIncome.fromJson(json[r'income']),
         positions: GetVaultMarketTaxResponsePositions.listFromJson(json[r'positions']),
+        options: GetVaultMarketTaxResponseOptions.fromJson(json[r'options']),
         notes: json[r'notes'] is List
           ? (json[r'notes'] as List).cast<String>()
           : null,
+        shares: GetVaultMarketTaxResponseShares.fromJson(json[r'shares']),
+        predictions: GetVaultMarketTaxResponsePredictions.fromJson(json[r'predictions']),
       );
     }
     return null;

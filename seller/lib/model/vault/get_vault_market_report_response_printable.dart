@@ -13,17 +13,14 @@ part of openapi.api;
 class GetVaultMarketReportResponsePrintable {
   /// Returns a new [GetVaultMarketReportResponsePrintable] instance.
   GetVaultMarketReportResponsePrintable({
-    this.notes = const [],
     @required this.title,
     this.meta = const [],
     this.sections = const [],
+    this.notes = const [],
     @required this.paper,
     this.table,
     this.qr,
   });
-
-  /// Closing paragraphs, small and grey.
-  List<String> notes;
 
   String title;
 
@@ -33,6 +30,9 @@ class GetVaultMarketReportResponsePrintable {
   /// Labelled blocks: \"Shipped to\" + its lines.
   List<GetVaultMarketOrderHandlingResponseSections> sections;
 
+  /// Closing paragraphs, small and grey.
+  List<String> notes;
+
   GetVaultMarketReportResponsePrintablePaperEnum paper;
 
   GetVaultMarketReportResponsePrintableTable table;
@@ -41,10 +41,10 @@ class GetVaultMarketReportResponsePrintable {
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is GetVaultMarketReportResponsePrintable &&
-     other.notes == notes &&
      other.title == title &&
      other.meta == meta &&
      other.sections == sections &&
+     other.notes == notes &&
      other.paper == paper &&
      other.table == table &&
      other.qr == qr;
@@ -52,23 +52,23 @@ class GetVaultMarketReportResponsePrintable {
   @override
   int get hashCode =>
   // ignore: unnecessary_parenthesis
-    (notes == null ? 0 : notes.hashCode) +
     (title == null ? 0 : title.hashCode) +
     (meta == null ? 0 : meta.hashCode) +
     (sections == null ? 0 : sections.hashCode) +
+    (notes == null ? 0 : notes.hashCode) +
     (paper == null ? 0 : paper.hashCode) +
     (table == null ? 0 : table.hashCode) +
     (qr == null ? 0 : qr.hashCode);
 
   @override
-  String toString() => 'GetVaultMarketReportResponsePrintable[notes=$notes, title=$title, meta=$meta, sections=$sections, paper=$paper, table=$table, qr=$qr]';
+  String toString() => 'GetVaultMarketReportResponsePrintable[title=$title, meta=$meta, sections=$sections, notes=$notes, paper=$paper, table=$table, qr=$qr]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-      json[r'notes'] = notes;
       json[r'title'] = title;
       json[r'meta'] = meta;
       json[r'sections'] = sections;
+      json[r'notes'] = notes;
       json[r'paper'] = paper;
     if (table != null) {
       json[r'table'] = table;
@@ -86,14 +86,14 @@ class GetVaultMarketReportResponsePrintable {
     if (value is Map) {
       final json = value.cast<String, dynamic>();
       return GetVaultMarketReportResponsePrintable(
-        notes: json[r'notes'] is List
-          ? (json[r'notes'] as List).cast<String>()
-          : null,
         title: mapValueOfType<String>(json, r'title'),
         meta: json[r'meta'] is List
           ? (json[r'meta'] as List).cast<String>()
           : null,
         sections: GetVaultMarketOrderHandlingResponseSections.listFromJson(json[r'sections']),
+        notes: json[r'notes'] is List
+          ? (json[r'notes'] as List).cast<String>()
+          : null,
         paper: GetVaultMarketReportResponsePrintablePaperEnum.fromJson(json[r'paper']),
         table: GetVaultMarketReportResponsePrintableTable.fromJson(json[r'table']),
         qr: GetVaultMarketReportResponsePrintableQr.fromJson(json[r'qr']),

@@ -13,43 +13,43 @@ part of openapi.api;
 class GetBuyerPackFairnessResponseData {
   /// Returns a new [GetBuyerPackFairnessResponseData] instance.
   GetBuyerPackFairnessResponseData({
-    @required this.nonce,
     @required this.serverSeedHash,
     @required this.clientSeed,
+    @required this.nonce,
     this.revealed = const [],
   });
-
-  num nonce;
 
   String serverSeedHash;
 
   String clientSeed;
 
+  num nonce;
+
   List<GetBuyerPackFairnessResponseDataRevealed> revealed;
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is GetBuyerPackFairnessResponseData &&
-     other.nonce == nonce &&
      other.serverSeedHash == serverSeedHash &&
      other.clientSeed == clientSeed &&
+     other.nonce == nonce &&
      other.revealed == revealed;
 
   @override
   int get hashCode =>
   // ignore: unnecessary_parenthesis
-    (nonce == null ? 0 : nonce.hashCode) +
     (serverSeedHash == null ? 0 : serverSeedHash.hashCode) +
     (clientSeed == null ? 0 : clientSeed.hashCode) +
+    (nonce == null ? 0 : nonce.hashCode) +
     (revealed == null ? 0 : revealed.hashCode);
 
   @override
-  String toString() => 'GetBuyerPackFairnessResponseData[nonce=$nonce, serverSeedHash=$serverSeedHash, clientSeed=$clientSeed, revealed=$revealed]';
+  String toString() => 'GetBuyerPackFairnessResponseData[serverSeedHash=$serverSeedHash, clientSeed=$clientSeed, nonce=$nonce, revealed=$revealed]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-      json[r'nonce'] = nonce;
       json[r'serverSeedHash'] = serverSeedHash;
       json[r'clientSeed'] = clientSeed;
+      json[r'nonce'] = nonce;
       json[r'revealed'] = revealed;
     return json;
   }
@@ -61,11 +61,11 @@ class GetBuyerPackFairnessResponseData {
     if (value is Map) {
       final json = value.cast<String, dynamic>();
       return GetBuyerPackFairnessResponseData(
+        serverSeedHash: mapValueOfType<String>(json, r'serverSeedHash'),
+        clientSeed: mapValueOfType<String>(json, r'clientSeed'),
         nonce: json[r'nonce'] == null
           ? null
           : num.parse(json[r'nonce'].toString()),
-        serverSeedHash: mapValueOfType<String>(json, r'serverSeedHash'),
-        clientSeed: mapValueOfType<String>(json, r'clientSeed'),
         revealed: GetBuyerPackFairnessResponseDataRevealed.listFromJson(json[r'revealed']),
       );
     }

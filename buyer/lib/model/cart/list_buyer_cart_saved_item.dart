@@ -14,95 +14,122 @@ class ListBuyerCartSavedItem {
   /// Returns a new [ListBuyerCartSavedItem] instance.
   ListBuyerCartSavedItem({
     @required this.id,
-    @required this.quantity,
-    @required this.title,
     @required this.platformListingId,
-    @required this.sellerUserId,
     @required this.slug,
+    @required this.title,
     @required this.priceCents,
+    @required this.quantity,
     @required this.inStock,
     @required this.availableQuantity,
+    @required this.sellerUserId,
     @required this.savedAt,
-    this.sellerDisplayName,
     this.thumbnail,
+    this.sellerDisplayName,
+    this.listingVariantId,
+    this.variantName,
+    this.needsOption,
   });
 
   String id;
 
-  num quantity;
-
-  String title;
-
   String platformListingId;
-
-  String sellerUserId;
 
   String slug;
 
+  String title;
+
   /// The listing's price NOW, in cents — what moving it back would charge.
   num priceCents;
+
+  num quantity;
 
   bool inStock;
 
   num availableQuantity;
 
+  String sellerUserId;
+
   String savedAt;
+
+  String thumbnail;
 
   String sellerDisplayName;
 
-  String thumbnail;
+  /// The option it was saved as (catalog `variants[].id`), restored on move-to-cart; null otherwise.
+  String listingVariantId;
+
+  /// That option's label (\"M\").
+  String variantName;
+
+  /// The listing has options and this item names none: add it again with an option (move-to-cart refuses).
+  bool needsOption;
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is ListBuyerCartSavedItem &&
      other.id == id &&
-     other.quantity == quantity &&
-     other.title == title &&
      other.platformListingId == platformListingId &&
-     other.sellerUserId == sellerUserId &&
      other.slug == slug &&
+     other.title == title &&
      other.priceCents == priceCents &&
+     other.quantity == quantity &&
      other.inStock == inStock &&
      other.availableQuantity == availableQuantity &&
+     other.sellerUserId == sellerUserId &&
      other.savedAt == savedAt &&
+     other.thumbnail == thumbnail &&
      other.sellerDisplayName == sellerDisplayName &&
-     other.thumbnail == thumbnail;
+     other.listingVariantId == listingVariantId &&
+     other.variantName == variantName &&
+     other.needsOption == needsOption;
 
   @override
   int get hashCode =>
   // ignore: unnecessary_parenthesis
     (id == null ? 0 : id.hashCode) +
-    (quantity == null ? 0 : quantity.hashCode) +
-    (title == null ? 0 : title.hashCode) +
     (platformListingId == null ? 0 : platformListingId.hashCode) +
-    (sellerUserId == null ? 0 : sellerUserId.hashCode) +
     (slug == null ? 0 : slug.hashCode) +
+    (title == null ? 0 : title.hashCode) +
     (priceCents == null ? 0 : priceCents.hashCode) +
+    (quantity == null ? 0 : quantity.hashCode) +
     (inStock == null ? 0 : inStock.hashCode) +
     (availableQuantity == null ? 0 : availableQuantity.hashCode) +
+    (sellerUserId == null ? 0 : sellerUserId.hashCode) +
     (savedAt == null ? 0 : savedAt.hashCode) +
+    (thumbnail == null ? 0 : thumbnail.hashCode) +
     (sellerDisplayName == null ? 0 : sellerDisplayName.hashCode) +
-    (thumbnail == null ? 0 : thumbnail.hashCode);
+    (listingVariantId == null ? 0 : listingVariantId.hashCode) +
+    (variantName == null ? 0 : variantName.hashCode) +
+    (needsOption == null ? 0 : needsOption.hashCode);
 
   @override
-  String toString() => 'ListBuyerCartSavedItem[id=$id, quantity=$quantity, title=$title, platformListingId=$platformListingId, sellerUserId=$sellerUserId, slug=$slug, priceCents=$priceCents, inStock=$inStock, availableQuantity=$availableQuantity, savedAt=$savedAt, sellerDisplayName=$sellerDisplayName, thumbnail=$thumbnail]';
+  String toString() => 'ListBuyerCartSavedItem[id=$id, platformListingId=$platformListingId, slug=$slug, title=$title, priceCents=$priceCents, quantity=$quantity, inStock=$inStock, availableQuantity=$availableQuantity, sellerUserId=$sellerUserId, savedAt=$savedAt, thumbnail=$thumbnail, sellerDisplayName=$sellerDisplayName, listingVariantId=$listingVariantId, variantName=$variantName, needsOption=$needsOption]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
       json[r'id'] = id;
-      json[r'quantity'] = quantity;
-      json[r'title'] = title;
       json[r'platformListingId'] = platformListingId;
-      json[r'sellerUserId'] = sellerUserId;
       json[r'slug'] = slug;
+      json[r'title'] = title;
       json[r'priceCents'] = priceCents;
+      json[r'quantity'] = quantity;
       json[r'inStock'] = inStock;
       json[r'availableQuantity'] = availableQuantity;
+      json[r'sellerUserId'] = sellerUserId;
       json[r'savedAt'] = savedAt;
+    if (thumbnail != null) {
+      json[r'thumbnail'] = thumbnail;
+    }
     if (sellerDisplayName != null) {
       json[r'sellerDisplayName'] = sellerDisplayName;
     }
-    if (thumbnail != null) {
-      json[r'thumbnail'] = thumbnail;
+    if (listingVariantId != null) {
+      json[r'listingVariantId'] = listingVariantId;
+    }
+    if (variantName != null) {
+      json[r'variantName'] = variantName;
+    }
+    if (needsOption != null) {
+      json[r'needsOption'] = needsOption;
     }
     return json;
   }
@@ -115,23 +142,26 @@ class ListBuyerCartSavedItem {
       final json = value.cast<String, dynamic>();
       return ListBuyerCartSavedItem(
         id: mapValueOfType<String>(json, r'id'),
-        quantity: json[r'quantity'] == null
-          ? null
-          : num.parse(json[r'quantity'].toString()),
-        title: mapValueOfType<String>(json, r'title'),
         platformListingId: mapValueOfType<String>(json, r'platformListingId'),
-        sellerUserId: mapValueOfType<String>(json, r'sellerUserId'),
         slug: mapValueOfType<String>(json, r'slug'),
+        title: mapValueOfType<String>(json, r'title'),
         priceCents: json[r'priceCents'] == null
           ? null
           : num.parse(json[r'priceCents'].toString()),
+        quantity: json[r'quantity'] == null
+          ? null
+          : num.parse(json[r'quantity'].toString()),
         inStock: mapValueOfType<bool>(json, r'inStock'),
         availableQuantity: json[r'availableQuantity'] == null
           ? null
           : num.parse(json[r'availableQuantity'].toString()),
+        sellerUserId: mapValueOfType<String>(json, r'sellerUserId'),
         savedAt: mapValueOfType<String>(json, r'savedAt'),
-        sellerDisplayName: mapValueOfType<String>(json, r'sellerDisplayName'),
         thumbnail: mapValueOfType<String>(json, r'thumbnail'),
+        sellerDisplayName: mapValueOfType<String>(json, r'sellerDisplayName'),
+        listingVariantId: mapValueOfType<String>(json, r'listingVariantId'),
+        variantName: mapValueOfType<String>(json, r'variantName'),
+        needsOption: mapValueOfType<bool>(json, r'needsOption'),
       );
     }
     return null;

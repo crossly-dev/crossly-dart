@@ -148,17 +148,17 @@ class CreateVaultMarketCreatorCohostInviteRespondResponseStatusEnum {
 
   String toJson() => value;
 
-  static const invited = CreateVaultMarketCreatorCohostInviteRespondResponseStatusEnum._(r'invited');
-  static const withdrawn = CreateVaultMarketCreatorCohostInviteRespondResponseStatusEnum._(r'withdrawn');
   static const accepted = CreateVaultMarketCreatorCohostInviteRespondResponseStatusEnum._(r'accepted');
   static const declined = CreateVaultMarketCreatorCohostInviteRespondResponseStatusEnum._(r'declined');
+  static const withdrawn = CreateVaultMarketCreatorCohostInviteRespondResponseStatusEnum._(r'withdrawn');
+  static const invited = CreateVaultMarketCreatorCohostInviteRespondResponseStatusEnum._(r'invited');
 
   /// List of all possible values in this [enum][CreateVaultMarketCreatorCohostInviteRespondResponseStatusEnum].
   static const values = <CreateVaultMarketCreatorCohostInviteRespondResponseStatusEnum>[
-    invited,
-    withdrawn,
     accepted,
     declined,
+    withdrawn,
+    invited,
   ];
 
   static CreateVaultMarketCreatorCohostInviteRespondResponseStatusEnum fromJson(dynamic value) =>
@@ -190,10 +190,10 @@ class CreateVaultMarketCreatorCohostInviteRespondResponseStatusEnumTypeTransform
   CreateVaultMarketCreatorCohostInviteRespondResponseStatusEnum decode(dynamic data, {bool allowNull}) {
     if (data != null) {
       switch (data.toString()) {
-        case r'invited': return CreateVaultMarketCreatorCohostInviteRespondResponseStatusEnum.invited;
-        case r'withdrawn': return CreateVaultMarketCreatorCohostInviteRespondResponseStatusEnum.withdrawn;
         case r'accepted': return CreateVaultMarketCreatorCohostInviteRespondResponseStatusEnum.accepted;
         case r'declined': return CreateVaultMarketCreatorCohostInviteRespondResponseStatusEnum.declined;
+        case r'withdrawn': return CreateVaultMarketCreatorCohostInviteRespondResponseStatusEnum.withdrawn;
+        case r'invited': return CreateVaultMarketCreatorCohostInviteRespondResponseStatusEnum.invited;
         default:
           if (allowNull == false) {
             throw ArgumentError('Unknown enum value to decode: $data');

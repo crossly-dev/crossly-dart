@@ -32,6 +32,8 @@ class ListStallMineItem {
     @required this.refundedCents,
     @required this.cancellable,
     this.listingIds = const [],
+    @required this.boothKind,
+    @required this.capacity,
     this.awning,
     this.booth,
     this.sign,
@@ -77,6 +79,10 @@ class ListStallMineItem {
 
   List<String> listingIds;
 
+  ListStallMineItemBoothKindEnum boothKind;
+
+  num capacity;
+
   ColourPattern awning;
 
   CreateStallBookResponseBookingBooth booth;
@@ -108,6 +114,8 @@ class ListStallMineItem {
      other.refundedCents == refundedCents &&
      other.cancellable == cancellable &&
      other.listingIds == listingIds &&
+     other.boothKind == boothKind &&
+     other.capacity == capacity &&
      other.awning == awning &&
      other.booth == booth &&
      other.sign == sign &&
@@ -136,6 +144,8 @@ class ListStallMineItem {
     (refundedCents == null ? 0 : refundedCents.hashCode) +
     (cancellable == null ? 0 : cancellable.hashCode) +
     (listingIds == null ? 0 : listingIds.hashCode) +
+    (boothKind == null ? 0 : boothKind.hashCode) +
+    (capacity == null ? 0 : capacity.hashCode) +
     (awning == null ? 0 : awning.hashCode) +
     (booth == null ? 0 : booth.hashCode) +
     (sign == null ? 0 : sign.hashCode) +
@@ -143,7 +153,7 @@ class ListStallMineItem {
     (createdAt == null ? 0 : createdAt.hashCode);
 
   @override
-  String toString() => 'ListStallMineItem[stats=$stats, upcoming=$upcoming, drawnBooth=$drawnBooth, boothTrimmed=$boothTrimmed, id=$id, street=$street, spotIndex=$spotIndex, unit=$unit, units=$units, startsAt=$startsAt, endsAt=$endsAt, status=$status, rail=$rail, owner=$owner, quote=$quote, totalCents=$totalCents, refundedCents=$refundedCents, cancellable=$cancellable, listingIds=$listingIds, awning=$awning, booth=$booth, sign=$sign, attendant=$attendant, createdAt=$createdAt]';
+  String toString() => 'ListStallMineItem[stats=$stats, upcoming=$upcoming, drawnBooth=$drawnBooth, boothTrimmed=$boothTrimmed, id=$id, street=$street, spotIndex=$spotIndex, unit=$unit, units=$units, startsAt=$startsAt, endsAt=$endsAt, status=$status, rail=$rail, owner=$owner, quote=$quote, totalCents=$totalCents, refundedCents=$refundedCents, cancellable=$cancellable, listingIds=$listingIds, boothKind=$boothKind, capacity=$capacity, awning=$awning, booth=$booth, sign=$sign, attendant=$attendant, createdAt=$createdAt]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -168,6 +178,8 @@ class ListStallMineItem {
       json[r'refundedCents'] = refundedCents;
       json[r'cancellable'] = cancellable;
       json[r'listingIds'] = listingIds;
+      json[r'boothKind'] = boothKind;
+      json[r'capacity'] = capacity;
     if (awning != null) {
       json[r'awning'] = awning;
     }
@@ -216,6 +228,10 @@ class ListStallMineItem {
         listingIds: json[r'listingIds'] is List
           ? (json[r'listingIds'] as List).cast<String>()
           : null,
+        boothKind: ListStallMineItemBoothKindEnum.fromJson(json[r'boothKind']),
+        capacity: json[r'capacity'] == null
+          ? null
+          : num.parse(json[r'capacity'].toString()),
         awning: ColourPattern.fromJson(json[r'awning']),
         booth: CreateStallBookResponseBookingBooth.fromJson(json[r'booth']),
         sign: mapValueOfType<String>(json, r'sign'),
@@ -272,13 +288,13 @@ class ListStallMineItemUnitEnum {
 
   String toJson() => value;
 
-  static const event = ListStallMineItemUnitEnum._(r'event');
   static const day = ListStallMineItemUnitEnum._(r'day');
+  static const event = ListStallMineItemUnitEnum._(r'event');
 
   /// List of all possible values in this [enum][ListStallMineItemUnitEnum].
   static const values = <ListStallMineItemUnitEnum>[
-    event,
     day,
+    event,
   ];
 
   static ListStallMineItemUnitEnum fromJson(dynamic value) =>
@@ -310,8 +326,8 @@ class ListStallMineItemUnitEnumTypeTransformer {
   ListStallMineItemUnitEnum decode(dynamic data, {bool allowNull}) {
     if (data != null) {
       switch (data.toString()) {
-        case r'event': return ListStallMineItemUnitEnum.event;
         case r'day': return ListStallMineItemUnitEnum.day;
+        case r'event': return ListStallMineItemUnitEnum.event;
         default:
           if (allowNull == false) {
             throw ArgumentError('Unknown enum value to decode: $data');
@@ -413,14 +429,14 @@ class ListStallMineItemRailEnum {
   String toJson() => value;
 
   static const card = ListStallMineItemRailEnum._(r'card');
-  static const bucks = ListStallMineItemRailEnum._(r'bucks');
   static const cbx = ListStallMineItemRailEnum._(r'cbx');
+  static const bucks = ListStallMineItemRailEnum._(r'bucks');
 
   /// List of all possible values in this [enum][ListStallMineItemRailEnum].
   static const values = <ListStallMineItemRailEnum>[
     card,
-    bucks,
     cbx,
+    bucks,
   ];
 
   static ListStallMineItemRailEnum fromJson(dynamic value) =>
@@ -453,8 +469,8 @@ class ListStallMineItemRailEnumTypeTransformer {
     if (data != null) {
       switch (data.toString()) {
         case r'card': return ListStallMineItemRailEnum.card;
-        case r'bucks': return ListStallMineItemRailEnum.bucks;
         case r'cbx': return ListStallMineItemRailEnum.cbx;
+        case r'bucks': return ListStallMineItemRailEnum.bucks;
         default:
           if (allowNull == false) {
             throw ArgumentError('Unknown enum value to decode: $data');
@@ -466,6 +482,76 @@ class ListStallMineItemRailEnumTypeTransformer {
 
   /// Singleton [ListStallMineItemRailEnumTypeTransformer] instance.
   static ListStallMineItemRailEnumTypeTransformer _instance;
+}
+
+
+
+class ListStallMineItemBoothKindEnum {
+  /// Instantiate a new enum with the provided [value].
+  const ListStallMineItemBoothKindEnum._(this.value);
+
+  /// The underlying value of this enum member.
+  final String value;
+
+  @override
+  String toString() => value ?? '';
+
+  String toJson() => value;
+
+  static const booth = ListStallMineItemBoothKindEnum._(r'booth');
+  static const cart = ListStallMineItemBoothKindEnum._(r'cart');
+  static const pavilion = ListStallMineItemBoothKindEnum._(r'pavilion');
+
+  /// List of all possible values in this [enum][ListStallMineItemBoothKindEnum].
+  static const values = <ListStallMineItemBoothKindEnum>[
+    booth,
+    cart,
+    pavilion,
+  ];
+
+  static ListStallMineItemBoothKindEnum fromJson(dynamic value) =>
+    ListStallMineItemBoothKindEnumTypeTransformer().decode(value);
+
+  static List<ListStallMineItemBoothKindEnum> listFromJson(dynamic json, {bool emptyIsNull, bool growable,}) =>
+    json is List && json.isNotEmpty
+      ? json.map(ListStallMineItemBoothKindEnum.fromJson).toList(growable: true == growable)
+      : true == emptyIsNull ? null : <ListStallMineItemBoothKindEnum>[];
+}
+
+/// Transformation class that can [encode] an instance of [ListStallMineItemBoothKindEnum] to String,
+/// and [decode] dynamic data back to [ListStallMineItemBoothKindEnum].
+class ListStallMineItemBoothKindEnumTypeTransformer {
+  factory ListStallMineItemBoothKindEnumTypeTransformer() => _instance ??= const ListStallMineItemBoothKindEnumTypeTransformer._();
+
+  const ListStallMineItemBoothKindEnumTypeTransformer._();
+
+  String encode(ListStallMineItemBoothKindEnum data) => data.value;
+
+  /// Decodes a [dynamic value][data] to a ListStallMineItemBoothKindEnum.
+  ///
+  /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
+  /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
+  /// cannot be decoded successfully, then an [UnimplementedError] is thrown.
+  ///
+  /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
+  /// and users are still using an old app with the old code.
+  ListStallMineItemBoothKindEnum decode(dynamic data, {bool allowNull}) {
+    if (data != null) {
+      switch (data.toString()) {
+        case r'booth': return ListStallMineItemBoothKindEnum.booth;
+        case r'cart': return ListStallMineItemBoothKindEnum.cart;
+        case r'pavilion': return ListStallMineItemBoothKindEnum.pavilion;
+        default:
+          if (allowNull == false) {
+            throw ArgumentError('Unknown enum value to decode: $data');
+          }
+      }
+    }
+    return null;
+  }
+
+  /// Singleton [ListStallMineItemBoothKindEnumTypeTransformer] instance.
+  static ListStallMineItemBoothKindEnumTypeTransformer _instance;
 }
 
 

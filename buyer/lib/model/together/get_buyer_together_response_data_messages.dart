@@ -15,48 +15,48 @@ class GetBuyerTogetherResponseDataMessages {
   GetBuyerTogetherResponseDataMessages({
     @required this.id,
     @required this.name,
-    @required this.createdAt,
-    @required this.body,
     @required this.me,
+    @required this.body,
+    @required this.createdAt,
   });
 
   String id;
 
   String name;
 
-  String createdAt;
+  bool me;
 
   String body;
 
-  bool me;
+  String createdAt;
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is GetBuyerTogetherResponseDataMessages &&
      other.id == id &&
      other.name == name &&
-     other.createdAt == createdAt &&
+     other.me == me &&
      other.body == body &&
-     other.me == me;
+     other.createdAt == createdAt;
 
   @override
   int get hashCode =>
   // ignore: unnecessary_parenthesis
     (id == null ? 0 : id.hashCode) +
     (name == null ? 0 : name.hashCode) +
-    (createdAt == null ? 0 : createdAt.hashCode) +
+    (me == null ? 0 : me.hashCode) +
     (body == null ? 0 : body.hashCode) +
-    (me == null ? 0 : me.hashCode);
+    (createdAt == null ? 0 : createdAt.hashCode);
 
   @override
-  String toString() => 'GetBuyerTogetherResponseDataMessages[id=$id, name=$name, createdAt=$createdAt, body=$body, me=$me]';
+  String toString() => 'GetBuyerTogetherResponseDataMessages[id=$id, name=$name, me=$me, body=$body, createdAt=$createdAt]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
       json[r'id'] = id;
       json[r'name'] = name;
-      json[r'createdAt'] = createdAt;
-      json[r'body'] = body;
       json[r'me'] = me;
+      json[r'body'] = body;
+      json[r'createdAt'] = createdAt;
     return json;
   }
 
@@ -69,9 +69,9 @@ class GetBuyerTogetherResponseDataMessages {
       return GetBuyerTogetherResponseDataMessages(
         id: mapValueOfType<String>(json, r'id'),
         name: mapValueOfType<String>(json, r'name'),
-        createdAt: mapValueOfType<String>(json, r'createdAt'),
-        body: mapValueOfType<String>(json, r'body'),
         me: mapValueOfType<bool>(json, r'me'),
+        body: mapValueOfType<String>(json, r'body'),
+        createdAt: mapValueOfType<String>(json, r'createdAt'),
       );
     }
     return null;

@@ -177,16 +177,16 @@ class ListWeb3ActivityItemEventEnum {
 
   String toJson() => value;
 
-  static const listing = ListWeb3ActivityItemEventEnum._(r'listing');
-  static const offer = ListWeb3ActivityItemEventEnum._(r'offer');
   static const sale = ListWeb3ActivityItemEventEnum._(r'sale');
+  static const offer = ListWeb3ActivityItemEventEnum._(r'offer');
+  static const listing = ListWeb3ActivityItemEventEnum._(r'listing');
   static const cancel = ListWeb3ActivityItemEventEnum._(r'cancel');
 
   /// List of all possible values in this [enum][ListWeb3ActivityItemEventEnum].
   static const values = <ListWeb3ActivityItemEventEnum>[
-    listing,
-    offer,
     sale,
+    offer,
+    listing,
     cancel,
   ];
 
@@ -219,9 +219,9 @@ class ListWeb3ActivityItemEventEnumTypeTransformer {
   ListWeb3ActivityItemEventEnum decode(dynamic data, {bool allowNull}) {
     if (data != null) {
       switch (data.toString()) {
-        case r'listing': return ListWeb3ActivityItemEventEnum.listing;
-        case r'offer': return ListWeb3ActivityItemEventEnum.offer;
         case r'sale': return ListWeb3ActivityItemEventEnum.sale;
+        case r'offer': return ListWeb3ActivityItemEventEnum.offer;
+        case r'listing': return ListWeb3ActivityItemEventEnum.listing;
         case r'cancel': return ListWeb3ActivityItemEventEnum.cancel;
         default:
           if (allowNull == false) {

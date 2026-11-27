@@ -13,32 +13,32 @@ part of openapi.api;
 class ListBuyerListingSellerReviewsItemMedia {
   /// Returns a new [ListBuyerListingSellerReviewsItemMedia] instance.
   ListBuyerListingSellerReviewsItemMedia({
-    @required this.url,
     @required this.kind,
+    @required this.url,
   });
-
-  String url;
 
   String kind;
 
+  String url;
+
   @override
   bool operator ==(Object other) => identical(this, other) || other is ListBuyerListingSellerReviewsItemMedia &&
-     other.url == url &&
-     other.kind == kind;
+     other.kind == kind &&
+     other.url == url;
 
   @override
   int get hashCode =>
   // ignore: unnecessary_parenthesis
-    (url == null ? 0 : url.hashCode) +
-    (kind == null ? 0 : kind.hashCode);
+    (kind == null ? 0 : kind.hashCode) +
+    (url == null ? 0 : url.hashCode);
 
   @override
-  String toString() => 'ListBuyerListingSellerReviewsItemMedia[url=$url, kind=$kind]';
+  String toString() => 'ListBuyerListingSellerReviewsItemMedia[kind=$kind, url=$url]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-      json[r'url'] = url;
       json[r'kind'] = kind;
+      json[r'url'] = url;
     return json;
   }
 
@@ -49,8 +49,8 @@ class ListBuyerListingSellerReviewsItemMedia {
     if (value is Map) {
       final json = value.cast<String, dynamic>();
       return ListBuyerListingSellerReviewsItemMedia(
-        url: mapValueOfType<String>(json, r'url'),
         kind: mapValueOfType<String>(json, r'kind'),
+        url: mapValueOfType<String>(json, r'url'),
       );
     }
     return null;

@@ -195,20 +195,54 @@ class ApiClient {
           return valueString == 'true' || valueString == '1';
         case 'AccountIdLabel':
           return AccountIdLabel.fromJson(value);
+        case 'AnalyticExperimentResponse':
+          return AnalyticExperimentResponse.fromJson(value);
+        case 'AnalyticExperimentResponseData':
+          return AnalyticExperimentResponseData.fromJson(value);
+        case 'AnalyticExperimentResponseDataArms':
+          return AnalyticExperimentResponseDataArms.fromJson(value);
+        case 'AnalyticExperimentResponseDataDaily':
+          return AnalyticExperimentResponseDataDaily.fromJson(value);
+        case 'AnalyticExperimentResponseDataPrimary':
+          return AnalyticExperimentResponseDataPrimary.fromJson(value);
+        case 'AnalyticExperimentResponseDataRecommendation':
+          return AnalyticExperimentResponseDataRecommendation.fromJson(value);
         case 'AuctionRoom':
           return AuctionRoom.fromJson(value);
         case 'AverageCount':
           return AverageCount.fromJson(value);
+        case 'AverageCount2':
+          return AverageCount2.fromJson(value);
+        case 'BackfillStaleCatchUp':
+          return BackfillStaleCatchUp.fromJson(value);
         case 'BrandDropResponse':
           return BrandDropResponse.fromJson(value);
+        case 'CodeName':
+          return CodeName.fromJson(value);
         case 'ColourPattern':
           return ColourPattern.fromJson(value);
+        case 'ContractName':
+          return ContractName.fromJson(value);
+        case 'CreateAccountCancelDeletionResponse':
+          return CreateAccountCancelDeletionResponse.fromJson(value);
+        case 'CreateAccountIdentityVerificationStartRequest':
+          return CreateAccountIdentityVerificationStartRequest.fromJson(value);
         case 'CreateAccountLogoutAllResponse':
           return CreateAccountLogoutAllResponse.fromJson(value);
+        case 'CreateAccountReconfirmDeletionResponse':
+          return CreateAccountReconfirmDeletionResponse.fromJson(value);
         case 'CreateAccountRequestDeletionResponse':
           return CreateAccountRequestDeletionResponse.fromJson(value);
         case 'CreateAccountResponse':
           return CreateAccountResponse.fromJson(value);
+        case 'CreateActionLogExportRequest':
+          return CreateActionLogExportRequest.fromJson(value);
+        case 'CreateActionLogExportRequestFilters':
+          return CreateActionLogExportRequestFilters.fromJson(value);
+        case 'CreateActionLogSearchTranslateRequest':
+          return CreateActionLogSearchTranslateRequest.fromJson(value);
+        case 'CreateActionLogSearchTranslateResponse':
+          return CreateActionLogSearchTranslateResponse.fromJson(value);
         case 'CreateAdOffsiteCampaignResponse':
           return CreateAdOffsiteCampaignResponse.fromJson(value);
         case 'CreateAdOffsiteCampaignResponseData':
@@ -245,34 +279,100 @@ class ApiClient {
           return CreateAiMagicListingResponseSuggestedPrice.fromJson(value);
         case 'CreateAiTestKeyResponse':
           return CreateAiTestKeyResponse.fromJson(value);
+        case 'CreateAutomaticDiscountPreviewResponse':
+          return CreateAutomaticDiscountPreviewResponse.fromJson(value);
+        case 'CreateAutomaticDiscountPreviewResponseData':
+          return CreateAutomaticDiscountPreviewResponseData.fromJson(value);
+        case 'CreateAutomaticDiscountPreviewResponseDataLines':
+          return CreateAutomaticDiscountPreviewResponseDataLines.fromJson(value);
+        case 'CreateAutomaticDiscountResponse':
+          return CreateAutomaticDiscountResponse.fromJson(value);
         case 'CreateAutomationRuleImportResponse':
           return CreateAutomationRuleImportResponse.fromJson(value);
-        case 'CreateAutomationRuleImportResponseCreated':
-          return CreateAutomationRuleImportResponseCreated.fromJson(value);
         case 'CreateAutomationRuleImportResponseErrors':
           return CreateAutomationRuleImportResponseErrors.fromJson(value);
         case 'CreateAutomationRuleRunNowResponse':
           return CreateAutomationRuleRunNowResponse.fromJson(value);
         case 'CreateAutomationRuleValidateRecipeResponse':
           return CreateAutomationRuleValidateRecipeResponse.fromJson(value);
-        case 'CreateAutomationRuleValidateRecipeResponseDetails':
-          return CreateAutomationRuleValidateRecipeResponseDetails.fromJson(value);
-        case 'CreateAutomationRuleValidateRecipeResponseDetailsFieldErrors':
-          return CreateAutomationRuleValidateRecipeResponseDetailsFieldErrors.fromJson(value);
+        case 'CreateAutomationRuleValidateRecipeResponseResults':
+          return CreateAutomationRuleValidateRecipeResponseResults.fromJson(value);
         case 'CreateBillingUpgradeRequest':
           return CreateBillingUpgradeRequest.fromJson(value);
         case 'CreateBillingUpgradeResponse':
           return CreateBillingUpgradeResponse.fromJson(value);
         case 'CreateBillingUpgradeResponseData':
           return CreateBillingUpgradeResponseData.fromJson(value);
-        case 'CreateBreakCancelResponse':
-          return CreateBreakCancelResponse.fromJson(value);
+        case 'CreateBookExpenseResponse':
+          return CreateBookExpenseResponse.fromJson(value);
+        case 'CreateBookExpenseResponseData':
+          return CreateBookExpenseResponseData.fromJson(value);
+        case 'CreateBrandingDropPublishResponse':
+          return CreateBrandingDropPublishResponse.fromJson(value);
+        case 'CreateBrandingDropPublishResponseData':
+          return CreateBrandingDropPublishResponseData.fromJson(value);
+        case 'CreateBrandingDropPublishResponseDataConfig':
+          return CreateBrandingDropPublishResponseDataConfig.fromJson(value);
+        case 'CreateBrandingDropPublishResponseDataConfigAccess':
+          return CreateBrandingDropPublishResponseDataConfigAccess.fromJson(value);
+        case 'CreateBrandingDropPublishResponseDataConfigAccessModesItem':
+          return CreateBrandingDropPublishResponseDataConfigAccessModesItemTypeTransformer().decode(value);
+        case 'CreateBrandingDropPublishResponseDataConfigFormat':
+          return CreateBrandingDropPublishResponseDataConfigFormat.fromJson(value);
+        case 'CreateBrandingDropPublishResponseDataConfigFulfilment':
+          return CreateBrandingDropPublishResponseDataConfigFulfilment.fromJson(value);
+        case 'CreateBrandingDropPublishResponseDataConfigLimits':
+          return CreateBrandingDropPublishResponseDataConfigLimits.fromJson(value);
+        case 'CreateBrandingDropPublishResponseDataConfigPromotion':
+          return CreateBrandingDropPublishResponseDataConfigPromotion.fromJson(value);
+        case 'CreateBrandingDropPublishResponseDataConfigWhat':
+          return CreateBrandingDropPublishResponseDataConfigWhat.fromJson(value);
+        case 'CreateBrandingDropPublishResponseDataConfigWhatKindsItem':
+          return CreateBrandingDropPublishResponseDataConfigWhatKindsItemTypeTransformer().decode(value);
+        case 'CreateBrandingDropPublishResponseDataConfigWorld':
+          return CreateBrandingDropPublishResponseDataConfigWorld.fromJson(value);
+        case 'CreateBrandingDropResponse':
+          return CreateBrandingDropResponse.fromJson(value);
+        case 'CreateBrandingDropResponseData':
+          return CreateBrandingDropResponseData.fromJson(value);
+        case 'CreateBrandingDropResponseDataDrop':
+          return CreateBrandingDropResponseDataDrop.fromJson(value);
+        case 'CreateBrandingDropResponseDataDropConfig':
+          return CreateBrandingDropResponseDataDropConfig.fromJson(value);
+        case 'CreateBrandingEventCancelResponse':
+          return CreateBrandingEventCancelResponse.fromJson(value);
+        case 'CreateBrandingEventCancelResponseData':
+          return CreateBrandingEventCancelResponseData.fromJson(value);
+        case 'CreateBrandingEventCancelResponseDataWorldRef':
+          return CreateBrandingEventCancelResponseDataWorldRef.fromJson(value);
+        case 'CreateBrandingEventCheckInResponse':
+          return CreateBrandingEventCheckInResponse.fromJson(value);
+        case 'CreateBrandingEventCheckInResponseData':
+          return CreateBrandingEventCheckInResponseData.fromJson(value);
+        case 'CreateBrandingEventMessageResponse':
+          return CreateBrandingEventMessageResponse.fromJson(value);
+        case 'CreateBrandingEventMessageResponseData':
+          return CreateBrandingEventMessageResponseData.fromJson(value);
         case 'CreateBreakDrawResponse':
           return CreateBreakDrawResponse.fromJson(value);
         case 'CreateBreakDrawResponseData':
           return CreateBreakDrawResponseData.fromJson(value);
         case 'CreateBreakResponse':
           return CreateBreakResponse.fromJson(value);
+        case 'CreateBulkBatchIdentifyResponse':
+          return CreateBulkBatchIdentifyResponse.fromJson(value);
+        case 'CreateBulkBatchItemResponse':
+          return CreateBulkBatchItemResponse.fromJson(value);
+        case 'CreateBulkBatchItemResponseCellRegion':
+          return CreateBulkBatchItemResponseCellRegion.fromJson(value);
+        case 'CreateBulkBatchItemResponseGrading':
+          return CreateBulkBatchItemResponseGrading.fromJson(value);
+        case 'CreateBulkBatchPublishResponse':
+          return CreateBulkBatchPublishResponse.fromJson(value);
+        case 'CreateBulkBatchPublishResponseMerged':
+          return CreateBulkBatchPublishResponseMerged.fromJson(value);
+        case 'CreateBulkBatchPublishResponseSkipped':
+          return CreateBulkBatchPublishResponseSkipped.fromJson(value);
         case 'CreateCatalogMatchConfirmResponse':
           return CreateCatalogMatchConfirmResponse.fromJson(value);
         case 'CreateCbxAccrualPurchaseResponse':
@@ -435,10 +535,20 @@ class ApiClient {
           return CreateCbxWalletVerifyResponseData.fromJson(value);
         case 'CreateCompWatchlistScrapeResponse':
           return CreateCompWatchlistScrapeResponse.fromJson(value);
+        case 'CreateConnectionCardnexusApiKeyResponse':
+          return CreateConnectionCardnexusApiKeyResponse.fromJson(value);
         case 'CreateConnectionEmailImapResponse':
           return CreateConnectionEmailImapResponse.fromJson(value);
         case 'CreateConnectionEmailImapTestResponse':
           return CreateConnectionEmailImapTestResponse.fromJson(value);
+        case 'CreateConnectionLightspeedXTokenRequest':
+          return CreateConnectionLightspeedXTokenRequest.fromJson(value);
+        case 'CreateConnectionLightspeedXTokenResponse':
+          return CreateConnectionLightspeedXTokenResponse.fromJson(value);
+        case 'CreateConversationMessageRequest':
+          return CreateConversationMessageRequest.fromJson(value);
+        case 'CreateConversationMessageResponse':
+          return CreateConversationMessageResponse.fromJson(value);
         case 'CreateCosmAttestationAnchorResponse':
           return CreateCosmAttestationAnchorResponse.fromJson(value);
         case 'CreateCosmAttestationAnchorResponseData':
@@ -499,6 +609,48 @@ class ApiClient {
           return CreateCosmWithdrawalResponse.fromJson(value);
         case 'CreateCosmWithdrawalResponseData':
           return CreateCosmWithdrawalResponseData.fromJson(value);
+        case 'CreateCreatorCardSetPublishResponse':
+          return CreateCreatorCardSetPublishResponse.fromJson(value);
+        case 'CreateCreatorCardSetPublishResponseData':
+          return CreateCreatorCardSetPublishResponseData.fromJson(value);
+        case 'CreateCreatorCardSetPublishResponseDataSubmitted':
+          return CreateCreatorCardSetPublishResponseDataSubmitted.fromJson(value);
+        case 'CreateCreatorCreationSubmitResponse':
+          return CreateCreatorCreationSubmitResponse.fromJson(value);
+        case 'CreateCreatorCreationSubmitResponseData':
+          return CreateCreatorCreationSubmitResponseData.fromJson(value);
+        case 'CreateCreatorExperienceKeyResponse':
+          return CreateCreatorExperienceKeyResponse.fromJson(value);
+        case 'CreateCreatorExperienceKeyResponseData':
+          return CreateCreatorExperienceKeyResponseData.fromJson(value);
+        case 'CreateCreatorExperienceKeyResponseN201':
+          return CreateCreatorExperienceKeyResponseN201.fromJson(value);
+        case 'CreateCreatorExperienceKeyResponseN201Data':
+          return CreateCreatorExperienceKeyResponseN201Data.fromJson(value);
+        case 'CreateCreatorExperienceKeyResponseN201DataKey':
+          return CreateCreatorExperienceKeyResponseN201DataKey.fromJson(value);
+        case 'CreateCreatorExperienceKeyRotateResponse':
+          return CreateCreatorExperienceKeyRotateResponse.fromJson(value);
+        case 'CreateCreatorExperienceKeyRotateResponseData':
+          return CreateCreatorExperienceKeyRotateResponseData.fromJson(value);
+        case 'CreateCreatorExperienceKeyRotateResponseN201':
+          return CreateCreatorExperienceKeyRotateResponseN201.fromJson(value);
+        case 'CreateCreatorExperienceKeyRotateResponseN201Data':
+          return CreateCreatorExperienceKeyRotateResponseN201Data.fromJson(value);
+        case 'CreateCreatorImportCommitResponse':
+          return CreateCreatorImportCommitResponse.fromJson(value);
+        case 'CreateCreatorImportCommitResponseData':
+          return CreateCreatorImportCommitResponseData.fromJson(value);
+        case 'CreateCreatorImportCommitResponseDataCreated':
+          return CreateCreatorImportCommitResponseDataCreated.fromJson(value);
+        case 'CreateCreatorImportCommitResponseDataPending':
+          return CreateCreatorImportCommitResponseDataPending.fromJson(value);
+        case 'CreateCreatorItemModelCheckResponse':
+          return CreateCreatorItemModelCheckResponse.fromJson(value);
+        case 'CreateCreatorItemPreviewResponse':
+          return CreateCreatorItemPreviewResponse.fromJson(value);
+        case 'CreateCreatorItemPreviewResponseData':
+          return CreateCreatorItemPreviewResponseData.fromJson(value);
         case 'CreateCustomerBulkDeleteResponse':
           return CreateCustomerBulkDeleteResponse.fromJson(value);
         case 'CreateCustomerRefreshProfileResponse':
@@ -523,18 +675,206 @@ class ApiClient {
           return CreateDaoProposalVoteResponse.fromJson(value);
         case 'CreateDaoProposalVoteResponseData':
           return CreateDaoProposalVoteResponseData.fromJson(value);
+        case 'CreateDetectedEventEventConfirmRequest':
+          return CreateDetectedEventEventConfirmRequest.fromJson(value);
+        case 'CreateDetectedEventEventUndoResponse':
+          return CreateDetectedEventEventUndoResponse.fromJson(value);
+        case 'CreateDetectedEventEventUndoResponseData':
+          return CreateDetectedEventEventUndoResponseData.fromJson(value);
+        case 'CreateDetectedEventEventUndoResponseDataEvent':
+          return CreateDetectedEventEventUndoResponseDataEvent.fromJson(value);
+        case 'CreateDetectedEventRulePlaceRequest':
+          return CreateDetectedEventRulePlaceRequest.fromJson(value);
+        case 'CreateDetectedEventRulePlaceResponse':
+          return CreateDetectedEventRulePlaceResponse.fromJson(value);
+        case 'CreateDetectedEventRulePlaceResponseData':
+          return CreateDetectedEventRulePlaceResponseData.fromJson(value);
+        case 'CreateDetectedEventRulePlaceResponseDataItems':
+          return CreateDetectedEventRulePlaceResponseDataItems.fromJson(value);
+        case 'CreateDetectedEventRuleReorderRequest':
+          return CreateDetectedEventRuleReorderRequest.fromJson(value);
+        case 'CreateDetectedEventRuleReorderResponse':
+          return CreateDetectedEventRuleReorderResponse.fromJson(value);
+        case 'CreateDetectedEventRuleReorderResponseData':
+          return CreateDetectedEventRuleReorderResponseData.fromJson(value);
+        case 'CreateDetectedEventRuleReorderResponseDataCandidatePool':
+          return CreateDetectedEventRuleReorderResponseDataCandidatePool.fromJson(value);
+        case 'CreateDetectedEventRuleReorderResponseDataCandidatePoolStatusesItem':
+          return CreateDetectedEventRuleReorderResponseDataCandidatePoolStatusesItemTypeTransformer().decode(value);
+        case 'CreateDetectedEventRuleReorderResponseDataFilter':
+          return CreateDetectedEventRuleReorderResponseDataFilter.fromJson(value);
+        case 'CreateDetectedEventRuleReorderResponseDataFilterKindsItem':
+          return CreateDetectedEventRuleReorderResponseDataFilterKindsItemTypeTransformer().decode(value);
+        case 'CreateDetectedEventRuleReorderResponsePagination':
+          return CreateDetectedEventRuleReorderResponsePagination.fromJson(value);
+        case 'CreateDetectedEventRuleRequest':
+          return CreateDetectedEventRuleRequest.fromJson(value);
+        case 'CreateDetectedEventRuleResetDefaultRequest':
+          return CreateDetectedEventRuleResetDefaultRequest.fromJson(value);
+        case 'CreateDetectedEventRuleResponse':
+          return CreateDetectedEventRuleResponse.fromJson(value);
+        case 'CreateDetectedEventRuleResponseData':
+          return CreateDetectedEventRuleResponseData.fromJson(value);
+        case 'CreateDetectedEventRuleResponseDataTarget':
+          return CreateDetectedEventRuleResponseDataTarget.fromJson(value);
+        case 'CreateDetectedEventSimulateImpactRequest':
+          return CreateDetectedEventSimulateImpactRequest.fromJson(value);
+        case 'CreateDetectedEventSimulateImpactResponse':
+          return CreateDetectedEventSimulateImpactResponse.fromJson(value);
+        case 'CreateDetectedEventSimulateImpactResponseData':
+          return CreateDetectedEventSimulateImpactResponseData.fromJson(value);
+        case 'CreateDetectedEventSimulateImpactResponseDataItems':
+          return CreateDetectedEventSimulateImpactResponseDataItems.fromJson(value);
+        case 'CreateDetectedEventSimulateImpactResponseDataItemsBefore':
+          return CreateDetectedEventSimulateImpactResponseDataItemsBefore.fromJson(value);
+        case 'CreateDetectedEventSimulateImpactResponseDataItemsRecorded':
+          return CreateDetectedEventSimulateImpactResponseDataItemsRecorded.fromJson(value);
+        case 'CreateDetectedEventSimulateRequest':
+          return CreateDetectedEventSimulateRequest.fromJson(value);
+        case 'CreateDetectedEventSimulateResponse':
+          return CreateDetectedEventSimulateResponse.fromJson(value);
+        case 'CreateDetectedEventSimulateResponseData':
+          return CreateDetectedEventSimulateResponseData.fromJson(value);
+        case 'CreateDetectedEventSimulateResponseDataGuards':
+          return CreateDetectedEventSimulateResponseDataGuards.fromJson(value);
+        case 'CreateDetectedEventSimulateResponseDataResolution':
+          return CreateDetectedEventSimulateResponseDataResolution.fromJson(value);
+        case 'CreateDetectedEventSimulateResponseDataResolutionMatched':
+          return CreateDetectedEventSimulateResponseDataResolutionMatched.fromJson(value);
+        case 'CreateDetectedEventSimulateResponseDataResolutionShadowed':
+          return CreateDetectedEventSimulateResponseDataResolutionShadowed.fromJson(value);
+        case 'CreateDetectedEventSimulateResponseDataResolutionTrace':
+          return CreateDetectedEventSimulateResponseDataResolutionTrace.fromJson(value);
+        case 'CreateDeveloperAppClientVersionResponse':
+          return CreateDeveloperAppClientVersionResponse.fromJson(value);
+        case 'CreateDeveloperAppClientVersionResponseData':
+          return CreateDeveloperAppClientVersionResponseData.fromJson(value);
+        case 'CreateDeveloperAppConformanceRunAbortResponse':
+          return CreateDeveloperAppConformanceRunAbortResponse.fromJson(value);
+        case 'CreateDeveloperAppConformanceRunAbortResponseData':
+          return CreateDeveloperAppConformanceRunAbortResponseData.fromJson(value);
+        case 'CreateDiscountCodeGenerateResponse':
+          return CreateDiscountCodeGenerateResponse.fromJson(value);
+        case 'CreateDiscountCodeGenerateResponseData':
+          return CreateDiscountCodeGenerateResponseData.fromJson(value);
+        case 'CreateDiscountHolderResponse':
+          return CreateDiscountHolderResponse.fromJson(value);
         case 'CreateDropResponse':
           return CreateDropResponse.fromJson(value);
+        case 'CreateEmailEventConfirmRequest':
+          return CreateEmailEventConfirmRequest.fromJson(value);
+        case 'CreateEmailEventConfirmResponse':
+          return CreateEmailEventConfirmResponse.fromJson(value);
         case 'CreateEmbedKeyRequest':
           return CreateEmbedKeyRequest.fromJson(value);
         case 'CreateEmbedKeyResponse':
           return CreateEmbedKeyResponse.fromJson(value);
         case 'CreateEmbedKeyResponseData':
           return CreateEmbedKeyResponseData.fromJson(value);
-        case 'CreateGradingSubmissionResultResponse':
-          return CreateGradingSubmissionResultResponse.fromJson(value);
+        case 'CreateEventPolicyDecisionConfirmResponse':
+          return CreateEventPolicyDecisionConfirmResponse.fromJson(value);
+        case 'CreateEventPolicyDecisionConfirmResponseData':
+          return CreateEventPolicyDecisionConfirmResponseData.fromJson(value);
+        case 'CreateFieldRulePreviewResponse':
+          return CreateFieldRulePreviewResponse.fromJson(value);
+        case 'CreateFieldRulePreviewResponseData':
+          return CreateFieldRulePreviewResponseData.fromJson(value);
+        case 'CreateFieldRulePreviewResponseDataFields':
+          return CreateFieldRulePreviewResponseDataFields.fromJson(value);
+        case 'CreateFieldRulePreviewResponseDataTrace':
+          return CreateFieldRulePreviewResponseDataTrace.fromJson(value);
+        case 'CreateFundingApplyResponse':
+          return CreateFundingApplyResponse.fromJson(value);
+        case 'CreateFundingApplyResponseData':
+          return CreateFundingApplyResponseData.fromJson(value);
+        case 'CreateFundingApplyResponseDataUseBreakdown':
+          return CreateFundingApplyResponseDataUseBreakdown.fromJson(value);
+        case 'CreateFundingDrawQuoteResponse':
+          return CreateFundingDrawQuoteResponse.fromJson(value);
+        case 'CreateFundingDrawQuoteResponseData':
+          return CreateFundingDrawQuoteResponseData.fromJson(value);
+        case 'CreateFundingDrawRejectResponse':
+          return CreateFundingDrawRejectResponse.fromJson(value);
+        case 'CreateFundingDrawRejectResponseData':
+          return CreateFundingDrawRejectResponseData.fromJson(value);
+        case 'CreateFundingDrawResponse':
+          return CreateFundingDrawResponse.fromJson(value);
+        case 'CreateFundingDrawResponseData':
+          return CreateFundingDrawResponseData.fromJson(value);
+        case 'CreateFundingDrawUseResponse':
+          return CreateFundingDrawUseResponse.fromJson(value);
+        case 'CreateFundingDrawUseResponseData':
+          return CreateFundingDrawUseResponseData.fromJson(value);
+        case 'CreateFundingInvoiceFileResponse':
+          return CreateFundingInvoiceFileResponse.fromJson(value);
+        case 'CreateFundingInvoiceFileResponseData':
+          return CreateFundingInvoiceFileResponseData.fromJson(value);
+        case 'CreateFundingInvoiceFileResponseDataFile':
+          return CreateFundingInvoiceFileResponseDataFile.fromJson(value);
+        case 'CreateFundingInvoiceFileResponseDataHeaders':
+          return CreateFundingInvoiceFileResponseDataHeaders.fromJson(value);
+        case 'CreateFundingPayCrosslyFeeResponse':
+          return CreateFundingPayCrosslyFeeResponse.fromJson(value);
+        case 'CreateFundingPayCrosslyFeeResponseData':
+          return CreateFundingPayCrosslyFeeResponseData.fromJson(value);
+        case 'CreateFundingPayShippingLabelResponse':
+          return CreateFundingPayShippingLabelResponse.fromJson(value);
+        case 'CreateFundingPayShippingLabelResponseData':
+          return CreateFundingPayShippingLabelResponseData.fromJson(value);
+        case 'CreateFundingPayVaultFeeResponse':
+          return CreateFundingPayVaultFeeResponse.fromJson(value);
+        case 'CreateFundingPayVaultFeeResponseData':
+          return CreateFundingPayVaultFeeResponseData.fromJson(value);
+        case 'CreateFundingPoolStakeResponse':
+          return CreateFundingPoolStakeResponse.fromJson(value);
+        case 'CreateFundingPoolStakeResponseData':
+          return CreateFundingPoolStakeResponseData.fromJson(value);
+        case 'CreateFundingRepayResponse':
+          return CreateFundingRepayResponse.fromJson(value);
+        case 'CreateFundingRepayResponseData':
+          return CreateFundingRepayResponseData.fromJson(value);
+        case 'CreateGamePackBreakPickResponse':
+          return CreateGamePackBreakPickResponse.fromJson(value);
+        case 'CreateGamePackBreakPickResponseData':
+          return CreateGamePackBreakPickResponseData.fromJson(value);
+        case 'CreateGamePackBreakPickResponseDataCoupon':
+          return CreateGamePackBreakPickResponseDataCoupon.fromJson(value);
+        case 'CreateGamePackBreakPickResponseDataPulls':
+          return CreateGamePackBreakPickResponseDataPulls.fromJson(value);
+        case 'CreateGamePackBreakResponse':
+          return CreateGamePackBreakResponse.fromJson(value);
+        case 'CreateGamePackBreakResponseData':
+          return CreateGamePackBreakResponseData.fromJson(value);
+        case 'CreateGamePackBreakResponseDataPulls':
+          return CreateGamePackBreakResponseDataPulls.fromJson(value);
+        case 'CreateGeoLocationCheckResponse':
+          return CreateGeoLocationCheckResponse.fromJson(value);
+        case 'CreateGeoLocationCheckResponseFacts':
+          return CreateGeoLocationCheckResponseFacts.fromJson(value);
+        case 'CreateGeoLocationCheckResponseHubFacts':
+          return CreateGeoLocationCheckResponseHubFacts.fromJson(value);
+        case 'CreateGeoLocationCheckResponseRule':
+          return CreateGeoLocationCheckResponseRule.fromJson(value);
+        case 'CreateGeoLocationCheckResponseServices':
+          return CreateGeoLocationCheckResponseServices.fromJson(value);
         case 'CreateGradingVerifyCertResponse':
           return CreateGradingVerifyCertResponse.fromJson(value);
+        case 'CreateGroupBuyCancelResponse':
+          return CreateGroupBuyCancelResponse.fromJson(value);
+        case 'CreateGroupBuyCancelResponseData':
+          return CreateGroupBuyCancelResponseData.fromJson(value);
+        case 'CreateGroupBuyCloseResponse':
+          return CreateGroupBuyCloseResponse.fromJson(value);
+        case 'CreateGroupBuyCloseResponseData':
+          return CreateGroupBuyCloseResponseData.fromJson(value);
+        case 'CreateGroupBuyExtendResponse':
+          return CreateGroupBuyExtendResponse.fromJson(value);
+        case 'CreateGroupBuyExtendResponseData':
+          return CreateGroupBuyExtendResponseData.fromJson(value);
+        case 'CreateGroupBuyMessageResponse':
+          return CreateGroupBuyMessageResponse.fromJson(value);
+        case 'CreateGroupBuyMessageResponseData':
+          return CreateGroupBuyMessageResponseData.fromJson(value);
         case 'CreateImportResponse':
           return CreateImportResponse.fromJson(value);
         case 'CreateInboxAiSuggestResponse':
@@ -555,22 +895,32 @@ class ApiClient {
           return CreateInboxOfferResponse.fromJson(value);
         case 'CreateInboxReplyResponse':
           return CreateInboxReplyResponse.fromJson(value);
+        case 'CreateInboxSendOfferRequest':
+          return CreateInboxSendOfferRequest.fromJson(value);
+        case 'CreateInboxSendOfferResponse':
+          return CreateInboxSendOfferResponse.fromJson(value);
+        case 'CreateInboxSendOfferResponseMessage':
+          return CreateInboxSendOfferResponseMessage.fromJson(value);
         case 'CreateInventoryBulkArchiveResponse':
           return CreateInventoryBulkArchiveResponse.fromJson(value);
         case 'CreateInventoryBulkDeleteResponse':
           return CreateInventoryBulkDeleteResponse.fromJson(value);
+        case 'CreateInventoryBulkDeleteResponseRefused':
+          return CreateInventoryBulkDeleteResponseRefused.fromJson(value);
         case 'CreateInventoryBulkQuantityResponse':
           return CreateInventoryBulkQuantityResponse.fromJson(value);
+        case 'CreateInventoryBulkRestoreResponse':
+          return CreateInventoryBulkRestoreResponse.fromJson(value);
         case 'CreateInventoryCatalogMatchRefreshResponse':
           return CreateInventoryCatalogMatchRefreshResponse.fromJson(value);
         case 'CreateInventoryCatalogMatchRefreshResponseRun':
           return CreateInventoryCatalogMatchRefreshResponseRun.fromJson(value);
         case 'CreateInventoryCsvImportResponse':
           return CreateInventoryCsvImportResponse.fromJson(value);
+        case 'CreateInventoryCsvImportResponseCapacity':
+          return CreateInventoryCsvImportResponseCapacity.fromJson(value);
         case 'CreateInventoryCsvImportResponseProblems':
           return CreateInventoryCsvImportResponseProblems.fromJson(value);
-        case 'CreateInventoryLabelRenameResponse':
-          return CreateInventoryLabelRenameResponse.fromJson(value);
         case 'CreateInventoryMergeResponse':
           return CreateInventoryMergeResponse.fromJson(value);
         case 'CreateInventoryResponse':
@@ -581,6 +931,16 @@ class ApiClient {
           return CreateInventoryUnitLookupResponse.fromJson(value);
         case 'CreateInventoryUnitLookupResponseData':
           return CreateInventoryUnitLookupResponseData.fromJson(value);
+        case 'CreateListingAdBulkAddItem':
+          return CreateListingAdBulkAddItem.fromJson(value);
+        case 'CreateListingAdBulkAddResponse':
+          return CreateListingAdBulkAddResponse.fromJson(value);
+        case 'CreateListingAdCampaignListingItem':
+          return CreateListingAdCampaignListingItem.fromJson(value);
+        case 'CreateListingAdCampaignListingResponse':
+          return CreateListingAdCampaignListingResponse.fromJson(value);
+        case 'CreateListingAdCampaignResponse':
+          return CreateListingAdCampaignResponse.fromJson(value);
         case 'CreateListingAiImagePromptResponse':
           return CreateListingAiImagePromptResponse.fromJson(value);
         case 'CreateListingAiImageResponse':
@@ -593,6 +953,14 @@ class ApiClient {
           return CreateListingBulkDelistPreviewResponseMarketplaces.fromJson(value);
         case 'CreateListingBulkHardDeleteResponse':
           return CreateListingBulkHardDeleteResponse.fromJson(value);
+        case 'CreateListingBulkResponse':
+          return CreateListingBulkResponse.fromJson(value);
+        case 'CreateListingBulkResponseData':
+          return CreateListingBulkResponseData.fromJson(value);
+        case 'CreateListingBulkResponseDataError':
+          return CreateListingBulkResponseDataError.fromJson(value);
+        case 'CreateListingBulkResponseMeta':
+          return CreateListingBulkResponseMeta.fromJson(value);
         case 'CreateListingBulkUpdateResponse':
           return CreateListingBulkUpdateResponse.fromJson(value);
         case 'CreateListingByIdResponse':
@@ -607,28 +975,120 @@ class ApiClient {
           return CreateListingCombineResponse.fromJson(value);
         case 'CreateListingDiscrepancyResolveResponse':
           return CreateListingDiscrepancyResolveResponse.fromJson(value);
+        case 'CreateListingEvent2Response':
+          return CreateListingEvent2Response.fromJson(value);
+        case 'CreateListingEventResponse':
+          return CreateListingEventResponse.fromJson(value);
+        case 'CreateListingEventResponseError':
+          return CreateListingEventResponseError.fromJson(value);
         case 'CreateListingImportByUrlResponse':
           return CreateListingImportByUrlResponse.fromJson(value);
         case 'CreateListingImportByUrlResponseListing':
           return CreateListingImportByUrlResponseListing.fromJson(value);
+        case 'CreateListingLinkBulkResponse':
+          return CreateListingLinkBulkResponse.fromJson(value);
+        case 'CreateListingLinkBulkResponseMeta':
+          return CreateListingLinkBulkResponseMeta.fromJson(value);
+        case 'CreateListingLinkResponse':
+          return CreateListingLinkResponse.fromJson(value);
+        case 'CreateListingLinkResponseManagement':
+          return CreateListingLinkResponseManagement.fromJson(value);
+        case 'CreateListingLinkResponseManagementAttention':
+          return CreateListingLinkResponseManagementAttention.fromJson(value);
+        case 'CreateListingLinkResponseManagementManagingApp':
+          return CreateListingLinkResponseManagementManagingApp.fromJson(value);
         case 'CreateListingMagicFillResponse':
           return CreateListingMagicFillResponse.fromJson(value);
         case 'CreateListingMergeResponse':
           return CreateListingMergeResponse.fromJson(value);
+        case 'CreateListingPlatformRecloneResponse':
+          return CreateListingPlatformRecloneResponse.fromJson(value);
+        case 'CreateListingPlatformTakeOverResponse':
+          return CreateListingPlatformTakeOverResponse.fromJson(value);
+        case 'CreateListingPlatformTakeOverResponseInFlightCommands':
+          return CreateListingPlatformTakeOverResponseInFlightCommands.fromJson(value);
         case 'CreateListingResponse':
           return CreateListingResponse.fromJson(value);
         case 'CreateListingResponseJobs':
           return CreateListingResponseJobs.fromJson(value);
         case 'CreateListingResponseSkipped':
           return CreateListingResponseSkipped.fromJson(value);
+        case 'CreateListingResponseWarnings':
+          return CreateListingResponseWarnings.fromJson(value);
+        case 'CreateListingTagBulkResponse':
+          return CreateListingTagBulkResponse.fromJson(value);
+        case 'CreateListingTagRenameResponse':
+          return CreateListingTagRenameResponse.fromJson(value);
+        case 'CreateListingUnlinkResponse':
+          return CreateListingUnlinkResponse.fromJson(value);
         case 'CreateLiveShipmentShipResponse':
           return CreateLiveShipmentShipResponse.fromJson(value);
+        case 'CreateLiveStreamConnectionResponse':
+          return CreateLiveStreamConnectionResponse.fromJson(value);
+        case 'CreateLiveStreamConnectionResponseData':
+          return CreateLiveStreamConnectionResponseData.fromJson(value);
+        case 'CreateLiveStreamConnectionResponseDataCapabilities':
+          return CreateLiveStreamConnectionResponseDataCapabilities.fromJson(value);
+        case 'CreateLookbookCampaignPreviewResponse':
+          return CreateLookbookCampaignPreviewResponse.fromJson(value);
+        case 'CreateLookbookCampaignPreviewResponseData':
+          return CreateLookbookCampaignPreviewResponseData.fromJson(value);
+        case 'CreateLookbookCampaignPreviewResponseDataAudience':
+          return CreateLookbookCampaignPreviewResponseDataAudience.fromJson(value);
+        case 'CreateLookbookCampaignPreviewResponseDataAudienceSample':
+          return CreateLookbookCampaignPreviewResponseDataAudienceSample.fromJson(value);
+        case 'CreateLookbookResponse':
+          return CreateLookbookResponse.fromJson(value);
+        case 'CreateLookbookResponseData':
+          return CreateLookbookResponseData.fromJson(value);
+        case 'CreateLookbookResponseDataBrand':
+          return CreateLookbookResponseDataBrand.fromJson(value);
+        case 'CreateLookbookResponseDataDesign':
+          return CreateLookbookResponseDataDesign.fromJson(value);
+        case 'CreateLookbookResponseDataDesignBrand':
+          return CreateLookbookResponseDataDesignBrand.fromJson(value);
+        case 'CreateLookbookResponseDataLookbook':
+          return CreateLookbookResponseDataLookbook.fromJson(value);
+        case 'CreateLookbookShareLinkResponse':
+          return CreateLookbookShareLinkResponse.fromJson(value);
+        case 'CreateLookbookShareLinkResponseData':
+          return CreateLookbookShareLinkResponseData.fromJson(value);
+        case 'CreateLoyaltyAirdropPrepareResponse':
+          return CreateLoyaltyAirdropPrepareResponse.fromJson(value);
+        case 'CreateLoyaltyAirdropPrepareResponseData':
+          return CreateLoyaltyAirdropPrepareResponseData.fromJson(value);
+        case 'CreateLoyaltyAirdropPrepareResponseDataOneOfTxs':
+          return CreateLoyaltyAirdropPrepareResponseDataOneOfTxs.fromJson(value);
+        case 'CreateLoyaltyProgramInviteResponse':
+          return CreateLoyaltyProgramInviteResponse.fromJson(value);
+        case 'CreateLoyaltyProgramInviteResponseData':
+          return CreateLoyaltyProgramInviteResponseData.fromJson(value);
+        case 'CreateLoyaltyTierResponse':
+          return CreateLoyaltyTierResponse.fromJson(value);
+        case 'CreateLoyaltyTierResponseData':
+          return CreateLoyaltyTierResponseData.fromJson(value);
+        case 'CreateLoyaltyTierResponseDataPerksItem':
+          return CreateLoyaltyTierResponseDataPerksItem.fromJson(value);
+        case 'CreateMagicAutoDecisionUndoResponse':
+          return CreateMagicAutoDecisionUndoResponse.fromJson(value);
+        case 'CreateMagicAutoItemResponse':
+          return CreateMagicAutoItemResponse.fromJson(value);
+        case 'CreateMagicAutoRunResponse':
+          return CreateMagicAutoRunResponse.fromJson(value);
+        case 'CreateMagicAutoRunSwipeResponse':
+          return CreateMagicAutoRunSwipeResponse.fromJson(value);
         case 'CreateMagicScanResponse':
           return CreateMagicScanResponse.fromJson(value);
         case 'CreateMagicScanResponseEbayHits':
           return CreateMagicScanResponseEbayHits.fromJson(value);
         case 'CreateMagicScanResponseEbayMatch':
           return CreateMagicScanResponseEbayMatch.fromJson(value);
+        case 'CreateMagicScanResponseMatchReference':
+          return CreateMagicScanResponseMatchReference.fromJson(value);
+        case 'CreateMagicScanResponseMatchReferenceCatalog':
+          return CreateMagicScanResponseMatchReferenceCatalog.fromJson(value);
+        case 'CreateMagicScanResponseMatchReferenceIdentifier':
+          return CreateMagicScanResponseMatchReferenceIdentifier.fromJson(value);
         case 'CreateMagicScanResponsePhotoIdentifier':
           return CreateMagicScanResponsePhotoIdentifier.fromJson(value);
         case 'CreateMagicScanResponsePhotoIdentifierIdentifier':
@@ -679,18 +1139,36 @@ class ApiClient {
           return CreateOrderBulkMarkShippedResponse.fromJson(value);
         case 'CreateOrderCancelResponse':
           return CreateOrderCancelResponse.fromJson(value);
+        case 'CreateOrderCancelResponseRefund':
+          return CreateOrderCancelResponseRefund.fromJson(value);
+        case 'CreateOrderCorrectTrackingResponse':
+          return CreateOrderCorrectTrackingResponse.fromJson(value);
         case 'CreateOrderDisputeResponse':
           return CreateOrderDisputeResponse.fromJson(value);
         case 'CreateOrderDisputeResponseError':
           return CreateOrderDisputeResponseError.fromJson(value);
+        case 'CreateOrderEventResponse':
+          return CreateOrderEventResponse.fromJson(value);
+        case 'CreateOrderEventResponseData':
+          return CreateOrderEventResponseData.fromJson(value);
         case 'CreateOrderImportResponse':
           return CreateOrderImportResponse.fromJson(value);
         case 'CreateOrderImportResponseResults':
           return CreateOrderImportResponseResults.fromJson(value);
         case 'CreateOrderLabelResponse':
           return CreateOrderLabelResponse.fromJson(value);
+        case 'CreateOrderLabelVoidResponse':
+          return CreateOrderLabelVoidResponse.fromJson(value);
+        case 'CreateOrderLabelVoidResponseTracking':
+          return CreateOrderLabelVoidResponseTracking.fromJson(value);
+        case 'CreateOrderLinkListingResponse':
+          return CreateOrderLinkListingResponse.fromJson(value);
+        case 'CreateOrderLinkListingResponseStubArchived':
+          return CreateOrderLinkListingResponseStubArchived.fromJson(value);
         case 'CreateOrderMessageResponse':
           return CreateOrderMessageResponse.fromJson(value);
+        case 'CreateOrderOrderChatRequest':
+          return CreateOrderOrderChatRequest.fromJson(value);
         case 'CreateOrderPickupLabelResponse':
           return CreateOrderPickupLabelResponse.fromJson(value);
         case 'CreateOrderPickupLabelResponseData':
@@ -699,24 +1177,40 @@ class ApiClient {
           return CreateOrderPickupResponse.fromJson(value);
         case 'CreateOrderPickupResponseData':
           return CreateOrderPickupResponseData.fromJson(value);
+        case 'CreateOrderPlatformLabelPullResponse':
+          return CreateOrderPlatformLabelPullResponse.fromJson(value);
+        case 'CreateOrderPlatformLabelPurchaseResponse':
+          return CreateOrderPlatformLabelPurchaseResponse.fromJson(value);
+        case 'CreateOrderPlatformLabelQuoteResponse':
+          return CreateOrderPlatformLabelQuoteResponse.fromJson(value);
         case 'CreateOrderPullPlatformLabelResponse':
           return CreateOrderPullPlatformLabelResponse.fromJson(value);
         case 'CreateOrderRateResponse':
           return CreateOrderRateResponse.fromJson(value);
+        case 'CreateOrderRefundByIdResponse':
+          return CreateOrderRefundByIdResponse.fromJson(value);
         case 'CreateOrderRefundResponse':
           return CreateOrderRefundResponse.fromJson(value);
         case 'CreateOrderScanFormResponse':
           return CreateOrderScanFormResponse.fromJson(value);
         case 'CreateOrderScanFormResponseData':
           return CreateOrderScanFormResponseData.fromJson(value);
+        case 'CreateOrderTakeOverResponse':
+          return CreateOrderTakeOverResponse.fromJson(value);
+        case 'CreateOrderTrackingResponse':
+          return CreateOrderTrackingResponse.fromJson(value);
         case 'CreateOrderWhatnotLabelResponse':
           return CreateOrderWhatnotLabelResponse.fromJson(value);
-        case 'CreateOrderWhatnotLabelResponseShipment':
-          return CreateOrderWhatnotLabelResponseShipment.fromJson(value);
-        case 'CreateOrderWhatnotLabelResponseShipmentDimensionsIn':
-          return CreateOrderWhatnotLabelResponseShipmentDimensionsIn.fromJson(value);
         case 'CreateOrderWhatnotPackageQuoteResponse':
           return CreateOrderWhatnotPackageQuoteResponse.fromJson(value);
+        case 'CreatePassportDraftCaptureLinkResponse':
+          return CreatePassportDraftCaptureLinkResponse.fromJson(value);
+        case 'CreatePassportDraftCaptureLinkResponseData':
+          return CreatePassportDraftCaptureLinkResponseData.fromJson(value);
+        case 'CreatePassportPrintResponse':
+          return CreatePassportPrintResponse.fromJson(value);
+        case 'CreatePassportPrintResponseData':
+          return CreatePassportPrintResponseData.fromJson(value);
         case 'CreatePatResponse':
           return CreatePatResponse.fromJson(value);
         case 'CreatePayoutConnectOnboardRequest':
@@ -725,6 +1219,18 @@ class ApiClient {
           return CreatePayoutConnectOnboardResponse.fromJson(value);
         case 'CreatePayoutConnectOnboardResponseData':
           return CreatePayoutConnectOnboardResponseData.fromJson(value);
+        case 'CreatePayoutIdentityLinkResponse':
+          return CreatePayoutIdentityLinkResponse.fromJson(value);
+        case 'CreatePayoutIdentityLinkResponseData':
+          return CreatePayoutIdentityLinkResponseData.fromJson(value);
+        case 'CreatePayoutPayoutRequest':
+          return CreatePayoutPayoutRequest.fromJson(value);
+        case 'CreatePayoutPayoutResponse':
+          return CreatePayoutPayoutResponse.fromJson(value);
+        case 'CreatePayoutPayoutResponseData':
+          return CreatePayoutPayoutResponseData.fromJson(value);
+        case 'CreatePayoutPayoutResponseDataPayout':
+          return CreatePayoutPayoutResponseDataPayout.fromJson(value);
         case 'CreatePlatformAccountConnectResponse':
           return CreatePlatformAccountConnectResponse.fromJson(value);
         case 'CreatePlatformAccountDisconnectResponse':
@@ -737,10 +1243,32 @@ class ApiClient {
           return CreatePlatformAccountRefreshStatusResponse.fromJson(value);
         case 'CreatePlatformAccountRefreshStatusResponseResults':
           return CreatePlatformAccountRefreshStatusResponseResults.fromJson(value);
+        case 'CreatePolicyPresetResponse':
+          return CreatePolicyPresetResponse.fromJson(value);
         case 'CreatePolicyReturnReceivedResponse':
           return CreatePolicyReturnReceivedResponse.fromJson(value);
         case 'CreatePolicyReturnReceivedResponseData':
           return CreatePolicyReturnReceivedResponseData.fromJson(value);
+        case 'CreatePriceRulePreviewItem':
+          return CreatePriceRulePreviewItem.fromJson(value);
+        case 'CreatePriceRulePreviewItemStepsItem':
+          return CreatePriceRulePreviewItemStepsItem.fromJson(value);
+        case 'CreatePriceRulePreviewResponse':
+          return CreatePriceRulePreviewResponse.fromJson(value);
+        case 'CreatePrintMailJobConfirmResponse':
+          return CreatePrintMailJobConfirmResponse.fromJson(value);
+        case 'CreatePrintMailJobResponse':
+          return CreatePrintMailJobResponse.fromJson(value);
+        case 'CreatePrintMailJobResponseData':
+          return CreatePrintMailJobResponseData.fromJson(value);
+        case 'CreatePrintMailJobResponseDataEstimate':
+          return CreatePrintMailJobResponseDataEstimate.fromJson(value);
+        case 'CreatePrintMailJobResponseDataSkipped':
+          return CreatePrintMailJobResponseDataSkipped.fromJson(value);
+        case 'CreateProductSetBulkResponse':
+          return CreateProductSetBulkResponse.fromJson(value);
+        case 'CreateProductSetBulkResponseRefused':
+          return CreateProductSetBulkResponseRefused.fromJson(value);
         case 'CreateProductionCandidateAcceptResponse':
           return CreateProductionCandidateAcceptResponse.fromJson(value);
         case 'CreateProductionCandidateAcceptResponseCandidate':
@@ -767,12 +1295,64 @@ class ApiClient {
           return CreateProductionRunPurchaseResponse.fromJson(value);
         case 'CreateReceiptRelistResponse':
           return CreateReceiptRelistResponse.fromJson(value);
+        case 'CreateRentalBulkRentableItem':
+          return CreateRentalBulkRentableItem.fromJson(value);
+        case 'CreateRentalBulkRentableResponse':
+          return CreateRentalBulkRentableResponse.fromJson(value);
+        case 'CreateRentalExtensionDecideResponse':
+          return CreateRentalExtensionDecideResponse.fromJson(value);
+        case 'CreateRentalExtensionDecideResponseData':
+          return CreateRentalExtensionDecideResponseData.fromJson(value);
         case 'CreateRepriceEventSkipResponse':
           return CreateRepriceEventSkipResponse.fromJson(value);
         case 'CreateRestockPromptRepublishResponse':
           return CreateRestockPromptRepublishResponse.fromJson(value);
+        case 'CreateReturnAcceptResponse':
+          return CreateReturnAcceptResponse.fromJson(value);
+        case 'CreateReturnDeclineRequest':
+          return CreateReturnDeclineRequest.fromJson(value);
         case 'CreateSaleBulkDeleteResponse':
           return CreateSaleBulkDeleteResponse.fromJson(value);
+        case 'CreateSandboxResetResponse':
+          return CreateSandboxResetResponse.fromJson(value);
+        case 'CreateSandboxResetResponseSeed':
+          return CreateSandboxResetResponseSeed.fromJson(value);
+        case 'CreateSandboxResetResponseSeedItems':
+          return CreateSandboxResetResponseSeedItems.fromJson(value);
+        case 'CreateSandboxResetResponseSeedOrders':
+          return CreateSandboxResetResponseSeedOrders.fromJson(value);
+        case 'CreateSandboxResetResponseSeller':
+          return CreateSandboxResetResponseSeller.fromJson(value);
+        case 'CreateSandboxSimulateListingSoldOutResponse':
+          return CreateSandboxSimulateListingSoldOutResponse.fromJson(value);
+        case 'CreateSandboxSimulateOrderAddressResponse':
+          return CreateSandboxSimulateOrderAddressResponse.fromJson(value);
+        case 'CreateSandboxSimulateOrderAddressResponseAddress':
+          return CreateSandboxSimulateOrderAddressResponseAddress.fromJson(value);
+        case 'CreateSandboxSimulateOrderCancelledResponse':
+          return CreateSandboxSimulateOrderCancelledResponse.fromJson(value);
+        case 'CreateSandboxSimulateOrderDeliveredResponse':
+          return CreateSandboxSimulateOrderDeliveredResponse.fromJson(value);
+        case 'CreateSandboxSimulateOrderResponse':
+          return CreateSandboxSimulateOrderResponse.fromJson(value);
+        case 'CreateSandboxSimulateRefundResponse':
+          return CreateSandboxSimulateRefundResponse.fromJson(value);
+        case 'CreateShopLimitRequestRequest':
+          return CreateShopLimitRequestRequest.fromJson(value);
+        case 'CreateShopLimitRequestResponse':
+          return CreateShopLimitRequestResponse.fromJson(value);
+        case 'CreateShopLimitRequestResponseData':
+          return CreateShopLimitRequestResponseData.fromJson(value);
+        case 'CreateShowroomPlacementResponse':
+          return CreateShowroomPlacementResponse.fromJson(value);
+        case 'CreateShowroomPlacementResponseData':
+          return CreateShowroomPlacementResponseData.fromJson(value);
+        case 'CreateShowroomPlacementResponseDataPlacements':
+          return CreateShowroomPlacementResponseDataPlacements.fromJson(value);
+        case 'CreateShowroomResponse':
+          return CreateShowroomResponse.fromJson(value);
+        case 'CreateSourceSyncSyncResponse':
+          return CreateSourceSyncSyncResponse.fromJson(value);
         case 'CreateSourcingReceiptResponse':
           return CreateSourcingReceiptResponse.fromJson(value);
         case 'CreateSpatialAuctionRoomBidResponse':
@@ -793,10 +1373,6 @@ class ApiClient {
           return CreateSpatialPropertyDeedMaintenanceResponse.fromJson(value);
         case 'CreateSpatialPropertyDeedMaintenanceResponseData':
           return CreateSpatialPropertyDeedMaintenanceResponseData.fromJson(value);
-        case 'CreateSpatialPropertyLeaseAcceptResponse':
-          return CreateSpatialPropertyLeaseAcceptResponse.fromJson(value);
-        case 'CreateSpatialPropertyLeaseAcceptResponseData':
-          return CreateSpatialPropertyLeaseAcceptResponseData.fromJson(value);
         case 'CreateSpatialPropertyLeaseEndResponse':
           return CreateSpatialPropertyLeaseEndResponse.fromJson(value);
         case 'CreateSpatialPropertyLeaseEndResponseData':
@@ -823,18 +1399,20 @@ class ApiClient {
           return CreateSpatialSceneNodeResponseData.fromJson(value);
         case 'CreateSpatialSceneNodeResponseDataTransform':
           return CreateSpatialSceneNodeResponseDataTransform.fromJson(value);
+        case 'CreateSpatialScenePlaceResponse':
+          return CreateSpatialScenePlaceResponse.fromJson(value);
+        case 'CreateSpatialScenePlaceResponseData':
+          return CreateSpatialScenePlaceResponseData.fromJson(value);
         case 'CreateSpatialSceneRenameRequest':
           return CreateSpatialSceneRenameRequest.fromJson(value);
         case 'CreateSpatialSceneRequest':
           return CreateSpatialSceneRequest.fromJson(value);
+        case 'CreateSpatialSceneShopPlaceResponse':
+          return CreateSpatialSceneShopPlaceResponse.fromJson(value);
+        case 'CreateSpatialSceneShopPlaceResponseData':
+          return CreateSpatialSceneShopPlaceResponseData.fromJson(value);
         case 'CreateSpatialSceneVisibilityRequest':
           return CreateSpatialSceneVisibilityRequest.fromJson(value);
-        case 'CreateSpatialShopNeighbourhoodResponse':
-          return CreateSpatialShopNeighbourhoodResponse.fromJson(value);
-        case 'CreateSpatialShopNeighbourhoodResponseData':
-          return CreateSpatialShopNeighbourhoodResponseData.fromJson(value);
-        case 'CreateSpatialShopNeighbourhoodResponseDataMoved':
-          return CreateSpatialShopNeighbourhoodResponseDataMoved.fromJson(value);
         case 'CreateSpatialShopStaffPayResponse':
           return CreateSpatialShopStaffPayResponse.fromJson(value);
         case 'CreateSpatialShopStaffPayResponseData':
@@ -855,6 +1433,14 @@ class ApiClient {
           return CreateSpatialStreetPlotBuyResponse.fromJson(value);
         case 'CreateSpatialStreetPlotBuyResponseData':
           return CreateSpatialStreetPlotBuyResponseData.fromJson(value);
+        case 'CreateSponsoredAdBillingTopupLinkResponse':
+          return CreateSponsoredAdBillingTopupLinkResponse.fromJson(value);
+        case 'CreateSponsoredAdBillingTopupLinkResponseData':
+          return CreateSponsoredAdBillingTopupLinkResponseData.fromJson(value);
+        case 'CreateSponsoredAdBoostRemoveResponse':
+          return CreateSponsoredAdBoostRemoveResponse.fromJson(value);
+        case 'CreateSponsoredAdBoostRemoveResponseData':
+          return CreateSponsoredAdBoostRemoveResponseData.fromJson(value);
         case 'CreateStallBookResponse':
           return CreateStallBookResponse.fromJson(value);
         case 'CreateStallBookResponseBooking':
@@ -871,6 +1457,104 @@ class ApiClient {
           return CreateStallBookResponseBookingUnits.fromJson(value);
         case 'CreateStallBookingCancelResponse':
           return CreateStallBookingCancelResponse.fromJson(value);
+        case 'CreateStorefrontHighlightResponse':
+          return CreateStorefrontHighlightResponse.fromJson(value);
+        case 'CreateStorefrontHighlightResponseData':
+          return CreateStorefrontHighlightResponseData.fromJson(value);
+        case 'CreateStorefrontHighlightResponseDataItems':
+          return CreateStorefrontHighlightResponseDataItems.fromJson(value);
+        case 'CreateStorefrontOnboardingSuggestResponse':
+          return CreateStorefrontOnboardingSuggestResponse.fromJson(value);
+        case 'CreateStorefrontPolicyFromTermResponse':
+          return CreateStorefrontPolicyFromTermResponse.fromJson(value);
+        case 'CreateStorefrontPolicyFromTermResponseData':
+          return CreateStorefrontPolicyFromTermResponseData.fromJson(value);
+        case 'CreateStorefrontPolicyFromTermResponseDataPreset':
+          return CreateStorefrontPolicyFromTermResponseDataPreset.fromJson(value);
+        case 'CreateStorefrontProfileSuggestShelveResponse':
+          return CreateStorefrontProfileSuggestShelveResponse.fromJson(value);
+        case 'CreateStorefrontProfileSuggestShelveResponseData':
+          return CreateStorefrontProfileSuggestShelveResponseData.fromJson(value);
+        case 'CreateStorefrontProfileSuggestShelveResponseDataShelves':
+          return CreateStorefrontProfileSuggestShelveResponseDataShelves.fromJson(value);
+        case 'CreateStorefrontProfileSuggestShelveResponseDataShelvesSource':
+          return CreateStorefrontProfileSuggestShelveResponseDataShelvesSource.fromJson(value);
+        case 'CreateStorefrontSitePreviewResponse':
+          return CreateStorefrontSitePreviewResponse.fromJson(value);
+        case 'CreateStorefrontSitePreviewResponseData':
+          return CreateStorefrontSitePreviewResponseData.fromJson(value);
+        case 'CreateStorefrontSitePreviewResponseDataPage':
+          return CreateStorefrontSitePreviewResponseDataPage.fromJson(value);
+        case 'CreateStorefrontSitePreviewResponseDataPageSeo':
+          return CreateStorefrontSitePreviewResponseDataPageSeo.fromJson(value);
+        case 'CreateStorefrontSitePreviewResponseDataStore':
+          return CreateStorefrontSitePreviewResponseDataStore.fromJson(value);
+        case 'CreateStorefrontSitePreviewResponseDataStorePolicies':
+          return CreateStorefrontSitePreviewResponseDataStorePolicies.fromJson(value);
+        case 'CreateStorefrontSitePreviewResponseDataTrade':
+          return CreateStorefrontSitePreviewResponseDataTrade.fromJson(value);
+        case 'CreateStorefrontSitePreviewResponseDataTradeGate':
+          return CreateStorefrontSitePreviewResponseDataTradeGate.fromJson(value);
+        case 'CreateStorefrontSitePreviewResponseDataTradeTerms':
+          return CreateStorefrontSitePreviewResponseDataTradeTerms.fromJson(value);
+        case 'CreateStorefrontSitePreviewResponseDataTradeTermsShipsFrom':
+          return CreateStorefrontSitePreviewResponseDataTradeTermsShipsFrom.fromJson(value);
+        case 'CreateStorefrontSitePreviewResponseDataTradeViewer':
+          return CreateStorefrontSitePreviewResponseDataTradeViewer.fromJson(value);
+        case 'CreateStorefrontSiteResolveResponse':
+          return CreateStorefrontSiteResolveResponse.fromJson(value);
+        case 'CreateStorefrontSiteResolveResponseData':
+          return CreateStorefrontSiteResolveResponseData.fromJson(value);
+        case 'CreateStorefrontSiteResolveResponseDataItems':
+          return CreateStorefrontSiteResolveResponseDataItems.fromJson(value);
+        case 'CreateStorefrontSiteSuggestResponse':
+          return CreateStorefrontSiteSuggestResponse.fromJson(value);
+        case 'CreateStorefrontSiteSuggestResponseData':
+          return CreateStorefrontSiteSuggestResponseData.fromJson(value);
+        case 'CreateStorefrontSiteSuggestResponseDataSectionsItem':
+          return CreateStorefrontSiteSuggestResponseDataSectionsItem.fromJson(value);
+        case 'CreateStoryItem':
+          return CreateStoryItem.fromJson(value);
+        case 'CreateStoryResponse':
+          return CreateStoryResponse.fromJson(value);
+        case 'CreateTcgCreatorGameCheckResponse':
+          return CreateTcgCreatorGameCheckResponse.fromJson(value);
+        case 'CreateTcgCreatorGameCheckResponseData':
+          return CreateTcgCreatorGameCheckResponseData.fromJson(value);
+        case 'CreateTcgCreatorGamePackOpenResponse':
+          return CreateTcgCreatorGamePackOpenResponse.fromJson(value);
+        case 'CreateTcgCreatorGamePackOpenResponseData':
+          return CreateTcgCreatorGamePackOpenResponseData.fromJson(value);
+        case 'CreateTcgCreatorGamePackOpenResponseDataCards':
+          return CreateTcgCreatorGamePackOpenResponseDataCards.fromJson(value);
+        case 'CreateTcgCreatorGameResponse':
+          return CreateTcgCreatorGameResponse.fromJson(value);
+        case 'CreateTcgCreatorGameResponseData':
+          return CreateTcgCreatorGameResponseData.fromJson(value);
+        case 'CreateTcgDeckResponse':
+          return CreateTcgDeckResponse.fromJson(value);
+        case 'CreateTcgDeckResponseData':
+          return CreateTcgDeckResponseData.fromJson(value);
+        case 'CreateTcgNftReconcileResponse':
+          return CreateTcgNftReconcileResponse.fromJson(value);
+        case 'CreateTcgNftReconcileResponseData':
+          return CreateTcgNftReconcileResponseData.fromJson(value);
+        case 'CreateTcgPackOpenResponse':
+          return CreateTcgPackOpenResponse.fromJson(value);
+        case 'CreateTcgPackOpenResponseData':
+          return CreateTcgPackOpenResponseData.fromJson(value);
+        case 'CreateTcgQueueResponse':
+          return CreateTcgQueueResponse.fromJson(value);
+        case 'CreateTcgQueueResponseData':
+          return CreateTcgQueueResponseData.fromJson(value);
+        case 'CreateTcgStarterResponse':
+          return CreateTcgStarterResponse.fromJson(value);
+        case 'CreateTcgStarterResponseData':
+          return CreateTcgStarterResponseData.fromJson(value);
+        case 'CreateTcgTournamentResponse':
+          return CreateTcgTournamentResponse.fromJson(value);
+        case 'CreateTcgTournamentResponseData':
+          return CreateTcgTournamentResponseData.fromJson(value);
         case 'CreateTeamAcceptResponse':
           return CreateTeamAcceptResponse.fromJson(value);
         case 'CreateTeamInviteResponse':
@@ -879,6 +1563,16 @@ class ApiClient {
           return CreateTeamLeaveResponse.fromJson(value);
         case 'CreateTeamRevokeResponse':
           return CreateTeamRevokeResponse.fromJson(value);
+        case 'CreateToolboxAssetUseResponse':
+          return CreateToolboxAssetUseResponse.fromJson(value);
+        case 'CreateToolboxAssetUseResponseData':
+          return CreateToolboxAssetUseResponseData.fromJson(value);
+        case 'CreateToolboxAssetUseResponseDataCredits':
+          return CreateToolboxAssetUseResponseDataCredits.fromJson(value);
+        case 'CreateToolboxAssetUseResponseDataInserted':
+          return CreateToolboxAssetUseResponseDataInserted.fromJson(value);
+        case 'CreateToolboxAssetUseResponseDataNodes':
+          return CreateToolboxAssetUseResponseDataNodes.fromJson(value);
         case 'CreateTradeBlockEvolutionClaimResponse':
           return CreateTradeBlockEvolutionClaimResponse.fromJson(value);
         case 'CreateTradeBlockEvolutionRecipeResponse':
@@ -893,6 +1587,10 @@ class ApiClient {
           return CreateTradeBlockSetRecipeResponseRecipe.fromJson(value);
         case 'CreateTradeBlockSetRecipeResponseRecipeMembers':
           return CreateTradeBlockSetRecipeResponseRecipeMembers.fromJson(value);
+        case 'CreateVariationGroupGenerateMatrixResponse':
+          return CreateVariationGroupGenerateMatrixResponse.fromJson(value);
+        case 'CreateVariationGroupGenerateMatrixResponseData':
+          return CreateVariationGroupGenerateMatrixResponseData.fromJson(value);
         case 'CreateVariationGroupGenerateResponse':
           return CreateVariationGroupGenerateResponse.fromJson(value);
         case 'CreateVariationGroupGenerateResponseData':
@@ -931,6 +1629,16 @@ class ApiClient {
           return CreateVaultMarketAuctionLotBidResponse.fromJson(value);
         case 'CreateVaultMarketAuctionLotResponse':
           return CreateVaultMarketAuctionLotResponse.fromJson(value);
+        case 'CreateVaultMarketAutoBuyPauseResponse':
+          return CreateVaultMarketAutoBuyPauseResponse.fromJson(value);
+        case 'CreateVaultMarketAutoBuyPauseResponseOneOf1AutoBuy':
+          return CreateVaultMarketAutoBuyPauseResponseOneOf1AutoBuy.fromJson(value);
+        case 'CreateVaultMarketAutoBuyPauseResponseOneOf1AutoBuyHistory':
+          return CreateVaultMarketAutoBuyPauseResponseOneOf1AutoBuyHistory.fromJson(value);
+        case 'CreateVaultMarketAutoBuyPauseResponseOneOf1AutoBuyWants':
+          return CreateVaultMarketAutoBuyPauseResponseOneOf1AutoBuyWants.fromJson(value);
+        case 'CreateVaultMarketAutoBuyResumeResponse':
+          return CreateVaultMarketAutoBuyResumeResponse.fromJson(value);
         case 'CreateVaultMarketBlockAllocateResponse':
           return CreateVaultMarketBlockAllocateResponse.fromJson(value);
         case 'CreateVaultMarketCollectionWorthWatchResponse':
@@ -973,6 +1681,10 @@ class ApiClient {
           return CreateVaultMarketFollowCopyWatchAlertReadResponse.fromJson(value);
         case 'CreateVaultMarketGiftResponse':
           return CreateVaultMarketGiftResponse.fromJson(value);
+        case 'CreateVaultMarketGradingOrderPayResponse':
+          return CreateVaultMarketGradingOrderPayResponse.fromJson(value);
+        case 'CreateVaultMarketGradingOrderResponse':
+          return CreateVaultMarketGradingOrderResponse.fromJson(value);
         case 'CreateVaultMarketGradingResponse':
           return CreateVaultMarketGradingResponse.fromJson(value);
         case 'CreateVaultMarketHallLoanCreditResponse':
@@ -1041,6 +1753,64 @@ class ApiClient {
           return CreateVaultMarketMmMassCancelResponse.fromJson(value);
         case 'CreateVaultMarketOpeningWaitlistResponse':
           return CreateVaultMarketOpeningWaitlistResponse.fromJson(value);
+        case 'CreateVaultMarketOptionComboResponse':
+          return CreateVaultMarketOptionComboResponse.fromJson(value);
+        case 'CreateVaultMarketOptionComboRfqAcceptResponse':
+          return CreateVaultMarketOptionComboRfqAcceptResponse.fromJson(value);
+        case 'CreateVaultMarketOptionComboRfqResponse':
+          return CreateVaultMarketOptionComboRfqResponse.fromJson(value);
+        case 'CreateVaultMarketOptionCoveredCallReleaseResponse':
+          return CreateVaultMarketOptionCoveredCallReleaseResponse.fromJson(value);
+        case 'CreateVaultMarketOptionCoveredCallResponse':
+          return CreateVaultMarketOptionCoveredCallResponse.fromJson(value);
+        case 'CreateVaultMarketOptionCoveredCallResponseOneOf1Fills':
+          return CreateVaultMarketOptionCoveredCallResponseOneOf1Fills.fromJson(value);
+        case 'CreateVaultMarketOptionCoveredCallResponseOneOf1FillsBuyer':
+          return CreateVaultMarketOptionCoveredCallResponseOneOf1FillsBuyer.fromJson(value);
+        case 'CreateVaultMarketOptionMmHeartbeatResponse':
+          return CreateVaultMarketOptionMmHeartbeatResponse.fromJson(value);
+        case 'CreateVaultMarketOptionMmQuoteResponse':
+          return CreateVaultMarketOptionMmQuoteResponse.fromJson(value);
+        case 'CreateVaultMarketOptionOrderCancelResponse':
+          return CreateVaultMarketOptionOrderCancelResponse.fromJson(value);
+        case 'CreateVaultMarketOptionOrderResponse':
+          return CreateVaultMarketOptionOrderResponse.fromJson(value);
+        case 'CreateVaultMarketOptionPracticeComboResponse':
+          return CreateVaultMarketOptionPracticeComboResponse.fromJson(value);
+        case 'CreateVaultMarketOptionPracticeOrderResponse':
+          return CreateVaultMarketOptionPracticeOrderResponse.fromJson(value);
+        case 'CreateVaultMarketOptionPracticeOrderResponseQuote':
+          return CreateVaultMarketOptionPracticeOrderResponseQuote.fromJson(value);
+        case 'CreateVaultMarketOptionQuoteResponse':
+          return CreateVaultMarketOptionQuoteResponse.fromJson(value);
+        case 'CreateVaultMarketOptionQuoteResponseOneOf1Greeks':
+          return CreateVaultMarketOptionQuoteResponseOneOf1Greeks.fromJson(value);
+        case 'CreateVaultMarketOptionQuoteResponseOneOf1Payoff':
+          return CreateVaultMarketOptionQuoteResponseOneOf1Payoff.fromJson(value);
+        case 'CreateVaultMarketOptionQuoteResponseOneOf1PayoffPoints':
+          return CreateVaultMarketOptionQuoteResponseOneOf1PayoffPoints.fromJson(value);
+        case 'CreateVaultMarketOptionQuoteResponseOneOfContract':
+          return CreateVaultMarketOptionQuoteResponseOneOfContract.fromJson(value);
+        case 'CreateVaultMarketOptionRfqAcceptResponse':
+          return CreateVaultMarketOptionRfqAcceptResponse.fromJson(value);
+        case 'CreateVaultMarketOptionRfqRespondResponse':
+          return CreateVaultMarketOptionRfqRespondResponse.fromJson(value);
+        case 'CreateVaultMarketOptionRollResponse':
+          return CreateVaultMarketOptionRollResponse.fromJson(value);
+        case 'CreateVaultMarketOptionStrategyPreviewResponse':
+          return CreateVaultMarketOptionStrategyPreviewResponse.fromJson(value);
+        case 'CreateVaultMarketOptionStrategyPreviewResponseComboBook':
+          return CreateVaultMarketOptionStrategyPreviewResponseComboBook.fromJson(value);
+        case 'CreateVaultMarketOptionStrategyPreviewResponseGreeks':
+          return CreateVaultMarketOptionStrategyPreviewResponseGreeks.fromJson(value);
+        case 'CreateVaultMarketOptionStrategyPreviewResponseLegs':
+          return CreateVaultMarketOptionStrategyPreviewResponseLegs.fromJson(value);
+        case 'CreateVaultMarketOptionStrategyPreviewResponseMargin':
+          return CreateVaultMarketOptionStrategyPreviewResponseMargin.fromJson(value);
+        case 'CreateVaultMarketOptionStrategyPreviewResponsePayoff':
+          return CreateVaultMarketOptionStrategyPreviewResponsePayoff.fromJson(value);
+        case 'CreateVaultMarketOptionStrategyPreviewResponseUnderlying':
+          return CreateVaultMarketOptionStrategyPreviewResponseUnderlying.fromJson(value);
         case 'CreateVaultMarketPaperMissionMarkCheckResponse':
           return CreateVaultMarketPaperMissionMarkCheckResponse.fromJson(value);
         case 'CreateVaultMarketPaperMissionMarkCheckResponseMission':
@@ -1061,8 +1831,6 @@ class ApiClient {
           return CreateVaultMarketPartnerBatchResponse.fromJson(value);
         case 'CreateVaultMarketPartnerBatchResponseCreated':
           return CreateVaultMarketPartnerBatchResponseCreated.fromJson(value);
-        case 'CreateVaultMarketPartnerBatchResponseLabel':
-          return CreateVaultMarketPartnerBatchResponseLabel.fromJson(value);
         case 'CreateVaultMarketPoolStakeResponse':
           return CreateVaultMarketPoolStakeResponse.fromJson(value);
         case 'CreateVaultMarketPoolStakeUnstakeResponse':
@@ -1095,6 +1863,60 @@ class ApiClient {
           return CreateVaultMarketPositionCloseResponseRows.fromJson(value);
         case 'CreateVaultMarketPositionCollateralResponse':
           return CreateVaultMarketPositionCollateralResponse.fromJson(value);
+        case 'CreateVaultMarketPredictionAccountResponse':
+          return CreateVaultMarketPredictionAccountResponse.fromJson(value);
+        case 'CreateVaultMarketPredictionAlertResponse':
+          return CreateVaultMarketPredictionAlertResponse.fromJson(value);
+        case 'CreateVaultMarketPredictionCardResponse':
+          return CreateVaultMarketPredictionCardResponse.fromJson(value);
+        case 'CreateVaultMarketPredictionCardResponseAmounts':
+          return CreateVaultMarketPredictionCardResponseAmounts.fromJson(value);
+        case 'CreateVaultMarketPredictionComboRfqQuoteResponse':
+          return CreateVaultMarketPredictionComboRfqQuoteResponse.fromJson(value);
+        case 'CreateVaultMarketPredictionComboRfqResponse':
+          return CreateVaultMarketPredictionComboRfqResponse.fromJson(value);
+        case 'CreateVaultMarketPredictionCommentReportResponse':
+          return CreateVaultMarketPredictionCommentReportResponse.fromJson(value);
+        case 'CreateVaultMarketPredictionCommentResponse':
+          return CreateVaultMarketPredictionCommentResponse.fromJson(value);
+        case 'CreateVaultMarketPredictionCommentResponseAuthor':
+          return CreateVaultMarketPredictionCommentResponseAuthor.fromJson(value);
+        case 'CreateVaultMarketPredictionConversionResponse':
+          return CreateVaultMarketPredictionConversionResponse.fromJson(value);
+        case 'CreateVaultMarketPredictionForecastResponse':
+          return CreateVaultMarketPredictionForecastResponse.fromJson(value);
+        case 'CreateVaultMarketPredictionForecasterFollowResponse':
+          return CreateVaultMarketPredictionForecasterFollowResponse.fromJson(value);
+        case 'CreateVaultMarketPredictionMakerQuoteResponse':
+          return CreateVaultMarketPredictionMakerQuoteResponse.fromJson(value);
+        case 'CreateVaultMarketPredictionMakerQuoteResponseQuotes':
+          return CreateVaultMarketPredictionMakerQuoteResponseQuotes.fromJson(value);
+        case 'CreateVaultMarketPredictionOrderAmendResponse':
+          return CreateVaultMarketPredictionOrderAmendResponse.fromJson(value);
+        case 'CreateVaultMarketPredictionOrderBatchCancelResponse':
+          return CreateVaultMarketPredictionOrderBatchCancelResponse.fromJson(value);
+        case 'CreateVaultMarketPredictionOrderBatchCancelResponseResultsItem':
+          return CreateVaultMarketPredictionOrderBatchCancelResponseResultsItem.fromJson(value);
+        case 'CreateVaultMarketPredictionOrderBatchResponse':
+          return CreateVaultMarketPredictionOrderBatchResponse.fromJson(value);
+        case 'CreateVaultMarketPredictionOrderBatchResponseResultsItem':
+          return CreateVaultMarketPredictionOrderBatchResponseResultsItem.fromJson(value);
+        case 'CreateVaultMarketPredictionOrderResponse':
+          return CreateVaultMarketPredictionOrderResponse.fromJson(value);
+        case 'CreateVaultMarketPredictionOrderResponseFills':
+          return CreateVaultMarketPredictionOrderResponseFills.fromJson(value);
+        case 'CreateVaultMarketPredictionPaperResetResponse':
+          return CreateVaultMarketPredictionPaperResetResponse.fromJson(value);
+        case 'CreateVaultMarketPredictionPositionCloseAllResponse':
+          return CreateVaultMarketPredictionPositionCloseAllResponse.fromJson(value);
+        case 'CreateVaultMarketPredictionPositionCloseAllResponseResultsItem':
+          return CreateVaultMarketPredictionPositionCloseAllResponseResultsItem.fromJson(value);
+        case 'CreateVaultMarketPredictionProposalCheckResponse':
+          return CreateVaultMarketPredictionProposalCheckResponse.fromJson(value);
+        case 'CreateVaultMarketPredictionSettlementDisputeResponse':
+          return CreateVaultMarketPredictionSettlementDisputeResponse.fromJson(value);
+        case 'CreateVaultMarketPredictionTermResponse':
+          return CreateVaultMarketPredictionTermResponse.fromJson(value);
         case 'CreateVaultMarketPriceWidgetPreviewResponse':
           return CreateVaultMarketPriceWidgetPreviewResponse.fromJson(value);
         case 'CreateVaultMarketPriceWidgetPreviewResponseView':
@@ -1107,12 +1929,8 @@ class ApiClient {
           return CreateVaultMarketProOrderCancelAllResponse.fromJson(value);
         case 'CreateVaultMarketProOrderResponse':
           return CreateVaultMarketProOrderResponse.fromJson(value);
-        case 'CreateVaultMarketProQuoteHeartbeatResponse':
-          return CreateVaultMarketProQuoteHeartbeatResponse.fromJson(value);
         case 'CreateVaultMarketProQuoteResponse':
           return CreateVaultMarketProQuoteResponse.fromJson(value);
-        case 'CreateVaultMarketProQuoteResponseBid':
-          return CreateVaultMarketProQuoteResponseBid.fromJson(value);
         case 'CreateVaultMarketProTrailingStopResponse':
           return CreateVaultMarketProTrailingStopResponse.fromJson(value);
         case 'CreateVaultMarketProfileFollowResponse':
@@ -1123,12 +1941,36 @@ class ApiClient {
           return CreateVaultMarketRfqRespondResponse.fromJson(value);
         case 'CreateVaultMarketRfqResponse':
           return CreateVaultMarketRfqResponse.fromJson(value);
+        case 'CreateVaultMarketShareAutoInvestRunResponse':
+          return CreateVaultMarketShareAutoInvestRunResponse.fromJson(value);
+        case 'CreateVaultMarketShareBasketBuyResponse':
+          return CreateVaultMarketShareBasketBuyResponse.fromJson(value);
+        case 'CreateVaultMarketShareBuyoutFundResponse':
+          return CreateVaultMarketShareBuyoutFundResponse.fromJson(value);
+        case 'CreateVaultMarketSharePaperSeryOrderResponse':
+          return CreateVaultMarketSharePaperSeryOrderResponse.fromJson(value);
+        case 'CreateVaultMarketShareRoomHideResponse':
+          return CreateVaultMarketShareRoomHideResponse.fromJson(value);
+        case 'CreateVaultMarketShareSeryRecombineResponse':
+          return CreateVaultMarketShareSeryRecombineResponse.fromJson(value);
+        case 'CreateVaultMarketShareSeryRecombineResponseWithdrawal':
+          return CreateVaultMarketShareSeryRecombineResponseWithdrawal.fromJson(value);
+        case 'CreateVaultMarketShareSeryRoomResponse':
+          return CreateVaultMarketShareSeryRoomResponse.fromJson(value);
+        case 'CreateVaultMarketShareSeryWatchResponse':
+          return CreateVaultMarketShareSeryWatchResponse.fromJson(value);
+        case 'CreateVaultMarketShareViewingBookResponse':
+          return CreateVaultMarketShareViewingBookResponse.fromJson(value);
+        case 'CreateVaultMarketShareViewingBookingCancelResponse':
+          return CreateVaultMarketShareViewingBookingCancelResponse.fromJson(value);
+        case 'CreateVaultMarketSupplySendInResponse':
+          return CreateVaultMarketSupplySendInResponse.fromJson(value);
+        case 'CreateVaultMarketSupplySendInResponseOneOf1Created':
+          return CreateVaultMarketSupplySendInResponseOneOf1Created.fromJson(value);
+        case 'CreateVaultMarketSupplySendInResponseOneOfPartner':
+          return CreateVaultMarketSupplySendInResponseOneOfPartner.fromJson(value);
         case 'CreateVaultMarketSupplySendResponse':
           return CreateVaultMarketSupplySendResponse.fromJson(value);
-        case 'CreateVaultMarketSupplySendResponseCreated':
-          return CreateVaultMarketSupplySendResponseCreated.fromJson(value);
-        case 'CreateVaultMarketSupplySendResponseSkipped':
-          return CreateVaultMarketSupplySendResponseSkipped.fromJson(value);
         case 'CreateVaultMarketTodClaimObjectResponse':
           return CreateVaultMarketTodClaimObjectResponse.fromJson(value);
         case 'CreateVaultMarketTodMyClaimDocumentResponse':
@@ -1141,6 +1983,10 @@ class ApiClient {
           return CreateVaultMarketValuationStatementResponseAccount.fromJson(value);
         case 'CreateVaultMarketValuationStatementResponseSeal':
           return CreateVaultMarketValuationStatementResponseSeal.fromJson(value);
+        case 'CreateVaultMarketValuationStatementResponseShares':
+          return CreateVaultMarketValuationStatementResponseShares.fromJson(value);
+        case 'CreateVaultMarketValuationStatementResponseSharesLines':
+          return CreateVaultMarketValuationStatementResponseSharesLines.fromJson(value);
         case 'CreateVaultMarketValuationStatementResponseTotals':
           return CreateVaultMarketValuationStatementResponseTotals.fromJson(value);
         case 'CreateVaultMarketValuationStatementResponseTotalsByQuality':
@@ -1173,6 +2019,10 @@ class ApiClient {
           return CreateVideoRequestUploadUrlResponse.fromJson(value);
         case 'CreateVideoRequestUploadUrlResponseData':
           return CreateVideoRequestUploadUrlResponseData.fromJson(value);
+        case 'CreateVideoStudioFinalizeResponse':
+          return CreateVideoStudioFinalizeResponse.fromJson(value);
+        case 'CreateVideoStudioUploadUrlResponse':
+          return CreateVideoStudioUploadUrlResponse.fromJson(value);
         case 'CreateWeb3AuctionResponse':
           return CreateWeb3AuctionResponse.fromJson(value);
         case 'CreateWeb3CreatorClaimResponse':
@@ -1247,34 +2097,198 @@ class ApiClient {
           return CreateWeb3SolanaOfferTxResponse.fromJson(value);
         case 'CreateWeb3SolanaOrderBuyTxResponse':
           return CreateWeb3SolanaOrderBuyTxResponse.fromJson(value);
+        case 'CreateWeb3SolanaTensorBidConfirmResponse':
+          return CreateWeb3SolanaTensorBidConfirmResponse.fromJson(value);
         case 'CreateWeb3SolanaTensorBidPlaceTxResponse':
           return CreateWeb3SolanaTensorBidPlaceTxResponse.fromJson(value);
         case 'CreateWeb3SolanaTensorBidPlaceTxResponseTxs':
           return CreateWeb3SolanaTensorBidPlaceTxResponseTxs.fromJson(value);
+        case 'CreateWeb3StakingStakeResponse':
+          return CreateWeb3StakingStakeResponse.fromJson(value);
+        case 'CreateWeb3StakingStakeResponseData':
+          return CreateWeb3StakingStakeResponseData.fromJson(value);
+        case 'CreateWeb3StakingUnstakeResponse':
+          return CreateWeb3StakingUnstakeResponse.fromJson(value);
+        case 'CreateWeb3StakingUnstakeResponseData':
+          return CreateWeb3StakingUnstakeResponseData.fromJson(value);
+        case 'CreateWeb3StoreWalletResponse':
+          return CreateWeb3StoreWalletResponse.fromJson(value);
+        case 'CreateWeb3StoreWalletSyncResponse':
+          return CreateWeb3StoreWalletSyncResponse.fromJson(value);
+        case 'CreateWeb3StoreWalletSyncResponseData':
+          return CreateWeb3StoreWalletSyncResponseData.fromJson(value);
+        case 'CreateWeb3StoreWalletSyncResponseDataChains':
+          return CreateWeb3StoreWalletSyncResponseDataChains.fromJson(value);
         case 'CreateWeb3TokenRefreshResponse':
           return CreateWeb3TokenRefreshResponse.fromJson(value);
         case 'CreateWeb3TransactionResponse':
           return CreateWeb3TransactionResponse.fromJson(value);
         case 'CreateWeb3WalletChallengeResponse':
           return CreateWeb3WalletChallengeResponse.fromJson(value);
+        case 'CreateWeb3WalletImportResponse':
+          return CreateWeb3WalletImportResponse.fromJson(value);
+        case 'CreateWeb3WalletImportResponseData':
+          return CreateWeb3WalletImportResponseData.fromJson(value);
         case 'CreateWeb3WalletSyncResponse':
           return CreateWeb3WalletSyncResponse.fromJson(value);
-        case 'CreateWeb3WalletSyncResponseSummary':
-          return CreateWeb3WalletSyncResponseSummary.fromJson(value);
-        case 'CreateWeb3WalletSyncResponseSummaryChains':
-          return CreateWeb3WalletSyncResponseSummaryChains.fromJson(value);
         case 'CreateWeb3WalletVerifyResponse':
           return CreateWeb3WalletVerifyResponse.fromJson(value);
+        case 'CreateWebhookDeliveryRedeliverResponse':
+          return CreateWebhookDeliveryRedeliverResponse.fromJson(value);
         case 'CreateWebhookResponse':
           return CreateWebhookResponse.fromJson(value);
         case 'CreateWebhookTestResponse':
           return CreateWebhookTestResponse.fromJson(value);
+        case 'CreateWholesaleBuyerInviteResponse':
+          return CreateWholesaleBuyerInviteResponse.fromJson(value);
+        case 'CreateWholesaleBuyerInviteResponseData':
+          return CreateWholesaleBuyerInviteResponseData.fromJson(value);
+        case 'CreateWholesaleBuyerRemoveResponse':
+          return CreateWholesaleBuyerRemoveResponse.fromJson(value);
+        case 'CreateWholesaleCatalogItemResponse':
+          return CreateWholesaleCatalogItemResponse.fromJson(value);
+        case 'CreateWholesaleCatalogItemResponseData':
+          return CreateWholesaleCatalogItemResponseData.fromJson(value);
+        case 'CreateWholesaleCatalogResponse':
+          return CreateWholesaleCatalogResponse.fromJson(value);
+        case 'CreateWholesaleCatalogResponseData':
+          return CreateWholesaleCatalogResponseData.fromJson(value);
+        case 'CreateWholesaleDropReleaseResponse':
+          return CreateWholesaleDropReleaseResponse.fromJson(value);
+        case 'CreateWholesaleDropReleaseResponseData':
+          return CreateWholesaleDropReleaseResponseData.fromJson(value);
+        case 'CreateWholesaleDropResponse':
+          return CreateWholesaleDropResponse.fromJson(value);
+        case 'CreateWholesaleDropResponseData':
+          return CreateWholesaleDropResponseData.fromJson(value);
+        case 'CreateWholesaleFreightRequestAnswerResponse':
+          return CreateWholesaleFreightRequestAnswerResponse.fromJson(value);
+        case 'CreateWholesaleFreightRequestAnswerResponseData':
+          return CreateWholesaleFreightRequestAnswerResponseData.fromJson(value);
+        case 'CreateWholesaleFreightRequestAnswerResponseDataLines':
+          return CreateWholesaleFreightRequestAnswerResponseDataLines.fromJson(value);
+        case 'CreateWholesaleGroupMemberResponse':
+          return CreateWholesaleGroupMemberResponse.fromJson(value);
+        case 'CreateWholesaleGroupMemberResponseData':
+          return CreateWholesaleGroupMemberResponseData.fromJson(value);
+        case 'CreateWholesaleGroupResponse':
+          return CreateWholesaleGroupResponse.fromJson(value);
+        case 'CreateWholesaleGroupResponseData':
+          return CreateWholesaleGroupResponseData.fromJson(value);
+        case 'CreateWholesaleInvoiceCreditNoteResponse':
+          return CreateWholesaleInvoiceCreditNoteResponse.fromJson(value);
+        case 'CreateWholesaleInvoiceCreditNoteResponseData':
+          return CreateWholesaleInvoiceCreditNoteResponseData.fromJson(value);
+        case 'CreateWholesaleInvoiceCreditNoteResponseDataCreditNote':
+          return CreateWholesaleInvoiceCreditNoteResponseDataCreditNote.fromJson(value);
+        case 'CreateWholesaleInvoiceCreditNoteResponseDataInvoice':
+          return CreateWholesaleInvoiceCreditNoteResponseDataInvoice.fromJson(value);
+        case 'CreateWholesaleInvoiceSendResponse':
+          return CreateWholesaleInvoiceSendResponse.fromJson(value);
+        case 'CreateWholesaleInvoiceSendResponseData':
+          return CreateWholesaleInvoiceSendResponseData.fromJson(value);
+        case 'CreateWholesaleProfileShipsFromValidateResponse':
+          return CreateWholesaleProfileShipsFromValidateResponse.fromJson(value);
+        case 'CreateWholesaleProfileShipsFromValidateResponseData':
+          return CreateWholesaleProfileShipsFromValidateResponseData.fromJson(value);
+        case 'CreateWholesaleRequestDecideResponse':
+          return CreateWholesaleRequestDecideResponse.fromJson(value);
+        case 'CreateWholesaleRequestDecideResponseData':
+          return CreateWholesaleRequestDecideResponseData.fromJson(value);
+        case 'CreateWholesaleTierBulkResponse':
+          return CreateWholesaleTierBulkResponse.fromJson(value);
+        case 'CreateWholesaleTierBulkResponseData':
+          return CreateWholesaleTierBulkResponseData.fromJson(value);
+        case 'CreateWholesaleTierBulkResponseDataSkipped':
+          return CreateWholesaleTierBulkResponseDataSkipped.fromJson(value);
+        case 'CreateWorkflowApprovalDecideRequest':
+          return CreateWorkflowApprovalDecideRequest.fromJson(value);
+        case 'CreateWorkflowApprovalDecideResponse':
+          return CreateWorkflowApprovalDecideResponse.fromJson(value);
         case 'CreateWorkflowChainRunNowResponse':
           return CreateWorkflowChainRunNowResponse.fromJson(value);
         case 'CreateWorkflowChainToggleResponse':
           return CreateWorkflowChainToggleResponse.fromJson(value);
         case 'CreateWorkflowChainToggleResponseChain':
           return CreateWorkflowChainToggleResponseChain.fromJson(value);
+        case 'CreateWorkflowDuplicateRequest':
+          return CreateWorkflowDuplicateRequest.fromJson(value);
+        case 'CreateWorkflowDuplicateResponse':
+          return CreateWorkflowDuplicateResponse.fromJson(value);
+        case 'CreateWorkflowDuplicateResponseData':
+          return CreateWorkflowDuplicateResponseData.fromJson(value);
+        case 'CreateWorkflowExpressionPreviewRequest':
+          return CreateWorkflowExpressionPreviewRequest.fromJson(value);
+        case 'CreateWorkflowExpressionPreviewResponse':
+          return CreateWorkflowExpressionPreviewResponse.fromJson(value);
+        case 'CreateWorkflowExpressionPreviewResponseData':
+          return CreateWorkflowExpressionPreviewResponseData.fromJson(value);
+        case 'CreateWorkflowExpressionPreviewResponseDataOneOf1Error':
+          return CreateWorkflowExpressionPreviewResponseDataOneOf1Error.fromJson(value);
+        case 'CreateWorkflowImportResponse':
+          return CreateWorkflowImportResponse.fromJson(value);
+        case 'CreateWorkflowImportResponseData':
+          return CreateWorkflowImportResponseData.fromJson(value);
+        case 'CreateWorkflowRequest':
+          return CreateWorkflowRequest.fromJson(value);
+        case 'CreateWorkflowResponse':
+          return CreateWorkflowResponse.fromJson(value);
+        case 'CreateWorkflowResponseData':
+          return CreateWorkflowResponseData.fromJson(value);
+        case 'CreateWorkflowRunCancelResponse':
+          return CreateWorkflowRunCancelResponse.fromJson(value);
+        case 'CreateWorkflowRunCancelResponseData':
+          return CreateWorkflowRunCancelResponseData.fromJson(value);
+        case 'CreateWorkflowRunOnRequest':
+          return CreateWorkflowRunOnRequest.fromJson(value);
+        case 'CreateWorkflowRunOnRequestItems':
+          return CreateWorkflowRunOnRequestItems.fromJson(value);
+        case 'CreateWorkflowRunOnResponse':
+          return CreateWorkflowRunOnResponse.fromJson(value);
+        case 'CreateWorkflowRunOnResponseData':
+          return CreateWorkflowRunOnResponseData.fromJson(value);
+        case 'CreateWorkflowRunRequest':
+          return CreateWorkflowRunRequest.fromJson(value);
+        case 'CreateWorkflowRunResponse':
+          return CreateWorkflowRunResponse.fromJson(value);
+        case 'CreateWorkflowRunResponseData':
+          return CreateWorkflowRunResponseData.fromJson(value);
+        case 'CreateWorkflowRunRetryResponse':
+          return CreateWorkflowRunRetryResponse.fromJson(value);
+        case 'CreateWorkflowRunRetryResponseData':
+          return CreateWorkflowRunRetryResponseData.fromJson(value);
+        case 'CreateWorkflowSaleEndResponse':
+          return CreateWorkflowSaleEndResponse.fromJson(value);
+        case 'CreateWorkflowSaleEndResponseData':
+          return CreateWorkflowSaleEndResponseData.fromJson(value);
+        case 'CreateWorkflowTemplateUseRequest':
+          return CreateWorkflowTemplateUseRequest.fromJson(value);
+        case 'CreateWorkflowTestRequest':
+          return CreateWorkflowTestRequest.fromJson(value);
+        case 'CreateWorkflowTestResponse':
+          return CreateWorkflowTestResponse.fromJson(value);
+        case 'CreateWorkflowTestResponseData':
+          return CreateWorkflowTestResponseData.fromJson(value);
+        case 'CreateWorkflowValidateRequest':
+          return CreateWorkflowValidateRequest.fromJson(value);
+        case 'CreateWorkflowValidateResponse':
+          return CreateWorkflowValidateResponse.fromJson(value);
+        case 'CreateWorkflowValidateResponseData':
+          return CreateWorkflowValidateResponseData.fromJson(value);
+        case 'CreateWorkflowWebhookRotateRequest':
+          return CreateWorkflowWebhookRotateRequest.fromJson(value);
+        case 'CreateWorkflowWebhookRotateResponse':
+          return CreateWorkflowWebhookRotateResponse.fromJson(value);
+        case 'CreateWorkflowWebhookRotateResponseData':
+          return CreateWorkflowWebhookRotateResponseData.fromJson(value);
+        case 'CreateWorldAttendantTestChatResponse':
+          return CreateWorldAttendantTestChatResponse.fromJson(value);
+        case 'CreateWorldAttendantTestChatResponseData':
+          return CreateWorldAttendantTestChatResponseData.fromJson(value);
+        case 'CreateWorldAttendantTestChatResponseDataReply':
+          return CreateWorldAttendantTestChatResponseDataReply.fromJson(value);
+        case 'CreateWorldAttendantTestChatResponseDataTokens':
+          return CreateWorldAttendantTestChatResponseDataTokens.fromJson(value);
         case 'CreateWorldAvatarEquipRequest':
           return CreateWorldAvatarEquipRequest.fromJson(value);
         case 'CreateWorldAvatarEquipResponse':
@@ -1297,6 +2311,12 @@ class ApiClient {
           return CreateWorldAvatarWearableResponse.fromJson(value);
         case 'CreateWorldAvatarWearableResponseData':
           return CreateWorldAvatarWearableResponseData.fromJson(value);
+        case 'CreateWorldCollaborationAcceptResponse':
+          return CreateWorldCollaborationAcceptResponse.fromJson(value);
+        case 'CreateWorldCollaborationDeclineResponse':
+          return CreateWorldCollaborationDeclineResponse.fromJson(value);
+        case 'CreateWorldCollaborationDeclineResponseData':
+          return CreateWorldCollaborationDeclineResponseData.fromJson(value);
         case 'CreateWorldContestEntrySettlePaymentResponse':
           return CreateWorldContestEntrySettlePaymentResponse.fromJson(value);
         case 'CreateWorldContestEntrySettlePaymentResponseData':
@@ -1317,10 +2337,20 @@ class ApiClient {
           return CreateWorldConventionApplyResponse.fromJson(value);
         case 'CreateWorldConventionApplyResponseData':
           return CreateWorldConventionApplyResponseData.fromJson(value);
+        case 'CreateWorldConventionBoothApplyResponse':
+          return CreateWorldConventionBoothApplyResponse.fromJson(value);
+        case 'CreateWorldConventionBoothFeeResponse':
+          return CreateWorldConventionBoothFeeResponse.fromJson(value);
+        case 'CreateWorldConventionCheckInResponse':
+          return CreateWorldConventionCheckInResponse.fromJson(value);
+        case 'CreateWorldConventionMessageResponse':
+          return CreateWorldConventionMessageResponse.fromJson(value);
         case 'CreateWorldConventionResponse':
           return CreateWorldConventionResponse.fromJson(value);
         case 'CreateWorldConventionResponseData':
           return CreateWorldConventionResponseData.fromJson(value);
+        case 'CreateWorldConventionSellerAssignResponse':
+          return CreateWorldConventionSellerAssignResponse.fromJson(value);
         case 'CreateWorldCrewChatRequest':
           return CreateWorldCrewChatRequest.fromJson(value);
         case 'CreateWorldCrewJoinRequest':
@@ -1357,6 +2387,204 @@ class ApiClient {
           return CreateWorldDecorRetractResponseDataInventorySpaces.fromJson(value);
         case 'CreateWorldDmResponse':
           return CreateWorldDmResponse.fromJson(value);
+        case 'CreateWorldEarningPayoutAccountOnboardResponse':
+          return CreateWorldEarningPayoutAccountOnboardResponse.fromJson(value);
+        case 'CreateWorldEarningPayoutAccountOnboardResponseData':
+          return CreateWorldEarningPayoutAccountOnboardResponseData.fromJson(value);
+        case 'CreateWorldExperienceActivityRevertResponse':
+          return CreateWorldExperienceActivityRevertResponse.fromJson(value);
+        case 'CreateWorldExperienceActivityRevertResponseData':
+          return CreateWorldExperienceActivityRevertResponseData.fromJson(value);
+        case 'CreateWorldExperienceActivityRevertResponseDataRejected':
+          return CreateWorldExperienceActivityRevertResponseDataRejected.fromJson(value);
+        case 'CreateWorldExperienceAlertAckResponse':
+          return CreateWorldExperienceAlertAckResponse.fromJson(value);
+        case 'CreateWorldExperienceAlertAckResponseData':
+          return CreateWorldExperienceAlertAckResponseData.fromJson(value);
+        case 'CreateWorldExperienceAnalyticQueryResponse':
+          return CreateWorldExperienceAnalyticQueryResponse.fromJson(value);
+        case 'CreateWorldExperienceAnalyticQueryResponseData':
+          return CreateWorldExperienceAnalyticQueryResponseData.fromJson(value);
+        case 'CreateWorldExperienceAnalyticQueryResponseDataSeries':
+          return CreateWorldExperienceAnalyticQueryResponseDataSeries.fromJson(value);
+        case 'CreateWorldExperienceAssetMeshCheckResponse':
+          return CreateWorldExperienceAssetMeshCheckResponse.fromJson(value);
+        case 'CreateWorldExperienceAssetMeshCheckResponseData':
+          return CreateWorldExperienceAssetMeshCheckResponseData.fromJson(value);
+        case 'CreateWorldExperienceAssetMeshResponse':
+          return CreateWorldExperienceAssetMeshResponse.fromJson(value);
+        case 'CreateWorldExperienceAssetMeshResponseData':
+          return CreateWorldExperienceAssetMeshResponseData.fromJson(value);
+        case 'CreateWorldExperienceAssetMeshResponseDataAsset':
+          return CreateWorldExperienceAssetMeshResponseDataAsset.fromJson(value);
+        case 'CreateWorldExperienceAssetMeshResponseDataAssetReport':
+          return CreateWorldExperienceAssetMeshResponseDataAssetReport.fromJson(value);
+        case 'CreateWorldExperienceAssetMeshResponseDataCheck':
+          return CreateWorldExperienceAssetMeshResponseDataCheck.fromJson(value);
+        case 'CreateWorldExperienceBadgeResponse':
+          return CreateWorldExperienceBadgeResponse.fromJson(value);
+        case 'CreateWorldExperienceBadgeResponseData':
+          return CreateWorldExperienceBadgeResponseData.fromJson(value);
+        case 'CreateWorldExperienceCollaboratorResponse':
+          return CreateWorldExperienceCollaboratorResponse.fromJson(value);
+        case 'CreateWorldExperienceCollaboratorResponseData':
+          return CreateWorldExperienceCollaboratorResponseData.fromJson(value);
+        case 'CreateWorldExperienceDatastoreEntryIncrementResponse':
+          return CreateWorldExperienceDatastoreEntryIncrementResponse.fromJson(value);
+        case 'CreateWorldExperienceDatastoreEntryIncrementResponseData':
+          return CreateWorldExperienceDatastoreEntryIncrementResponseData.fromJson(value);
+        case 'CreateWorldExperienceDropTableResponse':
+          return CreateWorldExperienceDropTableResponse.fromJson(value);
+        case 'CreateWorldExperienceGalleryUploadUrlResponse':
+          return CreateWorldExperienceGalleryUploadUrlResponse.fromJson(value);
+        case 'CreateWorldExperienceGalleryUploadUrlResponseData':
+          return CreateWorldExperienceGalleryUploadUrlResponseData.fromJson(value);
+        case 'CreateWorldExperienceHttpDomainResponse':
+          return CreateWorldExperienceHttpDomainResponse.fromJson(value);
+        case 'CreateWorldExperienceHttpDomainResponseData':
+          return CreateWorldExperienceHttpDomainResponseData.fromJson(value);
+        case 'CreateWorldExperienceJoinResponse':
+          return CreateWorldExperienceJoinResponse.fromJson(value);
+        case 'CreateWorldExperienceJoinResponseData':
+          return CreateWorldExperienceJoinResponseData.fromJson(value);
+        case 'CreateWorldExperienceMemoryQueueReadResponse':
+          return CreateWorldExperienceMemoryQueueReadResponse.fromJson(value);
+        case 'CreateWorldExperienceMemoryQueueReadResponseData':
+          return CreateWorldExperienceMemoryQueueReadResponseData.fromJson(value);
+        case 'CreateWorldExperienceMessagingResponse':
+          return CreateWorldExperienceMessagingResponse.fromJson(value);
+        case 'CreateWorldExperienceMessagingResponseData':
+          return CreateWorldExperienceMessagingResponseData.fromJson(value);
+        case 'CreateWorldExperienceModerationAppealResponse':
+          return CreateWorldExperienceModerationAppealResponse.fromJson(value);
+        case 'CreateWorldExperienceNotificationResponse':
+          return CreateWorldExperienceNotificationResponse.fromJson(value);
+        case 'CreateWorldExperienceNotificationResponseData':
+          return CreateWorldExperienceNotificationResponseData.fromJson(value);
+        case 'CreateWorldExperienceNotificationResponseDataResults':
+          return CreateWorldExperienceNotificationResponseDataResults.fromJson(value);
+        case 'CreateWorldExperiencePlaceAssistantApplyResponse':
+          return CreateWorldExperiencePlaceAssistantApplyResponse.fromJson(value);
+        case 'CreateWorldExperiencePlaceAssistantApplyResponseData':
+          return CreateWorldExperiencePlaceAssistantApplyResponseData.fromJson(value);
+        case 'CreateWorldExperiencePlaceAssistantApplyResponseDataChanges':
+          return CreateWorldExperiencePlaceAssistantApplyResponseDataChanges.fromJson(value);
+        case 'CreateWorldExperiencePlaceAssistantResponse':
+          return CreateWorldExperiencePlaceAssistantResponse.fromJson(value);
+        case 'CreateWorldExperiencePlaceAssistantResponseData':
+          return CreateWorldExperiencePlaceAssistantResponseData.fromJson(value);
+        case 'CreateWorldExperiencePlaceAssistantResponseDataAllowance':
+          return CreateWorldExperiencePlaceAssistantResponseDataAllowance.fromJson(value);
+        case 'CreateWorldExperiencePlaceAssistantResponseDataChangesItem':
+          return CreateWorldExperiencePlaceAssistantResponseDataChangesItem.fromJson(value);
+        case 'CreateWorldExperiencePlaceAssistantResponseDataChecked':
+          return CreateWorldExperiencePlaceAssistantResponseDataChecked.fromJson(value);
+        case 'CreateWorldExperiencePlaceCheckResponse':
+          return CreateWorldExperiencePlaceCheckResponse.fromJson(value);
+        case 'CreateWorldExperiencePlaceCheckResponseData':
+          return CreateWorldExperiencePlaceCheckResponseData.fromJson(value);
+        case 'CreateWorldExperiencePlaceCheckResponseDataBudgets':
+          return CreateWorldExperiencePlaceCheckResponseDataBudgets.fromJson(value);
+        case 'CreateWorldExperiencePlaceCheckResponseDataProblems':
+          return CreateWorldExperiencePlaceCheckResponseDataProblems.fromJson(value);
+        case 'CreateWorldExperiencePlaceCollabOpResponse':
+          return CreateWorldExperiencePlaceCollabOpResponse.fromJson(value);
+        case 'CreateWorldExperiencePlaceCollabOpResponseData':
+          return CreateWorldExperiencePlaceCollabOpResponseData.fromJson(value);
+        case 'CreateWorldExperiencePlaceCollabOpResponseDataRejected':
+          return CreateWorldExperiencePlaceCollabOpResponseDataRejected.fromJson(value);
+        case 'CreateWorldExperiencePlaceCollabSaveResponse':
+          return CreateWorldExperiencePlaceCollabSaveResponse.fromJson(value);
+        case 'CreateWorldExperiencePlaceCollabSaveResponseData':
+          return CreateWorldExperiencePlaceCollabSaveResponseData.fromJson(value);
+        case 'CreateWorldExperiencePlaceCollabScriptCommitResponse':
+          return CreateWorldExperiencePlaceCollabScriptCommitResponse.fromJson(value);
+        case 'CreateWorldExperiencePlaceCollabScriptCommitResponseData':
+          return CreateWorldExperiencePlaceCollabScriptCommitResponseData.fromJson(value);
+        case 'CreateWorldExperiencePlacePackageResponse':
+          return CreateWorldExperiencePlacePackageResponse.fromJson(value);
+        case 'CreateWorldExperiencePlacePackageResponseData':
+          return CreateWorldExperiencePlacePackageResponseData.fromJson(value);
+        case 'CreateWorldExperiencePlacePackageUpdateResponse':
+          return CreateWorldExperiencePlacePackageUpdateResponse.fromJson(value);
+        case 'CreateWorldExperiencePlacePackageUpdateResponseData':
+          return CreateWorldExperiencePlacePackageUpdateResponseData.fromJson(value);
+        case 'CreateWorldExperiencePlaceStudioEditResponse':
+          return CreateWorldExperiencePlaceStudioEditResponse.fromJson(value);
+        case 'CreateWorldExperiencePlaceStudioEditResponseData':
+          return CreateWorldExperiencePlaceStudioEditResponseData.fromJson(value);
+        case 'CreateWorldExperiencePlaceStudioEditResponseDataInserted':
+          return CreateWorldExperiencePlaceStudioEditResponseDataInserted.fromJson(value);
+        case 'CreateWorldExperiencePlaceStudioInsertAssetResponse':
+          return CreateWorldExperiencePlaceStudioInsertAssetResponse.fromJson(value);
+        case 'CreateWorldExperiencePlaceStudioInsertAssetResponseData':
+          return CreateWorldExperiencePlaceStudioInsertAssetResponseData.fromJson(value);
+        case 'CreateWorldExperiencePlaceStudioPlaytestResponse':
+          return CreateWorldExperiencePlaceStudioPlaytestResponse.fromJson(value);
+        case 'CreateWorldExperiencePlaceStudioPlaytestResponseData':
+          return CreateWorldExperiencePlaceStudioPlaytestResponseData.fromJson(value);
+        case 'CreateWorldExperiencePlaceStudioPlaytestResponseDataJoin':
+          return CreateWorldExperiencePlaceStudioPlaytestResponseDataJoin.fromJson(value);
+        case 'CreateWorldExperiencePlaceStudioPlaytestStopResponse':
+          return CreateWorldExperiencePlaceStudioPlaytestStopResponse.fromJson(value);
+        case 'CreateWorldExperiencePlaceStudioPlaytestStopResponseData':
+          return CreateWorldExperiencePlaceStudioPlaytestStopResponseData.fromJson(value);
+        case 'CreateWorldExperiencePlaceStudioPublishResponse':
+          return CreateWorldExperiencePlaceStudioPublishResponse.fromJson(value);
+        case 'CreateWorldExperiencePlaceStudioPublishResponseData':
+          return CreateWorldExperiencePlaceStudioPublishResponseData.fromJson(value);
+        case 'CreateWorldExperiencePlaceStudioScriptCommitResponse':
+          return CreateWorldExperiencePlaceStudioScriptCommitResponse.fromJson(value);
+        case 'CreateWorldExperiencePlaceStudioScriptCommitResponseData':
+          return CreateWorldExperiencePlaceStudioScriptCommitResponseData.fromJson(value);
+        case 'CreateWorldExperiencePlaceStudioScriptCommitResponseDataLint':
+          return CreateWorldExperiencePlaceStudioScriptCommitResponseDataLint.fromJson(value);
+        case 'CreateWorldExperiencePlaceTestResponse':
+          return CreateWorldExperiencePlaceTestResponse.fromJson(value);
+        case 'CreateWorldExperiencePlaceTestResponseData':
+          return CreateWorldExperiencePlaceTestResponseData.fromJson(value);
+        case 'CreateWorldExperiencePlaceTestResponseDataJoin':
+          return CreateWorldExperiencePlaceTestResponseDataJoin.fromJson(value);
+        case 'CreateWorldExperiencePlaytesterResponse':
+          return CreateWorldExperiencePlaytesterResponse.fromJson(value);
+        case 'CreateWorldExperiencePurchaseResponse':
+          return CreateWorldExperiencePurchaseResponse.fromJson(value);
+        case 'CreateWorldExperiencePurchaseResponseData':
+          return CreateWorldExperiencePurchaseResponseData.fromJson(value);
+        case 'CreateWorldExperienceReceiptAckResponse':
+          return CreateWorldExperienceReceiptAckResponse.fromJson(value);
+        case 'CreateWorldExperienceReceiptAckResponseData':
+          return CreateWorldExperienceReceiptAckResponseData.fromJson(value);
+        case 'CreateWorldExperienceReservedServerResponse':
+          return CreateWorldExperienceReservedServerResponse.fromJson(value);
+        case 'CreateWorldExperienceReservedServerResponseData':
+          return CreateWorldExperienceReservedServerResponseData.fromJson(value);
+        case 'CreateWorldExperienceResponse':
+          return CreateWorldExperienceResponse.fromJson(value);
+        case 'CreateWorldExperienceResponseData':
+          return CreateWorldExperienceResponseData.fromJson(value);
+        case 'CreateWorldExperienceRewardCloseResponse':
+          return CreateWorldExperienceRewardCloseResponse.fromJson(value);
+        case 'CreateWorldExperienceRewardCloseResponseData':
+          return CreateWorldExperienceRewardCloseResponseData.fromJson(value);
+        case 'CreateWorldExperienceRewardCloseResponseDataPool':
+          return CreateWorldExperienceRewardCloseResponseDataPool.fromJson(value);
+        case 'CreateWorldExperienceRewardDefinitionResponse':
+          return CreateWorldExperienceRewardDefinitionResponse.fromJson(value);
+        case 'CreateWorldExperienceRewardDefinitionResponseData':
+          return CreateWorldExperienceRewardDefinitionResponseData.fromJson(value);
+        case 'CreateWorldExperienceRewardDepositResponse':
+          return CreateWorldExperienceRewardDepositResponse.fromJson(value);
+        case 'CreateWorldExperienceRewardDepositResponseData':
+          return CreateWorldExperienceRewardDepositResponseData.fromJson(value);
+        case 'CreateWorldExperienceRewardDepositResponseDataPool':
+          return CreateWorldExperienceRewardDepositResponseDataPool.fromJson(value);
+        case 'CreateWorldExperienceRewardTopupResponse':
+          return CreateWorldExperienceRewardTopupResponse.fromJson(value);
+        case 'CreateWorldExperienceServerShutdownResponse':
+          return CreateWorldExperienceServerShutdownResponse.fromJson(value);
+        case 'CreateWorldExperienceServerShutdownResponseData':
+          return CreateWorldExperienceServerShutdownResponseData.fromJson(value);
         case 'CreateWorldFollowResponse':
           return CreateWorldFollowResponse.fromJson(value);
         case 'CreateWorldFriendInviteRequest':
@@ -1371,10 +2599,12 @@ class ApiClient {
           return CreateWorldGamePackageCheckResponseData.fromJson(value);
         case 'CreateWorldGamePackageCheckResponseDataFits':
           return CreateWorldGamePackageCheckResponseDataFits.fromJson(value);
-        case 'CreateWorldGamePackageCheckResponseDataIssues':
-          return CreateWorldGamePackageCheckResponseDataIssues.fromJson(value);
         case 'CreateWorldGamePackageCheckResponseDataManifest':
           return CreateWorldGamePackageCheckResponseDataManifest.fromJson(value);
+        case 'CreateWorldGamePackagePublishResponse':
+          return CreateWorldGamePackagePublishResponse.fromJson(value);
+        case 'CreateWorldGamePackagePublishResponseData':
+          return CreateWorldGamePackagePublishResponseData.fromJson(value);
         case 'CreateWorldGamePackageResponse':
           return CreateWorldGamePackageResponse.fromJson(value);
         case 'CreateWorldGamePackageResponseData':
@@ -1385,6 +2615,18 @@ class ApiClient {
           return CreateWorldGamePackageResponseDataStore.fromJson(value);
         case 'CreateWorldGamePackageResponseDataVersion':
           return CreateWorldGamePackageResponseDataVersion.fromJson(value);
+        case 'CreateWorldGamePackageRestoreResponse':
+          return CreateWorldGamePackageRestoreResponse.fromJson(value);
+        case 'CreateWorldGamePackageRestoreResponseData':
+          return CreateWorldGamePackageRestoreResponseData.fromJson(value);
+        case 'CreateWorldGamePackageUnpublishResponse':
+          return CreateWorldGamePackageUnpublishResponse.fromJson(value);
+        case 'CreateWorldGamePackageUnpublishResponseData':
+          return CreateWorldGamePackageUnpublishResponseData.fromJson(value);
+        case 'CreateWorldGamePackageVersionSubmitResponse':
+          return CreateWorldGamePackageVersionSubmitResponse.fromJson(value);
+        case 'CreateWorldGamePackageVersionSubmitResponseData':
+          return CreateWorldGamePackageVersionSubmitResponseData.fromJson(value);
         case 'CreateWorldGameRatingResponse':
           return CreateWorldGameRatingResponse.fromJson(value);
         case 'CreateWorldGameRatingResponseData':
@@ -1449,6 +2691,34 @@ class ApiClient {
           return CreateWorldJobShiftReleaseResponse.fromJson(value);
         case 'CreateWorldJobShiftReleaseResponseData':
           return CreateWorldJobShiftReleaseResponseData.fromJson(value);
+        case 'CreateWorldMarketBuyResponse':
+          return CreateWorldMarketBuyResponse.fromJson(value);
+        case 'CreateWorldMarketBuyResponseData':
+          return CreateWorldMarketBuyResponseData.fromJson(value);
+        case 'CreateWorldMarketListingResponse':
+          return CreateWorldMarketListingResponse.fromJson(value);
+        case 'CreateWorldMarketListingResponseData':
+          return CreateWorldMarketListingResponseData.fromJson(value);
+        case 'CreateWorldMarketPlotRentResponse':
+          return CreateWorldMarketPlotRentResponse.fromJson(value);
+        case 'CreateWorldMarketPlotRentResponseData':
+          return CreateWorldMarketPlotRentResponseData.fromJson(value);
+        case 'CreateWorldMarketPlotRentResponseDataOneOf2Placed':
+          return CreateWorldMarketPlotRentResponseDataOneOf2Placed.fromJson(value);
+        case 'CreateWorldMatureVerifyResponse':
+          return CreateWorldMatureVerifyResponse.fromJson(value);
+        case 'CreateWorldMatureVerifyResponseData':
+          return CreateWorldMatureVerifyResponseData.fromJson(value);
+        case 'CreateWorldMeReceiptRefundResponse':
+          return CreateWorldMeReceiptRefundResponse.fromJson(value);
+        case 'CreateWorldMeReceiptRefundResponseData':
+          return CreateWorldMeReceiptRefundResponseData.fromJson(value);
+        case 'CreateWorldMeSubscriptionCancelResponse':
+          return CreateWorldMeSubscriptionCancelResponse.fromJson(value);
+        case 'CreateWorldMeSubscriptionPrivateServerCodeResponse':
+          return CreateWorldMeSubscriptionPrivateServerCodeResponse.fromJson(value);
+        case 'CreateWorldMeSubscriptionPrivateServerCodeResponseData':
+          return CreateWorldMeSubscriptionPrivateServerCodeResponseData.fromJson(value);
         case 'CreateWorldOutfitApplyResponse':
           return CreateWorldOutfitApplyResponse.fromJson(value);
         case 'CreateWorldOutfitApplyResponseData':
@@ -1463,6 +2733,30 @@ class ApiClient {
           return CreateWorldOutfitResponseData.fromJson(value);
         case 'CreateWorldOutfitResponseDataPreset':
           return CreateWorldOutfitResponseDataPreset.fromJson(value);
+        case 'CreateWorldOutfitResponseDataPresetAppearance':
+          return CreateWorldOutfitResponseDataPresetAppearance.fromJson(value);
+        case 'CreateWorldPackageToolboxResponse':
+          return CreateWorldPackageToolboxResponse.fromJson(value);
+        case 'CreateWorldPackageToolboxResponseData':
+          return CreateWorldPackageToolboxResponseData.fromJson(value);
+        case 'CreateWorldPackageVersionResponse':
+          return CreateWorldPackageVersionResponse.fromJson(value);
+        case 'CreateWorldPackageVersionResponseData':
+          return CreateWorldPackageVersionResponseData.fromJson(value);
+        case 'CreateWorldPackageVersionResponseDataPropagation':
+          return CreateWorldPackageVersionResponseDataPropagation.fromJson(value);
+        case 'CreateWorldParentalChildrenPinResponse':
+          return CreateWorldParentalChildrenPinResponse.fromJson(value);
+        case 'CreateWorldParentalChildrenPinResponseData':
+          return CreateWorldParentalChildrenPinResponseData.fromJson(value);
+        case 'CreateWorldParentalChildrenUnlinkResponse':
+          return CreateWorldParentalChildrenUnlinkResponse.fromJson(value);
+        case 'CreateWorldParentalChildrenUnlinkResponseData':
+          return CreateWorldParentalChildrenUnlinkResponseData.fromJson(value);
+        case 'CreateWorldParentalInviteResponse':
+          return CreateWorldParentalInviteResponse.fromJson(value);
+        case 'CreateWorldParentalInviteResponseData':
+          return CreateWorldParentalInviteResponseData.fromJson(value);
         case 'CreateWorldPartyInviteAcceptResponse':
           return CreateWorldPartyInviteAcceptResponse.fromJson(value);
         case 'CreateWorldPartyInviteAcceptResponseData':
@@ -1489,6 +2783,22 @@ class ApiClient {
           return CreateWorldPlaceItemWantResponse.fromJson(value);
         case 'CreateWorldPlaceItemWantResponseData':
           return CreateWorldPlaceItemWantResponseData.fromJson(value);
+        case 'CreateWorldPropertyPlotPhotoUploadUrlResponse':
+          return CreateWorldPropertyPlotPhotoUploadUrlResponse.fromJson(value);
+        case 'CreateWorldPropertyPlotPhotoUploadUrlResponseData':
+          return CreateWorldPropertyPlotPhotoUploadUrlResponseData.fromJson(value);
+        case 'CreateWorldPropertyPlotShowroomResponse':
+          return CreateWorldPropertyPlotShowroomResponse.fromJson(value);
+        case 'CreateWorldRatingComputeResponse':
+          return CreateWorldRatingComputeResponse.fromJson(value);
+        case 'CreateWorldRatingComputeResponseData':
+          return CreateWorldRatingComputeResponseData.fromJson(value);
+        case 'CreateWorldRatingComputeResponseDataAnswers':
+          return CreateWorldRatingComputeResponseDataAnswers.fromJson(value);
+        case 'CreateWorldReportResponse':
+          return CreateWorldReportResponse.fromJson(value);
+        case 'CreateWorldReportResponseData':
+          return CreateWorldReportResponseData.fromJson(value);
         case 'CreateWorldSpaceEventResponse':
           return CreateWorldSpaceEventResponse.fromJson(value);
         case 'CreateWorldSpaceEventResponseData':
@@ -1515,8 +2825,58 @@ class ApiClient {
           return CreateWorldSpaceRoleResponse.fromJson(value);
         case 'CreateWorldSpaceRoleResponseData':
           return CreateWorldSpaceRoleResponseData.fromJson(value);
+        case 'CreateWorldStaffApplicationDecideResponse':
+          return CreateWorldStaffApplicationDecideResponse.fromJson(value);
+        case 'CreateWorldStaffApplicationDecideResponseData':
+          return CreateWorldStaffApplicationDecideResponseData.fromJson(value);
+        case 'CreateWorldStaffAssignmentRateWorkerResponse':
+          return CreateWorldStaffAssignmentRateWorkerResponse.fromJson(value);
+        case 'CreateWorldStaffAssignmentRateWorkerResponseData':
+          return CreateWorldStaffAssignmentRateWorkerResponseData.fromJson(value);
+        case 'CreateWorldStreetOwnedUpkeepPayResponse':
+          return CreateWorldStreetOwnedUpkeepPayResponse.fromJson(value);
+        case 'CreateWorldStreetOwnedUpkeepPayResponseData':
+          return CreateWorldStreetOwnedUpkeepPayResponseData.fromJson(value);
+        case 'CreateWorldVenueBookingCancelResponse':
+          return CreateWorldVenueBookingCancelResponse.fromJson(value);
+        case 'CreateWorldWorkPostingApplyResponse':
+          return CreateWorldWorkPostingApplyResponse.fromJson(value);
+        case 'CreateWorldWorkPostingApplyResponseData':
+          return CreateWorldWorkPostingApplyResponseData.fromJson(value);
+        case 'CreatorCardSetResponse':
+          return CreatorCardSetResponse.fromJson(value);
+        case 'CreatorCardSetResponseData':
+          return CreatorCardSetResponseData.fromJson(value);
+        case 'CreatorCardSetResponseDataCheck':
+          return CreatorCardSetResponseDataCheck.fromJson(value);
+        case 'CreatorCardSetResponseDataDraft':
+          return CreatorCardSetResponseDataDraft.fromJson(value);
+        case 'CreatorCardSetResponseDataDraftCards':
+          return CreatorCardSetResponseDataDraftCards.fromJson(value);
+        case 'CreatorCardSetResponseDataDraftCosm':
+          return CreatorCardSetResponseDataDraftCosm.fromJson(value);
+        case 'CreatorCardSetResponseDataDraftCosmSingles':
+          return CreatorCardSetResponseDataDraftCosmSingles.fromJson(value);
+        case 'CreatorCardSetResponseDataDraftCosmSupply':
+          return CreatorCardSetResponseDataDraftCosmSupply.fromJson(value);
+        case 'CreatorCardSetResponseDataDraftFrame':
+          return CreatorCardSetResponseDataDraftFrame.fromJson(value);
+        case 'CreatorCardSetResponseDataDraftPrint':
+          return CreatorCardSetResponseDataDraftPrint.fromJson(value);
+        case 'CreatorItemModelResponse':
+          return CreatorItemModelResponse.fromJson(value);
+        case 'CreatorItemWearableResponse':
+          return CreatorItemWearableResponse.fromJson(value);
+        case 'CreatorReviewResponse':
+          return CreatorReviewResponse.fromJson(value);
         case 'DeleteAuthSessionResponse':
           return DeleteAuthSessionResponse.fromJson(value);
+        case 'DeleteBrandingDropResponse':
+          return DeleteBrandingDropResponse.fromJson(value);
+        case 'DeleteBrandingDropResponseData':
+          return DeleteBrandingDropResponseData.fromJson(value);
+        case 'DeleteBrandingDropResponseDataDrop':
+          return DeleteBrandingDropResponseDataDrop.fromJson(value);
         case 'DeleteCosmHandleResponse':
           return DeleteCosmHandleResponse.fromJson(value);
         case 'DeleteCosmHandleResponseData':
@@ -1525,16 +2885,36 @@ class ApiClient {
           return DeleteCosmPegResponse.fromJson(value);
         case 'DeleteCosmPegResponseData':
           return DeleteCosmPegResponseData.fromJson(value);
+        case 'DeleteCreatorExperienceKeyResponse':
+          return DeleteCreatorExperienceKeyResponse.fromJson(value);
         case 'DeleteDaoProposalResponse':
           return DeleteDaoProposalResponse.fromJson(value);
         case 'DeleteDaoProposalResponseData':
           return DeleteDaoProposalResponseData.fromJson(value);
         case 'DeleteDropResponse':
           return DeleteDropResponse.fromJson(value);
+        case 'DeleteEventResponse':
+          return DeleteEventResponse.fromJson(value);
+        case 'DeleteEventResponseData':
+          return DeleteEventResponseData.fromJson(value);
+        case 'DeleteEventResponseDataEvent':
+          return DeleteEventResponseDataEvent.fromJson(value);
+        case 'DeleteFundingMemberResponse':
+          return DeleteFundingMemberResponse.fromJson(value);
+        case 'DeleteFundingMemberResponseData':
+          return DeleteFundingMemberResponseData.fromJson(value);
+        case 'DeleteFundingMemberResponseDataMembers':
+          return DeleteFundingMemberResponseDataMembers.fromJson(value);
         case 'DeleteListingResponse':
           return DeleteListingResponse.fromJson(value);
         case 'DeleteMobilePushTokenResponse':
           return DeleteMobilePushTokenResponse.fromJson(value);
+        case 'DeletePolicyPresetResponse':
+          return DeletePolicyPresetResponse.fromJson(value);
+        case 'DeleteShowroomResponse':
+          return DeleteShowroomResponse.fromJson(value);
+        case 'DeleteShowroomResponseData':
+          return DeleteShowroomResponseData.fromJson(value);
         case 'DeleteSpatialSceneGrantResponse':
           return DeleteSpatialSceneGrantResponse.fromJson(value);
         case 'DeleteSpatialSceneGrantResponseData':
@@ -1543,6 +2923,12 @@ class ApiClient {
           return DeleteSpatialSceneNodeResponse.fromJson(value);
         case 'DeleteSpatialSceneNodeResponseData':
           return DeleteSpatialSceneNodeResponseData.fromJson(value);
+        case 'DeleteStoryResponse':
+          return DeleteStoryResponse.fromJson(value);
+        case 'DeleteStoryResponseData':
+          return DeleteStoryResponseData.fromJson(value);
+        case 'DeleteVaultMarketAutoBuyResponse':
+          return DeleteVaultMarketAutoBuyResponse.fromJson(value);
         case 'DeleteVaultMarketFollowCopyWatchResponse':
           return DeleteVaultMarketFollowCopyWatchResponse.fromJson(value);
         case 'DeleteVaultMarketOpeningWaitlistResponse':
@@ -1557,10 +2943,38 @@ class ApiClient {
           return DeleteVaultMarketWidgetTokenByIdResponse.fromJson(value);
         case 'DeleteVaultMarketWidgetTokenResponse':
           return DeleteVaultMarketWidgetTokenResponse.fromJson(value);
+        case 'DeleteWorkflowResponse':
+          return DeleteWorkflowResponse.fromJson(value);
+        case 'DeleteWorkflowResponseData':
+          return DeleteWorkflowResponseData.fromJson(value);
         case 'DeleteWorldBlockResponse':
           return DeleteWorldBlockResponse.fromJson(value);
         case 'DeleteWorldBlockResponseData':
           return DeleteWorldBlockResponseData.fromJson(value);
+        case 'DeleteWorldExperienceBanResponse':
+          return DeleteWorldExperienceBanResponse.fromJson(value);
+        case 'DeleteWorldExperienceBanResponseData':
+          return DeleteWorldExperienceBanResponseData.fromJson(value);
+        case 'DeleteWorldExperienceDatastoreEntryResponse':
+          return DeleteWorldExperienceDatastoreEntryResponse.fromJson(value);
+        case 'DeleteWorldExperienceDatastoreEntryResponseData':
+          return DeleteWorldExperienceDatastoreEntryResponseData.fromJson(value);
+        case 'DeleteWorldExperienceOrderedEntryResponse':
+          return DeleteWorldExperienceOrderedEntryResponse.fromJson(value);
+        case 'DeleteWorldExperienceOrderedEntryResponseData':
+          return DeleteWorldExperienceOrderedEntryResponseData.fromJson(value);
+        case 'DeleteWorldExperiencePlaceCollabScriptResponse':
+          return DeleteWorldExperiencePlaceCollabScriptResponse.fromJson(value);
+        case 'DeleteWorldExperiencePlaceCollabScriptResponseData':
+          return DeleteWorldExperiencePlaceCollabScriptResponseData.fromJson(value);
+        case 'DeleteWorldExperienceResponse':
+          return DeleteWorldExperienceResponse.fromJson(value);
+        case 'DeleteWorldExperienceResponseData':
+          return DeleteWorldExperienceResponseData.fromJson(value);
+        case 'DeleteWorldGamePackageResponse':
+          return DeleteWorldGamePackageResponse.fromJson(value);
+        case 'DeleteWorldGamePackageResponseData':
+          return DeleteWorldGamePackageResponseData.fromJson(value);
         case 'DeleteWorldHomeGuestbookResponse':
           return DeleteWorldHomeGuestbookResponse.fromJson(value);
         case 'DeleteWorldHomeGuestbookResponseData':
@@ -1571,28 +2985,100 @@ class ApiClient {
           return DeleteWorldInteractiveDesignResponseData.fromJson(value);
         case 'DeleteWorldJobShiftResponse':
           return DeleteWorldJobShiftResponse.fromJson(value);
+        case 'DeleteWorldMarketListingResponse':
+          return DeleteWorldMarketListingResponse.fromJson(value);
+        case 'DeleteWorldMarketListingResponseData':
+          return DeleteWorldMarketListingResponseData.fromJson(value);
         case 'DeleteWorldOutfitResponse':
           return DeleteWorldOutfitResponse.fromJson(value);
         case 'DeleteWorldOutfitResponseData':
           return DeleteWorldOutfitResponseData.fromJson(value);
+        case 'DeleteWorldPackageResponse':
+          return DeleteWorldPackageResponse.fromJson(value);
         case 'DeleteWorldPlaceBanResponse':
           return DeleteWorldPlaceBanResponse.fromJson(value);
         case 'DeleteWorldPlaceBanResponseData':
           return DeleteWorldPlaceBanResponseData.fromJson(value);
+        case 'DeleteWorldPropertyPlotShowroomResponse':
+          return DeleteWorldPropertyPlotShowroomResponse.fromJson(value);
+        case 'DeleteWorldPropertyPlotShowroomResponseData':
+          return DeleteWorldPropertyPlotShowroomResponseData.fromJson(value);
         case 'DeleteWorldSpaceResponse':
           return DeleteWorldSpaceResponse.fromJson(value);
         case 'DeleteWorldSpaceResponseData':
           return DeleteWorldSpaceResponseData.fromJson(value);
+        case 'DeveloperAppCertificationResponse':
+          return DeveloperAppCertificationResponse.fromJson(value);
+        case 'DeveloperAppCertificationResponseData':
+          return DeveloperAppCertificationResponseData.fromJson(value);
+        case 'DeveloperAppCertificationResponseDataEvidence':
+          return DeveloperAppCertificationResponseDataEvidence.fromJson(value);
+        case 'DeveloperAppCertificationResponseDataLastRun':
+          return DeveloperAppCertificationResponseDataLastRun.fromJson(value);
+        case 'DeveloperAppVerificationResponse':
+          return DeveloperAppVerificationResponse.fromJson(value);
+        case 'DeveloperAppVerificationResponseData':
+          return DeveloperAppVerificationResponseData.fromJson(value);
+        case 'DeveloperAppVerificationResponseDataTxtRecord':
+          return DeveloperAppVerificationResponseDataTxtRecord.fromJson(value);
+        case 'DiscountCodeResponse':
+          return DiscountCodeResponse.fromJson(value);
+        case 'DiscountCodeResponseData':
+          return DiscountCodeResponseData.fromJson(value);
         case 'Error':
           return Error.fromJson(value);
         case 'ErrorError':
           return ErrorError.fromJson(value);
+        case 'EventResponse':
+          return EventResponse.fromJson(value);
+        case 'FromTo':
+          return FromTo.fromJson(value);
+        case 'FromTo2':
+          return FromTo2.fromJson(value);
+        case 'FundingPoolResponse':
+          return FundingPoolResponse.fromJson(value);
+        case 'FundingPoolResponseData':
+          return FundingPoolResponseData.fromJson(value);
+        case 'FundingPoolResponseDataHistory':
+          return FundingPoolResponseDataHistory.fromJson(value);
+        case 'FundingPoolResponseDataPool':
+          return FundingPoolResponseDataPool.fromJson(value);
+        case 'FundingPoolResponseDataPosition':
+          return FundingPoolResponseDataPosition.fromJson(value);
+        case 'FundingPoolResponseDataUnstakeRequests':
+          return FundingPoolResponseDataUnstakeRequests.fromJson(value);
+        case 'FundingPoolResponseDataWaitlist':
+          return FundingPoolResponseDataWaitlist.fromJson(value);
+        case 'GetAccountClosureChecklistResponse':
+          return GetAccountClosureChecklistResponse.fromJson(value);
+        case 'GetAccountClosureChecklistResponseAutomations':
+          return GetAccountClosureChecklistResponseAutomations.fromJson(value);
+        case 'GetAccountClosureChecklistResponseLiveListings':
+          return GetAccountClosureChecklistResponseLiveListings.fromJson(value);
         case 'GetAccountDeletionStatusResponse':
           return GetAccountDeletionStatusResponse.fromJson(value);
         case 'GetAccountDeletionStatusResponsePending':
           return GetAccountDeletionStatusResponsePending.fromJson(value);
+        case 'GetAccountIdentityVerificationResponse':
+          return GetAccountIdentityVerificationResponse.fromJson(value);
+        case 'GetAccountIdentityVerificationResponseData':
+          return GetAccountIdentityVerificationResponseData.fromJson(value);
+        case 'GetAccountIdentityVerificationResponseDataLastError':
+          return GetAccountIdentityVerificationResponseDataLastError.fromJson(value);
+        case 'GetActionLogExportDownloadResponse':
+          return GetActionLogExportDownloadResponse.fromJson(value);
+        case 'GetActionLogExportResponse':
+          return GetActionLogExportResponse.fromJson(value);
         case 'GetActionLogFacetResponse':
           return GetActionLogFacetResponse.fromJson(value);
+        case 'GetActionLogFacetResponseActors':
+          return GetActionLogFacetResponseActors.fromJson(value);
+        case 'GetActionLogFacetResponseAreas':
+          return GetActionLogFacetResponseAreas.fromJson(value);
+        case 'GetActionLogFacetResponseOutcomes':
+          return GetActionLogFacetResponseOutcomes.fromJson(value);
+        case 'GetActionLogFacetResponsePlatformCounts':
+          return GetActionLogFacetResponsePlatformCounts.fromJson(value);
         case 'GetAdOffsiteEligibilityResponse':
           return GetAdOffsiteEligibilityResponse.fromJson(value);
         case 'GetAdOffsiteEligibilityResponseData':
@@ -1633,12 +3119,26 @@ class ApiClient {
           return GetAnalyticByPlatformResponse.fromJson(value);
         case 'GetAnalyticByPlatformResponseBreakdown':
           return GetAnalyticByPlatformResponseBreakdown.fromJson(value);
+        case 'GetAnalyticCompareResponse':
+          return GetAnalyticCompareResponse.fromJson(value);
+        case 'GetAnalyticCompareResponseData':
+          return GetAnalyticCompareResponseData.fromJson(value);
+        case 'GetAnalyticCompareResponseDataColumns':
+          return GetAnalyticCompareResponseDataColumns.fromJson(value);
+        case 'GetAnalyticCompareResponseDataCurves':
+          return GetAnalyticCompareResponseDataCurves.fromJson(value);
+        case 'GetAnalyticCompareResponseDataDifferences':
+          return GetAnalyticCompareResponseDataDifferences.fromJson(value);
+        case 'GetAnalyticCompareResponseDataTests':
+          return GetAnalyticCompareResponseDataTests.fromJson(value);
         case 'GetAnalyticDashboardResponse':
           return GetAnalyticDashboardResponse.fromJson(value);
         case 'GetAnalyticDashboardResponseAvgSalePriceByPlatform':
           return GetAnalyticDashboardResponseAvgSalePriceByPlatform.fromJson(value);
         case 'GetAnalyticDashboardResponseCancelRate':
           return GetAnalyticDashboardResponseCancelRate.fromJson(value);
+        case 'GetAnalyticDashboardResponsePeriod':
+          return GetAnalyticDashboardResponsePeriod.fromJson(value);
         case 'GetAnalyticDashboardResponseRecentSales':
           return GetAnalyticDashboardResponseRecentSales.fromJson(value);
         case 'GetAnalyticDashboardResponseRevenue':
@@ -1649,14 +3149,184 @@ class ApiClient {
           return GetAnalyticDashboardResponseSalesByPlatform.fromJson(value);
         case 'GetAnalyticDashboardResponseSellThrough':
           return GetAnalyticDashboardResponseSellThrough.fromJson(value);
+        case 'GetAnalyticDashboardResponseSellThroughCohort':
+          return GetAnalyticDashboardResponseSellThroughCohort.fromJson(value);
+        case 'GetAnalyticDashboardResponseSellThroughCohortPrev':
+          return GetAnalyticDashboardResponseSellThroughCohortPrev.fromJson(value);
         case 'GetAnalyticDashboardResponseTop5ItemsByRevenue':
           return GetAnalyticDashboardResponseTop5ItemsByRevenue.fromJson(value);
         case 'GetAnalyticDashboardResponseTopCategories':
           return GetAnalyticDashboardResponseTopCategories.fromJson(value);
+        case 'GetAnalyticExperimentByIdResponse':
+          return GetAnalyticExperimentByIdResponse.fromJson(value);
+        case 'GetAnalyticExperimentByIdResponseData':
+          return GetAnalyticExperimentByIdResponseData.fromJson(value);
+        case 'GetAnalyticExperimentByIdResponseDataArms':
+          return GetAnalyticExperimentByIdResponseDataArms.fromJson(value);
+        case 'GetAnalyticExperimentByIdResponseDataArmsRates':
+          return GetAnalyticExperimentByIdResponseDataArmsRates.fromJson(value);
+        case 'GetAnalyticExperimentByIdResponseDataArmsWindow':
+          return GetAnalyticExperimentByIdResponseDataArmsWindow.fromJson(value);
+        case 'GetAnalyticExperimentByIdResponseDataPrimary':
+          return GetAnalyticExperimentByIdResponseDataPrimary.fromJson(value);
+        case 'GetAnalyticExperimentByIdResponseDataPrimaryA':
+          return GetAnalyticExperimentByIdResponseDataPrimaryA.fromJson(value);
+        case 'GetAnalyticExperimentResponse':
+          return GetAnalyticExperimentResponse.fromJson(value);
+        case 'GetAnalyticExperimentResponseData':
+          return GetAnalyticExperimentResponseData.fromJson(value);
+        case 'GetAnalyticExperimentResponseDataPage':
+          return GetAnalyticExperimentResponseDataPage.fromJson(value);
+        case 'GetAnalyticExperimentResponseDataRows':
+          return GetAnalyticExperimentResponseDataRows.fromJson(value);
+        case 'GetAnalyticInventoryResponse':
+          return GetAnalyticInventoryResponse.fromJson(value);
+        case 'GetAnalyticInventoryResponseData':
+          return GetAnalyticInventoryResponseData.fromJson(value);
+        case 'GetAnalyticInventoryResponseDataAging':
+          return GetAnalyticInventoryResponseDataAging.fromJson(value);
+        case 'GetAnalyticInventoryResponseDataAgingBuckets':
+          return GetAnalyticInventoryResponseDataAgingBuckets.fromJson(value);
+        case 'GetAnalyticInventoryResponseDataAgingTotals':
+          return GetAnalyticInventoryResponseDataAgingTotals.fromJson(value);
+        case 'GetAnalyticInventoryResponseDataHealth':
+          return GetAnalyticInventoryResponseDataHealth.fromJson(value);
+        case 'GetAnalyticInventoryResponseDataHealthStatsCoverage':
+          return GetAnalyticInventoryResponseDataHealthStatsCoverage.fromJson(value);
+        case 'GetAnalyticInventoryResponseDataPeriod':
+          return GetAnalyticInventoryResponseDataPeriod.fromJson(value);
+        case 'GetAnalyticInventoryResponseDataShelf':
+          return GetAnalyticInventoryResponseDataShelf.fromJson(value);
+        case 'GetAnalyticInventoryResponseDataShelfPoints':
+          return GetAnalyticInventoryResponseDataShelfPoints.fromJson(value);
+        case 'GetAnalyticInventoryResponseDataVelocity':
+          return GetAnalyticInventoryResponseDataVelocity.fromJson(value);
+        case 'GetAnalyticInventoryResponseDataVelocityPoints':
+          return GetAnalyticInventoryResponseDataVelocityPoints.fromJson(value);
+        case 'GetAnalyticInventoryResponseDataWorst':
+          return GetAnalyticInventoryResponseDataWorst.fromJson(value);
+        case 'GetAnalyticItemByListingIdResponse':
+          return GetAnalyticItemByListingIdResponse.fromJson(value);
+        case 'GetAnalyticItemByListingIdResponseData':
+          return GetAnalyticItemByListingIdResponseData.fromJson(value);
         case 'GetAnalyticItemResponse':
           return GetAnalyticItemResponse.fromJson(value);
         case 'GetAnalyticItemResponseItems':
           return GetAnalyticItemResponseItems.fromJson(value);
+        case 'GetAnalyticMarketplaceByPlatformResponse':
+          return GetAnalyticMarketplaceByPlatformResponse.fromJson(value);
+        case 'GetAnalyticMarketplaceByPlatformResponseData':
+          return GetAnalyticMarketplaceByPlatformResponseData.fromJson(value);
+        case 'GetAnalyticMarketplaceByPlatformResponseDataAtRisk':
+          return GetAnalyticMarketplaceByPlatformResponseDataAtRisk.fromJson(value);
+        case 'GetAnalyticMarketplaceByPlatformResponseDataCategories':
+          return GetAnalyticMarketplaceByPlatformResponseDataCategories.fromJson(value);
+        case 'GetAnalyticMarketplaceByPlatformResponseDataDaysToSellHistogram':
+          return GetAnalyticMarketplaceByPlatformResponseDataDaysToSellHistogram.fromJson(value);
+        case 'GetAnalyticMarketplaceByPlatformResponseDataFeeBreakdown':
+          return GetAnalyticMarketplaceByPlatformResponseDataFeeBreakdown.fromJson(value);
+        case 'GetAnalyticMarketplaceByPlatformResponseDataHeatmap':
+          return GetAnalyticMarketplaceByPlatformResponseDataHeatmap.fromJson(value);
+        case 'GetAnalyticMarketplaceByPlatformResponseDataOffers':
+          return GetAnalyticMarketplaceByPlatformResponseDataOffers.fromJson(value);
+        case 'GetAnalyticMarketplaceByPlatformResponseDataPriceRealization':
+          return GetAnalyticMarketplaceByPlatformResponseDataPriceRealization.fromJson(value);
+        case 'GetAnalyticMarketplaceByPlatformResponseDataRow':
+          return GetAnalyticMarketplaceByPlatformResponseDataRow.fromJson(value);
+        case 'GetAnalyticMarketplaceByPlatformResponseDataRowMetrics':
+          return GetAnalyticMarketplaceByPlatformResponseDataRowMetrics.fromJson(value);
+        case 'GetAnalyticMarketplaceByPlatformResponseDataRowMetricsNetSales':
+          return GetAnalyticMarketplaceByPlatformResponseDataRowMetricsNetSales.fromJson(value);
+        case 'GetAnalyticMarketplaceByPlatformResponseDataSeries':
+          return GetAnalyticMarketplaceByPlatformResponseDataSeries.fromJson(value);
+        case 'GetAnalyticMarketplaceByPlatformResponseDataTopItems':
+          return GetAnalyticMarketplaceByPlatformResponseDataTopItems.fromJson(value);
+        case 'GetAnalyticMarketplaceResponse':
+          return GetAnalyticMarketplaceResponse.fromJson(value);
+        case 'GetAnalyticMarketplaceResponseData':
+          return GetAnalyticMarketplaceResponseData.fromJson(value);
+        case 'GetAnalyticMarketplaceResponseDataHeadToHead':
+          return GetAnalyticMarketplaceResponseDataHeadToHead.fromJson(value);
+        case 'GetAnalyticMarketplaceResponseDataInsights':
+          return GetAnalyticMarketplaceResponseDataInsights.fromJson(value);
+        case 'GetAnalyticMarketplaceResponseDataInsightsAction':
+          return GetAnalyticMarketplaceResponseDataInsightsAction.fromJson(value);
+        case 'GetAnalyticMarketplaceResponseDataRows':
+          return GetAnalyticMarketplaceResponseDataRows.fromJson(value);
+        case 'GetAnalyticMarketplaceResponseDataRowsMetrics':
+          return GetAnalyticMarketplaceResponseDataRowsMetrics.fromJson(value);
+        case 'GetAnalyticOverviewResponse':
+          return GetAnalyticOverviewResponse.fromJson(value);
+        case 'GetAnalyticOverviewResponseData':
+          return GetAnalyticOverviewResponseData.fromJson(value);
+        case 'GetAnalyticOverviewResponseDataByPlatform':
+          return GetAnalyticOverviewResponseDataByPlatform.fromJson(value);
+        case 'GetAnalyticOverviewResponseDataByStore':
+          return GetAnalyticOverviewResponseDataByStore.fromJson(value);
+        case 'GetAnalyticOverviewResponseDataKpis':
+          return GetAnalyticOverviewResponseDataKpis.fromJson(value);
+        case 'GetAnalyticOverviewResponseDataKpisNetSales':
+          return GetAnalyticOverviewResponseDataKpisNetSales.fromJson(value);
+        case 'GetAnalyticOverviewResponseDataKpisNetSalesDelta':
+          return GetAnalyticOverviewResponseDataKpisNetSalesDelta.fromJson(value);
+        case 'GetAnalyticOverviewResponseDataSeries':
+          return GetAnalyticOverviewResponseDataSeries.fromJson(value);
+        case 'GetAnalyticOverviewResponseDataSeriesCompare':
+          return GetAnalyticOverviewResponseDataSeriesCompare.fromJson(value);
+        case 'GetAnalyticOverviewResponseDataSeriesPoints':
+          return GetAnalyticOverviewResponseDataSeriesPoints.fromJson(value);
+        case 'GetAnalyticPerformanceResponse':
+          return GetAnalyticPerformanceResponse.fromJson(value);
+        case 'GetAnalyticPerformanceResponseData':
+          return GetAnalyticPerformanceResponseData.fromJson(value);
+        case 'GetAnalyticPerformanceResponseDataRows':
+          return GetAnalyticPerformanceResponseDataRows.fromJson(value);
+        case 'GetAnalyticPerformanceResponseDataTotals':
+          return GetAnalyticPerformanceResponseDataTotals.fromJson(value);
+        case 'GetAnalyticPerformanceResponseDataUnlinkedSales':
+          return GetAnalyticPerformanceResponseDataUnlinkedSales.fromJson(value);
+        case 'GetAnalyticProgramResponse':
+          return GetAnalyticProgramResponse.fromJson(value);
+        case 'GetAnalyticProgramResponseData':
+          return GetAnalyticProgramResponseData.fromJson(value);
+        case 'GetAnalyticProgramResponseDataBreakdown':
+          return GetAnalyticProgramResponseDataBreakdown.fromJson(value);
+        case 'GetAnalyticProgramResponseDataBreakdownColumns':
+          return GetAnalyticProgramResponseDataBreakdownColumns.fromJson(value);
+        case 'GetAnalyticProgramResponseDataDimension':
+          return GetAnalyticProgramResponseDataDimension.fromJson(value);
+        case 'GetAnalyticProgramResponseDataDimensionOptions':
+          return GetAnalyticProgramResponseDataDimensionOptions.fromJson(value);
+        case 'GetAnalyticProgramResponseDataKpis':
+          return GetAnalyticProgramResponseDataKpis.fromJson(value);
+        case 'GetAnalyticProgramResponseDataMoreBreakdowns':
+          return GetAnalyticProgramResponseDataMoreBreakdowns.fromJson(value);
+        case 'GetAnalyticProgramResponseDataTrend':
+          return GetAnalyticProgramResponseDataTrend.fromJson(value);
+        case 'GetAnalyticProgramResponseDataTrendPoints':
+          return GetAnalyticProgramResponseDataTrendPoints.fromJson(value);
+        case 'GetAnalyticProgramResponseDataTrendSeries':
+          return GetAnalyticProgramResponseDataTrendSeries.fromJson(value);
+        case 'GetAnalyticSegmentByKeyResponse':
+          return GetAnalyticSegmentByKeyResponse.fromJson(value);
+        case 'GetAnalyticSegmentByKeyResponseData':
+          return GetAnalyticSegmentByKeyResponseData.fromJson(value);
+        case 'GetAnalyticSegmentByKeyResponseDataPriceBands':
+          return GetAnalyticSegmentByKeyResponseDataPriceBands.fromJson(value);
+        case 'GetAnalyticSegmentByKeyResponseDataRow':
+          return GetAnalyticSegmentByKeyResponseDataRow.fromJson(value);
+        case 'GetAnalyticSegmentByKeyResponseDataSeries':
+          return GetAnalyticSegmentByKeyResponseDataSeries.fromJson(value);
+        case 'GetAnalyticSegmentResponse':
+          return GetAnalyticSegmentResponse.fromJson(value);
+        case 'GetAnalyticSegmentResponseData':
+          return GetAnalyticSegmentResponseData.fromJson(value);
+        case 'GetAnalyticSegmentResponseDataOther':
+          return GetAnalyticSegmentResponseDataOther.fromJson(value);
+        case 'GetAnalyticSegmentResponseDataRows':
+          return GetAnalyticSegmentResponseDataRows.fromJson(value);
+        case 'GetAnalyticSegmentResponseDataRowsSellThrough':
+          return GetAnalyticSegmentResponseDataRowsSellThrough.fromJson(value);
         case 'GetAnalyticSummaryResponse':
           return GetAnalyticSummaryResponse.fromJson(value);
         case 'GetAnalyticTimeseryResponse':
@@ -1671,22 +3341,96 @@ class ApiClient {
           return GetAnalyticTodayResponseInbox.fromJson(value);
         case 'GetAnalyticTodayResponseStreak':
           return GetAnalyticTodayResponseStreak.fromJson(value);
+        case 'GetAppEarningResponse':
+          return GetAppEarningResponse.fromJson(value);
+        case 'GetAppEarningResponseLedger':
+          return GetAppEarningResponseLedger.fromJson(value);
+        case 'GetAppEarningResponseSummary':
+          return GetAppEarningResponseSummary.fromJson(value);
+        case 'GetAppListingAllowanceResponse':
+          return GetAppListingAllowanceResponse.fromJson(value);
+        case 'GetAppListingAllowanceResponseData':
+          return GetAppListingAllowanceResponseData.fromJson(value);
         case 'GetAutomationCatalogResponse':
           return GetAutomationCatalogResponse.fromJson(value);
         case 'GetAutomationCatalogResponseTriggerTypes':
           return GetAutomationCatalogResponseTriggerTypes.fromJson(value);
         case 'GetAutomationRuleExportByIdResponse':
           return GetAutomationRuleExportByIdResponse.fromJson(value);
-        case 'GetAutomationRuleExportByIdResponseAction':
-          return GetAutomationRuleExportByIdResponseAction.fromJson(value);
         case 'GetAutomationRuleExportByIdResponseCondition':
           return GetAutomationRuleExportByIdResponseCondition.fromJson(value);
         case 'GetAutomationRuleExportByIdResponseMetadata':
           return GetAutomationRuleExportByIdResponseMetadata.fromJson(value);
+        case 'GetAutomationRuleExportByIdResponseTrigger':
+          return GetAutomationRuleExportByIdResponseTrigger.fromJson(value);
         case 'GetAutomationRuleExportResponse':
           return GetAutomationRuleExportResponse.fromJson(value);
         case 'GetAutomationRuleResponse':
           return GetAutomationRuleResponse.fromJson(value);
+        case 'GetBook1099kResponse':
+          return GetBook1099kResponse.fromJson(value);
+        case 'GetBook1099kResponseData':
+          return GetBook1099kResponseData.fromJson(value);
+        case 'GetBook1099kResponseDataFederal':
+          return GetBook1099kResponseDataFederal.fromJson(value);
+        case 'GetBook1099kResponseDataRows':
+          return GetBook1099kResponseDataRows.fromJson(value);
+        case 'GetBookExpenseResponse':
+          return GetBookExpenseResponse.fromJson(value);
+        case 'GetBookExpenseResponseData':
+          return GetBookExpenseResponseData.fromJson(value);
+        case 'GetBookExpenseResponseDataRange':
+          return GetBookExpenseResponseDataRange.fromJson(value);
+        case 'GetBookExpenseResponseDataRows':
+          return GetBookExpenseResponseDataRows.fromJson(value);
+        case 'GetBookResponse':
+          return GetBookResponse.fromJson(value);
+        case 'GetBookResponseData':
+          return GetBookResponseData.fromJson(value);
+        case 'GetBookResponseDataByMarketplace':
+          return GetBookResponseDataByMarketplace.fromJson(value);
+        case 'GetBookResponseDataByMarketplaceForm1099k':
+          return GetBookResponseDataByMarketplaceForm1099k.fromJson(value);
+        case 'GetBookResponseDataCogsDetail':
+          return GetBookResponseDataCogsDetail.fromJson(value);
+        case 'GetBookResponseDataCogsDetailSnapshotCoverage':
+          return GetBookResponseDataCogsDetailSnapshotCoverage.fromJson(value);
+        case 'GetBookResponseDataEstimatedTax':
+          return GetBookResponseDataEstimatedTax.fromJson(value);
+        case 'GetBookResponseDataEstimatedTaxQuarters':
+          return GetBookResponseDataEstimatedTaxQuarters.fromJson(value);
+        case 'GetBookResponseDataExpensesTotals':
+          return GetBookResponseDataExpensesTotals.fromJson(value);
+        case 'GetBookResponseDataHealth':
+          return GetBookResponseDataHealth.fromJson(value);
+        case 'GetBookResponseDataKpis':
+          return GetBookResponseDataKpis.fromJson(value);
+        case 'GetBookResponseDataMileage':
+          return GetBookResponseDataMileage.fromJson(value);
+        case 'GetBookResponseDataMonthly':
+          return GetBookResponseDataMonthly.fromJson(value);
+        case 'GetBookResponseDataPnl':
+          return GetBookResponseDataPnl.fromJson(value);
+        case 'GetBookResponseDataPnlIncome':
+          return GetBookResponseDataPnlIncome.fromJson(value);
+        case 'GetBookResponseDataSalesTax':
+          return GetBookResponseDataSalesTax.fromJson(value);
+        case 'GetBookResponseDataSalesTaxCrosslyNotCollected':
+          return GetBookResponseDataSalesTaxCrosslyNotCollected.fromJson(value);
+        case 'GetBookResponseDataSalesTaxMarketplaceCollected':
+          return GetBookResponseDataSalesTaxMarketplaceCollected.fromJson(value);
+        case 'GetBookTaxProfileResponse':
+          return GetBookTaxProfileResponse.fromJson(value);
+        case 'GetBookTaxProfileResponseData':
+          return GetBookTaxProfileResponseData.fromJson(value);
+        case 'GetBookTransactionResponse':
+          return GetBookTransactionResponse.fromJson(value);
+        case 'GetBookTransactionResponseData':
+          return GetBookTransactionResponseData.fromJson(value);
+        case 'GetBookTransactionResponseDataRows':
+          return GetBookTransactionResponseDataRows.fromJson(value);
+        case 'GetBookTransactionResponseDataTotals':
+          return GetBookTransactionResponseDataTotals.fromJson(value);
         case 'GetBrandDropPartnerResponse':
           return GetBrandDropPartnerResponse.fromJson(value);
         case 'GetBrandDropPartnerResponseData':
@@ -1697,6 +3441,26 @@ class ApiClient {
           return GetBrandDropPartnerResponseDataUsage.fromJson(value);
         case 'GetBrandResponse':
           return GetBrandResponse.fromJson(value);
+        case 'GetBrandingBrandResponse':
+          return GetBrandingBrandResponse.fromJson(value);
+        case 'GetBrandingBrandResponseData':
+          return GetBrandingBrandResponseData.fromJson(value);
+        case 'GetBrandingBusinessVerificationResponse':
+          return GetBrandingBusinessVerificationResponse.fromJson(value);
+        case 'GetBrandingBusinessVerificationResponseData':
+          return GetBrandingBusinessVerificationResponseData.fromJson(value);
+        case 'GetBrandingDropResponse':
+          return GetBrandingDropResponse.fromJson(value);
+        case 'GetBrandingEventResponse':
+          return GetBrandingEventResponse.fromJson(value);
+        case 'GetBrandingEventResponseData':
+          return GetBrandingEventResponseData.fromJson(value);
+        case 'GetBrandingEventResponseDataOneOfGroups':
+          return GetBrandingEventResponseDataOneOfGroups.fromJson(value);
+        case 'GetBrandingSettingResponse':
+          return GetBrandingSettingResponse.fromJson(value);
+        case 'GetBrandingSettingResponseData':
+          return GetBrandingSettingResponseData.fromJson(value);
         case 'GetBreakResponse':
           return GetBreakResponse.fromJson(value);
         case 'GetBreakResponseData':
@@ -1707,6 +3471,10 @@ class ApiClient {
           return GetBreakResponseDataSeller.fromJson(value);
         case 'GetBreakResponseDataSpots':
           return GetBreakResponseDataSpots.fromJson(value);
+        case 'GetBulkBatchResponse':
+          return GetBulkBatchResponse.fromJson(value);
+        case 'GetBulkBatchResponseSkus':
+          return GetBulkBatchResponseSkus.fromJson(value);
         case 'GetCatalogLookupResponse':
           return GetCatalogLookupResponse.fromJson(value);
         case 'GetCatalogLookupResponseData':
@@ -1717,6 +3485,8 @@ class ApiClient {
           return GetCatalogLookupResponseDataOffersCatalog.fromJson(value);
         case 'GetCatalogLookupResponseMeta':
           return GetCatalogLookupResponseMeta.fromJson(value);
+        case 'GetCategoryByIdResponse':
+          return GetCategoryByIdResponse.fromJson(value);
         case 'GetCategoryResponse':
           return GetCategoryResponse.fromJson(value);
         case 'GetCbxAdCreditResponse':
@@ -1791,6 +3561,10 @@ class ApiClient {
           return GetConnectionHealthResponseAccountsLiveness.fromJson(value);
         case 'GetConnectionHealthResponseExtension':
           return GetConnectionHealthResponseExtension.fromJson(value);
+        case 'GetConnectionPolicyManagementOptionItem':
+          return GetConnectionPolicyManagementOptionItem.fromJson(value);
+        case 'GetConnectionPolicyManagementOptionResponse':
+          return GetConnectionPolicyManagementOptionResponse.fromJson(value);
         case 'GetCosmAttestationProofResponse':
           return GetCosmAttestationProofResponse.fromJson(value);
         case 'GetCosmAttestationProofResponseData':
@@ -1837,6 +3611,166 @@ class ApiClient {
           return GetCosmSupplyResponse.fromJson(value);
         case 'GetCosmSupplyResponseData':
           return GetCosmSupplyResponseData.fromJson(value);
+        case 'GetCreatorCardSetProgressResponse':
+          return GetCreatorCardSetProgressResponse.fromJson(value);
+        case 'GetCreatorCardSetProgressResponseData':
+          return GetCreatorCardSetProgressResponseData.fromJson(value);
+        case 'GetCreatorCardSetProgressResponseDataPopularity':
+          return GetCreatorCardSetProgressResponseDataPopularity.fromJson(value);
+        case 'GetCreatorCardSetProgressResponseDataPrintRun':
+          return GetCreatorCardSetProgressResponseDataPrintRun.fromJson(value);
+        case 'GetCreatorCardSetProgressResponseDataProduction':
+          return GetCreatorCardSetProgressResponseDataProduction.fromJson(value);
+        case 'GetCreatorCardSetProgressResponseDataSteps':
+          return GetCreatorCardSetProgressResponseDataSteps.fromJson(value);
+        case 'GetCreatorCollectionPerkResponse':
+          return GetCreatorCollectionPerkResponse.fromJson(value);
+        case 'GetCreatorCollectionPerkResponseData':
+          return GetCreatorCollectionPerkResponseData.fromJson(value);
+        case 'GetCreatorCollectionPerkResponseDataNotices':
+          return GetCreatorCollectionPerkResponseDataNotices.fromJson(value);
+        case 'GetCreatorCollectionPerkResponseDataPerksItem':
+          return GetCreatorCollectionPerkResponseDataPerksItem.fromJson(value);
+        case 'GetCreatorCollectionResponse':
+          return GetCreatorCollectionResponse.fromJson(value);
+        case 'GetCreatorCollectionResponseData':
+          return GetCreatorCollectionResponseData.fromJson(value);
+        case 'GetCreatorCollectionResponseDataActions':
+          return GetCreatorCollectionResponseDataActions.fromJson(value);
+        case 'GetCreatorCollectionResponseDataCardSet':
+          return GetCreatorCollectionResponseDataCardSet.fromJson(value);
+        case 'GetCreatorCollectionResponseDataCardSetProgress':
+          return GetCreatorCollectionResponseDataCardSetProgress.fromJson(value);
+        case 'GetCreatorCollectionResponseDataCreations':
+          return GetCreatorCollectionResponseDataCreations.fromJson(value);
+        case 'GetCreatorCollectionResponseDataDashboard':
+          return GetCreatorCollectionResponseDataDashboard.fromJson(value);
+        case 'GetCreatorCollectionResponseDataDashboardDaily':
+          return GetCreatorCollectionResponseDataDashboardDaily.fromJson(value);
+        case 'GetCreatorCollectionResponseDataDashboardHolders':
+          return GetCreatorCollectionResponseDataDashboardHolders.fromJson(value);
+        case 'GetCreatorCollectionResponseDataDashboardMint':
+          return GetCreatorCollectionResponseDataDashboardMint.fromJson(value);
+        case 'GetCreatorCollectionResponseDataDashboardRecent':
+          return GetCreatorCollectionResponseDataDashboardRecent.fromJson(value);
+        case 'GetCreatorCollectionResponseDataDashboardSales':
+          return GetCreatorCollectionResponseDataDashboardSales.fromJson(value);
+        case 'GetCreatorCollectionResponseDataHolderPerks':
+          return GetCreatorCollectionResponseDataHolderPerks.fromJson(value);
+        case 'GetCreatorCollectionResponseDataLaunch':
+          return GetCreatorCollectionResponseDataLaunch.fromJson(value);
+        case 'GetCreatorCollectionResponseDataLaunchStats':
+          return GetCreatorCollectionResponseDataLaunchStats.fromJson(value);
+        case 'GetCreatorCollectionResponseDataLaunchStatsProceeds':
+          return GetCreatorCollectionResponseDataLaunchStatsProceeds.fromJson(value);
+        case 'GetCreatorCollectionResponseDataLaunchStatsRecentMints':
+          return GetCreatorCollectionResponseDataLaunchStatsRecentMints.fromJson(value);
+        case 'GetCreatorCollectionResponseDataLaunchStatsTimeline':
+          return GetCreatorCollectionResponseDataLaunchStatsTimeline.fromJson(value);
+        case 'GetCreatorCollectionResponseDataProblems':
+          return GetCreatorCollectionResponseDataProblems.fromJson(value);
+        case 'GetCreatorCollectionResponseDataSteps':
+          return GetCreatorCollectionResponseDataSteps.fromJson(value);
+        case 'GetCreatorCreationResponse':
+          return GetCreatorCreationResponse.fromJson(value);
+        case 'GetCreatorCreationResponseData':
+          return GetCreatorCreationResponseData.fromJson(value);
+        case 'GetCreatorCreationResponseDataFiles':
+          return GetCreatorCreationResponseDataFiles.fromJson(value);
+        case 'GetCreatorCreationResponseDataMint':
+          return GetCreatorCreationResponseDataMint.fromJson(value);
+        case 'GetCreatorCreationResponseDataReviews':
+          return GetCreatorCreationResponseDataReviews.fromJson(value);
+        case 'GetCreatorCreationResponseDataReviewsSummary':
+          return GetCreatorCreationResponseDataReviewsSummary.fromJson(value);
+        case 'GetCreatorCreationResponseDataSales':
+          return GetCreatorCreationResponseDataSales.fromJson(value);
+        case 'GetCreatorCreationResponseDataSoldIn':
+          return GetCreatorCreationResponseDataSoldIn.fromJson(value);
+        case 'GetCreatorCreationResponseDataSoldInStores':
+          return GetCreatorCreationResponseDataSoldInStores.fromJson(value);
+        case 'GetCreatorCreationStatusResponse':
+          return GetCreatorCreationStatusResponse.fromJson(value);
+        case 'GetCreatorCreationStatusResponseData':
+          return GetCreatorCreationStatusResponseData.fromJson(value);
+        case 'GetCreatorEarningReconcileResponse':
+          return GetCreatorEarningReconcileResponse.fromJson(value);
+        case 'GetCreatorEarningReconcileResponseLines':
+          return GetCreatorEarningReconcileResponseLines.fromJson(value);
+        case 'GetCreatorEarningReconcileResponseRails':
+          return GetCreatorEarningReconcileResponseRails.fromJson(value);
+        case 'GetCreatorEntitlementResponse':
+          return GetCreatorEntitlementResponse.fromJson(value);
+        case 'GetCreatorEntitlementResponseData':
+          return GetCreatorEntitlementResponseData.fromJson(value);
+        case 'GetCreatorEntitlementResponseDataLimits':
+          return GetCreatorEntitlementResponseDataLimits.fromJson(value);
+        case 'GetCreatorEntitlementResponseDataLimitsLiveItems':
+          return GetCreatorEntitlementResponseDataLimitsLiveItems.fromJson(value);
+        case 'GetCreatorImportResponse':
+          return GetCreatorImportResponse.fromJson(value);
+        case 'GetCreatorImportResponseData':
+          return GetCreatorImportResponseData.fromJson(value);
+        case 'GetCreatorImportResponseDataResult':
+          return GetCreatorImportResponseDataResult.fromJson(value);
+        case 'GetCreatorImportResponseDataResultIssues':
+          return GetCreatorImportResponseDataResultIssues.fromJson(value);
+        case 'GetCreatorImportResponseDataResultPreview':
+          return GetCreatorImportResponseDataResultPreview.fromJson(value);
+        case 'GetCreatorItemTemplateResponse':
+          return GetCreatorItemTemplateResponse.fromJson(value);
+        case 'GetCreatorItemTemplateResponseData':
+          return GetCreatorItemTemplateResponseData.fromJson(value);
+        case 'GetCreatorItemTemplateResponseDataBudget':
+          return GetCreatorItemTemplateResponseDataBudget.fromJson(value);
+        case 'GetCreatorItemTemplateResponseDataBudgetPhone':
+          return GetCreatorItemTemplateResponseDataBudgetPhone.fromJson(value);
+        case 'GetCreatorItemTemplateResponseDataTemplates':
+          return GetCreatorItemTemplateResponseDataTemplates.fromJson(value);
+        case 'GetCreatorMintingResponse':
+          return GetCreatorMintingResponse.fromJson(value);
+        case 'GetCreatorMintingResponseData':
+          return GetCreatorMintingResponseData.fromJson(value);
+        case 'GetCreatorMintingResponseDataGettingReady':
+          return GetCreatorMintingResponseDataGettingReady.fromJson(value);
+        case 'GetCreatorOverviewResponse':
+          return GetCreatorOverviewResponse.fromJson(value);
+        case 'GetCreatorOverviewResponseChecklist':
+          return GetCreatorOverviewResponseChecklist.fromJson(value);
+        case 'GetCreatorOverviewResponseEarnings':
+          return GetCreatorOverviewResponseEarnings.fromJson(value);
+        case 'GetCreatorOverviewResponseItems':
+          return GetCreatorOverviewResponseItems.fromJson(value);
+        case 'GetCreatorOverviewResponseLive':
+          return GetCreatorOverviewResponseLive.fromJson(value);
+        case 'GetCreatorOverviewResponseLock':
+          return GetCreatorOverviewResponseLock.fromJson(value);
+        case 'GetCreatorOverviewResponseReviews':
+          return GetCreatorOverviewResponseReviews.fromJson(value);
+        case 'GetCreatorRewardFormulaResponse':
+          return GetCreatorRewardFormulaResponse.fromJson(value);
+        case 'GetCreatorRewardFormulaResponseData':
+          return GetCreatorRewardFormulaResponseData.fromJson(value);
+        case 'GetCreatorRewardFormulaResponseDataFormula':
+          return GetCreatorRewardFormulaResponseDataFormula.fromJson(value);
+        case 'GetCreatorRewardFormulaResponseDataRules':
+          return GetCreatorRewardFormulaResponseDataRules.fromJson(value);
+        case 'GetCreatorRewardFormulaResponseDataScheduled':
+          return GetCreatorRewardFormulaResponseDataScheduled.fromJson(value);
+        case 'GetCreatorRewardFormulaResponseDataScheduledFormula':
+          return GetCreatorRewardFormulaResponseDataScheduledFormula.fromJson(value);
+        case 'GetCreatorRewardMeResponse':
+          return GetCreatorRewardMeResponse.fromJson(value);
+        case 'GetCreatorRewardMeResponseData':
+          return GetCreatorRewardMeResponseData.fromJson(value);
+        case 'GetCreatorRewardMeResponseDataOneOfExperiences':
+          return GetCreatorRewardMeResponseDataOneOfExperiences.fromJson(value);
+        case 'GetCreatorTemplateResponse':
+          return GetCreatorTemplateResponse.fromJson(value);
+        case 'GetCreatorTemplateResponseData':
+          return GetCreatorTemplateResponseData.fromJson(value);
+        case 'GetCustomerNoteResponse':
+          return GetCustomerNoteResponse.fromJson(value);
         case 'GetCustomerResponse':
           return GetCustomerResponse.fromJson(value);
         case 'GetCustomerResponseContact':
@@ -1855,10 +3789,172 @@ class ApiClient {
           return GetDaoProposalTallyResponseData.fromJson(value);
         case 'GetDepartmentResponse':
           return GetDepartmentResponse.fromJson(value);
+        case 'GetDetectedEventEventResponse':
+          return GetDetectedEventEventResponse.fromJson(value);
+        case 'GetDeveloperAppCertificationResponse':
+          return GetDeveloperAppCertificationResponse.fromJson(value);
+        case 'GetDeveloperAppCertificationResponseData':
+          return GetDeveloperAppCertificationResponseData.fromJson(value);
+        case 'GetDeveloperAppClientVersionResponse':
+          return GetDeveloperAppClientVersionResponse.fromJson(value);
+        case 'GetDeveloperAppConformanceRunResponse':
+          return GetDeveloperAppConformanceRunResponse.fromJson(value);
+        case 'GetDeveloperAppHealthResponse':
+          return GetDeveloperAppHealthResponse.fromJson(value);
+        case 'GetDeveloperAppHealthResponseData':
+          return GetDeveloperAppHealthResponseData.fromJson(value);
+        case 'GetDeveloperAppHealthResponseDataAtlas':
+          return GetDeveloperAppHealthResponseDataAtlas.fromJson(value);
+        case 'GetDeveloperAppHealthResponseDataAtlasConsents':
+          return GetDeveloperAppHealthResponseDataAtlasConsents.fromJson(value);
+        case 'GetDeveloperAppHealthResponseDataAtlasTokenEndpoint':
+          return GetDeveloperAppHealthResponseDataAtlasTokenEndpoint.fromJson(value);
+        case 'GetDeveloperAppHealthResponseDataAtlasTokenEndpointLatestError':
+          return GetDeveloperAppHealthResponseDataAtlasTokenEndpointLatestError.fromJson(value);
+        case 'GetDeveloperAppHealthResponseDataLast24h':
+          return GetDeveloperAppHealthResponseDataLast24h.fromJson(value);
+        case 'GetDeveloperAppHealthResponseDataLast24hByClass':
+          return GetDeveloperAppHealthResponseDataLast24hByClass.fromJson(value);
+        case 'GetDeveloperAppHealthResponseDataRecentFailures':
+          return GetDeveloperAppHealthResponseDataRecentFailures.fromJson(value);
+        case 'GetDeveloperAppHealthResponseDataRetryStorm':
+          return GetDeveloperAppHealthResponseDataRetryStorm.fromJson(value);
+        case 'GetDeveloperAppHealthResponseDataTopErrors':
+          return GetDeveloperAppHealthResponseDataTopErrors.fromJson(value);
+        case 'GetDeveloperAppProfileResponse':
+          return GetDeveloperAppProfileResponse.fromJson(value);
+        case 'GetDeveloperAppProfileResponseData':
+          return GetDeveloperAppProfileResponseData.fromJson(value);
+        case 'GetDeveloperAppReviewResponse':
+          return GetDeveloperAppReviewResponse.fromJson(value);
+        case 'GetDeveloperAppReviewResponseData':
+          return GetDeveloperAppReviewResponseData.fromJson(value);
+        case 'GetDeveloperAppReviewResponseDataHistory':
+          return GetDeveloperAppReviewResponseDataHistory.fromJson(value);
+        case 'GetDeveloperAppReviewResponseDataVerification':
+          return GetDeveloperAppReviewResponseDataVerification.fromJson(value);
+        case 'GetDeveloperAppVerificationResponse':
+          return GetDeveloperAppVerificationResponse.fromJson(value);
+        case 'GetDiscountCodeResponse':
+          return GetDiscountCodeResponse.fromJson(value);
+        case 'GetDiscountCodeShareResponse':
+          return GetDiscountCodeShareResponse.fromJson(value);
+        case 'GetDiscountCodeShareResponseData':
+          return GetDiscountCodeShareResponseData.fromJson(value);
+        case 'GetDiscountHolderResponse':
+          return GetDiscountHolderResponse.fromJson(value);
+        case 'GetDiscountHolderResponseData':
+          return GetDiscountHolderResponseData.fromJson(value);
+        case 'GetDiscountHolderResponseDataChannelsItem':
+          return GetDiscountHolderResponseDataChannelsItemTypeTransformer().decode(value);
+        case 'GetDiscountHolderResponseDataUsage':
+          return GetDiscountHolderResponseDataUsage.fromJson(value);
         case 'GetDropResponse':
           return GetDropResponse.fromJson(value);
         case 'GetDropResponseDrop':
           return GetDropResponseDrop.fromJson(value);
+        case 'GetEventAnalyticResponse':
+          return GetEventAnalyticResponse.fromJson(value);
+        case 'GetEventAnalyticResponseData':
+          return GetEventAnalyticResponseData.fromJson(value);
+        case 'GetEventPolicyResponse':
+          return GetEventPolicyResponse.fromJson(value);
+        case 'GetEventPolicyResponseData':
+          return GetEventPolicyResponseData.fromJson(value);
+        case 'GetEventPolicyResponseDataMatrix':
+          return GetEventPolicyResponseDataMatrix.fromJson(value);
+        case 'GetEventPolicyResponseDataMatrixAllowedItem':
+          return GetEventPolicyResponseDataMatrixAllowedItemTypeTransformer().decode(value);
+        case 'GetEventPolicyResponseDataMatrixEffective':
+          return GetEventPolicyResponseDataMatrixEffective.fromJson(value);
+        case 'GetEventPolicyResponseDataPlatforms':
+          return GetEventPolicyResponseDataPlatforms.fromJson(value);
+        case 'GetEventPolicyResponseDataRules':
+          return GetEventPolicyResponseDataRules.fromJson(value);
+        case 'GetFundingControlResponse':
+          return GetFundingControlResponse.fromJson(value);
+        case 'GetFundingControlResponseData':
+          return GetFundingControlResponseData.fromJson(value);
+        case 'GetFundingControlResponseDataEffectiveUsesItem':
+          return GetFundingControlResponseDataEffectiveUsesItemTypeTransformer().decode(value);
+        case 'GetFundingControlResponseDataPolicy':
+          return GetFundingControlResponseDataPolicy.fromJson(value);
+        case 'GetFundingControlResponseDataPolicyAllowedUsesItem':
+          return GetFundingControlResponseDataPolicyAllowedUsesItemTypeTransformer().decode(value);
+        case 'GetFundingControlResponseDataPool':
+          return GetFundingControlResponseDataPool.fromJson(value);
+        case 'GetFundingControlResponseDataUses':
+          return GetFundingControlResponseDataUses.fromJson(value);
+        case 'GetFundingDrawInvoiceResponse':
+          return GetFundingDrawInvoiceResponse.fromJson(value);
+        case 'GetFundingDrawInvoiceResponseData':
+          return GetFundingDrawInvoiceResponseData.fromJson(value);
+        case 'GetFundingDrawResponse':
+          return GetFundingDrawResponse.fromJson(value);
+        case 'GetFundingLineResponse':
+          return GetFundingLineResponse.fromJson(value);
+        case 'GetFundingLineResponseData':
+          return GetFundingLineResponseData.fromJson(value);
+        case 'GetFundingLineResponseDataLine':
+          return GetFundingLineResponseDataLine.fromJson(value);
+        case 'GetFundingLineResponseDataNextDue':
+          return GetFundingLineResponseDataNextDue.fromJson(value);
+        case 'GetFundingLineResponseDataOverdue':
+          return GetFundingLineResponseDataOverdue.fromJson(value);
+        case 'GetFundingLineResponseDataSchedule':
+          return GetFundingLineResponseDataSchedule.fromJson(value);
+        case 'GetFundingOfferResponse':
+          return GetFundingOfferResponse.fromJson(value);
+        case 'GetFundingOfferResponseData':
+          return GetFundingOfferResponseData.fromJson(value);
+        case 'GetFundingOfferResponseDataCriteria':
+          return GetFundingOfferResponseDataCriteria.fromJson(value);
+        case 'GetFundingOfferResponseDataLatestApplication':
+          return GetFundingOfferResponseDataLatestApplication.fromJson(value);
+        case 'GetFundingPoolResponse':
+          return GetFundingPoolResponse.fromJson(value);
+        case 'GetFundingSpendableResponse':
+          return GetFundingSpendableResponse.fromJson(value);
+        case 'GetFundingSpendableResponseData':
+          return GetFundingSpendableResponseData.fromJson(value);
+        case 'GetFundingSpendableResponseDataUses':
+          return GetFundingSpendableResponseDataUses.fromJson(value);
+        case 'GetFundingStatementResponse':
+          return GetFundingStatementResponse.fromJson(value);
+        case 'GetFundingStatementResponseData':
+          return GetFundingStatementResponseData.fromJson(value);
+        case 'GetFundingStatementResponseDataOneOf1Line':
+          return GetFundingStatementResponseDataOneOf1Line.fromJson(value);
+        case 'GetFundingStatementResponseDataOneOf1Statement':
+          return GetFundingStatementResponseDataOneOf1Statement.fromJson(value);
+        case 'GetFundingStatementResponseDataOneOf1StatementMovements':
+          return GetFundingStatementResponseDataOneOf1StatementMovements.fromJson(value);
+        case 'GetGameEventSummaryResponse':
+          return GetGameEventSummaryResponse.fromJson(value);
+        case 'GetGameEventSummaryResponseData':
+          return GetGameEventSummaryResponseData.fromJson(value);
+        case 'GetGameEventSummaryResponseDataOneOfPlace':
+          return GetGameEventSummaryResponseDataOneOfPlace.fromJson(value);
+        case 'GetGameEventSummaryResponseDataOneOfRewards':
+          return GetGameEventSummaryResponseDataOneOfRewards.fromJson(value);
+        case 'GetGameEventSummaryResponseDataOneOfRules':
+          return GetGameEventSummaryResponseDataOneOfRules.fromJson(value);
+        case 'GetGameEventSummaryResponseDataOneOfWinners':
+          return GetGameEventSummaryResponseDataOneOfWinners.fromJson(value);
+        case 'GetGameHuntBuildResponse':
+          return GetGameHuntBuildResponse.fromJson(value);
+        case 'GetGameHuntBuildResponseData':
+          return GetGameHuntBuildResponseData.fromJson(value);
+        case 'GetGameHuntBuildResponseDataDoc':
+          return GetGameHuntBuildResponseDataDoc.fromJson(value);
+        case 'GetGameHuntBuildResponseDataDocObjects':
+          return GetGameHuntBuildResponseDataDocObjects.fromJson(value);
+        case 'GetGameHuntBuildResponseDataPlace':
+          return GetGameHuntBuildResponseDataPlace.fromJson(value);
+        case 'GetGameHuntBuildResponseDataProblemsItem':
+          return GetGameHuntBuildResponseDataProblemsItem.fromJson(value);
+        case 'GetGameHuntBuildResponseDataRewardsItem':
+          return GetGameHuntBuildResponseDataRewardsItem.fromJson(value);
         case 'GetGameLeaderboardResponse':
           return GetGameLeaderboardResponse.fromJson(value);
         case 'GetGameLeaderboardResponseData':
@@ -1867,12 +3963,32 @@ class ApiClient {
           return GetGameLeaderboardResponseDataWeek.fromJson(value);
         case 'GetGenderResponse':
           return GetGenderResponse.fromJson(value);
+        case 'GetGradingPriceBookResponse':
+          return GetGradingPriceBookResponse.fromJson(value);
+        case 'GetGradingPriceBookResponseGraders':
+          return GetGradingPriceBookResponseGraders.fromJson(value);
         case 'GetGradingWorthResponse':
           return GetGradingWorthResponse.fromJson(value);
         case 'GetGradingWorthResponseWorth':
           return GetGradingWorthResponseWorth.fromJson(value);
         case 'GetGradingWorthResponseWorthGraders':
           return GetGradingWorthResponseWorthGraders.fromJson(value);
+        case 'GetGroupBuyResponse':
+          return GetGroupBuyResponse.fromJson(value);
+        case 'GetGroupBuyResponseData':
+          return GetGroupBuyResponseData.fromJson(value);
+        case 'GetGroupBuyResponseDataEvents':
+          return GetGroupBuyResponseDataEvents.fromJson(value);
+        case 'GetGroupBuyResponseDataNext':
+          return GetGroupBuyResponseDataNext.fromJson(value);
+        case 'GetGroupBuyResponseDataParticipants':
+          return GetGroupBuyResponseDataParticipants.fromJson(value);
+        case 'GetGroupBuyResponseDataPlacement':
+          return GetGroupBuyResponseDataPlacement.fromJson(value);
+        case 'GetGroupBuyResponseDataProgress':
+          return GetGroupBuyResponseDataProgress.fromJson(value);
+        case 'GetGroupBuyResponseDataTiers':
+          return GetGroupBuyResponseDataTiers.fromJson(value);
         case 'GetHomeResponse':
           return GetHomeResponse.fromJson(value);
         case 'GetHomeResponseDecor':
@@ -1893,6 +4009,10 @@ class ApiClient {
           return GetHomeResponseLayoutRef.fromJson(value);
         case 'GetHomeResponsePinCase':
           return GetHomeResponsePinCase.fromJson(value);
+        case 'GetHomeResponsePullsShelf':
+          return GetHomeResponsePullsShelf.fromJson(value);
+        case 'GetHomeResponsePullsShelfItems':
+          return GetHomeResponsePullsShelfItems.fromJson(value);
         case 'GetHomeResponseRoom':
           return GetHomeResponseRoom.fromJson(value);
         case 'GetHomeResponseRoomFloor':
@@ -1907,6 +4027,12 @@ class ApiClient {
           return GetHomeResponseVaultWall.fromJson(value);
         case 'GetHomeResponseVaultWallUnits':
           return GetHomeResponseVaultWallUnits.fromJson(value);
+        case 'GetHubSetupResponse':
+          return GetHubSetupResponse.fromJson(value);
+        case 'GetHubSetupResponseData':
+          return GetHubSetupResponseData.fromJson(value);
+        case 'GetHubSetupResponseDataSteps':
+          return GetHubSetupResponseDataSteps.fromJson(value);
         case 'GetImportSiteResponse':
           return GetImportSiteResponse.fromJson(value);
         case 'GetImportSiteResponseData':
@@ -1919,18 +4045,20 @@ class ApiClient {
           return GetInboxConversationMessageResponse.fromJson(value);
         case 'GetInboxConversationMessageResponseMessages':
           return GetInboxConversationMessageResponseMessages.fromJson(value);
+        case 'GetInboxCountResponse':
+          return GetInboxCountResponse.fromJson(value);
+        case 'GetInboxCountResponseNeedsReply':
+          return GetInboxCountResponseNeedsReply.fromJson(value);
+        case 'GetInboxCountResponseUnread':
+          return GetInboxCountResponseUnread.fromJson(value);
         case 'GetInboxResponse':
           return GetInboxResponse.fromJson(value);
-        case 'GetInboxResponseMessages':
-          return GetInboxResponseMessages.fromJson(value);
         case 'GetInventoryAgingResponse':
           return GetInventoryAgingResponse.fromJson(value);
         case 'GetInventoryAgingResponseData':
           return GetInventoryAgingResponseData.fromJson(value);
         case 'GetInventoryAgingResponseDataBuckets':
           return GetInventoryAgingResponseDataBuckets.fromJson(value);
-        case 'GetInventoryAgingResponseDataWorst':
-          return GetInventoryAgingResponseDataWorst.fromJson(value);
         case 'GetInventoryCatalogMatchResponse':
           return GetInventoryCatalogMatchResponse.fromJson(value);
         case 'GetInventoryCatalogMatchResponseSuggestions':
@@ -1945,8 +4073,8 @@ class ApiClient {
           return GetInventoryResponse.fromJson(value);
         case 'GetInventoryResponsePlatformListings':
           return GetInventoryResponsePlatformListings.fromJson(value);
-        case 'GetInventoryResponsePlatformListingsDigitalFile':
-          return GetInventoryResponsePlatformListingsDigitalFile.fromJson(value);
+        case 'GetInventoryResponsePlatformListingsBundlePromo':
+          return GetInventoryResponsePlatformListingsBundlePromo.fromJson(value);
         case 'GetInventoryResponsePlatformListingsMeasurements':
           return GetInventoryResponsePlatformListingsMeasurements.fromJson(value);
         case 'GetInventoryResponsePlatformListingsPersonalization':
@@ -1957,44 +4085,104 @@ class ApiClient {
           return GetInventorySellThroughResponseData.fromJson(value);
         case 'GetInventorySellThroughResponseDataComparison':
           return GetInventorySellThroughResponseDataComparison.fromJson(value);
-        case 'GetInventorySellThroughResponseDataWindow':
-          return GetInventorySellThroughResponseDataWindow.fromJson(value);
+        case 'GetInventorySellThroughResponseDataCurrent':
+          return GetInventorySellThroughResponseDataCurrent.fromJson(value);
         case 'GetInventoryValueHistoryResponse':
           return GetInventoryValueHistoryResponse.fromJson(value);
         case 'GetInventoryValueHistoryResponseData':
           return GetInventoryValueHistoryResponseData.fromJson(value);
         case 'GetInventoryValueHistoryResponseDataPoints':
           return GetInventoryValueHistoryResponseDataPoints.fromJson(value);
+        case 'GetListingAdListingItem':
+          return GetListingAdListingItem.fromJson(value);
+        case 'GetListingAdListingResponse':
+          return GetListingAdListingResponse.fromJson(value);
         case 'GetListingFacetResponse':
           return GetListingFacetResponse.fromJson(value);
+        case 'GetListingManagementResponse':
+          return GetListingManagementResponse.fromJson(value);
+        case 'GetListingManagementResponseData':
+          return GetListingManagementResponseData.fromJson(value);
+        case 'GetListingPlatformRecloneResponse':
+          return GetListingPlatformRecloneResponse.fromJson(value);
+        case 'GetListingPlatformRecloneResponseData':
+          return GetListingPlatformRecloneResponseData.fromJson(value);
         case 'GetListingResponse':
           return GetListingResponse.fromJson(value);
         case 'GetListingResponsePlatformListings':
           return GetListingResponsePlatformListings.fromJson(value);
+        case 'GetListingResponsePlatformListingsUnmatchedSale':
+          return GetListingResponsePlatformListingsUnmatchedSale.fromJson(value);
         case 'GetListingSkuExistResponse':
           return GetListingSkuExistResponse.fromJson(value);
         case 'GetListingVariationGroupResponse':
           return GetListingVariationGroupResponse.fromJson(value);
         case 'GetListingVariationGroupResponseGroup':
           return GetListingVariationGroupResponseGroup.fromJson(value);
+        case 'GetLiveStreamRecapResponse':
+          return GetLiveStreamRecapResponse.fromJson(value);
+        case 'GetLiveStreamRecapResponseData':
+          return GetLiveStreamRecapResponseData.fromJson(value);
+        case 'GetLookbookDesignResponse':
+          return GetLookbookDesignResponse.fromJson(value);
+        case 'GetLookbookDesignResponseData':
+          return GetLookbookDesignResponseData.fromJson(value);
+        case 'GetLookbookDesignResponseDataDesign':
+          return GetLookbookDesignResponseDataDesign.fromJson(value);
+        case 'GetLookbookDesignResponseDataDesignPages':
+          return GetLookbookDesignResponseDataDesignPages.fromJson(value);
         case 'GetLoyaltyClubResponse':
           return GetLoyaltyClubResponse.fromJson(value);
         case 'GetLoyaltyClubResponseData':
           return GetLoyaltyClubResponseData.fromJson(value);
         case 'GetLoyaltyClubResponseDataTiers':
           return GetLoyaltyClubResponseDataTiers.fromJson(value);
+        case 'GetLoyaltyProgramMemberResponse':
+          return GetLoyaltyProgramMemberResponse.fromJson(value);
+        case 'GetLoyaltyProgramMemberResponseData':
+          return GetLoyaltyProgramMemberResponseData.fromJson(value);
+        case 'GetLoyaltyProgramMemberResponseDataEvents':
+          return GetLoyaltyProgramMemberResponseDataEvents.fromJson(value);
+        case 'GetLoyaltyProgramMemberResponseDataGrants':
+          return GetLoyaltyProgramMemberResponseDataGrants.fromJson(value);
+        case 'GetLoyaltyProgramMemberResponseDataNext':
+          return GetLoyaltyProgramMemberResponseDataNext.fromJson(value);
+        case 'GetLoyaltyProgramMemberResponseDataOverride':
+          return GetLoyaltyProgramMemberResponseDataOverride.fromJson(value);
+        case 'GetLoyaltyProgramMemberResponseDataStanding':
+          return GetLoyaltyProgramMemberResponseDataStanding.fromJson(value);
+        case 'GetLoyaltyProgramMemberResponseDataTier':
+          return GetLoyaltyProgramMemberResponseDataTier.fromJson(value);
+        case 'GetLoyaltyProgramResponse':
+          return GetLoyaltyProgramResponse.fromJson(value);
+        case 'GetLoyaltyProgramResponseData':
+          return GetLoyaltyProgramResponseData.fromJson(value);
+        case 'GetLoyaltyProgramResponseDataPaidMembership':
+          return GetLoyaltyProgramResponseDataPaidMembership.fromJson(value);
+        case 'GetLoyaltyProgramResponseDataTiers':
+          return GetLoyaltyProgramResponseDataTiers.fromJson(value);
+        case 'GetMagicAutoSettingResponse':
+          return GetMagicAutoSettingResponse.fromJson(value);
         case 'GetMagicDraftResponse':
           return GetMagicDraftResponse.fromJson(value);
         case 'GetMagicDraftResponseDraft':
           return GetMagicDraftResponseDraft.fromJson(value);
         case 'GetMainStageResponse':
           return GetMainStageResponse.fromJson(value);
+        case 'GetMainStageResponseHouse':
+          return GetMainStageResponseHouse.fromJson(value);
+        case 'GetMainStageResponseHouseNext':
+          return GetMainStageResponseHouseNext.fromJson(value);
+        case 'GetMainStageResponseHouseNow':
+          return GetMainStageResponseHouseNow.fromJson(value);
         case 'GetMainStageResponseLive':
           return GetMainStageResponseLive.fromJson(value);
         case 'GetMainStageResponseLiveLineup':
           return GetMainStageResponseLiveLineup.fromJson(value);
         case 'GetMainStageResponseStream':
           return GetMainStageResponseStream.fromJson(value);
+        case 'GetMainStageResponseStreamLot':
+          return GetMainStageResponseStreamLot.fromJson(value);
         case 'GetMainStageResponseUpcoming':
           return GetMainStageResponseUpcoming.fromJson(value);
         case 'GetMarketMetalSpotHistoryResponse':
@@ -2047,8 +4235,12 @@ class ApiClient {
           return GetMeTemplateSuggestResponse.fromJson(value);
         case 'GetMembershipResponse':
           return GetMembershipResponse.fromJson(value);
+        case 'GetMembershipResponseBenefits':
+          return GetMembershipResponseBenefits.fromJson(value);
         case 'GetMileageSummaryResponse':
           return GetMileageSummaryResponse.fromJson(value);
+        case 'GetMileageSummaryResponseRates':
+          return GetMileageSummaryResponseRates.fromJson(value);
         case 'GetNeighbourhoodResponse':
           return GetNeighbourhoodResponse.fromJson(value);
         case 'GetNetworkPoolResponse':
@@ -2069,6 +4261,10 @@ class ApiClient {
           return GetOfferResponseOffers.fromJson(value);
         case 'GetOrderCancelEligibilityResponse':
           return GetOrderCancelEligibilityResponse.fromJson(value);
+        case 'GetOrderDeliveryPhotoResponse':
+          return GetOrderDeliveryPhotoResponse.fromJson(value);
+        case 'GetOrderDeliveryPhotoResponseData':
+          return GetOrderDeliveryPhotoResponseData.fromJson(value);
         case 'GetOrderEvidenceResponse':
           return GetOrderEvidenceResponse.fromJson(value);
         case 'GetOrderEvidenceResponseData':
@@ -2095,22 +4291,62 @@ class ApiClient {
           return GetOrderEvidenceResponseDataSealSeals.fromJson(value);
         case 'GetOrderEvidenceResponseDataUnits':
           return GetOrderEvidenceResponseDataUnits.fromJson(value);
+        case 'GetOrderOrderChatResponse':
+          return GetOrderOrderChatResponse.fromJson(value);
+        case 'GetOrderOrderChatResponseMessages':
+          return GetOrderOrderChatResponseMessages.fromJson(value);
+        case 'GetOrderPlatformLabelOptionResponse':
+          return GetOrderPlatformLabelOptionResponse.fromJson(value);
+        case 'GetOrderPlatformLabelOptionResponseOneOf1Services':
+          return GetOrderPlatformLabelOptionResponseOneOf1Services.fromJson(value);
+        case 'GetOrderPlatformLabelOptionResponseOneOfTiers':
+          return GetOrderPlatformLabelOptionResponseOneOfTiers.fromJson(value);
         case 'GetOrderProofOfDeliveryResponse':
           return GetOrderProofOfDeliveryResponse.fromJson(value);
         case 'GetOrderProofOfDeliveryResponseScans':
           return GetOrderProofOfDeliveryResponseScans.fromJson(value);
+        case 'GetOrderRefundOptionResponse':
+          return GetOrderRefundOptionResponse.fromJson(value);
+        case 'GetOrderResponse':
+          return GetOrderResponse.fromJson(value);
+        case 'GetOrderResponseAppShare':
+          return GetOrderResponseAppShare.fromJson(value);
+        case 'GetOrderResponseLineItems':
+          return GetOrderResponseLineItems.fromJson(value);
+        case 'GetOrderResponseTrackingHistory':
+          return GetOrderResponseTrackingHistory.fromJson(value);
+        case 'GetOrderResponseTrade':
+          return GetOrderResponseTrade.fromJson(value);
+        case 'GetOrderSalesTaxResponse':
+          return GetOrderSalesTaxResponse.fromJson(value);
         case 'GetOrderScanFormResponse':
           return GetOrderScanFormResponse.fromJson(value);
         case 'GetOrderShipmentResponse':
           return GetOrderShipmentResponse.fromJson(value);
         case 'GetOrderShipmentResponseData':
           return GetOrderShipmentResponseData.fromJson(value);
-        case 'GetOrderWhatnotPackingSlipResponse':
-          return GetOrderWhatnotPackingSlipResponse.fromJson(value);
+        case 'GetOrderWhatnotShipmentResponse':
+          return GetOrderWhatnotShipmentResponse.fromJson(value);
+        case 'GetOrderWhatnotShipmentResponseShipment':
+          return GetOrderWhatnotShipmentResponseShipment.fromJson(value);
+        case 'GetOrderWhatnotShipmentResponseShipmentDimensionsIn':
+          return GetOrderWhatnotShipmentResponseShipmentDimensionsIn.fromJson(value);
+        case 'GetPassportPrintResponse':
+          return GetPassportPrintResponse.fromJson(value);
+        case 'GetPassportPrintResponseData':
+          return GetPassportPrintResponseData.fromJson(value);
+        case 'GetPassportResponse':
+          return GetPassportResponse.fromJson(value);
+        case 'GetPassportResponseData':
+          return GetPassportResponseData.fromJson(value);
+        case 'GetPassportResponseDataItem':
+          return GetPassportResponseDataItem.fromJson(value);
+        case 'GetPassportResponseDataListings':
+          return GetPassportResponseDataListings.fromJson(value);
+        case 'GetPassportResponseDataScans':
+          return GetPassportResponseDataScans.fromJson(value);
         case 'GetPatScopeResponse':
           return GetPatScopeResponse.fromJson(value);
-        case 'GetPatScopeResponseScopes':
-          return GetPatScopeResponseScopes.fromJson(value);
         case 'GetPatternResponse':
           return GetPatternResponse.fromJson(value);
         case 'GetPayoutConnectResponse':
@@ -2123,6 +4359,32 @@ class ApiClient {
           return GetPayoutGrossForNetResponse.fromJson(value);
         case 'GetPayoutGrossForNetResponseData':
           return GetPayoutGrossForNetResponseData.fromJson(value);
+        case 'GetPayoutIdentityResponse':
+          return GetPayoutIdentityResponse.fromJson(value);
+        case 'GetPayoutIdentityResponseData':
+          return GetPayoutIdentityResponseData.fromJson(value);
+        case 'GetPayoutIdentityResponseDataDueNow':
+          return GetPayoutIdentityResponseDataDueNow.fromJson(value);
+        case 'GetPayoutIdentityResponseDataErrors':
+          return GetPayoutIdentityResponseDataErrors.fromJson(value);
+        case 'GetPayoutWalletResponse':
+          return GetPayoutWalletResponse.fromJson(value);
+        case 'GetPayoutWalletResponseData':
+          return GetPayoutWalletResponseData.fromJson(value);
+        case 'GetPayoutWalletResponseDataOneOf1Balance':
+          return GetPayoutWalletResponseDataOneOf1Balance.fromJson(value);
+        case 'GetPayoutWalletResponseDataOneOf1Instant':
+          return GetPayoutWalletResponseDataOneOf1Instant.fromJson(value);
+        case 'GetPayoutWalletResponseDataOneOf1Methods':
+          return GetPayoutWalletResponseDataOneOf1Methods.fromJson(value);
+        case 'GetPayoutWalletResponseDataOneOf1NextPayout':
+          return GetPayoutWalletResponseDataOneOf1NextPayout.fromJson(value);
+        case 'GetPayoutWalletResponseDataOneOf1Schedule':
+          return GetPayoutWalletResponseDataOneOf1Schedule.fromJson(value);
+        case 'GetPayoutWalletResponseDataOneOf1Status':
+          return GetPayoutWalletResponseDataOneOf1Status.fromJson(value);
+        case 'GetPayoutWalletResponseDataOneOf1Transactions':
+          return GetPayoutWalletResponseDataOneOf1Transactions.fromJson(value);
         case 'GetPetMineResponse':
           return GetPetMineResponse.fromJson(value);
         case 'GetPetMineResponsePets':
@@ -2135,6 +4397,10 @@ class ApiClient {
           return GetPlatformLimitResponseEbaySellingCap.fromJson(value);
         case 'GetPlatformLimitResponseEtsy':
           return GetPlatformLimitResponseEtsy.fromJson(value);
+        case 'GetPolicyResponse':
+          return GetPolicyResponse.fromJson(value);
+        case 'GetPolicyResponseShipping':
+          return GetPolicyResponseShipping.fromJson(value);
         case 'GetPricingSettingResponse':
           return GetPricingSettingResponse.fromJson(value);
         case 'GetPricingSettingResponseData':
@@ -2143,6 +4409,14 @@ class ApiClient {
           return GetPricingSoldCompResponse.fromJson(value);
         case 'GetPricingSoldCompResponseData':
           return GetPricingSoldCompResponseData.fromJson(value);
+        case 'GetProductFeedReportResponse':
+          return GetProductFeedReportResponse.fromJson(value);
+        case 'GetProductFeedReportResponseItems':
+          return GetProductFeedReportResponseItems.fromJson(value);
+        case 'GetProductFeedReportResponseSample':
+          return GetProductFeedReportResponseSample.fromJson(value);
+        case 'GetProductFeedReportResponseStats':
+          return GetProductFeedReportResponseStats.fromJson(value);
         case 'GetProductionBallotResponse':
           return GetProductionBallotResponse.fromJson(value);
         case 'GetProductionBallotResponseBallot':
@@ -2185,6 +4459,80 @@ class ApiClient {
           return GetProductionRunResponse.fromJson(value);
         case 'GetProductionRunResponseRuns':
           return GetProductionRunResponseRuns.fromJson(value);
+        case 'GetPublicCreatorRewardReconciliationResponse':
+          return GetPublicCreatorRewardReconciliationResponse.fromJson(value);
+        case 'GetPublicCreatorRewardReconciliationResponseData':
+          return GetPublicCreatorRewardReconciliationResponseData.fromJson(value);
+        case 'GetPublicCreatorRewardReconciliationResponseDataInForce':
+          return GetPublicCreatorRewardReconciliationResponseDataInForce.fromJson(value);
+        case 'GetPublicCreatorRewardReconciliationResponseDataMonths':
+          return GetPublicCreatorRewardReconciliationResponseDataMonths.fromJson(value);
+        case 'GetPublicCreatorRewardReconciliationResponseDataMonthsFormula':
+          return GetPublicCreatorRewardReconciliationResponseDataMonthsFormula.fromJson(value);
+        case 'GetPublicCreatorRewardReconciliationResponseDataTotals':
+          return GetPublicCreatorRewardReconciliationResponseDataTotals.fromJson(value);
+        case 'GetPublicTemplateResponse':
+          return GetPublicTemplateResponse.fromJson(value);
+        case 'GetPublicTemplateResponseTemplate':
+          return GetPublicTemplateResponseTemplate.fromJson(value);
+        case 'GetReferencePostalResponse':
+          return GetReferencePostalResponse.fromJson(value);
+        case 'GetRentalCalendarResponse':
+          return GetRentalCalendarResponse.fromJson(value);
+        case 'GetRentalCalendarResponseData':
+          return GetRentalCalendarResponseData.fromJson(value);
+        case 'GetRentalCalendarResponseDataItems':
+          return GetRentalCalendarResponseDataItems.fromJson(value);
+        case 'GetRentalResponse':
+          return GetRentalResponse.fromJson(value);
+        case 'GetRentalResponseData':
+          return GetRentalResponseData.fromJson(value);
+        case 'GetRentalResponseDataBuyout':
+          return GetRentalResponseDataBuyout.fromJson(value);
+        case 'GetRentalResponseDataCancellation':
+          return GetRentalResponseDataCancellation.fromJson(value);
+        case 'GetRentalResponseDataCancellationTiers':
+          return GetRentalResponseDataCancellationTiers.fromJson(value);
+        case 'GetRentalResponseDataEvents':
+          return GetRentalResponseDataEvents.fromJson(value);
+        case 'GetRentalResponseDataExtension':
+          return GetRentalResponseDataExtension.fromJson(value);
+        case 'GetRentalResponseDataExtensions':
+          return GetRentalResponseDataExtensions.fromJson(value);
+        case 'GetRentalResponseDataPayments':
+          return GetRentalResponseDataPayments.fromJson(value);
+        case 'GetRentalResponseDataShipping':
+          return GetRentalResponseDataShipping.fromJson(value);
+        case 'GetRentalResponseDataTimeline':
+          return GetRentalResponseDataTimeline.fromJson(value);
+        case 'GetRentalSettingResponse':
+          return GetRentalSettingResponse.fromJson(value);
+        case 'GetRentalSettingResponseData':
+          return GetRentalSettingResponseData.fromJson(value);
+        case 'GetRentalSettingResponseDataDefaults':
+          return GetRentalSettingResponseDataDefaults.fromJson(value);
+        case 'GetRentalSettingResponseDataDefaultsBuyout':
+          return GetRentalSettingResponseDataDefaultsBuyout.fromJson(value);
+        case 'GetRentalSettingResponseDataDefaultsCancellation':
+          return GetRentalSettingResponseDataDefaultsCancellation.fromJson(value);
+        case 'GetRentalSettingResponseDataDefaultsDamageWaiver':
+          return GetRentalSettingResponseDataDefaultsDamageWaiver.fromJson(value);
+        case 'GetRentalSettingResponseDataDefaultsDeposit':
+          return GetRentalSettingResponseDataDefaultsDeposit.fromJson(value);
+        case 'GetRentalSettingResponseDataDefaultsExtensions':
+          return GetRentalSettingResponseDataDefaultsExtensions.fromJson(value);
+        case 'GetRentalSettingResponseDataDefaultsLastMinute':
+          return GetRentalSettingResponseDataDefaultsLastMinute.fromJson(value);
+        case 'GetRentalSettingResponseDataDefaultsLateEscalation':
+          return GetRentalSettingResponseDataDefaultsLateEscalation.fromJson(value);
+        case 'GetRentalSettingResponseDataDefaultsLengthDiscounts':
+          return GetRentalSettingResponseDataDefaultsLengthDiscounts.fromJson(value);
+        case 'GetRentalSettingResponseDataDefaultsPhotosOut':
+          return GetRentalSettingResponseDataDefaultsPhotosOut.fromJson(value);
+        case 'GetRentalSettingResponseDataDefaultsPickup':
+          return GetRentalSettingResponseDataDefaultsPickup.fromJson(value);
+        case 'GetRentalSettingResponseDataDefaultsSeasonal':
+          return GetRentalSettingResponseDataDefaultsSeasonal.fromJson(value);
         case 'GetReputationMineResponse':
           return GetReputationMineResponse.fromJson(value);
         case 'GetReputationMineResponseTop':
@@ -2203,14 +4551,80 @@ class ApiClient {
           return GetReputationResponse.fromJson(value);
         case 'GetReputationResponseLevels':
           return GetReputationResponseLevels.fromJson(value);
+        case 'GetRestockPromptSettingResponse':
+          return GetRestockPromptSettingResponse.fromJson(value);
+        case 'GetReturnResponse':
+          return GetReturnResponse.fromJson(value);
+        case 'GetSandboxResponse':
+          return GetSandboxResponse.fromJson(value);
+        case 'GetSandboxResponseSeller':
+          return GetSandboxResponseSeller.fromJson(value);
+        case 'GetSandboxResponseSimulate':
+          return GetSandboxResponseSimulate.fromJson(value);
+        case 'GetSandboxResponseSimulateValuesItem':
+          return GetSandboxResponseSimulateValuesItemTypeTransformer().decode(value);
+        case 'GetSearchResponse':
+          return GetSearchResponse.fromJson(value);
+        case 'GetSearchResponseGroups':
+          return GetSearchResponseGroups.fromJson(value);
+        case 'GetSearchResponseParsed':
+          return GetSearchResponseParsed.fromJson(value);
+        case 'GetSearchResponseParsedTypesItem':
+          return GetSearchResponseParsedTypesItemTypeTransformer().decode(value);
+        case 'GetSearchResponseTop':
+          return GetSearchResponseTop.fromJson(value);
+        case 'GetShopLimitResponse':
+          return GetShopLimitResponse.fromJson(value);
+        case 'GetShopLimitResponseData':
+          return GetShopLimitResponseData.fromJson(value);
+        case 'GetShopLimitResponseDataAppSpace':
+          return GetShopLimitResponseDataAppSpace.fromJson(value);
+        case 'GetShopLimitResponseDataPendingRequest':
+          return GetShopLimitResponseDataPendingRequest.fromJson(value);
+        case 'GetShopLimitResponseDataSource':
+          return GetShopLimitResponseDataSource.fromJson(value);
+        case 'GetShopLimitResponseDataStores':
+          return GetShopLimitResponseDataStores.fromJson(value);
         case 'GetShopListingProvenanceResponse':
           return GetShopListingProvenanceResponse.fromJson(value);
         case 'GetShopListingProvenanceResponseProvenance':
           return GetShopListingProvenanceResponseProvenance.fromJson(value);
         case 'GetShopListingProvenanceResponseProvenanceStories':
           return GetShopListingProvenanceResponseProvenanceStories.fromJson(value);
+        case 'GetShowroomBillingResponse':
+          return GetShowroomBillingResponse.fromJson(value);
+        case 'GetShowroomBillingResponseData':
+          return GetShowroomBillingResponseData.fromJson(value);
+        case 'GetShowroomCatalogResponse':
+          return GetShowroomCatalogResponse.fromJson(value);
+        case 'GetShowroomCatalogResponseData':
+          return GetShowroomCatalogResponseData.fromJson(value);
+        case 'GetShowroomCatalogResponseDataFixtures':
+          return GetShowroomCatalogResponseDataFixtures.fromJson(value);
+        case 'GetShowroomCatalogResponseDataHolders':
+          return GetShowroomCatalogResponseDataHolders.fromJson(value);
+        case 'GetShowroomCatalogResponseDataHoldersFitsItem':
+          return GetShowroomCatalogResponseDataHoldersFitsItemTypeTransformer().decode(value);
+        case 'GetShowroomCatalogResponseDataSizes':
+          return GetShowroomCatalogResponseDataSizes.fromJson(value);
+        case 'GetShowroomPlacementResponse':
+          return GetShowroomPlacementResponse.fromJson(value);
+        case 'GetShowroomPlacementResponseData':
+          return GetShowroomPlacementResponseData.fromJson(value);
+        case 'GetShowroomPlacementResponseDataAvailable':
+          return GetShowroomPlacementResponseDataAvailable.fromJson(value);
+        case 'GetShowroomResponse':
+          return GetShowroomResponse.fromJson(value);
+        case 'GetShowroomResponseData':
+          return GetShowroomResponseData.fromJson(value);
+        case 'GetShowroomResponseDataRoom':
+          return GetShowroomResponseDataRoom.fromJson(value);
+        case 'GetShowroomResponseDataRoomProps':
+          return GetShowroomResponseDataRoomProps.fromJson(value);
         case 'GetSizeSystemResponse':
           return GetSizeSystemResponse.fromJson(value);
+        case 'GetSourceSyncLocationResponse':
+          return GetSourceSyncLocationResponse.fromJson(value);
         case 'GetSourcingReceiptResponse':
           return GetSourcingReceiptResponse.fromJson(value);
         case 'GetSpatialAddressResponse':
@@ -2271,6 +4685,8 @@ class ApiClient {
           return GetSpatialPropertyResponseDataDeedsLease.fromJson(value);
         case 'GetSpatialPropertyResponseDataDeedsListing':
           return GetSpatialPropertyResponseDataDeedsListing.fromJson(value);
+        case 'GetSpatialPropertyResponseDataTenancies':
+          return GetSpatialPropertyResponseDataTenancies.fromJson(value);
         case 'GetSpatialPublicResponse':
           return GetSpatialPublicResponse.fromJson(value);
         case 'GetSpatialPublicResponseData':
@@ -2363,8 +4779,6 @@ class ApiClient {
           return GetSpatialShopNeighbourhoodResponseData.fromJson(value);
         case 'GetSpatialShopNeighbourhoodResponseDataOneOf1Home':
           return GetSpatialShopNeighbourhoodResponseDataOneOf1Home.fromJson(value);
-        case 'GetSpatialShopNeighbourhoodResponseDataOneOf1Move':
-          return GetSpatialShopNeighbourhoodResponseDataOneOf1Move.fromJson(value);
         case 'GetSpatialShopNeighbourhoodResponseDataOneOf1Shop':
           return GetSpatialShopNeighbourhoodResponseDataOneOf1Shop.fromJson(value);
         case 'GetSpatialShopStaffResponse':
@@ -2401,6 +4815,8 @@ class ApiClient {
           return GetSpatialStreetPlotQuoteResponse.fromJson(value);
         case 'GetSpatialStreetPlotQuoteResponseData':
           return GetSpatialStreetPlotQuoteResponseData.fromJson(value);
+        case 'GetSpatialStreetPlotQuoteResponseDataClaim':
+          return GetSpatialStreetPlotQuoteResponseDataClaim.fromJson(value);
         case 'GetSpatialStreetResponse':
           return GetSpatialStreetResponse.fromJson(value);
         case 'GetSpatialStreetResponseData':
@@ -2423,6 +4839,60 @@ class ApiClient {
           return GetSpatialStreetResponseDataPlotsShop.fromJson(value);
         case 'GetSpatialStreetResponseDataPlotsSponsored':
           return GetSpatialStreetResponseDataPlotsSponsored.fromJson(value);
+        case 'GetSponsoredAdBillingResponse':
+          return GetSponsoredAdBillingResponse.fromJson(value);
+        case 'GetSponsoredAdBillingResponseData':
+          return GetSponsoredAdBillingResponseData.fromJson(value);
+        case 'GetSponsoredAdBillingResponseDataAccount':
+          return GetSponsoredAdBillingResponseDataAccount.fromJson(value);
+        case 'GetSponsoredAdBillingResponseDataAccountRails':
+          return GetSponsoredAdBillingResponseDataAccountRails.fromJson(value);
+        case 'GetSponsoredAdBillingResponseDataAccountRailsEffectiveItem':
+          return GetSponsoredAdBillingResponseDataAccountRailsEffectiveItemTypeTransformer().decode(value);
+        case 'GetSponsoredAdBillingResponseDataCharges':
+          return GetSponsoredAdBillingResponseDataCharges.fromJson(value);
+        case 'GetSponsoredAdBillingResponseDataFunds':
+          return GetSponsoredAdBillingResponseDataFunds.fromJson(value);
+        case 'GetSponsoredAdBillingResponseDataFundsCash':
+          return GetSponsoredAdBillingResponseDataFundsCash.fromJson(value);
+        case 'GetSponsoredAdBillingResponseDataFundsCashAutoTopup':
+          return GetSponsoredAdBillingResponseDataFundsCashAutoTopup.fromJson(value);
+        case 'GetSponsoredAdBillingResponseDataFundsCashPaymentMethod':
+          return GetSponsoredAdBillingResponseDataFundsCashPaymentMethod.fromJson(value);
+        case 'GetSponsoredAdBillingResponseDataFundsCbx':
+          return GetSponsoredAdBillingResponseDataFundsCbx.fromJson(value);
+        case 'GetSponsoredAdBillingResponseDataFundsRails':
+          return GetSponsoredAdBillingResponseDataFundsRails.fromJson(value);
+        case 'GetSponsoredAdBillingResponseDataFundsRailsEffectiveItem':
+          return GetSponsoredAdBillingResponseDataFundsRailsEffectiveItemTypeTransformer().decode(value);
+        case 'GetSponsoredAdBillingResponseDataGrants':
+          return GetSponsoredAdBillingResponseDataGrants.fromJson(value);
+        case 'GetSponsoredAdBillingResponseDataInvoices':
+          return GetSponsoredAdBillingResponseDataInvoices.fromJson(value);
+        case 'GetSponsoredAdBillingStatementResponse':
+          return GetSponsoredAdBillingStatementResponse.fromJson(value);
+        case 'GetSponsoredAdBillingStatementResponseData':
+          return GetSponsoredAdBillingStatementResponseData.fromJson(value);
+        case 'GetSponsoredAdBillingStatementResponseDataCharges':
+          return GetSponsoredAdBillingStatementResponseDataCharges.fromJson(value);
+        case 'GetSponsoredAdBillingStatementResponseDataSpendByCampaign':
+          return GetSponsoredAdBillingStatementResponseDataSpendByCampaign.fromJson(value);
+        case 'GetSponsoredAdBillingStatementResponseDataTopups':
+          return GetSponsoredAdBillingStatementResponseDataTopups.fromJson(value);
+        case 'GetSponsoredAdFundResponse':
+          return GetSponsoredAdFundResponse.fromJson(value);
+        case 'GetSponsoredAdReportResponse':
+          return GetSponsoredAdReportResponse.fromJson(value);
+        case 'GetSponsoredAdReportResponseData':
+          return GetSponsoredAdReportResponseData.fromJson(value);
+        case 'GetSponsoredAdReportResponseDataCampaignsItem':
+          return GetSponsoredAdReportResponseDataCampaignsItem.fromJson(value);
+        case 'GetSponsoredAdReportResponseDataCatalogs':
+          return GetSponsoredAdReportResponseDataCatalogs.fromJson(value);
+        case 'GetSponsoredAdReportResponseDataDaily':
+          return GetSponsoredAdReportResponseDataDaily.fromJson(value);
+        case 'GetStallBookingCounterResponse':
+          return GetStallBookingCounterResponse.fromJson(value);
         case 'GetStallQuoteResponse':
           return GetStallQuoteResponse.fromJson(value);
         case 'GetStallQuoteResponseQuote':
@@ -2433,20 +4903,98 @@ class ApiClient {
           return GetStallQuoteResponseQuoteRailsItemTypeTransformer().decode(value);
         case 'GetStallQuoteResponseQuoteUnits':
           return GetStallQuoteResponseQuoteUnits.fromJson(value);
+        case 'GetStallStreetAerialResponse':
+          return GetStallStreetAerialResponse.fromJson(value);
+        case 'GetStallStreetAerialResponseDays':
+          return GetStallStreetAerialResponseDays.fromJson(value);
+        case 'GetStallStreetAerialResponseEvents':
+          return GetStallStreetAerialResponseEvents.fromJson(value);
+        case 'GetStallStreetAerialResponseLinks':
+          return GetStallStreetAerialResponseLinks.fromJson(value);
+        case 'GetStallStreetAerialResponseStreet':
+          return GetStallStreetAerialResponseStreet.fromJson(value);
+        case 'GetStorefrontMerchResponse':
+          return GetStorefrontMerchResponse.fromJson(value);
+        case 'GetStorefrontMerchResponseData':
+          return GetStorefrontMerchResponseData.fromJson(value);
+        case 'GetStorefrontMerchResponseDataBrands':
+          return GetStorefrontMerchResponseDataBrands.fromJson(value);
+        case 'GetStorefrontMerchResponseDataCategories':
+          return GetStorefrontMerchResponseDataCategories.fromJson(value);
+        case 'GetStorefrontMerchResponseDataConditions':
+          return GetStorefrontMerchResponseDataConditions.fromJson(value);
+        case 'GetStorefrontMerchResponseDataPriceRangeCents':
+          return GetStorefrontMerchResponseDataPriceRangeCents.fromJson(value);
+        case 'GetStorefrontOnboardingResponse':
+          return GetStorefrontOnboardingResponse.fromJson(value);
+        case 'GetStorefrontOnboardingResponseRequirements':
+          return GetStorefrontOnboardingResponseRequirements.fromJson(value);
+        case 'GetStorefrontOnboardingResponseRequirementsMissingItem':
+          return GetStorefrontOnboardingResponseRequirementsMissingItemTypeTransformer().decode(value);
+        case 'GetStorefrontOnboardingResponseSteps':
+          return GetStorefrontOnboardingResponseSteps.fromJson(value);
+        case 'GetStorefrontOnboardingResponseStorefront':
+          return GetStorefrontOnboardingResponseStorefront.fromJson(value);
+        case 'GetStorefrontPolicyResponse':
+          return GetStorefrontPolicyResponse.fromJson(value);
+        case 'GetStorefrontProfileResponse':
+          return GetStorefrontProfileResponse.fromJson(value);
+        case 'GetStorefrontProfileResponseData':
+          return GetStorefrontProfileResponseData.fromJson(value);
+        case 'GetStorefrontProfileResponseDataProfile':
+          return GetStorefrontProfileResponseDataProfile.fromJson(value);
+        case 'GetStorefrontProfileResponseDataProfileAllItems':
+          return GetStorefrontProfileResponseDataProfileAllItems.fromJson(value);
+        case 'GetStorefrontProfileResponseDataProfileAllItemsProgramChipsItem':
+          return GetStorefrontProfileResponseDataProfileAllItemsProgramChipsItemTypeTransformer().decode(value);
+        case 'GetStorefrontProfileResponseDataProfileAnnouncement':
+          return GetStorefrontProfileResponseDataProfileAnnouncement.fromJson(value);
+        case 'GetStorefrontProfileResponseDataProfileBlocks':
+          return GetStorefrontProfileResponseDataProfileBlocks.fromJson(value);
+        case 'GetStorefrontProfileResponseDataProfileShelves':
+          return GetStorefrontProfileResponseDataProfileShelves.fromJson(value);
+        case 'GetStorefrontRequirementResponse':
+          return GetStorefrontRequirementResponse.fromJson(value);
+        case 'GetStorefrontResponse':
+          return GetStorefrontResponse.fromJson(value);
+        case 'GetStorefrontResponseData':
+          return GetStorefrontResponseData.fromJson(value);
+        case 'GetStorefrontResponseDataSocialLinks':
+          return GetStorefrontResponseDataSocialLinks.fromJson(value);
+        case 'GetStorefrontResponseDataTheme':
+          return GetStorefrontResponseDataTheme.fromJson(value);
+        case 'GetStorefrontSettingResponse':
+          return GetStorefrontSettingResponse.fromJson(value);
         case 'GetStorefrontShippingResponse':
           return GetStorefrontShippingResponse.fromJson(value);
         case 'GetStorefrontShippingResponseData':
           return GetStorefrontShippingResponseData.fromJson(value);
         case 'GetStorefrontShippingResponseDataShipFrom':
           return GetStorefrontShippingResponseDataShipFrom.fromJson(value);
+        case 'GetStorefrontSlugAvailableResponse':
+          return GetStorefrontSlugAvailableResponse.fromJson(value);
         case 'GetStyleResponse':
           return GetStyleResponse.fromJson(value);
+        case 'GetTaxSalesTaxResponse':
+          return GetTaxSalesTaxResponse.fromJson(value);
+        case 'GetTaxSalesTaxResponseCrosslyCollectsIn':
+          return GetTaxSalesTaxResponseCrosslyCollectsIn.fromJson(value);
+        case 'GetTaxSalesTaxResponseNotCollected':
+          return GetTaxSalesTaxResponseNotCollected.fromJson(value);
+        case 'GetTaxSalesTaxResponseTotals':
+          return GetTaxSalesTaxResponseTotals.fromJson(value);
         case 'GetTaxScheduleCResponse':
           return GetTaxScheduleCResponse.fromJson(value);
+        case 'GetTaxScheduleCResponseCents':
+          return GetTaxScheduleCResponseCents.fromJson(value);
         case 'GetTaxScheduleCResponseCounts':
           return GetTaxScheduleCResponseCounts.fromJson(value);
         case 'GetTaxScheduleCResponseExpenses':
           return GetTaxScheduleCResponseExpenses.fromJson(value);
+        case 'GetTaxScheduleCResponsePartII':
+          return GetTaxScheduleCResponsePartII.fromJson(value);
+        case 'GetTaxScheduleCResponsePartIII':
+          return GetTaxScheduleCResponsePartIII.fromJson(value);
         case 'GetTaxonomyCategoryAspectResponse':
           return GetTaxonomyCategoryAspectResponse.fromJson(value);
         case 'GetTaxonomyCategoryAspectResponseAspects':
@@ -2459,14 +5007,100 @@ class ApiClient {
           return GetTaxonomyCategoryResponse.fromJson(value);
         case 'GetTaxonomyRequiredFieldResponse':
           return GetTaxonomyRequiredFieldResponse.fromJson(value);
+        case 'GetTaxonomyRequiredFieldResponseInlineAspects':
+          return GetTaxonomyRequiredFieldResponseInlineAspects.fromJson(value);
         case 'GetTaxonomyRequiredFieldResponseRequiredFields':
           return GetTaxonomyRequiredFieldResponseRequiredFields.fromJson(value);
+        case 'GetTcgCreatorGameCollectionResponse':
+          return GetTcgCreatorGameCollectionResponse.fromJson(value);
+        case 'GetTcgCreatorGamePopularityResponse':
+          return GetTcgCreatorGamePopularityResponse.fromJson(value);
+        case 'GetTcgCreatorGamePopularityResponseData':
+          return GetTcgCreatorGamePopularityResponseData.fromJson(value);
+        case 'GetTcgCreatorGamePrintResponse':
+          return GetTcgCreatorGamePrintResponse.fromJson(value);
+        case 'GetTcgCreatorGamePrintResponseData':
+          return GetTcgCreatorGamePrintResponseData.fromJson(value);
+        case 'GetTcgCreatorGamePrintResponseDataFiles':
+          return GetTcgCreatorGamePrintResponseDataFiles.fromJson(value);
+        case 'GetTcgCreatorGameResponse':
+          return GetTcgCreatorGameResponse.fromJson(value);
+        case 'GetTcgCreatorGameResponseData':
+          return GetTcgCreatorGameResponseData.fromJson(value);
+        case 'GetTcgCreatorGameResponseDataCards':
+          return GetTcgCreatorGameResponseDataCards.fromJson(value);
+        case 'GetTcgCreatorGameResponseDataFrame':
+          return GetTcgCreatorGameResponseDataFrame.fromJson(value);
+        case 'GetTcgCreatorGameShelfResponse':
+          return GetTcgCreatorGameShelfResponse.fromJson(value);
+        case 'GetTcgCreatorGameShelfResponseData':
+          return GetTcgCreatorGameShelfResponseData.fromJson(value);
+        case 'GetTcgCreatorGameShelfResponseDataCards':
+          return GetTcgCreatorGameShelfResponseDataCards.fromJson(value);
+        case 'GetTcgCreatorGameShelfResponseDataPack':
+          return GetTcgCreatorGameShelfResponseDataPack.fromJson(value);
+        case 'GetTcgLadderMeResponse':
+          return GetTcgLadderMeResponse.fromJson(value);
+        case 'GetTcgLadderMeResponseData':
+          return GetTcgLadderMeResponseData.fromJson(value);
+        case 'GetTcgLadderMeResponseDataQueued':
+          return GetTcgLadderMeResponseDataQueued.fromJson(value);
+        case 'GetTcgLadderResponse':
+          return GetTcgLadderResponse.fromJson(value);
+        case 'GetTcgLadderResponseData':
+          return GetTcgLadderResponseData.fromJson(value);
+        case 'GetTcgLadderResponseDataRows':
+          return GetTcgLadderResponseDataRows.fromJson(value);
+        case 'GetTcgMatchResponse':
+          return GetTcgMatchResponse.fromJson(value);
+        case 'GetTcgMatchResponseData':
+          return GetTcgMatchResponseData.fromJson(value);
+        case 'GetTcgMatchResponseDataMine':
+          return GetTcgMatchResponseDataMine.fromJson(value);
+        case 'GetTcgMatchResponseDataOpen':
+          return GetTcgMatchResponseDataOpen.fromJson(value);
+        case 'GetTcgMeResponse':
+          return GetTcgMeResponse.fromJson(value);
+        case 'GetTcgMeResponseData':
+          return GetTcgMeResponseData.fromJson(value);
+        case 'GetTcgMeResponseDataPacks':
+          return GetTcgMeResponseDataPacks.fromJson(value);
+        case 'GetTcgPrintResponse':
+          return GetTcgPrintResponse.fromJson(value);
+        case 'GetTcgPrintResponseData':
+          return GetTcgPrintResponseData.fromJson(value);
+        case 'GetTcgPrintResponseDataFiles':
+          return GetTcgPrintResponseDataFiles.fromJson(value);
         case 'GetTeamResponse':
           return GetTeamResponse.fromJson(value);
         case 'GetTeamResponseInvitations':
           return GetTeamResponseInvitations.fromJson(value);
         case 'GetTeamResponseMembers':
           return GetTeamResponseMembers.fromJson(value);
+        case 'GetToolboxAssetRatingResponse':
+          return GetToolboxAssetRatingResponse.fromJson(value);
+        case 'GetToolboxAssetRatingResponseData':
+          return GetToolboxAssetRatingResponseData.fromJson(value);
+        case 'GetToolboxAssetRatingResponseDataBreakdown':
+          return GetToolboxAssetRatingResponseDataBreakdown.fromJson(value);
+        case 'GetToolboxAssetRatingResponseDataItems':
+          return GetToolboxAssetRatingResponseDataItems.fromJson(value);
+        case 'GetToolboxAssetRatingResponseDataMine':
+          return GetToolboxAssetRatingResponseDataMine.fromJson(value);
+        case 'GetToolboxAssetResponse':
+          return GetToolboxAssetResponse.fromJson(value);
+        case 'GetToolboxAssetResponseData':
+          return GetToolboxAssetResponseData.fromJson(value);
+        case 'GetToolboxAssetResponseDataPurchase':
+          return GetToolboxAssetResponseDataPurchase.fromJson(value);
+        case 'GetToolboxAssetResponseDataVersions':
+          return GetToolboxAssetResponseDataVersions.fromJson(value);
+        case 'GetToolboxPurchaseResponse':
+          return GetToolboxPurchaseResponse.fromJson(value);
+        case 'GetToolboxPurchaseResponseData':
+          return GetToolboxPurchaseResponseData.fromJson(value);
+        case 'GetToolboxPurchaseResponseDataAsset':
+          return GetToolboxPurchaseResponseDataAsset.fromJson(value);
         case 'GetTradeBlockEvolutionResponse':
           return GetTradeBlockEvolutionResponse.fromJson(value);
         case 'GetTradeBlockEvolutionResponseUnlocks':
@@ -2497,8 +5131,8 @@ class ApiClient {
           return GetVaultAttestationResponseKindsItemTypeTransformer().decode(value);
         case 'GetVaultAttestationResponseLatest':
           return GetVaultAttestationResponseLatest.fromJson(value);
-        case 'GetVaultAttestationResponseLatestPhysicalCount':
-          return GetVaultAttestationResponseLatestPhysicalCount.fromJson(value);
+        case 'GetVaultAttestationResponseLatestOther':
+          return GetVaultAttestationResponseLatestOther.fromJson(value);
         case 'GetVaultMarketAccountResponse':
           return GetVaultMarketAccountResponse.fromJson(value);
         case 'GetVaultMarketAccountResponseAccount':
@@ -2529,8 +5163,8 @@ class ApiClient {
           return GetVaultMarketAlertPrefResponseLocked.fromJson(value);
         case 'GetVaultMarketAlertPrefResponseMatrix':
           return GetVaultMarketAlertPrefResponseMatrix.fromJson(value);
-        case 'GetVaultMarketAlertPrefResponseMatrixPrice':
-          return GetVaultMarketAlertPrefResponseMatrixPrice.fromJson(value);
+        case 'GetVaultMarketAlertPrefResponseMatrixAccount':
+          return GetVaultMarketAlertPrefResponseMatrixAccount.fromJson(value);
         case 'GetVaultMarketAlertPrefResponseQuietHours':
           return GetVaultMarketAlertPrefResponseQuietHours.fromJson(value);
         case 'GetVaultMarketAlertPrefResponseTelegram':
@@ -2547,6 +5181,8 @@ class ApiClient {
           return GetVaultMarketAuctionMineResponseBidding.fromJson(value);
         case 'GetVaultMarketAuctionMineResponseConsigned':
           return GetVaultMarketAuctionMineResponseConsigned.fromJson(value);
+        case 'GetVaultMarketAutoBuyResponse':
+          return GetVaultMarketAutoBuyResponse.fromJson(value);
         case 'GetVaultMarketBullionForResponse':
           return GetVaultMarketBullionForResponse.fromJson(value);
         case 'GetVaultMarketBullionForResponseFamilies':
@@ -2571,6 +5207,8 @@ class ApiClient {
           return GetVaultMarketCallResponse.fromJson(value);
         case 'GetVaultMarketCapacityResponse':
           return GetVaultMarketCapacityResponse.fromJson(value);
+        case 'GetVaultMarketCapacityResponsePerKeyItem':
+          return GetVaultMarketCapacityResponsePerKeyItem.fromJson(value);
         case 'GetVaultMarketChannelResponse':
           return GetVaultMarketChannelResponse.fromJson(value);
         case 'GetVaultMarketChannelResponseNudgesToday':
@@ -2643,6 +5281,8 @@ class ApiClient {
           return GetVaultMarketDigestPreviewResponse.fromJson(value);
         case 'GetVaultMarketDigestPreviewResponseFirstMarks':
           return GetVaultMarketDigestPreviewResponseFirstMarks.fromJson(value);
+        case 'GetVaultMarketDigestPreviewResponseLearn':
+          return GetVaultMarketDigestPreviewResponseLearn.fromJson(value);
         case 'GetVaultMarketDigestPreviewResponseOffers':
           return GetVaultMarketDigestPreviewResponseOffers.fromJson(value);
         case 'GetVaultMarketDigestPreviewResponseValue':
@@ -2707,8 +5347,26 @@ class ApiClient {
           return GetVaultMarketGradeToVaultCandidateResponse.fromJson(value);
         case 'GetVaultMarketGradeToVaultCandidateResponseInventory':
           return GetVaultMarketGradeToVaultCandidateResponseInventory.fromJson(value);
+        case 'GetVaultMarketGradingOrderResponse':
+          return GetVaultMarketGradingOrderResponse.fromJson(value);
+        case 'GetVaultMarketGradingOrderResponseOrder':
+          return GetVaultMarketGradingOrderResponseOrder.fromJson(value);
+        case 'GetVaultMarketGradingOrderResponseOrderCards':
+          return GetVaultMarketGradingOrderResponseOrderCards.fromJson(value);
+        case 'GetVaultMarketGradingOrderResponseOrderCosts':
+          return GetVaultMarketGradingOrderResponseOrderCosts.fromJson(value);
+        case 'GetVaultMarketGradingOrderResponseOrderTimeline':
+          return GetVaultMarketGradingOrderResponseOrderTimeline.fromJson(value);
+        case 'GetVaultMarketGradingOrderResponseOrderTracking':
+          return GetVaultMarketGradingOrderResponseOrderTracking.fromJson(value);
+        case 'GetVaultMarketGradingOrderResponseOrderTrackingSendIn':
+          return GetVaultMarketGradingOrderResponseOrderTrackingSendIn.fromJson(value);
         case 'GetVaultMarketGradingSignalResponse':
           return GetVaultMarketGradingSignalResponse.fromJson(value);
+        case 'GetVaultMarketGradingSignalResponseCta':
+          return GetVaultMarketGradingSignalResponseCta.fromJson(value);
+        case 'GetVaultMarketGradingSignalResponseGraded':
+          return GetVaultMarketGradingSignalResponseGraded.fromJson(value);
         case 'GetVaultMarketGradingSignalResponseGraders':
           return GetVaultMarketGradingSignalResponseGraders.fromJson(value);
         case 'GetVaultMarketHallLoanResponse':
@@ -2733,6 +5391,12 @@ class ApiClient {
           return GetVaultMarketHealthResponseConcentrationByCategory.fromJson(value);
         case 'GetVaultMarketHealthResponseConcentrationSingleItem':
           return GetVaultMarketHealthResponseConcentrationSingleItem.fromJson(value);
+        case 'GetVaultMarketHealthResponseHedges':
+          return GetVaultMarketHealthResponseHedges.fromJson(value);
+        case 'GetVaultMarketHealthResponseHedgesByKey':
+          return GetVaultMarketHealthResponseHedgesByKey.fromJson(value);
+        case 'GetVaultMarketHealthResponseHedgesProtectivePuts':
+          return GetVaultMarketHealthResponseHedgesProtectivePuts.fromJson(value);
         case 'GetVaultMarketHealthResponseItems':
           return GetVaultMarketHealthResponseItems.fromJson(value);
         case 'GetVaultMarketHealthResponseLiquidity':
@@ -2753,6 +5417,12 @@ class ApiClient {
           return GetVaultMarketHealthResponseTotals.fromJson(value);
         case 'GetVaultMarketHealthWhatIfResponse':
           return GetVaultMarketHealthWhatIfResponse.fromJson(value);
+        case 'GetVaultMarketHoldingInventoryItemResponse':
+          return GetVaultMarketHoldingInventoryItemResponse.fromJson(value);
+        case 'GetVaultMarketHoldingWithdrawQuoteResponse':
+          return GetVaultMarketHoldingWithdrawQuoteResponse.fromJson(value);
+        case 'GetVaultMarketHoldingWithdrawQuoteResponseStandard':
+          return GetVaultMarketHoldingWithdrawQuoteResponseStandard.fromJson(value);
         case 'GetVaultMarketHomeUnitResponse':
           return GetVaultMarketHomeUnitResponse.fromJson(value);
         case 'GetVaultMarketHomeUnitResponseHome':
@@ -2821,6 +5491,20 @@ class ApiClient {
           return GetVaultMarketIndexResponseNow.fromJson(value);
         case 'GetVaultMarketInstantExitResponse':
           return GetVaultMarketInstantExitResponse.fromJson(value);
+        case 'GetVaultMarketItemLocationResponse':
+          return GetVaultMarketItemLocationResponse.fromJson(value);
+        case 'GetVaultMarketItemLocationResponseEligibility':
+          return GetVaultMarketItemLocationResponseEligibility.fromJson(value);
+        case 'GetVaultMarketItemLocationResponseLocations':
+          return GetVaultMarketItemLocationResponseLocations.fromJson(value);
+        case 'GetVaultMarketItemLocationResponseLocationsByStatus':
+          return GetVaultMarketItemLocationResponseLocationsByStatus.fromJson(value);
+        case 'GetVaultMarketItemLocationResponseSellFrom':
+          return GetVaultMarketItemLocationResponseSellFrom.fromJson(value);
+        case 'GetVaultMarketItemLocationResponseSellFromOptions':
+          return GetVaultMarketItemLocationResponseSellFromOptions.fromJson(value);
+        case 'GetVaultMarketItemLocationResponseUnits':
+          return GetVaultMarketItemLocationResponseUnits.fromJson(value);
         case 'GetVaultMarketJointByIdResponse':
           return GetVaultMarketJointByIdResponse.fromJson(value);
         case 'GetVaultMarketJointByIdResponseActivity':
@@ -2851,6 +5535,12 @@ class ApiClient {
           return GetVaultMarketJointResponseVaults.fromJson(value);
         case 'GetVaultMarketKeyStatResponse':
           return GetVaultMarketKeyStatResponse.fromJson(value);
+        case 'GetVaultMarketKeyStatResponseGemRate':
+          return GetVaultMarketKeyStatResponseGemRate.fromJson(value);
+        case 'GetVaultMarketKeyStatResponseGemRateOneOf1Category':
+          return GetVaultMarketKeyStatResponseGemRateOneOf1Category.fromJson(value);
+        case 'GetVaultMarketKeyStatResponseGemRateOneOf1Item':
+          return GetVaultMarketKeyStatResponseGemRateOneOf1Item.fromJson(value);
         case 'GetVaultMarketLearnByConceptResponse':
           return GetVaultMarketLearnByConceptResponse.fromJson(value);
         case 'GetVaultMarketLearnByConceptResponseQuiz':
@@ -2967,10 +5657,140 @@ class ApiClient {
           return GetVaultMarketNavResponseHoldingsLiquidation.fromJson(value);
         case 'GetVaultMarketNavResponseHoldingsMark':
           return GetVaultMarketNavResponseHoldingsMark.fromJson(value);
+        case 'GetVaultMarketNavResponseOptions':
+          return GetVaultMarketNavResponseOptions.fromJson(value);
+        case 'GetVaultMarketNavResponseOptionsPositions':
+          return GetVaultMarketNavResponseOptionsPositions.fromJson(value);
         case 'GetVaultMarketNavResponseTotals':
           return GetVaultMarketNavResponseTotals.fromJson(value);
         case 'GetVaultMarketNavResponseTotalsAdministratorNav':
           return GetVaultMarketNavResponseTotalsAdministratorNav.fromJson(value);
+        case 'GetVaultMarketOptionAnalyticResponse':
+          return GetVaultMarketOptionAnalyticResponse.fromJson(value);
+        case 'GetVaultMarketOptionAnalyticResponseExpiries':
+          return GetVaultMarketOptionAnalyticResponseExpiries.fromJson(value);
+        case 'GetVaultMarketOptionAnalyticResponseExpiriesExpectedMove':
+          return GetVaultMarketOptionAnalyticResponseExpiriesExpectedMove.fromJson(value);
+        case 'GetVaultMarketOptionAnalyticResponseExpiriesOpenInterest':
+          return GetVaultMarketOptionAnalyticResponseExpiriesOpenInterest.fromJson(value);
+        case 'GetVaultMarketOptionAnalyticResponseHistoricalVol':
+          return GetVaultMarketOptionAnalyticResponseHistoricalVol.fromJson(value);
+        case 'GetVaultMarketOptionAnalyticResponseHistoricalVolSeries':
+          return GetVaultMarketOptionAnalyticResponseHistoricalVolSeries.fromJson(value);
+        case 'GetVaultMarketOptionAnalyticResponseHistoricalVolWindows':
+          return GetVaultMarketOptionAnalyticResponseHistoricalVolWindows.fromJson(value);
+        case 'GetVaultMarketOptionAnalyticResponseIv':
+          return GetVaultMarketOptionAnalyticResponseIv.fromJson(value);
+        case 'GetVaultMarketOptionAnalyticResponseIvHistory':
+          return GetVaultMarketOptionAnalyticResponseIvHistory.fromJson(value);
+        case 'GetVaultMarketOptionAnalyticResponsePutCall':
+          return GetVaultMarketOptionAnalyticResponsePutCall.fromJson(value);
+        case 'GetVaultMarketOptionAnalyticResponsePutCallTotals':
+          return GetVaultMarketOptionAnalyticResponsePutCallTotals.fromJson(value);
+        case 'GetVaultMarketOptionAnalyticResponseSmile':
+          return GetVaultMarketOptionAnalyticResponseSmile.fromJson(value);
+        case 'GetVaultMarketOptionAnalyticResponseSmileByStrike':
+          return GetVaultMarketOptionAnalyticResponseSmileByStrike.fromJson(value);
+        case 'GetVaultMarketOptionAnalyticResponseSmileFitted':
+          return GetVaultMarketOptionAnalyticResponseSmileFitted.fromJson(value);
+        case 'GetVaultMarketOptionAnalyticResponseSmilePoints':
+          return GetVaultMarketOptionAnalyticResponseSmilePoints.fromJson(value);
+        case 'GetVaultMarketOptionAnalyticResponseSurface':
+          return GetVaultMarketOptionAnalyticResponseSurface.fromJson(value);
+        case 'GetVaultMarketOptionAnalyticResponseSurfaceRows':
+          return GetVaultMarketOptionAnalyticResponseSurfaceRows.fromJson(value);
+        case 'GetVaultMarketOptionAnalyticResponseUnderlying':
+          return GetVaultMarketOptionAnalyticResponseUnderlying.fromJson(value);
+        case 'GetVaultMarketOptionAutoCloseResponse':
+          return GetVaultMarketOptionAutoCloseResponse.fromJson(value);
+        case 'GetVaultMarketOptionAutoCloseResponseLimits':
+          return GetVaultMarketOptionAutoCloseResponseLimits.fromJson(value);
+        case 'GetVaultMarketOptionChainResponse':
+          return GetVaultMarketOptionChainResponse.fromJson(value);
+        case 'GetVaultMarketOptionChainResponseExpiries':
+          return GetVaultMarketOptionChainResponseExpiries.fromJson(value);
+        case 'GetVaultMarketOptionChainResponseRows':
+          return GetVaultMarketOptionChainResponseRows.fromJson(value);
+        case 'GetVaultMarketOptionChainResponseRowsCall':
+          return GetVaultMarketOptionChainResponseRowsCall.fromJson(value);
+        case 'GetVaultMarketOptionChainResponseSeries':
+          return GetVaultMarketOptionChainResponseSeries.fromJson(value);
+        case 'GetVaultMarketOptionChainResponseUnderlying':
+          return GetVaultMarketOptionChainResponseUnderlying.fromJson(value);
+        case 'GetVaultMarketOptionChainResponseVenue':
+          return GetVaultMarketOptionChainResponseVenue.fromJson(value);
+        case 'GetVaultMarketOptionComboBookResponse':
+          return GetVaultMarketOptionComboBookResponse.fromJson(value);
+        case 'GetVaultMarketOptionComboBookResponseTrades':
+          return GetVaultMarketOptionComboBookResponseTrades.fromJson(value);
+        case 'GetVaultMarketOptionComboRfqResponse':
+          return GetVaultMarketOptionComboRfqResponse.fromJson(value);
+        case 'GetVaultMarketOptionComboRfqResponseAnswers':
+          return GetVaultMarketOptionComboRfqResponseAnswers.fromJson(value);
+        case 'GetVaultMarketOptionContractBookResponse':
+          return GetVaultMarketOptionContractBookResponse.fromJson(value);
+        case 'GetVaultMarketOptionContractBookResponseBids':
+          return GetVaultMarketOptionContractBookResponseBids.fromJson(value);
+        case 'GetVaultMarketOptionContractBookResponseTrades':
+          return GetVaultMarketOptionContractBookResponseTrades.fromJson(value);
+        case 'GetVaultMarketOptionContractResponse':
+          return GetVaultMarketOptionContractResponse.fromJson(value);
+        case 'GetVaultMarketOptionContractResponseSettlement':
+          return GetVaultMarketOptionContractResponseSettlement.fromJson(value);
+        case 'GetVaultMarketOptionContractSettlementResponse':
+          return GetVaultMarketOptionContractSettlementResponse.fromJson(value);
+        case 'GetVaultMarketOptionHedgeResponse':
+          return GetVaultMarketOptionHedgeResponse.fromJson(value);
+        case 'GetVaultMarketOptionHedgeResponseCoveredCalls':
+          return GetVaultMarketOptionHedgeResponseCoveredCalls.fromJson(value);
+        case 'GetVaultMarketOptionHedgeResponseProtectivePuts':
+          return GetVaultMarketOptionHedgeResponseProtectivePuts.fromJson(value);
+        case 'GetVaultMarketOptionIvResponse':
+          return GetVaultMarketOptionIvResponse.fromJson(value);
+        case 'GetVaultMarketOptionMarginResponse':
+          return GetVaultMarketOptionMarginResponse.fromJson(value);
+        case 'GetVaultMarketOptionMarginResponseOneOf1Last':
+          return GetVaultMarketOptionMarginResponseOneOf1Last.fromJson(value);
+        case 'GetVaultMarketOptionMarginResponseOneOf1Margin':
+          return GetVaultMarketOptionMarginResponseOneOf1Margin.fromJson(value);
+        case 'GetVaultMarketOptionMarginResponseOneOf1MarginByUnderlying':
+          return GetVaultMarketOptionMarginResponseOneOf1MarginByUnderlying.fromJson(value);
+        case 'GetVaultMarketOptionPayoffResponse':
+          return GetVaultMarketOptionPayoffResponse.fromJson(value);
+        case 'GetVaultMarketOptionPositionResponse':
+          return GetVaultMarketOptionPositionResponse.fromJson(value);
+        case 'GetVaultMarketOptionPositionResponsePositions':
+          return GetVaultMarketOptionPositionResponsePositions.fromJson(value);
+        case 'GetVaultMarketOptionPositionResponsePositionsGreeks':
+          return GetVaultMarketOptionPositionResponsePositionsGreeks.fromJson(value);
+        case 'GetVaultMarketOptionPracticeResponse':
+          return GetVaultMarketOptionPracticeResponse.fromJson(value);
+        case 'GetVaultMarketOptionPracticeResponsePositions':
+          return GetVaultMarketOptionPracticeResponsePositions.fromJson(value);
+        case 'GetVaultMarketOptionResponse':
+          return GetVaultMarketOptionResponse.fromJson(value);
+        case 'GetVaultMarketOptionResponseProduct':
+          return GetVaultMarketOptionResponseProduct.fromJson(value);
+        case 'GetVaultMarketOptionResponseRuleBook':
+          return GetVaultMarketOptionResponseRuleBook.fromJson(value);
+        case 'GetVaultMarketOptionResponseVenue':
+          return GetVaultMarketOptionResponseVenue.fromJson(value);
+        case 'GetVaultMarketOptionRfqResponse':
+          return GetVaultMarketOptionRfqResponse.fromJson(value);
+        case 'GetVaultMarketOptionRiskResponse':
+          return GetVaultMarketOptionRiskResponse.fromJson(value);
+        case 'GetVaultMarketOptionRiskResponseBetaWeighted':
+          return GetVaultMarketOptionRiskResponseBetaWeighted.fromJson(value);
+        case 'GetVaultMarketOptionRiskResponseByUnderlying':
+          return GetVaultMarketOptionRiskResponseByUnderlying.fromJson(value);
+        case 'GetVaultMarketOptionRiskResponseScenario':
+          return GetVaultMarketOptionRiskResponseScenario.fromJson(value);
+        case 'GetVaultMarketOptionRiskResponseScenarioGrid':
+          return GetVaultMarketOptionRiskResponseScenarioGrid.fromJson(value);
+        case 'GetVaultMarketOptionRiskResponseScenarioRanges':
+          return GetVaultMarketOptionRiskResponseScenarioRanges.fromJson(value);
+        case 'GetVaultMarketOptionRiskResponseTotal':
+          return GetVaultMarketOptionRiskResponseTotal.fromJson(value);
         case 'GetVaultMarketOracleBySlugResponse':
           return GetVaultMarketOracleBySlugResponse.fromJson(value);
         case 'GetVaultMarketOracleResponse':
@@ -3023,6 +5843,8 @@ class ApiClient {
           return GetVaultMarketPaperResponseWorkingOrders.fromJson(value);
         case 'GetVaultMarketPartnerMeResponse':
           return GetVaultMarketPartnerMeResponse.fromJson(value);
+        case 'GetVaultMarketPartnerMeResponseIdentity':
+          return GetVaultMarketPartnerMeResponseIdentity.fromJson(value);
         case 'GetVaultMarketPartnerMeResponsePartnership':
           return GetVaultMarketPartnerMeResponsePartnership.fromJson(value);
         case 'GetVaultMarketPartnerMeResponsePartnershipBatches':
@@ -3049,6 +5871,8 @@ class ApiClient {
           return GetVaultMarketPortfolioHistoryResponseNowMarks.fromJson(value);
         case 'GetVaultMarketPortfolioHistoryResponseSeries':
           return GetVaultMarketPortfolioHistoryResponseSeries.fromJson(value);
+        case 'GetVaultMarketPortfolioHistoryResponseToday':
+          return GetVaultMarketPortfolioHistoryResponseToday.fromJson(value);
         case 'GetVaultMarketPortfolioMarginResponse':
           return GetVaultMarketPortfolioMarginResponse.fromJson(value);
         case 'GetVaultMarketPortfolioResponse':
@@ -3057,6 +5881,8 @@ class ApiClient {
           return GetVaultMarketPortfolioResponseHoldings.fromJson(value);
         case 'GetVaultMarketPortfolioResponseOnLoan':
           return GetVaultMarketPortfolioResponseOnLoan.fromJson(value);
+        case 'GetVaultMarketPortfolioResponseShares':
+          return GetVaultMarketPortfolioResponseShares.fromJson(value);
         case 'GetVaultMarketPortfolioResponseTotals':
           return GetVaultMarketPortfolioResponseTotals.fromJson(value);
         case 'GetVaultMarketPositionExitResponse':
@@ -3065,6 +5891,8 @@ class ApiClient {
           return GetVaultMarketPositionExitResponseExits.fromJson(value);
         case 'GetVaultMarketPositionResponse':
           return GetVaultMarketPositionResponse.fromJson(value);
+        case 'GetVaultMarketPositionResponseAuctionsItem':
+          return GetVaultMarketPositionResponseAuctionsItem.fromJson(value);
         case 'GetVaultMarketPositionResponseInstructions':
           return GetVaultMarketPositionResponseInstructions.fromJson(value);
         case 'GetVaultMarketPositionResponseLegs':
@@ -3073,6 +5901,108 @@ class ApiClient {
           return GetVaultMarketPositionResponseLoans.fromJson(value);
         case 'GetVaultMarketPositionResponseSplits':
           return GetVaultMarketPositionResponseSplits.fromJson(value);
+        case 'GetVaultMarketPredictionAccountResponse':
+          return GetVaultMarketPredictionAccountResponse.fromJson(value);
+        case 'GetVaultMarketPredictionAccountResponseAccount':
+          return GetVaultMarketPredictionAccountResponseAccount.fromJson(value);
+        case 'GetVaultMarketPredictionAccountResponseEligibility':
+          return GetVaultMarketPredictionAccountResponseEligibility.fromJson(value);
+        case 'GetVaultMarketPredictionAccountResponsePractice':
+          return GetVaultMarketPredictionAccountResponsePractice.fromJson(value);
+        case 'GetVaultMarketPredictionBoardResponse':
+          return GetVaultMarketPredictionBoardResponse.fromJson(value);
+        case 'GetVaultMarketPredictionBoardResponseRows':
+          return GetVaultMarketPredictionBoardResponseRows.fromJson(value);
+        case 'GetVaultMarketPredictionDailyPriceResponse':
+          return GetVaultMarketPredictionDailyPriceResponse.fromJson(value);
+        case 'GetVaultMarketPredictionDailyPriceResponsePrices':
+          return GetVaultMarketPredictionDailyPriceResponsePrices.fromJson(value);
+        case 'GetVaultMarketPredictionEventResponse':
+          return GetVaultMarketPredictionEventResponse.fromJson(value);
+        case 'GetVaultMarketPredictionEventResponseConversions':
+          return GetVaultMarketPredictionEventResponseConversions.fromJson(value);
+        case 'GetVaultMarketPredictionEventResponseMarkets':
+          return GetVaultMarketPredictionEventResponseMarkets.fromJson(value);
+        case 'GetVaultMarketPredictionEventResponseRisk':
+          return GetVaultMarketPredictionEventResponseRisk.fromJson(value);
+        case 'GetVaultMarketPredictionForecasterByIdResponse':
+          return GetVaultMarketPredictionForecasterByIdResponse.fromJson(value);
+        case 'GetVaultMarketPredictionForecasterByIdResponseAllTime':
+          return GetVaultMarketPredictionForecasterByIdResponseAllTime.fromJson(value);
+        case 'GetVaultMarketPredictionForecasterByIdResponseOpen':
+          return GetVaultMarketPredictionForecasterByIdResponseOpen.fromJson(value);
+        case 'GetVaultMarketPredictionForecasterByIdResponseRecent':
+          return GetVaultMarketPredictionForecasterByIdResponseRecent.fromJson(value);
+        case 'GetVaultMarketPredictionForecasterResponse':
+          return GetVaultMarketPredictionForecasterResponse.fromJson(value);
+        case 'GetVaultMarketPredictionLeaderboardResponse':
+          return GetVaultMarketPredictionLeaderboardResponse.fromJson(value);
+        case 'GetVaultMarketPredictionLeaderboardResponseRows':
+          return GetVaultMarketPredictionLeaderboardResponseRows.fromJson(value);
+        case 'GetVaultMarketPredictionLimitResponse':
+          return GetVaultMarketPredictionLimitResponse.fromJson(value);
+        case 'GetVaultMarketPredictionLimitResponseHold':
+          return GetVaultMarketPredictionLimitResponseHold.fromJson(value);
+        case 'GetVaultMarketPredictionLimitResponsePending':
+          return GetVaultMarketPredictionLimitResponsePending.fromJson(value);
+        case 'GetVaultMarketPredictionMarketForecastResponse':
+          return GetVaultMarketPredictionMarketForecastResponse.fromJson(value);
+        case 'GetVaultMarketPredictionMarketHistoryResponse':
+          return GetVaultMarketPredictionMarketHistoryResponse.fromJson(value);
+        case 'GetVaultMarketPredictionMarketHistoryResponseCandles':
+          return GetVaultMarketPredictionMarketHistoryResponseCandles.fromJson(value);
+        case 'GetVaultMarketPredictionMarketHistoryResponseNow':
+          return GetVaultMarketPredictionMarketHistoryResponseNow.fromJson(value);
+        case 'GetVaultMarketPredictionMarketHistoryResponsePoints':
+          return GetVaultMarketPredictionMarketHistoryResponsePoints.fromJson(value);
+        case 'GetVaultMarketPredictionMarketResponse':
+          return GetVaultMarketPredictionMarketResponse.fromJson(value);
+        case 'GetVaultMarketPredictionMarketResponseBook':
+          return GetVaultMarketPredictionMarketResponseBook.fromJson(value);
+        case 'GetVaultMarketPredictionMarketResponseBookBids':
+          return GetVaultMarketPredictionMarketResponseBookBids.fromJson(value);
+        case 'GetVaultMarketPredictionMarketResponsePracticeBook':
+          return GetVaultMarketPredictionMarketResponsePracticeBook.fromJson(value);
+        case 'GetVaultMarketPredictionMarketResponseRules':
+          return GetVaultMarketPredictionMarketResponseRules.fromJson(value);
+        case 'GetVaultMarketPredictionMarketResponseSettlements':
+          return GetVaultMarketPredictionMarketResponseSettlements.fromJson(value);
+        case 'GetVaultMarketPredictionMarketResponseTrades':
+          return GetVaultMarketPredictionMarketResponseTrades.fromJson(value);
+        case 'GetVaultMarketPredictionMarketTradeResponse':
+          return GetVaultMarketPredictionMarketTradeResponse.fromJson(value);
+        case 'GetVaultMarketPredictionMarketTradeResponseItems':
+          return GetVaultMarketPredictionMarketTradeResponseItems.fromJson(value);
+        case 'GetVaultMarketPredictionMissionResponse':
+          return GetVaultMarketPredictionMissionResponse.fromJson(value);
+        case 'GetVaultMarketPredictionMissionResponseMissions':
+          return GetVaultMarketPredictionMissionResponseMissions.fromJson(value);
+        case 'GetVaultMarketPredictionMissionResponseReward':
+          return GetVaultMarketPredictionMissionResponseReward.fromJson(value);
+        case 'GetVaultMarketPredictionPaperResponse':
+          return GetVaultMarketPredictionPaperResponse.fromJson(value);
+        case 'GetVaultMarketPredictionPaperResponseWorkingOrders':
+          return GetVaultMarketPredictionPaperResponseWorkingOrders.fromJson(value);
+        case 'GetVaultMarketPredictionQuoteResponse':
+          return GetVaultMarketPredictionQuoteResponse.fromJson(value);
+        case 'GetVaultMarketPredictionResponse':
+          return GetVaultMarketPredictionResponse.fromJson(value);
+        case 'GetVaultMarketPredictionResponseUnderlyings':
+          return GetVaultMarketPredictionResponseUnderlyings.fromJson(value);
+        case 'GetVaultMarketPredictionRulebookResponse':
+          return GetVaultMarketPredictionRulebookResponse.fromJson(value);
+        case 'GetVaultMarketPredictionRulebookResponseOneOf1Current':
+          return GetVaultMarketPredictionRulebookResponseOneOf1Current.fromJson(value);
+        case 'GetVaultMarketPredictionRulebookResponseOneOfCurrent':
+          return GetVaultMarketPredictionRulebookResponseOneOfCurrent.fromJson(value);
+        case 'GetVaultMarketPredictionVenueResponse':
+          return GetVaultMarketPredictionVenueResponse.fromJson(value);
+        case 'GetVaultMarketPredictionVenueResponseMissing':
+          return GetVaultMarketPredictionVenueResponseMissing.fromJson(value);
+        case 'GetVaultMarketPredictionWillItHitResponse':
+          return GetVaultMarketPredictionWillItHitResponse.fromJson(value);
+        case 'GetVaultMarketPredictionWillItHitResponseExpiries':
+          return GetVaultMarketPredictionWillItHitResponseExpiries.fromJson(value);
         case 'GetVaultMarketPressResponse':
           return GetVaultMarketPressResponse.fromJson(value);
         case 'GetVaultMarketPressResponseEmbed':
@@ -3095,10 +6025,14 @@ class ApiClient {
           return GetVaultMarketProfileByHandleResponse.fromJson(value);
         case 'GetVaultMarketProfileByHandleResponseOneOfHoldings':
           return GetVaultMarketProfileByHandleResponseOneOfHoldings.fromJson(value);
+        case 'GetVaultMarketProfileByHandleResponseOneOfRecentBuys':
+          return GetVaultMarketProfileByHandleResponseOneOfRecentBuys.fromJson(value);
         case 'GetVaultMarketProfileResponse':
           return GetVaultMarketProfileResponse.fromJson(value);
         case 'GetVaultMarketProofOfReserveByDayResponse':
           return GetVaultMarketProofOfReserveByDayResponse.fromJson(value);
+        case 'GetVaultMarketProofOfReserveByDayResponseAnchor':
+          return GetVaultMarketProofOfReserveByDayResponseAnchor.fromJson(value);
         case 'GetVaultMarketProofOfReserveByDayResponseUnits':
           return GetVaultMarketProofOfReserveByDayResponseUnits.fromJson(value);
         case 'GetVaultMarketProofOfReserveMeResponse':
@@ -3111,8 +6045,12 @@ class ApiClient {
           return GetVaultMarketProofOfReserveResponse.fromJson(value);
         case 'GetVaultMarketProofOfReserveResponseAnchoring':
           return GetVaultMarketProofOfReserveResponseAnchoring.fromJson(value);
+        case 'GetVaultMarketProofOfReserveResponseHistory':
+          return GetVaultMarketProofOfReserveResponseHistory.fromJson(value);
         case 'GetVaultMarketProofOfReserveResponseLatest':
           return GetVaultMarketProofOfReserveResponseLatest.fromJson(value);
+        case 'GetVaultMarketProofOfReserveResponseLatestAnchor':
+          return GetVaultMarketProofOfReserveResponseLatestAnchor.fromJson(value);
         case 'GetVaultMarketProofOfReserveResponseMethod':
           return GetVaultMarketProofOfReserveResponseMethod.fromJson(value);
         case 'GetVaultMarketRateResponse':
@@ -3153,6 +6091,10 @@ class ApiClient {
           return GetVaultMarketRiskReportResponseConcentrationPerKey.fromJson(value);
         case 'GetVaultMarketRiskReportResponseConcentrationTop10':
           return GetVaultMarketRiskReportResponseConcentrationTop10.fromJson(value);
+        case 'GetVaultMarketRiskReportResponseCounterparty':
+          return GetVaultMarketRiskReportResponseCounterparty.fromJson(value);
+        case 'GetVaultMarketRiskReportResponseCounterpartyOneOf1Insurance':
+          return GetVaultMarketRiskReportResponseCounterpartyOneOf1Insurance.fromJson(value);
         case 'GetVaultMarketRiskReportResponseLvar':
           return GetVaultMarketRiskReportResponseLvar.fromJson(value);
         case 'GetVaultMarketRiskReportResponseLvarOneDay':
@@ -3211,8 +6153,102 @@ class ApiClient {
           return GetVaultMarketSetGoalResponsePiecesBid.fromJson(value);
         case 'GetVaultMarketSetGoalResponseTarget':
           return GetVaultMarketSetGoalResponseTarget.fromJson(value);
+        case 'GetVaultMarketSettingResponse':
+          return GetVaultMarketSettingResponse.fromJson(value);
+        case 'GetVaultMarketSettingResponseSettings':
+          return GetVaultMarketSettingResponseSettings.fromJson(value);
+        case 'GetVaultMarketShareBasketResponse':
+          return GetVaultMarketShareBasketResponse.fromJson(value);
+        case 'GetVaultMarketShareBasketResponseMembers':
+          return GetVaultMarketShareBasketResponseMembers.fromJson(value);
+        case 'GetVaultMarketShareBasketResponseMine':
+          return GetVaultMarketShareBasketResponseMine.fromJson(value);
+        case 'GetVaultMarketShareBasketResponseMineMembers':
+          return GetVaultMarketShareBasketResponseMineMembers.fromJson(value);
+        case 'GetVaultMarketShareInvestorResponse':
+          return GetVaultMarketShareInvestorResponse.fromJson(value);
+        case 'GetVaultMarketShareInvestorResponseInvestor':
+          return GetVaultMarketShareInvestorResponseInvestor.fromJson(value);
+        case 'GetVaultMarketShareInvestorResponseInvestorOfferings':
+          return GetVaultMarketShareInvestorResponseInvestorOfferings.fromJson(value);
+        case 'GetVaultMarketShareMeResponse':
+          return GetVaultMarketShareMeResponse.fromJson(value);
+        case 'GetVaultMarketShareMeResponseAutoInvest':
+          return GetVaultMarketShareMeResponseAutoInvest.fromJson(value);
+        case 'GetVaultMarketShareMeResponseDistributions':
+          return GetVaultMarketShareMeResponseDistributions.fromJson(value);
+        case 'GetVaultMarketShareMeResponseHoldings':
+          return GetVaultMarketShareMeResponseHoldings.fromJson(value);
+        case 'GetVaultMarketShareMeResponseHoldingsSeries':
+          return GetVaultMarketShareMeResponseHoldingsSeries.fromJson(value);
+        case 'GetVaultMarketShareMeResponseTotals':
+          return GetVaultMarketShareMeResponseTotals.fromJson(value);
+        case 'GetVaultMarketShareMeResponseVenue':
+          return GetVaultMarketShareMeResponseVenue.fromJson(value);
+        case 'GetVaultMarketSharePaperResponse':
+          return GetVaultMarketSharePaperResponse.fromJson(value);
+        case 'GetVaultMarketSharePaperResponseHoldings':
+          return GetVaultMarketSharePaperResponseHoldings.fromJson(value);
+        case 'GetVaultMarketSharePaperSeryBookResponse':
+          return GetVaultMarketSharePaperSeryBookResponse.fromJson(value);
+        case 'GetVaultMarketSharePaperSeryBookResponseHouse':
+          return GetVaultMarketSharePaperSeryBookResponseHouse.fromJson(value);
+        case 'GetVaultMarketSharePreviewResponse':
+          return GetVaultMarketSharePreviewResponse.fromJson(value);
+        case 'GetVaultMarketSharePreviewResponseTerms':
+          return GetVaultMarketSharePreviewResponseTerms.fromJson(value);
+        case 'GetVaultMarketShareResponse':
+          return GetVaultMarketShareResponse.fromJson(value);
+        case 'GetVaultMarketShareResponseRules':
+          return GetVaultMarketShareResponseRules.fromJson(value);
+        case 'GetVaultMarketShareSeryBookResponse':
+          return GetVaultMarketShareSeryBookResponse.fromJson(value);
+        case 'GetVaultMarketShareSeryBookResponseBids':
+          return GetVaultMarketShareSeryBookResponseBids.fromJson(value);
+        case 'GetVaultMarketShareSeryHistoryResponse':
+          return GetVaultMarketShareSeryHistoryResponse.fromJson(value);
+        case 'GetVaultMarketShareSeryHistoryResponseCandles':
+          return GetVaultMarketShareSeryHistoryResponseCandles.fromJson(value);
+        case 'GetVaultMarketShareSeryPerkResponse':
+          return GetVaultMarketShareSeryPerkResponse.fromJson(value);
+        case 'GetVaultMarketShareSeryPerkResponseBadge':
+          return GetVaultMarketShareSeryPerkResponseBadge.fromJson(value);
+        case 'GetVaultMarketShareSeryPerkResponseViewingDays':
+          return GetVaultMarketShareSeryPerkResponseViewingDays.fromJson(value);
+        case 'GetVaultMarketShareSeryPerkResponseViewingDaysMyBooking':
+          return GetVaultMarketShareSeryPerkResponseViewingDaysMyBooking.fromJson(value);
+        case 'GetVaultMarketShareSeryPerkResponseVisit':
+          return GetVaultMarketShareSeryPerkResponseVisit.fromJson(value);
+        case 'GetVaultMarketShareSeryResponse':
+          return GetVaultMarketShareSeryResponse.fromJson(value);
+        case 'GetVaultMarketShareSeryResponseBuyouts':
+          return GetVaultMarketShareSeryResponseBuyouts.fromJson(value);
+        case 'GetVaultMarketShareSeryResponseBuyoutsMyVote':
+          return GetVaultMarketShareSeryResponseBuyoutsMyVote.fromJson(value);
+        case 'GetVaultMarketShareSeryResponseHolders':
+          return GetVaultMarketShareSeryResponseHolders.fromJson(value);
+        case 'GetVaultMarketShareSeryResponseHoldersDistribution':
+          return GetVaultMarketShareSeryResponseHoldersDistribution.fromJson(value);
+        case 'GetVaultMarketShareSeryResponseMarket':
+          return GetVaultMarketShareSeryResponseMarket.fromJson(value);
+        case 'GetVaultMarketShareSeryResponseMarketIndicative':
+          return GetVaultMarketShareSeryResponseMarketIndicative.fromJson(value);
+        case 'GetVaultMarketShareSeryResponseMarketTrading':
+          return GetVaultMarketShareSeryResponseMarketTrading.fromJson(value);
+        case 'GetVaultMarketShareSeryResponseMy':
+          return GetVaultMarketShareSeryResponseMy.fromJson(value);
+        case 'GetVaultMarketShareSeryResponseMySubscriptions':
+          return GetVaultMarketShareSeryResponseMySubscriptions.fromJson(value);
+        case 'GetVaultMarketShareSeryResponsePerks':
+          return GetVaultMarketShareSeryResponsePerks.fromJson(value);
+        case 'GetVaultMarketShareSeryResponsePerksViewingDays':
+          return GetVaultMarketShareSeryResponsePerksViewingDays.fromJson(value);
+        case 'GetVaultMarketShareSeryRoomResponse':
+          return GetVaultMarketShareSeryRoomResponse.fromJson(value);
         case 'GetVaultMarketStatementByMonthResponse':
           return GetVaultMarketStatementByMonthResponse.fromJson(value);
+        case 'GetVaultMarketStatementByMonthResponseOneOf1Cash':
+          return GetVaultMarketStatementByMonthResponseOneOf1Cash.fromJson(value);
         case 'GetVaultMarketStatementByMonthResponseOneOf1Fees':
           return GetVaultMarketStatementByMonthResponseOneOf1Fees.fromJson(value);
         case 'GetVaultMarketStatementByMonthResponseOneOf1Holdings':
@@ -3221,6 +6257,8 @@ class ApiClient {
           return GetVaultMarketStatementByMonthResponseOneOf1Summary.fromJson(value);
         case 'GetVaultMarketStatementByMonthResponseOneOf1SummaryBought':
           return GetVaultMarketStatementByMonthResponseOneOf1SummaryBought.fromJson(value);
+        case 'GetVaultMarketStatementByMonthResponseOneOf2Cash':
+          return GetVaultMarketStatementByMonthResponseOneOf2Cash.fromJson(value);
         case 'GetVaultMarketStatementResponse':
           return GetVaultMarketStatementResponse.fromJson(value);
         case 'GetVaultMarketStatementResponseMonths':
@@ -3241,6 +6279,12 @@ class ApiClient {
           return GetVaultMarketSupplyRoundUpResponseRoundUp.fromJson(value);
         case 'GetVaultMarketSupplyRoundUpResponseRoundUpEntries':
           return GetVaultMarketSupplyRoundUpResponseRoundUpEntries.fromJson(value);
+        case 'GetVaultMarketSupplyShipmentResponse':
+          return GetVaultMarketSupplyShipmentResponse.fromJson(value);
+        case 'GetVaultMarketSupplyShipmentResponseDropoffPartner':
+          return GetVaultMarketSupplyShipmentResponseDropoffPartner.fromJson(value);
+        case 'GetVaultMarketSupplyShipmentResponseItems':
+          return GetVaultMarketSupplyShipmentResponseItems.fromJson(value);
         case 'GetVaultMarketTaxLossSuggestionResponse':
           return GetVaultMarketTaxLossSuggestionResponse.fromJson(value);
         case 'GetVaultMarketTaxLossSuggestionResponseRealisedThisYear':
@@ -3251,6 +6295,22 @@ class ApiClient {
           return GetVaultMarketTaxLossSuggestionResponseSuggestionsLot.fromJson(value);
         case 'GetVaultMarketTaxLossSuggestionResponseTotals':
           return GetVaultMarketTaxLossSuggestionResponseTotals.fromJson(value);
+        case 'GetVaultMarketTaxOptionResponse':
+          return GetVaultMarketTaxOptionResponse.fromJson(value);
+        case 'GetVaultMarketTaxOptionResponseDisposals':
+          return GetVaultMarketTaxOptionResponseDisposals.fromJson(value);
+        case 'GetVaultMarketTaxOptionResponseOpenAtYearEnd':
+          return GetVaultMarketTaxOptionResponseOpenAtYearEnd.fromJson(value);
+        case 'GetVaultMarketTaxOptionResponseTotals':
+          return GetVaultMarketTaxOptionResponseTotals.fromJson(value);
+        case 'GetVaultMarketTaxOptionResponseTotalsSection1256':
+          return GetVaultMarketTaxOptionResponseTotalsSection1256.fromJson(value);
+        case 'GetVaultMarketTaxPredictionResponse':
+          return GetVaultMarketTaxPredictionResponse.fromJson(value);
+        case 'GetVaultMarketTaxPredictionResponseRows':
+          return GetVaultMarketTaxPredictionResponseRows.fromJson(value);
+        case 'GetVaultMarketTaxPredictionResponseTotals':
+          return GetVaultMarketTaxPredictionResponseTotals.fromJson(value);
         case 'GetVaultMarketTaxResponse':
           return GetVaultMarketTaxResponse.fromJson(value);
         case 'GetVaultMarketTaxResponseFiles':
@@ -3259,18 +6319,32 @@ class ApiClient {
           return GetVaultMarketTaxResponseGiftsOut.fromJson(value);
         case 'GetVaultMarketTaxResponseIncome':
           return GetVaultMarketTaxResponseIncome.fromJson(value);
+        case 'GetVaultMarketTaxResponseOptions':
+          return GetVaultMarketTaxResponseOptions.fromJson(value);
         case 'GetVaultMarketTaxResponsePositions':
           return GetVaultMarketTaxResponsePositions.fromJson(value);
+        case 'GetVaultMarketTaxResponsePredictions':
+          return GetVaultMarketTaxResponsePredictions.fromJson(value);
         case 'GetVaultMarketTaxResponsePurchases':
           return GetVaultMarketTaxResponsePurchases.fromJson(value);
         case 'GetVaultMarketTaxResponseSales':
           return GetVaultMarketTaxResponseSales.fromJson(value);
+        case 'GetVaultMarketTaxResponseShares':
+          return GetVaultMarketTaxResponseShares.fromJson(value);
+        case 'GetVaultMarketTaxResponseSharesOpen':
+          return GetVaultMarketTaxResponseSharesOpen.fromJson(value);
+        case 'GetVaultMarketTaxResponseSharesSales':
+          return GetVaultMarketTaxResponseSharesSales.fromJson(value);
+        case 'GetVaultMarketTaxResponseSharesTotals':
+          return GetVaultMarketTaxResponseSharesTotals.fromJson(value);
         case 'GetVaultMarketTaxResponseTotals':
           return GetVaultMarketTaxResponseTotals.fromJson(value);
         case 'GetVaultMarketTaxResponseTotalsPurchases':
           return GetVaultMarketTaxResponseTotalsPurchases.fromJson(value);
         case 'GetVaultMarketTaxResponseTotalsSales':
           return GetVaultMarketTaxResponseTotalsSales.fromJson(value);
+        case 'GetVaultMarketTaxShareResponse':
+          return GetVaultMarketTaxShareResponse.fromJson(value);
         case 'GetVaultMarketTcaByOrderIdResponse':
           return GetVaultMarketTcaByOrderIdResponse.fromJson(value);
         case 'GetVaultMarketTcaByOrderIdResponseArrival':
@@ -3283,6 +6357,10 @@ class ApiClient {
           return GetVaultMarketTcaResponse.fromJson(value);
         case 'GetVaultMarketTcaResponseItems':
           return GetVaultMarketTcaResponseItems.fromJson(value);
+        case 'GetVaultMarketTcaResponseOptions':
+          return GetVaultMarketTcaResponseOptions.fromJson(value);
+        case 'GetVaultMarketTcaResponseOptionsFills':
+          return GetVaultMarketTcaResponseOptionsFills.fromJson(value);
         case 'GetVaultMarketTcaResponseSummary':
           return GetVaultMarketTcaResponseSummary.fromJson(value);
         case 'GetVaultMarketTodMyClaimResponse':
@@ -3301,6 +6379,10 @@ class ApiClient {
           return GetVaultMarketTodResponseClaims.fromJson(value);
         case 'GetVaultMarketTodResponseUnits':
           return GetVaultMarketTodResponseUnits.fromJson(value);
+        case 'GetVaultMarketTodResponseVaultShares':
+          return GetVaultMarketTodResponseVaultShares.fromJson(value);
+        case 'GetVaultMarketTodResponseVaultSharesLines':
+          return GetVaultMarketTodResponseVaultSharesLines.fromJson(value);
         case 'GetVaultMarketUnitArResponse':
           return GetVaultMarketUnitArResponse.fromJson(value);
         case 'GetVaultMarketUnitEvidenceResponse':
@@ -3367,6 +6449,8 @@ class ApiClient {
           return GetVaultMarketVaultSuggestionItemResponse.fromJson(value);
         case 'GetVaultMarketVaultSuggestionItemResponseSuggestion':
           return GetVaultMarketVaultSuggestionItemResponseSuggestion.fromJson(value);
+        case 'GetVaultMarketVaultSuggestionItemResponseSuggestionFractionalize':
+          return GetVaultMarketVaultSuggestionItemResponseSuggestionFractionalize.fromJson(value);
         case 'GetVaultMarketVaultSuggestionItemResponseSuggestionInstantExit':
           return GetVaultMarketVaultSuggestionItemResponseSuggestionInstantExit.fromJson(value);
         case 'GetVaultMarketVaultSuggestionItemResponseSuggestionMarket':
@@ -3377,8 +6461,6 @@ class ApiClient {
           return GetVaultMarketVaultSuggestionItemResponseSuggestionVaultFee.fromJson(value);
         case 'GetVaultMarketWidgetIndexResponse':
           return GetVaultMarketWidgetIndexResponse.fromJson(value);
-        case 'GetVaultMarketWidgetIndexResponsePoints':
-          return GetVaultMarketWidgetIndexResponsePoints.fromJson(value);
         case 'GetVaultMarketWidgetMarkResponse':
           return GetVaultMarketWidgetMarkResponse.fromJson(value);
         case 'GetVaultMarketWidgetMarkResponsePoints':
@@ -3395,6 +6477,14 @@ class ApiClient {
           return GetVaultMarketWidgetSummaryResponsePortfolio.fromJson(value);
         case 'GetVaultMarketWidgetSummaryResponseWatch':
           return GetVaultMarketWidgetSummaryResponseWatch.fromJson(value);
+        case 'GetVaultMarketWorldFloorBoardResponse':
+          return GetVaultMarketWorldFloorBoardResponse.fromJson(value);
+        case 'GetVaultMarketWorldFloorBoardResponseHeat':
+          return GetVaultMarketWorldFloorBoardResponseHeat.fromJson(value);
+        case 'GetVaultMarketWorldFloorBoardResponseOdds':
+          return GetVaultMarketWorldFloorBoardResponseOdds.fromJson(value);
+        case 'GetVaultMarketWorldFloorBoardResponseShares':
+          return GetVaultMarketWorldFloorBoardResponseShares.fromJson(value);
         case 'GetVaultMarketWorldFloorResponse':
           return GetVaultMarketWorldFloorResponse.fromJson(value);
         case 'GetVaultMarketWorldFloorResponseBell':
@@ -3429,6 +6519,8 @@ class ApiClient {
           return GetVaultMarketWorthVaultResponseSellNow.fromJson(value);
         case 'GetVaultMarketWorthVaultResponseSellNowBlocked':
           return GetVaultMarketWorthVaultResponseSellNowBlocked.fromJson(value);
+        case 'GetVaultMarketWorthVaultResponseToday':
+          return GetVaultMarketWorthVaultResponseToday.fromJson(value);
         case 'GetVaultReceiptResponse':
           return GetVaultReceiptResponse.fromJson(value);
         case 'GetVaultReceiptResponseChain':
@@ -3441,10 +6533,28 @@ class ApiClient {
           return GetVaultReceiptTokenResponse.fromJson(value);
         case 'GetVaultReceiptTokenResponseEvents':
           return GetVaultReceiptTokenResponseEvents.fromJson(value);
+        case 'GetWalletCrosslyResponse':
+          return GetWalletCrosslyResponse.fromJson(value);
+        case 'GetWalletCrosslyResponseData':
+          return GetWalletCrosslyResponseData.fromJson(value);
+        case 'GetWalletCrosslyResponseDataClient':
+          return GetWalletCrosslyResponseDataClient.fromJson(value);
         case 'GetWeb3AuctionResponse':
           return GetWeb3AuctionResponse.fromJson(value);
         case 'GetWeb3AuctionResponseAuction':
           return GetWeb3AuctionResponseAuction.fromJson(value);
+        case 'GetWeb3BalanceResponse':
+          return GetWeb3BalanceResponse.fromJson(value);
+        case 'GetWeb3BalanceResponseData':
+          return GetWeb3BalanceResponseData.fromJson(value);
+        case 'GetWeb3BalanceResponseDataConnected':
+          return GetWeb3BalanceResponseDataConnected.fromJson(value);
+        case 'GetWeb3BalanceResponseDataCredit':
+          return GetWeb3BalanceResponseDataCredit.fromJson(value);
+        case 'GetWeb3BalanceResponseDataTotals':
+          return GetWeb3BalanceResponseDataTotals.fromJson(value);
+        case 'GetWeb3BalanceResponseDataWallets':
+          return GetWeb3BalanceResponseDataWallets.fromJson(value);
         case 'GetWeb3BrowseResponse':
           return GetWeb3BrowseResponse.fromJson(value);
         case 'GetWeb3BrowseResponseCategories':
@@ -3501,14 +6611,8 @@ class ApiClient {
           return GetWeb3CollectorResponseMarks.fromJson(value);
         case 'GetWeb3CreatorResponse':
           return GetWeb3CreatorResponse.fromJson(value);
-        case 'GetWeb3CreatorResponseDaily':
-          return GetWeb3CreatorResponseDaily.fromJson(value);
         case 'GetWeb3CreatorResponseHolders':
           return GetWeb3CreatorResponseHolders.fromJson(value);
-        case 'GetWeb3CreatorResponseMint':
-          return GetWeb3CreatorResponseMint.fromJson(value);
-        case 'GetWeb3CreatorResponseRecent':
-          return GetWeb3CreatorResponseRecent.fromJson(value);
         case 'GetWeb3CreatorResponseSales':
           return GetWeb3CreatorResponseSales.fromJson(value);
         case 'GetWeb3CreatorResponseSalesByMarketplace':
@@ -3541,12 +6645,20 @@ class ApiClient {
           return GetWeb3LaunchAllowlistRootTxResponse.fromJson(value);
         case 'GetWeb3LaunchDeployTxResponse':
           return GetWeb3LaunchDeployTxResponse.fromJson(value);
+        case 'GetWeb3LaunchStatResponse':
+          return GetWeb3LaunchStatResponse.fromJson(value);
+        case 'GetWeb3LaunchStatResponseData':
+          return GetWeb3LaunchStatResponseData.fromJson(value);
+        case 'GetWeb3LaunchStatResponseDataLaunch':
+          return GetWeb3LaunchStatResponseDataLaunch.fromJson(value);
         case 'GetWeb3LaunchToolResponse':
           return GetWeb3LaunchToolResponse.fromJson(value);
         case 'GetWeb3LaunchToolResponseAllowlist':
           return GetWeb3LaunchToolResponseAllowlist.fromJson(value);
         case 'GetWeb3LaunchToolResponseArt':
           return GetWeb3LaunchToolResponseArt.fromJson(value);
+        case 'GetWeb3LaunchToolResponseRoyalties':
+          return GetWeb3LaunchToolResponseRoyalties.fromJson(value);
         case 'GetWeb3LaunchToolResponseSupply':
           return GetWeb3LaunchToolResponseSupply.fromJson(value);
         case 'GetWeb3OrderFulfillmentResponse':
@@ -3593,6 +6705,26 @@ class ApiClient {
           return GetWeb3SolanaCollectionTensorBidResponseBids.fromJson(value);
         case 'GetWeb3SolanaCollectionTensorBidResponseBidsTrait':
           return GetWeb3SolanaCollectionTensorBidResponseBidsTrait.fromJson(value);
+        case 'GetWeb3StakingResponse':
+          return GetWeb3StakingResponse.fromJson(value);
+        case 'GetWeb3StakingResponseData':
+          return GetWeb3StakingResponseData.fromJson(value);
+        case 'GetWeb3StakingResponseDataHistory':
+          return GetWeb3StakingResponseDataHistory.fromJson(value);
+        case 'GetWeb3StakingResponseDataTiers':
+          return GetWeb3StakingResponseDataTiers.fromJson(value);
+        case 'GetWeb3StoreWalletNftResponse':
+          return GetWeb3StoreWalletNftResponse.fromJson(value);
+        case 'GetWeb3StoreWalletNftResponseData':
+          return GetWeb3StoreWalletNftResponseData.fromJson(value);
+        case 'GetWeb3StoreWalletNftResponseDataProperty':
+          return GetWeb3StoreWalletNftResponseDataProperty.fromJson(value);
+        case 'GetWeb3StoreWalletNftResponseDataReceipts':
+          return GetWeb3StoreWalletNftResponseDataReceipts.fromJson(value);
+        case 'GetWeb3StoreWalletNftResponseDataReceiptsToken':
+          return GetWeb3StoreWalletNftResponseDataReceiptsToken.fromJson(value);
+        case 'GetWeb3StoreWalletNftResponseDataWallets':
+          return GetWeb3StoreWalletNftResponseDataWallets.fromJson(value);
         case 'GetWeb3TokenResponse':
           return GetWeb3TokenResponse.fromJson(value);
         case 'GetWeb3TokenResponseCollection':
@@ -3601,10 +6733,128 @@ class ApiClient {
           return GetWeb3TokenResponseElsewhere.fromJson(value);
         case 'GetWeb3TokenResponseTraits':
           return GetWeb3TokenResponseTraits.fromJson(value);
+        case 'GetWeb3WalletHoldingResponse':
+          return GetWeb3WalletHoldingResponse.fromJson(value);
+        case 'GetWeb3WalletHoldingResponseData':
+          return GetWeb3WalletHoldingResponseData.fromJson(value);
+        case 'GetWeb3WalletHoldingResponseDataChains':
+          return GetWeb3WalletHoldingResponseDataChains.fromJson(value);
+        case 'GetWeb3WalletHoldingResponseDataHoldings':
+          return GetWeb3WalletHoldingResponseDataHoldings.fromJson(value);
+        case 'GetWholesaleCatalogLineSheetResponse':
+          return GetWholesaleCatalogLineSheetResponse.fromJson(value);
+        case 'GetWholesaleCatalogLineSheetResponseData':
+          return GetWholesaleCatalogLineSheetResponseData.fromJson(value);
+        case 'GetWholesaleCatalogLineSheetResponseDataCatalog':
+          return GetWholesaleCatalogLineSheetResponseDataCatalog.fromJson(value);
+        case 'GetWholesaleCatalogLineSheetResponseDataItems':
+          return GetWholesaleCatalogLineSheetResponseDataItems.fromJson(value);
+        case 'GetWholesaleCatalogLineSheetResponseDataItemsTerms':
+          return GetWholesaleCatalogLineSheetResponseDataItemsTerms.fromJson(value);
+        case 'GetWholesaleCatalogLineSheetResponseDataSeller':
+          return GetWholesaleCatalogLineSheetResponseDataSeller.fromJson(value);
+        case 'GetWholesaleCatalogShareResponse':
+          return GetWholesaleCatalogShareResponse.fromJson(value);
+        case 'GetWholesaleCatalogShareResponseData':
+          return GetWholesaleCatalogShareResponseData.fromJson(value);
+        case 'GetWholesaleCategoryResponse':
+          return GetWholesaleCategoryResponse.fromJson(value);
+        case 'GetWholesaleCategoryResponseData':
+          return GetWholesaleCategoryResponseData.fromJson(value);
+        case 'GetWholesaleCategoryResponseDataItems':
+          return GetWholesaleCategoryResponseDataItems.fromJson(value);
+        case 'GetWholesaleDropResponse':
+          return GetWholesaleDropResponse.fromJson(value);
+        case 'GetWholesaleDropResponseData':
+          return GetWholesaleDropResponseData.fromJson(value);
+        case 'GetWholesaleDropResponseDataReservations':
+          return GetWholesaleDropResponseDataReservations.fromJson(value);
+        case 'GetWholesaleOverviewResponse':
+          return GetWholesaleOverviewResponse.fromJson(value);
+        case 'GetWholesaleOverviewResponseData':
+          return GetWholesaleOverviewResponseData.fromJson(value);
+        case 'GetWholesaleOverviewResponseDataCounts':
+          return GetWholesaleOverviewResponseDataCounts.fromJson(value);
+        case 'GetWholesaleOverviewResponseDataKpis':
+          return GetWholesaleOverviewResponseDataKpis.fromJson(value);
+        case 'GetWholesaleOverviewResponseDataProfile':
+          return GetWholesaleOverviewResponseDataProfile.fromJson(value);
+        case 'GetWholesaleOverviewResponseDataProfileBuyerRequirements':
+          return GetWholesaleOverviewResponseDataProfileBuyerRequirements.fromJson(value);
+        case 'GetWholesaleOverviewResponseDataProfileInvoiceSettings':
+          return GetWholesaleOverviewResponseDataProfileInvoiceSettings.fromJson(value);
+        case 'GetWholesaleOverviewResponseDataProfileInvoiceSettingsResolved':
+          return GetWholesaleOverviewResponseDataProfileInvoiceSettingsResolved.fromJson(value);
+        case 'GetWholesaleOverviewResponseDataProfileShipsFrom':
+          return GetWholesaleOverviewResponseDataProfileShipsFrom.fromJson(value);
+        case 'GetWholesaleProfileResponse':
+          return GetWholesaleProfileResponse.fromJson(value);
+        case 'GetWholesaleProfileResponseData':
+          return GetWholesaleProfileResponseData.fromJson(value);
+        case 'GetWholesaleProfileResponseDataBuyerRequirements':
+          return GetWholesaleProfileResponseDataBuyerRequirements.fromJson(value);
+        case 'GetWholesaleProfileResponseDataBuyerRequirementsQuestions':
+          return GetWholesaleProfileResponseDataBuyerRequirementsQuestions.fromJson(value);
+        case 'GetWholesaleReserveResponse':
+          return GetWholesaleReserveResponse.fromJson(value);
+        case 'GetWholesaleReserveResponseData':
+          return GetWholesaleReserveResponseData.fromJson(value);
+        case 'GetWholesaleTermPreviewResponse':
+          return GetWholesaleTermPreviewResponse.fromJson(value);
+        case 'GetWholesaleTermPreviewResponseData':
+          return GetWholesaleTermPreviewResponseData.fromJson(value);
+        case 'GetWorkflowCatalogResponse':
+          return GetWorkflowCatalogResponse.fromJson(value);
+        case 'GetWorkflowCatalogResponseData':
+          return GetWorkflowCatalogResponseData.fromJson(value);
+        case 'GetWorkflowCatalogResponseDataConditionOperators':
+          return GetWorkflowCatalogResponseDataConditionOperators.fromJson(value);
+        case 'GetWorkflowCatalogResponseDataConditionOperatorsAppliesToItem':
+          return GetWorkflowCatalogResponseDataConditionOperatorsAppliesToItemTypeTransformer().decode(value);
+        case 'GetWorkflowCatalogResponseDataExpressionHelpers':
+          return GetWorkflowCatalogResponseDataExpressionHelpers.fromJson(value);
+        case 'GetWorkflowCatalogResponseDataNodes':
+          return GetWorkflowCatalogResponseDataNodes.fromJson(value);
+        case 'GetWorkflowCatalogResponseDataNodesTrigger':
+          return GetWorkflowCatalogResponseDataNodesTrigger.fromJson(value);
         case 'GetWorkflowChainResponse':
           return GetWorkflowChainResponse.fromJson(value);
         case 'GetWorkflowChainResponseSteps':
           return GetWorkflowChainResponseSteps.fromJson(value);
+        case 'GetWorkflowExportResponse':
+          return GetWorkflowExportResponse.fromJson(value);
+        case 'GetWorkflowExportResponseGraph':
+          return GetWorkflowExportResponseGraph.fromJson(value);
+        case 'GetWorkflowExportResponseGraphEdges':
+          return GetWorkflowExportResponseGraphEdges.fromJson(value);
+        case 'GetWorkflowExportResponseGraphNodes':
+          return GetWorkflowExportResponseGraphNodes.fromJson(value);
+        case 'GetWorkflowExportResponseGraphNotes':
+          return GetWorkflowExportResponseGraphNotes.fromJson(value);
+        case 'GetWorkflowExportResponseGraphSettings':
+          return GetWorkflowExportResponseGraphSettings.fromJson(value);
+        case 'GetWorkflowExportResponseGraphSettingsLegacy':
+          return GetWorkflowExportResponseGraphSettingsLegacy.fromJson(value);
+        case 'GetWorkflowResponse':
+          return GetWorkflowResponse.fromJson(value);
+        case 'GetWorkflowResponseData':
+          return GetWorkflowResponseData.fromJson(value);
+        case 'GetWorkflowRunNodeItem':
+          return GetWorkflowRunNodeItem.fromJson(value);
+        case 'GetWorkflowRunNodeItemError':
+          return GetWorkflowRunNodeItemError.fromJson(value);
+        case 'GetWorkflowRunNodeResponse':
+          return GetWorkflowRunNodeResponse.fromJson(value);
+        case 'GetWorkflowRunResponse':
+          return GetWorkflowRunResponse.fromJson(value);
+        case 'GetWorkflowRunResponseData':
+          return GetWorkflowRunResponseData.fromJson(value);
+        case 'GetWorkflowRunResponseDataGraph':
+          return GetWorkflowRunResponseDataGraph.fromJson(value);
+        case 'GetWorkflowRunResponseDataNodeRuns':
+          return GetWorkflowRunResponseDataNodeRuns.fromJson(value);
+        case 'GetWorkflowRunResponseDataRun':
+          return GetWorkflowRunResponseDataRun.fromJson(value);
         case 'GetWorldArcadeResponse':
           return GetWorldArcadeResponse.fromJson(value);
         case 'GetWorldArcadeResponseData':
@@ -3615,6 +6865,42 @@ class ApiClient {
           return GetWorldArcadeResponseDataCabinetsPiece.fromJson(value);
         case 'GetWorldArcadeResponseDataScores':
           return GetWorldArcadeResponseDataScores.fromJson(value);
+        case 'GetWorldAssistantStatusResponse':
+          return GetWorldAssistantStatusResponse.fromJson(value);
+        case 'GetWorldAssistantStatusResponseData':
+          return GetWorldAssistantStatusResponseData.fromJson(value);
+        case 'GetWorldAssistantStatusResponseDataAllowance':
+          return GetWorldAssistantStatusResponseDataAllowance.fromJson(value);
+        case 'GetWorldAssistantStatusResponseDataModels':
+          return GetWorldAssistantStatusResponseDataModels.fromJson(value);
+        case 'GetWorldAttendantResponse':
+          return GetWorldAttendantResponse.fromJson(value);
+        case 'GetWorldAttendantResponseData':
+          return GetWorldAttendantResponseData.fromJson(value);
+        case 'GetWorldAttendantResponseDataAiKey':
+          return GetWorldAttendantResponseDataAiKey.fromJson(value);
+        case 'GetWorldAttendantResponseDataAttendant':
+          return GetWorldAttendantResponseDataAttendant.fromJson(value);
+        case 'GetWorldAttendantResponseDataAttendantAllowedActions':
+          return GetWorldAttendantResponseDataAttendantAllowedActions.fromJson(value);
+        case 'GetWorldAttendantResponseDataAttendantAllowedActionsHolds':
+          return GetWorldAttendantResponseDataAttendantAllowedActionsHolds.fromJson(value);
+        case 'GetWorldAttendantResponseDataAttendantAllowedActionsOffers':
+          return GetWorldAttendantResponseDataAttendantAllowedActionsOffers.fromJson(value);
+        case 'GetWorldAttendantResponseDataAttendantAppearance':
+          return GetWorldAttendantResponseDataAttendantAppearance.fromJson(value);
+        case 'GetWorldAttendantResponseDataAttendantAppearanceColours':
+          return GetWorldAttendantResponseDataAttendantAppearanceColours.fromJson(value);
+        case 'GetWorldAttendantResponseDataAttendantHours':
+          return GetWorldAttendantResponseDataAttendantHours.fromJson(value);
+        case 'GetWorldAttendantResponseDataAttendantHoursDays':
+          return GetWorldAttendantResponseDataAttendantHoursDays.fromJson(value);
+        case 'GetWorldAttendantResponseDataAttendantKnowledge':
+          return GetWorldAttendantResponseDataAttendantKnowledge.fromJson(value);
+        case 'GetWorldAttendantResponseDataAttendantLanguagesItem':
+          return GetWorldAttendantResponseDataAttendantLanguagesItemTypeTransformer().decode(value);
+        case 'GetWorldAttendantResponseDataAttendantPersonality':
+          return GetWorldAttendantResponseDataAttendantPersonality.fromJson(value);
         case 'GetWorldAuroraResponse':
           return GetWorldAuroraResponse.fromJson(value);
         case 'GetWorldAuroraResponseData':
@@ -3623,12 +6909,20 @@ class ApiClient {
           return GetWorldAuroraResponseDataFamilies.fromJson(value);
         case 'GetWorldAuroraResponseDataSales':
           return GetWorldAuroraResponseDataSales.fromJson(value);
-        case 'GetWorldAutoShopResponse':
-          return GetWorldAutoShopResponse.fromJson(value);
-        case 'GetWorldAutoShopResponseData':
-          return GetWorldAutoShopResponseData.fromJson(value);
-        case 'GetWorldAutoShopResponseDataShop':
-          return GetWorldAutoShopResponseDataShop.fromJson(value);
+        case 'GetWorldAvatarBasicResponse':
+          return GetWorldAvatarBasicResponse.fromJson(value);
+        case 'GetWorldAvatarBasicResponseData':
+          return GetWorldAvatarBasicResponseData.fromJson(value);
+        case 'GetWorldAvatarBasicResponseDataColours':
+          return GetWorldAvatarBasicResponseDataColours.fromJson(value);
+        case 'GetWorldAvatarBasicResponseDataDefault':
+          return GetWorldAvatarBasicResponseDataDefault.fromJson(value);
+        case 'GetWorldAvatarBasicResponseDataGarments':
+          return GetWorldAvatarBasicResponseDataGarments.fromJson(value);
+        case 'GetWorldAvatarBasicResponseDataOptionalItem':
+          return GetWorldAvatarBasicResponseDataOptionalItemTypeTransformer().decode(value);
+        case 'GetWorldAvatarBasicResponseDataWornSlot':
+          return GetWorldAvatarBasicResponseDataWornSlot.fromJson(value);
         case 'GetWorldAvatarIdentityResponse':
           return GetWorldAvatarIdentityResponse.fromJson(value);
         case 'GetWorldAvatarIdentityResponseData':
@@ -3659,6 +6953,16 @@ class ApiClient {
           return GetWorldAvatarNftBadgeResponse.fromJson(value);
         case 'GetWorldAvatarNftBadgeResponseBadge':
           return GetWorldAvatarNftBadgeResponseBadge.fromJson(value);
+        case 'GetWorldBadgeMineResponse':
+          return GetWorldBadgeMineResponse.fromJson(value);
+        case 'GetWorldBadgeMineResponseData':
+          return GetWorldBadgeMineResponseData.fromJson(value);
+        case 'GetWorldBadgeMineResponseDataItems':
+          return GetWorldBadgeMineResponseDataItems.fromJson(value);
+        case 'GetWorldBadgeMineResponseDataItemsGame':
+          return GetWorldBadgeMineResponseDataItemsGame.fromJson(value);
+        case 'GetWorldBillingRailResponse':
+          return GetWorldBillingRailResponse.fromJson(value);
         case 'GetWorldCapabilityCatalogueResponse':
           return GetWorldCapabilityCatalogueResponse.fromJson(value);
         case 'GetWorldCapabilityCatalogueResponseData':
@@ -3681,6 +6985,12 @@ class ApiClient {
           return GetWorldCapabilityWearResponseDataPicks.fromJson(value);
         case 'GetWorldCapabilityWearResponseDataWorn':
           return GetWorldCapabilityWearResponseDataWorn.fromJson(value);
+        case 'GetWorldChartResponse':
+          return GetWorldChartResponse.fromJson(value);
+        case 'GetWorldChartResponseData':
+          return GetWorldChartResponseData.fromJson(value);
+        case 'GetWorldChartResponseDataEntries':
+          return GetWorldChartResponseDataEntries.fromJson(value);
         case 'GetWorldChestResponse':
           return GetWorldChestResponse.fromJson(value);
         case 'GetWorldChestResponseData':
@@ -3697,8 +7007,62 @@ class ApiClient {
           return GetWorldContestMineResponseDataEntries.fromJson(value);
         case 'GetWorldContestMineResponseDataPrizes':
           return GetWorldContestMineResponseDataPrizes.fromJson(value);
+        case 'GetWorldControlResponse':
+          return GetWorldControlResponse.fromJson(value);
+        case 'GetWorldControlResponseData':
+          return GetWorldControlResponseData.fromJson(value);
+        case 'GetWorldControlResponseDataPrefs':
+          return GetWorldControlResponseDataPrefs.fromJson(value);
+        case 'GetWorldConventionExhibitResponse':
+          return GetWorldConventionExhibitResponse.fromJson(value);
+        case 'GetWorldConventionExhibitResponseConvention':
+          return GetWorldConventionExhibitResponseConvention.fromJson(value);
+        case 'GetWorldConventionExhibitResponseMine':
+          return GetWorldConventionExhibitResponseMine.fromJson(value);
+        case 'GetWorldConventionExhibitResponseRails':
+          return GetWorldConventionExhibitResponseRails.fromJson(value);
+        case 'GetWorldConventionExhibitResponseRailsEffectiveItem':
+          return GetWorldConventionExhibitResponseRailsEffectiveItemTypeTransformer().decode(value);
+        case 'GetWorldConventionExhibitResponseTiers':
+          return GetWorldConventionExhibitResponseTiers.fromJson(value);
+        case 'GetWorldConventionHallResponse':
+          return GetWorldConventionHallResponse.fromJson(value);
+        case 'GetWorldConventionHallResponseContext':
+          return GetWorldConventionHallResponseContext.fromJson(value);
+        case 'GetWorldConventionHallResponseContextTiers':
+          return GetWorldConventionHallResponseContextTiers.fromJson(value);
+        case 'GetWorldConventionHallResponseDoc':
+          return GetWorldConventionHallResponseDoc.fromJson(value);
+        case 'GetWorldConventionHallResponseDocObjects':
+          return GetWorldConventionHallResponseDocObjects.fromJson(value);
+        case 'GetWorldConventionHallResponseProblems':
+          return GetWorldConventionHallResponseProblems.fromJson(value);
+        case 'GetWorldConventionManageResponse':
+          return GetWorldConventionManageResponse.fromJson(value);
+        case 'GetWorldConventionManageResponseConvention':
+          return GetWorldConventionManageResponseConvention.fromJson(value);
+        case 'GetWorldConventionManageResponseSellers':
+          return GetWorldConventionManageResponseSellers.fromJson(value);
+        case 'GetWorldConventionManageResponseTiers':
+          return GetWorldConventionManageResponseTiers.fromJson(value);
+        case 'GetWorldConventionManageResponseVenue':
+          return GetWorldConventionManageResponseVenue.fromJson(value);
+        case 'GetWorldConventionManageResponseWalkIn':
+          return GetWorldConventionManageResponseWalkIn.fromJson(value);
         case 'GetWorldConventionResponse':
           return GetWorldConventionResponse.fromJson(value);
+        case 'GetWorldConventionStatusPageResponse':
+          return GetWorldConventionStatusPageResponse.fromJson(value);
+        case 'GetWorldConventionStatusPageResponseAttendance':
+          return GetWorldConventionStatusPageResponseAttendance.fromJson(value);
+        case 'GetWorldConventionStatusPageResponseBooths':
+          return GetWorldConventionStatusPageResponseBooths.fromJson(value);
+        case 'GetWorldConventionStatusPageResponseMoney':
+          return GetWorldConventionStatusPageResponseMoney.fromJson(value);
+        case 'GetWorldConventionStatusPageResponseSales':
+          return GetWorldConventionStatusPageResponseSales.fromJson(value);
+        case 'GetWorldConventionStatusPageResponseSellers':
+          return GetWorldConventionStatusPageResponseSellers.fromJson(value);
         case 'GetWorldCosmBalanceResponse':
           return GetWorldCosmBalanceResponse.fromJson(value);
         case 'GetWorldCosmBalanceResponseData':
@@ -3711,10 +7075,40 @@ class ApiClient {
           return GetWorldCrewResponseDataCrew.fromJson(value);
         case 'GetWorldCrewResponseDataMembers':
           return GetWorldCrewResponseDataMembers.fromJson(value);
+        case 'GetWorldDiscoverRowResponse':
+          return GetWorldDiscoverRowResponse.fromJson(value);
+        case 'GetWorldDiscoverRowResponseData':
+          return GetWorldDiscoverRowResponseData.fromJson(value);
+        case 'GetWorldDiscoverRowResponseDataRows':
+          return GetWorldDiscoverRowResponseDataRows.fromJson(value);
         case 'GetWorldDmItem':
           return GetWorldDmItem.fromJson(value);
         case 'GetWorldDmResponse':
           return GetWorldDmResponse.fromJson(value);
+        case 'GetWorldEarningPayoutAccountResponse':
+          return GetWorldEarningPayoutAccountResponse.fromJson(value);
+        case 'GetWorldEarningPayoutAccountResponseData':
+          return GetWorldEarningPayoutAccountResponseData.fromJson(value);
+        case 'GetWorldEarningResponse':
+          return GetWorldEarningResponse.fromJson(value);
+        case 'GetWorldEarningResponseData':
+          return GetWorldEarningResponseData.fromJson(value);
+        case 'GetWorldEarningResponseDataBalances':
+          return GetWorldEarningResponseDataBalances.fromJson(value);
+        case 'GetWorldEarningResponseDataEligibility':
+          return GetWorldEarningResponseDataEligibility.fromJson(value);
+        case 'GetWorldEconomyResponse':
+          return GetWorldEconomyResponse.fromJson(value);
+        case 'GetWorldEconomyResponseData':
+          return GetWorldEconomyResponseData.fromJson(value);
+        case 'GetWorldEconomyResponseDataFormula':
+          return GetWorldEconomyResponseDataFormula.fromJson(value);
+        case 'GetWorldEconomyResponseDataHistory':
+          return GetWorldEconomyResponseDataHistory.fromJson(value);
+        case 'GetWorldEconomyResponseDataScheduled':
+          return GetWorldEconomyResponseDataScheduled.fromJson(value);
+        case 'GetWorldEconomyResponseDataTerms':
+          return GetWorldEconomyResponseDataTerms.fromJson(value);
         case 'GetWorldEmoteShowableResponse':
           return GetWorldEmoteShowableResponse.fromJson(value);
         case 'GetWorldEmoteShowableResponseData':
@@ -3723,6 +7117,336 @@ class ApiClient {
           return GetWorldEmoteShowableResponseDataListings.fromJson(value);
         case 'GetWorldEmoteShowableResponseDataListingsRef':
           return GetWorldEmoteShowableResponseDataListingsRef.fromJson(value);
+        case 'GetWorldExperienceAccessLimitResponse':
+          return GetWorldExperienceAccessLimitResponse.fromJson(value);
+        case 'GetWorldExperienceAccessLimitResponseData':
+          return GetWorldExperienceAccessLimitResponseData.fromJson(value);
+        case 'GetWorldExperienceAdReportResponse':
+          return GetWorldExperienceAdReportResponse.fromJson(value);
+        case 'GetWorldExperienceAdReportResponseReport':
+          return GetWorldExperienceAdReportResponseReport.fromJson(value);
+        case 'GetWorldExperienceAdReportResponseReportDaily':
+          return GetWorldExperienceAdReportResponseReportDaily.fromJson(value);
+        case 'GetWorldExperienceAdReportResponseReportTotals':
+          return GetWorldExperienceAdReportResponseReportTotals.fromJson(value);
+        case 'GetWorldExperienceAdResponse':
+          return GetWorldExperienceAdResponse.fromJson(value);
+        case 'GetWorldExperienceAdResponseAds':
+          return GetWorldExperienceAdResponseAds.fromJson(value);
+        case 'GetWorldExperienceAdResponseAdsSlots':
+          return GetWorldExperienceAdResponseAdsSlots.fromJson(value);
+        case 'GetWorldExperienceAdSettingResponse':
+          return GetWorldExperienceAdSettingResponse.fromJson(value);
+        case 'GetWorldExperienceAdSettingResponseSettings':
+          return GetWorldExperienceAdSettingResponseSettings.fromJson(value);
+        case 'GetWorldExperienceAlertSettingResponse':
+          return GetWorldExperienceAlertSettingResponse.fromJson(value);
+        case 'GetWorldExperienceAlertSettingResponseData':
+          return GetWorldExperienceAlertSettingResponseData.fromJson(value);
+        case 'GetWorldExperienceAlertSettingResponseDataRules':
+          return GetWorldExperienceAlertSettingResponseDataRules.fromJson(value);
+        case 'GetWorldExperienceAnalyticResponse':
+          return GetWorldExperienceAnalyticResponse.fromJson(value);
+        case 'GetWorldExperienceAnalyticResponseData':
+          return GetWorldExperienceAnalyticResponseData.fromJson(value);
+        case 'GetWorldExperienceAnalyticResponseDataOneOf1ByPlatformItem':
+          return GetWorldExperienceAnalyticResponseDataOneOf1ByPlatformItem.fromJson(value);
+        case 'GetWorldExperienceAnalyticResponseDataOneOf1ByRegionItem':
+          return GetWorldExperienceAnalyticResponseDataOneOf1ByRegionItem.fromJson(value);
+        case 'GetWorldExperienceAnalyticResponseDataOneOf1BySourceItem':
+          return GetWorldExperienceAnalyticResponseDataOneOf1BySourceItem.fromJson(value);
+        case 'GetWorldExperienceAnalyticResponseDataOneOf1Series':
+          return GetWorldExperienceAnalyticResponseDataOneOf1Series.fromJson(value);
+        case 'GetWorldExperienceAnalyticResponseDataOneOf1SessionLength':
+          return GetWorldExperienceAnalyticResponseDataOneOf1SessionLength.fromJson(value);
+        case 'GetWorldExperienceAnalyticResponseDataOneOf2Curve':
+          return GetWorldExperienceAnalyticResponseDataOneOf2Curve.fromJson(value);
+        case 'GetWorldExperienceAnalyticResponseDataOneOf2Grid':
+          return GetWorldExperienceAnalyticResponseDataOneOf2Grid.fromJson(value);
+        case 'GetWorldExperienceAnalyticResponseDataOneOf3Ledger':
+          return GetWorldExperienceAnalyticResponseDataOneOf3Ledger.fromJson(value);
+        case 'GetWorldExperienceAnalyticResponseDataOneOf3Lifetime':
+          return GetWorldExperienceAnalyticResponseDataOneOf3Lifetime.fromJson(value);
+        case 'GetWorldExperienceAnalyticResponseDataOneOf3Products':
+          return GetWorldExperienceAnalyticResponseDataOneOf3Products.fromJson(value);
+        case 'GetWorldExperienceAnalyticResponseDataOneOf3Series':
+          return GetWorldExperienceAnalyticResponseDataOneOf3Series.fromJson(value);
+        case 'GetWorldExperienceAnalyticResponseDataOneOf3Totals':
+          return GetWorldExperienceAnalyticResponseDataOneOf3Totals.fromJson(value);
+        case 'GetWorldExperienceAnalyticResponseDataOneOf4Funnels':
+          return GetWorldExperienceAnalyticResponseDataOneOf4Funnels.fromJson(value);
+        case 'GetWorldExperienceAnalyticResponseDataOneOf5Currencies':
+          return GetWorldExperienceAnalyticResponseDataOneOf5Currencies.fromJson(value);
+        case 'GetWorldExperienceAnalyticResponseDataOneOf5CurrenciesInflation':
+          return GetWorldExperienceAnalyticResponseDataOneOf5CurrenciesInflation.fromJson(value);
+        case 'GetWorldExperienceAnalyticResponseDataOneOf5CurrenciesTotals':
+          return GetWorldExperienceAnalyticResponseDataOneOf5CurrenciesTotals.fromJson(value);
+        case 'GetWorldExperienceAnalyticResponseDataOneOf6ClientFps':
+          return GetWorldExperienceAnalyticResponseDataOneOf6ClientFps.fromJson(value);
+        case 'GetWorldExperienceAnalyticResponseDataOneOf6Series':
+          return GetWorldExperienceAnalyticResponseDataOneOf6Series.fromJson(value);
+        case 'GetWorldExperienceAnalyticResponseDataOneOf6TopErrors':
+          return GetWorldExperienceAnalyticResponseDataOneOf6TopErrors.fromJson(value);
+        case 'GetWorldExperienceAnalyticResponseDataOneOf6Totals':
+          return GetWorldExperienceAnalyticResponseDataOneOf6Totals.fromJson(value);
+        case 'GetWorldExperienceAnalyticResponseDataOneOf7Events':
+          return GetWorldExperienceAnalyticResponseDataOneOf7Events.fromJson(value);
+        case 'GetWorldExperienceAnalyticResponseDataOneOf8Prices':
+          return GetWorldExperienceAnalyticResponseDataOneOf8Prices.fromJson(value);
+        case 'GetWorldExperienceAnalyticResponseDataOneOf8Regions':
+          return GetWorldExperienceAnalyticResponseDataOneOf8Regions.fromJson(value);
+        case 'GetWorldExperienceAnalyticResponseDataOneOf8Series':
+          return GetWorldExperienceAnalyticResponseDataOneOf8Series.fromJson(value);
+        case 'GetWorldExperienceAnalyticResponseDataOneOf8Totals':
+          return GetWorldExperienceAnalyticResponseDataOneOf8Totals.fromJson(value);
+        case 'GetWorldExperienceAnalyticResponseDataOneOf8TotalsCost':
+          return GetWorldExperienceAnalyticResponseDataOneOf8TotalsCost.fromJson(value);
+        case 'GetWorldExperienceAnalyticResponseDataOneOfAlerts':
+          return GetWorldExperienceAnalyticResponseDataOneOfAlerts.fromJson(value);
+        case 'GetWorldExperienceAnalyticResponseDataOneOfLive':
+          return GetWorldExperienceAnalyticResponseDataOneOfLive.fromJson(value);
+        case 'GetWorldExperienceAnalyticResponseDataOneOfPayout':
+          return GetWorldExperienceAnalyticResponseDataOneOfPayout.fromJson(value);
+        case 'GetWorldExperienceAnalyticResponseDataOneOfRetention':
+          return GetWorldExperienceAnalyticResponseDataOneOfRetention.fromJson(value);
+        case 'GetWorldExperienceAnalyticResponseDataOneOfSeries':
+          return GetWorldExperienceAnalyticResponseDataOneOfSeries.fromJson(value);
+        case 'GetWorldExperienceAnalyticResponseDataOneOfTotals':
+          return GetWorldExperienceAnalyticResponseDataOneOfTotals.fromJson(value);
+        case 'GetWorldExperienceBadgeResponse':
+          return GetWorldExperienceBadgeResponse.fromJson(value);
+        case 'GetWorldExperienceBadgeResponseData':
+          return GetWorldExperienceBadgeResponseData.fromJson(value);
+        case 'GetWorldExperienceBadgeResponseDataLimits':
+          return GetWorldExperienceBadgeResponseDataLimits.fromJson(value);
+        case 'GetWorldExperienceBanResponse':
+          return GetWorldExperienceBanResponse.fromJson(value);
+        case 'GetWorldExperienceChatSettingResponse':
+          return GetWorldExperienceChatSettingResponse.fromJson(value);
+        case 'GetWorldExperienceChatSettingResponseData':
+          return GetWorldExperienceChatSettingResponseData.fromJson(value);
+        case 'GetWorldExperienceDataUsageResponse':
+          return GetWorldExperienceDataUsageResponse.fromJson(value);
+        case 'GetWorldExperienceDataUsageResponseData':
+          return GetWorldExperienceDataUsageResponseData.fromJson(value);
+        case 'GetWorldExperienceDataUsageResponseDataDatastore':
+          return GetWorldExperienceDataUsageResponseDataDatastore.fromJson(value);
+        case 'GetWorldExperienceDataUsageResponseDataMemory':
+          return GetWorldExperienceDataUsageResponseDataMemory.fromJson(value);
+        case 'GetWorldExperienceDataUsageResponseDataMessaging':
+          return GetWorldExperienceDataUsageResponseDataMessaging.fromJson(value);
+        case 'GetWorldExperienceDatastoreEntryResponse':
+          return GetWorldExperienceDatastoreEntryResponse.fromJson(value);
+        case 'GetWorldExperienceDatastoreEntryResponseData':
+          return GetWorldExperienceDatastoreEntryResponseData.fromJson(value);
+        case 'GetWorldExperienceExperimentResponse':
+          return GetWorldExperienceExperimentResponse.fromJson(value);
+        case 'GetWorldExperienceExperimentResponseData':
+          return GetWorldExperienceExperimentResponseData.fromJson(value);
+        case 'GetWorldExperienceExperimentResponseDataMetrics':
+          return GetWorldExperienceExperimentResponseDataMetrics.fromJson(value);
+        case 'GetWorldExperienceExperimentResponseDataSampleSize':
+          return GetWorldExperienceExperimentResponseDataSampleSize.fromJson(value);
+        case 'GetWorldExperienceGalleryResponse':
+          return GetWorldExperienceGalleryResponse.fromJson(value);
+        case 'GetWorldExperienceGalleryResponseData':
+          return GetWorldExperienceGalleryResponseData.fromJson(value);
+        case 'GetWorldExperienceGalleryResponseDataLimits':
+          return GetWorldExperienceGalleryResponseDataLimits.fromJson(value);
+        case 'GetWorldExperienceHttpResponse':
+          return GetWorldExperienceHttpResponse.fromJson(value);
+        case 'GetWorldExperienceHttpResponseData':
+          return GetWorldExperienceHttpResponseData.fromJson(value);
+        case 'GetWorldExperienceHttpResponseDataLimits':
+          return GetWorldExperienceHttpResponseDataLimits.fromJson(value);
+        case 'GetWorldExperienceHttpResponseDataSecrets':
+          return GetWorldExperienceHttpResponseDataSecrets.fromJson(value);
+        case 'GetWorldExperienceMaturityResponse':
+          return GetWorldExperienceMaturityResponse.fromJson(value);
+        case 'GetWorldExperienceMaturityResponseData':
+          return GetWorldExperienceMaturityResponseData.fromJson(value);
+        case 'GetWorldExperienceMaturityResponseDataPending':
+          return GetWorldExperienceMaturityResponseDataPending.fromJson(value);
+        case 'GetWorldExperienceMaturityResponseDataPublished':
+          return GetWorldExperienceMaturityResponseDataPublished.fromJson(value);
+        case 'GetWorldExperienceMaturityResponseDataQuestions':
+          return GetWorldExperienceMaturityResponseDataQuestions.fromJson(value);
+        case 'GetWorldExperienceMemoryMapByKeyResponse':
+          return GetWorldExperienceMemoryMapByKeyResponse.fromJson(value);
+        case 'GetWorldExperienceMemoryMapItem':
+          return GetWorldExperienceMemoryMapItem.fromJson(value);
+        case 'GetWorldExperienceMemoryMapResponse':
+          return GetWorldExperienceMemoryMapResponse.fromJson(value);
+        case 'GetWorldExperienceMemoryQueueResponse':
+          return GetWorldExperienceMemoryQueueResponse.fromJson(value);
+        case 'GetWorldExperienceMemoryQueueResponseData':
+          return GetWorldExperienceMemoryQueueResponseData.fromJson(value);
+        case 'GetWorldExperienceModerationAppealResponse':
+          return GetWorldExperienceModerationAppealResponse.fromJson(value);
+        case 'GetWorldExperienceModerationAppealResponseData':
+          return GetWorldExperienceModerationAppealResponseData.fromJson(value);
+        case 'GetWorldExperienceModerationAppealResponseDataTargets':
+          return GetWorldExperienceModerationAppealResponseDataTargets.fromJson(value);
+        case 'GetWorldExperienceModerationAppealResponseDataTargetsAppeal':
+          return GetWorldExperienceModerationAppealResponseDataTargetsAppeal.fromJson(value);
+        case 'GetWorldExperienceModerationResponse':
+          return GetWorldExperienceModerationResponse.fromJson(value);
+        case 'GetWorldExperienceModerationResponseData':
+          return GetWorldExperienceModerationResponseData.fromJson(value);
+        case 'GetWorldExperienceModerationResponseDataActions':
+          return GetWorldExperienceModerationResponseDataActions.fromJson(value);
+        case 'GetWorldExperienceModerationResponseDataLatestReview':
+          return GetWorldExperienceModerationResponseDataLatestReview.fromJson(value);
+        case 'GetWorldExperienceModerationResponseDataScan':
+          return GetWorldExperienceModerationResponseDataScan.fromJson(value);
+        case 'GetWorldExperienceModerationResponseDataScanAssetFindings':
+          return GetWorldExperienceModerationResponseDataScanAssetFindings.fromJson(value);
+        case 'GetWorldExperienceModerationResponseDataScanFindings':
+          return GetWorldExperienceModerationResponseDataScanFindings.fromJson(value);
+        case 'GetWorldExperienceModerationResponseDataStrikes':
+          return GetWorldExperienceModerationResponseDataStrikes.fromJson(value);
+        case 'GetWorldExperienceModerationResponseDataTrustedLane':
+          return GetWorldExperienceModerationResponseDataTrustedLane.fromJson(value);
+        case 'GetWorldExperienceNotificationOptInResponse':
+          return GetWorldExperienceNotificationOptInResponse.fromJson(value);
+        case 'GetWorldExperienceNotificationOptInResponseData':
+          return GetWorldExperienceNotificationOptInResponseData.fromJson(value);
+        case 'GetWorldExperienceNotificationReportResponse':
+          return GetWorldExperienceNotificationReportResponse.fromJson(value);
+        case 'GetWorldExperienceNotificationReportResponseData':
+          return GetWorldExperienceNotificationReportResponseData.fromJson(value);
+        case 'GetWorldExperienceNotificationReportResponseDataByReason':
+          return GetWorldExperienceNotificationReportResponseDataByReason.fromJson(value);
+        case 'GetWorldExperienceNotificationReportResponseDataByTemplate':
+          return GetWorldExperienceNotificationReportResponseDataByTemplate.fromJson(value);
+        case 'GetWorldExperienceOrderedItem':
+          return GetWorldExperienceOrderedItem.fromJson(value);
+        case 'GetWorldExperienceOrderedResponse':
+          return GetWorldExperienceOrderedResponse.fromJson(value);
+        case 'GetWorldExperiencePlaceCollabOpResponse':
+          return GetWorldExperiencePlaceCollabOpResponse.fromJson(value);
+        case 'GetWorldExperiencePlaceCollabOpResponseData':
+          return GetWorldExperiencePlaceCollabOpResponseData.fromJson(value);
+        case 'GetWorldExperiencePlaceCollabOpResponseDataFrames':
+          return GetWorldExperiencePlaceCollabOpResponseDataFrames.fromJson(value);
+        case 'GetWorldExperiencePlaceCollabOpResponseDataFramesBy':
+          return GetWorldExperiencePlaceCollabOpResponseDataFramesBy.fromJson(value);
+        case 'GetWorldExperiencePlaceCollabResponse':
+          return GetWorldExperiencePlaceCollabResponse.fromJson(value);
+        case 'GetWorldExperiencePlaceCollabResponseData':
+          return GetWorldExperiencePlaceCollabResponseData.fromJson(value);
+        case 'GetWorldExperiencePlaceCollabResponseDataDoc':
+          return GetWorldExperiencePlaceCollabResponseDataDoc.fromJson(value);
+        case 'GetWorldExperiencePlaceCollabResponseDataYou':
+          return GetWorldExperiencePlaceCollabResponseDataYou.fromJson(value);
+        case 'GetWorldExperiencePlaceDraftResponse':
+          return GetWorldExperiencePlaceDraftResponse.fromJson(value);
+        case 'GetWorldExperiencePlaceDraftResponseData':
+          return GetWorldExperiencePlaceDraftResponseData.fromJson(value);
+        case 'GetWorldExperiencePlaceDraftResponseDataProject':
+          return GetWorldExperiencePlaceDraftResponseDataProject.fromJson(value);
+        case 'GetWorldExperiencePlaceDraftResponseDataProjectPlace':
+          return GetWorldExperiencePlaceDraftResponseDataProjectPlace.fromJson(value);
+        case 'GetWorldExperiencePlaceDraftResponseDataProjectWorld':
+          return GetWorldExperiencePlaceDraftResponseDataProjectWorld.fromJson(value);
+        case 'GetWorldExperiencePlaceDraftResponseDataProjectWorldHttp':
+          return GetWorldExperiencePlaceDraftResponseDataProjectWorldHttp.fromJson(value);
+        case 'GetWorldExperiencePlaceStudioFindResponse':
+          return GetWorldExperiencePlaceStudioFindResponse.fromJson(value);
+        case 'GetWorldExperiencePlaceStudioFindResponseData':
+          return GetWorldExperiencePlaceStudioFindResponseData.fromJson(value);
+        case 'GetWorldExperiencePlaceStudioFindResponseDataItems':
+          return GetWorldExperiencePlaceStudioFindResponseDataItems.fromJson(value);
+        case 'GetWorldExperiencePlaceStudioInstanceResponse':
+          return GetWorldExperiencePlaceStudioInstanceResponse.fromJson(value);
+        case 'GetWorldExperiencePlaceStudioInstanceResponseData':
+          return GetWorldExperiencePlaceStudioInstanceResponseData.fromJson(value);
+        case 'GetWorldExperiencePlaceStudioInstanceResponseDataChildren':
+          return GetWorldExperiencePlaceStudioInstanceResponseDataChildren.fromJson(value);
+        case 'GetWorldExperiencePlaceStudioOutputResponse':
+          return GetWorldExperiencePlaceStudioOutputResponse.fromJson(value);
+        case 'GetWorldExperiencePlaceStudioOutputResponseData':
+          return GetWorldExperiencePlaceStudioOutputResponseData.fromJson(value);
+        case 'GetWorldExperiencePlaceStudioOutputResponseDataLines':
+          return GetWorldExperiencePlaceStudioOutputResponseDataLines.fromJson(value);
+        case 'GetWorldExperiencePlaceStudioProblemResponse':
+          return GetWorldExperiencePlaceStudioProblemResponse.fromJson(value);
+        case 'GetWorldExperiencePlaceStudioProblemResponseData':
+          return GetWorldExperiencePlaceStudioProblemResponseData.fromJson(value);
+        case 'GetWorldExperiencePlaceStudioScriptResponse':
+          return GetWorldExperiencePlaceStudioScriptResponse.fromJson(value);
+        case 'GetWorldExperiencePlaceStudioScriptResponseData':
+          return GetWorldExperiencePlaceStudioScriptResponseData.fromJson(value);
+        case 'GetWorldExperiencePlaceStudioScriptResponseDataDraft':
+          return GetWorldExperiencePlaceStudioScriptResponseDataDraft.fromJson(value);
+        case 'GetWorldExperiencePlaceStudioSnapshotResponse':
+          return GetWorldExperiencePlaceStudioSnapshotResponse.fromJson(value);
+        case 'GetWorldExperiencePlaceStudioSnapshotResponseData':
+          return GetWorldExperiencePlaceStudioSnapshotResponseData.fromJson(value);
+        case 'GetWorldExperiencePlaceStudioSnapshotResponseDataBounds':
+          return GetWorldExperiencePlaceStudioSnapshotResponseDataBounds.fromJson(value);
+        case 'GetWorldExperiencePlaceStudioTreeResponse':
+          return GetWorldExperiencePlaceStudioTreeResponse.fromJson(value);
+        case 'GetWorldExperiencePlaceStudioTreeResponseData':
+          return GetWorldExperiencePlaceStudioTreeResponseData.fromJson(value);
+        case 'GetWorldExperiencePlaceStudioTreeResponseDataNodes':
+          return GetWorldExperiencePlaceStudioTreeResponseDataNodes.fromJson(value);
+        case 'GetWorldExperienceResponse':
+          return GetWorldExperienceResponse.fromJson(value);
+        case 'GetWorldExperienceResponseData':
+          return GetWorldExperienceResponseData.fromJson(value);
+        case 'GetWorldExperienceRevenueResponse':
+          return GetWorldExperienceRevenueResponse.fromJson(value);
+        case 'GetWorldExperienceRevenueResponseData':
+          return GetWorldExperienceRevenueResponseData.fromJson(value);
+        case 'GetWorldExperienceRewardResponse':
+          return GetWorldExperienceRewardResponse.fromJson(value);
+        case 'GetWorldExperienceRewardResponseData':
+          return GetWorldExperienceRewardResponseData.fromJson(value);
+        case 'GetWorldExperienceRewardResponseDataLimits':
+          return GetWorldExperienceRewardResponseDataLimits.fromJson(value);
+        case 'GetWorldExperienceRewardResponseDataRates':
+          return GetWorldExperienceRewardResponseDataRates.fromJson(value);
+        case 'GetWorldExperienceRewardResponseDataToday':
+          return GetWorldExperienceRewardResponseDataToday.fromJson(value);
+        case 'GetWorldExperienceShopResponse':
+          return GetWorldExperienceShopResponse.fromJson(value);
+        case 'GetWorldExperienceShopResponseData':
+          return GetWorldExperienceShopResponseData.fromJson(value);
+        case 'GetWorldExperienceShowcaseResponse':
+          return GetWorldExperienceShowcaseResponse.fromJson(value);
+        case 'GetWorldExperienceShowcaseResponseData':
+          return GetWorldExperienceShowcaseResponseData.fromJson(value);
+        case 'GetWorldExperienceShowcaseResponseDataShowcase':
+          return GetWorldExperienceShowcaseResponseDataShowcase.fromJson(value);
+        case 'GetWorldExperienceSplitResponse':
+          return GetWorldExperienceSplitResponse.fromJson(value);
+        case 'GetWorldExperienceSplitResponseData':
+          return GetWorldExperienceSplitResponseData.fromJson(value);
+        case 'GetWorldExperienceSplitResponseDataCurrent':
+          return GetWorldExperienceSplitResponseDataCurrent.fromJson(value);
+        case 'GetWorldExperienceSplitResponseDataCurrentShares':
+          return GetWorldExperienceSplitResponseDataCurrentShares.fromJson(value);
+        case 'GetWorldExperienceSplitResponseDataHistory':
+          return GetWorldExperienceSplitResponseDataHistory.fromJson(value);
+        case 'GetWorldExperienceSplitResponseDataScheduled':
+          return GetWorldExperienceSplitResponseDataScheduled.fromJson(value);
+        case 'GetWorldExperienceStoreResponse':
+          return GetWorldExperienceStoreResponse.fromJson(value);
+        case 'GetWorldExperienceStoreResponseData':
+          return GetWorldExperienceStoreResponseData.fromJson(value);
+        case 'GetWorldExperienceStoreResponseDataItems':
+          return GetWorldExperienceStoreResponseDataItems.fromJson(value);
+        case 'GetWorldExperienceTeamResponse':
+          return GetWorldExperienceTeamResponse.fromJson(value);
+        case 'GetWorldExperienceTeamResponseData':
+          return GetWorldExperienceTeamResponseData.fromJson(value);
+        case 'GetWorldExperienceTeamResponseDataLimit':
+          return GetWorldExperienceTeamResponseDataLimit.fromJson(value);
+        case 'GetWorldExperienceTeamResponseDataYou':
+          return GetWorldExperienceTeamResponseDataYou.fromJson(value);
+        case 'GetWorldExperienceTeamResponseDataYouPermissionsItem':
+          return GetWorldExperienceTeamResponseDataYouPermissionsItemTypeTransformer().decode(value);
         case 'GetWorldFireflyResponse':
           return GetWorldFireflyResponse.fromJson(value);
         case 'GetWorldFireflyResponseData':
@@ -3737,6 +7461,38 @@ class ApiClient {
           return GetWorldFitValueResponse.fromJson(value);
         case 'GetWorldFitValueResponseData':
           return GetWorldFitValueResponseData.fromJson(value);
+        case 'GetWorldFriendPlayingResponse':
+          return GetWorldFriendPlayingResponse.fromJson(value);
+        case 'GetWorldFriendPlayingResponseData':
+          return GetWorldFriendPlayingResponseData.fromJson(value);
+        case 'GetWorldFriendPlayingResponseDataFriends':
+          return GetWorldFriendPlayingResponseDataFriends.fromJson(value);
+        case 'GetWorldFriendPlayingResponseDataFriendsPlaying':
+          return GetWorldFriendPlayingResponseDataFriendsPlaying.fromJson(value);
+        case 'GetWorldGameBadgeResponse':
+          return GetWorldGameBadgeResponse.fromJson(value);
+        case 'GetWorldGameBadgeResponseData':
+          return GetWorldGameBadgeResponseData.fromJson(value);
+        case 'GetWorldGameBadgeResponseDataItems':
+          return GetWorldGameBadgeResponseDataItems.fromJson(value);
+        case 'GetWorldGameByGameResponse':
+          return GetWorldGameByGameResponse.fromJson(value);
+        case 'GetWorldGameByGameResponseData':
+          return GetWorldGameByGameResponseData.fromJson(value);
+        case 'GetWorldGameByGameResponseDataArt':
+          return GetWorldGameByGameResponseDataArt.fromJson(value);
+        case 'GetWorldGameByGameResponseDataArtTrailer':
+          return GetWorldGameByGameResponseDataArtTrailer.fromJson(value);
+        case 'GetWorldGameByGameResponseDataCreator':
+          return GetWorldGameByGameResponseDataCreator.fromJson(value);
+        case 'GetWorldGameByGameResponseDataGallery':
+          return GetWorldGameByGameResponseDataGallery.fromJson(value);
+        case 'GetWorldGameByGameResponseDataRating':
+          return GetWorldGameByGameResponseDataRating.fromJson(value);
+        case 'GetWorldGameByGameResponseDataStore':
+          return GetWorldGameByGameResponseDataStore.fromJson(value);
+        case 'GetWorldGameByGameResponseDataUpdates':
+          return GetWorldGameByGameResponseDataUpdates.fromJson(value);
         case 'GetWorldGameLeaderboardResponse':
           return GetWorldGameLeaderboardResponse.fromJson(value);
         case 'GetWorldGameLeaderboardResponseData':
@@ -3745,6 +7501,30 @@ class ApiClient {
           return GetWorldGameLeaderboardResponseDataScoring.fromJson(value);
         case 'GetWorldGameLeaderboardResponseDataWeek':
           return GetWorldGameLeaderboardResponseDataWeek.fromJson(value);
+        case 'GetWorldGameMineAssetsUsedResponse':
+          return GetWorldGameMineAssetsUsedResponse.fromJson(value);
+        case 'GetWorldGameMineAssetsUsedResponseData':
+          return GetWorldGameMineAssetsUsedResponseData.fromJson(value);
+        case 'GetWorldGameMineAssetsUsedResponseDataItems':
+          return GetWorldGameMineAssetsUsedResponseDataItems.fromJson(value);
+        case 'GetWorldGameMineAssetsUsedResponseDataVersions':
+          return GetWorldGameMineAssetsUsedResponseDataVersions.fromJson(value);
+        case 'GetWorldGameMineResponse':
+          return GetWorldGameMineResponse.fromJson(value);
+        case 'GetWorldGameMineResponseData':
+          return GetWorldGameMineResponseData.fromJson(value);
+        case 'GetWorldGameMineResponseDataExperience':
+          return GetWorldGameMineResponseDataExperience.fromJson(value);
+        case 'GetWorldGameMineResponseDataLatestPublish':
+          return GetWorldGameMineResponseDataLatestPublish.fromJson(value);
+        case 'GetWorldGameMineResponseDataModeration':
+          return GetWorldGameMineResponseDataModeration.fromJson(value);
+        case 'GetWorldGameMineResponseDataNextSteps':
+          return GetWorldGameMineResponseDataNextSteps.fromJson(value);
+        case 'GetWorldGameMineResponseDataTabsItem':
+          return GetWorldGameMineResponseDataTabsItemTypeTransformer().decode(value);
+        case 'GetWorldGameMineResponseDataTimeline':
+          return GetWorldGameMineResponseDataTimeline.fromJson(value);
         case 'GetWorldGamePackageResponse':
           return GetWorldGamePackageResponse.fromJson(value);
         case 'GetWorldGamePackageResponseData':
@@ -3759,6 +7539,22 @@ class ApiClient {
           return GetWorldGamePackageResponseDataStatsSales.fromJson(value);
         case 'GetWorldGamePackageResponseDataVersions':
           return GetWorldGamePackageResponseDataVersions.fromJson(value);
+        case 'GetWorldGamePackageStatResponse':
+          return GetWorldGamePackageStatResponse.fromJson(value);
+        case 'GetWorldGamePackageStatResponseData':
+          return GetWorldGamePackageStatResponseData.fromJson(value);
+        case 'GetWorldGamePackageStatResponseDataDaily':
+          return GetWorldGamePackageStatResponseDataDaily.fromJson(value);
+        case 'GetWorldGamePackageStatResponseDataTestImpressions':
+          return GetWorldGamePackageStatResponseDataTestImpressions.fromJson(value);
+        case 'GetWorldGamePackageStatResponseDataTotals':
+          return GetWorldGamePackageStatResponseDataTotals.fromJson(value);
+        case 'GetWorldGamePackageVersionResponse':
+          return GetWorldGamePackageVersionResponse.fromJson(value);
+        case 'GetWorldGamePackageVersionResponseData':
+          return GetWorldGamePackageVersionResponseData.fromJson(value);
+        case 'GetWorldGamePackageVersionResponseDataVersions':
+          return GetWorldGamePackageVersionResponseDataVersions.fromJson(value);
         case 'GetWorldGameResponse':
           return GetWorldGameResponse.fromJson(value);
         case 'GetWorldGameResponseData':
@@ -3771,12 +7567,18 @@ class ApiClient {
           return GetWorldGameResponseDataPiece.fromJson(value);
         case 'GetWorldGameResponseDataPlacesItem':
           return GetWorldGameResponseDataPlacesItemTypeTransformer().decode(value);
-        case 'GetWorldGameResponseDataPlayers':
-          return GetWorldGameResponseDataPlayers.fromJson(value);
         case 'GetWorldGameResponseDataRewards':
           return GetWorldGameResponseDataRewards.fromJson(value);
         case 'GetWorldGameResponseDataStore':
           return GetWorldGameResponseDataStore.fromJson(value);
+        case 'GetWorldGameServerResponse':
+          return GetWorldGameServerResponse.fromJson(value);
+        case 'GetWorldGameServerResponseData':
+          return GetWorldGameServerResponseData.fromJson(value);
+        case 'GetWorldGameServerResponseDataPrivateServers':
+          return GetWorldGameServerResponseDataPrivateServers.fromJson(value);
+        case 'GetWorldGameServerResponseDataServers':
+          return GetWorldGameServerResponseDataServers.fromJson(value);
         case 'GetWorldGameTemplateResponse':
           return GetWorldGameTemplateResponse.fromJson(value);
         case 'GetWorldGameTemplateResponseData':
@@ -3855,6 +7657,108 @@ class ApiClient {
           return GetWorldKiteResponseData.fromJson(value);
         case 'GetWorldKiteResponseDataMine':
           return GetWorldKiteResponseDataMine.fromJson(value);
+        case 'GetWorldLauncherResponse':
+          return GetWorldLauncherResponse.fromJson(value);
+        case 'GetWorldLauncherResponseData':
+          return GetWorldLauncherResponseData.fromJson(value);
+        case 'GetWorldLauncherResponseDataPortals':
+          return GetWorldLauncherResponseDataPortals.fromJson(value);
+        case 'GetWorldLinkSellerItem':
+          return GetWorldLinkSellerItem.fromJson(value);
+        case 'GetWorldManageLedgerResponse':
+          return GetWorldManageLedgerResponse.fromJson(value);
+        case 'GetWorldManageLedgerResponseData':
+          return GetWorldManageLedgerResponseData.fromJson(value);
+        case 'GetWorldManageLedgerResponseDataByKind':
+          return GetWorldManageLedgerResponseDataByKind.fromJson(value);
+        case 'GetWorldManageLedgerResponseDataLines':
+          return GetWorldManageLedgerResponseDataLines.fromJson(value);
+        case 'GetWorldManageOverviewResponse':
+          return GetWorldManageOverviewResponse.fromJson(value);
+        case 'GetWorldManageOverviewResponseData':
+          return GetWorldManageOverviewResponseData.fromJson(value);
+        case 'GetWorldManageOverviewResponseDataConventions':
+          return GetWorldManageOverviewResponseDataConventions.fromJson(value);
+        case 'GetWorldManageOverviewResponseDataConventionsNext':
+          return GetWorldManageOverviewResponseDataConventionsNext.fromJson(value);
+        case 'GetWorldManageOverviewResponseDataMoney':
+          return GetWorldManageOverviewResponseDataMoney.fromJson(value);
+        case 'GetWorldManageOverviewResponseDataProperty':
+          return GetWorldManageOverviewResponseDataProperty.fromJson(value);
+        case 'GetWorldManageOverviewResponseDataShop':
+          return GetWorldManageOverviewResponseDataShop.fromJson(value);
+        case 'GetWorldManageOverviewResponseDataShopAddresses':
+          return GetWorldManageOverviewResponseDataShopAddresses.fromJson(value);
+        case 'GetWorldManageOverviewResponseDataStaff':
+          return GetWorldManageOverviewResponseDataStaff.fromJson(value);
+        case 'GetWorldManageOverviewResponseDataStaffNextShift':
+          return GetWorldManageOverviewResponseDataStaffNextShift.fromJson(value);
+        case 'GetWorldManageOverviewResponseDataStalls':
+          return GetWorldManageOverviewResponseDataStalls.fromJson(value);
+        case 'GetWorldManageOverviewResponseDataStallsNext':
+          return GetWorldManageOverviewResponseDataStallsNext.fromJson(value);
+        case 'GetWorldManageOverviewResponseDataVisitors':
+          return GetWorldManageOverviewResponseDataVisitors.fromJson(value);
+        case 'GetWorldManageVisitorResponse':
+          return GetWorldManageVisitorResponse.fromJson(value);
+        case 'GetWorldManageVisitorResponseData':
+          return GetWorldManageVisitorResponseData.fromJson(value);
+        case 'GetWorldManageVisitorResponseDataDaily':
+          return GetWorldManageVisitorResponseDataDaily.fromJson(value);
+        case 'GetWorldManageVisitorResponseDataShop':
+          return GetWorldManageVisitorResponseDataShop.fromJson(value);
+        case 'GetWorldManageVisitorResponseDataTopItems':
+          return GetWorldManageVisitorResponseDataTopItems.fromJson(value);
+        case 'GetWorldManageVisitorResponseDataWants':
+          return GetWorldManageVisitorResponseDataWants.fromJson(value);
+        case 'GetWorldMarketResponse':
+          return GetWorldMarketResponse.fromJson(value);
+        case 'GetWorldMarketResponseData':
+          return GetWorldMarketResponseData.fromJson(value);
+        case 'GetWorldMarketResponseDataHistory':
+          return GetWorldMarketResponseDataHistory.fromJson(value);
+        case 'GetWorldMarketResponseDataNeighbours':
+          return GetWorldMarketResponseDataNeighbours.fromJson(value);
+        case 'GetWorldMarketResponseDataPhoto':
+          return GetWorldMarketResponseDataPhoto.fromJson(value);
+        case 'GetWorldMarketResponseDataSale':
+          return GetWorldMarketResponseDataSale.fromJson(value);
+        case 'GetWorldMarketResponseDataStreet':
+          return GetWorldMarketResponseDataStreet.fromJson(value);
+        case 'GetWorldMarketResponseDataTraffic':
+          return GetWorldMarketResponseDataTraffic.fromJson(value);
+        case 'GetWorldMatureResponse':
+          return GetWorldMatureResponse.fromJson(value);
+        case 'GetWorldMatureResponseData':
+          return GetWorldMatureResponseData.fromJson(value);
+        case 'GetWorldMatureResponseDataAgeCheck':
+          return GetWorldMatureResponseDataAgeCheck.fromJson(value);
+        case 'GetWorldMatureResponseDataSteps':
+          return GetWorldMatureResponseDataSteps.fromJson(value);
+        case 'GetWorldMePrefResponse':
+          return GetWorldMePrefResponse.fromJson(value);
+        case 'GetWorldMePrefResponseData':
+          return GetWorldMePrefResponseData.fromJson(value);
+        case 'GetWorldNeighbourhoodClaimResponse':
+          return GetWorldNeighbourhoodClaimResponse.fromJson(value);
+        case 'GetWorldNeighbourhoodClaimResponseData':
+          return GetWorldNeighbourhoodClaimResponseData.fromJson(value);
+        case 'GetWorldPackageResponse':
+          return GetWorldPackageResponse.fromJson(value);
+        case 'GetWorldPackageResponseData':
+          return GetWorldPackageResponseData.fromJson(value);
+        case 'GetWorldPackageResponseDataVersions':
+          return GetWorldPackageResponseDataVersions.fromJson(value);
+        case 'GetWorldPackageVersionResponse':
+          return GetWorldPackageVersionResponse.fromJson(value);
+        case 'GetWorldPackageVersionResponseData':
+          return GetWorldPackageVersionResponseData.fromJson(value);
+        case 'GetWorldParentalMeResponse':
+          return GetWorldParentalMeResponse.fromJson(value);
+        case 'GetWorldParentalMeResponseData':
+          return GetWorldParentalMeResponseData.fromJson(value);
+        case 'GetWorldParentalMeResponseDataControls':
+          return GetWorldParentalMeResponseDataControls.fromJson(value);
         case 'GetWorldPlaceBoardResponse':
           return GetWorldPlaceBoardResponse.fromJson(value);
         case 'GetWorldPlaceBoardResponseData':
@@ -3889,8 +7793,6 @@ class ApiClient {
           return GetWorldPlaceLiveResponse.fromJson(value);
         case 'GetWorldPlaceLiveResponseData':
           return GetWorldPlaceLiveResponseData.fromJson(value);
-        case 'GetWorldPlaceLiveResponseDataLot':
-          return GetWorldPlaceLiveResponseDataLot.fromJson(value);
         case 'GetWorldPlaceLiveResponseDataStream':
           return GetWorldPlaceLiveResponseDataStream.fromJson(value);
         case 'GetWorldPlaceSellerResponse':
@@ -3899,10 +7801,100 @@ class ApiClient {
           return GetWorldPlaceSellerResponseData.fromJson(value);
         case 'GetWorldPlaceShopPetResponse':
           return GetWorldPlaceShopPetResponse.fromJson(value);
+        case 'GetWorldPlayerBadgeResponse':
+          return GetWorldPlayerBadgeResponse.fromJson(value);
+        case 'GetWorldPlayerBadgeResponseData':
+          return GetWorldPlayerBadgeResponseData.fromJson(value);
+        case 'GetWorldPlazaResponse':
+          return GetWorldPlazaResponse.fromJson(value);
+        case 'GetWorldPlazaResponseData':
+          return GetWorldPlazaResponseData.fromJson(value);
+        case 'GetWorldPlazaResponseDataBoards':
+          return GetWorldPlazaResponseDataBoards.fromJson(value);
+        case 'GetWorldPlazaResponseDataFeatured':
+          return GetWorldPlazaResponseDataFeatured.fromJson(value);
+        case 'GetWorldPlazaResponseDataRing':
+          return GetWorldPlazaResponseDataRing.fromJson(value);
+        case 'GetWorldPolicyMeResponse':
+          return GetWorldPolicyMeResponse.fromJson(value);
+        case 'GetWorldPolicyMeResponseData':
+          return GetWorldPolicyMeResponseData.fromJson(value);
+        case 'GetWorldPolicyMeResponseDataMatureStepsItem':
+          return GetWorldPolicyMeResponseDataMatureStepsItemTypeTransformer().decode(value);
+        case 'GetWorldPolicyMeResponseDataPlayStepsItem':
+          return GetWorldPolicyMeResponseDataPlayStepsItemTypeTransformer().decode(value);
+        case 'GetWorldPolicyMeResponseDataReasons':
+          return GetWorldPolicyMeResponseDataReasons.fromJson(value);
+        case 'GetWorldPropertyPlotResponse':
+          return GetWorldPropertyPlotResponse.fromJson(value);
+        case 'GetWorldPropertyPlotResponseData':
+          return GetWorldPropertyPlotResponseData.fromJson(value);
+        case 'GetWorldPropertyPlotResponseDataLetting':
+          return GetWorldPropertyPlotResponseDataLetting.fromJson(value);
+        case 'GetWorldPropertyPlotResponseDataShowroom':
+          return GetWorldPropertyPlotResponseDataShowroom.fromJson(value);
+        case 'GetWorldPropertyPlotResponseDataValue':
+          return GetWorldPropertyPlotResponseDataValue.fromJson(value);
+        case 'GetWorldPropertyRentalResponse':
+          return GetWorldPropertyRentalResponse.fromJson(value);
+        case 'GetWorldPropertyRentalResponseData':
+          return GetWorldPropertyRentalResponseData.fromJson(value);
+        case 'GetWorldPropertyRentalResponseDataPayments':
+          return GetWorldPropertyRentalResponseDataPayments.fromJson(value);
+        case 'GetWorldPropertyRentalResponseDataPhoto':
+          return GetWorldPropertyRentalResponseDataPhoto.fromJson(value);
+        case 'GetWorldPropertyRentalResponseDataRender':
+          return GetWorldPropertyRentalResponseDataRender.fromJson(value);
+        case 'GetWorldPropertyRentalResponseDataRenderShop':
+          return GetWorldPropertyRentalResponseDataRenderShop.fromJson(value);
+        case 'GetWorldPropertyRentalResponseDataTerms':
+          return GetWorldPropertyRentalResponseDataTerms.fromJson(value);
+        case 'GetWorldPulseResponse':
+          return GetWorldPulseResponse.fromJson(value);
+        case 'GetWorldPulseResponseData':
+          return GetWorldPulseResponseData.fromJson(value);
+        case 'GetWorldPulseResponseDataCares':
+          return GetWorldPulseResponseDataCares.fromJson(value);
+        case 'GetWorldPurchaseResponse':
+          return GetWorldPurchaseResponse.fromJson(value);
+        case 'GetWorldPurchaseResponseData':
+          return GetWorldPurchaseResponseData.fromJson(value);
+        case 'GetWorldPurchaseResponseDataExperience':
+          return GetWorldPurchaseResponseDataExperience.fromJson(value);
+        case 'GetWorldPurchaseResponseDataProduct':
+          return GetWorldPurchaseResponseDataProduct.fromJson(value);
+        case 'GetWorldRailResponse':
+          return GetWorldRailResponse.fromJson(value);
+        case 'GetWorldRailResponseEffectiveItem':
+          return GetWorldRailResponseEffectiveItemTypeTransformer().decode(value);
+        case 'GetWorldRatingQuestionnaireResponse':
+          return GetWorldRatingQuestionnaireResponse.fromJson(value);
+        case 'GetWorldRatingQuestionnaireResponseData':
+          return GetWorldRatingQuestionnaireResponseData.fromJson(value);
+        case 'GetWorldRatingQuestionnaireResponseDataMatureRules':
+          return GetWorldRatingQuestionnaireResponseDataMatureRules.fromJson(value);
+        case 'GetWorldRatingQuestionnaireResponseDataMatureRulesRegions':
+          return GetWorldRatingQuestionnaireResponseDataMatureRulesRegions.fromJson(value);
+        case 'GetWorldRatingQuestionnaireResponseDataRatings':
+          return GetWorldRatingQuestionnaireResponseDataRatings.fromJson(value);
+        case 'GetWorldRewardTopupResponse':
+          return GetWorldRewardTopupResponse.fromJson(value);
+        case 'GetWorldRewardTopupResponseData':
+          return GetWorldRewardTopupResponseData.fromJson(value);
         case 'GetWorldRoomFunnelResponse':
           return GetWorldRoomFunnelResponse.fromJson(value);
         case 'GetWorldRoomFunnelResponseData':
           return GetWorldRoomFunnelResponseData.fromJson(value);
+        case 'GetWorldSearchResponse':
+          return GetWorldSearchResponse.fromJson(value);
+        case 'GetWorldSearchResponseData':
+          return GetWorldSearchResponseData.fromJson(value);
+        case 'GetWorldSearchResponseDataResults':
+          return GetWorldSearchResponseDataResults.fromJson(value);
+        case 'GetWorldSearchResponseDataSuggestion':
+          return GetWorldSearchResponseDataSuggestion.fromJson(value);
+        case 'GetWorldSearchResponseDataSuggestionEntries':
+          return GetWorldSearchResponseDataSuggestionEntries.fromJson(value);
         case 'GetWorldShelfResponse':
           return GetWorldShelfResponse.fromJson(value);
         case 'GetWorldShelfResponseData':
@@ -3929,6 +7921,72 @@ class ApiClient {
           return GetWorldSpaceResponseDataShowcase.fromJson(value);
         case 'GetWorldSpaceResponseDataYou':
           return GetWorldSpaceResponseDataYou.fromJson(value);
+        case 'GetWorldStaffPostingResponse':
+          return GetWorldStaffPostingResponse.fromJson(value);
+        case 'GetWorldStaffReputationResponse':
+          return GetWorldStaffReputationResponse.fromJson(value);
+        case 'GetWorldStaffReputationResponseData':
+          return GetWorldStaffReputationResponseData.fromJson(value);
+        case 'GetWorldStaffReputationResponseDataDimensions':
+          return GetWorldStaffReputationResponseDataDimensions.fromJson(value);
+        case 'GetWorldStaffReputationResponseDataRatings':
+          return GetWorldStaffReputationResponseDataRatings.fromJson(value);
+        case 'GetWorldStaffReputationResponseDataScore':
+          return GetWorldStaffReputationResponseDataScore.fromJson(value);
+        case 'GetWorldStreetFundResponse':
+          return GetWorldStreetFundResponse.fromJson(value);
+        case 'GetWorldStreetFundResponseData':
+          return GetWorldStreetFundResponseData.fromJson(value);
+        case 'GetWorldStreetFundResponseDataNext':
+          return GetWorldStreetFundResponseDataNext.fromJson(value);
+        case 'GetWorldStreetFundResponseDataUnlockedItem':
+          return GetWorldStreetFundResponseDataUnlockedItemTypeTransformer().decode(value);
+        case 'GetWorldStreetOwnedResponse':
+          return GetWorldStreetOwnedResponse.fromJson(value);
+        case 'GetWorldStreetOwnedResponseData':
+          return GetWorldStreetOwnedResponseData.fromJson(value);
+        case 'GetWorldStreetOwnedResponseDataFund':
+          return GetWorldStreetOwnedResponseDataFund.fromJson(value);
+        case 'GetWorldStreetOwnedResponseDataFundTiers':
+          return GetWorldStreetOwnedResponseDataFundTiers.fromJson(value);
+        case 'GetWorldStreetOwnedResponseDataFundUnlockedItem':
+          return GetWorldStreetOwnedResponseDataFundUnlockedItemTypeTransformer().decode(value);
+        case 'GetWorldStreetOwnedResponseDataTenantsItem':
+          return GetWorldStreetOwnedResponseDataTenantsItem.fromJson(value);
+        case 'GetWorldStreetOwnedResponseDataThemes':
+          return GetWorldStreetOwnedResponseDataThemes.fromJson(value);
+        case 'GetWorldStreetOwnedResponseDataUpkeep':
+          return GetWorldStreetOwnedResponseDataUpkeep.fromJson(value);
+        case 'GetWorldStreetTrespassBarrierResponse':
+          return GetWorldStreetTrespassBarrierResponse.fromJson(value);
+        case 'GetWorldStreetTrespassBarrierResponseData':
+          return GetWorldStreetTrespassBarrierResponseData.fromJson(value);
+        case 'GetWorldStudioClassResponse':
+          return GetWorldStudioClassResponse.fromJson(value);
+        case 'GetWorldStudioClassResponseData':
+          return GetWorldStudioClassResponseData.fromJson(value);
+        case 'GetWorldStudioClassResponseDataOneOf1Classes':
+          return GetWorldStudioClassResponseDataOneOf1Classes.fromJson(value);
+        case 'GetWorldStudioClassResponseDataOneOf1Encodings':
+          return GetWorldStudioClassResponseDataOneOf1Encodings.fromJson(value);
+        case 'GetWorldStudioClassResponseDataOneOfProps':
+          return GetWorldStudioClassResponseDataOneOfProps.fromJson(value);
+        case 'GetWorldTransparencyResponse':
+          return GetWorldTransparencyResponse.fromJson(value);
+        case 'GetWorldTransparencyResponseData':
+          return GetWorldTransparencyResponseData.fromJson(value);
+        case 'GetWorldTransparencyResponseDataAppeals':
+          return GetWorldTransparencyResponseDataAppeals.fromJson(value);
+        case 'GetWorldTransparencyResponseDataPublishReviews':
+          return GetWorldTransparencyResponseDataPublishReviews.fromJson(value);
+        case 'GetWorldTransparencyResponseDataReportsByReason':
+          return GetWorldTransparencyResponseDataReportsByReason.fromJson(value);
+        case 'GetWorldTransparencyResponseDataReportsDecided':
+          return GetWorldTransparencyResponseDataReportsDecided.fromJson(value);
+        case 'GetWorldTransparencyResponseDataSecondReviews':
+          return GetWorldTransparencyResponseDataSecondReviews.fromJson(value);
+        case 'GetWorldTransparencyResponseDataTotals':
+          return GetWorldTransparencyResponseDataTotals.fromJson(value);
         case 'GetWorldTrialLeaderboardResponse':
           return GetWorldTrialLeaderboardResponse.fromJson(value);
         case 'GetWorldTrialLeaderboardResponseData':
@@ -3947,20 +8005,76 @@ class ApiClient {
           return GetWorldTrialMineResponseDataCoursesAllTime.fromJson(value);
         case 'GetWorldTrialMineResponseDataCoursesWeek':
           return GetWorldTrialMineResponseDataCoursesWeek.fromJson(value);
+        case 'GetWorldVenueQuoteResponse':
+          return GetWorldVenueQuoteResponse.fromJson(value);
+        case 'GetWorldVenueQuoteResponseVenue':
+          return GetWorldVenueQuoteResponseVenue.fromJson(value);
         case 'GetWorldWalletResponse':
           return GetWorldWalletResponse.fromJson(value);
         case 'GetWorldWalletResponseData':
           return GetWorldWalletResponseData.fromJson(value);
+        case 'GetWorldWalletResponseDataCbx':
+          return GetWorldWalletResponseDataCbx.fromJson(value);
+        case 'GetWorldWalletResponseDataCosm':
+          return GetWorldWalletResponseDataCosm.fromJson(value);
         case 'GetWorldWishResponse':
           return GetWorldWishResponse.fromJson(value);
         case 'GetWorldWishResponseData':
           return GetWorldWishResponseData.fromJson(value);
         case 'GetWorldWishResponseDataMine':
           return GetWorldWishResponseDataMine.fromJson(value);
+        case 'GetWorldWorkEarningResponse':
+          return GetWorldWorkEarningResponse.fromJson(value);
+        case 'GetWorldWorkEarningResponseData':
+          return GetWorldWorkEarningResponseData.fromJson(value);
+        case 'GetWorldWorkEarningResponseDataConnect':
+          return GetWorldWorkEarningResponseDataConnect.fromJson(value);
+        case 'GetWorldWorkEarningResponseDataLines':
+          return GetWorldWorkEarningResponseDataLines.fromJson(value);
+        case 'GetWorldWorkEarningResponseDataTotals':
+          return GetWorldWorkEarningResponseDataTotals.fromJson(value);
+        case 'GetWorldWorkEarningResponseDataTotalsCash':
+          return GetWorldWorkEarningResponseDataTotalsCash.fromJson(value);
+        case 'GetWorldWorkMineResponse':
+          return GetWorldWorkMineResponse.fromJson(value);
+        case 'GetWorldWorkMineResponseData':
+          return GetWorldWorkMineResponseData.fromJson(value);
+        case 'GetWorldWorkMineResponseDataApplications':
+          return GetWorldWorkMineResponseDataApplications.fromJson(value);
+        case 'GetWorldWorkMineResponseDataApplicationsPosting':
+          return GetWorldWorkMineResponseDataApplicationsPosting.fromJson(value);
+        case 'GetWorldWorkMineResponseDataOpenJobs':
+          return GetWorldWorkMineResponseDataOpenJobs.fromJson(value);
+        case 'GetWorldWorkMineResponseDataOpenJobsEmployer':
+          return GetWorldWorkMineResponseDataOpenJobsEmployer.fromJson(value);
+        case 'GetWorldWorkMineResponseDataOpenJobsMyApplication':
+          return GetWorldWorkMineResponseDataOpenJobsMyApplication.fromJson(value);
+        case 'GetWorldWorkMineResponseDataOpenJobsNextShift':
+          return GetWorldWorkMineResponseDataOpenJobsNextShift.fromJson(value);
+        case 'GetWorldWorkMineResponseDataShifts':
+          return GetWorldWorkMineResponseDataShifts.fromJson(value);
+        case 'GetWorldWorkMineResponseDataShiftsPlace':
+          return GetWorldWorkMineResponseDataShiftsPlace.fromJson(value);
+        case 'GetWorldWorkMineResponseDataShiftsShift':
+          return GetWorldWorkMineResponseDataShiftsShift.fromJson(value);
+        case 'HrefPlace':
+          return HrefPlace.fromJson(value);
+        case 'IdName':
+          return IdName.fromJson(value);
+        case 'IdName2':
+          return IdName2.fromJson(value);
         case 'IdResponse':
           return IdResponse.fromJson(value);
         case 'IdStatusResponse':
           return IdStatusResponse.fromJson(value);
+        case 'InCentsOutCents':
+          return InCentsOutCents.fromJson(value);
+        case 'InventoryItemIdReason':
+          return InventoryItemIdReason.fromJson(value);
+        case 'KindUrl':
+          return KindUrl.fromJson(value);
+        case 'LabelUrlTrackingCode':
+          return LabelUrlTrackingCode.fromJson(value);
         case 'LineMessage':
           return LineMessage.fromJson(value);
         case 'ListAccountsItem':
@@ -3971,14 +8085,72 @@ class ApiClient {
           return ListActionLogCallsItem.fromJson(value);
         case 'ListActionLogCallsResponse':
           return ListActionLogCallsResponse.fromJson(value);
+        case 'ListActionLogHistogramItem':
+          return ListActionLogHistogramItem.fromJson(value);
+        case 'ListActionLogHistogramResponse':
+          return ListActionLogHistogramResponse.fromJson(value);
         case 'ListActionLogItem':
           return ListActionLogItem.fromJson(value);
+        case 'ListActionLogItemDetail':
+          return ListActionLogItemDetail.fromJson(value);
+        case 'ListActionLogItemDetailChanges':
+          return ListActionLogItemDetailChanges.fromJson(value);
+        case 'ListActionLogItemDetailInitiatedBy':
+          return ListActionLogItemDetailInitiatedBy.fromJson(value);
+        case 'ListActionLogItemDetailSubject':
+          return ListActionLogItemDetailSubject.fromJson(value);
+        case 'ListActionLogItemView':
+          return ListActionLogItemView.fromJson(value);
+        case 'ListActionLogItemViewBy':
+          return ListActionLogItemViewBy.fromJson(value);
+        case 'ListActionLogItemViewChildren':
+          return ListActionLogItemViewChildren.fromJson(value);
+        case 'ListActionLogItemViewFailure':
+          return ListActionLogItemViewFailure.fromJson(value);
+        case 'ListActionLogItemViewFailureCta':
+          return ListActionLogItemViewFailureCta.fromJson(value);
+        case 'ListActionLogItemViewFields':
+          return ListActionLogItemViewFields.fromJson(value);
+        case 'ListActionLogItemViewPlatform':
+          return ListActionLogItemViewPlatform.fromJson(value);
+        case 'ListActionLogItemViewSteps':
+          return ListActionLogItemViewSteps.fromJson(value);
+        case 'ListActionLogItemViewSubjectLink':
+          return ListActionLogItemViewSubjectLink.fromJson(value);
+        case 'ListActionLogItemViewTechnical':
+          return ListActionLogItemViewTechnical.fromJson(value);
         case 'ListActionLogResponse':
           return ListActionLogResponse.fromJson(value);
+        case 'ListAppsItem':
+          return ListAppsItem.fromJson(value);
+        case 'ListAppsItemCapabilities':
+          return ListAppsItemCapabilities.fromJson(value);
+        case 'ListAppsItemDocsLinks':
+          return ListAppsItemDocsLinks.fromJson(value);
+        case 'ListAppsResponse':
+          return ListAppsResponse.fromJson(value);
         case 'ListAuthSessionsItem':
           return ListAuthSessionsItem.fromJson(value);
         case 'ListAuthSessionsResponse':
           return ListAuthSessionsResponse.fromJson(value);
+        case 'ListAutomaticDiscountsItem':
+          return ListAutomaticDiscountsItem.fromJson(value);
+        case 'ListAutomaticDiscountsItemAppliesTo':
+          return ListAutomaticDiscountsItemAppliesTo.fromJson(value);
+        case 'ListAutomaticDiscountsItemChannelsItem':
+          return ListAutomaticDiscountsItemChannelsItemTypeTransformer().decode(value);
+        case 'ListAutomaticDiscountsItemExclusions':
+          return ListAutomaticDiscountsItemExclusions.fromJson(value);
+        case 'ListAutomaticDiscountsItemSchedule':
+          return ListAutomaticDiscountsItemSchedule.fromJson(value);
+        case 'ListAutomaticDiscountsItemScheduleWindows':
+          return ListAutomaticDiscountsItemScheduleWindows.fromJson(value);
+        case 'ListAutomaticDiscountsItemStacking':
+          return ListAutomaticDiscountsItemStacking.fromJson(value);
+        case 'ListAutomaticDiscountsItemTiers':
+          return ListAutomaticDiscountsItemTiers.fromJson(value);
+        case 'ListAutomaticDiscountsResponse':
+          return ListAutomaticDiscountsResponse.fromJson(value);
         case 'ListAutomationRulesItem':
           return ListAutomationRulesItem.fromJson(value);
         case 'ListAutomationRulesResponse':
@@ -3987,6 +8159,16 @@ class ApiClient {
           return ListAutomationRunsItem.fromJson(value);
         case 'ListAutomationRunsResponse':
           return ListAutomationRunsResponse.fromJson(value);
+        case 'ListBillingAppAllowancesItem':
+          return ListBillingAppAllowancesItem.fromJson(value);
+        case 'ListBillingAppAllowancesResponse':
+          return ListBillingAppAllowancesResponse.fromJson(value);
+        case 'ListBillingPlansItem':
+          return ListBillingPlansItem.fromJson(value);
+        case 'ListBillingPlansItemLimits':
+          return ListBillingPlansItemLimits.fromJson(value);
+        case 'ListBillingPlansResponse':
+          return ListBillingPlansResponse.fromJson(value);
         case 'ListBrandDropListingsItem':
           return ListBrandDropListingsItem.fromJson(value);
         case 'ListBrandDropListingsResponse':
@@ -3995,10 +8177,74 @@ class ApiClient {
           return ListBrandDropsItem.fromJson(value);
         case 'ListBrandDropsResponse':
           return ListBrandDropsResponse.fromJson(value);
+        case 'ListBrandingDropsItem':
+          return ListBrandingDropsItem.fromJson(value);
+        case 'ListBrandingDropsItemConfig':
+          return ListBrandingDropsItemConfig.fromJson(value);
+        case 'ListBrandingDropsItemConfigAccess':
+          return ListBrandingDropsItemConfigAccess.fromJson(value);
+        case 'ListBrandingDropsItemConfigAccessModesItem':
+          return ListBrandingDropsItemConfigAccessModesItemTypeTransformer().decode(value);
+        case 'ListBrandingDropsItemConfigAccessTokenGate':
+          return ListBrandingDropsItemConfigAccessTokenGate.fromJson(value);
+        case 'ListBrandingDropsItemConfigAfter':
+          return ListBrandingDropsItemConfigAfter.fromJson(value);
+        case 'ListBrandingDropsItemConfigFormat':
+          return ListBrandingDropsItemConfigFormat.fromJson(value);
+        case 'ListBrandingDropsItemConfigFormatAuction':
+          return ListBrandingDropsItemConfigFormatAuction.fromJson(value);
+        case 'ListBrandingDropsItemConfigFormatDutch':
+          return ListBrandingDropsItemConfigFormatDutch.fromJson(value);
+        case 'ListBrandingDropsItemConfigFormatPreorder':
+          return ListBrandingDropsItemConfigFormatPreorder.fromJson(value);
+        case 'ListBrandingDropsItemConfigFormatRaffle':
+          return ListBrandingDropsItemConfigFormatRaffle.fromJson(value);
+        case 'ListBrandingDropsItemConfigFulfilment':
+          return ListBrandingDropsItemConfigFulfilment.fromJson(value);
+        case 'ListBrandingDropsItemConfigLimits':
+          return ListBrandingDropsItemConfigLimits.fromJson(value);
+        case 'ListBrandingDropsItemConfigLimitsBotProtection':
+          return ListBrandingDropsItemConfigLimitsBotProtection.fromJson(value);
+        case 'ListBrandingDropsItemConfigPricing':
+          return ListBrandingDropsItemConfigPricing.fromJson(value);
+        case 'ListBrandingDropsItemConfigPromotion':
+          return ListBrandingDropsItemConfigPromotion.fromJson(value);
+        case 'ListBrandingDropsItemConfigPromotionNotify':
+          return ListBrandingDropsItemConfigPromotionNotify.fromJson(value);
+        case 'ListBrandingDropsItemConfigSchedule':
+          return ListBrandingDropsItemConfigSchedule.fromJson(value);
+        case 'ListBrandingDropsItemConfigWhat':
+          return ListBrandingDropsItemConfigWhat.fromJson(value);
+        case 'ListBrandingDropsItemConfigWhatBundle':
+          return ListBrandingDropsItemConfigWhatBundle.fromJson(value);
+        case 'ListBrandingDropsItemConfigWhatKindsItem':
+          return ListBrandingDropsItemConfigWhatKindsItemTypeTransformer().decode(value);
+        case 'ListBrandingDropsItemConfigWhatMysteryBox':
+          return ListBrandingDropsItemConfigWhatMysteryBox.fromJson(value);
+        case 'ListBrandingDropsItemConfigWhatNftTwin':
+          return ListBrandingDropsItemConfigWhatNftTwin.fromJson(value);
+        case 'ListBrandingDropsItemConfigWhere':
+          return ListBrandingDropsItemConfigWhere.fromJson(value);
+        case 'ListBrandingDropsItemConfigWherePlacementsItem':
+          return ListBrandingDropsItemConfigWherePlacementsItemTypeTransformer().decode(value);
+        case 'ListBrandingDropsItemConfigWorld':
+          return ListBrandingDropsItemConfigWorld.fromJson(value);
+        case 'ListBrandingDropsItemConfigWorldAvatarGate':
+          return ListBrandingDropsItemConfigWorldAvatarGate.fromJson(value);
+        case 'ListBrandingDropsItemCounts':
+          return ListBrandingDropsItemCounts.fromJson(value);
+        case 'ListBrandingDropsItemWaves':
+          return ListBrandingDropsItemWaves.fromJson(value);
+        case 'ListBrandingDropsResponse':
+          return ListBrandingDropsResponse.fromJson(value);
         case 'ListBreaksItem':
           return ListBreaksItem.fromJson(value);
         case 'ListBreaksResponse':
           return ListBreaksResponse.fromJson(value);
+        case 'ListBulkBatchesItem':
+          return ListBulkBatchesItem.fromJson(value);
+        case 'ListBulkBatchesResponse':
+          return ListBulkBatchesResponse.fromJson(value);
         case 'ListCatalogMatchesItem':
           return ListCatalogMatchesItem.fromJson(value);
         case 'ListCatalogMatchesItemItem':
@@ -4007,6 +8253,14 @@ class ApiClient {
           return ListCatalogMatchesItemProduct.fromJson(value);
         case 'ListCatalogMatchesResponse':
           return ListCatalogMatchesResponse.fromJson(value);
+        case 'ListCategoryAspectsItem':
+          return ListCategoryAspectsItem.fromJson(value);
+        case 'ListCategoryAspectsResponse':
+          return ListCategoryAspectsResponse.fromJson(value);
+        case 'ListCategorySearchItem':
+          return ListCategorySearchItem.fromJson(value);
+        case 'ListCategorySearchResponse':
+          return ListCategorySearchResponse.fromJson(value);
         case 'ListCbxAdCreditLedgerItem':
           return ListCbxAdCreditLedgerItem.fromJson(value);
         case 'ListCbxAdCreditLedgerResponse':
@@ -4055,6 +8309,18 @@ class ApiClient {
           return ListCbxWalletPaymentReviewItem.fromJson(value);
         case 'ListCbxWalletPaymentReviewResponse':
           return ListCbxWalletPaymentReviewResponse.fromJson(value);
+        case 'ListChannelInventoryItem':
+          return ListChannelInventoryItem.fromJson(value);
+        case 'ListChannelInventoryItemCapabilities':
+          return ListChannelInventoryItemCapabilities.fromJson(value);
+        case 'ListChannelInventoryItemCapabilitiesOutOfStockActionsItem':
+          return ListChannelInventoryItemCapabilitiesOutOfStockActionsItemTypeTransformer().decode(value);
+        case 'ListChannelInventoryItemExclusions':
+          return ListChannelInventoryItemExclusions.fromJson(value);
+        case 'ListChannelInventoryItemPolicy':
+          return ListChannelInventoryItemPolicy.fromJson(value);
+        case 'ListChannelInventoryResponse':
+          return ListChannelInventoryResponse.fromJson(value);
         case 'ListCompWatchlistRecentItem':
           return ListCompWatchlistRecentItem.fromJson(value);
         case 'ListCompWatchlistRecentResponse':
@@ -4067,10 +8333,24 @@ class ApiClient {
           return ListConnectedAppsItem.fromJson(value);
         case 'ListConnectedAppsResponse':
           return ListConnectedAppsResponse.fromJson(value);
+        case 'ListConnectionPolicyManagementItem':
+          return ListConnectionPolicyManagementItem.fromJson(value);
+        case 'ListConnectionPolicyManagementItemNotes':
+          return ListConnectionPolicyManagementItemNotes.fromJson(value);
+        case 'ListConnectionPolicyManagementResponse':
+          return ListConnectionPolicyManagementResponse.fromJson(value);
         case 'ListConnectionsItem':
           return ListConnectionsItem.fromJson(value);
         case 'ListConnectionsResponse':
           return ListConnectionsResponse.fromJson(value);
+        case 'ListConversationMessagesItem':
+          return ListConversationMessagesItem.fromJson(value);
+        case 'ListConversationMessagesResponse':
+          return ListConversationMessagesResponse.fromJson(value);
+        case 'ListConversationsItem':
+          return ListConversationsItem.fromJson(value);
+        case 'ListConversationsResponse':
+          return ListConversationsResponse.fromJson(value);
         case 'ListCosmAttestationsItem':
           return ListCosmAttestationsItem.fromJson(value);
         case 'ListCosmAttestationsResponse':
@@ -4111,6 +8391,80 @@ class ApiClient {
           return ListCosmWithdrawalsItem.fromJson(value);
         case 'ListCosmWithdrawalsResponse':
           return ListCosmWithdrawalsResponse.fromJson(value);
+        case 'ListCreatorCardSetsItem':
+          return ListCreatorCardSetsItem.fromJson(value);
+        case 'ListCreatorCardSetsResponse':
+          return ListCreatorCardSetsResponse.fromJson(value);
+        case 'ListCreatorCreationReviewsItem':
+          return ListCreatorCreationReviewsItem.fromJson(value);
+        case 'ListCreatorCreationReviewsResponse':
+          return ListCreatorCreationReviewsResponse.fromJson(value);
+        case 'ListCreatorCreationsItem':
+          return ListCreatorCreationsItem.fromJson(value);
+        case 'ListCreatorCreationsItemEarnings':
+          return ListCreatorCreationsItemEarnings.fromJson(value);
+        case 'ListCreatorCreationsItemMint':
+          return ListCreatorCreationsItemMint.fromJson(value);
+        case 'ListCreatorCreationsItemRating':
+          return ListCreatorCreationsItemRating.fromJson(value);
+        case 'ListCreatorCreationsResponse':
+          return ListCreatorCreationsResponse.fromJson(value);
+        case 'ListCreatorEarningTrendItem':
+          return ListCreatorEarningTrendItem.fromJson(value);
+        case 'ListCreatorEarningTrendResponse':
+          return ListCreatorEarningTrendResponse.fromJson(value);
+        case 'ListCreatorEarningsItem':
+          return ListCreatorEarningsItem.fromJson(value);
+        case 'ListCreatorEarningsResponse':
+          return ListCreatorEarningsResponse.fromJson(value);
+        case 'ListCreatorExperienceKeysItem':
+          return ListCreatorExperienceKeysItem.fromJson(value);
+        case 'ListCreatorExperienceKeysResponse':
+          return ListCreatorExperienceKeysResponse.fromJson(value);
+        case 'ListCreatorItemModelsItem':
+          return ListCreatorItemModelsItem.fromJson(value);
+        case 'ListCreatorItemModelsItemReport':
+          return ListCreatorItemModelsItemReport.fromJson(value);
+        case 'ListCreatorItemModelsItemReportLines':
+          return ListCreatorItemModelsItemReportLines.fromJson(value);
+        case 'ListCreatorItemModelsItemReportMeshes':
+          return ListCreatorItemModelsItemReportMeshes.fromJson(value);
+        case 'ListCreatorItemModelsItemReportSuggestions':
+          return ListCreatorItemModelsItemReportSuggestions.fromJson(value);
+        case 'ListCreatorItemModelsItemReportSummary':
+          return ListCreatorItemModelsItemReportSummary.fromJson(value);
+        case 'ListCreatorItemModelsResponse':
+          return ListCreatorItemModelsResponse.fromJson(value);
+        case 'ListCreatorItemWearablesItem':
+          return ListCreatorItemWearablesItem.fromJson(value);
+        case 'ListCreatorItemWearablesItemChecks':
+          return ListCreatorItemWearablesItemChecks.fromJson(value);
+        case 'ListCreatorItemWearablesItemChecksChecks':
+          return ListCreatorItemWearablesItemChecksChecks.fromJson(value);
+        case 'ListCreatorItemWearablesItemColourways':
+          return ListCreatorItemWearablesItemColourways.fromJson(value);
+        case 'ListCreatorItemWearablesItemCosmetics':
+          return ListCreatorItemWearablesItemCosmetics.fromJson(value);
+        case 'ListCreatorItemWearablesItemTemplate':
+          return ListCreatorItemWearablesItemTemplate.fromJson(value);
+        case 'ListCreatorItemWearablesResponse':
+          return ListCreatorItemWearablesResponse.fromJson(value);
+        case 'ListCreatorItemsItem':
+          return ListCreatorItemsItem.fromJson(value);
+        case 'ListCreatorItemsResponse':
+          return ListCreatorItemsResponse.fromJson(value);
+        case 'ListCreatorReviewsItem':
+          return ListCreatorReviewsItem.fromJson(value);
+        case 'ListCreatorReviewsResponse':
+          return ListCreatorReviewsResponse.fromJson(value);
+        case 'ListCreatorRewardMeItem':
+          return ListCreatorRewardMeItem.fromJson(value);
+        case 'ListCreatorRewardMeResponse':
+          return ListCreatorRewardMeResponse.fromJson(value);
+        case 'ListCreatorRewardMonthsItem':
+          return ListCreatorRewardMonthsItem.fromJson(value);
+        case 'ListCreatorRewardMonthsResponse':
+          return ListCreatorRewardMonthsResponse.fromJson(value);
         case 'ListCustomersItem':
           return ListCustomersItem.fromJson(value);
         case 'ListCustomersItemBestRating':
@@ -4121,10 +8475,88 @@ class ApiClient {
           return ListDaoProposalsItem.fromJson(value);
         case 'ListDaoProposalsResponse':
           return ListDaoProposalsResponse.fromJson(value);
+        case 'ListDetectedEventEventsItem':
+          return ListDetectedEventEventsItem.fromJson(value);
+        case 'ListDetectedEventEventsItemActions':
+          return ListDetectedEventEventsItemActions.fromJson(value);
+        case 'ListDetectedEventEventsItemGuards':
+          return ListDetectedEventEventsItemGuards.fromJson(value);
+        case 'ListDetectedEventEventsItemGuardsHeldItem':
+          return ListDetectedEventEventsItemGuardsHeldItemTypeTransformer().decode(value);
+        case 'ListDetectedEventEventsItemPlan':
+          return ListDetectedEventEventsItemPlan.fromJson(value);
+        case 'ListDetectedEventEventsItemReports':
+          return ListDetectedEventEventsItemReports.fromJson(value);
+        case 'ListDetectedEventEventsResponse':
+          return ListDetectedEventEventsResponse.fromJson(value);
+        case 'ListDetectedEventRulesItem':
+          return ListDetectedEventRulesItem.fromJson(value);
+        case 'ListDetectedEventRulesItemElseItem':
+          return ListDetectedEventRulesItemElseItem.fromJson(value);
+        case 'ListDetectedEventRulesItemTarget':
+          return ListDetectedEventRulesItemTarget.fromJson(value);
+        case 'ListDetectedEventRulesItemThenItem':
+          return ListDetectedEventRulesItemThenItem.fromJson(value);
+        case 'ListDetectedEventRulesResponse':
+          return ListDetectedEventRulesResponse.fromJson(value);
+        case 'ListDeveloperAppClientVersionsItem':
+          return ListDeveloperAppClientVersionsItem.fromJson(value);
+        case 'ListDeveloperAppClientVersionsResponse':
+          return ListDeveloperAppClientVersionsResponse.fromJson(value);
+        case 'ListDeveloperAppConformanceRunsItem':
+          return ListDeveloperAppConformanceRunsItem.fromJson(value);
+        case 'ListDeveloperAppConformanceRunsItemChecks':
+          return ListDeveloperAppConformanceRunsItemChecks.fromJson(value);
+        case 'ListDeveloperAppConformanceRunsItemCounters':
+          return ListDeveloperAppConformanceRunsItemCounters.fromJson(value);
+        case 'ListDeveloperAppConformanceRunsResponse':
+          return ListDeveloperAppConformanceRunsResponse.fromJson(value);
         case 'ListDevicesItem':
           return ListDevicesItem.fromJson(value);
         case 'ListDevicesResponse':
           return ListDevicesResponse.fromJson(value);
+        case 'ListDiscountCodeRedemptionsItem':
+          return ListDiscountCodeRedemptionsItem.fromJson(value);
+        case 'ListDiscountCodeRedemptionsResponse':
+          return ListDiscountCodeRedemptionsResponse.fromJson(value);
+        case 'ListDiscountCodesItem':
+          return ListDiscountCodesItem.fromJson(value);
+        case 'ListDiscountCodesItemRules':
+          return ListDiscountCodesItemRules.fromJson(value);
+        case 'ListDiscountCodesItemRulesBxgy':
+          return ListDiscountCodesItemRulesBxgy.fromJson(value);
+        case 'ListDiscountCodesItemRulesChannelsItem':
+          return ListDiscountCodesItemRulesChannelsItemTypeTransformer().decode(value);
+        case 'ListDiscountCodesItemRulesDisplay':
+          return ListDiscountCodesItemRulesDisplay.fromJson(value);
+        case 'ListDiscountCodesItemRulesFixedPriceSet':
+          return ListDiscountCodesItemRulesFixedPriceSet.fromJson(value);
+        case 'ListDiscountCodesItemRulesLimits':
+          return ListDiscountCodesItemRulesLimits.fromJson(value);
+        case 'ListDiscountCodesItemRulesLimitsRegions':
+          return ListDiscountCodesItemRulesLimitsRegions.fromJson(value);
+        case 'ListDiscountCodesItemRulesRequirements':
+          return ListDiscountCodesItemRulesRequirements.fromJson(value);
+        case 'ListDiscountCodesItemRulesSchedule':
+          return ListDiscountCodesItemRulesSchedule.fromJson(value);
+        case 'ListDiscountCodesItemRulesSpendTiers':
+          return ListDiscountCodesItemRulesSpendTiers.fromJson(value);
+        case 'ListDiscountCodesItemRulesValue':
+          return ListDiscountCodesItemRulesValue.fromJson(value);
+        case 'ListDiscountCodesItemUsage':
+          return ListDiscountCodesItemUsage.fromJson(value);
+        case 'ListDiscountCodesResponse':
+          return ListDiscountCodesResponse.fromJson(value);
+        case 'ListDiscountHoldersItem':
+          return ListDiscountHoldersItem.fromJson(value);
+        case 'ListDiscountHoldersItemChannelsItem':
+          return ListDiscountHoldersItemChannelsItemTypeTransformer().decode(value);
+        case 'ListDiscountHoldersItemHolder':
+          return ListDiscountHoldersItemHolder.fromJson(value);
+        case 'ListDiscountHoldersItemLimits':
+          return ListDiscountHoldersItemLimits.fromJson(value);
+        case 'ListDiscountHoldersResponse':
+          return ListDiscountHoldersResponse.fromJson(value);
         case 'ListDropMineItem':
           return ListDropMineItem.fromJson(value);
         case 'ListDropMineItemListings':
@@ -4137,14 +8569,66 @@ class ApiClient {
           return ListDropMineItemStreet.fromJson(value);
         case 'ListDropMineResponse':
           return ListDropMineResponse.fromJson(value);
+        case 'ListEmailEventsItem':
+          return ListEmailEventsItem.fromJson(value);
+        case 'ListEmailEventsItemCandidates':
+          return ListEmailEventsItemCandidates.fromJson(value);
+        case 'ListEmailEventsItemPrice':
+          return ListEmailEventsItemPrice.fromJson(value);
+        case 'ListEmailEventsResponse':
+          return ListEmailEventsResponse.fromJson(value);
+        case 'ListEmailProvidersItem':
+          return ListEmailProvidersItem.fromJson(value);
+        case 'ListEmailProvidersResponse':
+          return ListEmailProvidersResponse.fromJson(value);
         case 'ListEmbedKeysItem':
           return ListEmbedKeysItem.fromJson(value);
         case 'ListEmbedKeysResponse':
           return ListEmbedKeysResponse.fromJson(value);
+        case 'ListEventAttendeesItem':
+          return ListEventAttendeesItem.fromJson(value);
+        case 'ListEventAttendeesResponse':
+          return ListEventAttendeesResponse.fromJson(value);
+        case 'ListEventPolicyDecisionsItem':
+          return ListEventPolicyDecisionsItem.fromJson(value);
+        case 'ListEventPolicyDecisionsResponse':
+          return ListEventPolicyDecisionsResponse.fromJson(value);
+        case 'ListEventsItem':
+          return ListEventsItem.fromJson(value);
+        case 'ListEventsItemDropRef':
+          return ListEventsItemDropRef.fromJson(value);
+        case 'ListEventsResponse':
+          return ListEventsResponse.fromJson(value);
         case 'ListFestivalsItem':
           return ListFestivalsItem.fromJson(value);
         case 'ListFestivalsResponse':
           return ListFestivalsResponse.fromJson(value);
+        case 'ListFieldRulesItem':
+          return ListFieldRulesItem.fromJson(value);
+        case 'ListFieldRulesResponse':
+          return ListFieldRulesResponse.fromJson(value);
+        case 'ListFundingApprovalsItem':
+          return ListFundingApprovalsItem.fromJson(value);
+        case 'ListFundingApprovalsItemApprovals':
+          return ListFundingApprovalsItemApprovals.fromJson(value);
+        case 'ListFundingApprovalsResponse':
+          return ListFundingApprovalsResponse.fromJson(value);
+        case 'ListFundingDrawsItem':
+          return ListFundingDrawsItem.fromJson(value);
+        case 'ListFundingDrawsItemInvoiceFile':
+          return ListFundingDrawsItemInvoiceFile.fromJson(value);
+        case 'ListFundingDrawsItemTimeline':
+          return ListFundingDrawsItemTimeline.fromJson(value);
+        case 'ListFundingDrawsResponse':
+          return ListFundingDrawsResponse.fromJson(value);
+        case 'ListFundingReceiptsItem':
+          return ListFundingReceiptsItem.fromJson(value);
+        case 'ListFundingReceiptsResponse':
+          return ListFundingReceiptsResponse.fromJson(value);
+        case 'ListFundingRepaymentsItem':
+          return ListFundingRepaymentsItem.fromJson(value);
+        case 'ListFundingRepaymentsResponse':
+          return ListFundingRepaymentsResponse.fromJson(value);
         case 'ListGameBreakUpcomingItem':
           return ListGameBreakUpcomingItem.fromJson(value);
         case 'ListGameBreakUpcomingItemHits':
@@ -4153,8 +8637,20 @@ class ApiClient {
           return ListGameBreakUpcomingItemSpots.fromJson(value);
         case 'ListGameBreakUpcomingResponse':
           return ListGameBreakUpcomingResponse.fromJson(value);
+        case 'ListGameCouponsItem':
+          return ListGameCouponsItem.fromJson(value);
+        case 'ListGameCouponsResponse':
+          return ListGameCouponsResponse.fromJson(value);
+        case 'ListGameHuntMineItem':
+          return ListGameHuntMineItem.fromJson(value);
+        case 'ListGameHuntMineItemTokens':
+          return ListGameHuntMineItemTokens.fromJson(value);
+        case 'ListGameHuntMineResponse':
+          return ListGameHuntMineResponse.fromJson(value);
         case 'ListGameHuntsItem':
           return ListGameHuntsItem.fromJson(value);
+        case 'ListGameHuntsItemRules':
+          return ListGameHuntsItemRules.fromJson(value);
         case 'ListGameHuntsItemStall':
           return ListGameHuntsItemStall.fromJson(value);
         case 'ListGameHuntsResponse':
@@ -4173,10 +8669,14 @@ class ApiClient {
           return ListGradingRunsResponse.fromJson(value);
         case 'ListGradingSubmissionsItem':
           return ListGradingSubmissionsItem.fromJson(value);
-        case 'ListGradingSubmissionsItemGrading':
-          return ListGradingSubmissionsItemGrading.fromJson(value);
         case 'ListGradingSubmissionsResponse':
           return ListGradingSubmissionsResponse.fromJson(value);
+        case 'ListGroupBuysItem':
+          return ListGroupBuysItem.fromJson(value);
+        case 'ListGroupBuysItemTiers':
+          return ListGroupBuysItemTiers.fromJson(value);
+        case 'ListGroupBuysResponse':
+          return ListGroupBuysResponse.fromJson(value);
         case 'ListHomeMineBuildersItem':
           return ListHomeMineBuildersItem.fromJson(value);
         case 'ListHomeMineBuildersResponse':
@@ -4205,6 +8705,8 @@ class ApiClient {
           return ListInventoryActivityResponse.fromJson(value);
         case 'ListInventoryItem':
           return ListInventoryItem.fromJson(value);
+        case 'ListInventoryItemSupplier':
+          return ListInventoryItemSupplier.fromJson(value);
         case 'ListInventoryResponse':
           return ListInventoryResponse.fromJson(value);
         case 'ListInventoryUnitsItem':
@@ -4229,18 +8731,46 @@ class ApiClient {
           return ListLayawaysItemSchedule.fromJson(value);
         case 'ListLayawaysResponse':
           return ListLayawaysResponse.fromJson(value);
+        case 'ListListingAdCampaignsItem':
+          return ListListingAdCampaignsItem.fromJson(value);
+        case 'ListListingAdCampaignsResponse':
+          return ListListingAdCampaignsResponse.fromJson(value);
+        case 'ListListingAdPlatformsItem':
+          return ListListingAdPlatformsItem.fromJson(value);
+        case 'ListListingAdPlatformsItemPrograms':
+          return ListListingAdPlatformsItemPrograms.fromJson(value);
+        case 'ListListingAdPlatformsItemVerbs':
+          return ListListingAdPlatformsItemVerbs.fromJson(value);
+        case 'ListListingAdPlatformsResponse':
+          return ListListingAdPlatformsResponse.fromJson(value);
         case 'ListListingAiDetectionsItem':
           return ListListingAiDetectionsItem.fromJson(value);
         case 'ListListingAiDetectionsResponse':
           return ListListingAiDetectionsResponse.fromJson(value);
+        case 'ListListingCommandsItem':
+          return ListListingCommandsItem.fromJson(value);
+        case 'ListListingCommandsResponse':
+          return ListListingCommandsResponse.fromJson(value);
         case 'ListListingDiscrepanciesItem':
           return ListListingDiscrepanciesItem.fromJson(value);
         case 'ListListingDiscrepanciesResponse':
           return ListListingDiscrepanciesResponse.fromJson(value);
         case 'ListListingIdsResponse':
           return ListListingIdsResponse.fromJson(value);
+        case 'ListListingTagSuggestItem':
+          return ListListingTagSuggestItem.fromJson(value);
+        case 'ListListingTagSuggestResponse':
+          return ListListingTagSuggestResponse.fromJson(value);
+        case 'ListListingTagsItem':
+          return ListListingTagsItem.fromJson(value);
+        case 'ListListingTagsResponse':
+          return ListListingTagsResponse.fromJson(value);
         case 'ListListingsItem':
           return ListListingsItem.fromJson(value);
+        case 'ListListingsItemPricing':
+          return ListListingsItemPricing.fromJson(value);
+        case 'ListListingsItemPricingAvgAsking':
+          return ListListingsItemPricingAvgAsking.fromJson(value);
         case 'ListListingsResponse':
           return ListListingsResponse.fromJson(value);
         case 'ListLiveShipmentsItem':
@@ -4249,10 +8779,42 @@ class ApiClient {
           return ListLiveShipmentsItemOrders.fromJson(value);
         case 'ListLiveShipmentsResponse':
           return ListLiveShipmentsResponse.fromJson(value);
+        case 'ListLiveStreamsItem':
+          return ListLiveStreamsItem.fromJson(value);
+        case 'ListLiveStreamsResponse':
+          return ListLiveStreamsResponse.fromJson(value);
+        case 'ListLookbookCampaignRecipientsItem':
+          return ListLookbookCampaignRecipientsItem.fromJson(value);
+        case 'ListLookbookCampaignRecipientsResponse':
+          return ListLookbookCampaignRecipientsResponse.fromJson(value);
+        case 'ListLookbookCampaignsItem':
+          return ListLookbookCampaignsItem.fromJson(value);
+        case 'ListLookbookCampaignsResponse':
+          return ListLookbookCampaignsResponse.fromJson(value);
+        case 'ListLookbooksItem':
+          return ListLookbooksItem.fromJson(value);
+        case 'ListLookbooksResponse':
+          return ListLookbooksResponse.fromJson(value);
+        case 'ListLoyaltyAirdropsItem':
+          return ListLoyaltyAirdropsItem.fromJson(value);
+        case 'ListLoyaltyAirdropsResponse':
+          return ListLoyaltyAirdropsResponse.fromJson(value);
         case 'ListLoyaltyMembersItem':
           return ListLoyaltyMembersItem.fromJson(value);
         case 'ListLoyaltyMembersResponse':
           return ListLoyaltyMembersResponse.fromJson(value);
+        case 'ListLoyaltyProgramInviteCandidatesItem':
+          return ListLoyaltyProgramInviteCandidatesItem.fromJson(value);
+        case 'ListLoyaltyProgramInviteCandidatesResponse':
+          return ListLoyaltyProgramInviteCandidatesResponse.fromJson(value);
+        case 'ListLoyaltyProgramMembersItem':
+          return ListLoyaltyProgramMembersItem.fromJson(value);
+        case 'ListLoyaltyProgramMembersResponse':
+          return ListLoyaltyProgramMembersResponse.fromJson(value);
+        case 'ListMagicAutoRunDecisionsItem':
+          return ListMagicAutoRunDecisionsItem.fromJson(value);
+        case 'ListMagicAutoRunDecisionsResponse':
+          return ListMagicAutoRunDecisionsResponse.fromJson(value);
         case 'ListMagicRecentItem':
           return ListMagicRecentItem.fromJson(value);
         case 'ListMagicRecentResponse':
@@ -4319,6 +8881,12 @@ class ApiClient {
           return ListOrderPickupsItem.fromJson(value);
         case 'ListOrderPickupsResponse':
           return ListOrderPickupsResponse.fromJson(value);
+        case 'ListOrderRefundsItem':
+          return ListOrderRefundsItem.fromJson(value);
+        case 'ListOrderRefundsItemLineItems':
+          return ListOrderRefundsItemLineItems.fromJson(value);
+        case 'ListOrderRefundsResponse':
+          return ListOrderRefundsResponse.fromJson(value);
         case 'ListOrderScanFormsItem':
           return ListOrderScanFormsItem.fromJson(value);
         case 'ListOrderScanFormsResponse':
@@ -4329,12 +8897,20 @@ class ApiClient {
           return ListOrderUnitsResponse.fromJson(value);
         case 'ListOrdersItem':
           return ListOrdersItem.fromJson(value);
-        case 'ListOrdersItemTrackingHistory':
-          return ListOrdersItemTrackingHistory.fromJson(value);
         case 'ListOrdersResponse':
           return ListOrdersResponse.fromJson(value);
+        case 'ListPassportEventsItem':
+          return ListPassportEventsItem.fromJson(value);
+        case 'ListPassportEventsResponse':
+          return ListPassportEventsResponse.fromJson(value);
+        case 'ListPassportPrintTargetsItem':
+          return ListPassportPrintTargetsItem.fromJson(value);
+        case 'ListPassportPrintTargetsResponse':
+          return ListPassportPrintTargetsResponse.fromJson(value);
         case 'ListPassportsItem':
           return ListPassportsItem.fromJson(value);
+        case 'ListPassportsItemGrading':
+          return ListPassportsItemGrading.fromJson(value);
         case 'ListPassportsResponse':
           return ListPassportsResponse.fromJson(value);
         case 'ListPatItem':
@@ -4353,12 +8929,54 @@ class ApiClient {
           return ListPolicyReturnsItem.fromJson(value);
         case 'ListPolicyReturnsResponse':
           return ListPolicyReturnsResponse.fromJson(value);
+        case 'ListPriceRulesItem':
+          return ListPriceRulesItem.fromJson(value);
+        case 'ListPriceRulesResponse':
+          return ListPriceRulesResponse.fromJson(value);
+        case 'ListPrintMailJobsItem':
+          return ListPrintMailJobsItem.fromJson(value);
+        case 'ListPrintMailJobsResponse':
+          return ListPrintMailJobsResponse.fromJson(value);
+        case 'ListProductFeedsItem':
+          return ListProductFeedsItem.fromJson(value);
+        case 'ListProductFeedsItemFilters':
+          return ListProductFeedsItemFilters.fromJson(value);
+        case 'ListProductFeedsItemFormatsItem':
+          return ListProductFeedsItemFormatsItemTypeTransformer().decode(value);
+        case 'ListProductFeedsItemLastStats':
+          return ListProductFeedsItemLastStats.fromJson(value);
+        case 'ListProductFeedsItemLastStatsIssues':
+          return ListProductFeedsItemLastStatsIssues.fromJson(value);
+        case 'ListProductFeedsItemSettings':
+          return ListProductFeedsItemSettings.fromJson(value);
+        case 'ListProductFeedsItemUrls':
+          return ListProductFeedsItemUrls.fromJson(value);
+        case 'ListProductFeedsResponse':
+          return ListProductFeedsResponse.fromJson(value);
+        case 'ListProductSetMembersItem':
+          return ListProductSetMembersItem.fromJson(value);
+        case 'ListProductSetMembersResponse':
+          return ListProductSetMembersResponse.fromJson(value);
+        case 'ListProductSetsItem':
+          return ListProductSetsItem.fromJson(value);
+        case 'ListProductSetsItemFilters':
+          return ListProductSetsItemFilters.fromJson(value);
+        case 'ListProductSetsItemFiltersStatusesItem':
+          return ListProductSetsItemFiltersStatusesItemTypeTransformer().decode(value);
+        case 'ListProductSetsResponse':
+          return ListProductSetsResponse.fromJson(value);
         case 'ListReferenceCountriesItem':
           return ListReferenceCountriesItem.fromJson(value);
-        case 'ListReferenceCountriesItemSubdivisions':
-          return ListReferenceCountriesItemSubdivisions.fromJson(value);
         case 'ListReferenceCountriesResponse':
           return ListReferenceCountriesResponse.fromJson(value);
+        case 'ListReferenceMetrosItem':
+          return ListReferenceMetrosItem.fromJson(value);
+        case 'ListReferenceMetrosResponse':
+          return ListReferenceMetrosResponse.fromJson(value);
+        case 'ListRentalHistoryItem':
+          return ListRentalHistoryItem.fromJson(value);
+        case 'ListRentalHistoryResponse':
+          return ListRentalHistoryResponse.fromJson(value);
         case 'ListRentalOffersItem':
           return ListRentalOffersItem.fromJson(value);
         case 'ListRentalOffersResponse':
@@ -4377,6 +8995,8 @@ class ApiClient {
           return ListRestockPromptsResponse.fromJson(value);
         case 'ListReturnsItem':
           return ListReturnsItem.fromJson(value);
+        case 'ListReturnsItemReturnTracking':
+          return ListReturnsItemReturnTracking.fromJson(value);
         case 'ListReturnsResponse':
           return ListReturnsResponse.fromJson(value);
         case 'ListSalesItem':
@@ -4385,6 +9005,10 @@ class ApiClient {
           return ListSalesItemDocuments.fromJson(value);
         case 'ListSalesResponse':
           return ListSalesResponse.fromJson(value);
+        case 'ListSandboxEventsItem':
+          return ListSandboxEventsItem.fromJson(value);
+        case 'ListSandboxEventsResponse':
+          return ListSandboxEventsResponse.fromJson(value);
         case 'ListSavedViewsItem':
           return ListSavedViewsItem.fromJson(value);
         case 'ListSavedViewsResponse':
@@ -4397,6 +9021,28 @@ class ApiClient {
           return ListScanModelsItem.fromJson(value);
         case 'ListScanModelsResponse':
           return ListScanModelsResponse.fromJson(value);
+        case 'ListShowroomItemSearchItem':
+          return ListShowroomItemSearchItem.fromJson(value);
+        case 'ListShowroomItemSearchItemBadgesItem':
+          return ListShowroomItemSearchItemBadgesItemTypeTransformer().decode(value);
+        case 'ListShowroomItemSearchResponse':
+          return ListShowroomItemSearchResponse.fromJson(value);
+        case 'ListShowroomsItem':
+          return ListShowroomsItem.fromJson(value);
+        case 'ListShowroomsItemBilling':
+          return ListShowroomsItemBilling.fromJson(value);
+        case 'ListShowroomsResponse':
+          return ListShowroomsResponse.fromJson(value);
+        case 'ListSourceSyncEventsItem':
+          return ListSourceSyncEventsItem.fromJson(value);
+        case 'ListSourceSyncEventsResponse':
+          return ListSourceSyncEventsResponse.fromJson(value);
+        case 'ListSourceSyncItem':
+          return ListSourceSyncItem.fromJson(value);
+        case 'ListSourceSyncItemSettings':
+          return ListSourceSyncItemSettings.fromJson(value);
+        case 'ListSourceSyncResponse':
+          return ListSourceSyncResponse.fromJson(value);
         case 'ListSourcingDemandItem':
           return ListSourcingDemandItem.fromJson(value);
         case 'ListSourcingDemandMineItem':
@@ -4425,6 +9071,10 @@ class ApiClient {
           return ListSpatialEmployeeUsageItem.fromJson(value);
         case 'ListSpatialEmployeeUsageResponse':
           return ListSpatialEmployeeUsageResponse.fromJson(value);
+        case 'ListSpatialLeasesItem':
+          return ListSpatialLeasesItem.fromJson(value);
+        case 'ListSpatialLeasesResponse':
+          return ListSpatialLeasesResponse.fromJson(value);
         case 'ListSpatialMomentsItem':
           return ListSpatialMomentsItem.fromJson(value);
         case 'ListSpatialMomentsResponse':
@@ -4465,10 +9115,6 @@ class ApiClient {
           return ListSpatialStaffingItem.fromJson(value);
         case 'ListSpatialStaffingResponse':
           return ListSpatialStaffingResponse.fromJson(value);
-        case 'ListSpatialStreetLeasesItem':
-          return ListSpatialStreetLeasesItem.fromJson(value);
-        case 'ListSpatialStreetLeasesResponse':
-          return ListSpatialStreetLeasesResponse.fromJson(value);
         case 'ListSpatialStreetMineItem':
           return ListSpatialStreetMineItem.fromJson(value);
         case 'ListSpatialStreetMineResponse':
@@ -4477,6 +9123,34 @@ class ApiClient {
           return ListSpatialStreetsItem.fromJson(value);
         case 'ListSpatialStreetsResponse':
           return ListSpatialStreetsResponse.fromJson(value);
+        case 'ListSponsoredAdBillingHistoryItem':
+          return ListSponsoredAdBillingHistoryItem.fromJson(value);
+        case 'ListSponsoredAdBillingHistoryItemSplit':
+          return ListSponsoredAdBillingHistoryItemSplit.fromJson(value);
+        case 'ListSponsoredAdBillingHistoryResponse':
+          return ListSponsoredAdBillingHistoryResponse.fromJson(value);
+        case 'ListSponsoredAdBillingStatementsItem':
+          return ListSponsoredAdBillingStatementsItem.fromJson(value);
+        case 'ListSponsoredAdBillingStatementsResponse':
+          return ListSponsoredAdBillingStatementsResponse.fromJson(value);
+        case 'ListSponsoredAdBoostsItem':
+          return ListSponsoredAdBoostsItem.fromJson(value);
+        case 'ListSponsoredAdBoostsResponse':
+          return ListSponsoredAdBoostsResponse.fromJson(value);
+        case 'ListSponsoredAdCampaignsItem':
+          return ListSponsoredAdCampaignsItem.fromJson(value);
+        case 'ListSponsoredAdCampaignsItemPlacementsItem':
+          return ListSponsoredAdCampaignsItemPlacementsItemTypeTransformer().decode(value);
+        case 'ListSponsoredAdCampaignsResponse':
+          return ListSponsoredAdCampaignsResponse.fromJson(value);
+        case 'ListSponsoredAdListingsItem':
+          return ListSponsoredAdListingsItem.fromJson(value);
+        case 'ListSponsoredAdListingsResponse':
+          return ListSponsoredAdListingsResponse.fromJson(value);
+        case 'ListStallListingSearchItem':
+          return ListStallListingSearchItem.fromJson(value);
+        case 'ListStallListingSearchResponse':
+          return ListStallListingSearchResponse.fromJson(value);
         case 'ListStallMineItem':
           return ListStallMineItem.fromJson(value);
         case 'ListStallMineItemBoothTrimmed':
@@ -4489,6 +9163,40 @@ class ApiClient {
           return ListStallMineItemStats.fromJson(value);
         case 'ListStallMineResponse':
           return ListStallMineResponse.fromJson(value);
+        case 'ListStorefrontHighlightsItem':
+          return ListStorefrontHighlightsItem.fromJson(value);
+        case 'ListStorefrontHighlightsItemItems':
+          return ListStorefrontHighlightsItemItems.fromJson(value);
+        case 'ListStorefrontHighlightsItemItemsListing':
+          return ListStorefrontHighlightsItemItemsListing.fromJson(value);
+        case 'ListStorefrontHighlightsItemItemsMediaTransform':
+          return ListStorefrontHighlightsItemItemsMediaTransform.fromJson(value);
+        case 'ListStorefrontHighlightsResponse':
+          return ListStorefrontHighlightsResponse.fromJson(value);
+        case 'ListStorefrontSectionsItem':
+          return ListStorefrontSectionsItem.fromJson(value);
+        case 'ListStorefrontSiteVersionsItem':
+          return ListStorefrontSiteVersionsItem.fromJson(value);
+        case 'ListStorefrontSiteVersionsResponse':
+          return ListStorefrontSiteVersionsResponse.fromJson(value);
+        case 'ListStorefrontStoryArchiveItem':
+          return ListStorefrontStoryArchiveItem.fromJson(value);
+        case 'ListStorefrontStoryArchiveResponse':
+          return ListStorefrontStoryArchiveResponse.fromJson(value);
+        case 'ListStorefrontTeamAccessItem':
+          return ListStorefrontTeamAccessItem.fromJson(value);
+        case 'ListStorefrontTeamAccessResponse':
+          return ListStorefrontTeamAccessResponse.fromJson(value);
+        case 'ListStorefrontsItem':
+          return ListStorefrontsItem.fromJson(value);
+        case 'ListStorefrontsResponse':
+          return ListStorefrontsResponse.fromJson(value);
+        case 'ListStoriesItem':
+          return ListStoriesItem.fromJson(value);
+        case 'ListStoriesItemOverlaysItem':
+          return ListStoriesItemOverlaysItem.fromJson(value);
+        case 'ListStoriesResponse':
+          return ListStoriesResponse.fromJson(value);
         case 'ListStreetDropsItem':
           return ListStreetDropsItem.fromJson(value);
         case 'ListStreetDropsResponse':
@@ -4507,10 +9215,74 @@ class ApiClient {
           return ListStreetStallsItemSeller.fromJson(value);
         case 'ListStreetStallsResponse':
           return ListStreetStallsResponse.fromJson(value);
+        case 'ListTaxCrosslyCollectsItem':
+          return ListTaxCrosslyCollectsItem.fromJson(value);
+        case 'ListTaxCrosslyCollectsResponse':
+          return ListTaxCrosslyCollectsResponse.fromJson(value);
+        case 'ListTaxSalesTaxNotCollectedItem':
+          return ListTaxSalesTaxNotCollectedItem.fromJson(value);
+        case 'ListTaxSalesTaxNotCollectedResponse':
+          return ListTaxSalesTaxNotCollectedResponse.fromJson(value);
+        case 'ListTaxonomyEbayCharitiesItem':
+          return ListTaxonomyEbayCharitiesItem.fromJson(value);
+        case 'ListTaxonomyEbayCharitiesResponse':
+          return ListTaxonomyEbayCharitiesResponse.fromJson(value);
         case 'ListTaxonomySuggestItem':
           return ListTaxonomySuggestItem.fromJson(value);
         case 'ListTaxonomySuggestResponse':
           return ListTaxonomySuggestResponse.fromJson(value);
+        case 'ListTcgCardsItem':
+          return ListTcgCardsItem.fromJson(value);
+        case 'ListTcgCardsResponse':
+          return ListTcgCardsResponse.fromJson(value);
+        case 'ListTcgCreatorGamePacksItem':
+          return ListTcgCreatorGamePacksItem.fromJson(value);
+        case 'ListTcgCreatorGamePacksResponse':
+          return ListTcgCreatorGamePacksResponse.fromJson(value);
+        case 'ListTcgCreatorGamesItem':
+          return ListTcgCreatorGamesItem.fromJson(value);
+        case 'ListTcgCreatorGamesResponse':
+          return ListTcgCreatorGamesResponse.fromJson(value);
+        case 'ListTcgCreatorMineItem':
+          return ListTcgCreatorMineItem.fromJson(value);
+        case 'ListTcgCreatorMineItemVersions':
+          return ListTcgCreatorMineItemVersions.fromJson(value);
+        case 'ListTcgCreatorMineResponse':
+          return ListTcgCreatorMineResponse.fromJson(value);
+        case 'ListTcgGamesItem':
+          return ListTcgGamesItem.fromJson(value);
+        case 'ListTcgGamesItemStarters':
+          return ListTcgGamesItemStarters.fromJson(value);
+        case 'ListTcgGamesResponse':
+          return ListTcgGamesResponse.fromJson(value);
+        case 'ListTcgNftsItem':
+          return ListTcgNftsItem.fromJson(value);
+        case 'ListTcgNftsResponse':
+          return ListTcgNftsResponse.fromJson(value);
+        case 'ListTcgTournamentsItem':
+          return ListTcgTournamentsItem.fromJson(value);
+        case 'ListTcgTournamentsResponse':
+          return ListTcgTournamentsResponse.fromJson(value);
+        case 'ListToolboxAssetsItem':
+          return ListToolboxAssetsItem.fromJson(value);
+        case 'ListToolboxAssetsResponse':
+          return ListToolboxAssetsResponse.fromJson(value);
+        case 'ListToolboxLibraryItem':
+          return ListToolboxLibraryItem.fromJson(value);
+        case 'ListToolboxLibraryItemPurchase':
+          return ListToolboxLibraryItemPurchase.fromJson(value);
+        case 'ListToolboxLibraryResponse':
+          return ListToolboxLibraryResponse.fromJson(value);
+        case 'ListToolboxMineItem':
+          return ListToolboxMineItem.fromJson(value);
+        case 'ListToolboxMineItemLatestVersion':
+          return ListToolboxMineItemLatestVersion.fromJson(value);
+        case 'ListToolboxMineResponse':
+          return ListToolboxMineResponse.fromJson(value);
+        case 'ListToolboxSalesItem':
+          return ListToolboxSalesItem.fromJson(value);
+        case 'ListToolboxSalesResponse':
+          return ListToolboxSalesResponse.fromJson(value);
         case 'ListVariationGroupsItem':
           return ListVariationGroupsItem.fromJson(value);
         case 'ListVariationGroupsResponse':
@@ -4633,32 +9405,42 @@ class ApiClient {
           return ListVaultMarketEstimatesAccuracyResponse.fromJson(value);
         case 'ListVaultMarketFeedItem':
           return ListVaultMarketFeedItem.fromJson(value);
-        case 'ListVaultMarketFeedItemMark':
-          return ListVaultMarketFeedItemMark.fromJson(value);
+        case 'ListVaultMarketFeedItemBy':
+          return ListVaultMarketFeedItemBy.fromJson(value);
         case 'ListVaultMarketFeedResponse':
           return ListVaultMarketFeedResponse.fromJson(value);
         case 'ListVaultMarketFollowCopyWatchAlertsItem':
           return ListVaultMarketFollowCopyWatchAlertsItem.fromJson(value);
+        case 'ListVaultMarketFollowCopyWatchAlertsItemBy':
+          return ListVaultMarketFollowCopyWatchAlertsItemBy.fromJson(value);
         case 'ListVaultMarketFollowCopyWatchAlertsResponse':
           return ListVaultMarketFollowCopyWatchAlertsResponse.fromJson(value);
         case 'ListVaultMarketFollowCopyWatchItem':
           return ListVaultMarketFollowCopyWatchItem.fromJson(value);
+        case 'ListVaultMarketFollowCopyWatchItemPerson':
+          return ListVaultMarketFollowCopyWatchItemPerson.fromJson(value);
         case 'ListVaultMarketFollowCopyWatchResponse':
           return ListVaultMarketFollowCopyWatchResponse.fromJson(value);
         case 'ListVaultMarketFollowFeedItem':
           return ListVaultMarketFollowFeedItem.fromJson(value);
+        case 'ListVaultMarketFollowFeedItemBy':
+          return ListVaultMarketFollowFeedItemBy.fromJson(value);
         case 'ListVaultMarketFollowFeedItemExhibition':
           return ListVaultMarketFollowFeedItemExhibition.fromJson(value);
         case 'ListVaultMarketFollowFeedResponse':
           return ListVaultMarketFollowFeedResponse.fromJson(value);
         case 'ListVaultMarketFollowFollowingItem':
           return ListVaultMarketFollowFollowingItem.fromJson(value);
+        case 'ListVaultMarketFollowFollowingItemPerson':
+          return ListVaultMarketFollowFollowingItemPerson.fromJson(value);
         case 'ListVaultMarketFollowFollowingItemShares':
           return ListVaultMarketFollowFollowingItemShares.fromJson(value);
         case 'ListVaultMarketFollowFollowingResponse':
           return ListVaultMarketFollowFollowingResponse.fromJson(value);
         case 'ListVaultMarketFollowLeaderboardsItem':
           return ListVaultMarketFollowLeaderboardsItem.fromJson(value);
+        case 'ListVaultMarketFollowLeaderboardsItemPerson':
+          return ListVaultMarketFollowLeaderboardsItemPerson.fromJson(value);
         case 'ListVaultMarketFollowLeaderboardsResponse':
           return ListVaultMarketFollowLeaderboardsResponse.fromJson(value);
         case 'ListVaultMarketGiftsItem':
@@ -4683,14 +9465,30 @@ class ApiClient {
           return ListVaultMarketGradeToVaultItemUnit.fromJson(value);
         case 'ListVaultMarketGradeToVaultResponse':
           return ListVaultMarketGradeToVaultResponse.fromJson(value);
+        case 'ListVaultMarketGradingCandidatesItem':
+          return ListVaultMarketGradingCandidatesItem.fromJson(value);
+        case 'ListVaultMarketGradingCandidatesResponse':
+          return ListVaultMarketGradingCandidatesResponse.fromJson(value);
         case 'ListVaultMarketGradingItem':
           return ListVaultMarketGradingItem.fromJson(value);
+        case 'ListVaultMarketGradingOrdersItem':
+          return ListVaultMarketGradingOrdersItem.fromJson(value);
+        case 'ListVaultMarketGradingOrdersResponse':
+          return ListVaultMarketGradingOrdersResponse.fromJson(value);
         case 'ListVaultMarketGradingResponse':
           return ListVaultMarketGradingResponse.fromJson(value);
         case 'ListVaultMarketHallLendersItem':
           return ListVaultMarketHallLendersItem.fromJson(value);
         case 'ListVaultMarketHallLendersResponse':
           return ListVaultMarketHallLendersResponse.fromJson(value);
+        case 'ListVaultMarketHoldingsItem':
+          return ListVaultMarketHoldingsItem.fromJson(value);
+        case 'ListVaultMarketHoldingsItemActions':
+          return ListVaultMarketHoldingsItemActions.fromJson(value);
+        case 'ListVaultMarketHoldingsItemDeposit':
+          return ListVaultMarketHoldingsItemDeposit.fromJson(value);
+        case 'ListVaultMarketHoldingsResponse':
+          return ListVaultMarketHoldingsResponse.fromJson(value);
         case 'ListVaultMarketIndexCommitteeMinutesItem':
           return ListVaultMarketIndexCommitteeMinutesItem.fromJson(value);
         case 'ListVaultMarketIndexCommitteeMinutesItemAttendees':
@@ -4791,10 +9589,58 @@ class ApiClient {
           return ListVaultMarketOpeningItemEarlyAccessYou.fromJson(value);
         case 'ListVaultMarketOpeningItemKey':
           return ListVaultMarketOpeningItemKey.fromJson(value);
+        case 'ListVaultMarketOpeningItemMark':
+          return ListVaultMarketOpeningItemMark.fromJson(value);
         case 'ListVaultMarketOpeningItemMe':
           return ListVaultMarketOpeningItemMe.fromJson(value);
         case 'ListVaultMarketOpeningResponse':
           return ListVaultMarketOpeningResponse.fromJson(value);
+        case 'ListVaultMarketOptionComboRfqItem':
+          return ListVaultMarketOptionComboRfqItem.fromJson(value);
+        case 'ListVaultMarketOptionComboRfqResponse':
+          return ListVaultMarketOptionComboRfqResponse.fromJson(value);
+        case 'ListVaultMarketOptionCombosItem':
+          return ListVaultMarketOptionCombosItem.fromJson(value);
+        case 'ListVaultMarketOptionCombosItemLegs':
+          return ListVaultMarketOptionCombosItemLegs.fromJson(value);
+        case 'ListVaultMarketOptionCombosResponse':
+          return ListVaultMarketOptionCombosResponse.fromJson(value);
+        case 'ListVaultMarketOptionContractDailyItem':
+          return ListVaultMarketOptionContractDailyItem.fromJson(value);
+        case 'ListVaultMarketOptionContractDailyResponse':
+          return ListVaultMarketOptionContractDailyResponse.fromJson(value);
+        case 'ListVaultMarketOptionMmQuotesItem':
+          return ListVaultMarketOptionMmQuotesItem.fromJson(value);
+        case 'ListVaultMarketOptionMmQuotesResponse':
+          return ListVaultMarketOptionMmQuotesResponse.fromJson(value);
+        case 'ListVaultMarketOptionNoticesItem':
+          return ListVaultMarketOptionNoticesItem.fromJson(value);
+        case 'ListVaultMarketOptionNoticesResponse':
+          return ListVaultMarketOptionNoticesResponse.fromJson(value);
+        case 'ListVaultMarketOptionOrdersItem':
+          return ListVaultMarketOptionOrdersItem.fromJson(value);
+        case 'ListVaultMarketOptionOrdersResponse':
+          return ListVaultMarketOptionOrdersResponse.fromJson(value);
+        case 'ListVaultMarketOptionPracticeFillsItem':
+          return ListVaultMarketOptionPracticeFillsItem.fromJson(value);
+        case 'ListVaultMarketOptionPracticeFillsResponse':
+          return ListVaultMarketOptionPracticeFillsResponse.fromJson(value);
+        case 'ListVaultMarketOptionPracticeOrdersItem':
+          return ListVaultMarketOptionPracticeOrdersItem.fromJson(value);
+        case 'ListVaultMarketOptionPracticeOrdersResponse':
+          return ListVaultMarketOptionPracticeOrdersResponse.fromJson(value);
+        case 'ListVaultMarketOptionRfqItem':
+          return ListVaultMarketOptionRfqItem.fromJson(value);
+        case 'ListVaultMarketOptionRfqResponse':
+          return ListVaultMarketOptionRfqResponse.fromJson(value);
+        case 'ListVaultMarketOptionSeriesItem':
+          return ListVaultMarketOptionSeriesItem.fromJson(value);
+        case 'ListVaultMarketOptionSeriesResponse':
+          return ListVaultMarketOptionSeriesResponse.fromJson(value);
+        case 'ListVaultMarketOptionStrategiesItem':
+          return ListVaultMarketOptionStrategiesItem.fromJson(value);
+        case 'ListVaultMarketOptionStrategiesResponse':
+          return ListVaultMarketOptionStrategiesResponse.fromJson(value);
         case 'ListVaultMarketOracleHistoryItem':
           return ListVaultMarketOracleHistoryItem.fromJson(value);
         case 'ListVaultMarketOracleHistoryResponse':
@@ -4831,6 +9677,10 @@ class ApiClient {
           return ListVaultMarketPartnerAccrualsItem.fromJson(value);
         case 'ListVaultMarketPartnerAccrualsResponse':
           return ListVaultMarketPartnerAccrualsResponse.fromJson(value);
+        case 'ListVaultMarketPartnerFinderItem':
+          return ListVaultMarketPartnerFinderItem.fromJson(value);
+        case 'ListVaultMarketPartnerFinderResponse':
+          return ListVaultMarketPartnerFinderResponse.fromJson(value);
         case 'ListVaultMarketPoolStakesItem':
           return ListVaultMarketPoolStakesItem.fromJson(value);
         case 'ListVaultMarketPoolStakesResponse':
@@ -4851,6 +9701,66 @@ class ApiClient {
           return ListVaultMarketPositionsRiskItem.fromJson(value);
         case 'ListVaultMarketPositionsRiskResponse':
           return ListVaultMarketPositionsRiskResponse.fromJson(value);
+        case 'ListVaultMarketPredictionAlertsItem':
+          return ListVaultMarketPredictionAlertsItem.fromJson(value);
+        case 'ListVaultMarketPredictionAlertsResponse':
+          return ListVaultMarketPredictionAlertsResponse.fromJson(value);
+        case 'ListVaultMarketPredictionComboRfqsItem':
+          return ListVaultMarketPredictionComboRfqsItem.fromJson(value);
+        case 'ListVaultMarketPredictionComboRfqsItemLegs':
+          return ListVaultMarketPredictionComboRfqsItemLegs.fromJson(value);
+        case 'ListVaultMarketPredictionComboRfqsItemQuotes':
+          return ListVaultMarketPredictionComboRfqsItemQuotes.fromJson(value);
+        case 'ListVaultMarketPredictionComboRfqsResponse':
+          return ListVaultMarketPredictionComboRfqsResponse.fromJson(value);
+        case 'ListVaultMarketPredictionCombosItem':
+          return ListVaultMarketPredictionCombosItem.fromJson(value);
+        case 'ListVaultMarketPredictionCombosItemLegs':
+          return ListVaultMarketPredictionCombosItemLegs.fromJson(value);
+        case 'ListVaultMarketPredictionCombosResponse':
+          return ListVaultMarketPredictionCombosResponse.fromJson(value);
+        case 'ListVaultMarketPredictionCommentsItem':
+          return ListVaultMarketPredictionCommentsItem.fromJson(value);
+        case 'ListVaultMarketPredictionCommentsResponse':
+          return ListVaultMarketPredictionCommentsResponse.fromJson(value);
+        case 'ListVaultMarketPredictionConversionsItem':
+          return ListVaultMarketPredictionConversionsItem.fromJson(value);
+        case 'ListVaultMarketPredictionConversionsResponse':
+          return ListVaultMarketPredictionConversionsResponse.fromJson(value);
+        case 'ListVaultMarketPredictionFollowingItem':
+          return ListVaultMarketPredictionFollowingItem.fromJson(value);
+        case 'ListVaultMarketPredictionFollowingResponse':
+          return ListVaultMarketPredictionFollowingResponse.fromJson(value);
+        case 'ListVaultMarketPredictionForecastsItem':
+          return ListVaultMarketPredictionForecastsItem.fromJson(value);
+        case 'ListVaultMarketPredictionForecastsResponse':
+          return ListVaultMarketPredictionForecastsResponse.fromJson(value);
+        case 'ListVaultMarketPredictionMakersItem':
+          return ListVaultMarketPredictionMakersItem.fromJson(value);
+        case 'ListVaultMarketPredictionMakersResponse':
+          return ListVaultMarketPredictionMakersResponse.fromJson(value);
+        case 'ListVaultMarketPredictionMarketsItem':
+          return ListVaultMarketPredictionMarketsItem.fromJson(value);
+        case 'ListVaultMarketPredictionMarketsItemProbability':
+          return ListVaultMarketPredictionMarketsItemProbability.fromJson(value);
+        case 'ListVaultMarketPredictionMarketsResponse':
+          return ListVaultMarketPredictionMarketsResponse.fromJson(value);
+        case 'ListVaultMarketPredictionOrdersItem':
+          return ListVaultMarketPredictionOrdersItem.fromJson(value);
+        case 'ListVaultMarketPredictionOrdersResponse':
+          return ListVaultMarketPredictionOrdersResponse.fromJson(value);
+        case 'ListVaultMarketPredictionPositionsItem':
+          return ListVaultMarketPredictionPositionsItem.fromJson(value);
+        case 'ListVaultMarketPredictionPositionsResponse':
+          return ListVaultMarketPredictionPositionsResponse.fromJson(value);
+        case 'ListVaultMarketPredictionProposalListedItem':
+          return ListVaultMarketPredictionProposalListedItem.fromJson(value);
+        case 'ListVaultMarketPredictionProposalListedResponse':
+          return ListVaultMarketPredictionProposalListedResponse.fromJson(value);
+        case 'ListVaultMarketPredictionProposalsItem':
+          return ListVaultMarketPredictionProposalsItem.fromJson(value);
+        case 'ListVaultMarketPredictionProposalsResponse':
+          return ListVaultMarketPredictionProposalsResponse.fromJson(value);
         case 'ListVaultMarketPriceWidgetsItem':
           return ListVaultMarketPriceWidgetsItem.fromJson(value);
         case 'ListVaultMarketPriceWidgetsItemAffiliateCode':
@@ -4929,6 +9839,20 @@ class ApiClient {
           return ListVaultMarketSetGoalsItemBasket.fromJson(value);
         case 'ListVaultMarketSetGoalsResponse':
           return ListVaultMarketSetGoalsResponse.fromJson(value);
+        case 'ListVaultMarketShareAutoInvestItem':
+          return ListVaultMarketShareAutoInvestItem.fromJson(value);
+        case 'ListVaultMarketShareAutoInvestItemTargets':
+          return ListVaultMarketShareAutoInvestItemTargets.fromJson(value);
+        case 'ListVaultMarketShareAutoInvestResponse':
+          return ListVaultMarketShareAutoInvestResponse.fromJson(value);
+        case 'ListVaultMarketShareAutoInvestRunsItem':
+          return ListVaultMarketShareAutoInvestRunsItem.fromJson(value);
+        case 'ListVaultMarketShareAutoInvestRunsResponse':
+          return ListVaultMarketShareAutoInvestRunsResponse.fromJson(value);
+        case 'ListVaultMarketShareBasketsItem':
+          return ListVaultMarketShareBasketsItem.fromJson(value);
+        case 'ListVaultMarketShareBasketsResponse':
+          return ListVaultMarketShareBasketsResponse.fromJson(value);
         case 'ListVaultMarketShareCardsItem':
           return ListVaultMarketShareCardsItem.fromJson(value);
         case 'ListVaultMarketShareCardsItemAmounts':
@@ -4941,22 +9865,76 @@ class ApiClient {
           return ListVaultMarketShareCardsItemLinks.fromJson(value);
         case 'ListVaultMarketShareCardsItemMark':
           return ListVaultMarketShareCardsItemMark.fromJson(value);
+        case 'ListVaultMarketShareCardsItemOwner':
+          return ListVaultMarketShareCardsItemOwner.fromJson(value);
         case 'ListVaultMarketShareCardsItemPortfolio':
           return ListVaultMarketShareCardsItemPortfolio.fromJson(value);
         case 'ListVaultMarketShareCardsResponse':
           return ListVaultMarketShareCardsResponse.fromJson(value);
+        case 'ListVaultMarketShareDropsItem':
+          return ListVaultMarketShareDropsItem.fromJson(value);
+        case 'ListVaultMarketShareDropsResponse':
+          return ListVaultMarketShareDropsResponse.fromJson(value);
+        case 'ListVaultMarketShareGiftsItem':
+          return ListVaultMarketShareGiftsItem.fromJson(value);
+        case 'ListVaultMarketShareGiftsResponse':
+          return ListVaultMarketShareGiftsResponse.fromJson(value);
+        case 'ListVaultMarketShareOrdersItem':
+          return ListVaultMarketShareOrdersItem.fromJson(value);
+        case 'ListVaultMarketShareOrdersResponse':
+          return ListVaultMarketShareOrdersResponse.fromJson(value);
+        case 'ListVaultMarketShareSeriesItem':
+          return ListVaultMarketShareSeriesItem.fromJson(value);
+        case 'ListVaultMarketShareSeriesItemMine':
+          return ListVaultMarketShareSeriesItemMine.fromJson(value);
+        case 'ListVaultMarketShareSeriesItemRights':
+          return ListVaultMarketShareSeriesItemRights.fromJson(value);
+        case 'ListVaultMarketShareSeriesResponse':
+          return ListVaultMarketShareSeriesResponse.fromJson(value);
+        case 'ListVaultMarketShareSeryAppraisalsItem':
+          return ListVaultMarketShareSeryAppraisalsItem.fromJson(value);
+        case 'ListVaultMarketShareSeryAppraisalsResponse':
+          return ListVaultMarketShareSeryAppraisalsResponse.fromJson(value);
+        case 'ListVaultMarketShareSeryTapeItem':
+          return ListVaultMarketShareSeryTapeItem.fromJson(value);
+        case 'ListVaultMarketShareSeryTapeResponse':
+          return ListVaultMarketShareSeryTapeResponse.fromJson(value);
+        case 'ListVaultMarketShareSeryUpdatesItem':
+          return ListVaultMarketShareSeryUpdatesItem.fromJson(value);
+        case 'ListVaultMarketShareSeryUpdatesResponse':
+          return ListVaultMarketShareSeryUpdatesResponse.fromJson(value);
+        case 'ListVaultMarketShareSubscriptionsItem':
+          return ListVaultMarketShareSubscriptionsItem.fromJson(value);
+        case 'ListVaultMarketShareSubscriptionsResponse':
+          return ListVaultMarketShareSubscriptionsResponse.fromJson(value);
+        case 'ListVaultMarketShareWorldItem':
+          return ListVaultMarketShareWorldItem.fromJson(value);
+        case 'ListVaultMarketShareWorldResponse':
+          return ListVaultMarketShareWorldResponse.fromJson(value);
+        case 'ListVaultMarketSupplyDeclaredValuesItem':
+          return ListVaultMarketSupplyDeclaredValuesItem.fromJson(value);
+        case 'ListVaultMarketSupplyDeclaredValuesResponse':
+          return ListVaultMarketSupplyDeclaredValuesResponse.fromJson(value);
         case 'ListVaultMarketSupplyDepositsItem':
           return ListVaultMarketSupplyDepositsItem.fromJson(value);
         case 'ListVaultMarketSupplyDepositsItemExit':
           return ListVaultMarketSupplyDepositsItemExit.fromJson(value);
         case 'ListVaultMarketSupplyDepositsResponse':
           return ListVaultMarketSupplyDepositsResponse.fromJson(value);
+        case 'ListVaultMarketSupplyEligibilityItem':
+          return ListVaultMarketSupplyEligibilityItem.fromJson(value);
+        case 'ListVaultMarketSupplyEligibilityResponse':
+          return ListVaultMarketSupplyEligibilityResponse.fromJson(value);
         case 'ListVaultMarketSupplyInvitesItem':
           return ListVaultMarketSupplyInvitesItem.fromJson(value);
         case 'ListVaultMarketSupplyInvitesItemKey':
           return ListVaultMarketSupplyInvitesItemKey.fromJson(value);
         case 'ListVaultMarketSupplyInvitesResponse':
           return ListVaultMarketSupplyInvitesResponse.fromJson(value);
+        case 'ListVaultMarketSupplyShipmentsItem':
+          return ListVaultMarketSupplyShipmentsItem.fromJson(value);
+        case 'ListVaultMarketSupplyShipmentsResponse':
+          return ListVaultMarketSupplyShipmentsResponse.fromJson(value);
         case 'ListVaultMarketValuationStatementsItem':
           return ListVaultMarketValuationStatementsItem.fromJson(value);
         case 'ListVaultMarketValuationStatementsResponse':
@@ -5015,6 +9993,16 @@ class ApiClient {
           return ListVideoRequestsItem.fromJson(value);
         case 'ListVideoRequestsResponse':
           return ListVideoRequestsResponse.fromJson(value);
+        case 'ListWalletDefaultsItem':
+          return ListWalletDefaultsItem.fromJson(value);
+        case 'ListWalletDefaultsItemFamiliesItem':
+          return ListWalletDefaultsItemFamiliesItemTypeTransformer().decode(value);
+        case 'ListWalletDefaultsItemOverrides':
+          return ListWalletDefaultsItemOverrides.fromJson(value);
+        case 'ListWalletDefaultsItemRefKindsItem':
+          return ListWalletDefaultsItemRefKindsItemTypeTransformer().decode(value);
+        case 'ListWalletDefaultsItemResolved':
+          return ListWalletDefaultsItemResolved.fromJson(value);
         case 'ListWeb3ActivityItem':
           return ListWeb3ActivityItem.fromJson(value);
         case 'ListWeb3ActivityResponse':
@@ -5073,12 +10061,16 @@ class ApiClient {
           return ListWeb3HolderPerksItem.fromJson(value);
         case 'ListWeb3HolderPerksResponse':
           return ListWeb3HolderPerksResponse.fromJson(value);
+        case 'ListWeb3LaunchPerksItem':
+          return ListWeb3LaunchPerksItem.fromJson(value);
+        case 'ListWeb3LaunchPerksItemConfig':
+          return ListWeb3LaunchPerksItemConfig.fromJson(value);
+        case 'ListWeb3LaunchPerksResponse':
+          return ListWeb3LaunchPerksResponse.fromJson(value);
         case 'ListWeb3LaunchesItem':
           return ListWeb3LaunchesItem.fromJson(value);
-        case 'ListWeb3LaunchesItemCreator':
-          return ListWeb3LaunchesItemCreator.fromJson(value);
-        case 'ListWeb3LaunchesItemHolderGate':
-          return ListWeb3LaunchesItemHolderGate.fromJson(value);
+        case 'ListWeb3LaunchesItemHolderPerksItem':
+          return ListWeb3LaunchesItemHolderPerksItem.fromJson(value);
         case 'ListWeb3LaunchesResponse':
           return ListWeb3LaunchesResponse.fromJson(value);
         case 'ListWeb3ListingsItem':
@@ -5125,6 +10117,16 @@ class ApiClient {
           return ListWeb3SearchTokensItemCollection.fromJson(value);
         case 'ListWeb3SearchTokensResponse':
           return ListWeb3SearchTokensResponse.fromJson(value);
+        case 'ListWeb3StoreWalletBalancesItem':
+          return ListWeb3StoreWalletBalancesItem.fromJson(value);
+        case 'ListWeb3StoreWalletBalancesItemNative':
+          return ListWeb3StoreWalletBalancesItemNative.fromJson(value);
+        case 'ListWeb3StoreWalletBalancesResponse':
+          return ListWeb3StoreWalletBalancesResponse.fromJson(value);
+        case 'ListWeb3StoreWalletsItem':
+          return ListWeb3StoreWalletsItem.fromJson(value);
+        case 'ListWeb3StoreWalletsResponse':
+          return ListWeb3StoreWalletsResponse.fromJson(value);
         case 'ListWeb3WalletsItem':
           return ListWeb3WalletsItem.fromJson(value);
         case 'ListWeb3WalletsResponse':
@@ -5137,14 +10139,128 @@ class ApiClient {
           return ListWeb3WatchlistItemLastSale.fromJson(value);
         case 'ListWeb3WatchlistResponse':
           return ListWeb3WatchlistResponse.fromJson(value);
+        case 'ListWebhookDeliveriesItem':
+          return ListWebhookDeliveriesItem.fromJson(value);
+        case 'ListWebhookDeliveriesResponse':
+          return ListWebhookDeliveriesResponse.fromJson(value);
         case 'ListWebhooksItem':
           return ListWebhooksItem.fromJson(value);
         case 'ListWebhooksResponse':
           return ListWebhooksResponse.fromJson(value);
+        case 'ListWholesaleBuyersItem':
+          return ListWholesaleBuyersItem.fromJson(value);
+        case 'ListWholesaleBuyersItemCatalogs':
+          return ListWholesaleBuyersItemCatalogs.fromJson(value);
+        case 'ListWholesaleBuyersItemGroups':
+          return ListWholesaleBuyersItemGroups.fromJson(value);
+        case 'ListWholesaleBuyersItemTerms':
+          return ListWholesaleBuyersItemTerms.fromJson(value);
+        case 'ListWholesaleBuyersResponse':
+          return ListWholesaleBuyersResponse.fromJson(value);
+        case 'ListWholesaleCatalogItemsItem':
+          return ListWholesaleCatalogItemsItem.fromJson(value);
+        case 'ListWholesaleCatalogItemsItemOwn':
+          return ListWholesaleCatalogItemsItemOwn.fromJson(value);
+        case 'ListWholesaleCatalogItemsItemTerms':
+          return ListWholesaleCatalogItemsItemTerms.fromJson(value);
+        case 'ListWholesaleCatalogItemsItemTermsBackorder':
+          return ListWholesaleCatalogItemsItemTermsBackorder.fromJson(value);
+        case 'ListWholesaleCatalogItemsItemTermsMoq':
+          return ListWholesaleCatalogItemsItemTermsMoq.fromJson(value);
+        case 'ListWholesaleCatalogItemsItemTermsPriceVisibility':
+          return ListWholesaleCatalogItemsItemTermsPriceVisibility.fromJson(value);
+        case 'ListWholesaleCatalogItemsItemTermsVerifiedOnly':
+          return ListWholesaleCatalogItemsItemTermsVerifiedOnly.fromJson(value);
+        case 'ListWholesaleCatalogItemsResponse':
+          return ListWholesaleCatalogItemsResponse.fromJson(value);
+        case 'ListWholesaleCatalogsItem':
+          return ListWholesaleCatalogsItem.fromJson(value);
+        case 'ListWholesaleCatalogsResponse':
+          return ListWholesaleCatalogsResponse.fromJson(value);
+        case 'ListWholesaleDropsItem':
+          return ListWholesaleDropsItem.fromJson(value);
+        case 'ListWholesaleDropsItemReservations':
+          return ListWholesaleDropsItemReservations.fromJson(value);
+        case 'ListWholesaleDropsResponse':
+          return ListWholesaleDropsResponse.fromJson(value);
+        case 'ListWholesaleFreightRequestsItem':
+          return ListWholesaleFreightRequestsItem.fromJson(value);
+        case 'ListWholesaleFreightRequestsResponse':
+          return ListWholesaleFreightRequestsResponse.fromJson(value);
+        case 'ListWholesaleGroupsItem':
+          return ListWholesaleGroupsItem.fromJson(value);
+        case 'ListWholesaleGroupsItemMembers':
+          return ListWholesaleGroupsItemMembers.fromJson(value);
+        case 'ListWholesaleGroupsResponse':
+          return ListWholesaleGroupsResponse.fromJson(value);
+        case 'ListWholesaleInvoicesItem':
+          return ListWholesaleInvoicesItem.fromJson(value);
+        case 'ListWholesaleInvoicesResponse':
+          return ListWholesaleInvoicesResponse.fromJson(value);
+        case 'ListWholesaleOrdersItem':
+          return ListWholesaleOrdersItem.fromJson(value);
+        case 'ListWholesaleOrdersResponse':
+          return ListWholesaleOrdersResponse.fromJson(value);
+        case 'ListWholesaleQuotesItem':
+          return ListWholesaleQuotesItem.fromJson(value);
+        case 'ListWholesaleQuotesItemItems':
+          return ListWholesaleQuotesItemItems.fromJson(value);
+        case 'ListWholesaleQuotesResponse':
+          return ListWholesaleQuotesResponse.fromJson(value);
+        case 'ListWholesaleRequestsItem':
+          return ListWholesaleRequestsItem.fromJson(value);
+        case 'ListWholesaleRequestsItemAnswers':
+          return ListWholesaleRequestsItemAnswers.fromJson(value);
+        case 'ListWholesaleRequestsResponse':
+          return ListWholesaleRequestsResponse.fromJson(value);
+        case 'ListWholesaleSetupStepsItem':
+          return ListWholesaleSetupStepsItem.fromJson(value);
+        case 'ListWholesaleSetupStepsResponse':
+          return ListWholesaleSetupStepsResponse.fromJson(value);
+        case 'ListWorkflowApprovalsItem':
+          return ListWorkflowApprovalsItem.fromJson(value);
+        case 'ListWorkflowApprovalsItemItems':
+          return ListWorkflowApprovalsItemItems.fromJson(value);
+        case 'ListWorkflowApprovalsResponse':
+          return ListWorkflowApprovalsResponse.fromJson(value);
         case 'ListWorkflowChainsItem':
           return ListWorkflowChainsItem.fromJson(value);
         case 'ListWorkflowChainsResponse':
           return ListWorkflowChainsResponse.fromJson(value);
+        case 'ListWorkflowRunsItem':
+          return ListWorkflowRunsItem.fromJson(value);
+        case 'ListWorkflowRunsResponse':
+          return ListWorkflowRunsResponse.fromJson(value);
+        case 'ListWorkflowSaleActiveItem':
+          return ListWorkflowSaleActiveItem.fromJson(value);
+        case 'ListWorkflowSaleActiveItemWorkflow':
+          return ListWorkflowSaleActiveItemWorkflow.fromJson(value);
+        case 'ListWorkflowSaleActiveResponse':
+          return ListWorkflowSaleActiveResponse.fromJson(value);
+        case 'ListWorkflowTemplatesItem':
+          return ListWorkflowTemplatesItem.fromJson(value);
+        case 'ListWorkflowTemplatesItemSetup':
+          return ListWorkflowTemplatesItemSetup.fromJson(value);
+        case 'ListWorkflowTemplatesResponse':
+          return ListWorkflowTemplatesResponse.fromJson(value);
+        case 'ListWorkflowVersionsItem':
+          return ListWorkflowVersionsItem.fromJson(value);
+        case 'ListWorkflowVersionsResponse':
+          return ListWorkflowVersionsResponse.fromJson(value);
+        case 'ListWorkflowsItem':
+          return ListWorkflowsItem.fromJson(value);
+        case 'ListWorkflowsItemSparkline':
+          return ListWorkflowsItemSparkline.fromJson(value);
+        case 'ListWorkflowsResponse':
+          return ListWorkflowsResponse.fromJson(value);
+        case 'ListWorldAppealsItem':
+          return ListWorldAppealsItem.fromJson(value);
+        case 'ListWorldAppealsResponse':
+          return ListWorldAppealsResponse.fromJson(value);
+        case 'ListWorldAttendantUsageItem':
+          return ListWorldAttendantUsageItem.fromJson(value);
+        case 'ListWorldAttendantUsageResponse':
+          return ListWorldAttendantUsageResponse.fromJson(value);
         case 'ListWorldAvatarClosetItem':
           return ListWorldAvatarClosetItem.fromJson(value);
         case 'ListWorldAvatarClosetResponse':
@@ -5177,6 +10293,12 @@ class ApiClient {
           return ListWorldCapabilityDeclarationsItemDeclarationCollection.fromJson(value);
         case 'ListWorldCapabilityDeclarationsResponse':
           return ListWorldCapabilityDeclarationsResponse.fromJson(value);
+        case 'ListWorldCollaborationsItem':
+          return ListWorldCollaborationsItem.fromJson(value);
+        case 'ListWorldCollaborationsItemInvitedBy':
+          return ListWorldCollaborationsItemInvitedBy.fromJson(value);
+        case 'ListWorldCollaborationsResponse':
+          return ListWorldCollaborationsResponse.fromJson(value);
         case 'ListWorldContestStandingsItem':
           return ListWorldContestStandingsItem.fromJson(value);
         case 'ListWorldContestStandingsResponse':
@@ -5189,6 +10311,10 @@ class ApiClient {
           return ListWorldConventionExhibitorsItem.fromJson(value);
         case 'ListWorldConventionExhibitorsResponse':
           return ListWorldConventionExhibitorsResponse.fromJson(value);
+        case 'ListWorldConventionMessagesItem':
+          return ListWorldConventionMessagesItem.fromJson(value);
+        case 'ListWorldConventionMessagesResponse':
+          return ListWorldConventionMessagesResponse.fromJson(value);
         case 'ListWorldConventionMineItem':
           return ListWorldConventionMineItem.fromJson(value);
         case 'ListWorldConventionMineResponse':
@@ -5243,6 +10369,162 @@ class ApiClient {
           return ListWorldDmsItemLast.fromJson(value);
         case 'ListWorldDmsResponse':
           return ListWorldDmsResponse.fromJson(value);
+        case 'ListWorldEarningAffiliateItem':
+          return ListWorldEarningAffiliateItem.fromJson(value);
+        case 'ListWorldEarningAffiliateResponse':
+          return ListWorldEarningAffiliateResponse.fromJson(value);
+        case 'ListWorldEarningLedgerItem':
+          return ListWorldEarningLedgerItem.fromJson(value);
+        case 'ListWorldEarningLedgerResponse':
+          return ListWorldEarningLedgerResponse.fromJson(value);
+        case 'ListWorldEarningPayoutsItem':
+          return ListWorldEarningPayoutsItem.fromJson(value);
+        case 'ListWorldEarningPayoutsResponse':
+          return ListWorldEarningPayoutsResponse.fromJson(value);
+        case 'ListWorldExperienceActivityItem':
+          return ListWorldExperienceActivityItem.fromJson(value);
+        case 'ListWorldExperienceActivityResponse':
+          return ListWorldExperienceActivityResponse.fromJson(value);
+        case 'ListWorldExperienceAlertsItem':
+          return ListWorldExperienceAlertsItem.fromJson(value);
+        case 'ListWorldExperienceAlertsResponse':
+          return ListWorldExperienceAlertsResponse.fromJson(value);
+        case 'ListWorldExperienceAssetsItem':
+          return ListWorldExperienceAssetsItem.fromJson(value);
+        case 'ListWorldExperienceAssetsResponse':
+          return ListWorldExperienceAssetsResponse.fromJson(value);
+        case 'ListWorldExperienceAuditItem':
+          return ListWorldExperienceAuditItem.fromJson(value);
+        case 'ListWorldExperienceAuditResponse':
+          return ListWorldExperienceAuditResponse.fromJson(value);
+        case 'ListWorldExperienceBansItem':
+          return ListWorldExperienceBansItem.fromJson(value);
+        case 'ListWorldExperienceBansResponse':
+          return ListWorldExperienceBansResponse.fromJson(value);
+        case 'ListWorldExperienceConfigVersionsItem':
+          return ListWorldExperienceConfigVersionsItem.fromJson(value);
+        case 'ListWorldExperienceConfigVersionsResponse':
+          return ListWorldExperienceConfigVersionsResponse.fromJson(value);
+        case 'ListWorldExperienceDatastoreEntriesItem':
+          return ListWorldExperienceDatastoreEntriesItem.fromJson(value);
+        case 'ListWorldExperienceDatastoreEntriesResponse':
+          return ListWorldExperienceDatastoreEntriesResponse.fromJson(value);
+        case 'ListWorldExperienceDatastoreEntryVersionsItem':
+          return ListWorldExperienceDatastoreEntryVersionsItem.fromJson(value);
+        case 'ListWorldExperienceDatastoreEntryVersionsResponse':
+          return ListWorldExperienceDatastoreEntryVersionsResponse.fromJson(value);
+        case 'ListWorldExperienceDatastoresItem':
+          return ListWorldExperienceDatastoresItem.fromJson(value);
+        case 'ListWorldExperienceDatastoresResponse':
+          return ListWorldExperienceDatastoresResponse.fromJson(value);
+        case 'ListWorldExperienceDropTablesItem':
+          return ListWorldExperienceDropTablesItem.fromJson(value);
+        case 'ListWorldExperienceDropTablesItemOdds':
+          return ListWorldExperienceDropTablesItemOdds.fromJson(value);
+        case 'ListWorldExperienceDropTablesItemSimulation':
+          return ListWorldExperienceDropTablesItemSimulation.fromJson(value);
+        case 'ListWorldExperienceDropTablesResponse':
+          return ListWorldExperienceDropTablesResponse.fromJson(value);
+        case 'ListWorldExperienceEventUpcomingItem':
+          return ListWorldExperienceEventUpcomingItem.fromJson(value);
+        case 'ListWorldExperienceEventUpcomingResponse':
+          return ListWorldExperienceEventUpcomingResponse.fromJson(value);
+        case 'ListWorldExperienceEventsItem':
+          return ListWorldExperienceEventsItem.fromJson(value);
+        case 'ListWorldExperienceEventsResponse':
+          return ListWorldExperienceEventsResponse.fromJson(value);
+        case 'ListWorldExperienceExperienceEventsItem':
+          return ListWorldExperienceExperienceEventsItem.fromJson(value);
+        case 'ListWorldExperienceExperienceEventsResponse':
+          return ListWorldExperienceExperienceEventsResponse.fromJson(value);
+        case 'ListWorldExperienceExperimentsItem':
+          return ListWorldExperienceExperimentsItem.fromJson(value);
+        case 'ListWorldExperienceExperimentsItemGuardrails':
+          return ListWorldExperienceExperimentsItemGuardrails.fromJson(value);
+        case 'ListWorldExperienceExperimentsItemTargeting':
+          return ListWorldExperienceExperimentsItemTargeting.fromJson(value);
+        case 'ListWorldExperienceExperimentsItemTargetingPlatformsItem':
+          return ListWorldExperienceExperimentsItemTargetingPlatformsItemTypeTransformer().decode(value);
+        case 'ListWorldExperienceExperimentsItemVariants':
+          return ListWorldExperienceExperimentsItemVariants.fromJson(value);
+        case 'ListWorldExperienceExperimentsResponse':
+          return ListWorldExperienceExperimentsResponse.fromJson(value);
+        case 'ListWorldExperienceModerationReportsItem':
+          return ListWorldExperienceModerationReportsItem.fromJson(value);
+        case 'ListWorldExperienceModerationReportsItemContext':
+          return ListWorldExperienceModerationReportsItemContext.fromJson(value);
+        case 'ListWorldExperienceModerationReportsItemContextChat':
+          return ListWorldExperienceModerationReportsItemContextChat.fromJson(value);
+        case 'ListWorldExperienceModerationReportsItemContextLine':
+          return ListWorldExperienceModerationReportsItemContextLine.fromJson(value);
+        case 'ListWorldExperienceModerationReportsResponse':
+          return ListWorldExperienceModerationReportsResponse.fromJson(value);
+        case 'ListWorldExperienceNotificationTemplatesItem':
+          return ListWorldExperienceNotificationTemplatesItem.fromJson(value);
+        case 'ListWorldExperienceNotificationTemplatesResponse':
+          return ListWorldExperienceNotificationTemplatesResponse.fromJson(value);
+        case 'ListWorldExperiencePlaceCollabScriptsItem':
+          return ListWorldExperiencePlaceCollabScriptsItem.fromJson(value);
+        case 'ListWorldExperiencePlaceCollabScriptsResponse':
+          return ListWorldExperiencePlaceCollabScriptsResponse.fromJson(value);
+        case 'ListWorldExperiencePlacePackagesItem':
+          return ListWorldExperiencePlacePackagesItem.fromJson(value);
+        case 'ListWorldExperiencePlacePackagesResponse':
+          return ListWorldExperiencePlacePackagesResponse.fromJson(value);
+        case 'ListWorldExperiencePlacePublishesItem':
+          return ListWorldExperiencePlacePublishesItem.fromJson(value);
+        case 'ListWorldExperiencePlacePublishesItemChecks':
+          return ListWorldExperiencePlacePublishesItemChecks.fromJson(value);
+        case 'ListWorldExperiencePlacePublishesItemChecksScan':
+          return ListWorldExperiencePlacePublishesItemChecksScan.fromJson(value);
+        case 'ListWorldExperiencePlacePublishesItemDetails':
+          return ListWorldExperiencePlacePublishesItemDetails.fromJson(value);
+        case 'ListWorldExperiencePlacePublishesItemRatingAnswers':
+          return ListWorldExperiencePlacePublishesItemRatingAnswers.fromJson(value);
+        case 'ListWorldExperiencePlacePublishesResponse':
+          return ListWorldExperiencePlacePublishesResponse.fromJson(value);
+        case 'ListWorldExperiencePlaceVersionsItem':
+          return ListWorldExperiencePlaceVersionsItem.fromJson(value);
+        case 'ListWorldExperiencePlaceVersionsResponse':
+          return ListWorldExperiencePlaceVersionsResponse.fromJson(value);
+        case 'ListWorldExperiencePlacesItem':
+          return ListWorldExperiencePlacesItem.fromJson(value);
+        case 'ListWorldExperiencePlacesResponse':
+          return ListWorldExperiencePlacesResponse.fromJson(value);
+        case 'ListWorldExperiencePlaytestersItem':
+          return ListWorldExperiencePlaytestersItem.fromJson(value);
+        case 'ListWorldExperiencePlaytestersResponse':
+          return ListWorldExperiencePlaytestersResponse.fromJson(value);
+        case 'ListWorldExperienceProductsItem':
+          return ListWorldExperienceProductsItem.fromJson(value);
+        case 'ListWorldExperienceProductsResponse':
+          return ListWorldExperienceProductsResponse.fromJson(value);
+        case 'ListWorldExperienceReceiptsItem':
+          return ListWorldExperienceReceiptsItem.fromJson(value);
+        case 'ListWorldExperienceReceiptsItemDrop':
+          return ListWorldExperienceReceiptsItemDrop.fromJson(value);
+        case 'ListWorldExperienceReceiptsResponse':
+          return ListWorldExperienceReceiptsResponse.fromJson(value);
+        case 'ListWorldExperienceRewardGrantsItem':
+          return ListWorldExperienceRewardGrantsItem.fromJson(value);
+        case 'ListWorldExperienceRewardGrantsResponse':
+          return ListWorldExperienceRewardGrantsResponse.fromJson(value);
+        case 'ListWorldExperienceRewardLedgerItem':
+          return ListWorldExperienceRewardLedgerItem.fromJson(value);
+        case 'ListWorldExperienceRewardLedgerResponse':
+          return ListWorldExperienceRewardLedgerResponse.fromJson(value);
+        case 'ListWorldExperienceRewardTopupsItem':
+          return ListWorldExperienceRewardTopupsItem.fromJson(value);
+        case 'ListWorldExperienceRewardTopupsResponse':
+          return ListWorldExperienceRewardTopupsResponse.fromJson(value);
+        case 'ListWorldExperienceServersItem':
+          return ListWorldExperienceServersItem.fromJson(value);
+        case 'ListWorldExperienceServersResponse':
+          return ListWorldExperienceServersResponse.fromJson(value);
+        case 'ListWorldExperiencesItem':
+          return ListWorldExperiencesItem.fromJson(value);
+        case 'ListWorldExperiencesResponse':
+          return ListWorldExperiencesResponse.fromJson(value);
         case 'ListWorldFollowingRoomsItem':
           return ListWorldFollowingRoomsItem.fromJson(value);
         case 'ListWorldFollowingRoomsResponse':
@@ -5255,6 +10537,16 @@ class ApiClient {
           return ListWorldFriendsItem.fromJson(value);
         case 'ListWorldFriendsResponse':
           return ListWorldFriendsResponse.fromJson(value);
+        case 'ListWorldGameMineItem':
+          return ListWorldGameMineItem.fromJson(value);
+        case 'ListWorldGameMineItemFlags':
+          return ListWorldGameMineItemFlags.fromJson(value);
+        case 'ListWorldGameMineResponse':
+          return ListWorldGameMineResponse.fromJson(value);
+        case 'ListWorldGamePackageReceiptsItem':
+          return ListWorldGamePackageReceiptsItem.fromJson(value);
+        case 'ListWorldGamePackageReceiptsResponse':
+          return ListWorldGamePackageReceiptsResponse.fromJson(value);
         case 'ListWorldGamePackagesItem':
           return ListWorldGamePackagesItem.fromJson(value);
         case 'ListWorldGamePackagesResponse':
@@ -5287,14 +10579,60 @@ class ApiClient {
           return ListWorldItemSearchItem.fromJson(value);
         case 'ListWorldItemSearchResponse':
           return ListWorldItemSearchResponse.fromJson(value);
+        case 'ListWorldJobBoardItem':
+          return ListWorldJobBoardItem.fromJson(value);
+        case 'ListWorldJobBoardItemEmployer':
+          return ListWorldJobBoardItemEmployer.fromJson(value);
+        case 'ListWorldJobBoardResponse':
+          return ListWorldJobBoardResponse.fromJson(value);
+        case 'ListWorldMarketItem':
+          return ListWorldMarketItem.fromJson(value);
+        case 'ListWorldMarketItemStreet':
+          return ListWorldMarketItemStreet.fromJson(value);
+        case 'ListWorldMarketItemTraffic':
+          return ListWorldMarketItemTraffic.fromJson(value);
+        case 'ListWorldMarketResponse':
+          return ListWorldMarketResponse.fromJson(value);
+        case 'ListWorldMarketStreetSignsItem':
+          return ListWorldMarketStreetSignsItem.fromJson(value);
+        case 'ListWorldMarketStreetSignsResponse':
+          return ListWorldMarketStreetSignsResponse.fromJson(value);
+        case 'ListWorldMeExperienceEventsItem':
+          return ListWorldMeExperienceEventsItem.fromJson(value);
+        case 'ListWorldMeExperienceEventsResponse':
+          return ListWorldMeExperienceEventsResponse.fromJson(value);
+        case 'ListWorldMeNotificationOptInsItem':
+          return ListWorldMeNotificationOptInsItem.fromJson(value);
+        case 'ListWorldMeNotificationOptInsResponse':
+          return ListWorldMeNotificationOptInsResponse.fromJson(value);
+        case 'ListWorldMeSubscriptionsItem':
+          return ListWorldMeSubscriptionsItem.fromJson(value);
+        case 'ListWorldMeSubscriptionsResponse':
+          return ListWorldMeSubscriptionsResponse.fromJson(value);
         case 'ListWorldOutfitsItem':
           return ListWorldOutfitsItem.fromJson(value);
         case 'ListWorldOutfitsItemAppearance':
           return ListWorldOutfitsItemAppearance.fromJson(value);
+        case 'ListWorldOutfitsItemAppearanceOutfit':
+          return ListWorldOutfitsItemAppearanceOutfit.fromJson(value);
         case 'ListWorldOutfitsItemItems':
           return ListWorldOutfitsItemItems.fromJson(value);
         case 'ListWorldOutfitsResponse':
           return ListWorldOutfitsResponse.fromJson(value);
+        case 'ListWorldPackagesItem':
+          return ListWorldPackagesItem.fromJson(value);
+        case 'ListWorldPackagesResponse':
+          return ListWorldPackagesResponse.fromJson(value);
+        case 'ListWorldParentalChildrenItem':
+          return ListWorldParentalChildrenItem.fromJson(value);
+        case 'ListWorldParentalChildrenItemControls':
+          return ListWorldParentalChildrenItemControls.fromJson(value);
+        case 'ListWorldParentalChildrenItemPlaytime':
+          return ListWorldParentalChildrenItemPlaytime.fromJson(value);
+        case 'ListWorldParentalChildrenItemPlaytimeExperiences':
+          return ListWorldParentalChildrenItemPlaytimeExperiences.fromJson(value);
+        case 'ListWorldParentalChildrenResponse':
+          return ListWorldParentalChildrenResponse.fromJson(value);
         case 'ListWorldPlaceBansItem':
           return ListWorldPlaceBansItem.fromJson(value);
         case 'ListWorldPlaceBansResponse':
@@ -5329,14 +10667,28 @@ class ApiClient {
           return ListWorldPlaceTradeTablesItemShook.fromJson(value);
         case 'ListWorldPlaceTradeTablesItemTotals':
           return ListWorldPlaceTradeTablesItemTotals.fromJson(value);
-        case 'ListWorldPlaceTradeTablesItemVisitor':
-          return ListWorldPlaceTradeTablesItemVisitor.fromJson(value);
         case 'ListWorldPlaceTradeTablesResponse':
           return ListWorldPlaceTradeTablesResponse.fromJson(value);
         case 'ListWorldPlaceTradesItem':
           return ListWorldPlaceTradesItem.fromJson(value);
         case 'ListWorldPlaceTradesResponse':
           return ListWorldPlaceTradesResponse.fromJson(value);
+        case 'ListWorldPromotedItem':
+          return ListWorldPromotedItem.fromJson(value);
+        case 'ListWorldPromotedResponse':
+          return ListWorldPromotedResponse.fromJson(value);
+        case 'ListWorldPropertyPlotsItem':
+          return ListWorldPropertyPlotsItem.fromJson(value);
+        case 'ListWorldPropertyPlotsResponse':
+          return ListWorldPropertyPlotsResponse.fromJson(value);
+        case 'ListWorldPropertyRentalsItem':
+          return ListWorldPropertyRentalsItem.fromJson(value);
+        case 'ListWorldPropertyRentalsResponse':
+          return ListWorldPropertyRentalsResponse.fromJson(value);
+        case 'ListWorldPropertyTrespassedItem':
+          return ListWorldPropertyTrespassedItem.fromJson(value);
+        case 'ListWorldPropertyTrespassedResponse':
+          return ListWorldPropertyTrespassedResponse.fromJson(value);
         case 'ListWorldProvenanceItem':
           return ListWorldProvenanceItem.fromJson(value);
         case 'ListWorldProvenanceResponse':
@@ -5345,10 +10697,22 @@ class ApiClient {
           return ListWorldQuestsItem.fromJson(value);
         case 'ListWorldQuestsResponse':
           return ListWorldQuestsResponse.fromJson(value);
+        case 'ListWorldRecentItem':
+          return ListWorldRecentItem.fromJson(value);
+        case 'ListWorldRecentResponse':
+          return ListWorldRecentResponse.fromJson(value);
+        case 'ListWorldRegionsItem':
+          return ListWorldRegionsItem.fromJson(value);
+        case 'ListWorldRegionsResponse':
+          return ListWorldRegionsResponse.fromJson(value);
         case 'ListWorldRoomWantsItem':
           return ListWorldRoomWantsItem.fromJson(value);
         case 'ListWorldRoomWantsResponse':
           return ListWorldRoomWantsResponse.fromJson(value);
+        case 'ListWorldShopListingsItem':
+          return ListWorldShopListingsItem.fromJson(value);
+        case 'ListWorldShopListingsResponse':
+          return ListWorldShopListingsResponse.fromJson(value);
         case 'ListWorldSpaceRequestsItem':
           return ListWorldSpaceRequestsItem.fromJson(value);
         case 'ListWorldSpaceRequestsResponse':
@@ -5363,6 +10727,32 @@ class ApiClient {
           return ListWorldSpacesItemNext.fromJson(value);
         case 'ListWorldSpacesResponse':
           return ListWorldSpacesResponse.fromJson(value);
+        case 'ListWorldStaffApplicantsItem':
+          return ListWorldStaffApplicantsItem.fromJson(value);
+        case 'ListWorldStaffApplicantsItemApplicant':
+          return ListWorldStaffApplicantsItemApplicant.fromJson(value);
+        case 'ListWorldStaffApplicantsItemPosting':
+          return ListWorldStaffApplicantsItemPosting.fromJson(value);
+        case 'ListWorldStaffApplicantsResponse':
+          return ListWorldStaffApplicantsResponse.fromJson(value);
+        case 'ListWorldStaffPeopleItem':
+          return ListWorldStaffPeopleItem.fromJson(value);
+        case 'ListWorldStaffPeopleResponse':
+          return ListWorldStaffPeopleResponse.fromJson(value);
+        case 'ListWorldStaffPlacesItem':
+          return ListWorldStaffPlacesItem.fromJson(value);
+        case 'ListWorldStaffPlacesResponse':
+          return ListWorldStaffPlacesResponse.fromJson(value);
+        case 'ListWorldStaffPostingsItem':
+          return ListWorldStaffPostingsItem.fromJson(value);
+        case 'ListWorldStaffPostingsItemShifts':
+          return ListWorldStaffPostingsItemShifts.fromJson(value);
+        case 'ListWorldStaffPostingsResponse':
+          return ListWorldStaffPostingsResponse.fromJson(value);
+        case 'ListWorldStaffShiftsItem':
+          return ListWorldStaffShiftsItem.fromJson(value);
+        case 'ListWorldStaffShiftsResponse':
+          return ListWorldStaffShiftsResponse.fromJson(value);
         case 'ListWorldStreaksItem':
           return ListWorldStreaksItem.fromJson(value);
         case 'ListWorldStreaksResponse':
@@ -5381,48 +10771,204 @@ class ApiClient {
           return ListWorldTradeTableListingsItem.fromJson(value);
         case 'ListWorldTradeTableListingsResponse':
           return ListWorldTradeTableListingsResponse.fromJson(value);
+        case 'ListWorldTransferRequestsItem':
+          return ListWorldTransferRequestsItem.fromJson(value);
+        case 'ListWorldTransferRequestsItemActionsItem':
+          return ListWorldTransferRequestsItemActionsItemTypeTransformer().decode(value);
+        case 'ListWorldTransferRequestsItemFrom':
+          return ListWorldTransferRequestsItemFrom.fromJson(value);
+        case 'ListWorldTransferRequestsResponse':
+          return ListWorldTransferRequestsResponse.fromJson(value);
+        case 'ListWorldTransparencyItem':
+          return ListWorldTransparencyItem.fromJson(value);
+        case 'ListWorldTransparencyResponse':
+          return ListWorldTransparencyResponse.fromJson(value);
+        case 'ListWorldVenuesItem':
+          return ListWorldVenuesItem.fromJson(value);
+        case 'ListWorldVenuesItemTaken':
+          return ListWorldVenuesItemTaken.fromJson(value);
+        case 'ListWorldVenuesResponse':
+          return ListWorldVenuesResponse.fromJson(value);
+        case 'ListingIdPriceCents':
+          return ListingIdPriceCents.fromJson(value);
+        case 'ListingsValueCents':
+          return ListingsValueCents.fromJson(value);
+        case 'LiveStreamResponse':
+          return LiveStreamResponse.fromJson(value);
+        case 'LookbookCampaignResponse':
+          return LookbookCampaignResponse.fromJson(value);
         case 'LowCentsHighCents':
           return LowCentsHighCents.fromJson(value);
+        case 'LoyaltyAirdropResponse':
+          return LoyaltyAirdropResponse.fromJson(value);
         case 'MainSub':
           return MainSub.fromJson(value);
         case 'MakerTaker':
           return MakerTaker.fromJson(value);
+        case 'MinMax':
+          return MinMax.fromJson(value);
+        case 'NameObject':
+          return NameObject.fromJson(value);
+        case 'NameObject2':
+          return NameObject2.fromJson(value);
         case 'NameSlug':
           return NameSlug.fromJson(value);
+        case 'NameSlug2':
+          return NameSlug2.fromJson(value);
         case 'OkResponse':
           return OkResponse.fromJson(value);
+        case 'OpenClose':
+          return OpenClose.fromJson(value);
         case 'OrderHashResponse':
           return OrderHashResponse.fromJson(value);
+        case 'OrderIdError':
+          return OrderIdError.fromJson(value);
         case 'Pagination':
           return Pagination.fromJson(value);
+        case 'PassportDraftResponse':
+          return PassportDraftResponse.fromJson(value);
+        case 'PassportDraftResponseData':
+          return PassportDraftResponseData.fromJson(value);
+        case 'PassportDraftResponseDataSkipped':
+          return PassportDraftResponseDataSkipped.fromJson(value);
         case 'PassportResponse':
           return PassportResponse.fromJson(value);
+        case 'PassportResponseData':
+          return PassportResponseData.fromJson(value);
+        case 'PassportResponseDataDetails':
+          return PassportResponseDataDetails.fromJson(value);
+        case 'PathMessage':
+          return PathMessage.fromJson(value);
+        case 'PathText':
+          return PathText.fromJson(value);
+        case 'PenaltyRepStrikesToBlock':
+          return PenaltyRepStrikesToBlock.fromJson(value);
         case 'RentalResponse':
           return RentalResponse.fromJson(value);
         case 'RentalResponseData':
           return RentalResponseData.fromJson(value);
-        case 'SlugName':
-          return SlugName.fromJson(value);
+        case 'RentalResponseDataInspection':
+          return RentalResponseDataInspection.fromJson(value);
         case 'SpatialSceneResponse':
           return SpatialSceneResponse.fromJson(value);
-        case 'SpatialSceneResponse2':
-          return SpatialSceneResponse2.fromJson(value);
-        case 'SpatialSceneResponse2Data':
-          return SpatialSceneResponse2Data.fromJson(value);
-        case 'SpatialSceneResponse2DataSettings':
-          return SpatialSceneResponse2DataSettings.fromJson(value);
-        case 'SpatialSceneResponse2DataSettingsCamera':
-          return SpatialSceneResponse2DataSettingsCamera.fromJson(value);
         case 'SpatialSceneResponseData':
           return SpatialSceneResponseData.fromJson(value);
+        case 'SpatialSceneResponseDataSettings':
+          return SpatialSceneResponseDataSettings.fromJson(value);
+        case 'SpatialSceneResponseDataSettingsCamera':
+          return SpatialSceneResponseDataSettingsCamera.fromJson(value);
         case 'SpatialStreetResponse':
           return SpatialStreetResponse.fromJson(value);
+        case 'SponsoredAdCampaignResponse':
+          return SponsoredAdCampaignResponse.fromJson(value);
+        case 'SponsoredAdCampaignResponseData':
+          return SponsoredAdCampaignResponseData.fromJson(value);
+        case 'SponsoredAdCampaignResponseDataCatalogs':
+          return SponsoredAdCampaignResponseDataCatalogs.fromJson(value);
+        case 'SponsoredAdCampaignResponseDataKeywords':
+          return SponsoredAdCampaignResponseDataKeywords.fromJson(value);
+        case 'SponsoredAdCampaignResponseDataListings':
+          return SponsoredAdCampaignResponseDataListings.fromJson(value);
+        case 'SponsoredAdCampaignResponseDataPacing':
+          return SponsoredAdCampaignResponseDataPacing.fromJson(value);
+        case 'SponsoredAdCampaignResponseDataPlacementsItem':
+          return SponsoredAdCampaignResponseDataPlacementsItemTypeTransformer().decode(value);
+        case 'SponsoredAdCampaignResponseDataStats':
+          return SponsoredAdCampaignResponseDataStats.fromJson(value);
+        case 'SponsoredAdCampaignResponseDataWorldTargets':
+          return SponsoredAdCampaignResponseDataWorldTargets.fromJson(value);
+        case 'SponsoredAdResponse':
+          return SponsoredAdResponse.fromJson(value);
+        case 'SponsoredAdResponseData':
+          return SponsoredAdResponseData.fromJson(value);
+        case 'SponsoredAdResponseDataAutoTopup':
+          return SponsoredAdResponseDataAutoTopup.fromJson(value);
+        case 'StartEnd':
+          return StartEnd.fromJson(value);
         case 'StatusResponse':
           return StatusResponse.fromJson(value);
+        case 'StorefrontHighlightResponse':
+          return StorefrontHighlightResponse.fromJson(value);
+        case 'StorefrontResponse':
+          return StorefrontResponse.fromJson(value);
+        case 'StorefrontResponse2':
+          return StorefrontResponse2.fromJson(value);
+        case 'StorefrontResponse2Data':
+          return StorefrontResponse2Data.fromJson(value);
+        case 'StorefrontResponse2DataDraft':
+          return StorefrontResponse2DataDraft.fromJson(value);
+        case 'StorefrontResponse2DataDraftTemplates':
+          return StorefrontResponse2DataDraftTemplates.fromJson(value);
+        case 'StorefrontResponse2DataDraftTheme':
+          return StorefrontResponse2DataDraftTheme.fromJson(value);
+        case 'StorefrontResponse2DataPublished':
+          return StorefrontResponse2DataPublished.fromJson(value);
+        case 'StorefrontResponse3':
+          return StorefrontResponse3.fromJson(value);
+        case 'StorefrontResponse3Data':
+          return StorefrontResponse3Data.fromJson(value);
+        case 'StorefrontResponse3DataDraft':
+          return StorefrontResponse3DataDraft.fromJson(value);
+        case 'StorefrontResponse3DataDraftAnnouncement':
+          return StorefrontResponse3DataDraftAnnouncement.fromJson(value);
+        case 'StorefrontResponse3DataDraftFooter':
+          return StorefrontResponse3DataDraftFooter.fromJson(value);
+        case 'StorefrontResponse3DataDraftHeader':
+          return StorefrontResponse3DataDraftHeader.fromJson(value);
+        case 'StorefrontResponse3DataDraftPages':
+          return StorefrontResponse3DataDraftPages.fromJson(value);
+        case 'StorefrontResponse3DataDraftPopup':
+          return StorefrontResponse3DataDraftPopup.fromJson(value);
+        case 'StorefrontResponse3DataDraftSeo':
+          return StorefrontResponse3DataDraftSeo.fromJson(value);
+        case 'StorefrontResponse3DataDraftTemplates':
+          return StorefrontResponse3DataDraftTemplates.fromJson(value);
+        case 'StorefrontResponse3DataDraftTemplatesCatalog':
+          return StorefrontResponse3DataDraftTemplatesCatalog.fromJson(value);
+        case 'StorefrontResponse3DataDraftTemplatesProduct':
+          return StorefrontResponse3DataDraftTemplatesProduct.fromJson(value);
+        case 'StorefrontResponse3DataDraftTheme':
+          return StorefrontResponse3DataDraftTheme.fromJson(value);
+        case 'StorefrontResponse3DataDraftThemeColors':
+          return StorefrontResponse3DataDraftThemeColors.fromJson(value);
+        case 'StorefrontResponse3DataDraftThemeFonts':
+          return StorefrontResponse3DataDraftThemeFonts.fromJson(value);
+        case 'StorefrontResponse3DataDraftThemeProductCard':
+          return StorefrontResponse3DataDraftThemeProductCard.fromJson(value);
+        case 'StorefrontResponse3DataDraftThemeRadius':
+          return StorefrontResponse3DataDraftThemeRadius.fromJson(value);
+        case 'StorefrontResponse3DataPublished':
+          return StorefrontResponse3DataPublished.fromJson(value);
+        case 'StorefrontResponse4':
+          return StorefrontResponse4.fromJson(value);
+        case 'StorefrontSectionResponse':
+          return StorefrontSectionResponse.fromJson(value);
         case 'SuccessResponse':
           return SuccessResponse.fromJson(value);
+        case 'SummaryIncomplete':
+          return SummaryIncomplete.fromJson(value);
+        case 'TcgResponse':
+          return TcgResponse.fromJson(value);
+        case 'TcgResponseData':
+          return TcgResponseData.fromJson(value);
+        case 'TcgTournamentResponse':
+          return TcgTournamentResponse.fromJson(value);
+        case 'TcgTournamentResponseData':
+          return TcgTournamentResponseData.fromJson(value);
+        case 'TcgTournamentResponseDataPairings':
+          return TcgTournamentResponseDataPairings.fromJson(value);
+        case 'TcgTournamentResponseDataPairingsA':
+          return TcgTournamentResponseDataPairingsA.fromJson(value);
+        case 'TcgTournamentResponseDataPairingsB':
+          return TcgTournamentResponseDataPairingsB.fromJson(value);
+        case 'TcgTournamentResponseDataStandings':
+          return TcgTournamentResponseDataStandings.fromJson(value);
         case 'TermsVersionResponse':
           return TermsVersionResponse.fromJson(value);
+        case 'TextChatFilter':
+          return TextChatFilter.fromJson(value);
+        case 'ToolboxAssetResponse':
+          return ToolboxAssetResponse.fromJson(value);
         case 'TxV0Object':
           return TxV0Object.fromJson(value);
         case 'UnitsCents':
@@ -5433,8 +10979,10 @@ class ApiClient {
           return UpdateAdOffsiteResponseData.fromJson(value);
         case 'UpdateAiImageConfigResponse':
           return UpdateAiImageConfigResponse.fromJson(value);
-        case 'UpdateAutomationRuleResponse':
-          return UpdateAutomationRuleResponse.fromJson(value);
+        case 'UpdateBrandingEventSettingResponse':
+          return UpdateBrandingEventSettingResponse.fromJson(value);
+        case 'UpdateBrandingEventSettingResponseData':
+          return UpdateBrandingEventSettingResponseData.fromJson(value);
         case 'UpdateCosmCosmeticUnlockResponse':
           return UpdateCosmCosmeticUnlockResponse.fromJson(value);
         case 'UpdateCosmCosmeticUnlockResponseData':
@@ -5443,12 +10991,50 @@ class ApiClient {
           return UpdateCosmPegResponse.fromJson(value);
         case 'UpdateCosmPegResponseData':
           return UpdateCosmPegResponseData.fromJson(value);
+        case 'UpdateCustomerNoteRequest':
+          return UpdateCustomerNoteRequest.fromJson(value);
+        case 'UpdateDeveloperAppListingResponse':
+          return UpdateDeveloperAppListingResponse.fromJson(value);
+        case 'UpdateDeveloperAppListingResponseData':
+          return UpdateDeveloperAppListingResponseData.fromJson(value);
+        case 'UpdateDeveloperAppListingResponseDataDecision':
+          return UpdateDeveloperAppListingResponseDataDecision.fromJson(value);
+        case 'UpdateDeveloperAppListingResponseDataDecisionChangedItem':
+          return UpdateDeveloperAppListingResponseDataDecisionChangedItemTypeTransformer().decode(value);
+        case 'UpdateDeveloperAppProfileResponse':
+          return UpdateDeveloperAppProfileResponse.fromJson(value);
+        case 'UpdateDeveloperAppProfileResponseData':
+          return UpdateDeveloperAppProfileResponseData.fromJson(value);
+        case 'UpdateDeveloperAppProfileResponseDataDecision':
+          return UpdateDeveloperAppProfileResponseDataDecision.fromJson(value);
+        case 'UpdateDeveloperAppProfileResponseDataDecisionChangedItem':
+          return UpdateDeveloperAppProfileResponseDataDecisionChangedItemTypeTransformer().decode(value);
+        case 'UpdateEventPolicyRuleRequest':
+          return UpdateEventPolicyRuleRequest.fromJson(value);
+        case 'UpdateEventPolicyRuleResponse':
+          return UpdateEventPolicyRuleResponse.fromJson(value);
+        case 'UpdateFundingAutorepayResponse':
+          return UpdateFundingAutorepayResponse.fromJson(value);
+        case 'UpdateFundingAutorepayResponseData':
+          return UpdateFundingAutorepayResponseData.fromJson(value);
+        case 'UpdateFundingControlResponse':
+          return UpdateFundingControlResponse.fromJson(value);
+        case 'UpdateFundingMemberResponse':
+          return UpdateFundingMemberResponse.fromJson(value);
+        case 'UpdateGroupBuyResponse':
+          return UpdateGroupBuyResponse.fromJson(value);
         case 'UpdateHotspotItem':
           return UpdateHotspotItem.fromJson(value);
         case 'UpdateHotspotResponse':
           return UpdateHotspotResponse.fromJson(value);
+        case 'UpdateInboxCannedResponseOrderRequest':
+          return UpdateInboxCannedResponseOrderRequest.fromJson(value);
         case 'UpdateInboxConversationResponse':
           return UpdateInboxConversationResponse.fromJson(value);
+        case 'UpdateInboxConversationResponseConversation':
+          return UpdateInboxConversationResponseConversation.fromJson(value);
+        case 'UpdateListingAdListingRateResponse':
+          return UpdateListingAdListingRateResponse.fromJson(value);
         case 'UpdateListingCustomResponse':
           return UpdateListingCustomResponse.fromJson(value);
         case 'UpdateListingCustomResponseData':
@@ -5465,6 +11051,26 @@ class ApiClient {
           return UpdateLiveStreamLineupItem.fromJson(value);
         case 'UpdateLiveStreamLineupResponse':
           return UpdateLiveStreamLineupResponse.fromJson(value);
+        case 'UpdateLookbookDesignResponse':
+          return UpdateLookbookDesignResponse.fromJson(value);
+        case 'UpdateLookbookDesignResponseData':
+          return UpdateLookbookDesignResponseData.fromJson(value);
+        case 'UpdateLoyaltyProgramResponse':
+          return UpdateLoyaltyProgramResponse.fromJson(value);
+        case 'UpdateLoyaltyProgramResponseData':
+          return UpdateLoyaltyProgramResponseData.fromJson(value);
+        case 'UpdateMagicAutoSettingRequest':
+          return UpdateMagicAutoSettingRequest.fromJson(value);
+        case 'UpdateOrderResponse':
+          return UpdateOrderResponse.fromJson(value);
+        case 'UpdatePassportResponse':
+          return UpdatePassportResponse.fromJson(value);
+        case 'UpdatePayoutScheduleRequest':
+          return UpdatePayoutScheduleRequest.fromJson(value);
+        case 'UpdatePayoutScheduleResponse':
+          return UpdatePayoutScheduleResponse.fromJson(value);
+        case 'UpdatePayoutScheduleResponseData':
+          return UpdatePayoutScheduleResponseData.fromJson(value);
         case 'UpdatePlatformPreferenceResponse':
           return UpdatePlatformPreferenceResponse.fromJson(value);
         case 'UpdateProductionPoResponse':
@@ -5475,6 +11081,38 @@ class ApiClient {
           return UpdateRentalOfferResponse.fromJson(value);
         case 'UpdateRentalOfferResponseData':
           return UpdateRentalOfferResponseData.fromJson(value);
+        case 'UpdateShowroom2Response':
+          return UpdateShowroom2Response.fromJson(value);
+        case 'UpdateShowroom2ResponseData':
+          return UpdateShowroom2ResponseData.fromJson(value);
+        case 'UpdateShowroom2ResponseDataFixtures':
+          return UpdateShowroom2ResponseDataFixtures.fromJson(value);
+        case 'UpdateShowroom2ResponseDataItems':
+          return UpdateShowroom2ResponseDataItems.fromJson(value);
+        case 'UpdateShowroom2ResponseDataItemsBadgesItem':
+          return UpdateShowroom2ResponseDataItemsBadgesItemTypeTransformer().decode(value);
+        case 'UpdateShowroom2ResponseDataPlacements':
+          return UpdateShowroom2ResponseDataPlacements.fromJson(value);
+        case 'UpdateShowroom2ResponseDataRoom':
+          return UpdateShowroom2ResponseDataRoom.fromJson(value);
+        case 'UpdateShowroom2ResponseDataRoomLook':
+          return UpdateShowroom2ResponseDataRoomLook.fromJson(value);
+        case 'UpdateShowroom2ResponseDataSettings':
+          return UpdateShowroom2ResponseDataSettings.fromJson(value);
+        case 'UpdateShowroom2ResponseDataSettingsGroupByItem':
+          return UpdateShowroom2ResponseDataSettingsGroupByItemTypeTransformer().decode(value);
+        case 'UpdateShowroom2ResponseDataSettingsHours':
+          return UpdateShowroom2ResponseDataSettingsHours.fromJson(value);
+        case 'UpdateShowroom2ResponseDataSettingsSortByItem':
+          return UpdateShowroom2ResponseDataSettingsSortByItemTypeTransformer().decode(value);
+        case 'UpdateShowroom2ResponseDataStats':
+          return UpdateShowroom2ResponseDataStats.fromJson(value);
+        case 'UpdateShowroom2ResponseResults':
+          return UpdateShowroom2ResponseResults.fromJson(value);
+        case 'UpdateShowroomResponse':
+          return UpdateShowroomResponse.fromJson(value);
+        case 'UpdateSourceSyncLocationRequest':
+          return UpdateSourceSyncLocationRequest.fromJson(value);
         case 'UpdateSpatialEmployeeConfigResponse':
           return UpdateSpatialEmployeeConfigResponse.fromJson(value);
         case 'UpdateSpatialEmployeeConfigResponseData':
@@ -5485,8 +11123,6 @@ class ApiClient {
           return UpdateSpatialSceneCosmeticResponse.fromJson(value);
         case 'UpdateSpatialSceneCosmeticResponseData':
           return UpdateSpatialSceneCosmeticResponseData.fromJson(value);
-        case 'UpdateSpatialSceneCosmeticResponseDataProps':
-          return UpdateSpatialSceneCosmeticResponseDataProps.fromJson(value);
         case 'UpdateSpatialSceneNodeResponse':
           return UpdateSpatialSceneNodeResponse.fromJson(value);
         case 'UpdateSpatialSceneNodeResponseData':
@@ -5507,6 +11143,32 @@ class ApiClient {
           return UpdateSpatialShopStaffWageResponse.fromJson(value);
         case 'UpdateSpatialShopStaffWageResponseData':
           return UpdateSpatialShopStaffWageResponseData.fromJson(value);
+        case 'UpdateSponsoredAdBoostResponse':
+          return UpdateSponsoredAdBoostResponse.fromJson(value);
+        case 'UpdateSponsoredAdBoostResponseData':
+          return UpdateSponsoredAdBoostResponseData.fromJson(value);
+        case 'UpdateStorefrontProfileResponse':
+          return UpdateStorefrontProfileResponse.fromJson(value);
+        case 'UpdateStorefrontProfileResponseData':
+          return UpdateStorefrontProfileResponseData.fromJson(value);
+        case 'UpdateStorefrontProfileResponseDataProfile':
+          return UpdateStorefrontProfileResponseDataProfile.fromJson(value);
+        case 'UpdateStorefrontSettingResponse':
+          return UpdateStorefrontSettingResponse.fromJson(value);
+        case 'UpdateStorefrontSettingResponseData':
+          return UpdateStorefrontSettingResponseData.fromJson(value);
+        case 'UpdateStorefrontSettingResponseDataPolicySource':
+          return UpdateStorefrontSettingResponseDataPolicySource.fromJson(value);
+        case 'UpdateStorefrontSettingResponseDataPolicySummary':
+          return UpdateStorefrontSettingResponseDataPolicySummary.fromJson(value);
+        case 'UpdateStorefrontSettingResponseDataStorePolicies':
+          return UpdateStorefrontSettingResponseDataStorePolicies.fromJson(value);
+        case 'UpdateStorefrontSettingResponseDataStorePoliciesShipping':
+          return UpdateStorefrontSettingResponseDataStorePoliciesShipping.fromJson(value);
+        case 'UpdateToolboxAssetRatingMineResponse':
+          return UpdateToolboxAssetRatingMineResponse.fromJson(value);
+        case 'UpdateVaultMarketAutoBuyResponse':
+          return UpdateVaultMarketAutoBuyResponse.fromJson(value);
         case 'UpdateVaultMarketHomeUnitResponse':
           return UpdateVaultMarketHomeUnitResponse.fromJson(value);
         case 'UpdateVaultMarketHomeUnitResponseRefused':
@@ -5515,6 +11177,10 @@ class ApiClient {
           return UpdateVaultMarketOfferAlertResponse.fromJson(value);
         case 'UpdateVaultMarketPaperLeaderboardResponse':
           return UpdateVaultMarketPaperLeaderboardResponse.fromJson(value);
+        case 'UpdateVaultMarketPartnerMeResponse':
+          return UpdateVaultMarketPartnerMeResponse.fromJson(value);
+        case 'UpdateVaultMarketPartnerMeResponseProfile':
+          return UpdateVaultMarketPartnerMeResponseProfile.fromJson(value);
         case 'UpdateVaultMarketPositionExitResponse':
           return UpdateVaultMarketPositionExitResponse.fromJson(value);
         case 'UpdateVaultMarketSupplyDepositResponse':
@@ -5529,12 +11195,48 @@ class ApiClient {
           return UpdateVaultMarketWorldRoomVaultGateResponseGate.fromJson(value);
         case 'UpdateVaultMarketWorldRoomVaultGateResponseGateScope':
           return UpdateVaultMarketWorldRoomVaultGateResponseGateScope.fromJson(value);
+        case 'UpdateWeb3HolderPerkResponse':
+          return UpdateWeb3HolderPerkResponse.fromJson(value);
         case 'UpdateWeb3LaunchAllowlistResponse':
           return UpdateWeb3LaunchAllowlistResponse.fromJson(value);
         case 'UpdateWeb3LaunchAllowlistResponseRootTx':
           return UpdateWeb3LaunchAllowlistResponseRootTx.fromJson(value);
-        case 'UpdateWorldAutoShopRequest':
-          return UpdateWorldAutoShopRequest.fromJson(value);
+        case 'UpdateWeb3LaunchResponse':
+          return UpdateWeb3LaunchResponse.fromJson(value);
+        case 'UpdateWeb3StoreWalletResponse':
+          return UpdateWeb3StoreWalletResponse.fromJson(value);
+        case 'UpdateWeb3WalletResponse':
+          return UpdateWeb3WalletResponse.fromJson(value);
+        case 'UpdateWholesaleBuyerTermResponse':
+          return UpdateWholesaleBuyerTermResponse.fromJson(value);
+        case 'UpdateWholesaleBuyerTermResponseData':
+          return UpdateWholesaleBuyerTermResponseData.fromJson(value);
+        case 'UpdateWholesaleCatalogItemResponse':
+          return UpdateWholesaleCatalogItemResponse.fromJson(value);
+        case 'UpdateWholesaleCatalogItemResponseData':
+          return UpdateWholesaleCatalogItemResponseData.fromJson(value);
+        case 'UpdateWholesaleListingTierItem':
+          return UpdateWholesaleListingTierItem.fromJson(value);
+        case 'UpdateWholesaleListingTierResponse':
+          return UpdateWholesaleListingTierResponse.fromJson(value);
+        case 'UpdateWholesaleProfileResponse':
+          return UpdateWholesaleProfileResponse.fromJson(value);
+        case 'UpdateWorkflowRequest':
+          return UpdateWorkflowRequest.fromJson(value);
+        case 'UpdateWorldAttendantResponse':
+          return UpdateWorldAttendantResponse.fromJson(value);
+        case 'UpdateWorldAttendantResponseData':
+          return UpdateWorldAttendantResponseData.fromJson(value);
+        case 'UpdateWorldAttendantResponseDataHours':
+          return UpdateWorldAttendantResponseDataHours.fromJson(value);
+        case 'UpdateWorldAttendantResponseDataHoursDays':
+          return UpdateWorldAttendantResponseDataHoursDays.fromJson(value);
+        case 'UpdateWorldAttendantResponseDataKnowledge':
+          return UpdateWorldAttendantResponseDataKnowledge.fromJson(value);
+        case 'UpdateWorldAttendantResponseDataKnowledgeFaqs':
+          return UpdateWorldAttendantResponseDataKnowledgeFaqs.fromJson(value);
+        case 'UpdateWorldAttendantResponseDataLanguagesItem':
+          return UpdateWorldAttendantResponseDataLanguagesItemTypeTransformer().decode(value);
         case 'UpdateWorldAvatarIdentityResponse':
           return UpdateWorldAvatarIdentityResponse.fromJson(value);
         case 'UpdateWorldAvatarIdentityResponseData':
@@ -5545,6 +11247,14 @@ class ApiClient {
           return UpdateWorldAvatarLookResponseData.fromJson(value);
         case 'UpdateWorldAvatarLookResponseDataLook':
           return UpdateWorldAvatarLookResponseDataLook.fromJson(value);
+        case 'UpdateWorldBadgeProfileResponse':
+          return UpdateWorldBadgeProfileResponse.fromJson(value);
+        case 'UpdateWorldBadgeProfileResponseData':
+          return UpdateWorldBadgeProfileResponseData.fromJson(value);
+        case 'UpdateWorldConventionHallResponse':
+          return UpdateWorldConventionHallResponse.fromJson(value);
+        case 'UpdateWorldConventionMyBoothResponse':
+          return UpdateWorldConventionMyBoothResponse.fromJson(value);
         case 'UpdateWorldConventionStatusResponse':
           return UpdateWorldConventionStatusResponse.fromJson(value);
         case 'UpdateWorldConventionStatusResponseData':
@@ -5557,6 +11267,52 @@ class ApiClient {
           return UpdateWorldEmoteWheelResponseData.fromJson(value);
         case 'UpdateWorldEmoteWheelResponseDataWheelItem':
           return UpdateWorldEmoteWheelResponseDataWheelItemTypeTransformer().decode(value);
+        case 'UpdateWorldExperienceDatastoreEntryResponse':
+          return UpdateWorldExperienceDatastoreEntryResponse.fromJson(value);
+        case 'UpdateWorldExperienceDatastoreEntryResponseData':
+          return UpdateWorldExperienceDatastoreEntryResponseData.fromJson(value);
+        case 'UpdateWorldExperienceGalleryRoleItem':
+          return UpdateWorldExperienceGalleryRoleItem.fromJson(value);
+        case 'UpdateWorldExperienceGalleryRoleItemExternal':
+          return UpdateWorldExperienceGalleryRoleItemExternal.fromJson(value);
+        case 'UpdateWorldExperienceGalleryRoleResponse':
+          return UpdateWorldExperienceGalleryRoleResponse.fromJson(value);
+        case 'UpdateWorldExperienceHttpSecretResponse':
+          return UpdateWorldExperienceHttpSecretResponse.fromJson(value);
+        case 'UpdateWorldExperienceHttpSecretResponseData':
+          return UpdateWorldExperienceHttpSecretResponseData.fromJson(value);
+        case 'UpdateWorldExperienceMaturityResponse':
+          return UpdateWorldExperienceMaturityResponse.fromJson(value);
+        case 'UpdateWorldExperienceMaturityResponseData':
+          return UpdateWorldExperienceMaturityResponseData.fromJson(value);
+        case 'UpdateWorldExperienceMemoryMapResponse':
+          return UpdateWorldExperienceMemoryMapResponse.fromJson(value);
+        case 'UpdateWorldExperienceMemoryMapResponseData':
+          return UpdateWorldExperienceMemoryMapResponseData.fromJson(value);
+        case 'UpdateWorldExperienceNotificationTemplateResponse':
+          return UpdateWorldExperienceNotificationTemplateResponse.fromJson(value);
+        case 'UpdateWorldExperiencePlaceCollabScriptResponse':
+          return UpdateWorldExperiencePlaceCollabScriptResponse.fromJson(value);
+        case 'UpdateWorldExperiencePlacePackageResponse':
+          return UpdateWorldExperiencePlacePackageResponse.fromJson(value);
+        case 'UpdateWorldExperiencePlacePackageResponseData':
+          return UpdateWorldExperiencePlacePackageResponseData.fromJson(value);
+        case 'UpdateWorldExperiencePlaceStudioScriptResponse':
+          return UpdateWorldExperiencePlaceStudioScriptResponse.fromJson(value);
+        case 'UpdateWorldExperiencePlaceStudioScriptResponseData':
+          return UpdateWorldExperiencePlaceStudioScriptResponseData.fromJson(value);
+        case 'UpdateWorldExperiencePlaceStudioScriptResponseDataDiff':
+          return UpdateWorldExperiencePlaceStudioScriptResponseDataDiff.fromJson(value);
+        case 'UpdateWorldExperiencePlaceVersionNoteResponse':
+          return UpdateWorldExperiencePlaceVersionNoteResponse.fromJson(value);
+        case 'UpdateWorldExperiencePlaceVersionNoteResponseData':
+          return UpdateWorldExperiencePlaceVersionNoteResponseData.fromJson(value);
+        case 'UpdateWorldExperienceRewardPoolResponse':
+          return UpdateWorldExperienceRewardPoolResponse.fromJson(value);
+        case 'UpdateWorldExperienceShowcaseResponse':
+          return UpdateWorldExperienceShowcaseResponse.fromJson(value);
+        case 'UpdateWorldExperienceShowcaseResponseData':
+          return UpdateWorldExperienceShowcaseResponseData.fromJson(value);
         case 'UpdateWorldFitValueShareResponse':
           return UpdateWorldFitValueShareResponse.fromJson(value);
         case 'UpdateWorldFitValueShareResponseData':
@@ -5585,6 +11341,14 @@ class ApiClient {
           return UpdateWorldPetActiveResponse.fromJson(value);
         case 'UpdateWorldPetActiveResponseData':
           return UpdateWorldPetActiveResponseData.fromJson(value);
+        case 'UpdateWorldPropertyPlotPhotoResponse':
+          return UpdateWorldPropertyPlotPhotoResponse.fromJson(value);
+        case 'UpdateWorldPropertyPlotPhotoResponseData':
+          return UpdateWorldPropertyPlotPhotoResponseData.fromJson(value);
+        case 'UpdateWorldPropertyRentingResponse':
+          return UpdateWorldPropertyRentingResponse.fromJson(value);
+        case 'UpdateWorldPropertyRentingResponseData':
+          return UpdateWorldPropertyRentingResponseData.fromJson(value);
         case 'UpdateWorldQuestPinRequest':
           return UpdateWorldQuestPinRequest.fromJson(value);
         case 'UpdateWorldQuestPinResponse':
@@ -5603,20 +11367,120 @@ class ApiClient {
           return UpdateWorldStallBookingBoothResponse.fromJson(value);
         case 'UpdateWorldStallBookingBoothResponseData':
           return UpdateWorldStallBookingBoothResponseData.fromJson(value);
+        case 'UpdateWorldStreetOwnedThemeResponse':
+          return UpdateWorldStreetOwnedThemeResponse.fromJson(value);
+        case 'UpdateWorldStreetOwnedThemeResponseData':
+          return UpdateWorldStreetOwnedThemeResponseData.fromJson(value);
+        case 'UpdatedResponse':
+          return UpdatedResponse.fromJson(value);
+        case 'UrlExpiresInSecondsResponse':
+          return UrlExpiresInSecondsResponse.fromJson(value);
         case 'UserIdName':
           return UserIdName.fromJson(value);
+        case 'UsernameHref':
+          return UsernameHref.fromJson(value);
         case 'ValueConfidence':
           return ValueConfidence.fromJson(value);
+        case 'ValueSource':
+          return ValueSource.fromJson(value);
+        case 'ValueSource2':
+          return ValueSource2.fromJson(value);
+        case 'WH':
+          return WH.fromJson(value);
+        case 'WalletResponse':
+          return WalletResponse.fromJson(value);
+        case 'WholesaleInvoiceResponse':
+          return WholesaleInvoiceResponse.fromJson(value);
+        case 'WholesaleInvoiceResponseData':
+          return WholesaleInvoiceResponseData.fromJson(value);
+        case 'WholesaleInvoiceResponseDataCreditNotes':
+          return WholesaleInvoiceResponseDataCreditNotes.fromJson(value);
+        case 'WholesaleInvoiceResponseDataLateFees':
+          return WholesaleInvoiceResponseDataLateFees.fromJson(value);
+        case 'WholesaleInvoiceResponseDataLines':
+          return WholesaleInvoiceResponseDataLines.fromJson(value);
+        case 'WholesaleInvoiceResponseDataPayments':
+          return WholesaleInvoiceResponseDataPayments.fromJson(value);
+        case 'WholesaleInvoiceResponseDataWriteOffs':
+          return WholesaleInvoiceResponseDataWriteOffs.fromJson(value);
+        case 'WholesaleQuoteResponse':
+          return WholesaleQuoteResponse.fromJson(value);
+        case 'WorkflowResponse':
+          return WorkflowResponse.fromJson(value);
+        case 'WorkflowResponseData':
+          return WorkflowResponseData.fromJson(value);
+        case 'WorkflowResponseDataIssues':
+          return WorkflowResponseDataIssues.fromJson(value);
+        case 'WorkflowResponseDataWorkflow':
+          return WorkflowResponseDataWorkflow.fromJson(value);
+        case 'WorkflowResponseDataWorkflowGraph':
+          return WorkflowResponseDataWorkflowGraph.fromJson(value);
+        case 'WorldExperienceConfigResponse':
+          return WorldExperienceConfigResponse.fromJson(value);
+        case 'WorldExperienceConfigResponseData':
+          return WorldExperienceConfigResponseData.fromJson(value);
+        case 'WorldExperienceConfigResponseDataRules':
+          return WorldExperienceConfigResponseDataRules.fromJson(value);
+        case 'WorldExperienceEventResponse':
+          return WorldExperienceEventResponse.fromJson(value);
+        case 'WorldExperienceExperienceEventResponse':
+          return WorldExperienceExperienceEventResponse.fromJson(value);
+        case 'WorldExperienceExperimentResponse':
+          return WorldExperienceExperimentResponse.fromJson(value);
+        case 'WorldExperienceGalleryResponse':
+          return WorldExperienceGalleryResponse.fromJson(value);
+        case 'WorldExperienceOrderedEntryResponse':
+          return WorldExperienceOrderedEntryResponse.fromJson(value);
+        case 'WorldExperiencePlaceResponse':
+          return WorldExperiencePlaceResponse.fromJson(value);
+        case 'WorldExperiencePlaceVersionResponse':
+          return WorldExperiencePlaceVersionResponse.fromJson(value);
+        case 'WorldExperienceProductResponse':
+          return WorldExperienceProductResponse.fromJson(value);
+        case 'WorldExperienceResponse':
+          return WorldExperienceResponse.fromJson(value);
+        case 'WorldExperienceResponse2':
+          return WorldExperienceResponse2.fromJson(value);
         case 'WorldHomeResponse':
           return WorldHomeResponse.fromJson(value);
+        case 'WorldLinkResponse':
+          return WorldLinkResponse.fromJson(value);
+        case 'WorldParentalResponse':
+          return WorldParentalResponse.fromJson(value);
         case 'WorldResponse':
           return WorldResponse.fromJson(value);
+        case 'WorldResponse2':
+          return WorldResponse2.fromJson(value);
+        case 'WorldResponse3':
+          return WorldResponse3.fromJson(value);
+        case 'WorldResponse3Data':
+          return WorldResponse3Data.fromJson(value);
+        case 'WorldResponse3DataEligibility':
+          return WorldResponse3DataEligibility.fromJson(value);
         case 'WorldResponseData':
           return WorldResponseData.fromJson(value);
         case 'WorldResponseDataMessages':
           return WorldResponseDataMessages.fromJson(value);
         case 'WorldResponseDataSaid':
           return WorldResponseDataSaid.fromJson(value);
+        case 'WorldStaffPostingResponse':
+          return WorldStaffPostingResponse.fromJson(value);
+        case 'WorldStaffPostingResponseData':
+          return WorldStaffPostingResponseData.fromJson(value);
+        case 'WorldStaffPostingResponseDataAutoApprove':
+          return WorldStaffPostingResponseDataAutoApprove.fromJson(value);
+        case 'WorldStaffPostingResponseDataBreaks':
+          return WorldStaffPostingResponseDataBreaks.fromJson(value);
+        case 'WorldStaffPostingResponseDataCheckIn':
+          return WorldStaffPostingResponseDataCheckIn.fromJson(value);
+        case 'WorldStaffPostingResponseDataPay':
+          return WorldStaffPostingResponseDataPay.fromJson(value);
+        case 'WorldStaffPostingResponseDataRecurrence':
+          return WorldStaffPostingResponseDataRecurrence.fromJson(value);
+        case 'WorldStaffPostingResponseDataTarget':
+          return WorldStaffPostingResponseDataTarget.fromJson(value);
+        case 'WorldStaffPostingResponseDataWhitelist':
+          return WorldStaffPostingResponseDataWhitelist.fromJson(value);
         default:
           Match match;
           if (value is List && (match = _regList.firstMatch(targetType)) != null) {

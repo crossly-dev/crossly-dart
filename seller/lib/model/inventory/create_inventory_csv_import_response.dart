@@ -21,6 +21,8 @@ class CreateInventoryCsvImportResponse {
     @required this.usable,
     @required this.totalRows,
     @required this.listingsCreated,
+    @required this.skippedOverLimit,
+    @required this.capacity,
     @required this.dryRun,
   });
 
@@ -30,16 +32,23 @@ class CreateInventoryCsvImportResponse {
 
   num maxRows;
 
+  /// New items written — or, on a dry run, that WOULD be written.
   num created;
 
+  /// Existing items updated by SKU — or, on a dry run, that would be.
   num updated;
 
-  /// Rows that mapped cleanly. `created + updated` when not a dry run.
+  /// Rows that can be imported: `created + updated + skippedOverLimit`. Zero means the file has nothing usable in it.
   num usable;
 
   num totalRows;
 
   num listingsCreated;
+
+  /// New rows left out because the monthly item limit was reached.
+  num skippedOverLimit;
+
+  CreateInventoryCsvImportResponseCapacity capacity;
 
   /// True when nothing was written — a preview pass.
   bool dryRun;
@@ -54,6 +63,8 @@ class CreateInventoryCsvImportResponse {
      other.usable == usable &&
      other.totalRows == totalRows &&
      other.listingsCreated == listingsCreated &&
+     other.skippedOverLimit == skippedOverLimit &&
+     other.capacity == capacity &&
      other.dryRun == dryRun;
 
   @override
@@ -67,10 +78,12 @@ class CreateInventoryCsvImportResponse {
     (usable == null ? 0 : usable.hashCode) +
     (totalRows == null ? 0 : totalRows.hashCode) +
     (listingsCreated == null ? 0 : listingsCreated.hashCode) +
+    (skippedOverLimit == null ? 0 : skippedOverLimit.hashCode) +
+    (capacity == null ? 0 : capacity.hashCode) +
     (dryRun == null ? 0 : dryRun.hashCode);
 
   @override
-  String toString() => 'CreateInventoryCsvImportResponse[problems=$problems, problemCount=$problemCount, maxRows=$maxRows, created=$created, updated=$updated, usable=$usable, totalRows=$totalRows, listingsCreated=$listingsCreated, dryRun=$dryRun]';
+  String toString() => 'CreateInventoryCsvImportResponse[problems=$problems, problemCount=$problemCount, maxRows=$maxRows, created=$created, updated=$updated, usable=$usable, totalRows=$totalRows, listingsCreated=$listingsCreated, skippedOverLimit=$skippedOverLimit, capacity=$capacity, dryRun=$dryRun]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -82,6 +95,8 @@ class CreateInventoryCsvImportResponse {
       json[r'usable'] = usable;
       json[r'totalRows'] = totalRows;
       json[r'listingsCreated'] = listingsCreated;
+      json[r'skippedOverLimit'] = skippedOverLimit;
+      json[r'capacity'] = capacity;
       json[r'dryRun'] = dryRun;
     return json;
   }
@@ -115,6 +130,10 @@ class CreateInventoryCsvImportResponse {
         listingsCreated: json[r'listingsCreated'] == null
           ? null
           : num.parse(json[r'listingsCreated'].toString()),
+        skippedOverLimit: json[r'skippedOverLimit'] == null
+          ? null
+          : num.parse(json[r'skippedOverLimit'].toString()),
+        capacity: CreateInventoryCsvImportResponseCapacity.fromJson(json[r'capacity']),
         dryRun: mapValueOfType<bool>(json, r'dryRun'),
       );
     }

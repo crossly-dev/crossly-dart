@@ -237,19 +237,19 @@ class GetDropResponseDropStatusEnum {
 
   String toJson() => value;
 
-  static const scheduled = GetDropResponseDropStatusEnum._(r'scheduled');
   static const cancelled = GetDropResponseDropStatusEnum._(r'cancelled');
+  static const scheduled = GetDropResponseDropStatusEnum._(r'scheduled');
   static const closed = GetDropResponseDropStatusEnum._(r'closed');
-  static const released = GetDropResponseDropStatusEnum._(r'released');
   static const lineOpen = GetDropResponseDropStatusEnum._(r'line_open');
+  static const released = GetDropResponseDropStatusEnum._(r'released');
 
   /// List of all possible values in this [enum][GetDropResponseDropStatusEnum].
   static const values = <GetDropResponseDropStatusEnum>[
-    scheduled,
     cancelled,
+    scheduled,
     closed,
-    released,
     lineOpen,
+    released,
   ];
 
   static GetDropResponseDropStatusEnum fromJson(dynamic value) =>
@@ -281,11 +281,11 @@ class GetDropResponseDropStatusEnumTypeTransformer {
   GetDropResponseDropStatusEnum decode(dynamic data, {bool allowNull}) {
     if (data != null) {
       switch (data.toString()) {
-        case r'scheduled': return GetDropResponseDropStatusEnum.scheduled;
         case r'cancelled': return GetDropResponseDropStatusEnum.cancelled;
+        case r'scheduled': return GetDropResponseDropStatusEnum.scheduled;
         case r'closed': return GetDropResponseDropStatusEnum.closed;
-        case r'released': return GetDropResponseDropStatusEnum.released;
         case r'line_open': return GetDropResponseDropStatusEnum.lineOpen;
+        case r'released': return GetDropResponseDropStatusEnum.released;
         default:
           if (allowNull == false) {
             throw ArgumentError('Unknown enum value to decode: $data');

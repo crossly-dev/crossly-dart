@@ -29,6 +29,10 @@ class ListWorldConventionMineItem {
     @required this.tableCount,
     @required this.exhibitorCount,
     this.publicSlug,
+    @required this.tiered,
+    @required this.doorsOpenAt,
+    this.yourDoorsOpenAt,
+    this.doorsOpen,
   });
 
   /// 'host' when I am running it, otherwise my exhibitor status.
@@ -68,6 +72,17 @@ class ListWorldConventionMineItem {
   /// The room it is held in, so a card can link straight into it.
   String publicSlug;
 
+  /// A full-page convention (a rented hall, booth tiers; spec WD4): sellers book a tier on its booth page.
+  bool tiered;
+
+  /// When the doors open for visitors: the start (or when the host takes it live, if sooner).
+  DateTime doorsOpenAt;
+
+  /// For a signed-in viewer (doors.ts): when THEIR doors open (earlier with live_early_entry), and whether they are.
+  String yourDoorsOpenAt;
+
+  bool doorsOpen;
+
   @override
   bool operator ==(Object other) => identical(this, other) || other is ListWorldConventionMineItem &&
      other.role == role &&
@@ -85,7 +100,11 @@ class ListWorldConventionMineItem {
      other.revenueShareBps == revenueShareBps &&
      other.tableCount == tableCount &&
      other.exhibitorCount == exhibitorCount &&
-     other.publicSlug == publicSlug;
+     other.publicSlug == publicSlug &&
+     other.tiered == tiered &&
+     other.doorsOpenAt == doorsOpenAt &&
+     other.yourDoorsOpenAt == yourDoorsOpenAt &&
+     other.doorsOpen == doorsOpen;
 
   @override
   int get hashCode =>
@@ -105,10 +124,14 @@ class ListWorldConventionMineItem {
     (revenueShareBps == null ? 0 : revenueShareBps.hashCode) +
     (tableCount == null ? 0 : tableCount.hashCode) +
     (exhibitorCount == null ? 0 : exhibitorCount.hashCode) +
-    (publicSlug == null ? 0 : publicSlug.hashCode);
+    (publicSlug == null ? 0 : publicSlug.hashCode) +
+    (tiered == null ? 0 : tiered.hashCode) +
+    (doorsOpenAt == null ? 0 : doorsOpenAt.hashCode) +
+    (yourDoorsOpenAt == null ? 0 : yourDoorsOpenAt.hashCode) +
+    (doorsOpen == null ? 0 : doorsOpen.hashCode);
 
   @override
-  String toString() => 'ListWorldConventionMineItem[role=$role, tableIndex=$tableIndex, agreedEntryFeeCents=$agreedEntryFeeCents, agreedRevenueShareBps=$agreedRevenueShareBps, id=$id, title=$title, categorySlug=$categorySlug, startsAt=$startsAt, endsAt=$endsAt, status=$status, entryModel=$entryModel, entryFeeCents=$entryFeeCents, revenueShareBps=$revenueShareBps, tableCount=$tableCount, exhibitorCount=$exhibitorCount, publicSlug=$publicSlug]';
+  String toString() => 'ListWorldConventionMineItem[role=$role, tableIndex=$tableIndex, agreedEntryFeeCents=$agreedEntryFeeCents, agreedRevenueShareBps=$agreedRevenueShareBps, id=$id, title=$title, categorySlug=$categorySlug, startsAt=$startsAt, endsAt=$endsAt, status=$status, entryModel=$entryModel, entryFeeCents=$entryFeeCents, revenueShareBps=$revenueShareBps, tableCount=$tableCount, exhibitorCount=$exhibitorCount, publicSlug=$publicSlug, tiered=$tiered, doorsOpenAt=$doorsOpenAt, yourDoorsOpenAt=$yourDoorsOpenAt, doorsOpen=$doorsOpen]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -141,6 +164,14 @@ class ListWorldConventionMineItem {
       json[r'exhibitorCount'] = exhibitorCount;
     if (publicSlug != null) {
       json[r'publicSlug'] = publicSlug;
+    }
+      json[r'tiered'] = tiered;
+      json[r'doorsOpenAt'] = doorsOpenAt.toUtc().toIso8601String();
+    if (yourDoorsOpenAt != null) {
+      json[r'yourDoorsOpenAt'] = yourDoorsOpenAt;
+    }
+    if (doorsOpen != null) {
+      json[r'doorsOpen'] = doorsOpen;
     }
     return json;
   }
@@ -182,6 +213,10 @@ class ListWorldConventionMineItem {
           ? null
           : num.parse(json[r'exhibitorCount'].toString()),
         publicSlug: mapValueOfType<String>(json, r'publicSlug'),
+        tiered: mapValueOfType<bool>(json, r'tiered'),
+        doorsOpenAt: mapDateTime(json, r'doorsOpenAt', ''),
+        yourDoorsOpenAt: mapValueOfType<String>(json, r'yourDoorsOpenAt'),
+        doorsOpen: mapValueOfType<bool>(json, r'doorsOpen'),
       );
     }
     return null;
@@ -234,20 +269,20 @@ class ListWorldConventionMineItemRoleEnum {
   String toJson() => value;
 
   static const host = ListWorldConventionMineItemRoleEnum._(r'host');
-  static const applied = ListWorldConventionMineItemRoleEnum._(r'applied');
-  static const invited = ListWorldConventionMineItemRoleEnum._(r'invited');
-  static const withdrawn = ListWorldConventionMineItemRoleEnum._(r'withdrawn');
   static const accepted = ListWorldConventionMineItemRoleEnum._(r'accepted');
   static const declined = ListWorldConventionMineItemRoleEnum._(r'declined');
+  static const applied = ListWorldConventionMineItemRoleEnum._(r'applied');
+  static const withdrawn = ListWorldConventionMineItemRoleEnum._(r'withdrawn');
+  static const invited = ListWorldConventionMineItemRoleEnum._(r'invited');
 
   /// List of all possible values in this [enum][ListWorldConventionMineItemRoleEnum].
   static const values = <ListWorldConventionMineItemRoleEnum>[
     host,
-    applied,
-    invited,
-    withdrawn,
     accepted,
     declined,
+    applied,
+    withdrawn,
+    invited,
   ];
 
   static ListWorldConventionMineItemRoleEnum fromJson(dynamic value) =>
@@ -280,11 +315,11 @@ class ListWorldConventionMineItemRoleEnumTypeTransformer {
     if (data != null) {
       switch (data.toString()) {
         case r'host': return ListWorldConventionMineItemRoleEnum.host;
-        case r'applied': return ListWorldConventionMineItemRoleEnum.applied;
-        case r'invited': return ListWorldConventionMineItemRoleEnum.invited;
-        case r'withdrawn': return ListWorldConventionMineItemRoleEnum.withdrawn;
         case r'accepted': return ListWorldConventionMineItemRoleEnum.accepted;
         case r'declined': return ListWorldConventionMineItemRoleEnum.declined;
+        case r'applied': return ListWorldConventionMineItemRoleEnum.applied;
+        case r'withdrawn': return ListWorldConventionMineItemRoleEnum.withdrawn;
+        case r'invited': return ListWorldConventionMineItemRoleEnum.invited;
         default:
           if (allowNull == false) {
             throw ArgumentError('Unknown enum value to decode: $data');

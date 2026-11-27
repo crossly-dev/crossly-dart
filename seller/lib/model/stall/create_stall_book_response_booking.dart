@@ -28,6 +28,8 @@ class CreateStallBookResponseBooking {
     @required this.refundedCents,
     @required this.cancellable,
     this.listingIds = const [],
+    @required this.boothKind,
+    @required this.capacity,
     this.awning,
     this.booth,
     this.sign,
@@ -66,6 +68,10 @@ class CreateStallBookResponseBooking {
 
   List<String> listingIds;
 
+  CreateStallBookResponseBookingBoothKindEnum boothKind;
+
+  num capacity;
+
   ColourPattern awning;
 
   CreateStallBookResponseBookingBooth booth;
@@ -95,6 +101,8 @@ class CreateStallBookResponseBooking {
      other.refundedCents == refundedCents &&
      other.cancellable == cancellable &&
      other.listingIds == listingIds &&
+     other.boothKind == boothKind &&
+     other.capacity == capacity &&
      other.awning == awning &&
      other.booth == booth &&
      other.sign == sign &&
@@ -120,6 +128,8 @@ class CreateStallBookResponseBooking {
     (refundedCents == null ? 0 : refundedCents.hashCode) +
     (cancellable == null ? 0 : cancellable.hashCode) +
     (listingIds == null ? 0 : listingIds.hashCode) +
+    (boothKind == null ? 0 : boothKind.hashCode) +
+    (capacity == null ? 0 : capacity.hashCode) +
     (awning == null ? 0 : awning.hashCode) +
     (booth == null ? 0 : booth.hashCode) +
     (sign == null ? 0 : sign.hashCode) +
@@ -128,7 +138,7 @@ class CreateStallBookResponseBooking {
     (createdAt == null ? 0 : createdAt.hashCode);
 
   @override
-  String toString() => 'CreateStallBookResponseBooking[id=$id, street=$street, spotIndex=$spotIndex, unit=$unit, units=$units, startsAt=$startsAt, endsAt=$endsAt, status=$status, rail=$rail, owner=$owner, quote=$quote, totalCents=$totalCents, refundedCents=$refundedCents, cancellable=$cancellable, listingIds=$listingIds, awning=$awning, booth=$booth, sign=$sign, attendant=$attendant, stats=$stats, createdAt=$createdAt]';
+  String toString() => 'CreateStallBookResponseBooking[id=$id, street=$street, spotIndex=$spotIndex, unit=$unit, units=$units, startsAt=$startsAt, endsAt=$endsAt, status=$status, rail=$rail, owner=$owner, quote=$quote, totalCents=$totalCents, refundedCents=$refundedCents, cancellable=$cancellable, listingIds=$listingIds, boothKind=$boothKind, capacity=$capacity, awning=$awning, booth=$booth, sign=$sign, attendant=$attendant, stats=$stats, createdAt=$createdAt]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -147,6 +157,8 @@ class CreateStallBookResponseBooking {
       json[r'refundedCents'] = refundedCents;
       json[r'cancellable'] = cancellable;
       json[r'listingIds'] = listingIds;
+      json[r'boothKind'] = boothKind;
+      json[r'capacity'] = capacity;
     if (awning != null) {
       json[r'awning'] = awning;
     }
@@ -192,6 +204,10 @@ class CreateStallBookResponseBooking {
         listingIds: json[r'listingIds'] is List
           ? (json[r'listingIds'] as List).cast<String>()
           : null,
+        boothKind: CreateStallBookResponseBookingBoothKindEnum.fromJson(json[r'boothKind']),
+        capacity: json[r'capacity'] == null
+          ? null
+          : num.parse(json[r'capacity'].toString()),
         awning: ColourPattern.fromJson(json[r'awning']),
         booth: CreateStallBookResponseBookingBooth.fromJson(json[r'booth']),
         sign: mapValueOfType<String>(json, r'sign'),
@@ -249,13 +265,13 @@ class CreateStallBookResponseBookingUnitEnum {
 
   String toJson() => value;
 
-  static const event = CreateStallBookResponseBookingUnitEnum._(r'event');
   static const day = CreateStallBookResponseBookingUnitEnum._(r'day');
+  static const event = CreateStallBookResponseBookingUnitEnum._(r'event');
 
   /// List of all possible values in this [enum][CreateStallBookResponseBookingUnitEnum].
   static const values = <CreateStallBookResponseBookingUnitEnum>[
-    event,
     day,
+    event,
   ];
 
   static CreateStallBookResponseBookingUnitEnum fromJson(dynamic value) =>
@@ -287,8 +303,8 @@ class CreateStallBookResponseBookingUnitEnumTypeTransformer {
   CreateStallBookResponseBookingUnitEnum decode(dynamic data, {bool allowNull}) {
     if (data != null) {
       switch (data.toString()) {
-        case r'event': return CreateStallBookResponseBookingUnitEnum.event;
         case r'day': return CreateStallBookResponseBookingUnitEnum.day;
+        case r'event': return CreateStallBookResponseBookingUnitEnum.event;
         default:
           if (allowNull == false) {
             throw ArgumentError('Unknown enum value to decode: $data');
@@ -390,14 +406,14 @@ class CreateStallBookResponseBookingRailEnum {
   String toJson() => value;
 
   static const card = CreateStallBookResponseBookingRailEnum._(r'card');
-  static const bucks = CreateStallBookResponseBookingRailEnum._(r'bucks');
   static const cbx = CreateStallBookResponseBookingRailEnum._(r'cbx');
+  static const bucks = CreateStallBookResponseBookingRailEnum._(r'bucks');
 
   /// List of all possible values in this [enum][CreateStallBookResponseBookingRailEnum].
   static const values = <CreateStallBookResponseBookingRailEnum>[
     card,
-    bucks,
     cbx,
+    bucks,
   ];
 
   static CreateStallBookResponseBookingRailEnum fromJson(dynamic value) =>
@@ -430,8 +446,8 @@ class CreateStallBookResponseBookingRailEnumTypeTransformer {
     if (data != null) {
       switch (data.toString()) {
         case r'card': return CreateStallBookResponseBookingRailEnum.card;
-        case r'bucks': return CreateStallBookResponseBookingRailEnum.bucks;
         case r'cbx': return CreateStallBookResponseBookingRailEnum.cbx;
+        case r'bucks': return CreateStallBookResponseBookingRailEnum.bucks;
         default:
           if (allowNull == false) {
             throw ArgumentError('Unknown enum value to decode: $data');
@@ -443,6 +459,76 @@ class CreateStallBookResponseBookingRailEnumTypeTransformer {
 
   /// Singleton [CreateStallBookResponseBookingRailEnumTypeTransformer] instance.
   static CreateStallBookResponseBookingRailEnumTypeTransformer _instance;
+}
+
+
+
+class CreateStallBookResponseBookingBoothKindEnum {
+  /// Instantiate a new enum with the provided [value].
+  const CreateStallBookResponseBookingBoothKindEnum._(this.value);
+
+  /// The underlying value of this enum member.
+  final String value;
+
+  @override
+  String toString() => value ?? '';
+
+  String toJson() => value;
+
+  static const booth = CreateStallBookResponseBookingBoothKindEnum._(r'booth');
+  static const cart = CreateStallBookResponseBookingBoothKindEnum._(r'cart');
+  static const pavilion = CreateStallBookResponseBookingBoothKindEnum._(r'pavilion');
+
+  /// List of all possible values in this [enum][CreateStallBookResponseBookingBoothKindEnum].
+  static const values = <CreateStallBookResponseBookingBoothKindEnum>[
+    booth,
+    cart,
+    pavilion,
+  ];
+
+  static CreateStallBookResponseBookingBoothKindEnum fromJson(dynamic value) =>
+    CreateStallBookResponseBookingBoothKindEnumTypeTransformer().decode(value);
+
+  static List<CreateStallBookResponseBookingBoothKindEnum> listFromJson(dynamic json, {bool emptyIsNull, bool growable,}) =>
+    json is List && json.isNotEmpty
+      ? json.map(CreateStallBookResponseBookingBoothKindEnum.fromJson).toList(growable: true == growable)
+      : true == emptyIsNull ? null : <CreateStallBookResponseBookingBoothKindEnum>[];
+}
+
+/// Transformation class that can [encode] an instance of [CreateStallBookResponseBookingBoothKindEnum] to String,
+/// and [decode] dynamic data back to [CreateStallBookResponseBookingBoothKindEnum].
+class CreateStallBookResponseBookingBoothKindEnumTypeTransformer {
+  factory CreateStallBookResponseBookingBoothKindEnumTypeTransformer() => _instance ??= const CreateStallBookResponseBookingBoothKindEnumTypeTransformer._();
+
+  const CreateStallBookResponseBookingBoothKindEnumTypeTransformer._();
+
+  String encode(CreateStallBookResponseBookingBoothKindEnum data) => data.value;
+
+  /// Decodes a [dynamic value][data] to a CreateStallBookResponseBookingBoothKindEnum.
+  ///
+  /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
+  /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
+  /// cannot be decoded successfully, then an [UnimplementedError] is thrown.
+  ///
+  /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
+  /// and users are still using an old app with the old code.
+  CreateStallBookResponseBookingBoothKindEnum decode(dynamic data, {bool allowNull}) {
+    if (data != null) {
+      switch (data.toString()) {
+        case r'booth': return CreateStallBookResponseBookingBoothKindEnum.booth;
+        case r'cart': return CreateStallBookResponseBookingBoothKindEnum.cart;
+        case r'pavilion': return CreateStallBookResponseBookingBoothKindEnum.pavilion;
+        default:
+          if (allowNull == false) {
+            throw ArgumentError('Unknown enum value to decode: $data');
+          }
+      }
+    }
+    return null;
+  }
+
+  /// Singleton [CreateStallBookResponseBookingBoothKindEnumTypeTransformer] instance.
+  static CreateStallBookResponseBookingBoothKindEnumTypeTransformer _instance;
 }
 
 

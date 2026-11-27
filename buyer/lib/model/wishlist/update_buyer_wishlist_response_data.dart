@@ -16,8 +16,8 @@ class UpdateBuyerWishlistResponseData {
     this.shareUrl,
     @required this.id,
     @required this.name,
-    @required this.createdAt,
     @required this.isPublic,
+    @required this.createdAt,
     this.shareToken,
   });
 
@@ -27,9 +27,9 @@ class UpdateBuyerWishlistResponseData {
 
   String name;
 
-  String createdAt;
-
   bool isPublic;
+
+  String createdAt;
 
   String shareToken;
 
@@ -38,8 +38,8 @@ class UpdateBuyerWishlistResponseData {
      other.shareUrl == shareUrl &&
      other.id == id &&
      other.name == name &&
-     other.createdAt == createdAt &&
      other.isPublic == isPublic &&
+     other.createdAt == createdAt &&
      other.shareToken == shareToken;
 
   @override
@@ -48,12 +48,12 @@ class UpdateBuyerWishlistResponseData {
     (shareUrl == null ? 0 : shareUrl.hashCode) +
     (id == null ? 0 : id.hashCode) +
     (name == null ? 0 : name.hashCode) +
-    (createdAt == null ? 0 : createdAt.hashCode) +
     (isPublic == null ? 0 : isPublic.hashCode) +
+    (createdAt == null ? 0 : createdAt.hashCode) +
     (shareToken == null ? 0 : shareToken.hashCode);
 
   @override
-  String toString() => 'UpdateBuyerWishlistResponseData[shareUrl=$shareUrl, id=$id, name=$name, createdAt=$createdAt, isPublic=$isPublic, shareToken=$shareToken]';
+  String toString() => 'UpdateBuyerWishlistResponseData[shareUrl=$shareUrl, id=$id, name=$name, isPublic=$isPublic, createdAt=$createdAt, shareToken=$shareToken]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -62,8 +62,8 @@ class UpdateBuyerWishlistResponseData {
     }
       json[r'id'] = id;
       json[r'name'] = name;
-      json[r'createdAt'] = createdAt;
       json[r'isPublic'] = isPublic;
+      json[r'createdAt'] = createdAt;
     if (shareToken != null) {
       json[r'shareToken'] = shareToken;
     }
@@ -80,8 +80,8 @@ class UpdateBuyerWishlistResponseData {
         shareUrl: mapValueOfType<String>(json, r'shareUrl'),
         id: mapValueOfType<String>(json, r'id'),
         name: mapValueOfType<String>(json, r'name'),
-        createdAt: mapValueOfType<String>(json, r'createdAt'),
         isPublic: mapValueOfType<bool>(json, r'isPublic'),
+        createdAt: mapValueOfType<String>(json, r'createdAt'),
         shareToken: mapValueOfType<String>(json, r'shareToken'),
       );
     }

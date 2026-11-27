@@ -23,13 +23,13 @@ class ListWorldDecorCatalogueItemBuyWithItem {
 
   String toJson() => value;
 
-  static const cbx = ListWorldDecorCatalogueItemBuyWithItem._(r'cbx');
   static const cosm = ListWorldDecorCatalogueItemBuyWithItem._(r'cosm');
+  static const cbx = ListWorldDecorCatalogueItemBuyWithItem._(r'cbx');
 
   /// List of all possible values in this [enum][ListWorldDecorCatalogueItemBuyWithItem].
   static const values = <ListWorldDecorCatalogueItemBuyWithItem>[
-    cbx,
     cosm,
+    cbx,
   ];
 
   static ListWorldDecorCatalogueItemBuyWithItem fromJson(dynamic value) =>
@@ -61,8 +61,8 @@ class ListWorldDecorCatalogueItemBuyWithItemTypeTransformer {
   ListWorldDecorCatalogueItemBuyWithItem decode(dynamic data, {bool allowNull}) {
     if (data != null) {
       switch (data.toString()) {
-        case r'cbx': return ListWorldDecorCatalogueItemBuyWithItem.cbx;
         case r'cosm': return ListWorldDecorCatalogueItemBuyWithItem.cosm;
+        case r'cbx': return ListWorldDecorCatalogueItemBuyWithItem.cbx;
         default:
           if (allowNull == false) {
             throw ArgumentError('Unknown enum value to decode: $data');

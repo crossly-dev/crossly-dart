@@ -13,37 +13,37 @@ part of openapi.api;
 class GetBuyerOrderPriceProtectionResponseData {
   /// Returns a new [GetBuyerOrderPriceProtectionResponseData] instance.
   GetBuyerOrderPriceProtectionResponseData({
-    @required this.active,
     @required this.until,
+    @required this.active,
     @required this.creditedCents,
   });
 
-  bool active;
-
   String until;
+
+  bool active;
 
   num creditedCents;
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is GetBuyerOrderPriceProtectionResponseData &&
-     other.active == active &&
      other.until == until &&
+     other.active == active &&
      other.creditedCents == creditedCents;
 
   @override
   int get hashCode =>
   // ignore: unnecessary_parenthesis
-    (active == null ? 0 : active.hashCode) +
     (until == null ? 0 : until.hashCode) +
+    (active == null ? 0 : active.hashCode) +
     (creditedCents == null ? 0 : creditedCents.hashCode);
 
   @override
-  String toString() => 'GetBuyerOrderPriceProtectionResponseData[active=$active, until=$until, creditedCents=$creditedCents]';
+  String toString() => 'GetBuyerOrderPriceProtectionResponseData[until=$until, active=$active, creditedCents=$creditedCents]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-      json[r'active'] = active;
       json[r'until'] = until;
+      json[r'active'] = active;
       json[r'creditedCents'] = creditedCents;
     return json;
   }
@@ -55,8 +55,8 @@ class GetBuyerOrderPriceProtectionResponseData {
     if (value is Map) {
       final json = value.cast<String, dynamic>();
       return GetBuyerOrderPriceProtectionResponseData(
-        active: mapValueOfType<bool>(json, r'active'),
         until: mapValueOfType<String>(json, r'until'),
+        active: mapValueOfType<bool>(json, r'active'),
         creditedCents: json[r'creditedCents'] == null
           ? null
           : num.parse(json[r'creditedCents'].toString()),

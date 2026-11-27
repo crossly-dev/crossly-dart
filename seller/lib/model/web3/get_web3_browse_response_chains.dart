@@ -111,21 +111,21 @@ class GetWeb3BrowseResponseChainsKeyEnum {
 
   String toJson() => value;
 
-  static const solana = GetWeb3BrowseResponseChainsKeyEnum._(r'solana');
   static const ethereum = GetWeb3BrowseResponseChainsKeyEnum._(r'ethereum');
   static const base = GetWeb3BrowseResponseChainsKeyEnum._(r'base');
   static const polygon = GetWeb3BrowseResponseChainsKeyEnum._(r'polygon');
   static const arbitrum = GetWeb3BrowseResponseChainsKeyEnum._(r'arbitrum');
   static const optimism = GetWeb3BrowseResponseChainsKeyEnum._(r'optimism');
+  static const solana = GetWeb3BrowseResponseChainsKeyEnum._(r'solana');
 
   /// List of all possible values in this [enum][GetWeb3BrowseResponseChainsKeyEnum].
   static const values = <GetWeb3BrowseResponseChainsKeyEnum>[
-    solana,
     ethereum,
     base,
     polygon,
     arbitrum,
     optimism,
+    solana,
   ];
 
   static GetWeb3BrowseResponseChainsKeyEnum fromJson(dynamic value) =>
@@ -157,12 +157,12 @@ class GetWeb3BrowseResponseChainsKeyEnumTypeTransformer {
   GetWeb3BrowseResponseChainsKeyEnum decode(dynamic data, {bool allowNull}) {
     if (data != null) {
       switch (data.toString()) {
-        case r'solana': return GetWeb3BrowseResponseChainsKeyEnum.solana;
         case r'ethereum': return GetWeb3BrowseResponseChainsKeyEnum.ethereum;
         case r'base': return GetWeb3BrowseResponseChainsKeyEnum.base;
         case r'polygon': return GetWeb3BrowseResponseChainsKeyEnum.polygon;
         case r'arbitrum': return GetWeb3BrowseResponseChainsKeyEnum.arbitrum;
         case r'optimism': return GetWeb3BrowseResponseChainsKeyEnum.optimism;
+        case r'solana': return GetWeb3BrowseResponseChainsKeyEnum.solana;
         default:
           if (allowNull == false) {
             throw ArgumentError('Unknown enum value to decode: $data');

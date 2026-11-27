@@ -15,25 +15,30 @@ class GetVaultMarketAccountResponseIdentity {
   GetVaultMarketAccountResponseIdentity({
     @required this.verified,
     this.status,
+    @required this.retry,
   });
 
   bool verified;
 
   String status;
 
+  bool retry;
+
   @override
   bool operator ==(Object other) => identical(this, other) || other is GetVaultMarketAccountResponseIdentity &&
      other.verified == verified &&
-     other.status == status;
+     other.status == status &&
+     other.retry == retry;
 
   @override
   int get hashCode =>
   // ignore: unnecessary_parenthesis
     (verified == null ? 0 : verified.hashCode) +
-    (status == null ? 0 : status.hashCode);
+    (status == null ? 0 : status.hashCode) +
+    (retry == null ? 0 : retry.hashCode);
 
   @override
-  String toString() => 'GetVaultMarketAccountResponseIdentity[verified=$verified, status=$status]';
+  String toString() => 'GetVaultMarketAccountResponseIdentity[verified=$verified, status=$status, retry=$retry]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -41,6 +46,7 @@ class GetVaultMarketAccountResponseIdentity {
     if (status != null) {
       json[r'status'] = status;
     }
+      json[r'retry'] = retry;
     return json;
   }
 
@@ -53,6 +59,7 @@ class GetVaultMarketAccountResponseIdentity {
       return GetVaultMarketAccountResponseIdentity(
         verified: mapValueOfType<bool>(json, r'verified'),
         status: mapValueOfType<String>(json, r'status'),
+        retry: mapValueOfType<bool>(json, r'retry'),
       );
     }
     return null;

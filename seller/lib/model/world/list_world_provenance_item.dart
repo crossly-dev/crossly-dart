@@ -137,10 +137,10 @@ class ListWorldProvenanceItemKindEnum {
 
   String toJson() => value;
 
-  static const auction = ListWorldProvenanceItemKindEnum._(r'auction');
   static const window = ListWorldProvenanceItemKindEnum._(r'window');
-  static const agent = ListWorldProvenanceItemKindEnum._(r'agent');
+  static const auction = ListWorldProvenanceItemKindEnum._(r'auction');
   static const room = ListWorldProvenanceItemKindEnum._(r'room');
+  static const agent = ListWorldProvenanceItemKindEnum._(r'agent');
   static const stall = ListWorldProvenanceItemKindEnum._(r'stall');
   static const worn = ListWorldProvenanceItemKindEnum._(r'worn');
   static const drop = ListWorldProvenanceItemKindEnum._(r'drop');
@@ -148,10 +148,10 @@ class ListWorldProvenanceItemKindEnum {
 
   /// List of all possible values in this [enum][ListWorldProvenanceItemKindEnum].
   static const values = <ListWorldProvenanceItemKindEnum>[
-    auction,
     window,
-    agent,
+    auction,
     room,
+    agent,
     stall,
     worn,
     drop,
@@ -187,10 +187,10 @@ class ListWorldProvenanceItemKindEnumTypeTransformer {
   ListWorldProvenanceItemKindEnum decode(dynamic data, {bool allowNull}) {
     if (data != null) {
       switch (data.toString()) {
-        case r'auction': return ListWorldProvenanceItemKindEnum.auction;
         case r'window': return ListWorldProvenanceItemKindEnum.window;
-        case r'agent': return ListWorldProvenanceItemKindEnum.agent;
+        case r'auction': return ListWorldProvenanceItemKindEnum.auction;
         case r'room': return ListWorldProvenanceItemKindEnum.room;
+        case r'agent': return ListWorldProvenanceItemKindEnum.agent;
         case r'stall': return ListWorldProvenanceItemKindEnum.stall;
         case r'worn': return ListWorldProvenanceItemKindEnum.worn;
         case r'drop': return ListWorldProvenanceItemKindEnum.drop;

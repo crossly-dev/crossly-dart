@@ -24,6 +24,7 @@ class GetHomeResponseLayoutItem {
     this.object,
     this.market,
     this.visitors,
+    this.tradePostId,
   });
 
   String title;
@@ -51,11 +52,14 @@ class GetHomeResponseLayoutItem {
   /// The thing ITSELF as a 3D object in a case or on a shelf (shared listing-space.ts): never a flat photo. Not for NFTs.
   String object;
 
-  /// A `vault` ref: the unit's market (a book key), so a click opens /shop/vault/markets/<market>.
+  /// A `vault` ref: the unit's market (a book key), so a click opens /trading/<market>.
   String market;
 
   /// A `vault` ref, to its OWNER only: visitors may see it (vm_home_display.visitors).
   bool visitors;
+
+  /// The owner's open Trade Block post for this same product (trade-posts.ts): \"Offer a trade\" opens it.
+  String tradePostId;
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is GetHomeResponseLayoutItem &&
@@ -69,7 +73,8 @@ class GetHomeResponseLayoutItem {
      other.found == found &&
      other.object == object &&
      other.market == market &&
-     other.visitors == visitors;
+     other.visitors == visitors &&
+     other.tradePostId == tradePostId;
 
   @override
   int get hashCode =>
@@ -84,10 +89,11 @@ class GetHomeResponseLayoutItem {
     (found == null ? 0 : found.hashCode) +
     (object == null ? 0 : object.hashCode) +
     (market == null ? 0 : market.hashCode) +
-    (visitors == null ? 0 : visitors.hashCode);
+    (visitors == null ? 0 : visitors.hashCode) +
+    (tradePostId == null ? 0 : tradePostId.hashCode);
 
   @override
-  String toString() => 'GetHomeResponseLayoutItem[title=$title, imageUrl=$imageUrl, grade=$grade, listingSlug=$listingSlug, model=$model, crossly=$crossly, space=$space, found=$found, object=$object, market=$market, visitors=$visitors]';
+  String toString() => 'GetHomeResponseLayoutItem[title=$title, imageUrl=$imageUrl, grade=$grade, listingSlug=$listingSlug, model=$model, crossly=$crossly, space=$space, found=$found, object=$object, market=$market, visitors=$visitors, tradePostId=$tradePostId]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -122,6 +128,9 @@ class GetHomeResponseLayoutItem {
     if (visitors != null) {
       json[r'visitors'] = visitors;
     }
+    if (tradePostId != null) {
+      json[r'tradePostId'] = tradePostId;
+    }
     return json;
   }
 
@@ -143,6 +152,7 @@ class GetHomeResponseLayoutItem {
         object: mapValueOfType<String>(json, r'object'),
         market: mapValueOfType<String>(json, r'market'),
         visitors: mapValueOfType<bool>(json, r'visitors'),
+        tradePostId: mapValueOfType<String>(json, r'tradePostId'),
       );
     }
     return null;

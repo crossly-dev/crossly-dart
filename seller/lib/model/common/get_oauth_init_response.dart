@@ -14,7 +14,6 @@ class GetOauthInitResponse {
   /// Returns a new [GetOauthInitResponse] instance.
   GetOauthInitResponse({
     this.url,
-    this.correlationId,
     this.oneShot,
     this.status,
     this.requestUrl,
@@ -22,8 +21,6 @@ class GetOauthInitResponse {
   });
 
   String url;
-
-  String correlationId;
 
   bool oneShot;
 
@@ -36,7 +33,6 @@ class GetOauthInitResponse {
   @override
   bool operator ==(Object other) => identical(this, other) || other is GetOauthInitResponse &&
      other.url == url &&
-     other.correlationId == correlationId &&
      other.oneShot == oneShot &&
      other.status == status &&
      other.requestUrl == requestUrl &&
@@ -46,22 +42,18 @@ class GetOauthInitResponse {
   int get hashCode =>
   // ignore: unnecessary_parenthesis
     (url == null ? 0 : url.hashCode) +
-    (correlationId == null ? 0 : correlationId.hashCode) +
     (oneShot == null ? 0 : oneShot.hashCode) +
     (status == null ? 0 : status.hashCode) +
     (requestUrl == null ? 0 : requestUrl.hashCode) +
     (message == null ? 0 : message.hashCode);
 
   @override
-  String toString() => 'GetOauthInitResponse[url=$url, correlationId=$correlationId, oneShot=$oneShot, status=$status, requestUrl=$requestUrl, message=$message]';
+  String toString() => 'GetOauthInitResponse[url=$url, oneShot=$oneShot, status=$status, requestUrl=$requestUrl, message=$message]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     if (url != null) {
       json[r'url'] = url;
-    }
-    if (correlationId != null) {
-      json[r'correlationId'] = correlationId;
     }
     if (oneShot != null) {
       json[r'oneShot'] = oneShot;
@@ -86,7 +78,6 @@ class GetOauthInitResponse {
       final json = value.cast<String, dynamic>();
       return GetOauthInitResponse(
         url: mapValueOfType<String>(json, r'url'),
-        correlationId: mapValueOfType<String>(json, r'correlationId'),
         oneShot: mapValueOfType<bool>(json, r'oneShot'),
         status: mapValueOfType<String>(json, r'status'),
         requestUrl: mapValueOfType<String>(json, r'requestUrl'),

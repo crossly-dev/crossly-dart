@@ -62,7 +62,75 @@ class WebhooksApi {
     return Future<CreateWebhookResponse>.value();
   }
 
-  /// Fire a synthetic test.ping delivery to one webhook.
+  /// Redeliver one past delivery: a new delivery (new Crossly-Delivery-Id) of the same event id and payload.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  ///
+  /// * [String] deliveryId (required):
+  Future<Response> createWebhookDeliveryRedeliverWithHttpInfo(String id, String deliveryId,) async {
+    // Verify required params are set.
+    if (id == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: id');
+    }
+    if (deliveryId == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: deliveryId');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/webhooks/{id}/deliveries/{deliveryId}/redeliver'
+      .replaceAll('{id}', id)
+      .replaceAll('{deliveryId}', deliveryId);
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'POST',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Redeliver one past delivery: a new delivery (new Crossly-Delivery-Id) of the same event id and payload.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  ///
+  /// * [String] deliveryId (required):
+  Future<CreateWebhookDeliveryRedeliverResponse> createWebhookDeliveryRedeliver(String id, String deliveryId,) async {
+    final response = await createWebhookDeliveryRedeliverWithHttpInfo(id, deliveryId,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'CreateWebhookDeliveryRedeliverResponse',) as CreateWebhookDeliveryRedeliverResponse;
+    
+    }
+    return Future<CreateWebhookDeliveryRedeliverResponse>.value();
+  }
+
+  /// Fire a test delivery to one webhook: test.ping, or a sample of any event (body {\"event\":\"order.created\"}, payload marked test: true).
   ///
   /// Note: This method returns the HTTP [Response].
   ///
@@ -102,7 +170,7 @@ class WebhooksApi {
     );
   }
 
-  /// Fire a synthetic test.ping delivery to one webhook.
+  /// Fire a test delivery to one webhook: test.ping, or a sample of any event (body {\"event\":\"order.created\"}, payload marked test: true).
   ///
   /// Parameters:
   ///
@@ -230,6 +298,81 @@ class WebhooksApi {
     
     }
     return Future<String>.value();
+  }
+
+  /// List deliveries to one webhook (30 days, newest first): event, status, attempts, last HTTP status and error, payload.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  ///
+  /// * [String] status:
+  ///
+  /// * [int] limit:
+  Future<Response> listWebhookDeliveriesWithHttpInfo(String id, { String status, int limit, }) async {
+    // Verify required params are set.
+    if (id == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: id');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/webhooks/{id}/deliveries'
+      .replaceAll('{id}', id);
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    if (status != null) {
+      queryParams.addAll(_convertParametersForCollectionFormat('', 'status', status));
+    }
+    if (limit != null) {
+      queryParams.addAll(_convertParametersForCollectionFormat('', 'limit', limit));
+    }
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// List deliveries to one webhook (30 days, newest first): event, status, attempts, last HTTP status and error, payload.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  ///
+  /// * [String] status:
+  ///
+  /// * [int] limit:
+  Future<ListWebhookDeliveriesResponse> listWebhookDeliveries(String id, { String status, int limit, }) async {
+    final response = await listWebhookDeliveriesWithHttpInfo(id,  status: status, limit: limit, );
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'ListWebhookDeliveriesResponse',) as ListWebhookDeliveriesResponse;
+    
+    }
+    return Future<ListWebhookDeliveriesResponse>.value();
   }
 
   /// List your registered webhook endpoints.

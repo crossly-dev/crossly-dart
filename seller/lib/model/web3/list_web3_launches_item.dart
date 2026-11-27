@@ -36,6 +36,9 @@ class ListWeb3LaunchesItem {
     @required this.card,
     @required this.allowlist,
     @required this.revealed,
+    this.cardSetId,
+    this.creationRefs,
+    this.holderPerks,
   });
 
   String id;
@@ -66,7 +69,7 @@ class ListWeb3LaunchesItem {
 
   String endTime;
 
-  ListWeb3LaunchesItemHolderGate holderGate;
+  ContractName holderGate;
 
   num maxPerWallet;
 
@@ -76,7 +79,7 @@ class ListWeb3LaunchesItem {
 
   ListWeb3LaunchesItemPhaseEnum phase;
 
-  ListWeb3LaunchesItemCreator creator;
+  NameObject creator;
 
   /// Card checkout (Crossmint) is set up and the collection is verified there.
   bool card;
@@ -86,6 +89,14 @@ class ListWeb3LaunchesItem {
 
   /// Per-token art has been revealed.
   bool revealed;
+
+  /// Creator Studio (migration 1163): the card set this collection takes on chain, and the creations it mints.
+  String cardSetId;
+
+  List<String> creationRefs;
+
+  /// Migration 1178 (R-studio-15): what holding a token gets you, decided at mint (shared/creator/holder-perks).
+  List<ListWeb3LaunchesItemHolderPerksItem> holderPerks;
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is ListWeb3LaunchesItem &&
@@ -111,7 +122,10 @@ class ListWeb3LaunchesItem {
      other.creator == creator &&
      other.card == card &&
      other.allowlist == allowlist &&
-     other.revealed == revealed;
+     other.revealed == revealed &&
+     other.cardSetId == cardSetId &&
+     other.creationRefs == creationRefs &&
+     other.holderPerks == holderPerks;
 
   @override
   int get hashCode =>
@@ -138,10 +152,13 @@ class ListWeb3LaunchesItem {
     (creator == null ? 0 : creator.hashCode) +
     (card == null ? 0 : card.hashCode) +
     (allowlist == null ? 0 : allowlist.hashCode) +
-    (revealed == null ? 0 : revealed.hashCode);
+    (revealed == null ? 0 : revealed.hashCode) +
+    (cardSetId == null ? 0 : cardSetId.hashCode) +
+    (creationRefs == null ? 0 : creationRefs.hashCode) +
+    (holderPerks == null ? 0 : holderPerks.hashCode);
 
   @override
-  String toString() => 'ListWeb3LaunchesItem[id=$id, chain=$chain, contract=$contract, status=$status, name=$name, symbol=$symbol, description=$description, imageUrl=$imageUrl, maxSupply=$maxSupply, minted=$minted, priceWei=$priceWei, holderStart=$holderStart, publicStart=$publicStart, endTime=$endTime, holderGate=$holderGate, maxPerWallet=$maxPerWallet, royaltyBps=$royaltyBps, platformBps=$platformBps, phase=$phase, creator=$creator, card=$card, allowlist=$allowlist, revealed=$revealed]';
+  String toString() => 'ListWeb3LaunchesItem[id=$id, chain=$chain, contract=$contract, status=$status, name=$name, symbol=$symbol, description=$description, imageUrl=$imageUrl, maxSupply=$maxSupply, minted=$minted, priceWei=$priceWei, holderStart=$holderStart, publicStart=$publicStart, endTime=$endTime, holderGate=$holderGate, maxPerWallet=$maxPerWallet, royaltyBps=$royaltyBps, platformBps=$platformBps, phase=$phase, creator=$creator, card=$card, allowlist=$allowlist, revealed=$revealed, cardSetId=$cardSetId, creationRefs=$creationRefs, holderPerks=$holderPerks]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -180,6 +197,15 @@ class ListWeb3LaunchesItem {
       json[r'card'] = card;
       json[r'allowlist'] = allowlist;
       json[r'revealed'] = revealed;
+    if (cardSetId != null) {
+      json[r'cardSetId'] = cardSetId;
+    }
+    if (creationRefs != null) {
+      json[r'creationRefs'] = creationRefs;
+    }
+    if (holderPerks != null) {
+      json[r'holderPerks'] = holderPerks;
+    }
     return json;
   }
 
@@ -208,7 +234,7 @@ class ListWeb3LaunchesItem {
         holderStart: mapValueOfType<String>(json, r'holderStart'),
         publicStart: mapValueOfType<String>(json, r'publicStart'),
         endTime: mapValueOfType<String>(json, r'endTime'),
-        holderGate: ListWeb3LaunchesItemHolderGate.fromJson(json[r'holderGate']),
+        holderGate: ContractName.fromJson(json[r'holderGate']),
         maxPerWallet: json[r'maxPerWallet'] == null
           ? null
           : num.parse(json[r'maxPerWallet'].toString()),
@@ -219,10 +245,15 @@ class ListWeb3LaunchesItem {
           ? null
           : num.parse(json[r'platformBps'].toString()),
         phase: ListWeb3LaunchesItemPhaseEnum.fromJson(json[r'phase']),
-        creator: ListWeb3LaunchesItemCreator.fromJson(json[r'creator']),
+        creator: NameObject.fromJson(json[r'creator']),
         card: mapValueOfType<bool>(json, r'card'),
         allowlist: mapValueOfType<bool>(json, r'allowlist'),
         revealed: mapValueOfType<bool>(json, r'revealed'),
+        cardSetId: mapValueOfType<String>(json, r'cardSetId'),
+        creationRefs: json[r'creationRefs'] is List
+          ? (json[r'creationRefs'] as List).cast<String>()
+          : null,
+        holderPerks: ListWeb3LaunchesItemHolderPerksItem.listFromJson(json[r'holderPerks']),
       );
     }
     return null;
@@ -274,21 +305,21 @@ class ListWeb3LaunchesItemChainEnum {
 
   String toJson() => value;
 
-  static const solana = ListWeb3LaunchesItemChainEnum._(r'solana');
   static const ethereum = ListWeb3LaunchesItemChainEnum._(r'ethereum');
   static const base = ListWeb3LaunchesItemChainEnum._(r'base');
   static const polygon = ListWeb3LaunchesItemChainEnum._(r'polygon');
   static const arbitrum = ListWeb3LaunchesItemChainEnum._(r'arbitrum');
   static const optimism = ListWeb3LaunchesItemChainEnum._(r'optimism');
+  static const solana = ListWeb3LaunchesItemChainEnum._(r'solana');
 
   /// List of all possible values in this [enum][ListWeb3LaunchesItemChainEnum].
   static const values = <ListWeb3LaunchesItemChainEnum>[
-    solana,
     ethereum,
     base,
     polygon,
     arbitrum,
     optimism,
+    solana,
   ];
 
   static ListWeb3LaunchesItemChainEnum fromJson(dynamic value) =>
@@ -320,12 +351,12 @@ class ListWeb3LaunchesItemChainEnumTypeTransformer {
   ListWeb3LaunchesItemChainEnum decode(dynamic data, {bool allowNull}) {
     if (data != null) {
       switch (data.toString()) {
-        case r'solana': return ListWeb3LaunchesItemChainEnum.solana;
         case r'ethereum': return ListWeb3LaunchesItemChainEnum.ethereum;
         case r'base': return ListWeb3LaunchesItemChainEnum.base;
         case r'polygon': return ListWeb3LaunchesItemChainEnum.polygon;
         case r'arbitrum': return ListWeb3LaunchesItemChainEnum.arbitrum;
         case r'optimism': return ListWeb3LaunchesItemChainEnum.optimism;
+        case r'solana': return ListWeb3LaunchesItemChainEnum.solana;
         default:
           if (allowNull == false) {
             throw ArgumentError('Unknown enum value to decode: $data');
@@ -353,15 +384,15 @@ class ListWeb3LaunchesItemStatusEnum {
 
   String toJson() => value;
 
-  static const live = ListWeb3LaunchesItemStatusEnum._(r'live');
   static const draft = ListWeb3LaunchesItemStatusEnum._(r'draft');
+  static const live = ListWeb3LaunchesItemStatusEnum._(r'live');
   static const failed = ListWeb3LaunchesItemStatusEnum._(r'failed');
   static const deploying = ListWeb3LaunchesItemStatusEnum._(r'deploying');
 
   /// List of all possible values in this [enum][ListWeb3LaunchesItemStatusEnum].
   static const values = <ListWeb3LaunchesItemStatusEnum>[
-    live,
     draft,
+    live,
     failed,
     deploying,
   ];
@@ -395,8 +426,8 @@ class ListWeb3LaunchesItemStatusEnumTypeTransformer {
   ListWeb3LaunchesItemStatusEnum decode(dynamic data, {bool allowNull}) {
     if (data != null) {
       switch (data.toString()) {
-        case r'live': return ListWeb3LaunchesItemStatusEnum.live;
         case r'draft': return ListWeb3LaunchesItemStatusEnum.draft;
+        case r'live': return ListWeb3LaunchesItemStatusEnum.live;
         case r'failed': return ListWeb3LaunchesItemStatusEnum.failed;
         case r'deploying': return ListWeb3LaunchesItemStatusEnum.deploying;
         default:
@@ -426,18 +457,18 @@ class ListWeb3LaunchesItemPhaseEnum {
 
   String toJson() => value;
 
-  static const ended = ListWeb3LaunchesItemPhaseEnum._(r'ended');
-  static const holder = ListWeb3LaunchesItemPhaseEnum._(r'holder');
   static const public = ListWeb3LaunchesItemPhaseEnum._(r'public');
+  static const ended = ListWeb3LaunchesItemPhaseEnum._(r'ended');
   static const upcoming = ListWeb3LaunchesItemPhaseEnum._(r'upcoming');
+  static const holder = ListWeb3LaunchesItemPhaseEnum._(r'holder');
   static const soldOut = ListWeb3LaunchesItemPhaseEnum._(r'sold_out');
 
   /// List of all possible values in this [enum][ListWeb3LaunchesItemPhaseEnum].
   static const values = <ListWeb3LaunchesItemPhaseEnum>[
-    ended,
-    holder,
     public,
+    ended,
     upcoming,
+    holder,
     soldOut,
   ];
 
@@ -470,10 +501,10 @@ class ListWeb3LaunchesItemPhaseEnumTypeTransformer {
   ListWeb3LaunchesItemPhaseEnum decode(dynamic data, {bool allowNull}) {
     if (data != null) {
       switch (data.toString()) {
-        case r'ended': return ListWeb3LaunchesItemPhaseEnum.ended;
-        case r'holder': return ListWeb3LaunchesItemPhaseEnum.holder;
         case r'public': return ListWeb3LaunchesItemPhaseEnum.public;
+        case r'ended': return ListWeb3LaunchesItemPhaseEnum.ended;
         case r'upcoming': return ListWeb3LaunchesItemPhaseEnum.upcoming;
+        case r'holder': return ListWeb3LaunchesItemPhaseEnum.holder;
         case r'sold_out': return ListWeb3LaunchesItemPhaseEnum.soldOut;
         default:
           if (allowNull == false) {

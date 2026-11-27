@@ -127,13 +127,13 @@ class CreateBuyerGiftCardRedeemResponseDataRailEnum {
 
   String toJson() => value;
 
-  static const bucks = CreateBuyerGiftCardRedeemResponseDataRailEnum._(r'bucks');
   static const cbx = CreateBuyerGiftCardRedeemResponseDataRailEnum._(r'cbx');
+  static const bucks = CreateBuyerGiftCardRedeemResponseDataRailEnum._(r'bucks');
 
   /// List of all possible values in this [enum][CreateBuyerGiftCardRedeemResponseDataRailEnum].
   static const values = <CreateBuyerGiftCardRedeemResponseDataRailEnum>[
-    bucks,
     cbx,
+    bucks,
   ];
 
   static CreateBuyerGiftCardRedeemResponseDataRailEnum fromJson(dynamic value) =>
@@ -165,8 +165,8 @@ class CreateBuyerGiftCardRedeemResponseDataRailEnumTypeTransformer {
   CreateBuyerGiftCardRedeemResponseDataRailEnum decode(dynamic data, {bool allowNull}) {
     if (data != null) {
       switch (data.toString()) {
-        case r'bucks': return CreateBuyerGiftCardRedeemResponseDataRailEnum.bucks;
         case r'cbx': return CreateBuyerGiftCardRedeemResponseDataRailEnum.cbx;
+        case r'bucks': return CreateBuyerGiftCardRedeemResponseDataRailEnum.bucks;
         default:
           if (allowNull == false) {
             throw ArgumentError('Unknown enum value to decode: $data');

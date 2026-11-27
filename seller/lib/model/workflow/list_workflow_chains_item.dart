@@ -13,62 +13,74 @@ part of openapi.api;
 class ListWorkflowChainsItem {
   /// Returns a new [ListWorkflowChainsItem] instance.
   ListWorkflowChainsItem({
-    this.steps = const [],
     @required this.id,
-    @required this.name,
-    @required this.createdAt,
     @required this.userId,
-    @required this.isActive,
+    @required this.name,
     @required this.triggerId,
+    this.triggerConfig = const {},
+    @required this.isActive,
+    @required this.createdAt,
+    @required this.workflowId,
+    this.steps = const [],
   });
-
-  List<GetWorkflowChainResponseSteps> steps;
 
   String id;
 
-  String name;
-
-  DateTime createdAt;
-
   String userId;
 
-  bool isActive;
+  String name;
 
   String triggerId;
 
+  Map<String, Object> triggerConfig;
+
+  bool isActive;
+
+  DateTime createdAt;
+
+  String workflowId;
+
+  List<GetWorkflowChainResponseSteps> steps;
+
   @override
   bool operator ==(Object other) => identical(this, other) || other is ListWorkflowChainsItem &&
-     other.steps == steps &&
      other.id == id &&
-     other.name == name &&
-     other.createdAt == createdAt &&
      other.userId == userId &&
+     other.name == name &&
+     other.triggerId == triggerId &&
+     other.triggerConfig == triggerConfig &&
      other.isActive == isActive &&
-     other.triggerId == triggerId;
+     other.createdAt == createdAt &&
+     other.workflowId == workflowId &&
+     other.steps == steps;
 
   @override
   int get hashCode =>
   // ignore: unnecessary_parenthesis
-    (steps == null ? 0 : steps.hashCode) +
     (id == null ? 0 : id.hashCode) +
-    (name == null ? 0 : name.hashCode) +
-    (createdAt == null ? 0 : createdAt.hashCode) +
     (userId == null ? 0 : userId.hashCode) +
+    (name == null ? 0 : name.hashCode) +
+    (triggerId == null ? 0 : triggerId.hashCode) +
+    (triggerConfig == null ? 0 : triggerConfig.hashCode) +
     (isActive == null ? 0 : isActive.hashCode) +
-    (triggerId == null ? 0 : triggerId.hashCode);
+    (createdAt == null ? 0 : createdAt.hashCode) +
+    (workflowId == null ? 0 : workflowId.hashCode) +
+    (steps == null ? 0 : steps.hashCode);
 
   @override
-  String toString() => 'ListWorkflowChainsItem[steps=$steps, id=$id, name=$name, createdAt=$createdAt, userId=$userId, isActive=$isActive, triggerId=$triggerId]';
+  String toString() => 'ListWorkflowChainsItem[id=$id, userId=$userId, name=$name, triggerId=$triggerId, triggerConfig=$triggerConfig, isActive=$isActive, createdAt=$createdAt, workflowId=$workflowId, steps=$steps]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-      json[r'steps'] = steps;
       json[r'id'] = id;
-      json[r'name'] = name;
-      json[r'createdAt'] = createdAt.toUtc().toIso8601String();
       json[r'userId'] = userId;
-      json[r'isActive'] = isActive;
+      json[r'name'] = name;
       json[r'triggerId'] = triggerId;
+      json[r'triggerConfig'] = triggerConfig;
+      json[r'isActive'] = isActive;
+      json[r'createdAt'] = createdAt.toUtc().toIso8601String();
+      json[r'workflowId'] = workflowId;
+      json[r'steps'] = steps;
     return json;
   }
 
@@ -79,13 +91,15 @@ class ListWorkflowChainsItem {
     if (value is Map) {
       final json = value.cast<String, dynamic>();
       return ListWorkflowChainsItem(
-        steps: GetWorkflowChainResponseSteps.listFromJson(json[r'steps']),
         id: mapValueOfType<String>(json, r'id'),
-        name: mapValueOfType<String>(json, r'name'),
-        createdAt: mapDateTime(json, r'createdAt', ''),
         userId: mapValueOfType<String>(json, r'userId'),
-        isActive: mapValueOfType<bool>(json, r'isActive'),
+        name: mapValueOfType<String>(json, r'name'),
         triggerId: mapValueOfType<String>(json, r'triggerId'),
+        triggerConfig: mapValueOfType<Map<String, Object>>(json, r'triggerConfig'),
+        isActive: mapValueOfType<bool>(json, r'isActive'),
+        createdAt: mapDateTime(json, r'createdAt', ''),
+        workflowId: mapValueOfType<String>(json, r'workflowId'),
+        steps: GetWorkflowChainResponseSteps.listFromJson(json[r'steps']),
       );
     }
     return null;

@@ -18,14 +18,14 @@ class CreateTradeBlockSetRecipeResponseRecipe {
     @required this.active,
     @required this.createdAt,
     @required this.updatedAt,
-    this.note,
+    @required this.version,
     this.reviewedAt,
+    this.note,
+    this.members = const [],
     @required this.merchantId,
     @required this.creatorSubjectId,
     @required this.outputCosmeticId,
-    @required this.version,
     this.frozenAt,
-    this.members = const [],
   });
 
   String id;
@@ -38,9 +38,13 @@ class CreateTradeBlockSetRecipeResponseRecipe {
 
   DateTime updatedAt;
 
-  String note;
+  num version;
 
   DateTime reviewedAt;
+
+  String note;
+
+  List<CreateTradeBlockSetRecipeResponseRecipeMembers> members;
 
   String merchantId;
 
@@ -48,11 +52,7 @@ class CreateTradeBlockSetRecipeResponseRecipe {
 
   String outputCosmeticId;
 
-  num version;
-
   DateTime frozenAt;
-
-  List<CreateTradeBlockSetRecipeResponseRecipeMembers> members;
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is CreateTradeBlockSetRecipeResponseRecipe &&
@@ -61,14 +61,14 @@ class CreateTradeBlockSetRecipeResponseRecipe {
      other.active == active &&
      other.createdAt == createdAt &&
      other.updatedAt == updatedAt &&
-     other.note == note &&
+     other.version == version &&
      other.reviewedAt == reviewedAt &&
+     other.note == note &&
+     other.members == members &&
      other.merchantId == merchantId &&
      other.creatorSubjectId == creatorSubjectId &&
      other.outputCosmeticId == outputCosmeticId &&
-     other.version == version &&
-     other.frozenAt == frozenAt &&
-     other.members == members;
+     other.frozenAt == frozenAt;
 
   @override
   int get hashCode =>
@@ -78,17 +78,17 @@ class CreateTradeBlockSetRecipeResponseRecipe {
     (active == null ? 0 : active.hashCode) +
     (createdAt == null ? 0 : createdAt.hashCode) +
     (updatedAt == null ? 0 : updatedAt.hashCode) +
-    (note == null ? 0 : note.hashCode) +
+    (version == null ? 0 : version.hashCode) +
     (reviewedAt == null ? 0 : reviewedAt.hashCode) +
+    (note == null ? 0 : note.hashCode) +
+    (members == null ? 0 : members.hashCode) +
     (merchantId == null ? 0 : merchantId.hashCode) +
     (creatorSubjectId == null ? 0 : creatorSubjectId.hashCode) +
     (outputCosmeticId == null ? 0 : outputCosmeticId.hashCode) +
-    (version == null ? 0 : version.hashCode) +
-    (frozenAt == null ? 0 : frozenAt.hashCode) +
-    (members == null ? 0 : members.hashCode);
+    (frozenAt == null ? 0 : frozenAt.hashCode);
 
   @override
-  String toString() => 'CreateTradeBlockSetRecipeResponseRecipe[id=$id, name=$name, active=$active, createdAt=$createdAt, updatedAt=$updatedAt, note=$note, reviewedAt=$reviewedAt, merchantId=$merchantId, creatorSubjectId=$creatorSubjectId, outputCosmeticId=$outputCosmeticId, version=$version, frozenAt=$frozenAt, members=$members]';
+  String toString() => 'CreateTradeBlockSetRecipeResponseRecipe[id=$id, name=$name, active=$active, createdAt=$createdAt, updatedAt=$updatedAt, version=$version, reviewedAt=$reviewedAt, note=$note, members=$members, merchantId=$merchantId, creatorSubjectId=$creatorSubjectId, outputCosmeticId=$outputCosmeticId, frozenAt=$frozenAt]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -97,20 +97,20 @@ class CreateTradeBlockSetRecipeResponseRecipe {
       json[r'active'] = active;
       json[r'createdAt'] = createdAt.toUtc().toIso8601String();
       json[r'updatedAt'] = updatedAt.toUtc().toIso8601String();
-    if (note != null) {
-      json[r'note'] = note;
-    }
+      json[r'version'] = version;
     if (reviewedAt != null) {
       json[r'reviewedAt'] = reviewedAt.toUtc().toIso8601String();
     }
+    if (note != null) {
+      json[r'note'] = note;
+    }
+      json[r'members'] = members;
       json[r'merchantId'] = merchantId;
       json[r'creatorSubjectId'] = creatorSubjectId;
       json[r'outputCosmeticId'] = outputCosmeticId;
-      json[r'version'] = version;
     if (frozenAt != null) {
       json[r'frozenAt'] = frozenAt.toUtc().toIso8601String();
     }
-      json[r'members'] = members;
     return json;
   }
 
@@ -126,16 +126,16 @@ class CreateTradeBlockSetRecipeResponseRecipe {
         active: mapValueOfType<bool>(json, r'active'),
         createdAt: mapDateTime(json, r'createdAt', ''),
         updatedAt: mapDateTime(json, r'updatedAt', ''),
-        note: mapValueOfType<String>(json, r'note'),
-        reviewedAt: mapDateTime(json, r'reviewedAt', ''),
-        merchantId: mapValueOfType<String>(json, r'merchantId'),
-        creatorSubjectId: mapValueOfType<String>(json, r'creatorSubjectId'),
-        outputCosmeticId: mapValueOfType<String>(json, r'outputCosmeticId'),
         version: json[r'version'] == null
           ? null
           : num.parse(json[r'version'].toString()),
-        frozenAt: mapDateTime(json, r'frozenAt', ''),
+        reviewedAt: mapDateTime(json, r'reviewedAt', ''),
+        note: mapValueOfType<String>(json, r'note'),
         members: CreateTradeBlockSetRecipeResponseRecipeMembers.listFromJson(json[r'members']),
+        merchantId: mapValueOfType<String>(json, r'merchantId'),
+        creatorSubjectId: mapValueOfType<String>(json, r'creatorSubjectId'),
+        outputCosmeticId: mapValueOfType<String>(json, r'outputCosmeticId'),
+        frozenAt: mapDateTime(json, r'frozenAt', ''),
       );
     }
     return null;

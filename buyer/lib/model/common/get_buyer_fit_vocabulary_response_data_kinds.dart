@@ -13,37 +13,37 @@ part of openapi.api;
 class GetBuyerFitVocabularyResponseDataKinds {
   /// Returns a new [GetBuyerFitVocabularyResponseDataKinds] instance.
   GetBuyerFitVocabularyResponseDataKinds({
-    @required this.label,
     @required this.key,
+    @required this.label,
     this.measures = const [],
   });
 
-  String label;
-
   String key;
+
+  String label;
 
   List<Map<String, Object>> measures;
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is GetBuyerFitVocabularyResponseDataKinds &&
-     other.label == label &&
      other.key == key &&
+     other.label == label &&
      other.measures == measures;
 
   @override
   int get hashCode =>
   // ignore: unnecessary_parenthesis
-    (label == null ? 0 : label.hashCode) +
     (key == null ? 0 : key.hashCode) +
+    (label == null ? 0 : label.hashCode) +
     (measures == null ? 0 : measures.hashCode);
 
   @override
-  String toString() => 'GetBuyerFitVocabularyResponseDataKinds[label=$label, key=$key, measures=$measures]';
+  String toString() => 'GetBuyerFitVocabularyResponseDataKinds[key=$key, label=$label, measures=$measures]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-      json[r'label'] = label;
       json[r'key'] = key;
+      json[r'label'] = label;
       json[r'measures'] = measures;
     return json;
   }
@@ -55,8 +55,8 @@ class GetBuyerFitVocabularyResponseDataKinds {
     if (value is Map) {
       final json = value.cast<String, dynamic>();
       return GetBuyerFitVocabularyResponseDataKinds(
-        label: mapValueOfType<String>(json, r'label'),
         key: mapValueOfType<String>(json, r'key'),
+        label: mapValueOfType<String>(json, r'label'),
         measures: json[r'measures'] is List ? (json[r'measures'] as List).cast<Map<String, Object>>() : const [],
       );
     }

@@ -13,11 +13,20 @@ part of openapi.api;
 class GetVaultMarketAccountResponseGates {
   /// Returns a new [GetVaultMarketAccountResponseGates] instance.
   GetVaultMarketAccountResponseGates({
+    @required this.shares,
     @required this.custody,
     @required this.lending,
     @required this.leverage,
     @required this.staking,
+    @required this.sharesPartner,
+    @required this.sharesSelf,
+    @required this.optionsRouting,
+    @required this.optionsVenue,
+    @required this.predictionPartner,
+    @required this.predictionSelf,
   });
+
+  ListVaultMarketGradeToVaultItemGatesGradingRuns shares;
 
   ListVaultMarketGradeToVaultItemGatesGradingRuns custody;
 
@@ -27,30 +36,63 @@ class GetVaultMarketAccountResponseGates {
 
   ListVaultMarketGradeToVaultItemGatesGradingRuns staking;
 
+  ListVaultMarketGradeToVaultItemGatesGradingRuns sharesPartner;
+
+  ListVaultMarketGradeToVaultItemGatesGradingRuns sharesSelf;
+
+  ListVaultMarketGradeToVaultItemGatesGradingRuns optionsRouting;
+
+  ListVaultMarketGradeToVaultItemGatesGradingRuns optionsVenue;
+
+  ListVaultMarketGradeToVaultItemGatesGradingRuns predictionPartner;
+
+  ListVaultMarketGradeToVaultItemGatesGradingRuns predictionSelf;
+
   @override
   bool operator ==(Object other) => identical(this, other) || other is GetVaultMarketAccountResponseGates &&
+     other.shares == shares &&
      other.custody == custody &&
      other.lending == lending &&
      other.leverage == leverage &&
-     other.staking == staking;
+     other.staking == staking &&
+     other.sharesPartner == sharesPartner &&
+     other.sharesSelf == sharesSelf &&
+     other.optionsRouting == optionsRouting &&
+     other.optionsVenue == optionsVenue &&
+     other.predictionPartner == predictionPartner &&
+     other.predictionSelf == predictionSelf;
 
   @override
   int get hashCode =>
   // ignore: unnecessary_parenthesis
+    (shares == null ? 0 : shares.hashCode) +
     (custody == null ? 0 : custody.hashCode) +
     (lending == null ? 0 : lending.hashCode) +
     (leverage == null ? 0 : leverage.hashCode) +
-    (staking == null ? 0 : staking.hashCode);
+    (staking == null ? 0 : staking.hashCode) +
+    (sharesPartner == null ? 0 : sharesPartner.hashCode) +
+    (sharesSelf == null ? 0 : sharesSelf.hashCode) +
+    (optionsRouting == null ? 0 : optionsRouting.hashCode) +
+    (optionsVenue == null ? 0 : optionsVenue.hashCode) +
+    (predictionPartner == null ? 0 : predictionPartner.hashCode) +
+    (predictionSelf == null ? 0 : predictionSelf.hashCode);
 
   @override
-  String toString() => 'GetVaultMarketAccountResponseGates[custody=$custody, lending=$lending, leverage=$leverage, staking=$staking]';
+  String toString() => 'GetVaultMarketAccountResponseGates[shares=$shares, custody=$custody, lending=$lending, leverage=$leverage, staking=$staking, sharesPartner=$sharesPartner, sharesSelf=$sharesSelf, optionsRouting=$optionsRouting, optionsVenue=$optionsVenue, predictionPartner=$predictionPartner, predictionSelf=$predictionSelf]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
+      json[r'shares'] = shares;
       json[r'custody'] = custody;
       json[r'lending'] = lending;
       json[r'leverage'] = leverage;
       json[r'staking'] = staking;
+      json[r'shares_partner'] = sharesPartner;
+      json[r'shares_self'] = sharesSelf;
+      json[r'options_routing'] = optionsRouting;
+      json[r'options_venue'] = optionsVenue;
+      json[r'prediction_partner'] = predictionPartner;
+      json[r'prediction_self'] = predictionSelf;
     return json;
   }
 
@@ -61,10 +103,17 @@ class GetVaultMarketAccountResponseGates {
     if (value is Map) {
       final json = value.cast<String, dynamic>();
       return GetVaultMarketAccountResponseGates(
+        shares: ListVaultMarketGradeToVaultItemGatesGradingRuns.fromJson(json[r'shares']),
         custody: ListVaultMarketGradeToVaultItemGatesGradingRuns.fromJson(json[r'custody']),
         lending: ListVaultMarketGradeToVaultItemGatesGradingRuns.fromJson(json[r'lending']),
         leverage: ListVaultMarketGradeToVaultItemGatesGradingRuns.fromJson(json[r'leverage']),
         staking: ListVaultMarketGradeToVaultItemGatesGradingRuns.fromJson(json[r'staking']),
+        sharesPartner: ListVaultMarketGradeToVaultItemGatesGradingRuns.fromJson(json[r'shares_partner']),
+        sharesSelf: ListVaultMarketGradeToVaultItemGatesGradingRuns.fromJson(json[r'shares_self']),
+        optionsRouting: ListVaultMarketGradeToVaultItemGatesGradingRuns.fromJson(json[r'options_routing']),
+        optionsVenue: ListVaultMarketGradeToVaultItemGatesGradingRuns.fromJson(json[r'options_venue']),
+        predictionPartner: ListVaultMarketGradeToVaultItemGatesGradingRuns.fromJson(json[r'prediction_partner']),
+        predictionSelf: ListVaultMarketGradeToVaultItemGatesGradingRuns.fromJson(json[r'prediction_self']),
       );
     }
     return null;

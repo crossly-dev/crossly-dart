@@ -17,9 +17,9 @@ class GetTaxonomyCategoryAspectResponseAspects {
     @required this.dataType,
     this.enumValues,
     @required this.required_,
-    @required this.cardinality,
     this.variesByAspect,
     this.maxLength,
+    @required this.cardinality,
     @required this.selectionOnly,
   });
 
@@ -32,13 +32,13 @@ class GetTaxonomyCategoryAspectResponseAspects {
 
   bool required_;
 
-  /// Cardinality — SINGLE_VALUE / MULTIPLE_VALUES.
-  String cardinality;
-
   bool variesByAspect;
 
   /// Helpful for client validation — max length when supplied.
   num maxLength;
+
+  /// Cardinality — SINGLE_VALUE / MULTIPLE_VALUES.
+  String cardinality;
 
   bool selectionOnly;
 
@@ -48,9 +48,9 @@ class GetTaxonomyCategoryAspectResponseAspects {
      other.dataType == dataType &&
      other.enumValues == enumValues &&
      other.required_ == required_ &&
-     other.cardinality == cardinality &&
      other.variesByAspect == variesByAspect &&
      other.maxLength == maxLength &&
+     other.cardinality == cardinality &&
      other.selectionOnly == selectionOnly;
 
   @override
@@ -60,13 +60,13 @@ class GetTaxonomyCategoryAspectResponseAspects {
     (dataType == null ? 0 : dataType.hashCode) +
     (enumValues == null ? 0 : enumValues.hashCode) +
     (required_ == null ? 0 : required_.hashCode) +
-    (cardinality == null ? 0 : cardinality.hashCode) +
     (variesByAspect == null ? 0 : variesByAspect.hashCode) +
     (maxLength == null ? 0 : maxLength.hashCode) +
+    (cardinality == null ? 0 : cardinality.hashCode) +
     (selectionOnly == null ? 0 : selectionOnly.hashCode);
 
   @override
-  String toString() => 'GetTaxonomyCategoryAspectResponseAspects[name=$name, dataType=$dataType, enumValues=$enumValues, required_=$required_, cardinality=$cardinality, variesByAspect=$variesByAspect, maxLength=$maxLength, selectionOnly=$selectionOnly]';
+  String toString() => 'GetTaxonomyCategoryAspectResponseAspects[name=$name, dataType=$dataType, enumValues=$enumValues, required_=$required_, variesByAspect=$variesByAspect, maxLength=$maxLength, cardinality=$cardinality, selectionOnly=$selectionOnly]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -76,13 +76,13 @@ class GetTaxonomyCategoryAspectResponseAspects {
       json[r'enumValues'] = enumValues;
     }
       json[r'required'] = required_;
-      json[r'cardinality'] = cardinality;
     if (variesByAspect != null) {
       json[r'variesByAspect'] = variesByAspect;
     }
     if (maxLength != null) {
       json[r'maxLength'] = maxLength;
     }
+      json[r'cardinality'] = cardinality;
       json[r'selectionOnly'] = selectionOnly;
     return json;
   }
@@ -100,11 +100,11 @@ class GetTaxonomyCategoryAspectResponseAspects {
           ? (json[r'enumValues'] as List).cast<String>()
           : null,
         required_: mapValueOfType<bool>(json, r'required'),
-        cardinality: mapValueOfType<String>(json, r'cardinality'),
         variesByAspect: mapValueOfType<bool>(json, r'variesByAspect'),
         maxLength: json[r'maxLength'] == null
           ? null
           : num.parse(json[r'maxLength'].toString()),
+        cardinality: mapValueOfType<String>(json, r'cardinality'),
         selectionOnly: mapValueOfType<bool>(json, r'selectionOnly'),
       );
     }

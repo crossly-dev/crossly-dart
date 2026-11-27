@@ -18,10 +18,14 @@ class ListInventoryItem {
     @required this.createdAt,
     @required this.updatedAt,
     @required this.userId,
+    @required this.status,
+    this.notes,
+    @required this.source_,
     this.sku,
     @required this.quantity,
     @required this.quantityAvailable,
     @required this.quantityReserved,
+    @required this.wholesaleReserve,
     @required this.quantitySold,
     this.originalPrice,
     this.condition,
@@ -40,7 +44,6 @@ class ListInventoryItem {
     this.provenanceReceiptId,
     this.tags = const [],
     this.labels = const [],
-    this.notes,
     this.customLabel,
     this.warehouseLocation,
     this.storageBin,
@@ -48,10 +51,12 @@ class ListInventoryItem {
     this.marketSkuId,
     this.marketVariantId,
     this.gradeKey,
+    this.vaultSellFrom,
     this.grading,
     this.firstListedAt,
     @required this.includeTaxInLanded,
     this.costBasisCents,
+    this.supplier,
     this.priceFloorCents,
     @required this.floorIsNet,
     this.acquiredAt,
@@ -61,8 +66,7 @@ class ListInventoryItem {
     this.dimensionLIn,
     this.dimensionWIn,
     this.dimensionHIn,
-    @required this.status,
-    @required this.source_,
+    this.allowanceAppId,
     this.category,
   });
 
@@ -76,6 +80,12 @@ class ListInventoryItem {
 
   String userId;
 
+  String status;
+
+  String notes;
+
+  String source_;
+
   String sku;
 
   num quantity;
@@ -83,6 +93,8 @@ class ListInventoryItem {
   num quantityAvailable;
 
   num quantityReserved;
+
+  num wholesaleReserve;
 
   num quantitySold;
 
@@ -120,8 +132,6 @@ class ListInventoryItem {
 
   List<String> labels;
 
-  String notes;
-
   String customLabel;
 
   String warehouseLocation;
@@ -136,13 +146,17 @@ class ListInventoryItem {
 
   String gradeKey;
 
-  ListGradingSubmissionsItemGrading grading;
+  ListInventoryItemVaultSellFromEnum vaultSellFrom;
+
+  CreateBulkBatchItemResponseGrading grading;
 
   DateTime firstListedAt;
 
   bool includeTaxInLanded;
 
   num costBasisCents;
+
+  ListInventoryItemSupplier supplier;
 
   num priceFloorCents;
 
@@ -162,9 +176,7 @@ class ListInventoryItem {
 
   String dimensionHIn;
 
-  String status;
-
-  String source_;
+  String allowanceAppId;
 
   MainSub category;
 
@@ -175,10 +187,14 @@ class ListInventoryItem {
      other.createdAt == createdAt &&
      other.updatedAt == updatedAt &&
      other.userId == userId &&
+     other.status == status &&
+     other.notes == notes &&
+     other.source_ == source_ &&
      other.sku == sku &&
      other.quantity == quantity &&
      other.quantityAvailable == quantityAvailable &&
      other.quantityReserved == quantityReserved &&
+     other.wholesaleReserve == wholesaleReserve &&
      other.quantitySold == quantitySold &&
      other.originalPrice == originalPrice &&
      other.condition == condition &&
@@ -197,7 +213,6 @@ class ListInventoryItem {
      other.provenanceReceiptId == provenanceReceiptId &&
      other.tags == tags &&
      other.labels == labels &&
-     other.notes == notes &&
      other.customLabel == customLabel &&
      other.warehouseLocation == warehouseLocation &&
      other.storageBin == storageBin &&
@@ -205,10 +220,12 @@ class ListInventoryItem {
      other.marketSkuId == marketSkuId &&
      other.marketVariantId == marketVariantId &&
      other.gradeKey == gradeKey &&
+     other.vaultSellFrom == vaultSellFrom &&
      other.grading == grading &&
      other.firstListedAt == firstListedAt &&
      other.includeTaxInLanded == includeTaxInLanded &&
      other.costBasisCents == costBasisCents &&
+     other.supplier == supplier &&
      other.priceFloorCents == priceFloorCents &&
      other.floorIsNet == floorIsNet &&
      other.acquiredAt == acquiredAt &&
@@ -218,8 +235,7 @@ class ListInventoryItem {
      other.dimensionLIn == dimensionLIn &&
      other.dimensionWIn == dimensionWIn &&
      other.dimensionHIn == dimensionHIn &&
-     other.status == status &&
-     other.source_ == source_ &&
+     other.allowanceAppId == allowanceAppId &&
      other.category == category;
 
   @override
@@ -230,10 +246,14 @@ class ListInventoryItem {
     (createdAt == null ? 0 : createdAt.hashCode) +
     (updatedAt == null ? 0 : updatedAt.hashCode) +
     (userId == null ? 0 : userId.hashCode) +
+    (status == null ? 0 : status.hashCode) +
+    (notes == null ? 0 : notes.hashCode) +
+    (source_ == null ? 0 : source_.hashCode) +
     (sku == null ? 0 : sku.hashCode) +
     (quantity == null ? 0 : quantity.hashCode) +
     (quantityAvailable == null ? 0 : quantityAvailable.hashCode) +
     (quantityReserved == null ? 0 : quantityReserved.hashCode) +
+    (wholesaleReserve == null ? 0 : wholesaleReserve.hashCode) +
     (quantitySold == null ? 0 : quantitySold.hashCode) +
     (originalPrice == null ? 0 : originalPrice.hashCode) +
     (condition == null ? 0 : condition.hashCode) +
@@ -252,7 +272,6 @@ class ListInventoryItem {
     (provenanceReceiptId == null ? 0 : provenanceReceiptId.hashCode) +
     (tags == null ? 0 : tags.hashCode) +
     (labels == null ? 0 : labels.hashCode) +
-    (notes == null ? 0 : notes.hashCode) +
     (customLabel == null ? 0 : customLabel.hashCode) +
     (warehouseLocation == null ? 0 : warehouseLocation.hashCode) +
     (storageBin == null ? 0 : storageBin.hashCode) +
@@ -260,10 +279,12 @@ class ListInventoryItem {
     (marketSkuId == null ? 0 : marketSkuId.hashCode) +
     (marketVariantId == null ? 0 : marketVariantId.hashCode) +
     (gradeKey == null ? 0 : gradeKey.hashCode) +
+    (vaultSellFrom == null ? 0 : vaultSellFrom.hashCode) +
     (grading == null ? 0 : grading.hashCode) +
     (firstListedAt == null ? 0 : firstListedAt.hashCode) +
     (includeTaxInLanded == null ? 0 : includeTaxInLanded.hashCode) +
     (costBasisCents == null ? 0 : costBasisCents.hashCode) +
+    (supplier == null ? 0 : supplier.hashCode) +
     (priceFloorCents == null ? 0 : priceFloorCents.hashCode) +
     (floorIsNet == null ? 0 : floorIsNet.hashCode) +
     (acquiredAt == null ? 0 : acquiredAt.hashCode) +
@@ -273,12 +294,11 @@ class ListInventoryItem {
     (dimensionLIn == null ? 0 : dimensionLIn.hashCode) +
     (dimensionWIn == null ? 0 : dimensionWIn.hashCode) +
     (dimensionHIn == null ? 0 : dimensionHIn.hashCode) +
-    (status == null ? 0 : status.hashCode) +
-    (source_ == null ? 0 : source_.hashCode) +
+    (allowanceAppId == null ? 0 : allowanceAppId.hashCode) +
     (category == null ? 0 : category.hashCode);
 
   @override
-  String toString() => 'ListInventoryItem[id=$id, brand=$brand, createdAt=$createdAt, updatedAt=$updatedAt, userId=$userId, sku=$sku, quantity=$quantity, quantityAvailable=$quantityAvailable, quantityReserved=$quantityReserved, quantitySold=$quantitySold, originalPrice=$originalPrice, condition=$condition, size=$size, material=$material, style=$style, pattern=$pattern, department=$department, gender=$gender, itemType=$itemType, sizeSystem=$sizeSystem, color=$color, defaultTitle=$defaultTitle, images=$images, videoUrl=$videoUrl, provenanceReceiptId=$provenanceReceiptId, tags=$tags, labels=$labels, notes=$notes, customLabel=$customLabel, warehouseLocation=$warehouseLocation, storageBin=$storageBin, storageNote=$storageNote, marketSkuId=$marketSkuId, marketVariantId=$marketVariantId, gradeKey=$gradeKey, grading=$grading, firstListedAt=$firstListedAt, includeTaxInLanded=$includeTaxInLanded, costBasisCents=$costBasisCents, priceFloorCents=$priceFloorCents, floorIsNet=$floorIsNet, acquiredAt=$acquiredAt, acquiredSource=$acquiredSource, weightLb=$weightLb, weightOz=$weightOz, dimensionLIn=$dimensionLIn, dimensionWIn=$dimensionWIn, dimensionHIn=$dimensionHIn, status=$status, source_=$source_, category=$category]';
+  String toString() => 'ListInventoryItem[id=$id, brand=$brand, createdAt=$createdAt, updatedAt=$updatedAt, userId=$userId, status=$status, notes=$notes, source_=$source_, sku=$sku, quantity=$quantity, quantityAvailable=$quantityAvailable, quantityReserved=$quantityReserved, wholesaleReserve=$wholesaleReserve, quantitySold=$quantitySold, originalPrice=$originalPrice, condition=$condition, size=$size, material=$material, style=$style, pattern=$pattern, department=$department, gender=$gender, itemType=$itemType, sizeSystem=$sizeSystem, color=$color, defaultTitle=$defaultTitle, images=$images, videoUrl=$videoUrl, provenanceReceiptId=$provenanceReceiptId, tags=$tags, labels=$labels, customLabel=$customLabel, warehouseLocation=$warehouseLocation, storageBin=$storageBin, storageNote=$storageNote, marketSkuId=$marketSkuId, marketVariantId=$marketVariantId, gradeKey=$gradeKey, vaultSellFrom=$vaultSellFrom, grading=$grading, firstListedAt=$firstListedAt, includeTaxInLanded=$includeTaxInLanded, costBasisCents=$costBasisCents, supplier=$supplier, priceFloorCents=$priceFloorCents, floorIsNet=$floorIsNet, acquiredAt=$acquiredAt, acquiredSource=$acquiredSource, weightLb=$weightLb, weightOz=$weightOz, dimensionLIn=$dimensionLIn, dimensionWIn=$dimensionWIn, dimensionHIn=$dimensionHIn, allowanceAppId=$allowanceAppId, category=$category]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -289,12 +309,18 @@ class ListInventoryItem {
       json[r'createdAt'] = createdAt.toUtc().toIso8601String();
       json[r'updatedAt'] = updatedAt.toUtc().toIso8601String();
       json[r'userId'] = userId;
+      json[r'status'] = status;
+    if (notes != null) {
+      json[r'notes'] = notes;
+    }
+      json[r'source'] = source_;
     if (sku != null) {
       json[r'sku'] = sku;
     }
       json[r'quantity'] = quantity;
       json[r'quantityAvailable'] = quantityAvailable;
       json[r'quantityReserved'] = quantityReserved;
+      json[r'wholesaleReserve'] = wholesaleReserve;
       json[r'quantitySold'] = quantitySold;
     if (originalPrice != null) {
       json[r'originalPrice'] = originalPrice;
@@ -337,9 +363,6 @@ class ListInventoryItem {
     }
       json[r'tags'] = tags;
       json[r'labels'] = labels;
-    if (notes != null) {
-      json[r'notes'] = notes;
-    }
     if (customLabel != null) {
       json[r'customLabel'] = customLabel;
     }
@@ -361,6 +384,9 @@ class ListInventoryItem {
     if (gradeKey != null) {
       json[r'gradeKey'] = gradeKey;
     }
+    if (vaultSellFrom != null) {
+      json[r'vaultSellFrom'] = vaultSellFrom;
+    }
     if (grading != null) {
       json[r'grading'] = grading;
     }
@@ -370,6 +396,9 @@ class ListInventoryItem {
       json[r'includeTaxInLanded'] = includeTaxInLanded;
     if (costBasisCents != null) {
       json[r'costBasisCents'] = costBasisCents;
+    }
+    if (supplier != null) {
+      json[r'supplier'] = supplier;
     }
     if (priceFloorCents != null) {
       json[r'priceFloorCents'] = priceFloorCents;
@@ -396,8 +425,9 @@ class ListInventoryItem {
     if (dimensionHIn != null) {
       json[r'dimensionHIn'] = dimensionHIn;
     }
-      json[r'status'] = status;
-      json[r'source'] = source_;
+    if (allowanceAppId != null) {
+      json[r'allowanceAppId'] = allowanceAppId;
+    }
     if (category != null) {
       json[r'category'] = category;
     }
@@ -416,6 +446,9 @@ class ListInventoryItem {
         createdAt: mapDateTime(json, r'createdAt', ''),
         updatedAt: mapDateTime(json, r'updatedAt', ''),
         userId: mapValueOfType<String>(json, r'userId'),
+        status: mapValueOfType<String>(json, r'status'),
+        notes: mapValueOfType<String>(json, r'notes'),
+        source_: mapValueOfType<String>(json, r'source'),
         sku: mapValueOfType<String>(json, r'sku'),
         quantity: json[r'quantity'] == null
           ? null
@@ -426,6 +459,9 @@ class ListInventoryItem {
         quantityReserved: json[r'quantityReserved'] == null
           ? null
           : num.parse(json[r'quantityReserved'].toString()),
+        wholesaleReserve: json[r'wholesaleReserve'] == null
+          ? null
+          : num.parse(json[r'wholesaleReserve'].toString()),
         quantitySold: json[r'quantitySold'] == null
           ? null
           : num.parse(json[r'quantitySold'].toString()),
@@ -454,7 +490,6 @@ class ListInventoryItem {
         labels: json[r'labels'] is List
           ? (json[r'labels'] as List).cast<String>()
           : null,
-        notes: mapValueOfType<String>(json, r'notes'),
         customLabel: mapValueOfType<String>(json, r'customLabel'),
         warehouseLocation: mapValueOfType<String>(json, r'warehouseLocation'),
         storageBin: mapValueOfType<String>(json, r'storageBin'),
@@ -462,12 +497,14 @@ class ListInventoryItem {
         marketSkuId: mapValueOfType<String>(json, r'marketSkuId'),
         marketVariantId: mapValueOfType<String>(json, r'marketVariantId'),
         gradeKey: mapValueOfType<String>(json, r'gradeKey'),
-        grading: ListGradingSubmissionsItemGrading.fromJson(json[r'grading']),
+        vaultSellFrom: ListInventoryItemVaultSellFromEnum.fromJson(json[r'vaultSellFrom']),
+        grading: CreateBulkBatchItemResponseGrading.fromJson(json[r'grading']),
         firstListedAt: mapDateTime(json, r'firstListedAt', ''),
         includeTaxInLanded: mapValueOfType<bool>(json, r'includeTaxInLanded'),
         costBasisCents: json[r'costBasisCents'] == null
           ? null
           : num.parse(json[r'costBasisCents'].toString()),
+        supplier: ListInventoryItemSupplier.fromJson(json[r'supplier']),
         priceFloorCents: json[r'priceFloorCents'] == null
           ? null
           : num.parse(json[r'priceFloorCents'].toString()),
@@ -479,8 +516,7 @@ class ListInventoryItem {
         dimensionLIn: mapValueOfType<String>(json, r'dimensionLIn'),
         dimensionWIn: mapValueOfType<String>(json, r'dimensionWIn'),
         dimensionHIn: mapValueOfType<String>(json, r'dimensionHIn'),
-        status: mapValueOfType<String>(json, r'status'),
-        source_: mapValueOfType<String>(json, r'source'),
+        allowanceAppId: mapValueOfType<String>(json, r'allowanceAppId'),
         category: MainSub.fromJson(json[r'category']),
       );
     }
@@ -519,4 +555,74 @@ class ListInventoryItem {
     return map;
   }
 }
+
+
+class ListInventoryItemVaultSellFromEnum {
+  /// Instantiate a new enum with the provided [value].
+  const ListInventoryItemVaultSellFromEnum._(this.value);
+
+  /// The underlying value of this enum member.
+  final String value;
+
+  @override
+  String toString() => value ?? '';
+
+  String toJson() => value;
+
+  static const vaultFirst = ListInventoryItemVaultSellFromEnum._(r'vault_first');
+  static const warehouseFirst = ListInventoryItemVaultSellFromEnum._(r'warehouse_first');
+  static const cheapest = ListInventoryItemVaultSellFromEnum._(r'cheapest');
+
+  /// List of all possible values in this [enum][ListInventoryItemVaultSellFromEnum].
+  static const values = <ListInventoryItemVaultSellFromEnum>[
+    vaultFirst,
+    warehouseFirst,
+    cheapest,
+  ];
+
+  static ListInventoryItemVaultSellFromEnum fromJson(dynamic value) =>
+    ListInventoryItemVaultSellFromEnumTypeTransformer().decode(value);
+
+  static List<ListInventoryItemVaultSellFromEnum> listFromJson(dynamic json, {bool emptyIsNull, bool growable,}) =>
+    json is List && json.isNotEmpty
+      ? json.map(ListInventoryItemVaultSellFromEnum.fromJson).toList(growable: true == growable)
+      : true == emptyIsNull ? null : <ListInventoryItemVaultSellFromEnum>[];
+}
+
+/// Transformation class that can [encode] an instance of [ListInventoryItemVaultSellFromEnum] to String,
+/// and [decode] dynamic data back to [ListInventoryItemVaultSellFromEnum].
+class ListInventoryItemVaultSellFromEnumTypeTransformer {
+  factory ListInventoryItemVaultSellFromEnumTypeTransformer() => _instance ??= const ListInventoryItemVaultSellFromEnumTypeTransformer._();
+
+  const ListInventoryItemVaultSellFromEnumTypeTransformer._();
+
+  String encode(ListInventoryItemVaultSellFromEnum data) => data.value;
+
+  /// Decodes a [dynamic value][data] to a ListInventoryItemVaultSellFromEnum.
+  ///
+  /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
+  /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
+  /// cannot be decoded successfully, then an [UnimplementedError] is thrown.
+  ///
+  /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
+  /// and users are still using an old app with the old code.
+  ListInventoryItemVaultSellFromEnum decode(dynamic data, {bool allowNull}) {
+    if (data != null) {
+      switch (data.toString()) {
+        case r'vault_first': return ListInventoryItemVaultSellFromEnum.vaultFirst;
+        case r'warehouse_first': return ListInventoryItemVaultSellFromEnum.warehouseFirst;
+        case r'cheapest': return ListInventoryItemVaultSellFromEnum.cheapest;
+        default:
+          if (allowNull == false) {
+            throw ArgumentError('Unknown enum value to decode: $data');
+          }
+      }
+    }
+    return null;
+  }
+
+  /// Singleton [ListInventoryItemVaultSellFromEnumTypeTransformer] instance.
+  static ListInventoryItemVaultSellFromEnumTypeTransformer _instance;
+}
+
 

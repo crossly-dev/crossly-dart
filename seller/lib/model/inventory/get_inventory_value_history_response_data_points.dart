@@ -23,6 +23,9 @@ class GetInventoryValueHistoryResponseDataPoints {
     @required this.retailCents,
     this.marketCents,
     @required this.stuckCostCents,
+    this.over90CostCents,
+    this.costKnownItems,
+    @required this.reconstructed,
   });
 
   String id;
@@ -45,6 +48,12 @@ class GetInventoryValueHistoryResponseDataPoints {
 
   num stuckCostCents;
 
+  num over90CostCents;
+
+  num costKnownItems;
+
+  bool reconstructed;
+
   @override
   bool operator ==(Object other) => identical(this, other) || other is GetInventoryValueHistoryResponseDataPoints &&
      other.id == id &&
@@ -56,7 +65,10 @@ class GetInventoryValueHistoryResponseDataPoints {
      other.costCents == costCents &&
      other.retailCents == retailCents &&
      other.marketCents == marketCents &&
-     other.stuckCostCents == stuckCostCents;
+     other.stuckCostCents == stuckCostCents &&
+     other.over90CostCents == over90CostCents &&
+     other.costKnownItems == costKnownItems &&
+     other.reconstructed == reconstructed;
 
   @override
   int get hashCode =>
@@ -70,10 +82,13 @@ class GetInventoryValueHistoryResponseDataPoints {
     (costCents == null ? 0 : costCents.hashCode) +
     (retailCents == null ? 0 : retailCents.hashCode) +
     (marketCents == null ? 0 : marketCents.hashCode) +
-    (stuckCostCents == null ? 0 : stuckCostCents.hashCode);
+    (stuckCostCents == null ? 0 : stuckCostCents.hashCode) +
+    (over90CostCents == null ? 0 : over90CostCents.hashCode) +
+    (costKnownItems == null ? 0 : costKnownItems.hashCode) +
+    (reconstructed == null ? 0 : reconstructed.hashCode);
 
   @override
-  String toString() => 'GetInventoryValueHistoryResponseDataPoints[id=$id, createdAt=$createdAt, userId=$userId, snapshotDate=$snapshotDate, itemCount=$itemCount, unitCount=$unitCount, costCents=$costCents, retailCents=$retailCents, marketCents=$marketCents, stuckCostCents=$stuckCostCents]';
+  String toString() => 'GetInventoryValueHistoryResponseDataPoints[id=$id, createdAt=$createdAt, userId=$userId, snapshotDate=$snapshotDate, itemCount=$itemCount, unitCount=$unitCount, costCents=$costCents, retailCents=$retailCents, marketCents=$marketCents, stuckCostCents=$stuckCostCents, over90CostCents=$over90CostCents, costKnownItems=$costKnownItems, reconstructed=$reconstructed]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -89,6 +104,13 @@ class GetInventoryValueHistoryResponseDataPoints {
       json[r'marketCents'] = marketCents;
     }
       json[r'stuckCostCents'] = stuckCostCents;
+    if (over90CostCents != null) {
+      json[r'over90CostCents'] = over90CostCents;
+    }
+    if (costKnownItems != null) {
+      json[r'costKnownItems'] = costKnownItems;
+    }
+      json[r'reconstructed'] = reconstructed;
     return json;
   }
 
@@ -121,6 +143,13 @@ class GetInventoryValueHistoryResponseDataPoints {
         stuckCostCents: json[r'stuckCostCents'] == null
           ? null
           : num.parse(json[r'stuckCostCents'].toString()),
+        over90CostCents: json[r'over90CostCents'] == null
+          ? null
+          : num.parse(json[r'over90CostCents'].toString()),
+        costKnownItems: json[r'costKnownItems'] == null
+          ? null
+          : num.parse(json[r'costKnownItems'].toString()),
+        reconstructed: mapValueOfType<bool>(json, r'reconstructed'),
       );
     }
     return null;

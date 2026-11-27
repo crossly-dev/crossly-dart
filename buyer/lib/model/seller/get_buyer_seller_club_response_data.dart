@@ -13,54 +13,54 @@ part of openapi.api;
 class GetBuyerSellerClubResponseData {
   /// Returns a new [GetBuyerSellerClubResponseData] instance.
   GetBuyerSellerClubResponseData({
+    @required this.sellerUserId,
     @required this.name,
     this.description,
-    @required this.sellerUserId,
-    this.member,
     this.tiers = const [],
+    this.member,
   });
+
+  String sellerUserId;
 
   String name;
 
   String description;
 
-  String sellerUserId;
+  List<CreateBuyerSellerClubJoinResponseDataTiers> tiers;
 
   CreateBuyerSellerClubJoinResponseDataMember member;
 
-  List<CreateBuyerSellerClubJoinResponseDataTiers> tiers;
-
   @override
   bool operator ==(Object other) => identical(this, other) || other is GetBuyerSellerClubResponseData &&
+     other.sellerUserId == sellerUserId &&
      other.name == name &&
      other.description == description &&
-     other.sellerUserId == sellerUserId &&
-     other.member == member &&
-     other.tiers == tiers;
+     other.tiers == tiers &&
+     other.member == member;
 
   @override
   int get hashCode =>
   // ignore: unnecessary_parenthesis
+    (sellerUserId == null ? 0 : sellerUserId.hashCode) +
     (name == null ? 0 : name.hashCode) +
     (description == null ? 0 : description.hashCode) +
-    (sellerUserId == null ? 0 : sellerUserId.hashCode) +
-    (member == null ? 0 : member.hashCode) +
-    (tiers == null ? 0 : tiers.hashCode);
+    (tiers == null ? 0 : tiers.hashCode) +
+    (member == null ? 0 : member.hashCode);
 
   @override
-  String toString() => 'GetBuyerSellerClubResponseData[name=$name, description=$description, sellerUserId=$sellerUserId, member=$member, tiers=$tiers]';
+  String toString() => 'GetBuyerSellerClubResponseData[sellerUserId=$sellerUserId, name=$name, description=$description, tiers=$tiers, member=$member]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
+      json[r'sellerUserId'] = sellerUserId;
       json[r'name'] = name;
     if (description != null) {
       json[r'description'] = description;
     }
-      json[r'sellerUserId'] = sellerUserId;
+      json[r'tiers'] = tiers;
     if (member != null) {
       json[r'member'] = member;
     }
-      json[r'tiers'] = tiers;
     return json;
   }
 
@@ -71,11 +71,11 @@ class GetBuyerSellerClubResponseData {
     if (value is Map) {
       final json = value.cast<String, dynamic>();
       return GetBuyerSellerClubResponseData(
+        sellerUserId: mapValueOfType<String>(json, r'sellerUserId'),
         name: mapValueOfType<String>(json, r'name'),
         description: mapValueOfType<String>(json, r'description'),
-        sellerUserId: mapValueOfType<String>(json, r'sellerUserId'),
-        member: CreateBuyerSellerClubJoinResponseDataMember.fromJson(json[r'member']),
         tiers: CreateBuyerSellerClubJoinResponseDataTiers.listFromJson(json[r'tiers']),
+        member: CreateBuyerSellerClubJoinResponseDataMember.fromJson(json[r'member']),
       );
     }
     return null;

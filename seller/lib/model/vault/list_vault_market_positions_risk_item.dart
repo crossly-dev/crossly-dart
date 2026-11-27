@@ -281,13 +281,13 @@ class ListVaultMarketPositionsRiskItemKindEnum {
 
   String toJson() => value;
 
-  static const long = ListVaultMarketPositionsRiskItemKindEnum._(r'long');
   static const short = ListVaultMarketPositionsRiskItemKindEnum._(r'short');
+  static const long = ListVaultMarketPositionsRiskItemKindEnum._(r'long');
 
   /// List of all possible values in this [enum][ListVaultMarketPositionsRiskItemKindEnum].
   static const values = <ListVaultMarketPositionsRiskItemKindEnum>[
-    long,
     short,
+    long,
   ];
 
   static ListVaultMarketPositionsRiskItemKindEnum fromJson(dynamic value) =>
@@ -319,8 +319,8 @@ class ListVaultMarketPositionsRiskItemKindEnumTypeTransformer {
   ListVaultMarketPositionsRiskItemKindEnum decode(dynamic data, {bool allowNull}) {
     if (data != null) {
       switch (data.toString()) {
-        case r'long': return ListVaultMarketPositionsRiskItemKindEnum.long;
         case r'short': return ListVaultMarketPositionsRiskItemKindEnum.short;
+        case r'long': return ListVaultMarketPositionsRiskItemKindEnum.long;
         default:
           if (allowNull == false) {
             throw ArgumentError('Unknown enum value to decode: $data');
@@ -348,15 +348,15 @@ class ListVaultMarketPositionsRiskItemTierEnum {
 
   String toJson() => value;
 
-  static const standard = ListVaultMarketPositionsRiskItemTierEnum._(r'standard');
   static const closed = ListVaultMarketPositionsRiskItemTierEnum._(r'closed');
+  static const standard = ListVaultMarketPositionsRiskItemTierEnum._(r'standard');
   static const deep = ListVaultMarketPositionsRiskItemTierEnum._(r'deep');
   static const thin = ListVaultMarketPositionsRiskItemTierEnum._(r'thin');
 
   /// List of all possible values in this [enum][ListVaultMarketPositionsRiskItemTierEnum].
   static const values = <ListVaultMarketPositionsRiskItemTierEnum>[
-    standard,
     closed,
+    standard,
     deep,
     thin,
   ];
@@ -390,8 +390,8 @@ class ListVaultMarketPositionsRiskItemTierEnumTypeTransformer {
   ListVaultMarketPositionsRiskItemTierEnum decode(dynamic data, {bool allowNull}) {
     if (data != null) {
       switch (data.toString()) {
-        case r'standard': return ListVaultMarketPositionsRiskItemTierEnum.standard;
         case r'closed': return ListVaultMarketPositionsRiskItemTierEnum.closed;
+        case r'standard': return ListVaultMarketPositionsRiskItemTierEnum.standard;
         case r'deep': return ListVaultMarketPositionsRiskItemTierEnum.deep;
         case r'thin': return ListVaultMarketPositionsRiskItemTierEnum.thin;
         default:
@@ -421,15 +421,15 @@ class ListVaultMarketPositionsRiskItemMarginStateEnum {
 
   String toJson() => value;
 
-  static const buyIn = ListVaultMarketPositionsRiskItemMarginStateEnum._(r'buy_in');
   static const healthy = ListVaultMarketPositionsRiskItemMarginStateEnum._(r'healthy');
   static const call = ListVaultMarketPositionsRiskItemMarginStateEnum._(r'call');
+  static const buyIn = ListVaultMarketPositionsRiskItemMarginStateEnum._(r'buy_in');
 
   /// List of all possible values in this [enum][ListVaultMarketPositionsRiskItemMarginStateEnum].
   static const values = <ListVaultMarketPositionsRiskItemMarginStateEnum>[
-    buyIn,
     healthy,
     call,
+    buyIn,
   ];
 
   static ListVaultMarketPositionsRiskItemMarginStateEnum fromJson(dynamic value) =>
@@ -461,9 +461,9 @@ class ListVaultMarketPositionsRiskItemMarginStateEnumTypeTransformer {
   ListVaultMarketPositionsRiskItemMarginStateEnum decode(dynamic data, {bool allowNull}) {
     if (data != null) {
       switch (data.toString()) {
-        case r'buy_in': return ListVaultMarketPositionsRiskItemMarginStateEnum.buyIn;
         case r'healthy': return ListVaultMarketPositionsRiskItemMarginStateEnum.healthy;
         case r'call': return ListVaultMarketPositionsRiskItemMarginStateEnum.call;
+        case r'buy_in': return ListVaultMarketPositionsRiskItemMarginStateEnum.buyIn;
         default:
           if (allowNull == false) {
             throw ArgumentError('Unknown enum value to decode: $data');

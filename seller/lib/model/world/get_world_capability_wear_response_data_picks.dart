@@ -14,17 +14,17 @@ class GetWorldCapabilityWearResponseDataPicks {
   /// Returns a new [GetWorldCapabilityWearResponseDataPicks] instance.
   GetWorldCapabilityWearResponseDataPicks({
     this.body,
-    this.legs,
     this.head,
+    this.legs,
     this.feet,
     this.back,
   });
 
   String body;
 
-  String legs;
-
   String head;
+
+  String legs;
 
   String feet;
 
@@ -33,8 +33,8 @@ class GetWorldCapabilityWearResponseDataPicks {
   @override
   bool operator ==(Object other) => identical(this, other) || other is GetWorldCapabilityWearResponseDataPicks &&
      other.body == body &&
-     other.legs == legs &&
      other.head == head &&
+     other.legs == legs &&
      other.feet == feet &&
      other.back == back;
 
@@ -42,24 +42,24 @@ class GetWorldCapabilityWearResponseDataPicks {
   int get hashCode =>
   // ignore: unnecessary_parenthesis
     (body == null ? 0 : body.hashCode) +
-    (legs == null ? 0 : legs.hashCode) +
     (head == null ? 0 : head.hashCode) +
+    (legs == null ? 0 : legs.hashCode) +
     (feet == null ? 0 : feet.hashCode) +
     (back == null ? 0 : back.hashCode);
 
   @override
-  String toString() => 'GetWorldCapabilityWearResponseDataPicks[body=$body, legs=$legs, head=$head, feet=$feet, back=$back]';
+  String toString() => 'GetWorldCapabilityWearResponseDataPicks[body=$body, head=$head, legs=$legs, feet=$feet, back=$back]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     if (body != null) {
       json[r'body'] = body;
     }
-    if (legs != null) {
-      json[r'legs'] = legs;
-    }
     if (head != null) {
       json[r'head'] = head;
+    }
+    if (legs != null) {
+      json[r'legs'] = legs;
     }
     if (feet != null) {
       json[r'feet'] = feet;
@@ -78,8 +78,8 @@ class GetWorldCapabilityWearResponseDataPicks {
       final json = value.cast<String, dynamic>();
       return GetWorldCapabilityWearResponseDataPicks(
         body: mapValueOfType<String>(json, r'body'),
-        legs: mapValueOfType<String>(json, r'legs'),
         head: mapValueOfType<String>(json, r'head'),
+        legs: mapValueOfType<String>(json, r'legs'),
         feet: mapValueOfType<String>(json, r'feet'),
         back: mapValueOfType<String>(json, r'back'),
       );

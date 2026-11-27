@@ -188,13 +188,13 @@ class ListVaultMarketAdlPositionsItemKindEnum {
 
   String toJson() => value;
 
-  static const long = ListVaultMarketAdlPositionsItemKindEnum._(r'long');
   static const short = ListVaultMarketAdlPositionsItemKindEnum._(r'short');
+  static const long = ListVaultMarketAdlPositionsItemKindEnum._(r'long');
 
   /// List of all possible values in this [enum][ListVaultMarketAdlPositionsItemKindEnum].
   static const values = <ListVaultMarketAdlPositionsItemKindEnum>[
-    long,
     short,
+    long,
   ];
 
   static ListVaultMarketAdlPositionsItemKindEnum fromJson(dynamic value) =>
@@ -226,8 +226,8 @@ class ListVaultMarketAdlPositionsItemKindEnumTypeTransformer {
   ListVaultMarketAdlPositionsItemKindEnum decode(dynamic data, {bool allowNull}) {
     if (data != null) {
       switch (data.toString()) {
-        case r'long': return ListVaultMarketAdlPositionsItemKindEnum.long;
         case r'short': return ListVaultMarketAdlPositionsItemKindEnum.short;
+        case r'long': return ListVaultMarketAdlPositionsItemKindEnum.long;
         default:
           if (allowNull == false) {
             throw ArgumentError('Unknown enum value to decode: $data');

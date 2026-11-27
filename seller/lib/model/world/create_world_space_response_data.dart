@@ -19,13 +19,13 @@ class CreateWorldSpaceResponseData {
     @required this.updatedAt,
     @required this.status,
     @required this.slug,
+    @required this.venue,
     @required this.hostUserId,
+    this.about,
     this.gateChain,
     this.gateContract,
     this.gateName,
-    @required this.venue,
     @required this.membership,
-    this.about,
   });
 
   String id;
@@ -40,7 +40,11 @@ class CreateWorldSpaceResponseData {
 
   String slug;
 
+  String venue;
+
   String hostUserId;
+
+  String about;
 
   String gateChain;
 
@@ -48,11 +52,7 @@ class CreateWorldSpaceResponseData {
 
   String gateName;
 
-  String venue;
-
   String membership;
-
-  String about;
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is CreateWorldSpaceResponseData &&
@@ -62,13 +62,13 @@ class CreateWorldSpaceResponseData {
      other.updatedAt == updatedAt &&
      other.status == status &&
      other.slug == slug &&
+     other.venue == venue &&
      other.hostUserId == hostUserId &&
+     other.about == about &&
      other.gateChain == gateChain &&
      other.gateContract == gateContract &&
      other.gateName == gateName &&
-     other.venue == venue &&
-     other.membership == membership &&
-     other.about == about;
+     other.membership == membership;
 
   @override
   int get hashCode =>
@@ -79,16 +79,16 @@ class CreateWorldSpaceResponseData {
     (updatedAt == null ? 0 : updatedAt.hashCode) +
     (status == null ? 0 : status.hashCode) +
     (slug == null ? 0 : slug.hashCode) +
+    (venue == null ? 0 : venue.hashCode) +
     (hostUserId == null ? 0 : hostUserId.hashCode) +
+    (about == null ? 0 : about.hashCode) +
     (gateChain == null ? 0 : gateChain.hashCode) +
     (gateContract == null ? 0 : gateContract.hashCode) +
     (gateName == null ? 0 : gateName.hashCode) +
-    (venue == null ? 0 : venue.hashCode) +
-    (membership == null ? 0 : membership.hashCode) +
-    (about == null ? 0 : about.hashCode);
+    (membership == null ? 0 : membership.hashCode);
 
   @override
-  String toString() => 'CreateWorldSpaceResponseData[id=$id, name=$name, createdAt=$createdAt, updatedAt=$updatedAt, status=$status, slug=$slug, hostUserId=$hostUserId, gateChain=$gateChain, gateContract=$gateContract, gateName=$gateName, venue=$venue, membership=$membership, about=$about]';
+  String toString() => 'CreateWorldSpaceResponseData[id=$id, name=$name, createdAt=$createdAt, updatedAt=$updatedAt, status=$status, slug=$slug, venue=$venue, hostUserId=$hostUserId, about=$about, gateChain=$gateChain, gateContract=$gateContract, gateName=$gateName, membership=$membership]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -98,7 +98,11 @@ class CreateWorldSpaceResponseData {
       json[r'updatedAt'] = updatedAt.toUtc().toIso8601String();
       json[r'status'] = status;
       json[r'slug'] = slug;
+      json[r'venue'] = venue;
       json[r'hostUserId'] = hostUserId;
+    if (about != null) {
+      json[r'about'] = about;
+    }
     if (gateChain != null) {
       json[r'gateChain'] = gateChain;
     }
@@ -108,11 +112,7 @@ class CreateWorldSpaceResponseData {
     if (gateName != null) {
       json[r'gateName'] = gateName;
     }
-      json[r'venue'] = venue;
       json[r'membership'] = membership;
-    if (about != null) {
-      json[r'about'] = about;
-    }
     return json;
   }
 
@@ -129,13 +129,13 @@ class CreateWorldSpaceResponseData {
         updatedAt: mapDateTime(json, r'updatedAt', ''),
         status: mapValueOfType<String>(json, r'status'),
         slug: mapValueOfType<String>(json, r'slug'),
+        venue: mapValueOfType<String>(json, r'venue'),
         hostUserId: mapValueOfType<String>(json, r'hostUserId'),
+        about: mapValueOfType<String>(json, r'about'),
         gateChain: mapValueOfType<String>(json, r'gateChain'),
         gateContract: mapValueOfType<String>(json, r'gateContract'),
         gateName: mapValueOfType<String>(json, r'gateName'),
-        venue: mapValueOfType<String>(json, r'venue'),
         membership: mapValueOfType<String>(json, r'membership'),
-        about: mapValueOfType<String>(json, r'about'),
       );
     }
     return null;

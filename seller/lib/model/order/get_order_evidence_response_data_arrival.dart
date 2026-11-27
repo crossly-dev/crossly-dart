@@ -139,18 +139,18 @@ class GetOrderEvidenceResponseDataArrivalStateEnum {
 
   String toJson() => value;
 
-  static const awaiting = GetOrderEvidenceResponseDataArrivalStateEnum._(r'awaiting');
-  static const submitted = GetOrderEvidenceResponseDataArrivalStateEnum._(r'submitted');
   static const declined = GetOrderEvidenceResponseDataArrivalStateEnum._(r'declined');
+  static const submitted = GetOrderEvidenceResponseDataArrivalStateEnum._(r'submitted');
   static const notRequested = GetOrderEvidenceResponseDataArrivalStateEnum._(r'not_requested');
+  static const awaiting = GetOrderEvidenceResponseDataArrivalStateEnum._(r'awaiting');
   static const windowClosed = GetOrderEvidenceResponseDataArrivalStateEnum._(r'window_closed');
 
   /// List of all possible values in this [enum][GetOrderEvidenceResponseDataArrivalStateEnum].
   static const values = <GetOrderEvidenceResponseDataArrivalStateEnum>[
-    awaiting,
-    submitted,
     declined,
+    submitted,
     notRequested,
+    awaiting,
     windowClosed,
   ];
 
@@ -183,10 +183,10 @@ class GetOrderEvidenceResponseDataArrivalStateEnumTypeTransformer {
   GetOrderEvidenceResponseDataArrivalStateEnum decode(dynamic data, {bool allowNull}) {
     if (data != null) {
       switch (data.toString()) {
-        case r'awaiting': return GetOrderEvidenceResponseDataArrivalStateEnum.awaiting;
-        case r'submitted': return GetOrderEvidenceResponseDataArrivalStateEnum.submitted;
         case r'declined': return GetOrderEvidenceResponseDataArrivalStateEnum.declined;
+        case r'submitted': return GetOrderEvidenceResponseDataArrivalStateEnum.submitted;
         case r'not_requested': return GetOrderEvidenceResponseDataArrivalStateEnum.notRequested;
+        case r'awaiting': return GetOrderEvidenceResponseDataArrivalStateEnum.awaiting;
         case r'window_closed': return GetOrderEvidenceResponseDataArrivalStateEnum.windowClosed;
         default:
           if (allowNull == false) {

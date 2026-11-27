@@ -134,18 +134,18 @@ class CreateWeb3OrderFulfillmentBatchResponseFulfillmentsKindEnum {
   String toJson() => value;
 
   static const bundle = CreateWeb3OrderFulfillmentBatchResponseFulfillmentsKindEnum._(r'bundle');
+  static const offer = CreateWeb3OrderFulfillmentBatchResponseFulfillmentsKindEnum._(r'offer');
   static const listing = CreateWeb3OrderFulfillmentBatchResponseFulfillmentsKindEnum._(r'listing');
   static const privateListing = CreateWeb3OrderFulfillmentBatchResponseFulfillmentsKindEnum._(r'private_listing');
-  static const offer = CreateWeb3OrderFulfillmentBatchResponseFulfillmentsKindEnum._(r'offer');
   static const collectionOffer = CreateWeb3OrderFulfillmentBatchResponseFulfillmentsKindEnum._(r'collection_offer');
   static const traitOffer = CreateWeb3OrderFulfillmentBatchResponseFulfillmentsKindEnum._(r'trait_offer');
 
   /// List of all possible values in this [enum][CreateWeb3OrderFulfillmentBatchResponseFulfillmentsKindEnum].
   static const values = <CreateWeb3OrderFulfillmentBatchResponseFulfillmentsKindEnum>[
     bundle,
+    offer,
     listing,
     privateListing,
-    offer,
     collectionOffer,
     traitOffer,
   ];
@@ -180,9 +180,9 @@ class CreateWeb3OrderFulfillmentBatchResponseFulfillmentsKindEnumTypeTransformer
     if (data != null) {
       switch (data.toString()) {
         case r'bundle': return CreateWeb3OrderFulfillmentBatchResponseFulfillmentsKindEnum.bundle;
+        case r'offer': return CreateWeb3OrderFulfillmentBatchResponseFulfillmentsKindEnum.offer;
         case r'listing': return CreateWeb3OrderFulfillmentBatchResponseFulfillmentsKindEnum.listing;
         case r'private_listing': return CreateWeb3OrderFulfillmentBatchResponseFulfillmentsKindEnum.privateListing;
-        case r'offer': return CreateWeb3OrderFulfillmentBatchResponseFulfillmentsKindEnum.offer;
         case r'collection_offer': return CreateWeb3OrderFulfillmentBatchResponseFulfillmentsKindEnum.collectionOffer;
         case r'trait_offer': return CreateWeb3OrderFulfillmentBatchResponseFulfillmentsKindEnum.traitOffer;
         default:

@@ -13,43 +13,43 @@ part of openapi.api;
 class GetVaultMarketMmResponseRulesSpreadCapBps {
   /// Returns a new [GetVaultMarketMmResponseRulesSpreadCapBps] instance.
   GetVaultMarketMmResponseRulesSpreadCapBps({
+    @required this.C,
     @required this.A,
     @required this.B,
-    @required this.C,
     @required this.D,
   });
+
+  num C;
 
   num A;
 
   num B;
 
-  num C;
-
   num D;
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is GetVaultMarketMmResponseRulesSpreadCapBps &&
+     other.C == C &&
      other.A == A &&
      other.B == B &&
-     other.C == C &&
      other.D == D;
 
   @override
   int get hashCode =>
   // ignore: unnecessary_parenthesis
+    (C == null ? 0 : C.hashCode) +
     (A == null ? 0 : A.hashCode) +
     (B == null ? 0 : B.hashCode) +
-    (C == null ? 0 : C.hashCode) +
     (D == null ? 0 : D.hashCode);
 
   @override
-  String toString() => 'GetVaultMarketMmResponseRulesSpreadCapBps[A=$A, B=$B, C=$C, D=$D]';
+  String toString() => 'GetVaultMarketMmResponseRulesSpreadCapBps[C=$C, A=$A, B=$B, D=$D]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
+      json[r'C'] = C;
       json[r'A'] = A;
       json[r'B'] = B;
-      json[r'C'] = C;
       json[r'D'] = D;
     return json;
   }
@@ -61,15 +61,15 @@ class GetVaultMarketMmResponseRulesSpreadCapBps {
     if (value is Map) {
       final json = value.cast<String, dynamic>();
       return GetVaultMarketMmResponseRulesSpreadCapBps(
+        C: json[r'C'] == null
+          ? null
+          : num.parse(json[r'C'].toString()),
         A: json[r'A'] == null
           ? null
           : num.parse(json[r'A'].toString()),
         B: json[r'B'] == null
           ? null
           : num.parse(json[r'B'].toString()),
-        C: json[r'C'] == null
-          ? null
-          : num.parse(json[r'C'].toString()),
         D: json[r'D'] == null
           ? null
           : num.parse(json[r'D'].toString()),

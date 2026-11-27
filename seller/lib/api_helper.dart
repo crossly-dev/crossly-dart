@@ -60,6 +60,18 @@ String parameterToString(dynamic value) {
   if (value is DateTime) {
     return value.toUtc().toIso8601String();
   }
+  if (value is CreateBrandingDropPublishResponseDataConfigAccessModesItem) {
+    return CreateBrandingDropPublishResponseDataConfigAccessModesItemTypeTransformer().encode(value).toString();
+  }
+  if (value is CreateBrandingDropPublishResponseDataConfigWhatKindsItem) {
+    return CreateBrandingDropPublishResponseDataConfigWhatKindsItemTypeTransformer().encode(value).toString();
+  }
+  if (value is CreateDetectedEventRuleReorderResponseDataCandidatePoolStatusesItem) {
+    return CreateDetectedEventRuleReorderResponseDataCandidatePoolStatusesItemTypeTransformer().encode(value).toString();
+  }
+  if (value is CreateDetectedEventRuleReorderResponseDataFilterKindsItem) {
+    return CreateDetectedEventRuleReorderResponseDataFilterKindsItemTypeTransformer().encode(value).toString();
+  }
   if (value is CreateMeTemplateRenderResponseMissingTokensItem) {
     return CreateMeTemplateRenderResponseMissingTokensItemTypeTransformer().encode(value).toString();
   }
@@ -74,6 +86,27 @@ String parameterToString(dynamic value) {
   }
   if (value is GetCbxMeResponseDataScopesItem) {
     return GetCbxMeResponseDataScopesItemTypeTransformer().encode(value).toString();
+  }
+  if (value is GetDiscountHolderResponseDataChannelsItem) {
+    return GetDiscountHolderResponseDataChannelsItemTypeTransformer().encode(value).toString();
+  }
+  if (value is GetEventPolicyResponseDataMatrixAllowedItem) {
+    return GetEventPolicyResponseDataMatrixAllowedItemTypeTransformer().encode(value).toString();
+  }
+  if (value is GetFundingControlResponseDataEffectiveUsesItem) {
+    return GetFundingControlResponseDataEffectiveUsesItemTypeTransformer().encode(value).toString();
+  }
+  if (value is GetFundingControlResponseDataPolicyAllowedUsesItem) {
+    return GetFundingControlResponseDataPolicyAllowedUsesItemTypeTransformer().encode(value).toString();
+  }
+  if (value is GetSandboxResponseSimulateValuesItem) {
+    return GetSandboxResponseSimulateValuesItemTypeTransformer().encode(value).toString();
+  }
+  if (value is GetSearchResponseParsedTypesItem) {
+    return GetSearchResponseParsedTypesItemTypeTransformer().encode(value).toString();
+  }
+  if (value is GetShowroomCatalogResponseDataHoldersFitsItem) {
+    return GetShowroomCatalogResponseDataHoldersFitsItemTypeTransformer().encode(value).toString();
   }
   if (value is GetSpatialEmoteResponseWheelItem) {
     return GetSpatialEmoteResponseWheelItemTypeTransformer().encode(value).toString();
@@ -93,8 +126,20 @@ String parameterToString(dynamic value) {
   if (value is GetSpatialSpaceResponseDataSpacesFacetsItem) {
     return GetSpatialSpaceResponseDataSpacesFacetsItemTypeTransformer().encode(value).toString();
   }
+  if (value is GetSponsoredAdBillingResponseDataAccountRailsEffectiveItem) {
+    return GetSponsoredAdBillingResponseDataAccountRailsEffectiveItemTypeTransformer().encode(value).toString();
+  }
+  if (value is GetSponsoredAdBillingResponseDataFundsRailsEffectiveItem) {
+    return GetSponsoredAdBillingResponseDataFundsRailsEffectiveItemTypeTransformer().encode(value).toString();
+  }
   if (value is GetStallQuoteResponseQuoteRailsItem) {
     return GetStallQuoteResponseQuoteRailsItemTypeTransformer().encode(value).toString();
+  }
+  if (value is GetStorefrontOnboardingResponseRequirementsMissingItem) {
+    return GetStorefrontOnboardingResponseRequirementsMissingItemTypeTransformer().encode(value).toString();
+  }
+  if (value is GetStorefrontProfileResponseDataProfileAllItemsProgramChipsItem) {
+    return GetStorefrontProfileResponseDataProfileAllItemsProgramChipsItemTypeTransformer().encode(value).toString();
   }
   if (value is GetVaultAttestationResponseKindsItem) {
     return GetVaultAttestationResponseKindsItemTypeTransformer().encode(value).toString();
@@ -105,11 +150,29 @@ String parameterToString(dynamic value) {
   if (value is GetVaultMarketUnitStoryResponseBadgesItem) {
     return GetVaultMarketUnitStoryResponseBadgesItemTypeTransformer().encode(value).toString();
   }
+  if (value is GetWorkflowCatalogResponseDataConditionOperatorsAppliesToItem) {
+    return GetWorkflowCatalogResponseDataConditionOperatorsAppliesToItemTypeTransformer().encode(value).toString();
+  }
+  if (value is GetWorldAttendantResponseDataAttendantLanguagesItem) {
+    return GetWorldAttendantResponseDataAttendantLanguagesItemTypeTransformer().encode(value).toString();
+  }
+  if (value is GetWorldAvatarBasicResponseDataOptionalItem) {
+    return GetWorldAvatarBasicResponseDataOptionalItemTypeTransformer().encode(value).toString();
+  }
   if (value is GetWorldAvatarLoadoutResponseDataSlotsItem) {
     return GetWorldAvatarLoadoutResponseDataSlotsItemTypeTransformer().encode(value).toString();
   }
   if (value is GetWorldCapabilityCatalogueResponseDataKindsClientsItem) {
     return GetWorldCapabilityCatalogueResponseDataKindsClientsItemTypeTransformer().encode(value).toString();
+  }
+  if (value is GetWorldConventionExhibitResponseRailsEffectiveItem) {
+    return GetWorldConventionExhibitResponseRailsEffectiveItemTypeTransformer().encode(value).toString();
+  }
+  if (value is GetWorldExperienceTeamResponseDataYouPermissionsItem) {
+    return GetWorldExperienceTeamResponseDataYouPermissionsItemTypeTransformer().encode(value).toString();
+  }
+  if (value is GetWorldGameMineResponseDataTabsItem) {
+    return GetWorldGameMineResponseDataTabsItemTypeTransformer().encode(value).toString();
   }
   if (value is GetWorldGameResponseDataContestsEntryItem) {
     return GetWorldGameResponseDataContestsEntryItemTypeTransformer().encode(value).toString();
@@ -117,11 +180,95 @@ String parameterToString(dynamic value) {
   if (value is GetWorldGameResponseDataPlacesItem) {
     return GetWorldGameResponseDataPlacesItemTypeTransformer().encode(value).toString();
   }
+  if (value is GetWorldPolicyMeResponseDataMatureStepsItem) {
+    return GetWorldPolicyMeResponseDataMatureStepsItemTypeTransformer().encode(value).toString();
+  }
+  if (value is GetWorldPolicyMeResponseDataPlayStepsItem) {
+    return GetWorldPolicyMeResponseDataPlayStepsItemTypeTransformer().encode(value).toString();
+  }
+  if (value is GetWorldRailResponseEffectiveItem) {
+    return GetWorldRailResponseEffectiveItemTypeTransformer().encode(value).toString();
+  }
+  if (value is GetWorldStreetFundResponseDataUnlockedItem) {
+    return GetWorldStreetFundResponseDataUnlockedItemTypeTransformer().encode(value).toString();
+  }
+  if (value is GetWorldStreetOwnedResponseDataFundUnlockedItem) {
+    return GetWorldStreetOwnedResponseDataFundUnlockedItemTypeTransformer().encode(value).toString();
+  }
+  if (value is ListAutomaticDiscountsItemChannelsItem) {
+    return ListAutomaticDiscountsItemChannelsItemTypeTransformer().encode(value).toString();
+  }
+  if (value is ListBrandingDropsItemConfigAccessModesItem) {
+    return ListBrandingDropsItemConfigAccessModesItemTypeTransformer().encode(value).toString();
+  }
+  if (value is ListBrandingDropsItemConfigWhatKindsItem) {
+    return ListBrandingDropsItemConfigWhatKindsItemTypeTransformer().encode(value).toString();
+  }
+  if (value is ListBrandingDropsItemConfigWherePlacementsItem) {
+    return ListBrandingDropsItemConfigWherePlacementsItemTypeTransformer().encode(value).toString();
+  }
+  if (value is ListChannelInventoryItemCapabilitiesOutOfStockActionsItem) {
+    return ListChannelInventoryItemCapabilitiesOutOfStockActionsItemTypeTransformer().encode(value).toString();
+  }
+  if (value is ListDetectedEventEventsItemGuardsHeldItem) {
+    return ListDetectedEventEventsItemGuardsHeldItemTypeTransformer().encode(value).toString();
+  }
+  if (value is ListDiscountCodesItemRulesChannelsItem) {
+    return ListDiscountCodesItemRulesChannelsItemTypeTransformer().encode(value).toString();
+  }
+  if (value is ListDiscountHoldersItemChannelsItem) {
+    return ListDiscountHoldersItemChannelsItemTypeTransformer().encode(value).toString();
+  }
+  if (value is ListProductFeedsItemFormatsItem) {
+    return ListProductFeedsItemFormatsItemTypeTransformer().encode(value).toString();
+  }
+  if (value is ListProductSetsItemFiltersStatusesItem) {
+    return ListProductSetsItemFiltersStatusesItemTypeTransformer().encode(value).toString();
+  }
+  if (value is ListShowroomItemSearchItemBadgesItem) {
+    return ListShowroomItemSearchItemBadgesItemTypeTransformer().encode(value).toString();
+  }
+  if (value is ListSponsoredAdCampaignsItemPlacementsItem) {
+    return ListSponsoredAdCampaignsItemPlacementsItemTypeTransformer().encode(value).toString();
+  }
+  if (value is ListWalletDefaultsItemFamiliesItem) {
+    return ListWalletDefaultsItemFamiliesItemTypeTransformer().encode(value).toString();
+  }
+  if (value is ListWalletDefaultsItemRefKindsItem) {
+    return ListWalletDefaultsItemRefKindsItemTypeTransformer().encode(value).toString();
+  }
   if (value is ListWorldDecorCatalogueItemBuyWithItem) {
     return ListWorldDecorCatalogueItemBuyWithItemTypeTransformer().encode(value).toString();
   }
+  if (value is ListWorldExperienceExperimentsItemTargetingPlatformsItem) {
+    return ListWorldExperienceExperimentsItemTargetingPlatformsItemTypeTransformer().encode(value).toString();
+  }
   if (value is ListWorldGamesItemPlacesItem) {
     return ListWorldGamesItemPlacesItemTypeTransformer().encode(value).toString();
+  }
+  if (value is ListWorldTransferRequestsItemActionsItem) {
+    return ListWorldTransferRequestsItemActionsItemTypeTransformer().encode(value).toString();
+  }
+  if (value is SponsoredAdCampaignResponseDataPlacementsItem) {
+    return SponsoredAdCampaignResponseDataPlacementsItemTypeTransformer().encode(value).toString();
+  }
+  if (value is UpdateDeveloperAppListingResponseDataDecisionChangedItem) {
+    return UpdateDeveloperAppListingResponseDataDecisionChangedItemTypeTransformer().encode(value).toString();
+  }
+  if (value is UpdateDeveloperAppProfileResponseDataDecisionChangedItem) {
+    return UpdateDeveloperAppProfileResponseDataDecisionChangedItemTypeTransformer().encode(value).toString();
+  }
+  if (value is UpdateShowroom2ResponseDataItemsBadgesItem) {
+    return UpdateShowroom2ResponseDataItemsBadgesItemTypeTransformer().encode(value).toString();
+  }
+  if (value is UpdateShowroom2ResponseDataSettingsGroupByItem) {
+    return UpdateShowroom2ResponseDataSettingsGroupByItemTypeTransformer().encode(value).toString();
+  }
+  if (value is UpdateShowroom2ResponseDataSettingsSortByItem) {
+    return UpdateShowroom2ResponseDataSettingsSortByItemTypeTransformer().encode(value).toString();
+  }
+  if (value is UpdateWorldAttendantResponseDataLanguagesItem) {
+    return UpdateWorldAttendantResponseDataLanguagesItemTypeTransformer().encode(value).toString();
   }
   if (value is UpdateWorldEmoteWheelResponseDataWheelItem) {
     return UpdateWorldEmoteWheelResponseDataWheelItemTypeTransformer().encode(value).toString();

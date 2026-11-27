@@ -164,13 +164,13 @@ class ListVaultMarketValuationStatementsItemPurposeEnum {
 
   String toJson() => value;
 
-  static const insurance = ListVaultMarketValuationStatementsItemPurposeEnum._(r'insurance');
   static const appraisal = ListVaultMarketValuationStatementsItemPurposeEnum._(r'appraisal');
+  static const insurance = ListVaultMarketValuationStatementsItemPurposeEnum._(r'insurance');
 
   /// List of all possible values in this [enum][ListVaultMarketValuationStatementsItemPurposeEnum].
   static const values = <ListVaultMarketValuationStatementsItemPurposeEnum>[
-    insurance,
     appraisal,
+    insurance,
   ];
 
   static ListVaultMarketValuationStatementsItemPurposeEnum fromJson(dynamic value) =>
@@ -202,8 +202,8 @@ class ListVaultMarketValuationStatementsItemPurposeEnumTypeTransformer {
   ListVaultMarketValuationStatementsItemPurposeEnum decode(dynamic data, {bool allowNull}) {
     if (data != null) {
       switch (data.toString()) {
-        case r'insurance': return ListVaultMarketValuationStatementsItemPurposeEnum.insurance;
         case r'appraisal': return ListVaultMarketValuationStatementsItemPurposeEnum.appraisal;
+        case r'insurance': return ListVaultMarketValuationStatementsItemPurposeEnum.insurance;
         default:
           if (allowNull == false) {
             throw ArgumentError('Unknown enum value to decode: $data');

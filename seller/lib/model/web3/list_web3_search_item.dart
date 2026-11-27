@@ -120,21 +120,21 @@ class ListWeb3SearchItemChainEnum {
 
   String toJson() => value;
 
-  static const solana = ListWeb3SearchItemChainEnum._(r'solana');
   static const ethereum = ListWeb3SearchItemChainEnum._(r'ethereum');
   static const base = ListWeb3SearchItemChainEnum._(r'base');
   static const polygon = ListWeb3SearchItemChainEnum._(r'polygon');
   static const arbitrum = ListWeb3SearchItemChainEnum._(r'arbitrum');
   static const optimism = ListWeb3SearchItemChainEnum._(r'optimism');
+  static const solana = ListWeb3SearchItemChainEnum._(r'solana');
 
   /// List of all possible values in this [enum][ListWeb3SearchItemChainEnum].
   static const values = <ListWeb3SearchItemChainEnum>[
-    solana,
     ethereum,
     base,
     polygon,
     arbitrum,
     optimism,
+    solana,
   ];
 
   static ListWeb3SearchItemChainEnum fromJson(dynamic value) =>
@@ -166,12 +166,12 @@ class ListWeb3SearchItemChainEnumTypeTransformer {
   ListWeb3SearchItemChainEnum decode(dynamic data, {bool allowNull}) {
     if (data != null) {
       switch (data.toString()) {
-        case r'solana': return ListWeb3SearchItemChainEnum.solana;
         case r'ethereum': return ListWeb3SearchItemChainEnum.ethereum;
         case r'base': return ListWeb3SearchItemChainEnum.base;
         case r'polygon': return ListWeb3SearchItemChainEnum.polygon;
         case r'arbitrum': return ListWeb3SearchItemChainEnum.arbitrum;
         case r'optimism': return ListWeb3SearchItemChainEnum.optimism;
+        case r'solana': return ListWeb3SearchItemChainEnum.solana;
         default:
           if (allowNull == false) {
             throw ArgumentError('Unknown enum value to decode: $data');

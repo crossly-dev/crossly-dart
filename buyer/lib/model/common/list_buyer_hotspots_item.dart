@@ -13,82 +13,82 @@ part of openapi.api;
 class ListBuyerHotspotsItem {
   /// Returns a new [ListBuyerHotspotsItem] instance.
   ListBuyerHotspotsItem({
-    @required this.available,
-    this.label,
-    this.title,
     @required this.platformListingId,
-    this.slug,
-    @required this.priceCents,
-    this.imageUrl,
     @required this.x,
     @required this.y,
+    this.label,
+    this.slug,
+    this.title,
+    @required this.priceCents,
+    this.imageUrl,
+    @required this.available,
   });
 
-  bool available;
-
-  String label;
-
-  String title;
-
   String platformListingId;
-
-  String slug;
-
-  num priceCents;
-
-  String imageUrl;
 
   num x;
 
   num y;
 
+  String label;
+
+  String slug;
+
+  String title;
+
+  num priceCents;
+
+  String imageUrl;
+
+  bool available;
+
   @override
   bool operator ==(Object other) => identical(this, other) || other is ListBuyerHotspotsItem &&
-     other.available == available &&
-     other.label == label &&
-     other.title == title &&
      other.platformListingId == platformListingId &&
+     other.x == x &&
+     other.y == y &&
+     other.label == label &&
      other.slug == slug &&
+     other.title == title &&
      other.priceCents == priceCents &&
      other.imageUrl == imageUrl &&
-     other.x == x &&
-     other.y == y;
+     other.available == available;
 
   @override
   int get hashCode =>
   // ignore: unnecessary_parenthesis
-    (available == null ? 0 : available.hashCode) +
-    (label == null ? 0 : label.hashCode) +
-    (title == null ? 0 : title.hashCode) +
     (platformListingId == null ? 0 : platformListingId.hashCode) +
+    (x == null ? 0 : x.hashCode) +
+    (y == null ? 0 : y.hashCode) +
+    (label == null ? 0 : label.hashCode) +
     (slug == null ? 0 : slug.hashCode) +
+    (title == null ? 0 : title.hashCode) +
     (priceCents == null ? 0 : priceCents.hashCode) +
     (imageUrl == null ? 0 : imageUrl.hashCode) +
-    (x == null ? 0 : x.hashCode) +
-    (y == null ? 0 : y.hashCode);
+    (available == null ? 0 : available.hashCode);
 
   @override
-  String toString() => 'ListBuyerHotspotsItem[available=$available, label=$label, title=$title, platformListingId=$platformListingId, slug=$slug, priceCents=$priceCents, imageUrl=$imageUrl, x=$x, y=$y]';
+  String toString() => 'ListBuyerHotspotsItem[platformListingId=$platformListingId, x=$x, y=$y, label=$label, slug=$slug, title=$title, priceCents=$priceCents, imageUrl=$imageUrl, available=$available]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-      json[r'available'] = available;
+      json[r'platformListingId'] = platformListingId;
+      json[r'x'] = x;
+      json[r'y'] = y;
     if (label != null) {
       json[r'label'] = label;
     }
-    if (title != null) {
-      json[r'title'] = title;
-    }
-      json[r'platformListingId'] = platformListingId;
     if (slug != null) {
       json[r'slug'] = slug;
+    }
+    if (title != null) {
+      json[r'title'] = title;
     }
       json[r'priceCents'] = priceCents;
     if (imageUrl != null) {
       json[r'imageUrl'] = imageUrl;
     }
-      json[r'x'] = x;
-      json[r'y'] = y;
+      json[r'available'] = available;
     return json;
   }
 
@@ -99,21 +99,21 @@ class ListBuyerHotspotsItem {
     if (value is Map) {
       final json = value.cast<String, dynamic>();
       return ListBuyerHotspotsItem(
-        available: mapValueOfType<bool>(json, r'available'),
-        label: mapValueOfType<String>(json, r'label'),
-        title: mapValueOfType<String>(json, r'title'),
         platformListingId: mapValueOfType<String>(json, r'platformListingId'),
-        slug: mapValueOfType<String>(json, r'slug'),
-        priceCents: json[r'priceCents'] == null
-          ? null
-          : num.parse(json[r'priceCents'].toString()),
-        imageUrl: mapValueOfType<String>(json, r'imageUrl'),
         x: json[r'x'] == null
           ? null
           : num.parse(json[r'x'].toString()),
         y: json[r'y'] == null
           ? null
           : num.parse(json[r'y'].toString()),
+        label: mapValueOfType<String>(json, r'label'),
+        slug: mapValueOfType<String>(json, r'slug'),
+        title: mapValueOfType<String>(json, r'title'),
+        priceCents: json[r'priceCents'] == null
+          ? null
+          : num.parse(json[r'priceCents'].toString()),
+        imageUrl: mapValueOfType<String>(json, r'imageUrl'),
+        available: mapValueOfType<bool>(json, r'available'),
       );
     }
     return null;

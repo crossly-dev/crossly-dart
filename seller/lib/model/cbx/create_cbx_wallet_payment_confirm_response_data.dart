@@ -175,14 +175,14 @@ class CreateCbxWalletPaymentConfirmResponseDataReleaseDecisionEnum {
 
   String toJson() => value;
 
-  static const review = CreateCbxWalletPaymentConfirmResponseDataReleaseDecisionEnum._(r'review');
   static const release = CreateCbxWalletPaymentConfirmResponseDataReleaseDecisionEnum._(r'release');
+  static const review = CreateCbxWalletPaymentConfirmResponseDataReleaseDecisionEnum._(r'review');
   static const refuse = CreateCbxWalletPaymentConfirmResponseDataReleaseDecisionEnum._(r'refuse');
 
   /// List of all possible values in this [enum][CreateCbxWalletPaymentConfirmResponseDataReleaseDecisionEnum].
   static const values = <CreateCbxWalletPaymentConfirmResponseDataReleaseDecisionEnum>[
-    review,
     release,
+    review,
     refuse,
   ];
 
@@ -215,8 +215,8 @@ class CreateCbxWalletPaymentConfirmResponseDataReleaseDecisionEnumTypeTransforme
   CreateCbxWalletPaymentConfirmResponseDataReleaseDecisionEnum decode(dynamic data, {bool allowNull}) {
     if (data != null) {
       switch (data.toString()) {
-        case r'review': return CreateCbxWalletPaymentConfirmResponseDataReleaseDecisionEnum.review;
         case r'release': return CreateCbxWalletPaymentConfirmResponseDataReleaseDecisionEnum.release;
+        case r'review': return CreateCbxWalletPaymentConfirmResponseDataReleaseDecisionEnum.review;
         case r'refuse': return CreateCbxWalletPaymentConfirmResponseDataReleaseDecisionEnum.refuse;
         default:
           if (allowNull == false) {

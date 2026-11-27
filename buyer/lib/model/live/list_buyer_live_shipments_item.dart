@@ -14,87 +14,87 @@ class ListBuyerLiveShipmentsItem {
   /// Returns a new [ListBuyerLiveShipmentsItem] instance.
   ListBuyerLiveShipmentsItem({
     @required this.id,
-    @required this.status,
-    this.orders = const [],
-    this.carrier,
-    this.trackingNumber,
-    this.labelUrl,
     @required this.streamId,
-    @required this.refundedPostageCents,
     @required this.streamTitle,
+    @required this.status,
     this.buyerName,
+    this.trackingNumber,
+    this.carrier,
+    this.labelUrl,
+    @required this.refundedPostageCents,
+    this.orders = const [],
   });
 
   String id;
 
-  String status;
-
-  List<ListBuyerLiveShipmentsItemOrders> orders;
-
-  String carrier;
-
-  String trackingNumber;
-
-  String labelUrl;
-
   String streamId;
-
-  num refundedPostageCents;
 
   String streamTitle;
 
+  String status;
+
   String buyerName;
+
+  String trackingNumber;
+
+  String carrier;
+
+  String labelUrl;
+
+  num refundedPostageCents;
+
+  List<ListBuyerLiveShipmentsItemOrders> orders;
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is ListBuyerLiveShipmentsItem &&
      other.id == id &&
-     other.status == status &&
-     other.orders == orders &&
-     other.carrier == carrier &&
-     other.trackingNumber == trackingNumber &&
-     other.labelUrl == labelUrl &&
      other.streamId == streamId &&
-     other.refundedPostageCents == refundedPostageCents &&
      other.streamTitle == streamTitle &&
-     other.buyerName == buyerName;
+     other.status == status &&
+     other.buyerName == buyerName &&
+     other.trackingNumber == trackingNumber &&
+     other.carrier == carrier &&
+     other.labelUrl == labelUrl &&
+     other.refundedPostageCents == refundedPostageCents &&
+     other.orders == orders;
 
   @override
   int get hashCode =>
   // ignore: unnecessary_parenthesis
     (id == null ? 0 : id.hashCode) +
-    (status == null ? 0 : status.hashCode) +
-    (orders == null ? 0 : orders.hashCode) +
-    (carrier == null ? 0 : carrier.hashCode) +
-    (trackingNumber == null ? 0 : trackingNumber.hashCode) +
-    (labelUrl == null ? 0 : labelUrl.hashCode) +
     (streamId == null ? 0 : streamId.hashCode) +
-    (refundedPostageCents == null ? 0 : refundedPostageCents.hashCode) +
     (streamTitle == null ? 0 : streamTitle.hashCode) +
-    (buyerName == null ? 0 : buyerName.hashCode);
+    (status == null ? 0 : status.hashCode) +
+    (buyerName == null ? 0 : buyerName.hashCode) +
+    (trackingNumber == null ? 0 : trackingNumber.hashCode) +
+    (carrier == null ? 0 : carrier.hashCode) +
+    (labelUrl == null ? 0 : labelUrl.hashCode) +
+    (refundedPostageCents == null ? 0 : refundedPostageCents.hashCode) +
+    (orders == null ? 0 : orders.hashCode);
 
   @override
-  String toString() => 'ListBuyerLiveShipmentsItem[id=$id, status=$status, orders=$orders, carrier=$carrier, trackingNumber=$trackingNumber, labelUrl=$labelUrl, streamId=$streamId, refundedPostageCents=$refundedPostageCents, streamTitle=$streamTitle, buyerName=$buyerName]';
+  String toString() => 'ListBuyerLiveShipmentsItem[id=$id, streamId=$streamId, streamTitle=$streamTitle, status=$status, buyerName=$buyerName, trackingNumber=$trackingNumber, carrier=$carrier, labelUrl=$labelUrl, refundedPostageCents=$refundedPostageCents, orders=$orders]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
       json[r'id'] = id;
+      json[r'streamId'] = streamId;
+      json[r'streamTitle'] = streamTitle;
       json[r'status'] = status;
-      json[r'orders'] = orders;
-    if (carrier != null) {
-      json[r'carrier'] = carrier;
+    if (buyerName != null) {
+      json[r'buyerName'] = buyerName;
     }
     if (trackingNumber != null) {
       json[r'trackingNumber'] = trackingNumber;
     }
+    if (carrier != null) {
+      json[r'carrier'] = carrier;
+    }
     if (labelUrl != null) {
       json[r'labelUrl'] = labelUrl;
     }
-      json[r'streamId'] = streamId;
       json[r'refundedPostageCents'] = refundedPostageCents;
-      json[r'streamTitle'] = streamTitle;
-    if (buyerName != null) {
-      json[r'buyerName'] = buyerName;
-    }
+      json[r'orders'] = orders;
     return json;
   }
 
@@ -106,17 +106,17 @@ class ListBuyerLiveShipmentsItem {
       final json = value.cast<String, dynamic>();
       return ListBuyerLiveShipmentsItem(
         id: mapValueOfType<String>(json, r'id'),
-        status: mapValueOfType<String>(json, r'status'),
-        orders: ListBuyerLiveShipmentsItemOrders.listFromJson(json[r'orders']),
-        carrier: mapValueOfType<String>(json, r'carrier'),
-        trackingNumber: mapValueOfType<String>(json, r'trackingNumber'),
-        labelUrl: mapValueOfType<String>(json, r'labelUrl'),
         streamId: mapValueOfType<String>(json, r'streamId'),
+        streamTitle: mapValueOfType<String>(json, r'streamTitle'),
+        status: mapValueOfType<String>(json, r'status'),
+        buyerName: mapValueOfType<String>(json, r'buyerName'),
+        trackingNumber: mapValueOfType<String>(json, r'trackingNumber'),
+        carrier: mapValueOfType<String>(json, r'carrier'),
+        labelUrl: mapValueOfType<String>(json, r'labelUrl'),
         refundedPostageCents: json[r'refundedPostageCents'] == null
           ? null
           : num.parse(json[r'refundedPostageCents'].toString()),
-        streamTitle: mapValueOfType<String>(json, r'streamTitle'),
-        buyerName: mapValueOfType<String>(json, r'buyerName'),
+        orders: ListBuyerLiveShipmentsItemOrders.listFromJson(json[r'orders']),
       );
     }
     return null;

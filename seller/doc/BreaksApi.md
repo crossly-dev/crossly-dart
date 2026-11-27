@@ -62,7 +62,7 @@ This endpoint does not need any parameter.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
 # **createBreakCancel**
-> CreateBreakCancelResponse createBreakCancel(id)
+> UpdateGroupBuyResponse createBreakCancel(id)
 
 Cancel a break before any spot is paid for; after that, refund those orders instead (409).
 
@@ -95,7 +95,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**CreateBreakCancelResponse**
+**UpdateGroupBuyResponse**
 
 ### Authorization
 
@@ -156,7 +156,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
 # **createBreakOpened**
-> CreateBreakCancelResponse createBreakOpened(id)
+> UpdateGroupBuyResponse createBreakOpened(id)
 
 Mark the product opened on stream.
 
@@ -189,7 +189,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**CreateBreakCancelResponse**
+**UpdateGroupBuyResponse**
 
 ### Authorization
 
@@ -203,7 +203,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
 # **createBreakSpotHit**
-> CreateBreakCancelResponse createBreakSpotHit(id, spotId)
+> UpdateGroupBuyResponse createBreakSpotHit(id, spotId)
 
 Record what a spot pulled.
 
@@ -238,7 +238,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**CreateBreakCancelResponse**
+**UpdateGroupBuyResponse**
 
 ### Authorization
 

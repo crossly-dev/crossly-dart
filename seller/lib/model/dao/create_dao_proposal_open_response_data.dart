@@ -32,6 +32,8 @@ class CreateDaoProposalOpenResponseData {
     this.talliedAt,
     this.vetoedReason,
     this.charityGoalId,
+    @required this.proposalKind,
+    this.params,
     @required this.createdAt,
   });
 
@@ -73,6 +75,10 @@ class CreateDaoProposalOpenResponseData {
 
   String charityGoalId;
 
+  String proposalKind;
+
+  Map<String, Object> params;
+
   String createdAt;
 
   @override
@@ -96,6 +102,8 @@ class CreateDaoProposalOpenResponseData {
      other.talliedAt == talliedAt &&
      other.vetoedReason == vetoedReason &&
      other.charityGoalId == charityGoalId &&
+     other.proposalKind == proposalKind &&
+     other.params == params &&
      other.createdAt == createdAt;
 
   @override
@@ -120,10 +128,12 @@ class CreateDaoProposalOpenResponseData {
     (talliedAt == null ? 0 : talliedAt.hashCode) +
     (vetoedReason == null ? 0 : vetoedReason.hashCode) +
     (charityGoalId == null ? 0 : charityGoalId.hashCode) +
+    (proposalKind == null ? 0 : proposalKind.hashCode) +
+    (params == null ? 0 : params.hashCode) +
     (createdAt == null ? 0 : createdAt.hashCode);
 
   @override
-  String toString() => 'CreateDaoProposalOpenResponseData[eligibleVoters=$eligibleVoters, id=$id, title=$title, body=$body, beneficiaryKind=$beneficiaryKind, beneficiaryNote=$beneficiaryNote, requestedBaseUnits=$requestedBaseUnits, status=$status, totalVotingPower=$totalVotingPower, powerFor=$powerFor, powerAgainst=$powerAgainst, powerAbstain=$powerAbstain, quorumBps=$quorumBps, passThresholdBps=$passThresholdBps, opensAt=$opensAt, closesAt=$closesAt, talliedAt=$talliedAt, vetoedReason=$vetoedReason, charityGoalId=$charityGoalId, createdAt=$createdAt]';
+  String toString() => 'CreateDaoProposalOpenResponseData[eligibleVoters=$eligibleVoters, id=$id, title=$title, body=$body, beneficiaryKind=$beneficiaryKind, beneficiaryNote=$beneficiaryNote, requestedBaseUnits=$requestedBaseUnits, status=$status, totalVotingPower=$totalVotingPower, powerFor=$powerFor, powerAgainst=$powerAgainst, powerAbstain=$powerAbstain, quorumBps=$quorumBps, passThresholdBps=$passThresholdBps, opensAt=$opensAt, closesAt=$closesAt, talliedAt=$talliedAt, vetoedReason=$vetoedReason, charityGoalId=$charityGoalId, proposalKind=$proposalKind, params=$params, createdAt=$createdAt]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -159,6 +169,10 @@ class CreateDaoProposalOpenResponseData {
     }
     if (charityGoalId != null) {
       json[r'charityGoalId'] = charityGoalId;
+    }
+      json[r'proposalKind'] = proposalKind;
+    if (params != null) {
+      json[r'params'] = params;
     }
       json[r'createdAt'] = createdAt;
     return json;
@@ -196,6 +210,8 @@ class CreateDaoProposalOpenResponseData {
         talliedAt: mapValueOfType<String>(json, r'talliedAt'),
         vetoedReason: mapValueOfType<String>(json, r'vetoedReason'),
         charityGoalId: mapValueOfType<String>(json, r'charityGoalId'),
+        proposalKind: mapValueOfType<String>(json, r'proposalKind'),
+        params: mapValueOfType<Map<String, Object>>(json, r'params'),
         createdAt: mapValueOfType<String>(json, r'createdAt'),
       );
     }

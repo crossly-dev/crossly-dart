@@ -638,6 +638,98 @@ class VaultMarketsApi {
     return Future<OkResponse>.value();
   }
 
+  /// Pause Auto-buy with payouts: the budget and want list stay; no payouts are counted and nothing is bought.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  Future<Response> createVaultMarketAutoBuyPauseWithHttpInfo() async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/vault-markets/auto-buy/pause';
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'POST',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Pause Auto-buy with payouts: the budget and want list stay; no payouts are counted and nothing is bought.
+  Future<CreateVaultMarketAutoBuyPauseResponse> createVaultMarketAutoBuyPause() async {
+    final response = await createVaultMarketAutoBuyPauseWithHttpInfo();
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'CreateVaultMarketAutoBuyPauseResponse',) as CreateVaultMarketAutoBuyPauseResponse;
+    
+    }
+    return Future<CreateVaultMarketAutoBuyPauseResponse>.value();
+  }
+
+  /// Resume Auto-buy with payouts: payouts released from now on count.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  Future<Response> createVaultMarketAutoBuyResumeWithHttpInfo() async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/vault-markets/auto-buy/resume';
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'POST',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Resume Auto-buy with payouts: payouts released from now on count.
+  Future<CreateVaultMarketAutoBuyResumeResponse> createVaultMarketAutoBuyResume() async {
+    final response = await createVaultMarketAutoBuyResumeWithHttpInfo();
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'CreateVaultMarketAutoBuyResumeResponse',) as CreateVaultMarketAutoBuyResumeResponse;
+    
+    }
+    return Future<CreateVaultMarketAutoBuyResumeResponse>.value();
+  }
+
   /// Place a block buy for an entity: one order booked to the first sub-account in `plan` (it pays from its custodian account), split across every sub-account in the plan at the average price, fees included, once it is done and the custodian confirmed each payment. Each share's cash moves between the entity's own custodian accounts; its units move only after that settles. Every sub-account must be one you may trade, and its share must fit its limits.
   ///
   /// Note: This method returns the HTTP [Response].
@@ -4866,6 +4958,1370 @@ class VaultMarketsApi {
     return Future<CreateVaultMarketOpeningWaitlistResponse>.value();
   }
 
+  /// Place a strategy: 2 to 4 legs on one underlying with ratios, a quantity (units, three decimals) and ONE signed net limit per unit (+ the most you pay, - the least credit you take). Margined on the combined scenario loss of all its legs; matched against the combo book, then the legs' own books; every leg fills at once or none does. Crossly venue only (409 combos_self_venue_only on the partner venue).
+  ///
+  /// Note: This method returns the HTTP [Response].
+  Future<Response> createVaultMarketOptionComboWithHttpInfo() async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/vault-markets/options/combos';
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'POST',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Place a strategy: 2 to 4 legs on one underlying with ratios, a quantity (units, three decimals) and ONE signed net limit per unit (+ the most you pay, - the least credit you take). Margined on the combined scenario loss of all its legs; matched against the combo book, then the legs' own books; every leg fills at once or none does. Crossly venue only (409 combos_self_venue_only on the partner venue).
+  Future<CreateVaultMarketOptionComboResponse> createVaultMarketOptionCombo() async {
+    final response = await createVaultMarketOptionComboWithHttpInfo();
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'CreateVaultMarketOptionComboResponse',) as CreateVaultMarketOptionComboResponse;
+    
+    }
+    return Future<CreateVaultMarketOptionComboResponse>.value();
+  }
+
+  /// Cancel a working strategy.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<Response> createVaultMarketOptionComboCancelWithHttpInfo(String id,) async {
+    // Verify required params are set.
+    if (id == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: id');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/vault-markets/options/combos/{id}/cancel'
+      .replaceAll('{id}', id);
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'POST',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Cancel a working strategy.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<ListVaultMarketOptionCombosItem> createVaultMarketOptionComboCancel(String id,) async {
+    final response = await createVaultMarketOptionComboCancelWithHttpInfo(id,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'ListVaultMarketOptionCombosItem',) as ListVaultMarketOptionCombosItem;
+    
+    }
+    return Future<ListVaultMarketOptionCombosItem>.value();
+  }
+
+  /// Ask makers for a firm net price on a whole strategy (legs, quantity, an optional limit that is never shown). Crossly venue only.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  Future<Response> createVaultMarketOptionComboRfqWithHttpInfo() async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/vault-markets/options/combos/rfq';
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'POST',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Ask makers for a firm net price on a whole strategy (legs, quantity, an optional limit that is never shown). Crossly venue only.
+  Future<CreateVaultMarketOptionComboRfqResponse> createVaultMarketOptionComboRfq() async {
+    final response = await createVaultMarketOptionComboRfqWithHttpInfo();
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'CreateVaultMarketOptionComboRfqResponse',) as CreateVaultMarketOptionComboRfqResponse;
+    
+    }
+    return Future<CreateVaultMarketOptionComboRfqResponse>.value();
+  }
+
+  /// Take a live, firm answer: both strategies go through the normal path (margin, pre-trade risk), every leg at once.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<Response> createVaultMarketOptionComboRfqAcceptWithHttpInfo(String id,) async {
+    // Verify required params are set.
+    if (id == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: id');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/vault-markets/options/combos/rfq/{id}/accept'
+      .replaceAll('{id}', id);
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'POST',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Take a live, firm answer: both strategies go through the normal path (margin, pre-trade risk), every leg at once.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<CreateVaultMarketOptionComboRfqAcceptResponse> createVaultMarketOptionComboRfqAccept(String id,) async {
+    final response = await createVaultMarketOptionComboRfqAcceptWithHttpInfo(id,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'CreateVaultMarketOptionComboRfqAcceptResponse',) as CreateVaultMarketOptionComboRfqAcceptResponse;
+    
+    }
+    return Future<CreateVaultMarketOptionComboRfqAcceptResponse>.value();
+  }
+
+  /// Cancel your open strategy quote request.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<Response> createVaultMarketOptionComboRfqCancelWithHttpInfo(String id,) async {
+    // Verify required params are set.
+    if (id == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: id');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/vault-markets/options/combos/rfq/{id}/cancel'
+      .replaceAll('{id}', id);
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'POST',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Cancel your open strategy quote request.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<IdStatusResponse> createVaultMarketOptionComboRfqCancel(String id,) async {
+    final response = await createVaultMarketOptionComboRfqCancelWithHttpInfo(id,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'IdStatusResponse',) as IdStatusResponse;
+    
+    }
+    return Future<IdStatusResponse>.value();
+  }
+
+  /// Answer a strategy quote request with a firm net price per unit in the canonical terms, good for 60 seconds; a new answer replaces your last.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<Response> createVaultMarketOptionComboRfqRespondWithHttpInfo(String id,) async {
+    // Verify required params are set.
+    if (id == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: id');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/vault-markets/options/combos/rfq/{id}/respond'
+      .replaceAll('{id}', id);
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'POST',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Answer a strategy quote request with a firm net price per unit in the canonical terms, good for 60 seconds; a new answer replaces your last.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<CreateVaultMarketOptionRfqRespondResponse> createVaultMarketOptionComboRfqRespond(String id,) async {
+    final response = await createVaultMarketOptionComboRfqRespondWithHttpInfo(id,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'CreateVaultMarketOptionRfqRespondResponse',) as CreateVaultMarketOptionRfqRespondResponse;
+    
+    }
+    return Future<CreateVaultMarketOptionRfqRespondResponse>.value();
+  }
+
+  /// Withdraw your live answer to a strategy quote request.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<Response> createVaultMarketOptionComboRfqResponseWithdrawWithHttpInfo(String id,) async {
+    // Verify required params are set.
+    if (id == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: id');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/vault-markets/options/combos/rfq/responses/{id}/withdraw'
+      .replaceAll('{id}', id);
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'POST',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Withdraw your live answer to a strategy quote request.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<IdStatusResponse> createVaultMarketOptionComboRfqResponseWithdraw(String id,) async {
+    final response = await createVaultMarketOptionComboRfqResponseWithdrawWithHttpInfo(id,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'IdStatusResponse',) as IdStatusResponse;
+    
+    }
+    return Future<IdStatusResponse>.value();
+  }
+
+  /// Write a covered call: lock a stored vault unit (`vaultItemId`) as collateral and sell up to one call on its own key (`contractId`, `quantity` <= 1) at a price or an implied vol. The unit cannot be sold, moved, lent or withdrawn until the call is bought back or expires; if assigned you pay cash, or the unit sells at the vault auction to cover.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  Future<Response> createVaultMarketOptionCoveredCallWithHttpInfo() async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/vault-markets/options/covered-calls';
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'POST',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Write a covered call: lock a stored vault unit (`vaultItemId`) as collateral and sell up to one call on its own key (`contractId`, `quantity` <= 1) at a price or an implied vol. The unit cannot be sold, moved, lent or withdrawn until the call is bought back or expires; if assigned you pay cash, or the unit sells at the vault auction to cover.
+  Future<CreateVaultMarketOptionCoveredCallResponse> createVaultMarketOptionCoveredCall() async {
+    final response = await createVaultMarketOptionCoveredCallWithHttpInfo();
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'CreateVaultMarketOptionCoveredCallResponse',) as CreateVaultMarketOptionCoveredCallResponse;
+    
+    }
+    return Future<CreateVaultMarketOptionCoveredCallResponse>.value();
+  }
+
+  /// Free a covered call's vault unit once the call it covers is closed (or covered by other units).
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<Response> createVaultMarketOptionCoveredCallReleaseWithHttpInfo(String id,) async {
+    // Verify required params are set.
+    if (id == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: id');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/vault-markets/options/covered-calls/{id}/release'
+      .replaceAll('{id}', id);
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'POST',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Free a covered call's vault unit once the call it covers is closed (or covered by other units).
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<CreateVaultMarketOptionCoveredCallReleaseResponse> createVaultMarketOptionCoveredCallRelease(String id,) async {
+    final response = await createVaultMarketOptionCoveredCallReleaseWithHttpInfo(id,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'CreateVaultMarketOptionCoveredCallReleaseResponse',) as CreateVaultMarketOptionCoveredCallReleaseResponse;
+    
+    }
+    return Future<CreateVaultMarketOptionCoveredCallReleaseResponse>.value();
+  }
+
+  /// Keep your option quotes alive (cancel-on-disconnect pulls them after 30 s without a heartbeat).
+  ///
+  /// Note: This method returns the HTTP [Response].
+  Future<Response> createVaultMarketOptionMmHeartbeatWithHttpInfo() async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/vault-markets/options/mm/heartbeat';
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'POST',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Keep your option quotes alive (cancel-on-disconnect pulls them after 30 s without a heartbeat).
+  Future<CreateVaultMarketOptionMmHeartbeatResponse> createVaultMarketOptionMmHeartbeat() async {
+    final response = await createVaultMarketOptionMmHeartbeatWithHttpInfo();
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'CreateVaultMarketOptionMmHeartbeatResponse',) as CreateVaultMarketOptionMmHeartbeatResponse;
+    
+    }
+    return Future<CreateVaultMarketOptionMmHeartbeatResponse>.value();
+  }
+
+  /// Set (replace) a two-sided quote on an option contract: `bid` and / or `ask` each { priceCents, quantity in contracts }, posted as post-only GTC orders on the Crossly venue. Market-maker protection counts their fills; a quote inside 20% of its mid earns liquidity rewards (CBX).
+  ///
+  /// Note: This method returns the HTTP [Response].
+  Future<Response> createVaultMarketOptionMmQuoteWithHttpInfo() async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/vault-markets/options/mm/quotes';
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'POST',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Set (replace) a two-sided quote on an option contract: `bid` and / or `ask` each { priceCents, quantity in contracts }, posted as post-only GTC orders on the Crossly venue. Market-maker protection counts their fills; a quote inside 20% of its mid earns liquidity rewards (CBX).
+  Future<CreateVaultMarketOptionMmQuoteResponse> createVaultMarketOptionMmQuote() async {
+    final response = await createVaultMarketOptionMmQuoteWithHttpInfo();
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'CreateVaultMarketOptionMmQuoteResponse',) as CreateVaultMarketOptionMmQuoteResponse;
+    
+    }
+    return Future<CreateVaultMarketOptionMmQuoteResponse>.value();
+  }
+
+  /// Pull your option quotes on one contract (`contractId`) or all of them.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  Future<Response> createVaultMarketOptionMmQuotePullWithHttpInfo() async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/vault-markets/options/mm/quotes/pull';
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'POST',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Pull your option quotes on one contract (`contractId`) or all of them.
+  Future<DeleteVaultMarketProQuoteResponse> createVaultMarketOptionMmQuotePull() async {
+    final response = await createVaultMarketOptionMmQuotePullWithHttpInfo();
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'DeleteVaultMarketProQuoteResponse',) as DeleteVaultMarketProQuoteResponse;
+    
+    }
+    return Future<DeleteVaultMarketProQuoteResponse>.value();
+  }
+
+  /// Place an options order: `contractId`, `side`, `quantity` in contracts (three decimals), a `priceCents` or an `iv` (`quoteMode`), `tif` gtc / gtd (with `expiresAt`) / ioc, `postOnly`. Idempotent on `clientOrderId`. On the Crossly venue it matches price-time with self-trade prevention after a scenario-margin check; on the partner venue it routes to the partner (accept its `termsVersion`). `subaccountId` trades for a firm sub-account you may trade.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  Future<Response> createVaultMarketOptionOrderWithHttpInfo() async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/vault-markets/options/orders';
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'POST',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Place an options order: `contractId`, `side`, `quantity` in contracts (three decimals), a `priceCents` or an `iv` (`quoteMode`), `tif` gtc / gtd (with `expiresAt`) / ioc, `postOnly`. Idempotent on `clientOrderId`. On the Crossly venue it matches price-time with self-trade prevention after a scenario-margin check; on the partner venue it routes to the partner (accept its `termsVersion`). `subaccountId` trades for a firm sub-account you may trade.
+  Future<CreateVaultMarketOptionOrderResponse> createVaultMarketOptionOrder() async {
+    final response = await createVaultMarketOptionOrderWithHttpInfo();
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'CreateVaultMarketOptionOrderResponse',) as CreateVaultMarketOptionOrderResponse;
+    
+    }
+    return Future<CreateVaultMarketOptionOrderResponse>.value();
+  }
+
+  /// Cancel a working options order (on the partner venue it is cancelled there first). A liquidation order cannot be cancelled.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<Response> createVaultMarketOptionOrderCancelWithHttpInfo(String id,) async {
+    // Verify required params are set.
+    if (id == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: id');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/vault-markets/options/orders/{id}/cancel'
+      .replaceAll('{id}', id);
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'POST',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Cancel a working options order (on the partner venue it is cancelled there first). A liquidation order cannot be cancelled.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<CreateVaultMarketOptionOrderCancelResponse> createVaultMarketOptionOrderCancel(String id,) async {
+    final response = await createVaultMarketOptionOrderCancelWithHttpInfo(id,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'CreateVaultMarketOptionOrderCancelResponse',) as CreateVaultMarketOptionOrderCancelResponse;
+    
+    }
+    return Future<CreateVaultMarketOptionOrderCancelResponse>.value();
+  }
+
+  /// A practice strategy (play money): the same ticket as a real one, filled at the practice maker's quotes when the net is inside the limit.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  Future<Response> createVaultMarketOptionPracticeComboWithHttpInfo() async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/vault-markets/options/practice/combos';
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'POST',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// A practice strategy (play money): the same ticket as a real one, filled at the practice maker's quotes when the net is inside the limit.
+  Future<CreateVaultMarketOptionPracticeComboResponse> createVaultMarketOptionPracticeCombo() async {
+    final response = await createVaultMarketOptionPracticeComboWithHttpInfo();
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'CreateVaultMarketOptionPracticeComboResponse',) as CreateVaultMarketOptionPracticeComboResponse;
+    
+    }
+    return Future<CreateVaultMarketOptionPracticeComboResponse>.value();
+  }
+
+  /// Place a practice options order (the same ticket as a real one; fills against the practice maker at the reference vol). Play money only.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  Future<Response> createVaultMarketOptionPracticeOrderWithHttpInfo() async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/vault-markets/options/practice/orders';
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'POST',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Place a practice options order (the same ticket as a real one; fills against the practice maker at the reference vol). Play money only.
+  Future<CreateVaultMarketOptionPracticeOrderResponse> createVaultMarketOptionPracticeOrder() async {
+    final response = await createVaultMarketOptionPracticeOrderWithHttpInfo();
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'CreateVaultMarketOptionPracticeOrderResponse',) as CreateVaultMarketOptionPracticeOrderResponse;
+    
+    }
+    return Future<CreateVaultMarketOptionPracticeOrderResponse>.value();
+  }
+
+  /// Cancel a working practice options order.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<Response> createVaultMarketOptionPracticeOrderCancelWithHttpInfo(String id,) async {
+    // Verify required params are set.
+    if (id == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: id');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/vault-markets/options/practice/orders/{id}/cancel'
+      .replaceAll('{id}', id);
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'POST',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Cancel a working practice options order.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<ListVaultMarketOptionPracticeOrdersItem> createVaultMarketOptionPracticeOrderCancel(String id,) async {
+    final response = await createVaultMarketOptionPracticeOrderCancelWithHttpInfo(id,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'ListVaultMarketOptionPracticeOrdersItem',) as ListVaultMarketOptionPracticeOrdersItem;
+    
+    }
+    return Future<ListVaultMarketOptionPracticeOrdersItem>.value();
+  }
+
+  /// Start the options practice account again with $10,000: positions and working orders are cleared.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  Future<Response> createVaultMarketOptionPracticeResetWithHttpInfo() async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/vault-markets/options/practice/reset';
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'POST',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Start the options practice account again with $10,000: positions and working orders are cleared.
+  Future<GetVaultMarketOptionPracticeResponse> createVaultMarketOptionPracticeReset() async {
+    final response = await createVaultMarketOptionPracticeResetWithHttpInfo();
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'GetVaultMarketOptionPracticeResponse',) as GetVaultMarketOptionPracticeResponse;
+    
+    }
+    return Future<GetVaultMarketOptionPracticeResponse>.value();
+  }
+
+  /// Price a ticket without placing it: give a price per contract or an implied vol (`quoteMode`), get the other back, the premium and fee, the Greeks for your size, the payoff at expiry and the margin it would need on your account (authoritative on the Crossly venue, an estimate when the partner clears). A bad entry is reported, not thrown.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  Future<Response> createVaultMarketOptionQuoteWithHttpInfo() async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/vault-markets/options/quote';
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'POST',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Price a ticket without placing it: give a price per contract or an implied vol (`quoteMode`), get the other back, the premium and fee, the Greeks for your size, the payoff at expiry and the margin it would need on your account (authoritative on the Crossly venue, an estimate when the partner clears). A bad entry is reported, not thrown.
+  Future<CreateVaultMarketOptionQuoteResponse> createVaultMarketOptionQuote() async {
+    final response = await createVaultMarketOptionQuoteWithHttpInfo();
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'CreateVaultMarketOptionQuoteResponse',) as CreateVaultMarketOptionQuoteResponse;
+    
+    }
+    return Future<CreateVaultMarketOptionQuoteResponse>.value();
+  }
+
+  /// Ask for a quote on an option contract: `side`, `quantity` in contracts, an optional `limitCents` (never shown). Makers quoting the series, the underlying's DMM and LPs and approved dealers are told anonymously; answers are firm for 60 s.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  Future<Response> createVaultMarketOptionRfqWithHttpInfo() async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/vault-markets/options/rfq';
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'POST',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Ask for a quote on an option contract: `side`, `quantity` in contracts, an optional `limitCents` (never shown). Makers quoting the series, the underlying's DMM and LPs and approved dealers are told anonymously; answers are firm for 60 s.
+  Future<CreateVaultMarketRfqResponse> createVaultMarketOptionRfq() async {
+    final response = await createVaultMarketOptionRfqWithHttpInfo();
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'CreateVaultMarketRfqResponse',) as CreateVaultMarketRfqResponse;
+    
+    }
+    return Future<CreateVaultMarketRfqResponse>.value();
+  }
+
+  /// Take a live answer (`responseId`) to your option quote request: it trades through the options book at that price or better, with margin and self-trade prevention.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<Response> createVaultMarketOptionRfqAcceptWithHttpInfo(String id,) async {
+    // Verify required params are set.
+    if (id == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: id');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/vault-markets/options/rfq/{id}/accept'
+      .replaceAll('{id}', id);
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'POST',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Take a live answer (`responseId`) to your option quote request: it trades through the options book at that price or better, with margin and self-trade prevention.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<CreateVaultMarketOptionRfqAcceptResponse> createVaultMarketOptionRfqAccept(String id,) async {
+    final response = await createVaultMarketOptionRfqAcceptWithHttpInfo(id,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'CreateVaultMarketOptionRfqAcceptResponse',) as CreateVaultMarketOptionRfqAcceptResponse;
+    
+    }
+    return Future<CreateVaultMarketOptionRfqAcceptResponse>.value();
+  }
+
+  /// Cancel your open option quote request.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<Response> createVaultMarketOptionRfqCancelWithHttpInfo(String id,) async {
+    // Verify required params are set.
+    if (id == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: id');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/vault-markets/options/rfq/{id}/cancel'
+      .replaceAll('{id}', id);
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'POST',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Cancel your open option quote request.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<IdStatusResponse> createVaultMarketOptionRfqCancel(String id,) async {
+    final response = await createVaultMarketOptionRfqCancelWithHttpInfo(id,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'IdStatusResponse',) as IdStatusResponse;
+    
+    }
+    return Future<IdStatusResponse>.value();
+  }
+
+  /// Answer an option quote request with a firm price per contract for its full size (good for 60 s; a new answer replaces your last).
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<Response> createVaultMarketOptionRfqRespondWithHttpInfo(String id,) async {
+    // Verify required params are set.
+    if (id == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: id');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/vault-markets/options/rfq/{id}/respond'
+      .replaceAll('{id}', id);
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'POST',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Answer an option quote request with a firm price per contract for its full size (good for 60 s; a new answer replaces your last).
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<CreateVaultMarketOptionRfqRespondResponse> createVaultMarketOptionRfqRespond(String id,) async {
+    final response = await createVaultMarketOptionRfqRespondWithHttpInfo(id,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'CreateVaultMarketOptionRfqRespondResponse',) as CreateVaultMarketOptionRfqRespondResponse;
+    
+    }
+    return Future<CreateVaultMarketOptionRfqRespondResponse>.value();
+  }
+
+  /// Withdraw your live answer to an option quote request.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<Response> createVaultMarketOptionRfqResponseWithdrawWithHttpInfo(String id,) async {
+    // Verify required params are set.
+    if (id == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: id');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/vault-markets/options/rfq/responses/{id}/withdraw'
+      .replaceAll('{id}', id);
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'POST',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Withdraw your live answer to an option quote request.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<IdStatusResponse> createVaultMarketOptionRfqResponseWithdraw(String id,) async {
+    final response = await createVaultMarketOptionRfqResponseWithdrawWithHttpInfo(id,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'IdStatusResponse',) as IdStatusResponse;
+    
+    }
+    return Future<IdStatusResponse>.value();
+  }
+
+  /// Roll a position to another contract as one strategy order at one net price (+ you pay, - you receive): the close and the open fill together or not at all. `practice` rolls a practice position.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  Future<Response> createVaultMarketOptionRollWithHttpInfo() async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/vault-markets/options/roll';
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'POST',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Roll a position to another contract as one strategy order at one net price (+ you pay, - you receive): the close and the open fill together or not at all. `practice` rolls a practice position.
+  Future<CreateVaultMarketOptionRollResponse> createVaultMarketOptionRoll() async {
+    final response = await createVaultMarketOptionRollWithHttpInfo();
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'CreateVaultMarketOptionRollResponse',) as CreateVaultMarketOptionRollResponse;
+    
+    }
+    return Future<CreateVaultMarketOptionRollResponse>.value();
+  }
+
+  /// Preview a strategy before placing it: by template (underlying, kind, direction, strikes, expiries) or by legs. Returns each leg at its bid / ask, the net per unit (+ debit, - credit), the payoff at the first expiry, max profit and max loss (null = unbounded), breakevens, net Greeks, and the scenario margin of the whole strategy next to its legs margined one by one.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  Future<Response> createVaultMarketOptionStrategyPreviewWithHttpInfo() async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/vault-markets/options/strategies/preview';
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'POST',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Preview a strategy before placing it: by template (underlying, kind, direction, strikes, expiries) or by legs. Returns each leg at its bid / ask, the net per unit (+ debit, - credit), the payoff at the first expiry, max profit and max loss (null = unbounded), breakevens, net Greeks, and the scenario margin of the whole strategy next to its legs margined one by one.
+  Future<CreateVaultMarketOptionStrategyPreviewResponse> createVaultMarketOptionStrategyPreview() async {
+    final response = await createVaultMarketOptionStrategyPreviewWithHttpInfo();
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'CreateVaultMarketOptionStrategyPreviewResponse',) as CreateVaultMarketOptionStrategyPreviewResponse;
+    
+    }
+    return Future<CreateVaultMarketOptionStrategyPreviewResponse>.value();
+  }
+
   /// Lender: call the loan (once it is a day old). A refinancing auction runs for about 30 hours, the rate a new lender gets climbing to the ceiling; repaid or refinanced, you are paid in full; neither by the end, the unit moves to your vault.
   ///
   /// Note: This method returns the HTTP [Response].
@@ -6166,6 +7622,1420 @@ class VaultMarketsApi {
     return Future<CreateVaultMarketPositionCloseResponse>.value();
   }
 
+  /// Open your account at the live prediction venue (the partner DCM, or your own segregated account at the settlement bank). Returns `{ venue, status, opened }`.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  Future<Response> createVaultMarketPredictionAccountWithHttpInfo() async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/vault-markets/predictions/account';
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'POST',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Open your account at the live prediction venue (the partner DCM, or your own segregated account at the settlement bank). Returns `{ venue, status, opened }`.
+  Future<CreateVaultMarketPredictionAccountResponse> createVaultMarketPredictionAccount() async {
+    final response = await createVaultMarketPredictionAccountWithHttpInfo();
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'CreateVaultMarketPredictionAccountResponse',) as CreateVaultMarketPredictionAccountResponse;
+    
+    }
+    return Future<CreateVaultMarketPredictionAccountResponse>.value();
+  }
+
+  /// Tell me when a market's probability crosses a level: `{ marketId, levelPercent, direction }`. Returns the alert.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  Future<Response> createVaultMarketPredictionAlertWithHttpInfo() async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/vault-markets/predictions/alerts';
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'POST',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Tell me when a market's probability crosses a level: `{ marketId, levelPercent, direction }`. Returns the alert.
+  Future<CreateVaultMarketPredictionAlertResponse> createVaultMarketPredictionAlert() async {
+    final response = await createVaultMarketPredictionAlertWithHttpInfo();
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'CreateVaultMarketPredictionAlertResponse',) as CreateVaultMarketPredictionAlertResponse;
+    
+    }
+    return Future<CreateVaultMarketPredictionAlertResponse>.value();
+  }
+
+  /// Make an \"I called it\" share card for a position of yours that settled in your favour (`showAmounts` to include what you paid and won). Returns the card with its public URL.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  Future<Response> createVaultMarketPredictionCardWithHttpInfo() async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/vault-markets/predictions/cards';
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'POST',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Make an \"I called it\" share card for a position of yours that settled in your favour (`showAmounts` to include what you paid and won). Returns the card with its public URL.
+  Future<CreateVaultMarketPredictionCardResponse> createVaultMarketPredictionCard() async {
+    final response = await createVaultMarketPredictionCardWithHttpInfo();
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'CreateVaultMarketPredictionCardResponse',) as CreateVaultMarketPredictionCardResponse;
+    
+    }
+    return Future<CreateVaultMarketPredictionCardResponse>.value();
+  }
+
+  /// Ask makers for a price on a combo: 2 to 6 legs (a market and a side each) on different underlyings, a size, and an optional limit makers never see. Pays $1 a contract if every leg comes true. `venue` paper or live.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  Future<Response> createVaultMarketPredictionComboRfqWithHttpInfo() async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/vault-markets/predictions/combos/rfqs';
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'POST',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Ask makers for a price on a combo: 2 to 6 legs (a market and a side each) on different underlyings, a size, and an optional limit makers never see. Pays $1 a contract if every leg comes true. `venue` paper or live.
+  Future<CreateVaultMarketPredictionComboRfqResponse> createVaultMarketPredictionComboRfq() async {
+    final response = await createVaultMarketPredictionComboRfqWithHttpInfo();
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'CreateVaultMarketPredictionComboRfqResponse',) as CreateVaultMarketPredictionComboRfqResponse;
+    
+    }
+    return Future<CreateVaultMarketPredictionComboRfqResponse>.value();
+  }
+
+  /// Take one live, firm answer to your combo request (`quoteId`): both stakes are locked and the combo opens. Returns the combo.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<Response> createVaultMarketPredictionComboRfqAcceptWithHttpInfo(String id,) async {
+    // Verify required params are set.
+    if (id == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: id');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/vault-markets/predictions/combos/rfqs/{id}/accept'
+      .replaceAll('{id}', id);
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'POST',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Take one live, firm answer to your combo request (`quoteId`): both stakes are locked and the combo opens. Returns the combo.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<ListVaultMarketPredictionCombosItem> createVaultMarketPredictionComboRfqAccept(String id,) async {
+    final response = await createVaultMarketPredictionComboRfqAcceptWithHttpInfo(id,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'ListVaultMarketPredictionCombosItem',) as ListVaultMarketPredictionCombosItem;
+    
+    }
+    return Future<ListVaultMarketPredictionCombosItem>.value();
+  }
+
+  /// Withdraw your combo request; its answers are withdrawn too.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<Response> createVaultMarketPredictionComboRfqCancelWithHttpInfo(String id,) async {
+    // Verify required params are set.
+    if (id == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: id');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/vault-markets/predictions/combos/rfqs/{id}/cancel'
+      .replaceAll('{id}', id);
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'POST',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Withdraw your combo request; its answers are withdrawn too.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<ListVaultMarketPredictionComboRfqsItem> createVaultMarketPredictionComboRfqCancel(String id,) async {
+    final response = await createVaultMarketPredictionComboRfqCancelWithHttpInfo(id,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'ListVaultMarketPredictionComboRfqsItem',) as ListVaultMarketPredictionComboRfqsItem;
+    
+    }
+    return Future<ListVaultMarketPredictionComboRfqsItem>.value();
+  }
+
+  /// Answer a combo request with a firm price a contract for the full size (good for 30 seconds; a new answer replaces yours). Real money needs an active prediction maker programme or approved dealer status.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<Response> createVaultMarketPredictionComboRfqQuoteWithHttpInfo(String id,) async {
+    // Verify required params are set.
+    if (id == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: id');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/vault-markets/predictions/combos/rfqs/{id}/quotes'
+      .replaceAll('{id}', id);
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'POST',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Answer a combo request with a firm price a contract for the full size (good for 30 seconds; a new answer replaces yours). Real money needs an active prediction maker programme or approved dealer status.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<CreateVaultMarketPredictionComboRfqQuoteResponse> createVaultMarketPredictionComboRfqQuote(String id,) async {
+    final response = await createVaultMarketPredictionComboRfqQuoteWithHttpInfo(id,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'CreateVaultMarketPredictionComboRfqQuoteResponse',) as CreateVaultMarketPredictionComboRfqQuoteResponse;
+    
+    }
+    return Future<CreateVaultMarketPredictionComboRfqQuoteResponse>.value();
+  }
+
+  /// Comment on a market or a series, or reply to a comment (`parentId`). Moderated like every comment on Crossly.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  Future<Response> createVaultMarketPredictionCommentWithHttpInfo() async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/vault-markets/predictions/comments';
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'POST',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Comment on a market or a series, or reply to a comment (`parentId`). Moderated like every comment on Crossly.
+  Future<CreateVaultMarketPredictionCommentResponse> createVaultMarketPredictionComment() async {
+    final response = await createVaultMarketPredictionCommentWithHttpInfo();
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'CreateVaultMarketPredictionCommentResponse',) as CreateVaultMarketPredictionCommentResponse;
+    
+    }
+    return Future<CreateVaultMarketPredictionCommentResponse>.value();
+  }
+
+  /// Report a comment with a reason; enough reports hide it until ops look.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<Response> createVaultMarketPredictionCommentReportWithHttpInfo(String id,) async {
+    // Verify required params are set.
+    if (id == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: id');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/vault-markets/predictions/comments/{id}/report'
+      .replaceAll('{id}', id);
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'POST',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Report a comment with a reason; enough reports hide it until ops look.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<CreateVaultMarketPredictionCommentReportResponse> createVaultMarketPredictionCommentReport(String id,) async {
+    final response = await createVaultMarketPredictionCommentReportWithHttpInfo(id,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'CreateVaultMarketPredictionCommentReportResponse',) as CreateVaultMarketPredictionCommentReportResponse;
+    
+    }
+    return Future<CreateVaultMarketPredictionCommentReportResponse>.value();
+  }
+
+  /// Split ($1 a set buys one Yes in every bucket of an expiry), merge (one Yes in every bucket gives back $1 a set before settlement) or convert (No in one bucket becomes Yes in every other) on a full bucket set. `venue` paper or live. Returns the conversion and the event after it.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  Future<Response> createVaultMarketPredictionConversionWithHttpInfo() async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/vault-markets/predictions/conversions';
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'POST',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Split ($1 a set buys one Yes in every bucket of an expiry), merge (one Yes in every bucket gives back $1 a set before settlement) or convert (No in one bucket becomes Yes in every other) on a full bucket set. `venue` paper or live. Returns the conversion and the event after it.
+  Future<CreateVaultMarketPredictionConversionResponse> createVaultMarketPredictionConversion() async {
+    final response = await createVaultMarketPredictionConversionWithHttpInfo();
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'CreateVaultMarketPredictionConversionResponse',) as CreateVaultMarketPredictionConversionResponse;
+    
+    }
+    return Future<CreateVaultMarketPredictionConversionResponse>.value();
+  }
+
+  /// Forecast a market: `probabilityPercent` 0 to 100. The one standing when trading closes is scored (Brier).
+  ///
+  /// Note: This method returns the HTTP [Response].
+  Future<Response> createVaultMarketPredictionForecastWithHttpInfo() async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/vault-markets/predictions/forecasts';
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'POST',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Forecast a market: `probabilityPercent` 0 to 100. The one standing when trading closes is scored (Brier).
+  Future<CreateVaultMarketPredictionForecastResponse> createVaultMarketPredictionForecast() async {
+    final response = await createVaultMarketPredictionForecastWithHttpInfo();
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'CreateVaultMarketPredictionForecastResponse',) as CreateVaultMarketPredictionForecastResponse;
+    
+    }
+    return Future<CreateVaultMarketPredictionForecastResponse>.value();
+  }
+
+  /// Follow a public forecaster: you are told when they open a position or forecast (copy-watch only; nothing is ever traded for you).
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<Response> createVaultMarketPredictionForecasterFollowWithHttpInfo(String id,) async {
+    // Verify required params are set.
+    if (id == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: id');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/vault-markets/predictions/forecasters/{id}/follow'
+      .replaceAll('{id}', id);
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'POST',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Follow a public forecaster: you are told when they open a position or forecast (copy-watch only; nothing is ever traded for you).
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<CreateVaultMarketPredictionForecasterFollowResponse> createVaultMarketPredictionForecasterFollow(String id,) async {
+    final response = await createVaultMarketPredictionForecasterFollowWithHttpInfo(id,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'CreateVaultMarketPredictionForecasterFollowResponse',) as CreateVaultMarketPredictionForecasterFollowResponse;
+    
+    }
+    return Future<CreateVaultMarketPredictionForecasterFollowResponse>.value();
+  }
+
+  /// Apply to make markets in prediction ladders (one series, or all with `seriesId` null). Needs the ID check; ops approve. Returns the application.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  Future<Response> createVaultMarketPredictionMakerWithHttpInfo() async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/vault-markets/predictions/makers';
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'POST',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Apply to make markets in prediction ladders (one series, or all with `seriesId` null). Needs the ID check; ops approve. Returns the application.
+  Future<ListVaultMarketPredictionMakersItem> createVaultMarketPredictionMaker() async {
+    final response = await createVaultMarketPredictionMakerWithHttpInfo();
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'ListVaultMarketPredictionMakersItem',) as ListVaultMarketPredictionMakersItem;
+    
+    }
+    return Future<ListVaultMarketPredictionMakersItem>.value();
+  }
+
+  /// Mass quote: replace your resting maker quotes on up to 50 markets with one Yes bid and one Yes ask each (post-only; an ask rests as a No bid at 100 minus it). Live quotes need an active maker programme. Returns what rests.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  Future<Response> createVaultMarketPredictionMakerQuoteWithHttpInfo() async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/vault-markets/predictions/makers/quotes';
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'POST',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Mass quote: replace your resting maker quotes on up to 50 markets with one Yes bid and one Yes ask each (post-only; an ask rests as a No bid at 100 minus it). Live quotes need an active maker programme. Returns what rests.
+  Future<CreateVaultMarketPredictionMakerQuoteResponse> createVaultMarketPredictionMakerQuote() async {
+    final response = await createVaultMarketPredictionMakerQuoteWithHttpInfo();
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'CreateVaultMarketPredictionMakerQuoteResponse',) as CreateVaultMarketPredictionMakerQuoteResponse;
+    
+    }
+    return Future<CreateVaultMarketPredictionMakerQuoteResponse>.value();
+  }
+
+  /// Place a prediction order: buy_yes, sell_yes, buy_no or sell_no; limit (priceCents 1-99 in the action's own terms) or market (IOC 10 cents through the best price); GTC, GTD (expiresAt) or IOC; post-only. Sells only what you hold. `venue` paper (practice) or live (503 until a venue is registered). Returns the order with its fills.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  Future<Response> createVaultMarketPredictionOrderWithHttpInfo() async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/vault-markets/predictions/orders';
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'POST',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Place a prediction order: buy_yes, sell_yes, buy_no or sell_no; limit (priceCents 1-99 in the action's own terms) or market (IOC 10 cents through the best price); GTC, GTD (expiresAt) or IOC; post-only. Sells only what you hold. `venue` paper (practice) or live (503 until a venue is registered). Returns the order with its fills.
+  Future<CreateVaultMarketPredictionOrderResponse> createVaultMarketPredictionOrder() async {
+    final response = await createVaultMarketPredictionOrderWithHttpInfo();
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'CreateVaultMarketPredictionOrderResponse',) as CreateVaultMarketPredictionOrderResponse;
+    
+    }
+    return Future<CreateVaultMarketPredictionOrderResponse>.value();
+  }
+
+  /// Amend a resting order's price (in its own terms) and/or whole size. It keeps its place in the queue only when the size goes down at the same price; otherwise it is re-queued and may trade at once. Returns the order with `keptPriority`.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<Response> createVaultMarketPredictionOrderAmendWithHttpInfo(String id,) async {
+    // Verify required params are set.
+    if (id == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: id');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/vault-markets/predictions/orders/{id}/amend'
+      .replaceAll('{id}', id);
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'POST',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Amend a resting order's price (in its own terms) and/or whole size. It keeps its place in the queue only when the size goes down at the same price; otherwise it is re-queued and may trade at once. Returns the order with `keptPriority`.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<CreateVaultMarketPredictionOrderAmendResponse> createVaultMarketPredictionOrderAmend(String id,) async {
+    final response = await createVaultMarketPredictionOrderAmendWithHttpInfo(id,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'CreateVaultMarketPredictionOrderAmendResponse',) as CreateVaultMarketPredictionOrderAmendResponse;
+    
+    }
+    return Future<CreateVaultMarketPredictionOrderAmendResponse>.value();
+  }
+
+  /// Place up to 20 orders in one call; each answers on its own (`results[]`), one refused never stops the rest.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  Future<Response> createVaultMarketPredictionOrderBatchWithHttpInfo() async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/vault-markets/predictions/orders/batch';
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'POST',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Place up to 20 orders in one call; each answers on its own (`results[]`), one refused never stops the rest.
+  Future<CreateVaultMarketPredictionOrderBatchResponse> createVaultMarketPredictionOrderBatch() async {
+    final response = await createVaultMarketPredictionOrderBatchWithHttpInfo();
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'CreateVaultMarketPredictionOrderBatchResponse',) as CreateVaultMarketPredictionOrderBatchResponse;
+    
+    }
+    return Future<CreateVaultMarketPredictionOrderBatchResponse>.value();
+  }
+
+  /// Cancel up to 20 orders in one call; each answers on its own.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  Future<Response> createVaultMarketPredictionOrderBatchCancelWithHttpInfo() async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/vault-markets/predictions/orders/batch-cancel';
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'POST',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Cancel up to 20 orders in one call; each answers on its own.
+  Future<CreateVaultMarketPredictionOrderBatchCancelResponse> createVaultMarketPredictionOrderBatchCancel() async {
+    final response = await createVaultMarketPredictionOrderBatchCancelWithHttpInfo();
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'CreateVaultMarketPredictionOrderBatchCancelResponse',) as CreateVaultMarketPredictionOrderBatchCancelResponse;
+    
+    }
+    return Future<CreateVaultMarketPredictionOrderBatchCancelResponse>.value();
+  }
+
+  /// Cancel a working prediction order; the money (or practice money) it locked comes back. Returns the order.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<Response> createVaultMarketPredictionOrderCancelWithHttpInfo(String id,) async {
+    // Verify required params are set.
+    if (id == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: id');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/vault-markets/predictions/orders/{id}/cancel'
+      .replaceAll('{id}', id);
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'POST',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Cancel a working prediction order; the money (or practice money) it locked comes back. Returns the order.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<CreateVaultMarketPredictionOrderResponse> createVaultMarketPredictionOrderCancel(String id,) async {
+    final response = await createVaultMarketPredictionOrderCancelWithHttpInfo(id,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'CreateVaultMarketPredictionOrderResponse',) as CreateVaultMarketPredictionOrderResponse;
+    
+    }
+    return Future<CreateVaultMarketPredictionOrderResponse>.value();
+  }
+
+  /// Cancel every working prediction order you have, or only those on one market (`marketId`). Returns `{ cancelled }`.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  Future<Response> createVaultMarketPredictionOrderCancelAllWithHttpInfo() async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/vault-markets/predictions/orders/cancel-all';
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'POST',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Cancel every working prediction order you have, or only those on one market (`marketId`). Returns `{ cancelled }`.
+  Future<CreateVaultMarketProOrderCancelAllResponse> createVaultMarketPredictionOrderCancelAll() async {
+    final response = await createVaultMarketPredictionOrderCancelAllWithHttpInfo();
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'CreateVaultMarketProOrderCancelAllResponse',) as CreateVaultMarketProOrderCancelAllResponse;
+    
+    }
+    return Future<CreateVaultMarketProOrderCancelAllResponse>.value();
+  }
+
+  /// Reset your practice prediction account to $1,000 of play money: working practice orders cancelled, practice positions cleared. Once a day.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  Future<Response> createVaultMarketPredictionPaperResetWithHttpInfo() async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/vault-markets/predictions/paper/reset';
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'POST',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Reset your practice prediction account to $1,000 of play money: working practice orders cancelled, practice positions cleared. Once a day.
+  Future<CreateVaultMarketPredictionPaperResetResponse> createVaultMarketPredictionPaperReset() async {
+    final response = await createVaultMarketPredictionPaperResetWithHttpInfo();
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'CreateVaultMarketPredictionPaperResetResponse',) as CreateVaultMarketPredictionPaperResetResponse;
+    
+    }
+    return Future<CreateVaultMarketPredictionPaperResetResponse>.value();
+  }
+
+  /// Close a position: your resting sells on the market are cancelled and everything you hold is sold now (market, 10-cent band) or at `priceCents`. Returns the sell order.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  Future<Response> createVaultMarketPredictionPositionCloseWithHttpInfo() async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/vault-markets/predictions/positions/close';
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'POST',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Close a position: your resting sells on the market are cancelled and everything you hold is sold now (market, 10-cent band) or at `priceCents`. Returns the sell order.
+  Future<CreateVaultMarketPredictionOrderResponse> createVaultMarketPredictionPositionClose() async {
+    final response = await createVaultMarketPredictionPositionCloseWithHttpInfo();
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'CreateVaultMarketPredictionOrderResponse',) as CreateVaultMarketPredictionOrderResponse;
+    
+    }
+    return Future<CreateVaultMarketPredictionOrderResponse>.value();
+  }
+
+  /// Sell all: close every open position on a venue, or only one event's (`eventId`). Each answers on its own.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  Future<Response> createVaultMarketPredictionPositionCloseAllWithHttpInfo() async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/vault-markets/predictions/positions/close-all';
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'POST',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Sell all: close every open position on a venue, or only one event's (`eventId`). Each answers on its own.
+  Future<CreateVaultMarketPredictionPositionCloseAllResponse> createVaultMarketPredictionPositionCloseAll() async {
+    final response = await createVaultMarketPredictionPositionCloseAllWithHttpInfo();
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'CreateVaultMarketPredictionPositionCloseAllResponse',) as CreateVaultMarketPredictionPositionCloseAllResponse;
+    
+    }
+    return Future<CreateVaultMarketPredictionPositionCloseAllResponse>.value();
+  }
+
+  /// Propose a market: an index slug or a book key, a shape (close at or above / at or below, between, touch), its strike(s) and an expiry. Ops review it; once listed you earn the creator share of Crossly's take on its fees.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  Future<Response> createVaultMarketPredictionProposalWithHttpInfo() async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/vault-markets/predictions/proposals';
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'POST',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Propose a market: an index slug or a book key, a shape (close at or above / at or below, between, touch), its strike(s) and an expiry. Ops review it; once listed you earn the creator share of Crossly's take on its fees.
+  Future<ListVaultMarketPredictionProposalsItem> createVaultMarketPredictionProposal() async {
+    final response = await createVaultMarketPredictionProposalWithHttpInfo();
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'ListVaultMarketPredictionProposalsItem',) as ListVaultMarketPredictionProposalsItem;
+    
+    }
+    return Future<ListVaultMarketPredictionProposalsItem>.value();
+  }
+
+  /// Check a market proposal without sending it: whether the underlying may carry markets (a built-in index or a tier A key), and what is wrong with the strike or expiry.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  Future<Response> createVaultMarketPredictionProposalCheckWithHttpInfo() async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/vault-markets/predictions/proposals/check';
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'POST',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Check a market proposal without sending it: whether the underlying may carry markets (a built-in index or a tier A key), and what is wrong with the strike or expiry.
+  Future<CreateVaultMarketPredictionProposalCheckResponse> createVaultMarketPredictionProposalCheck() async {
+    final response = await createVaultMarketPredictionProposalCheckWithHttpInfo();
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'CreateVaultMarketPredictionProposalCheckResponse',) as CreateVaultMarketPredictionProposalCheckResponse;
+    
+    }
+    return Future<CreateVaultMarketPredictionProposalCheckResponse>.value();
+  }
+
+  /// Withdraw a proposal still waiting for review.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<Response> createVaultMarketPredictionProposalWithdrawWithHttpInfo(String id,) async {
+    // Verify required params are set.
+    if (id == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: id');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/vault-markets/predictions/proposals/{id}/withdraw'
+      .replaceAll('{id}', id);
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'POST',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Withdraw a proposal still waiting for review.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<ListVaultMarketPredictionProposalsItem> createVaultMarketPredictionProposalWithdraw(String id,) async {
+    final response = await createVaultMarketPredictionProposalWithdrawWithHttpInfo(id,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'ListVaultMarketPredictionProposalsItem',) as ListVaultMarketPredictionProposalsItem;
+    
+    }
+    return Future<ListVaultMarketPredictionProposalsItem>.value();
+  }
+
+  /// Dispute a settlement inside its 24-hour review window (you must hold a position in the market). Payout waits for the venue's decision. Returns `{ settlementId, status }`.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<Response> createVaultMarketPredictionSettlementDisputeWithHttpInfo(String id,) async {
+    // Verify required params are set.
+    if (id == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: id');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/vault-markets/predictions/settlements/{id}/dispute'
+      .replaceAll('{id}', id);
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'POST',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Dispute a settlement inside its 24-hour review window (you must hold a position in the market). Payout waits for the venue's decision. Returns `{ settlementId, status }`.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<CreateVaultMarketPredictionSettlementDisputeResponse> createVaultMarketPredictionSettlementDispute(String id,) async {
+    final response = await createVaultMarketPredictionSettlementDisputeWithHttpInfo(id,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'CreateVaultMarketPredictionSettlementDisputeResponse',) as CreateVaultMarketPredictionSettlementDisputeResponse;
+    
+    }
+    return Future<CreateVaultMarketPredictionSettlementDisputeResponse>.value();
+  }
+
+  /// Accept the current prediction-market contract terms (PREDICTION_TERMS_VERSION), needed for every real-money order. Returns `{ termsVersion, venue }`.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  Future<Response> createVaultMarketPredictionTermWithHttpInfo() async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/vault-markets/predictions/terms';
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'POST',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Accept the current prediction-market contract terms (PREDICTION_TERMS_VERSION), needed for every real-money order. Returns `{ termsVersion, venue }`.
+  Future<CreateVaultMarketPredictionTermResponse> createVaultMarketPredictionTerm() async {
+    final response = await createVaultMarketPredictionTermWithHttpInfo();
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'CreateVaultMarketPredictionTermResponse',) as CreateVaultMarketPredictionTermResponse;
+    
+    }
+    return Future<CreateVaultMarketPredictionTermResponse>.value();
+  }
+
   /// Make a price widget for one vault market (`kind` mark + `bookKey`) or one public index (`kind` index + `indexSlug`): range, layout (compact or chart), theme (auto, light, dark), optionally your own affiliate code for the link back and the sites allowed to show it (empty = any). Returns the widget with its snippets.
   ///
   /// Note: This method returns the HTTP [Response].
@@ -6699,7 +9569,7 @@ class VaultMarketsApi {
   }
 
   /// Keep your quotes alive (cancel-on-disconnect). Returns `{ quotes, at }`.
-  Future<CreateVaultMarketProQuoteHeartbeatResponse> createVaultMarketProQuoteHeartbeat() async {
+  Future<CreateVaultMarketOptionMmHeartbeatResponse> createVaultMarketProQuoteHeartbeat() async {
     final response = await createVaultMarketProQuoteHeartbeatWithHttpInfo();
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
@@ -6708,10 +9578,10 @@ class VaultMarketsApi {
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
     if (response.body != null && response.statusCode != HttpStatus.noContent) {
-      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'CreateVaultMarketProQuoteHeartbeatResponse',) as CreateVaultMarketProQuoteHeartbeatResponse;
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'CreateVaultMarketOptionMmHeartbeatResponse',) as CreateVaultMarketOptionMmHeartbeatResponse;
     
     }
-    return Future<CreateVaultMarketProQuoteHeartbeatResponse>.value();
+    return Future<CreateVaultMarketOptionMmHeartbeatResponse>.value();
   }
 
   /// A trailing stop: its stop follows the best price since it was placed, `trailBps` or `trailCents` behind (under the high for a sell, over the low for a buy).
@@ -7318,6 +10188,412 @@ class VaultMarketsApi {
     return Future<ListVaultMarketSetGoalBasketsItem>.value();
   }
 
+  /// Start auto-invest: `amountCents` ($5-$10,000) `every` week or month into `seriesIds` (equal weights) or `targets` (seriesId + weightBps summing to 10,000) or a `basketId` (with `rebalance` to keep your own shares on its weights). Whole shares only; the rest rolls over. Offerings are subscribed at their price; trading books are bought at the best ask up to `maxPremiumBps` over the indicative value. `practice` runs it on paper.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  Future<Response> createVaultMarketShareAutoInvestWithHttpInfo() async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/vault-markets/shares/auto-invest';
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'POST',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Start auto-invest: `amountCents` ($5-$10,000) `every` week or month into `seriesIds` (equal weights) or `targets` (seriesId + weightBps summing to 10,000) or a `basketId` (with `rebalance` to keep your own shares on its weights). Whole shares only; the rest rolls over. Offerings are subscribed at their price; trading books are bought at the best ask up to `maxPremiumBps` over the indicative value. `practice` runs it on paper.
+  Future<ListVaultMarketShareAutoInvestItem> createVaultMarketShareAutoInvest() async {
+    final response = await createVaultMarketShareAutoInvestWithHttpInfo();
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'ListVaultMarketShareAutoInvestItem',) as ListVaultMarketShareAutoInvestItem;
+    
+    }
+    return Future<ListVaultMarketShareAutoInvestItem>.value();
+  }
+
+  /// Run a plan now (once a minute at most); the schedule does not move.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<Response> createVaultMarketShareAutoInvestRunWithHttpInfo(String id,) async {
+    // Verify required params are set.
+    if (id == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: id');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/vault-markets/shares/auto-invest/{id}/run'
+      .replaceAll('{id}', id);
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'POST',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Run a plan now (once a minute at most); the schedule does not move.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<CreateVaultMarketShareAutoInvestRunResponse> createVaultMarketShareAutoInvestRun(String id,) async {
+    final response = await createVaultMarketShareAutoInvestRunWithHttpInfo(id,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'CreateVaultMarketShareAutoInvestRunResponse',) as CreateVaultMarketShareAutoInvestRunResponse;
+    
+    }
+    return Future<CreateVaultMarketShareAutoInvestRunResponse>.value();
+  }
+
+  /// Change a plan (amount, cadence, series or weights, cap, rebalance) or set its `status` active, paused or cancelled.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<Response> createVaultMarketShareAutoInvestUpdateWithHttpInfo(String id,) async {
+    // Verify required params are set.
+    if (id == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: id');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/vault-markets/shares/auto-invest/{id}/update'
+      .replaceAll('{id}', id);
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'POST',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Change a plan (amount, cadence, series or weights, cap, rebalance) or set its `status` active, paused or cancelled.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<ListVaultMarketShareAutoInvestItem> createVaultMarketShareAutoInvestUpdate(String id,) async {
+    final response = await createVaultMarketShareAutoInvestUpdateWithHttpInfo(id,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'ListVaultMarketShareAutoInvestItem',) as ListVaultMarketShareAutoInvestItem;
+    
+    }
+    return Future<ListVaultMarketShareAutoInvestItem>.value();
+  }
+
+  /// Buy a basket once: `amountCents` split by its live weights into whole shares of each series, in your own name (offerings subscribed, trading books at the best ask up to `maxPremiumBps`). `practice` buys on paper.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<Response> createVaultMarketShareBasketBuyWithHttpInfo(String id,) async {
+    // Verify required params are set.
+    if (id == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: id');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/vault-markets/shares/baskets/{id}/buy'
+      .replaceAll('{id}', id);
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'POST',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Buy a basket once: `amountCents` split by its live weights into whole shares of each series, in your own name (offerings subscribed, trading books at the best ask up to `maxPremiumBps`). `practice` buys on paper.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<CreateVaultMarketShareBasketBuyResponse> createVaultMarketShareBasketBuy(String id,) async {
+    final response = await createVaultMarketShareBasketBuyWithHttpInfo(id,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'CreateVaultMarketShareBasketBuyResponse',) as CreateVaultMarketShareBasketBuyResponse;
+    
+    }
+    return Future<CreateVaultMarketShareBasketBuyResponse>.value();
+  }
+
+  /// Your whole-unit bid reached the reserve: fund the price through your investor account within 72 hours to buy the item from its holders (no vote).
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<Response> createVaultMarketShareBuyoutFundWithHttpInfo(String id,) async {
+    // Verify required params are set.
+    if (id == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: id');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/vault-markets/shares/buyouts/{id}/fund'
+      .replaceAll('{id}', id);
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'POST',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Your whole-unit bid reached the reserve: fund the price through your investor account within 72 hours to buy the item from its holders (no vote).
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<CreateVaultMarketShareBuyoutFundResponse> createVaultMarketShareBuyoutFund(String id,) async {
+    final response = await createVaultMarketShareBuyoutFundWithHttpInfo(id,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'CreateVaultMarketShareBuyoutFundResponse',) as CreateVaultMarketShareBuyoutFundResponse;
+    
+    }
+    return Future<CreateVaultMarketShareBuyoutFundResponse>.value();
+  }
+
+  /// Vote `yes` or `no` on a buyout with the shares you held when the vote opened. You can change your vote while it is open.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<Response> createVaultMarketShareBuyoutVoteWithHttpInfo(String id,) async {
+    // Verify required params are set.
+    if (id == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: id');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/vault-markets/shares/buyouts/{id}/vote'
+      .replaceAll('{id}', id);
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'POST',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Vote `yes` or `no` on a buyout with the shares you held when the vote opened. You can change your vote while it is open.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<CreateVaultMarketShareBuyoutFundResponse> createVaultMarketShareBuyoutVote(String id,) async {
+    final response = await createVaultMarketShareBuyoutVoteWithHttpInfo(id,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'CreateVaultMarketShareBuyoutFundResponse',) as CreateVaultMarketShareBuyoutFundResponse;
+    
+    }
+    return Future<CreateVaultMarketShareBuyoutFundResponse>.value();
+  }
+
+  /// Withdraw your buyout bid before its vote opens; the escrow is refunded.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<Response> createVaultMarketShareBuyoutWithdrawWithHttpInfo(String id,) async {
+    // Verify required params are set.
+    if (id == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: id');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/vault-markets/shares/buyouts/{id}/withdraw'
+      .replaceAll('{id}', id);
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'POST',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Withdraw your buyout bid before its vote opens; the escrow is refunded.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<CreateVaultMarketShareBuyoutFundResponse> createVaultMarketShareBuyoutWithdraw(String id,) async {
+    final response = await createVaultMarketShareBuyoutWithdrawWithHttpInfo(id,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'CreateVaultMarketShareBuyoutFundResponse',) as CreateVaultMarketShareBuyoutFundResponse;
+    
+    }
+    return Future<CreateVaultMarketShareBuyoutFundResponse>.value();
+  }
+
   /// Make a verified share card of a position, a vault unit, a public index or your portfolio (`kind`, `refId`). The % on it is the price move since your real fill; amounts stay hidden unless `showAmounts`.
   ///
   /// Note: This method returns the HTTP [Response].
@@ -7362,6 +10638,1404 @@ class VaultMarketsApi {
     
     }
     return Future<ListVaultMarketShareCardsItem>.value();
+  }
+
+  /// Accept a share gift. Needs your own verified Vault Shares investor account; the venue then moves the shares to you on the register.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<Response> createVaultMarketShareGiftAcceptWithHttpInfo(String id,) async {
+    // Verify required params are set.
+    if (id == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: id');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/vault-markets/shares/gifts/{id}/accept'
+      .replaceAll('{id}', id);
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'POST',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Accept a share gift. Needs your own verified Vault Shares investor account; the venue then moves the shares to you on the register.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<ListVaultMarketShareGiftsItem> createVaultMarketShareGiftAccept(String id,) async {
+    final response = await createVaultMarketShareGiftAcceptWithHttpInfo(id,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'ListVaultMarketShareGiftsItem',) as ListVaultMarketShareGiftsItem;
+    
+    }
+    return Future<ListVaultMarketShareGiftsItem>.value();
+  }
+
+  /// Cancel a gift you offered, before it is accepted: the shares are free again.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<Response> createVaultMarketShareGiftCancelWithHttpInfo(String id,) async {
+    // Verify required params are set.
+    if (id == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: id');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/vault-markets/shares/gifts/{id}/cancel'
+      .replaceAll('{id}', id);
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'POST',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Cancel a gift you offered, before it is accepted: the shares are free again.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<ListVaultMarketShareGiftsItem> createVaultMarketShareGiftCancel(String id,) async {
+    final response = await createVaultMarketShareGiftCancelWithHttpInfo(id,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'ListVaultMarketShareGiftsItem',) as ListVaultMarketShareGiftsItem;
+    
+    }
+    return Future<ListVaultMarketShareGiftsItem>.value();
+  }
+
+  /// Decline a share gift offered to you.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<Response> createVaultMarketShareGiftDeclineWithHttpInfo(String id,) async {
+    // Verify required params are set.
+    if (id == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: id');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/vault-markets/shares/gifts/{id}/decline'
+      .replaceAll('{id}', id);
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'POST',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Decline a share gift offered to you.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<ListVaultMarketShareGiftsItem> createVaultMarketShareGiftDecline(String id,) async {
+    final response = await createVaultMarketShareGiftDeclineWithHttpInfo(id,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'ListVaultMarketShareGiftsItem',) as ListVaultMarketShareGiftsItem;
+    
+    }
+    return Future<ListVaultMarketShareGiftsItem>.value();
+  }
+
+  /// Open or update your investor account at the venue: accept the current investor terms (`acceptTerms`), and state accredited status or your annual income and net worth for the Reg A+ limit. Needs a verified ID.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  Future<Response> createVaultMarketShareInvestorWithHttpInfo() async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/vault-markets/shares/investor';
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'POST',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Open or update your investor account at the venue: accept the current investor terms (`acceptTerms`), and state accredited status or your annual income and net worth for the Reg A+ limit. Needs a verified ID.
+  Future<GetVaultMarketShareInvestorResponse> createVaultMarketShareInvestor() async {
+    final response = await createVaultMarketShareInvestorWithHttpInfo();
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'GetVaultMarketShareInvestorResponse',) as GetVaultMarketShareInvestorResponse;
+    
+    }
+    return Future<GetVaultMarketShareInvestorResponse>.value();
+  }
+
+  /// Cancel one of your open share-book orders.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<Response> createVaultMarketShareOrderCancelWithHttpInfo(String id,) async {
+    // Verify required params are set.
+    if (id == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: id');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/vault-markets/shares/orders/{id}/cancel'
+      .replaceAll('{id}', id);
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'POST',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Cancel one of your open share-book orders.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<ListVaultMarketShareOrdersItem> createVaultMarketShareOrderCancel(String id,) async {
+    final response = await createVaultMarketShareOrderCancelWithHttpInfo(id,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'ListVaultMarketShareOrdersItem',) as ListVaultMarketShareOrdersItem;
+    
+    }
+    return Future<ListVaultMarketShareOrdersItem>.value();
+  }
+
+  /// Cancel an open practice order.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<Response> createVaultMarketSharePaperOrderCancelWithHttpInfo(String id,) async {
+    // Verify required params are set.
+    if (id == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: id');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/vault-markets/shares/paper/orders/{id}/cancel'
+      .replaceAll('{id}', id);
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'POST',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Cancel an open practice order.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<CreateVaultMarketSharePaperSeryOrderResponse> createVaultMarketSharePaperOrderCancel(String id,) async {
+    final response = await createVaultMarketSharePaperOrderCancelWithHttpInfo(id,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'CreateVaultMarketSharePaperSeryOrderResponse',) as CreateVaultMarketSharePaperSeryOrderResponse;
+    
+    }
+    return Future<CreateVaultMarketSharePaperSeryOrderResponse>.value();
+  }
+
+  /// Start the practice account over with fresh play money (once a day).
+  ///
+  /// Note: This method returns the HTTP [Response].
+  Future<Response> createVaultMarketSharePaperResetWithHttpInfo() async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/vault-markets/shares/paper/reset';
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'POST',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Start the practice account over with fresh play money (once a day).
+  Future<GetVaultMarketSharePaperResponse> createVaultMarketSharePaperReset() async {
+    final response = await createVaultMarketSharePaperResetWithHttpInfo();
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'GetVaultMarketSharePaperResponse',) as GetVaultMarketSharePaperResponse;
+    
+    }
+    return Future<GetVaultMarketSharePaperResponse>.value();
+  }
+
+  /// Place a practice order (play money) with the same rules as the real share book.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<Response> createVaultMarketSharePaperSeryOrderWithHttpInfo(String id,) async {
+    // Verify required params are set.
+    if (id == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: id');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/vault-markets/shares/paper/series/{id}/orders'
+      .replaceAll('{id}', id);
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'POST',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Place a practice order (play money) with the same rules as the real share book.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<CreateVaultMarketSharePaperSeryOrderResponse> createVaultMarketSharePaperSeryOrder(String id,) async {
+    final response = await createVaultMarketSharePaperSeryOrderWithHttpInfo(id,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'CreateVaultMarketSharePaperSeryOrderResponse',) as CreateVaultMarketSharePaperSeryOrderResponse;
+    
+    }
+    return Future<CreateVaultMarketSharePaperSeryOrderResponse>.value();
+  }
+
+  /// Subscribe with play money to a practice series’ offering.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<Response> createVaultMarketSharePaperSerySubscribeWithHttpInfo(String id,) async {
+    // Verify required params are set.
+    if (id == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: id');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/vault-markets/shares/paper/series/{id}/subscribe'
+      .replaceAll('{id}', id);
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'POST',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Subscribe with play money to a practice series’ offering.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<GetVaultMarketSharePaperResponse> createVaultMarketSharePaperSerySubscribe(String id,) async {
+    final response = await createVaultMarketSharePaperSerySubscribeWithHttpInfo(id,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'GetVaultMarketSharePaperResponse',) as GetVaultMarketSharePaperResponse;
+    
+    }
+    return Future<GetVaultMarketSharePaperResponse>.value();
+  }
+
+  /// Take down one of your own holder-room posts (`reason`).
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<Response> createVaultMarketShareRoomHideWithHttpInfo(String id,) async {
+    // Verify required params are set.
+    if (id == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: id');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/vault-markets/shares/room/{id}/hide'
+      .replaceAll('{id}', id);
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'POST',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Take down one of your own holder-room posts (`reason`).
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<CreateVaultMarketShareRoomHideResponse> createVaultMarketShareRoomHide(String id,) async {
+    final response = await createVaultMarketShareRoomHideWithHttpInfo(id,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'CreateVaultMarketShareRoomHideResponse',) as CreateVaultMarketShareRoomHideResponse;
+    
+    }
+    return Future<CreateVaultMarketShareRoomHideResponse>.value();
+  }
+
+  /// Propose a Vault Shares series for one of your units (`vaultItemId`), keeping `retainedShares` (0-50%), with an optional minimum raise, offering length (7-60 days) and reserve. Ops then qualify it, attach the offering circular and open the offering. With no venue it is a practice series. Pass `requestId` to make a retry safe.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  Future<Response> createVaultMarketShareSeryWithHttpInfo() async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/vault-markets/shares/series';
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'POST',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Propose a Vault Shares series for one of your units (`vaultItemId`), keeping `retainedShares` (0-50%), with an optional minimum raise, offering length (7-60 days) and reserve. Ops then qualify it, attach the offering circular and open the offering. With no venue it is a practice series. Pass `requestId` to make a retry safe.
+  Future<ListVaultMarketShareSeriesItem> createVaultMarketShareSery() async {
+    final response = await createVaultMarketShareSeryWithHttpInfo();
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'ListVaultMarketShareSeriesItem',) as ListVaultMarketShareSeriesItem;
+    
+    }
+    return Future<ListVaultMarketShareSeriesItem>.value();
+  }
+
+  /// Bid for the whole item (`offerCents`, at least the mark x 1.10). The bid is escrowed at the venue, then holders vote by shares: two-thirds yes accepts, a majority against rejects, 14 days with no majority against accepts. Accepted, the item is yours and the price is paid out pro rata after storage and insurance.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<Response> createVaultMarketShareSeryBuyoutWithHttpInfo(String id,) async {
+    // Verify required params are set.
+    if (id == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: id');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/vault-markets/shares/series/{id}/buyouts'
+      .replaceAll('{id}', id);
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'POST',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Bid for the whole item (`offerCents`, at least the mark x 1.10). The bid is escrowed at the venue, then holders vote by shares: two-thirds yes accepts, a majority against rejects, 14 days with no majority against accepts. Accepted, the item is yours and the price is paid out pro rata after storage and insurance.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<CreateVaultMarketShareBuyoutFundResponse> createVaultMarketShareSeryBuyout(String id,) async {
+    final response = await createVaultMarketShareSeryBuyoutWithHttpInfo(id,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'CreateVaultMarketShareBuyoutFundResponse',) as CreateVaultMarketShareBuyoutFundResponse;
+    
+    }
+    return Future<CreateVaultMarketShareBuyoutFundResponse>.value();
+  }
+
+  /// Give whole `shares` of a series to someone (`to`: their @handle, email or user id), with an optional `message`. The shares are set aside until they accept (14 days). On acceptance the broker-dealer or transfer agent verifies them and moves the shares on the register: no money moves, and your cost basis and holding date carry over.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<Response> createVaultMarketShareSeryGiftWithHttpInfo(String id,) async {
+    // Verify required params are set.
+    if (id == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: id');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/vault-markets/shares/series/{id}/gifts'
+      .replaceAll('{id}', id);
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'POST',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Give whole `shares` of a series to someone (`to`: their @handle, email or user id), with an optional `message`. The shares are set aside until they accept (14 days). On acceptance the broker-dealer or transfer agent verifies them and moves the shares on the register: no money moves, and your cost basis and holding date carry over.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<ListVaultMarketShareGiftsItem> createVaultMarketShareSeryGift(String id,) async {
+    final response = await createVaultMarketShareSeryGiftWithHttpInfo(id,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'ListVaultMarketShareGiftsItem',) as ListVaultMarketShareGiftsItem;
+    
+    }
+    return Future<ListVaultMarketShareGiftsItem>.value();
+  }
+
+  /// Place an order on a series’ share book: `side`, `type` limit or market (immediate-or-cancel inside a 10% band), `tif` gtc / gtd (`expiresAt`) / ioc, whole `shares` or a buy’s `amountCents` (turned into whole shares at the most it could pay), integer `limitCents` a share, `postOnly`. Fees: maker 0, taker 100 bps plus the broker-dealer pass-through. Self-trades are prevented. Pass `requestId` to make a retry safe.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<Response> createVaultMarketShareSeryOrderWithHttpInfo(String id,) async {
+    // Verify required params are set.
+    if (id == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: id');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/vault-markets/shares/series/{id}/orders'
+      .replaceAll('{id}', id);
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'POST',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Place an order on a series’ share book: `side`, `type` limit or market (immediate-or-cancel inside a 10% band), `tif` gtc / gtd (`expiresAt`) / ioc, whole `shares` or a buy’s `amountCents` (turned into whole shares at the most it could pay), integer `limitCents` a share, `postOnly`. Fees: maker 0, taker 100 bps plus the broker-dealer pass-through. Self-trades are prevented. Pass `requestId` to make a retry safe.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<ListVaultMarketShareOrdersItem> createVaultMarketShareSeryOrder(String id,) async {
+    final response = await createVaultMarketShareSeryOrderWithHttpInfo(id,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'ListVaultMarketShareOrdersItem',) as ListVaultMarketShareOrdersItem;
+    
+    }
+    return Future<ListVaultMarketShareOrdersItem>.value();
+  }
+
+  /// You hold every share: take the item back whole. With `withdraw`, it ships home at once (any receipt token is burned as it leaves). Storage and insurance the series owed stay with the unit.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<Response> createVaultMarketShareSeryRecombineWithHttpInfo(String id,) async {
+    // Verify required params are set.
+    if (id == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: id');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/vault-markets/shares/series/{id}/recombine'
+      .replaceAll('{id}', id);
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'POST',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// You hold every share: take the item back whole. With `withdraw`, it ships home at once (any receipt token is burned as it leaves). Storage and insurance the series owed stay with the unit.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<CreateVaultMarketShareSeryRecombineResponse> createVaultMarketShareSeryRecombine(String id,) async {
+    final response = await createVaultMarketShareSeryRecombineWithHttpInfo(id,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'CreateVaultMarketShareSeryRecombineResponse',) as CreateVaultMarketShareSeryRecombineResponse;
+    
+    }
+    return Future<CreateVaultMarketShareSeryRecombineResponse>.value();
+  }
+
+  /// Post in the holder room (shareholders only), up to 1,000 characters.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<Response> createVaultMarketShareSeryRoomWithHttpInfo(String id,) async {
+    // Verify required params are set.
+    if (id == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: id');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/vault-markets/shares/series/{id}/room'
+      .replaceAll('{id}', id);
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'POST',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Post in the holder room (shareholders only), up to 1,000 characters.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<CreateVaultMarketShareSeryRoomResponse> createVaultMarketShareSeryRoom(String id,) async {
+    final response = await createVaultMarketShareSeryRoomWithHttpInfo(id,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'CreateVaultMarketShareSeryRoomResponse',) as CreateVaultMarketShareSeryRoomResponse;
+    
+    }
+    return Future<CreateVaultMarketShareSeryRoomResponse>.value();
+  }
+
+  /// Subscribe for whole `shares` in an open offering at its fixed price. The money goes into the venue’s escrow in your own name and is refunded if the offering misses its minimum. Reg A+ limits apply. A joint vault member with trade rights may pass `jointVaultId`. Pass `requestId` to make a retry safe.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<Response> createVaultMarketShareSerySubscribeWithHttpInfo(String id,) async {
+    // Verify required params are set.
+    if (id == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: id');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/vault-markets/shares/series/{id}/subscribe'
+      .replaceAll('{id}', id);
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'POST',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Subscribe for whole `shares` in an open offering at its fixed price. The money goes into the venue’s escrow in your own name and is refunded if the offering misses its minimum. Reg A+ limits apply. A joint vault member with trade rights may pass `jointVaultId`. Pass `requestId` to make a retry safe.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<ListVaultMarketShareSubscriptionsItem> createVaultMarketShareSerySubscribe(String id,) async {
+    final response = await createVaultMarketShareSerySubscribeWithHttpInfo(id,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'ListVaultMarketShareSubscriptionsItem',) as ListVaultMarketShareSubscriptionsItem;
+    
+    }
+    return Future<ListVaultMarketShareSubscriptionsItem>.value();
+  }
+
+  /// Stop being told about a drop (`kind` notify) or leave its waitlist (`kind` waitlist).
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<Response> createVaultMarketShareSeryUnwatchWithHttpInfo(String id,) async {
+    // Verify required params are set.
+    if (id == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: id');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/vault-markets/shares/series/{id}/unwatch'
+      .replaceAll('{id}', id);
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'POST',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Stop being told about a drop (`kind` notify) or leave its waitlist (`kind` waitlist).
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<CreateVaultMarketShareSeryWatchResponse> createVaultMarketShareSeryUnwatch(String id,) async {
+    final response = await createVaultMarketShareSeryUnwatchWithHttpInfo(id,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'CreateVaultMarketShareSeryWatchResponse',) as CreateVaultMarketShareSeryWatchResponse;
+    
+    }
+    return Future<CreateVaultMarketShareSeryWatchResponse>.value();
+  }
+
+  /// Post an update on your own item’s series (you are its originator): `kind` story, provenance, condition, appraisal, exhibition or event, a `title`, a `body`, an optional https `mediaUrl`, `holdersOnly`. Holders are told.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<Response> createVaultMarketShareSeryUpdateWithHttpInfo(String id,) async {
+    // Verify required params are set.
+    if (id == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: id');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/vault-markets/shares/series/{id}/updates'
+      .replaceAll('{id}', id);
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'POST',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Post an update on your own item’s series (you are its originator): `kind` story, provenance, condition, appraisal, exhibition or event, a `title`, a `body`, an optional https `mediaUrl`, `holdersOnly`. Holders are told.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<IdResponse> createVaultMarketShareSeryUpdate(String id,) async {
+    final response = await createVaultMarketShareSeryUpdateWithHttpInfo(id,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'IdResponse',) as IdResponse;
+    
+    }
+    return Future<IdResponse>.value();
+  }
+
+  /// Ask to be told about a drop (`kind` notify: when your early access opens and when it opens to everyone) or join the waitlist of a sold-out first-come offering (`kind` waitlist, with the `shares` you want).
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<Response> createVaultMarketShareSeryWatchWithHttpInfo(String id,) async {
+    // Verify required params are set.
+    if (id == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: id');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/vault-markets/shares/series/{id}/watch'
+      .replaceAll('{id}', id);
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'POST',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Ask to be told about a drop (`kind` notify: when your early access opens and when it opens to everyone) or join the waitlist of a sold-out first-come offering (`kind` waitlist, with the `shares` you want).
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<CreateVaultMarketShareSeryWatchResponse> createVaultMarketShareSeryWatch(String id,) async {
+    final response = await createVaultMarketShareSeryWatchWithHttpInfo(id,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'CreateVaultMarketShareSeryWatchResponse',) as CreateVaultMarketShareSeryWatchResponse;
+    
+    }
+    return Future<CreateVaultMarketShareSeryWatchResponse>.value();
+  }
+
+  /// Withdraw your own proposal before its offering opens.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<Response> createVaultMarketShareSeryWithdrawProposalWithHttpInfo(String id,) async {
+    // Verify required params are set.
+    if (id == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: id');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/vault-markets/shares/series/{id}/withdraw-proposal'
+      .replaceAll('{id}', id);
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'POST',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Withdraw your own proposal before its offering opens.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<ListVaultMarketShareSeriesItem> createVaultMarketShareSeryWithdrawProposal(String id,) async {
+    final response = await createVaultMarketShareSeryWithdrawProposalWithHttpInfo(id,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'ListVaultMarketShareSeriesItem',) as ListVaultMarketShareSeriesItem;
+    
+    }
+    return Future<ListVaultMarketShareSeriesItem>.value();
+  }
+
+  /// Cancel an escrowed subscription while its offering is still open: the escrow is refunded.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<Response> createVaultMarketShareSubscriptionCancelWithHttpInfo(String id,) async {
+    // Verify required params are set.
+    if (id == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: id');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/vault-markets/shares/subscriptions/{id}/cancel'
+      .replaceAll('{id}', id);
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'POST',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Cancel an escrowed subscription while its offering is still open: the escrow is refunded.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<ListVaultMarketShareSubscriptionsItem> createVaultMarketShareSubscriptionCancel(String id,) async {
+    final response = await createVaultMarketShareSubscriptionCancelWithHttpInfo(id,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'ListVaultMarketShareSubscriptionsItem',) as ListVaultMarketShareSubscriptionsItem;
+    
+    }
+    return Future<ListVaultMarketShareSubscriptionsItem>.value();
+  }
+
+  /// Book a place on a viewing day (shareholders only), with up to the day’s `guests`. Bookings close a day before; booking again changes your guests.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<Response> createVaultMarketShareViewingBookWithHttpInfo(String id,) async {
+    // Verify required params are set.
+    if (id == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: id');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/vault-markets/shares/viewings/{id}/book'
+      .replaceAll('{id}', id);
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'POST',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Book a place on a viewing day (shareholders only), with up to the day’s `guests`. Bookings close a day before; booking again changes your guests.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<CreateVaultMarketShareViewingBookResponse> createVaultMarketShareViewingBook(String id,) async {
+    final response = await createVaultMarketShareViewingBookWithHttpInfo(id,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'CreateVaultMarketShareViewingBookResponse',) as CreateVaultMarketShareViewingBookResponse;
+    
+    }
+    return Future<CreateVaultMarketShareViewingBookResponse>.value();
+  }
+
+  /// Cancel your viewing-day booking.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<Response> createVaultMarketShareViewingBookingCancelWithHttpInfo(String id,) async {
+    // Verify required params are set.
+    if (id == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: id');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/vault-markets/shares/viewing-bookings/{id}/cancel'
+      .replaceAll('{id}', id);
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'POST',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Cancel your viewing-day booking.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<CreateVaultMarketShareViewingBookingCancelResponse> createVaultMarketShareViewingBookingCancel(String id,) async {
+    final response = await createVaultMarketShareViewingBookingCancelWithHttpInfo(id,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'CreateVaultMarketShareViewingBookingCancelResponse',) as CreateVaultMarketShareViewingBookingCancelResponse;
+    
+    }
+    return Future<CreateVaultMarketShareViewingBookingCancelResponse>.value();
   }
 
   /// Short a book key: borrow `units` lent units (default 1; at most 25/10/3/1 by liquidity tier A/B/C/D) and sell each at `limitCents` or better, posting collateral for all of them (50% of the mark each; CBX counts at half, up to 30%). All units are borrowed or none unless `allowPartial`. A partial sale opens with the units sold. Returns `{ positionId, matched, units }`.
@@ -7574,6 +12248,52 @@ class VaultMarketsApi {
     
     }
     return Future<CreateVaultMarketSupplySendResponse>.value();
+  }
+
+  /// Send inventory items to the vault: `method: label` (one box on a prepaid label) or `dropoff` at a partner (`partnerId`, from the finder; you get a counter code). Each item can carry its declared value; `insured` insures the box for it.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  Future<Response> createVaultMarketSupplySendInWithHttpInfo() async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/vault-markets/supply/send-in';
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'POST',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Send inventory items to the vault: `method: label` (one box on a prepaid label) or `dropoff` at a partner (`partnerId`, from the finder; you get a counter code). Each item can carry its declared value; `insured` insures the box for it.
+  Future<CreateVaultMarketSupplySendInResponse> createVaultMarketSupplySendIn() async {
+    final response = await createVaultMarketSupplySendInWithHttpInfo();
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'CreateVaultMarketSupplySendInResponse',) as CreateVaultMarketSupplySendInResponse;
+    
+    }
+    return Future<CreateVaultMarketSupplySendInResponse>.value();
   }
 
   /// Accept the current lending terms (needed to lend or short). Returns `{ termsVersion }`.
@@ -8604,6 +13324,52 @@ class VaultMarketsApi {
     return Future<OkResponse>.value();
   }
 
+  /// Stop Auto-buy with payouts. The history stays.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  Future<Response> deleteVaultMarketAutoBuyWithHttpInfo() async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/vault-markets/auto-buy';
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'DELETE',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Stop Auto-buy with payouts. The history stays.
+  Future<DeleteVaultMarketAutoBuyResponse> deleteVaultMarketAutoBuy() async {
+    final response = await deleteVaultMarketAutoBuyWithHttpInfo();
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'DeleteVaultMarketAutoBuyResponse',) as DeleteVaultMarketAutoBuyResponse;
+    
+    }
+    return Future<DeleteVaultMarketAutoBuyResponse>.value();
+  }
+
   /// Stop a family-wide quote: every leg order comes off the book; what filled stays filled.
   ///
   /// Note: This method returns the HTTP [Response].
@@ -9076,6 +13842,246 @@ class VaultMarketsApi {
     
     }
     return Future<DeleteVaultMarketOpeningWaitlistResponse>.value();
+  }
+
+  /// Remove a probability alert. Returns `{ ok }`.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<Response> deleteVaultMarketPredictionAlertWithHttpInfo(String id,) async {
+    // Verify required params are set.
+    if (id == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: id');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/vault-markets/predictions/alerts/{id}'
+      .replaceAll('{id}', id);
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'DELETE',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Remove a probability alert. Returns `{ ok }`.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<OkResponse> deleteVaultMarketPredictionAlert(String id,) async {
+    final response = await deleteVaultMarketPredictionAlertWithHttpInfo(id,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'OkResponse',) as OkResponse;
+    
+    }
+    return Future<OkResponse>.value();
+  }
+
+  /// Take an \"I called it\" card down; its link stops working. Returns `{ ok }`.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<Response> deleteVaultMarketPredictionCardWithHttpInfo(String id,) async {
+    // Verify required params are set.
+    if (id == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: id');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/vault-markets/predictions/cards/{id}'
+      .replaceAll('{id}', id);
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'DELETE',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Take an \"I called it\" card down; its link stops working. Returns `{ ok }`.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<OkResponse> deleteVaultMarketPredictionCard(String id,) async {
+    final response = await deleteVaultMarketPredictionCardWithHttpInfo(id,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'OkResponse',) as OkResponse;
+    
+    }
+    return Future<OkResponse>.value();
+  }
+
+  /// Delete your comment.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<Response> deleteVaultMarketPredictionCommentWithHttpInfo(String id,) async {
+    // Verify required params are set.
+    if (id == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: id');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/vault-markets/predictions/comments/{id}'
+      .replaceAll('{id}', id);
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'DELETE',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Delete your comment.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<OkResponse> deleteVaultMarketPredictionComment(String id,) async {
+    final response = await deleteVaultMarketPredictionCommentWithHttpInfo(id,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'OkResponse',) as OkResponse;
+    
+    }
+    return Future<OkResponse>.value();
+  }
+
+  /// Stop following a forecaster.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<Response> deleteVaultMarketPredictionForecasterFollowWithHttpInfo(String id,) async {
+    // Verify required params are set.
+    if (id == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: id');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/vault-markets/predictions/forecasters/{id}/follow'
+      .replaceAll('{id}', id);
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'DELETE',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Stop following a forecaster.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<CreateVaultMarketPredictionForecasterFollowResponse> deleteVaultMarketPredictionForecasterFollow(String id,) async {
+    final response = await deleteVaultMarketPredictionForecasterFollowWithHttpInfo(id,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'CreateVaultMarketPredictionForecasterFollowResponse',) as CreateVaultMarketPredictionForecasterFollowResponse;
+    
+    }
+    return Future<CreateVaultMarketPredictionForecasterFollowResponse>.value();
   }
 
   /// Delete a widget. Pages that still paste it show that it is no longer available. Returns `{ id, archived }`.
@@ -10144,6 +15150,52 @@ class VaultMarketsApi {
     
     }
     return Future<GetVaultMarketAuctionMineResponse>.value();
+  }
+
+  /// Auto-buy with payouts: the share of each payout set aside as a vault buying budget, the budget, your want list with max prices, the purchase history and whether it is paused. `autoBuy` is null when it is not set up.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  Future<Response> getVaultMarketAutoBuyWithHttpInfo() async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/vault-markets/auto-buy';
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Auto-buy with payouts: the share of each payout set aside as a vault buying budget, the budget, your want list with max prices, the purchase history and whether it is paused. `autoBuy` is null when it is not set up.
+  Future<GetVaultMarketAutoBuyResponse> getVaultMarketAutoBuy() async {
+    final response = await getVaultMarketAutoBuyWithHttpInfo();
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'GetVaultMarketAutoBuyResponse',) as GetVaultMarketAutoBuyResponse;
+    
+    }
+    return Future<GetVaultMarketAutoBuyResponse>.value();
   }
 
   /// One block order: its order, plan lines (planned and allocated units, average price, cash share, status).
@@ -12113,6 +17165,126 @@ class VaultMarketsApi {
     return Future<GetVaultMarketHealthWhatIfResponse>.value();
   }
 
+  /// The inventory item a vault unit of yours came from (null for a unit bought on the book).
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<Response> getVaultMarketHoldingInventoryItemWithHttpInfo(String id,) async {
+    // Verify required params are set.
+    if (id == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: id');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/vault-markets/holdings/{id}/inventory-item'
+      .replaceAll('{id}', id);
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// The inventory item a vault unit of yours came from (null for a unit bought on the book).
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<GetVaultMarketHoldingInventoryItemResponse> getVaultMarketHoldingInventoryItem(String id,) async {
+    final response = await getVaultMarketHoldingInventoryItemWithHttpInfo(id,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'GetVaultMarketHoldingInventoryItemResponse',) as GetVaultMarketHoldingInventoryItemResponse;
+    
+    }
+    return Future<GetVaultMarketHoldingInventoryItemResponse>.value();
+  }
+
+  /// What shipping one unit you own home would charge now, for `standard` and `expedited`: shipping, the storage it owes and the early-withdrawal fee (within 90 days of arriving), and the total. Read-only; ship it home with POST /api/v1/buyer/vault/:id/withdraw.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<Response> getVaultMarketHoldingWithdrawQuoteWithHttpInfo(String id,) async {
+    // Verify required params are set.
+    if (id == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: id');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/vault-markets/holdings/{id}/withdraw-quote'
+      .replaceAll('{id}', id);
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// What shipping one unit you own home would charge now, for `standard` and `expedited`: shipping, the storage it owes and the early-withdrawal fee (within 90 days of arriving), and the total. Read-only; ship it home with POST /api/v1/buyer/vault/:id/withdraw.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<GetVaultMarketHoldingWithdrawQuoteResponse> getVaultMarketHoldingWithdrawQuote(String id,) async {
+    final response = await getVaultMarketHoldingWithdrawQuoteWithHttpInfo(id,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'GetVaultMarketHoldingWithdrawQuoteResponse',) as GetVaultMarketHoldingWithdrawQuoteResponse;
+    
+    }
+    return Future<GetVaultMarketHoldingWithdrawQuoteResponse>.value();
+  }
+
   /// \"Show my vault\": the vault units you hold, the ones standing in your Crossly World home first. Each: vaultItemId, title, grade, imageUrl, bookKey (its market), inHome, visitors (visitors to your home see it). Also your home (slug, privacy, path), max units one home shows, shown, visitorsSee and a note on who sees what. Your home is made on first read. No prices.
   ///
   /// Note: This method returns the HTTP [Response].
@@ -12701,6 +17873,66 @@ class VaultMarketsApi {
     
     }
     return Future<GetVaultMarketInstantExitResponse>.value();
+  }
+
+  /// Where one inventory item's units are: in your own stock (warehouse) and in the vault per location, each vault unit's status (in transit, received, authenticated, graded, listed, shipped out), its Sell from first choice and whether it can be sent to the vault now (with the reason when not).
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] inventoryItemId (required):
+  Future<Response> getVaultMarketItemLocationWithHttpInfo(String inventoryItemId,) async {
+    // Verify required params are set.
+    if (inventoryItemId == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: inventoryItemId');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/vault-markets/items/{inventoryItemId}/location'
+      .replaceAll('{inventoryItemId}', inventoryItemId);
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Where one inventory item's units are: in your own stock (warehouse) and in the vault per location, each vault unit's status (in transit, received, authenticated, graded, listed, shipped out), its Sell from first choice and whether it can be sent to the vault now (with the reason when not).
+  ///
+  /// Parameters:
+  ///
+  /// * [String] inventoryItemId (required):
+  Future<GetVaultMarketItemLocationResponse> getVaultMarketItemLocation(String inventoryItemId,) async {
+    final response = await getVaultMarketItemLocationWithHttpInfo(inventoryItemId,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'GetVaultMarketItemLocationResponse',) as GetVaultMarketItemLocationResponse;
+    
+    }
+    return Future<GetVaultMarketItemLocationResponse>.value();
   }
 
   /// Your joint vaults and the invitations waiting for you, with the gate (open, missing env), the joint terms in words and what each right allows. A JointVaultsHome object, not a collection.
@@ -13849,6 +19081,900 @@ class VaultMarketsApi {
     return Future<ListVaultMarketOpeningItem>.value();
   }
 
+  /// Fractional options: the venue mode (self = Crossly is the venue and clearing house, partner = routed to the index DCM, paper = practice only) with the env each mode still needs, the active series and the rule book in force.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  Future<Response> getVaultMarketOptionWithHttpInfo() async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/vault-markets/options';
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Fractional options: the venue mode (self = Crossly is the venue and clearing house, partner = routed to the index DCM, paper = practice only) with the env each mode still needs, the active series and the rule book in force.
+  Future<GetVaultMarketOptionResponse> getVaultMarketOption() async {
+    final response = await getVaultMarketOptionWithHttpInfo();
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'GetVaultMarketOptionResponse',) as GetVaultMarketOptionResponse;
+    
+    }
+    return Future<GetVaultMarketOptionResponse>.value();
+  }
+
+  /// Options analytics on an underlying: the vol surface (expiry x moneyness) and one expiry's smile (`expiry`), IV rank and percentile against the series' own year, open interest and volume by strike and expiry, put/call ratios, the expected move to each expiry, and the historical vol of the underlying's own published series. Every implied vol is derived and display only.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] underlying (required):
+  Future<Response> getVaultMarketOptionAnalyticWithHttpInfo(String underlying,) async {
+    // Verify required params are set.
+    if (underlying == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: underlying');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/vault-markets/options/analytics/{underlying}'
+      .replaceAll('{underlying}', underlying);
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Options analytics on an underlying: the vol surface (expiry x moneyness) and one expiry's smile (`expiry`), IV rank and percentile against the series' own year, open interest and volume by strike and expiry, put/call ratios, the expected move to each expiry, and the historical vol of the underlying's own published series. Every implied vol is derived and display only.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] underlying (required):
+  Future<GetVaultMarketOptionAnalyticResponse> getVaultMarketOptionAnalytic(String underlying,) async {
+    final response = await getVaultMarketOptionAnalyticWithHttpInfo(underlying,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'GetVaultMarketOptionAnalyticResponse',) as GetVaultMarketOptionAnalyticResponse;
+    
+    }
+    return Future<GetVaultMarketOptionAnalyticResponse>.value();
+  }
+
+  /// Your auto-close rule: close positions (or only in-the-money ones) a set time before expiry with a marketable limit.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  Future<Response> getVaultMarketOptionAutoCloseWithHttpInfo() async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/vault-markets/options/auto-close';
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Your auto-close rule: close positions (or only in-the-money ones) a set time before expiry with a marketable limit.
+  Future<GetVaultMarketOptionAutoCloseResponse> getVaultMarketOptionAutoClose() async {
+    final response = await getVaultMarketOptionAutoCloseWithHttpInfo();
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'GetVaultMarketOptionAutoCloseResponse',) as GetVaultMarketOptionAutoCloseResponse;
+    
+    }
+    return Future<GetVaultMarketOptionAutoCloseResponse>.value();
+  }
+
+  /// The option chain for an underlying (index slug or book key): its expiries, and for one expiry (`expiry`, default the nearest) each strike's call and put with best bid / ask, last, open interest, the theoretical price at the reference vol, the implied vol of the mid (display only, never a mark) and the Greeks. Prices are cents per contract.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] underlying (required):
+  Future<Response> getVaultMarketOptionChainWithHttpInfo(String underlying,) async {
+    // Verify required params are set.
+    if (underlying == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: underlying');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/vault-markets/options/chain/{underlying}'
+      .replaceAll('{underlying}', underlying);
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// The option chain for an underlying (index slug or book key): its expiries, and for one expiry (`expiry`, default the nearest) each strike's call and put with best bid / ask, last, open interest, the theoretical price at the reference vol, the implied vol of the mid (display only, never a mark) and the Greeks. Prices are cents per contract.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] underlying (required):
+  Future<GetVaultMarketOptionChainResponse> getVaultMarketOptionChain(String underlying,) async {
+    final response = await getVaultMarketOptionChainWithHttpInfo(underlying,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'GetVaultMarketOptionChainResponse',) as GetVaultMarketOptionChainResponse;
+    
+    }
+    return Future<GetVaultMarketOptionChainResponse>.value();
+  }
+
+  /// One strategy's combo book by its canonical key (`key`, from the preview or an order): bids and asks by net price and recent strategy trades.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  Future<Response> getVaultMarketOptionComboBookWithHttpInfo() async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/vault-markets/options/combos/book';
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// One strategy's combo book by its canonical key (`key`, from the preview or an order): bids and asks by net price and recent strategy trades.
+  Future<GetVaultMarketOptionComboBookResponse> getVaultMarketOptionComboBook() async {
+    final response = await getVaultMarketOptionComboBookWithHttpInfo();
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'GetVaultMarketOptionComboBookResponse',) as GetVaultMarketOptionComboBookResponse;
+    
+    }
+    return Future<GetVaultMarketOptionComboBookResponse>.value();
+  }
+
+  /// One strategy quote request and its answers (all of them to the requester, your own to a responder).
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<Response> getVaultMarketOptionComboRfqWithHttpInfo(String id,) async {
+    // Verify required params are set.
+    if (id == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: id');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/vault-markets/options/combos/rfq/{id}'
+      .replaceAll('{id}', id);
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// One strategy quote request and its answers (all of them to the requester, your own to a responder).
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<GetVaultMarketOptionComboRfqResponse> getVaultMarketOptionComboRfq(String id,) async {
+    final response = await getVaultMarketOptionComboRfqWithHttpInfo(id,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'GetVaultMarketOptionComboRfqResponse',) as GetVaultMarketOptionComboRfqResponse;
+    
+    }
+    return Future<GetVaultMarketOptionComboRfqResponse>.value();
+  }
+
+  /// One option contract: its terms, the self-venue book and tape, its published daily settlement prices and, once settled, its settlement (value, source, flagged, and the hash chained to the previous settlement).
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<Response> getVaultMarketOptionContractWithHttpInfo(String id,) async {
+    // Verify required params are set.
+    if (id == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: id');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/vault-markets/options/contracts/{id}'
+      .replaceAll('{id}', id);
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// One option contract: its terms, the self-venue book and tape, its published daily settlement prices and, once settled, its settlement (value, source, flagged, and the hash chained to the previous settlement).
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<GetVaultMarketOptionContractResponse> getVaultMarketOptionContract(String id,) async {
+    final response = await getVaultMarketOptionContractWithHttpInfo(id,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'GetVaultMarketOptionContractResponse',) as GetVaultMarketOptionContractResponse;
+    
+    }
+    return Future<GetVaultMarketOptionContractResponse>.value();
+  }
+
+  /// A contract's order book on the Crossly venue (`levels`, default 20): bids and asks by price with milli-contract sizes, and the last 50 prints.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<Response> getVaultMarketOptionContractBookWithHttpInfo(String id,) async {
+    // Verify required params are set.
+    if (id == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: id');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/vault-markets/options/contracts/{id}/book'
+      .replaceAll('{id}', id);
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// A contract's order book on the Crossly venue (`levels`, default 20): bids and asks by price with milli-contract sizes, and the last 50 prints.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<GetVaultMarketOptionContractBookResponse> getVaultMarketOptionContractBook(String id,) async {
+    final response = await getVaultMarketOptionContractBookWithHttpInfo(id,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'GetVaultMarketOptionContractBookResponse',) as GetVaultMarketOptionContractBookResponse;
+    
+    }
+    return Future<GetVaultMarketOptionContractBookResponse>.value();
+  }
+
+  /// A settled contract's settlement: the value (cents per unit of the underlying), its source (the index's frozen 7-day TWAP, the item's expiry-day A/B mark, or the last reliable value, flagged), and the hash chained to the previous settlement. Null until it settles.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<Response> getVaultMarketOptionContractSettlementWithHttpInfo(String id,) async {
+    // Verify required params are set.
+    if (id == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: id');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/vault-markets/options/contracts/{id}/settlement'
+      .replaceAll('{id}', id);
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// A settled contract's settlement: the value (cents per unit of the underlying), its source (the index's frozen 7-day TWAP, the item's expiry-day A/B mark, or the last reliable value, flagged), and the hash chained to the previous settlement. Null until it settles.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<GetVaultMarketOptionContractSettlementResponse> getVaultMarketOptionContractSettlement(String id,) async {
+    final response = await getVaultMarketOptionContractSettlementWithHttpInfo(id,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'GetVaultMarketOptionContractSettlementResponse',) as GetVaultMarketOptionContractSettlementResponse;
+    
+    }
+    return Future<GetVaultMarketOptionContractSettlementResponse>.value();
+  }
+
+  /// Your hedges: long puts protecting vault units you hold (protective puts) and the vault units locked as collateral for calls you wrote (covered calls).
+  ///
+  /// Note: This method returns the HTTP [Response].
+  Future<Response> getVaultMarketOptionHedgeWithHttpInfo() async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/vault-markets/options/hedges';
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Your hedges: long puts protecting vault units you hold (protective puts) and the vault units locked as collateral for calls you wrote (covered calls).
+  Future<GetVaultMarketOptionHedgeResponse> getVaultMarketOptionHedge() async {
+    final response = await getVaultMarketOptionHedgeWithHttpInfo();
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'GetVaultMarketOptionHedgeResponse',) as GetVaultMarketOptionHedgeResponse;
+    
+    }
+    return Future<GetVaultMarketOptionHedgeResponse>.value();
+  }
+
+  /// The at-the-money implied volatility of the nearest expiry on an underlying, for display on its page: derived from the options book, quality C, never written as a mark.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] underlying (required):
+  Future<Response> getVaultMarketOptionIvWithHttpInfo(String underlying,) async {
+    // Verify required params are set.
+    if (underlying == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: underlying');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/vault-markets/options/iv/{underlying}'
+      .replaceAll('{underlying}', underlying);
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// The at-the-money implied volatility of the nearest expiry on an underlying, for display on its page: derived from the options book, quality C, never written as a mark.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] underlying (required):
+  Future<GetVaultMarketOptionIvResponse> getVaultMarketOptionIv(String underlying,) async {
+    final response = await getVaultMarketOptionIvWithHttpInfo(underlying,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'GetVaultMarketOptionIvResponse',) as GetVaultMarketOptionIvResponse;
+    
+    }
+    return Future<GetVaultMarketOptionIvResponse>.value();
+  }
+
+  /// Your options margin: the scenario requirement (worst loss over a +/-40% price x +/-50% vol grid, with offsets from vault units and positions you hold), initial margin, equity and state (ok / call / liquidate) per underlying. Authoritative on the Crossly venue; on the partner venue the partner's figure decides and this is an estimate.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  Future<Response> getVaultMarketOptionMarginWithHttpInfo() async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/vault-markets/options/margin';
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Your options margin: the scenario requirement (worst loss over a +/-40% price x +/-50% vol grid, with offsets from vault units and positions you hold), initial margin, equity and state (ok / call / liquidate) per underlying. Authoritative on the Crossly venue; on the partner venue the partner's figure decides and this is an estimate.
+  Future<GetVaultMarketOptionMarginResponse> getVaultMarketOptionMargin() async {
+    final response = await getVaultMarketOptionMarginWithHttpInfo();
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'GetVaultMarketOptionMarginResponse',) as GetVaultMarketOptionMarginResponse;
+    
+    }
+    return Future<GetVaultMarketOptionMarginResponse>.value();
+  }
+
+  /// Your whole options position on one `underlying` at expiry: the P&L curve over 50%..150% of spot, breakevens, and the maximum gain and loss (null when unbounded).
+  ///
+  /// Note: This method returns the HTTP [Response].
+  Future<Response> getVaultMarketOptionPayoffWithHttpInfo() async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/vault-markets/options/payoff';
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Your whole options position on one `underlying` at expiry: the P&L curve over 50%..150% of spot, breakevens, and the maximum gain and loss (null when unbounded).
+  Future<GetVaultMarketOptionPayoffResponse> getVaultMarketOptionPayoff() async {
+    final response = await getVaultMarketOptionPayoffWithHttpInfo();
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'GetVaultMarketOptionPayoffResponse',) as GetVaultMarketOptionPayoffResponse;
+    
+    }
+    return Future<GetVaultMarketOptionPayoffResponse>.value();
+  }
+
+  /// Your options positions: signed milli-contracts, average open price, the price it is settled to (Crossly venue), the theoretical mark, unrealised and realised P&L in cents, the Greeks for your size, the protective-put flag and your auto-deleveraging queue lights. `status` open (default) / all, `subaccountId`.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  Future<Response> getVaultMarketOptionPositionWithHttpInfo() async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/vault-markets/options/positions';
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Your options positions: signed milli-contracts, average open price, the price it is settled to (Crossly venue), the theoretical mark, unrealised and realised P&L in cents, the Greeks for your size, the protective-put flag and your auto-deleveraging queue lights. `status` open (default) / all, `subaccountId`.
+  Future<GetVaultMarketOptionPositionResponse> getVaultMarketOptionPosition() async {
+    final response = await getVaultMarketOptionPositionWithHttpInfo();
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'GetVaultMarketOptionPositionResponse',) as GetVaultMarketOptionPositionResponse;
+    
+    }
+    return Future<GetVaultMarketOptionPositionResponse>.value();
+  }
+
+  /// Your options practice account (play money only, $10,000 to start): cash, positions at the practice maker's price, equity and P&L.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  Future<Response> getVaultMarketOptionPracticeWithHttpInfo() async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/vault-markets/options/practice';
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Your options practice account (play money only, $10,000 to start): cash, positions at the practice maker's price, equity and P&L.
+  Future<GetVaultMarketOptionPracticeResponse> getVaultMarketOptionPractice() async {
+    final response = await getVaultMarketOptionPracticeWithHttpInfo();
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'GetVaultMarketOptionPracticeResponse',) as GetVaultMarketOptionPracticeResponse;
+    
+    }
+    return Future<GetVaultMarketOptionPracticeResponse>.value();
+  }
+
+  /// One option quote request: yours with every answer, or one you were sent with your own answer.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<Response> getVaultMarketOptionRfqWithHttpInfo(String id,) async {
+    // Verify required params are set.
+    if (id == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: id');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/vault-markets/options/rfq/{id}'
+      .replaceAll('{id}', id);
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// One option quote request: yours with every answer, or one you were sent with your own answer.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<GetVaultMarketOptionRfqResponse> getVaultMarketOptionRfq(String id,) async {
+    final response = await getVaultMarketOptionRfqWithHttpInfo(id,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'GetVaultMarketOptionRfqResponse',) as GetVaultMarketOptionRfqResponse;
+    
+    }
+    return Future<GetVaultMarketOptionRfqResponse>.value();
+  }
+
+  /// Your options portfolio's Greeks (per underlying and total, with dollar delta and 1% gamma), a scenario's P&L (`priceShift`, `volShift`, `daysForward`), a price x vol P&L grid, and the beta-weighted delta against an index (`betaIndex`, default the deepest). `book` live (default) or practice.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  Future<Response> getVaultMarketOptionRiskWithHttpInfo() async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/vault-markets/options/risk';
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Your options portfolio's Greeks (per underlying and total, with dollar delta and 1% gamma), a scenario's P&L (`priceShift`, `volShift`, `daysForward`), a price x vol P&L grid, and the beta-weighted delta against an index (`betaIndex`, default the deepest). `book` live (default) or practice.
+  Future<GetVaultMarketOptionRiskResponse> getVaultMarketOptionRisk() async {
+    final response = await getVaultMarketOptionRiskWithHttpInfo();
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'GetVaultMarketOptionRiskResponse',) as GetVaultMarketOptionRiskResponse;
+    
+    }
+    return Future<GetVaultMarketOptionRiskResponse>.value();
+  }
+
   /// Crossly as an oracle publisher (needs CROSSLY_ORACLE_PUBLISHER_KEY + CROSSLY_ORACLE_NETWORK): the network (pyth or switchboard), the ed25519 key every value is signed with, each published index feed with its latest attempt, and 24 h counts of published, skipped and failed. Only built-in indexes priced from A/B marks are published; Crossly never reads its own feed back.
   ///
   /// Note: This method returns the HTTP [Response].
@@ -14199,7 +20325,7 @@ class VaultMarketsApi {
     return Future<GetVaultMarketPaperQuoteResponse>.value();
   }
 
-  /// Your Vault Drop-off Partnership (null when you never applied): status, partner code, fee share and cap, totals and batches.
+  /// Your Vault Drop-off Partnership (null when you never applied): status, partner code, fee share and cap, finder profile, totals and batches; and whether your one-time ID check is done.
   ///
   /// Note: This method returns the HTTP [Response].
   Future<Response> getVaultMarketPartnerMeWithHttpInfo() async {
@@ -14229,7 +20355,7 @@ class VaultMarketsApi {
     );
   }
 
-  /// Your Vault Drop-off Partnership (null when you never applied): status, partner code, fee share and cap, totals and batches.
+  /// Your Vault Drop-off Partnership (null when you never applied): status, partner code, fee share and cap, finder profile, totals and batches; and whether your one-time ID check is done.
   Future<GetVaultMarketPartnerMeResponse> getVaultMarketPartnerMe() async {
     final response = await getVaultMarketPartnerMeWithHttpInfo();
     if (response.statusCode >= HttpStatus.badRequest) {
@@ -14670,6 +20796,1236 @@ class VaultMarketsApi {
     
     }
     return Future<ListVaultMarketPositionsRiskItem>.value();
+  }
+
+  /// The prediction markets home: the busiest and soonest-expiring \"Will it hit?\" markets with their probability (each market's own price, display only), the underlyings with markets, which venue is live, and how many positions you hold.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  Future<Response> getVaultMarketPredictionWithHttpInfo() async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/vault-markets/predictions';
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// The prediction markets home: the busiest and soonest-expiring \"Will it hit?\" markets with their probability (each market's own price, display only), the underlyings with markets, which venue is live, and how many positions you hold.
+  Future<GetVaultMarketPredictionResponse> getVaultMarketPrediction() async {
+    final response = await getVaultMarketPredictionWithHttpInfo();
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'GetVaultMarketPredictionResponse',) as GetVaultMarketPredictionResponse;
+    
+    }
+    return Future<GetVaultMarketPredictionResponse>.value();
+  }
+
+  /// Your prediction-market account: the live venue, your account there and the terms you accepted, whether you may trade real money (region, age, self-exclusion) and why not, your self-set limits, and the practice account line.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  Future<Response> getVaultMarketPredictionAccountWithHttpInfo() async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/vault-markets/predictions/account';
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Your prediction-market account: the live venue, your account there and the terms you accepted, whether you may trade real money (region, age, self-exclusion) and why not, your self-set limits, and the practice account line.
+  Future<GetVaultMarketPredictionAccountResponse> getVaultMarketPredictionAccount() async {
+    final response = await getVaultMarketPredictionAccountWithHttpInfo();
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'GetVaultMarketPredictionAccountResponse',) as GetVaultMarketPredictionAccountResponse;
+    
+    }
+    return Future<GetVaultMarketPredictionAccountResponse>.value();
+  }
+
+  /// The prediction board the Trading Floor and the Market Open plank show: the busiest open markets and their odds. Anonymous: never who holds what.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  Future<Response> getVaultMarketPredictionBoardWithHttpInfo() async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/vault-markets/predictions/board';
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// The prediction board the Trading Floor and the Market Open plank show: the busiest open markets and their odds. Anonymous: never who holds what.
+  Future<GetVaultMarketPredictionBoardResponse> getVaultMarketPredictionBoard() async {
+    final response = await getVaultMarketPredictionBoardWithHttpInfo();
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'GetVaultMarketPredictionBoardResponse',) as GetVaultMarketPredictionBoardResponse;
+    
+    }
+    return Future<GetVaultMarketPredictionBoardResponse>.value();
+  }
+
+  /// One of your combos.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<Response> getVaultMarketPredictionComboWithHttpInfo(String id,) async {
+    // Verify required params are set.
+    if (id == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: id');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/vault-markets/predictions/combos/{id}'
+      .replaceAll('{id}', id);
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// One of your combos.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<ListVaultMarketPredictionCombosItem> getVaultMarketPredictionCombo(String id,) async {
+    final response = await getVaultMarketPredictionComboWithHttpInfo(id,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'ListVaultMarketPredictionCombosItem',) as ListVaultMarketPredictionCombosItem;
+    
+    }
+    return Future<ListVaultMarketPredictionCombosItem>.value();
+  }
+
+  /// One combo request: its legs and size, and the answers you can see (all of them if you asked; yours if you quoted).
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<Response> getVaultMarketPredictionComboRfqWithHttpInfo(String id,) async {
+    // Verify required params are set.
+    if (id == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: id');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/vault-markets/predictions/combos/rfqs/{id}'
+      .replaceAll('{id}', id);
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// One combo request: its legs and size, and the answers you can see (all of them if you asked; yours if you quoted).
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<ListVaultMarketPredictionComboRfqsItem> getVaultMarketPredictionComboRfq(String id,) async {
+    final response = await getVaultMarketPredictionComboRfqWithHttpInfo(id,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'ListVaultMarketPredictionComboRfqsItem',) as ListVaultMarketPredictionComboRfqsItem;
+    
+    }
+    return Future<ListVaultMarketPredictionComboRfqsItem>.value();
+  }
+
+  /// The published daily settlement price of every listed market for a day (default yesterday): the last hour's volume-weighted Yes price, else the book mid, else the prior day's, with volume and open interest.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  Future<Response> getVaultMarketPredictionDailyPriceWithHttpInfo() async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/vault-markets/predictions/daily-prices';
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// The published daily settlement price of every listed market for a day (default yesterday): the last hour's volume-weighted Yes price, else the book mid, else the prior day's, with volume and open interest.
+  Future<GetVaultMarketPredictionDailyPriceResponse> getVaultMarketPredictionDailyPrice() async {
+    final response = await getVaultMarketPredictionDailyPriceWithHttpInfo();
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'GetVaultMarketPredictionDailyPriceResponse',) as GetVaultMarketPredictionDailyPriceResponse;
+    
+    }
+    return Future<GetVaultMarketPredictionDailyPriceResponse>.value();
+  }
+
+  /// One expiry of a series (an event): its markets, what you hold in each, the real worst and best case of your holdings across them (what your limit counts), and, for a full bucket set, how many sets you could merge. `venue` paper or live.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<Response> getVaultMarketPredictionEventWithHttpInfo(String id,) async {
+    // Verify required params are set.
+    if (id == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: id');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/vault-markets/predictions/events/{id}'
+      .replaceAll('{id}', id);
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// One expiry of a series (an event): its markets, what you hold in each, the real worst and best case of your holdings across them (what your limit counts), and, for a full bucket set, how many sets you could merge. `venue` paper or live.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<GetVaultMarketPredictionEventResponse> getVaultMarketPredictionEvent(String id,) async {
+    final response = await getVaultMarketPredictionEventWithHttpInfo(id,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'GetVaultMarketPredictionEventResponse',) as GetVaultMarketPredictionEventResponse;
+    
+    }
+    return Future<GetVaultMarketPredictionEventResponse>.value();
+  }
+
+  /// Your forecaster profile: display name, whether it is public (opt-in) and since when, and your followers.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  Future<Response> getVaultMarketPredictionForecasterWithHttpInfo() async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/vault-markets/predictions/forecaster';
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Your forecaster profile: display name, whether it is public (opt-in) and since when, and your followers.
+  Future<GetVaultMarketPredictionForecasterResponse> getVaultMarketPredictionForecaster() async {
+    final response = await getVaultMarketPredictionForecasterWithHttpInfo();
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'GetVaultMarketPredictionForecasterResponse',) as GetVaultMarketPredictionForecasterResponse;
+    
+    }
+    return Future<GetVaultMarketPredictionForecasterResponse>.value();
+  }
+
+  /// A public forecaster: scores (all time and this month), open sides (never sizes), recent settled calls, followers. 404 when private.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<Response> getVaultMarketPredictionForecasterByIdWithHttpInfo(String id,) async {
+    // Verify required params are set.
+    if (id == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: id');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/vault-markets/predictions/forecasters/{id}'
+      .replaceAll('{id}', id);
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// A public forecaster: scores (all time and this month), open sides (never sizes), recent settled calls, followers. 404 when private.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<GetVaultMarketPredictionForecasterByIdResponse> getVaultMarketPredictionForecasterById(String id,) async {
+    final response = await getVaultMarketPredictionForecasterByIdWithHttpInfo(id,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'GetVaultMarketPredictionForecasterByIdResponse',) as GetVaultMarketPredictionForecasterByIdResponse;
+    
+    }
+    return Future<GetVaultMarketPredictionForecasterByIdResponse>.value();
+  }
+
+  /// Opt-in forecaster leaderboards: `period` week, month or all; `metric` pnl, accuracy or brier; `venue` live or paper (practice has its own board).
+  ///
+  /// Note: This method returns the HTTP [Response].
+  Future<Response> getVaultMarketPredictionLeaderboardWithHttpInfo() async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/vault-markets/predictions/leaderboard';
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Opt-in forecaster leaderboards: `period` week, month or all; `metric` pnl, accuracy or brier; `venue` live or paper (practice has its own board).
+  Future<GetVaultMarketPredictionLeaderboardResponse> getVaultMarketPredictionLeaderboard() async {
+    final response = await getVaultMarketPredictionLeaderboardWithHttpInfo();
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'GetVaultMarketPredictionLeaderboardResponse',) as GetVaultMarketPredictionLeaderboardResponse;
+    
+    }
+    return Future<GetVaultMarketPredictionLeaderboardResponse>.value();
+  }
+
+  /// Your self-set prediction limits: daily loss limit, self-exclusion, a raise waiting its 24 hours, and any hold the venue placed.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  Future<Response> getVaultMarketPredictionLimitWithHttpInfo() async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/vault-markets/predictions/limits';
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Your self-set prediction limits: daily loss limit, self-exclusion, a raise waiting its 24 hours, and any hold the venue placed.
+  Future<GetVaultMarketPredictionLimitResponse> getVaultMarketPredictionLimit() async {
+    final response = await getVaultMarketPredictionLimitWithHttpInfo();
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'GetVaultMarketPredictionLimitResponse',) as GetVaultMarketPredictionLimitResponse;
+    
+    }
+    return Future<GetVaultMarketPredictionLimitResponse>.value();
+  }
+
+  /// One prediction market: its terms, the Yes ladder of the live venue and of the practice book, recent trades, settlement history (outcome, value, hash, review), the series rules text and hash, and your positions in it.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<Response> getVaultMarketPredictionMarketWithHttpInfo(String id,) async {
+    // Verify required params are set.
+    if (id == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: id');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/vault-markets/predictions/markets/{id}'
+      .replaceAll('{id}', id);
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// One prediction market: its terms, the Yes ladder of the live venue and of the practice book, recent trades, settlement history (outcome, value, hash, review), the series rules text and hash, and your positions in it.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<GetVaultMarketPredictionMarketResponse> getVaultMarketPredictionMarket(String id,) async {
+    final response = await getVaultMarketPredictionMarketWithHttpInfo(id,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'GetVaultMarketPredictionMarketResponse',) as GetVaultMarketPredictionMarketResponse;
+    
+    }
+    return Future<GetVaultMarketPredictionMarketResponse>.value();
+  }
+
+  /// How many people forecast a market and their median probability (no names).
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<Response> getVaultMarketPredictionMarketForecastWithHttpInfo(String id,) async {
+    // Verify required params are set.
+    if (id == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: id');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/vault-markets/predictions/markets/{id}/forecasts'
+      .replaceAll('{id}', id);
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// How many people forecast a market and their median probability (no names).
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<GetVaultMarketPredictionMarketForecastResponse> getVaultMarketPredictionMarketForecast(String id,) async {
+    final response = await getVaultMarketPredictionMarketForecastWithHttpInfo(id,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'GetVaultMarketPredictionMarketForecastResponse',) as GetVaultMarketPredictionMarketForecastResponse;
+    
+    }
+    return Future<GetVaultMarketPredictionMarketForecastResponse>.value();
+  }
+
+  /// A market's history: probability points (display only, never a mark), candles on the Yes price, volume and open interest over `range` 1d, 1w, 1m or all; `venue` live or paper.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<Response> getVaultMarketPredictionMarketHistoryWithHttpInfo(String id,) async {
+    // Verify required params are set.
+    if (id == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: id');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/vault-markets/predictions/markets/{id}/history'
+      .replaceAll('{id}', id);
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// A market's history: probability points (display only, never a mark), candles on the Yes price, volume and open interest over `range` 1d, 1w, 1m or all; `venue` live or paper.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<GetVaultMarketPredictionMarketHistoryResponse> getVaultMarketPredictionMarketHistory(String id,) async {
+    final response = await getVaultMarketPredictionMarketHistoryWithHttpInfo(id,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'GetVaultMarketPredictionMarketHistoryResponse',) as GetVaultMarketPredictionMarketHistoryResponse;
+    
+    }
+    return Future<GetVaultMarketPredictionMarketHistoryResponse>.value();
+  }
+
+  /// A server-sent event stream for one prediction market: `snapshot` first, then `pm_depth`, `pm_trades`, `pm_probability`, `pm_status` and `pm_settlement` as they change.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<Response> getVaultMarketPredictionMarketStreamWithHttpInfo(String id,) async {
+    // Verify required params are set.
+    if (id == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: id');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/vault-markets/predictions/markets/{id}/stream'
+      .replaceAll('{id}', id);
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// A server-sent event stream for one prediction market: `snapshot` first, then `pm_depth`, `pm_trades`, `pm_probability`, `pm_status` and `pm_settlement` as they change.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<String> getVaultMarketPredictionMarketStream(String id,) async {
+    final response = await getVaultMarketPredictionMarketStreamWithHttpInfo(id,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'String',) as String;
+    
+    }
+    return Future<String>.value();
+  }
+
+  /// The trade tape, newest first: Yes price, size, which side took, venue. Page with `before` (the last `seq`).
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<Response> getVaultMarketPredictionMarketTradeWithHttpInfo(String id,) async {
+    // Verify required params are set.
+    if (id == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: id');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/vault-markets/predictions/markets/{id}/trades'
+      .replaceAll('{id}', id);
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// The trade tape, newest first: Yes price, size, which side took, venue. Page with `before` (the last `seq`).
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<GetVaultMarketPredictionMarketTradeResponse> getVaultMarketPredictionMarketTrade(String id,) async {
+    final response = await getVaultMarketPredictionMarketTradeWithHttpInfo(id,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'GetVaultMarketPredictionMarketTradeResponse',) as GetVaultMarketPredictionMarketTradeResponse;
+    
+    }
+    return Future<GetVaultMarketPredictionMarketTradeResponse>.value();
+  }
+
+  /// A server-sent event stream of your own prediction events: `pm_order` (placed, filled, amended, cancelled, expired), `pm_fill` (your side, price and fee), `pm_position`, `pm_combo` and `pm_conversion`.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  Future<Response> getVaultMarketPredictionMeStreamWithHttpInfo() async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/vault-markets/predictions/me/stream';
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// A server-sent event stream of your own prediction events: `pm_order` (placed, filled, amended, cancelled, expired), `pm_fill` (your side, price and fee), `pm_position`, `pm_combo` and `pm_conversion`.
+  Future<String> getVaultMarketPredictionMeStream() async {
+    final response = await getVaultMarketPredictionMeStreamWithHttpInfo();
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'String',) as String;
+    
+    }
+    return Future<String>.value();
+  }
+
+  /// The two \"Will it hit?\" practice missions (your first call; see one settle), whether the server saw each done, and the pin they lead to. Pins only.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  Future<Response> getVaultMarketPredictionMissionWithHttpInfo() async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/vault-markets/predictions/missions';
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// The two \"Will it hit?\" practice missions (your first call; see one settle), whether the server saw each done, and the pin they lead to. Pins only.
+  Future<GetVaultMarketPredictionMissionResponse> getVaultMarketPredictionMission() async {
+    final response = await getVaultMarketPredictionMissionWithHttpInfo();
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'GetVaultMarketPredictionMissionResponse',) as GetVaultMarketPredictionMissionResponse;
+    
+    }
+    return Future<GetVaultMarketPredictionMissionResponse>.value();
+  }
+
+  /// Your practice prediction account (play money only, $1,000 to start, never real or convertible): cash, money locked by working orders, positions and working orders.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  Future<Response> getVaultMarketPredictionPaperWithHttpInfo() async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/vault-markets/predictions/paper';
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Your practice prediction account (play money only, $1,000 to start, never real or convertible): cash, money locked by working orders, positions and working orders.
+  Future<GetVaultMarketPredictionPaperResponse> getVaultMarketPredictionPaper() async {
+    final response = await getVaultMarketPredictionPaperWithHttpInfo();
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'GetVaultMarketPredictionPaperResponse',) as GetVaultMarketPredictionPaperResponse;
+    
+    }
+    return Future<GetVaultMarketPredictionPaperResponse>.value();
+  }
+
+  /// What an order would do now without placing it: contracts fillable inside the limit (a market order uses the 10-cent band), average price, estimated fee (Kalshi's formula), the money it would lock, and the most it could pay out.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  Future<Response> getVaultMarketPredictionQuoteWithHttpInfo() async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/vault-markets/predictions/quote';
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// What an order would do now without placing it: contracts fillable inside the limit (a market order uses the 10-cent band), average price, estimated fee (Kalshi's formula), the money it would lock, and the most it could pay out.
+  Future<GetVaultMarketPredictionQuoteResponse> getVaultMarketPredictionQuote() async {
+    final response = await getVaultMarketPredictionQuoteWithHttpInfo();
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'GetVaultMarketPredictionQuoteResponse',) as GetVaultMarketPredictionQuoteResponse;
+    
+    }
+    return Future<GetVaultMarketPredictionQuoteResponse>.value();
+  }
+
+  /// The prediction venue's rule book now and every version, each hashed and chained to the one before (`chainOk`).
+  ///
+  /// Note: This method returns the HTTP [Response].
+  Future<Response> getVaultMarketPredictionRulebookWithHttpInfo() async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/vault-markets/predictions/rulebook';
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// The prediction venue's rule book now and every version, each hashed and chained to the one before (`chainOk`).
+  Future<GetVaultMarketPredictionRulebookResponse> getVaultMarketPredictionRulebook() async {
+    final response = await getVaultMarketPredictionRulebookWithHttpInfo();
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'GetVaultMarketPredictionRulebookResponse',) as GetVaultMarketPredictionRulebookResponse;
+    
+    }
+    return Future<GetVaultMarketPredictionRulebookResponse>.value();
+  }
+
+  /// A server-sent event stream for up to 50 markets (`markets`=id,id): `ready`, then `pm_depth`, `pm_trades`, `pm_probability`, `pm_status` and `pm_settlement`, each carrying its marketId.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  Future<Response> getVaultMarketPredictionStreamWithHttpInfo() async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/vault-markets/predictions/stream';
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// A server-sent event stream for up to 50 markets (`markets`=id,id): `ready`, then `pm_depth`, `pm_trades`, `pm_probability`, `pm_status` and `pm_settlement`, each carrying its marketId.
+  Future<String> getVaultMarketPredictionStream() async {
+    final response = await getVaultMarketPredictionStreamWithHttpInfo();
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'String',) as String;
+    
+    }
+    return Future<String>.value();
+  }
+
+  /// Which prediction venue is live: self (Crossly as the DCM, money at the segregated settlement bank), partner (a partner DCM) or paper (practice only), who runs the book, where money sits, and the env each real mode still needs.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  Future<Response> getVaultMarketPredictionVenueWithHttpInfo() async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/vault-markets/predictions/venue';
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Which prediction venue is live: self (Crossly as the DCM, money at the segregated settlement bank), partner (a partner DCM) or paper (practice only), who runs the book, where money sits, and the env each real mode still needs.
+  Future<GetVaultMarketPredictionVenueResponse> getVaultMarketPredictionVenue() async {
+    final response = await getVaultMarketPredictionVenueWithHttpInfo();
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'GetVaultMarketPredictionVenueResponse',) as GetVaultMarketPredictionVenueResponse;
+    
+    }
+    return Future<GetVaultMarketPredictionVenueResponse>.value();
+  }
+
+  /// The \"Will it hit?\" panel for a key (`bookKey`) or an index (`index` slug): its open markets grouped by expiry, each with its probability. `eligible` is false when nothing is listed on it.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  Future<Response> getVaultMarketPredictionWillItHitWithHttpInfo() async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/vault-markets/predictions/will-it-hit';
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// The \"Will it hit?\" panel for a key (`bookKey`) or an index (`index` slug): its open markets grouped by expiry, each with its probability. `eligible` is false when nothing is listed on it.
+  Future<GetVaultMarketPredictionWillItHitResponse> getVaultMarketPredictionWillItHit() async {
+    final response = await getVaultMarketPredictionWillItHitWithHttpInfo();
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'GetVaultMarketPredictionWillItHitResponse',) as GetVaultMarketPredictionWillItHitResponse;
+    
+    }
+    return Future<GetVaultMarketPredictionWillItHitResponse>.value();
   }
 
   /// The press kit: each built-in index with level, quality, n, CSV link and a \"cite as\" line, plus the methodology links.
@@ -15658,6 +23014,158 @@ class VaultMarketsApi {
     return Future<GetVaultMarketSetGoalBasketPlanResponse>.value();
   }
 
+  /// Your vault defaults: Sell from first, new-inventory suggestions, the insurance rule and the default grading service.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  Future<Response> getVaultMarketSettingWithHttpInfo() async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/vault-markets/settings';
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Your vault defaults: Sell from first, new-inventory suggestions, the insurance rule and the default grading service.
+  Future<GetVaultMarketSettingResponse> getVaultMarketSetting() async {
+    final response = await getVaultMarketSettingWithHttpInfo();
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'GetVaultMarketSettingResponse',) as GetVaultMarketSettingResponse;
+    
+    }
+    return Future<GetVaultMarketSettingResponse>.value();
+  }
+
+  /// Vault Shares at a glance: the venue mode in force (self, partner or paper) and the env it still needs, the rules (about $5 a share, 100 to 100,000 shares, originator keeps 0-50%, 3% origination, maker 0 / taker 100 bps, 90-day lockup, buyouts at the mark x 1.10 with a two-thirds vote) and the disclosure.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  Future<Response> getVaultMarketShareWithHttpInfo() async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/vault-markets/shares';
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Vault Shares at a glance: the venue mode in force (self, partner or paper) and the env it still needs, the rules (about $5 a share, 100 to 100,000 shares, originator keeps 0-50%, 3% origination, maker 0 / taker 100 bps, 90-day lockup, buyouts at the mark x 1.10 with a two-thirds vote) and the disclosure.
+  Future<GetVaultMarketShareResponse> getVaultMarketShare() async {
+    final response = await getVaultMarketShareWithHttpInfo();
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'GetVaultMarketShareResponse',) as GetVaultMarketShareResponse;
+    
+    }
+    return Future<GetVaultMarketShareResponse>.value();
+  }
+
+  /// One theme basket (id or slug): its series, target and live weights, prices, and your own holdings against the weights.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<Response> getVaultMarketShareBasketWithHttpInfo(String id,) async {
+    // Verify required params are set.
+    if (id == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: id');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/vault-markets/shares/baskets/{id}'
+      .replaceAll('{id}', id);
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// One theme basket (id or slug): its series, target and live weights, prices, and your own holdings against the weights.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<GetVaultMarketShareBasketResponse> getVaultMarketShareBasket(String id,) async {
+    final response = await getVaultMarketShareBasketWithHttpInfo(id,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'GetVaultMarketShareBasketResponse',) as GetVaultMarketShareBasketResponse;
+    
+    }
+    return Future<GetVaultMarketShareBasketResponse>.value();
+  }
+
   /// One share card as the public sees it, with its image and link paths.
   ///
   /// Note: This method returns the HTTP [Response].
@@ -15716,6 +23224,550 @@ class VaultMarketsApi {
     
     }
     return Future<ListVaultMarketShareCardsItem>.value();
+  }
+
+  /// Your investor account at the venue in force: its status, the investor terms you accepted, and your Reg A+ limit for one offering (10% of the greater of income and net worth unless accredited).
+  ///
+  /// Note: This method returns the HTTP [Response].
+  Future<Response> getVaultMarketShareInvestorWithHttpInfo() async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/vault-markets/shares/investor';
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Your investor account at the venue in force: its status, the investor terms you accepted, and your Reg A+ limit for one offering (10% of the greater of income and net worth unless accredited).
+  Future<GetVaultMarketShareInvestorResponse> getVaultMarketShareInvestor() async {
+    final response = await getVaultMarketShareInvestorWithHttpInfo();
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'GetVaultMarketShareInvestorResponse',) as GetVaultMarketShareInvestorResponse;
+    
+    }
+    return Future<GetVaultMarketShareInvestorResponse>.value();
+  }
+
+  /// Your Vault Shares: shares and percent of each item, cost, implied value at the last price, your subscriptions and the payouts you were sent.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  Future<Response> getVaultMarketShareMeWithHttpInfo() async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/vault-markets/shares/me';
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Your Vault Shares: shares and percent of each item, cost, implied value at the last price, your subscriptions and the payouts you were sent.
+  Future<GetVaultMarketShareMeResponse> getVaultMarketShareMe() async {
+    final response = await getVaultMarketShareMeWithHttpInfo();
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'GetVaultMarketShareMeResponse',) as GetVaultMarketShareMeResponse;
+    
+    }
+    return Future<GetVaultMarketShareMeResponse>.value();
+  }
+
+  /// Your practice account for Vault Shares (play money only, never real, never convertible): cash, practice holdings, open practice orders, recent practice fills.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  Future<Response> getVaultMarketSharePaperWithHttpInfo() async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/vault-markets/shares/paper';
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Your practice account for Vault Shares (play money only, never real, never convertible): cash, practice holdings, open practice orders, recent practice fills.
+  Future<GetVaultMarketSharePaperResponse> getVaultMarketSharePaper() async {
+    final response = await getVaultMarketSharePaperWithHttpInfo();
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'GetVaultMarketSharePaperResponse',) as GetVaultMarketSharePaperResponse;
+    
+    }
+    return Future<GetVaultMarketSharePaperResponse>.value();
+  }
+
+  /// A series’ practice book: practice orders and the house quote 1% either side of the reference price.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<Response> getVaultMarketSharePaperSeryBookWithHttpInfo(String id,) async {
+    // Verify required params are set.
+    if (id == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: id');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/vault-markets/shares/paper/series/{id}/book'
+      .replaceAll('{id}', id);
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// A series’ practice book: practice orders and the house quote 1% either side of the reference price.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<GetVaultMarketSharePaperSeryBookResponse> getVaultMarketSharePaperSeryBook(String id,) async {
+    final response = await getVaultMarketSharePaperSeryBookWithHttpInfo(id,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'GetVaultMarketSharePaperSeryBookResponse',) as GetVaultMarketSharePaperSeryBookResponse;
+    
+    }
+    return Future<GetVaultMarketSharePaperSeryBookResponse>.value();
+  }
+
+  /// Fractionalize instead: whether one of your vault units can become a Vault Shares series now (stored, tier A or B, reliable mark of $1,000 or more, declared and insured, free) and the offering terms it would get.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  Future<Response> getVaultMarketSharePreviewWithHttpInfo() async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/vault-markets/shares/preview';
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Fractionalize instead: whether one of your vault units can become a Vault Shares series now (stored, tier A or B, reliable mark of $1,000 or more, declared and insured, free) and the offering terms it would get.
+  Future<GetVaultMarketSharePreviewResponse> getVaultMarketSharePreview() async {
+    final response = await getVaultMarketSharePreviewWithHttpInfo();
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'GetVaultMarketSharePreviewResponse',) as GetVaultMarketSharePreviewResponse;
+    
+    }
+    return Future<GetVaultMarketSharePreviewResponse>.value();
+  }
+
+  /// One series: the offering, the share book depth, the latest fills, holders as share percentages (nobody named), buyouts and your vote, your orders and subscriptions.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<Response> getVaultMarketShareSeryWithHttpInfo(String id,) async {
+    // Verify required params are set.
+    if (id == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: id');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/vault-markets/shares/series/{id}'
+      .replaceAll('{id}', id);
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// One series: the offering, the share book depth, the latest fills, holders as share percentages (nobody named), buyouts and your vote, your orders and subscriptions.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<GetVaultMarketShareSeryResponse> getVaultMarketShareSery(String id,) async {
+    final response = await getVaultMarketShareSeryWithHttpInfo(id,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'GetVaultMarketShareSeryResponse',) as GetVaultMarketShareSeryResponse;
+    
+    }
+    return Future<GetVaultMarketShareSeryResponse>.value();
+  }
+
+  /// A share book’s depth: whole shares per price level (integer cents a share), best first.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<Response> getVaultMarketShareSeryBookWithHttpInfo(String id,) async {
+    // Verify required params are set.
+    if (id == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: id');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/vault-markets/shares/series/{id}/book'
+      .replaceAll('{id}', id);
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// A share book’s depth: whole shares per price level (integer cents a share), best first.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<GetVaultMarketShareSeryBookResponse> getVaultMarketShareSeryBook(String id,) async {
+    final response = await getVaultMarketShareSeryBookWithHttpInfo(id,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'GetVaultMarketShareSeryBookResponse',) as GetVaultMarketShareSeryBookResponse;
+    
+    }
+    return Future<GetVaultMarketShareSeryBookResponse>.value();
+  }
+
+  /// A series’ full price history: OHLC candles of every share-book fill (`interval` 1h, 1d or 1w), the offering price, the change since the offering, and the appraisal history beside it. Share prices are display only, never a mark.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<Response> getVaultMarketShareSeryHistoryWithHttpInfo(String id,) async {
+    // Verify required params are set.
+    if (id == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: id');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/vault-markets/shares/series/{id}/history'
+      .replaceAll('{id}', id);
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// A series’ full price history: OHLC candles of every share-book fill (`interval` 1h, 1d or 1w), the offering price, the change since the offering, and the appraisal history beside it. Share prices are display only, never a mark.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<GetVaultMarketShareSeryHistoryResponse> getVaultMarketShareSeryHistory(String id,) async {
+    final response = await getVaultMarketShareSeryHistoryWithHttpInfo(id,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'GetVaultMarketShareSeryHistoryResponse',) as GetVaultMarketShareSeryHistoryResponse;
+    
+    }
+    return Future<GetVaultMarketShareSeryHistoryResponse>.value();
+  }
+
+  /// Holder perks on a series: whether you hold it, your holder badge, the links to visit the item in the world vault room and in AR, the viewing days with places left and your bookings.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<Response> getVaultMarketShareSeryPerkWithHttpInfo(String id,) async {
+    // Verify required params are set.
+    if (id == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: id');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/vault-markets/shares/series/{id}/perks'
+      .replaceAll('{id}', id);
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Holder perks on a series: whether you hold it, your holder badge, the links to visit the item in the world vault room and in AR, the viewing days with places left and your bookings.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<GetVaultMarketShareSeryPerkResponse> getVaultMarketShareSeryPerk(String id,) async {
+    final response = await getVaultMarketShareSeryPerkWithHttpInfo(id,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'GetVaultMarketShareSeryPerkResponse',) as GetVaultMarketShareSeryPerkResponse;
+    
+    }
+    return Future<GetVaultMarketShareSeryPerkResponse>.value();
+  }
+
+  /// The holder room for a series (shareholders only): posts newest first under per-series aliases, never account names. `before` pages back.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<Response> getVaultMarketShareSeryRoomWithHttpInfo(String id,) async {
+    // Verify required params are set.
+    if (id == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: id');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/vault-markets/shares/series/{id}/room'
+      .replaceAll('{id}', id);
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// The holder room for a series (shareholders only): posts newest first under per-series aliases, never account names. `before` pages back.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<GetVaultMarketShareSeryRoomResponse> getVaultMarketShareSeryRoom(String id,) async {
+    final response = await getVaultMarketShareSeryRoomWithHttpInfo(id,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'GetVaultMarketShareSeryRoomResponse',) as GetVaultMarketShareSeryRoomResponse;
+    
+    }
+    return Future<GetVaultMarketShareSeryRoomResponse>.value();
   }
 
   /// The last 24 months with whether each statement is issued (frozen, with its sha256).
@@ -16044,6 +24096,66 @@ class VaultMarketsApi {
     return Future<GetVaultMarketSupplyRoundUpResponse>.value();
   }
 
+  /// One shipment into the vault, with each unit and whether it was received.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<Response> getVaultMarketSupplyShipmentWithHttpInfo(String id,) async {
+    // Verify required params are set.
+    if (id == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: id');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/vault-markets/supply/shipments/{id}'
+      .replaceAll('{id}', id);
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// One shipment into the vault, with each unit and whether it was received.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<GetVaultMarketSupplyShipmentResponse> getVaultMarketSupplyShipment(String id,) async {
+    final response = await getVaultMarketSupplyShipmentWithHttpInfo(id,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'GetVaultMarketSupplyShipmentResponse',) as GetVaultMarketSupplyShipmentResponse;
+    
+    }
+    return Future<GetVaultMarketSupplyShipmentResponse>.value();
+  }
+
   /// Your tax year on the vault markets: units bought and sold with cost, proceeds, gain and term; lending fees, staking interest (estimate), market-maker rewards; closed positions. Links to the CSV and PDF.
   ///
   /// Note: This method returns the HTTP [Response].
@@ -16182,6 +24294,52 @@ class VaultMarketsApi {
     return Future<GetVaultMarketTaxLossSuggestionResponse>.value();
   }
 
+  /// Your fractional options tax lots for a calendar year (`year`, default this year): FIFO disposals (closed or settled) with proceeds, cost, gain in cents and holding term, each flagged as a possible Section 1256 contract, the totals with the 60/40 split, and the positions open at year end. Real fills only; practice never appears. Not tax advice.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  Future<Response> getVaultMarketTaxOptionWithHttpInfo() async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/vault-markets/tax/options';
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Your fractional options tax lots for a calendar year (`year`, default this year): FIFO disposals (closed or settled) with proceeds, cost, gain in cents and holding term, each flagged as a possible Section 1256 contract, the totals with the 60/40 split, and the positions open at year end. Real fills only; practice never appears. Not tax advice.
+  Future<GetVaultMarketTaxOptionResponse> getVaultMarketTaxOption() async {
+    final response = await getVaultMarketTaxOptionWithHttpInfo();
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'GetVaultMarketTaxOptionResponse',) as GetVaultMarketTaxOptionResponse;
+    
+    }
+    return Future<GetVaultMarketTaxOptionResponse>.value();
+  }
+
   /// The tax year as a PDF summary.
   ///
   /// Note: This method returns the HTTP [Response].
@@ -16226,6 +24384,98 @@ class VaultMarketsApi {
     
     }
     return Future<MultipartFile>.value();
+  }
+
+  /// Your prediction-market results for a calendar year (`year`), as the venue reports them: each settled or voided real-money position with its venue, cost, fees, payout, refund, closing-trade gains and net in cents, and the totals. Practice never appears. Not tax advice.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  Future<Response> getVaultMarketTaxPredictionWithHttpInfo() async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/vault-markets/tax/predictions';
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Your prediction-market results for a calendar year (`year`), as the venue reports them: each settled or voided real-money position with its venue, cost, fees, payout, refund, closing-trade gains and net in cents, and the totals. Practice never appears. Not tax advice.
+  Future<GetVaultMarketTaxPredictionResponse> getVaultMarketTaxPrediction() async {
+    final response = await getVaultMarketTaxPredictionWithHttpInfo();
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'GetVaultMarketTaxPredictionResponse',) as GetVaultMarketTaxPredictionResponse;
+    
+    }
+    return Future<GetVaultMarketTaxPredictionResponse>.value();
+  }
+
+  /// Your Vault Shares tax lots for a calendar year (`year`): disposals (share-book sales, exit payouts) with holding periods, proceeds, cost and gain in cents, the open lots and the totals. The broker-dealer issues the 1099-B; not tax advice.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  Future<Response> getVaultMarketTaxShareWithHttpInfo() async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/vault-markets/tax/shares';
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Your Vault Shares tax lots for a calendar year (`year`): disposals (share-book sales, exit payouts) with holding periods, proceeds, cost and gain in cents, the open lots and the totals. The broker-dealer issues the 1099-B; not tax advice.
+  Future<GetVaultMarketTaxShareResponse> getVaultMarketTaxShare() async {
+    final response = await getVaultMarketTaxShareWithHttpInfo();
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'GetVaultMarketTaxShareResponse',) as GetVaultMarketTaxShareResponse;
+    
+    }
+    return Future<GetVaultMarketTaxShareResponse>.value();
   }
 
   /// Your pro orders in a window (`from`, `to`; default 90 days) with arrival mark and mid, average fill, implementation shortfall, slippage, fill rate and time to fill.
@@ -17194,6 +25444,52 @@ class VaultMarketsApi {
     
     }
     return Future<GetVaultMarketWorldFloorResponse>.value();
+  }
+
+  /// The Trading Floor boards for the round-13 products: odds (the probability ladder: the busiest open \"Will it hit?\" markets with probabilityBps, the market’s own price as a probability, display only), heat (option-chain heat: per listed underlying, open interest and the last day’s volume in milli-contracts in strike buckets around the underlying, a 0..1 heat per bucket and the at-the-money implied vol, display only) and shares (Vault Shares tickers: last share price in cents, changeBps from the last fill before today, shares traded today and the implied item value, display only). quality is always C: none of these is ever a mark. It never shows who traded.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  Future<Response> getVaultMarketWorldFloorBoardWithHttpInfo() async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/vault-markets/world/floor/boards';
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// The Trading Floor boards for the round-13 products: odds (the probability ladder: the busiest open \"Will it hit?\" markets with probabilityBps, the market’s own price as a probability, display only), heat (option-chain heat: per listed underlying, open interest and the last day’s volume in milli-contracts in strike buckets around the underlying, a 0..1 heat per bucket and the at-the-money implied vol, display only) and shares (Vault Shares tickers: last share price in cents, changeBps from the last fill before today, shares traded today and the implied item value, display only). quality is always C: none of these is ever a mark. It never shows who traded.
+  Future<GetVaultMarketWorldFloorBoardResponse> getVaultMarketWorldFloorBoard() async {
+    final response = await getVaultMarketWorldFloorBoardWithHttpInfo();
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'GetVaultMarketWorldFloorBoardResponse',) as GetVaultMarketWorldFloorBoardResponse;
+    
+    }
+    return Future<GetVaultMarketWorldFloorBoardResponse>.value();
   }
 
   /// The Vault Holders Lounge: the rule to join (held value at reliable marks, or a unit count), whether you may join now and what you hold toward it. Anyone may look in; only holders are seen there. No perks, nothing to trade.
@@ -19240,6 +27536,52 @@ class VaultMarketsApi {
     return Future<ListVaultMarketHallLendersResponse>.value();
   }
 
+  /// Everything you own in the Crossly vault, newest activity first: each unit with its status (inbound, stored, listed, withdraw_requested…) and situation (lent, pledged, in_grading…), what it is worth (`valueCents` with `valueSource` mark | last_sale | declared | none), declared and insured value, storage owed, its open ask, the deposit toggles when you sent it in, and what you may do with it now (`actions`). Units sold or shipped home in the last 90 days have `past: true`. `meta` carries the totals (units, value, declared, insured, storage owed), your recent boxes and their labels, the ship-home prices and the lending gate.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  Future<Response> listVaultMarketHoldingsWithHttpInfo() async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/vault-markets/holdings';
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Everything you own in the Crossly vault, newest activity first: each unit with its status (inbound, stored, listed, withdraw_requested…) and situation (lent, pledged, in_grading…), what it is worth (`valueCents` with `valueSource` mark | last_sale | declared | none), declared and insured value, storage owed, its open ask, the deposit toggles when you sent it in, and what you may do with it now (`actions`). Units sold or shipped home in the last 90 days have `past: true`. `meta` carries the totals (units, value, declared, insured, storage owed), your recent boxes and their labels, the ship-home prices and the lending gate.
+  Future<ListVaultMarketHoldingsResponse> listVaultMarketHoldings() async {
+    final response = await listVaultMarketHoldingsWithHttpInfo();
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'ListVaultMarketHoldingsResponse',) as ListVaultMarketHoldingsResponse;
+    
+    }
+    return Future<ListVaultMarketHoldingsResponse>.value();
+  }
+
   /// Published Index Committee minutes, newest first: attendees (names and roles), quorum, agenda, minutes and decisions.
   ///
   /// Note: This method returns the HTTP [Response].
@@ -20414,6 +28756,664 @@ class VaultMarketsApi {
     return Future<ListVaultMarketOpeningResponse>.value();
   }
 
+  /// Your strategy quote requests, newest first.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  Future<Response> listVaultMarketOptionComboRfqWithHttpInfo() async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/vault-markets/options/combos/rfq';
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Your strategy quote requests, newest first.
+  Future<ListVaultMarketOptionComboRfqResponse> listVaultMarketOptionComboRfq() async {
+    final response = await listVaultMarketOptionComboRfqWithHttpInfo();
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'ListVaultMarketOptionComboRfqResponse',) as ListVaultMarketOptionComboRfqResponse;
+    
+    }
+    return Future<ListVaultMarketOptionComboRfqResponse>.value();
+  }
+
+  /// Open strategy quote requests you may answer (never your own; the requester stays anonymous).
+  ///
+  /// Note: This method returns the HTTP [Response].
+  Future<Response> listVaultMarketOptionComboRfqInboxWithHttpInfo() async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/vault-markets/options/combos/rfq/inbox';
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Open strategy quote requests you may answer (never your own; the requester stays anonymous).
+  Future<ListVaultMarketOptionComboRfqResponse> listVaultMarketOptionComboRfqInbox() async {
+    final response = await listVaultMarketOptionComboRfqInboxWithHttpInfo();
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'ListVaultMarketOptionComboRfqResponse',) as ListVaultMarketOptionComboRfqResponse;
+    
+    }
+    return Future<ListVaultMarketOptionComboRfqResponse>.value();
+  }
+
+  /// Your strategies: `status` working (default), done or all, with their legs as you hold them, net per unit, filled size and status.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  Future<Response> listVaultMarketOptionCombosWithHttpInfo() async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/vault-markets/options/combos';
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Your strategies: `status` working (default), done or all, with their legs as you hold them, net per unit, filled size and status.
+  Future<ListVaultMarketOptionCombosResponse> listVaultMarketOptionCombos() async {
+    final response = await listVaultMarketOptionCombosWithHttpInfo();
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'ListVaultMarketOptionCombosResponse',) as ListVaultMarketOptionCombosResponse;
+    
+    }
+    return Future<ListVaultMarketOptionCombosResponse>.value();
+  }
+
+  /// A contract's published daily settlement prices, newest first (`days`, default 30): the price, how it was set (volume-weighted fills, the mid, or Black-Scholes at the reference vol), its implied vol, the underlying, open interest and volume, and each row's chain hash.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<Response> listVaultMarketOptionContractDailyWithHttpInfo(String id,) async {
+    // Verify required params are set.
+    if (id == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: id');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/vault-markets/options/contracts/{id}/daily'
+      .replaceAll('{id}', id);
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// A contract's published daily settlement prices, newest first (`days`, default 30): the price, how it was set (volume-weighted fills, the mid, or Black-Scholes at the reference vol), its implied vol, the underlying, open interest and volume, and each row's chain hash.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<ListVaultMarketOptionContractDailyResponse> listVaultMarketOptionContractDaily(String id,) async {
+    final response = await listVaultMarketOptionContractDailyWithHttpInfo(id,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'ListVaultMarketOptionContractDailyResponse',) as ListVaultMarketOptionContractDailyResponse;
+    
+    }
+    return Future<ListVaultMarketOptionContractDailyResponse>.value();
+  }
+
+  /// Your two-sided option quotes: the contract, the bid and ask orders behind them, cancel-on-disconnect and the last heartbeat.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  Future<Response> listVaultMarketOptionMmQuotesWithHttpInfo() async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/vault-markets/options/mm/quotes';
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Your two-sided option quotes: the contract, the bid and ask orders behind them, cancel-on-disconnect and the last heartbeat.
+  Future<ListVaultMarketOptionMmQuotesResponse> listVaultMarketOptionMmQuotes() async {
+    final response = await listVaultMarketOptionMmQuotesWithHttpInfo();
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'ListVaultMarketOptionMmQuotesResponse',) as ListVaultMarketOptionMmQuotesResponse;
+    
+    }
+    return Future<ListVaultMarketOptionMmQuotesResponse>.value();
+  }
+
+  /// Your options notices, newest first: expiry warnings, auto-closes, exercises (a long settled in the money), assignments (a short settled in the money), expiries worthless and rolls.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  Future<Response> listVaultMarketOptionNoticesWithHttpInfo() async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/vault-markets/options/notices';
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Your options notices, newest first: expiry warnings, auto-closes, exercises (a long settled in the money), assignments (a short settled in the money), expiries worthless and rolls.
+  Future<ListVaultMarketOptionNoticesResponse> listVaultMarketOptionNotices() async {
+    final response = await listVaultMarketOptionNoticesWithHttpInfo();
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'ListVaultMarketOptionNoticesResponse',) as ListVaultMarketOptionNoticesResponse;
+    
+    }
+    return Future<ListVaultMarketOptionNoticesResponse>.value();
+  }
+
+  /// Your options orders, newest first: `status` working (default) / done / all, `limit`, `subaccountId`.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  Future<Response> listVaultMarketOptionOrdersWithHttpInfo() async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/vault-markets/options/orders';
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Your options orders, newest first: `status` working (default) / done / all, `limit`, `subaccountId`.
+  Future<ListVaultMarketOptionOrdersResponse> listVaultMarketOptionOrders() async {
+    final response = await listVaultMarketOptionOrdersWithHttpInfo();
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'ListVaultMarketOptionOrdersResponse',) as ListVaultMarketOptionOrdersResponse;
+    
+    }
+    return Future<ListVaultMarketOptionOrdersResponse>.value();
+  }
+
+  /// Your practice strategies.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  Future<Response> listVaultMarketOptionPracticeCombosWithHttpInfo() async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/vault-markets/options/practice/combos';
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Your practice strategies.
+  Future<ListVaultMarketOptionCombosResponse> listVaultMarketOptionPracticeCombos() async {
+    final response = await listVaultMarketOptionPracticeCombosWithHttpInfo();
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'ListVaultMarketOptionCombosResponse',) as ListVaultMarketOptionCombosResponse;
+    
+    }
+    return Future<ListVaultMarketOptionCombosResponse>.value();
+  }
+
+  /// Your practice options fills, newest first (`limit`).
+  ///
+  /// Note: This method returns the HTTP [Response].
+  Future<Response> listVaultMarketOptionPracticeFillsWithHttpInfo() async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/vault-markets/options/practice/fills';
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Your practice options fills, newest first (`limit`).
+  Future<ListVaultMarketOptionPracticeFillsResponse> listVaultMarketOptionPracticeFills() async {
+    final response = await listVaultMarketOptionPracticeFillsWithHttpInfo();
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'ListVaultMarketOptionPracticeFillsResponse',) as ListVaultMarketOptionPracticeFillsResponse;
+    
+    }
+    return Future<ListVaultMarketOptionPracticeFillsResponse>.value();
+  }
+
+  /// Your practice options orders: `status` working (default) / done / all, `limit`.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  Future<Response> listVaultMarketOptionPracticeOrdersWithHttpInfo() async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/vault-markets/options/practice/orders';
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Your practice options orders: `status` working (default) / done / all, `limit`.
+  Future<ListVaultMarketOptionPracticeOrdersResponse> listVaultMarketOptionPracticeOrders() async {
+    final response = await listVaultMarketOptionPracticeOrdersWithHttpInfo();
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'ListVaultMarketOptionPracticeOrdersResponse',) as ListVaultMarketOptionPracticeOrdersResponse;
+    
+    }
+    return Future<ListVaultMarketOptionPracticeOrdersResponse>.value();
+  }
+
+  /// Your option quote requests, newest first.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  Future<Response> listVaultMarketOptionRfqWithHttpInfo() async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/vault-markets/options/rfq';
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Your option quote requests, newest first.
+  Future<ListVaultMarketOptionRfqResponse> listVaultMarketOptionRfq() async {
+    final response = await listVaultMarketOptionRfqWithHttpInfo();
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'ListVaultMarketOptionRfqResponse',) as ListVaultMarketOptionRfqResponse;
+    
+    }
+    return Future<ListVaultMarketOptionRfqResponse>.value();
+  }
+
+  /// Open option quote requests you can answer.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  Future<Response> listVaultMarketOptionRfqInboxWithHttpInfo() async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/vault-markets/options/rfq/inbox';
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Open option quote requests you can answer.
+  Future<ListVaultMarketOptionRfqResponse> listVaultMarketOptionRfqInbox() async {
+    final response = await listVaultMarketOptionRfqInboxWithHttpInfo();
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'ListVaultMarketOptionRfqResponse',) as ListVaultMarketOptionRfqResponse;
+    
+    }
+    return Future<ListVaultMarketOptionRfqResponse>.value();
+  }
+
+  /// Every options series: its underlying (a Crossly index, or a tier A item key with 90 days of reliable marks), status and the eligibility snapshot it last passed. `status`: active (default) or all.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  Future<Response> listVaultMarketOptionSeriesWithHttpInfo() async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/vault-markets/options/series';
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Every options series: its underlying (a Crossly index, or a tier A item key with 90 days of reliable marks), status and the eligibility snapshot it last passed. `status`: active (default) or all.
+  Future<ListVaultMarketOptionSeriesResponse> listVaultMarketOptionSeries() async {
+    final response = await listVaultMarketOptionSeriesWithHttpInfo();
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'ListVaultMarketOptionSeriesResponse',) as ListVaultMarketOptionSeriesResponse;
+    
+    }
+    return Future<ListVaultMarketOptionSeriesResponse>.value();
+  }
+
+  /// The strategies the picker builds (vertical, calendar, diagonal, straddle, strangle, butterfly, iron condor, collar): how many strikes and expiries each takes, whether it needs calls or puts, and what it does in plain words.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  Future<Response> listVaultMarketOptionStrategiesWithHttpInfo() async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/vault-markets/options/strategies';
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// The strategies the picker builds (vertical, calendar, diagonal, straddle, strangle, butterfly, iron condor, collar): how many strikes and expiries each takes, whether it needs calls or puts, and what it does in plain words.
+  Future<ListVaultMarketOptionStrategiesResponse> listVaultMarketOptionStrategies() async {
+    final response = await listVaultMarketOptionStrategiesWithHttpInfo();
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'ListVaultMarketOptionStrategiesResponse',) as ListVaultMarketOptionStrategiesResponse;
+    
+    }
+    return Future<ListVaultMarketOptionStrategiesResponse>.value();
+  }
+
   /// Recent publish attempts for an index over 30 days, newest first: published, skipped (with the reason: too few items priced, stale marks, confidence too wide...) or failed (with the error). Filter with `status`, cap with `limit` (default 100).
   ///
   /// Note: This method returns the HTTP [Response].
@@ -20934,6 +29934,52 @@ class VaultMarketsApi {
     return Future<ListVaultMarketPartnerAccrualsResponse>.value();
   }
 
+  /// Vault drop-off partners near a `postalCode`, optionally offering a `service`: address, hours and services.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  Future<Response> listVaultMarketPartnerFinderWithHttpInfo() async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/vault-markets/partners/finder';
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Vault drop-off partners near a `postalCode`, optionally offering a `service`: address, hours and services.
+  Future<ListVaultMarketPartnerFinderResponse> listVaultMarketPartnerFinder() async {
+    final response = await listVaultMarketPartnerFinderWithHttpInfo();
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'ListVaultMarketPartnerFinderResponse',) as ListVaultMarketPartnerFinderResponse;
+    
+    }
+    return Future<ListVaultMarketPartnerFinderResponse>.value();
+  }
+
   /// Your stakes in the market pool and what each redeems for now.
   ///
   /// Note: This method returns the HTTP [Response].
@@ -21176,6 +30222,650 @@ class VaultMarketsApi {
     
     }
     return Future<ListVaultMarketPositionsRiskResponse>.value();
+  }
+
+  /// Your probability alerts: a market, a level (percent) and a direction; each fires once through the alerts hub (kind prediction_odds).
+  ///
+  /// Note: This method returns the HTTP [Response].
+  Future<Response> listVaultMarketPredictionAlertsWithHttpInfo() async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/vault-markets/predictions/alerts';
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Your probability alerts: a market, a level (percent) and a direction; each fires once through the alerts hub (kind prediction_odds).
+  Future<ListVaultMarketPredictionAlertsResponse> listVaultMarketPredictionAlerts() async {
+    final response = await listVaultMarketPredictionAlertsWithHttpInfo();
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'ListVaultMarketPredictionAlertsResponse',) as ListVaultMarketPredictionAlertsResponse;
+    
+    }
+    return Future<ListVaultMarketPredictionAlertsResponse>.value();
+  }
+
+  /// Your combo requests with every answer they got.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  Future<Response> listVaultMarketPredictionComboMyRfqsWithHttpInfo() async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/vault-markets/predictions/combos/my-rfqs';
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Your combo requests with every answer they got.
+  Future<ListVaultMarketPredictionComboRfqsResponse> listVaultMarketPredictionComboMyRfqs() async {
+    final response = await listVaultMarketPredictionComboMyRfqsWithHttpInfo();
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'ListVaultMarketPredictionComboRfqsResponse',) as ListVaultMarketPredictionComboRfqsResponse;
+    
+    }
+    return Future<ListVaultMarketPredictionComboRfqsResponse>.value();
+  }
+
+  /// Open combo requests makers can answer: legs, size and the legs' own combined price; never who asked. Your own answers are shown on them.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  Future<Response> listVaultMarketPredictionComboRfqsWithHttpInfo() async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/vault-markets/predictions/combos/rfqs';
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Open combo requests makers can answer: legs, size and the legs' own combined price; never who asked. Your own answers are shown on them.
+  Future<ListVaultMarketPredictionComboRfqsResponse> listVaultMarketPredictionComboRfqs() async {
+    final response = await listVaultMarketPredictionComboRfqsWithHttpInfo();
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'ListVaultMarketPredictionComboRfqsResponse',) as ListVaultMarketPredictionComboRfqsResponse;
+    
+    }
+    return Future<ListVaultMarketPredictionComboRfqsResponse>.value();
+  }
+
+  /// Your combos, as buyer or maker: legs and their outcomes, stakes, the pot, any reprice after a voided leg, and how each settled.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  Future<Response> listVaultMarketPredictionCombosWithHttpInfo() async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/vault-markets/predictions/combos';
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Your combos, as buyer or maker: legs and their outcomes, stakes, the pot, any reprice after a voided leg, and how each settled.
+  Future<ListVaultMarketPredictionCombosResponse> listVaultMarketPredictionCombos() async {
+    final response = await listVaultMarketPredictionCombosWithHttpInfo();
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'ListVaultMarketPredictionCombosResponse',) as ListVaultMarketPredictionCombosResponse;
+    
+    }
+    return Future<ListVaultMarketPredictionCombosResponse>.value();
+  }
+
+  /// A discussion thread on a market (`marketId`) or a series (`seriesId`): comments newest first with their replies. A commenter's side shows only when their forecaster profile is public.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  Future<Response> listVaultMarketPredictionCommentsWithHttpInfo() async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/vault-markets/predictions/comments';
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// A discussion thread on a market (`marketId`) or a series (`seriesId`): comments newest first with their replies. A commenter's side shows only when their forecaster profile is public.
+  Future<ListVaultMarketPredictionCommentsResponse> listVaultMarketPredictionComments() async {
+    final response = await listVaultMarketPredictionCommentsWithHttpInfo();
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'ListVaultMarketPredictionCommentsResponse',) as ListVaultMarketPredictionCommentsResponse;
+    
+    }
+    return Future<ListVaultMarketPredictionCommentsResponse>.value();
+  }
+
+  /// Your bucket-set conversions (split, merge, convert), newest first.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  Future<Response> listVaultMarketPredictionConversionsWithHttpInfo() async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/vault-markets/predictions/conversions';
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Your bucket-set conversions (split, merge, convert), newest first.
+  Future<ListVaultMarketPredictionConversionsResponse> listVaultMarketPredictionConversions() async {
+    final response = await listVaultMarketPredictionConversionsWithHttpInfo();
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'ListVaultMarketPredictionConversionsResponse',) as ListVaultMarketPredictionConversionsResponse;
+    
+    }
+    return Future<ListVaultMarketPredictionConversionsResponse>.value();
+  }
+
+  /// The forecasters you follow.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  Future<Response> listVaultMarketPredictionFollowingWithHttpInfo() async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/vault-markets/predictions/following';
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// The forecasters you follow.
+  Future<ListVaultMarketPredictionFollowingResponse> listVaultMarketPredictionFollowing() async {
+    final response = await listVaultMarketPredictionFollowingWithHttpInfo();
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'ListVaultMarketPredictionFollowingResponse',) as ListVaultMarketPredictionFollowingResponse;
+    
+    }
+    return Future<ListVaultMarketPredictionFollowingResponse>.value();
+  }
+
+  /// Your forecasts (a probability you attached to a market, money or not) and how the markets came out.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  Future<Response> listVaultMarketPredictionForecastsWithHttpInfo() async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/vault-markets/predictions/forecasts';
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Your forecasts (a probability you attached to a market, money or not) and how the markets came out.
+  Future<ListVaultMarketPredictionForecastsResponse> listVaultMarketPredictionForecasts() async {
+    final response = await listVaultMarketPredictionForecastsWithHttpInfo();
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'ListVaultMarketPredictionForecastsResponse',) as ListVaultMarketPredictionForecastsResponse;
+    
+    }
+    return Future<ListVaultMarketPredictionForecastsResponse>.value();
+  }
+
+  /// Your prediction maker programme applications and their status (applied, active, suspended, revoked) and rebate.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  Future<Response> listVaultMarketPredictionMakersWithHttpInfo() async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/vault-markets/predictions/makers';
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Your prediction maker programme applications and their status (applied, active, suspended, revoked) and rebate.
+  Future<ListVaultMarketPredictionMakersResponse> listVaultMarketPredictionMakers() async {
+    final response = await listVaultMarketPredictionMakersWithHttpInfo();
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'ListVaultMarketPredictionMakersResponse',) as ListVaultMarketPredictionMakersResponse;
+    
+    }
+    return Future<ListVaultMarketPredictionMakersResponse>.value();
+  }
+
+  /// Prediction markets, filtered by a book key, an index slug, an underlying kind (index | book_key | category_pair), a status (open | closed | settled | all), an expiry day or text. Each with its strike, expiry, best Yes bid and ask, last price, volume, open interest and probability.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  Future<Response> listVaultMarketPredictionMarketsWithHttpInfo() async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/vault-markets/predictions/markets';
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Prediction markets, filtered by a book key, an index slug, an underlying kind (index | book_key | category_pair), a status (open | closed | settled | all), an expiry day or text. Each with its strike, expiry, best Yes bid and ask, last price, volume, open interest and probability.
+  Future<ListVaultMarketPredictionMarketsResponse> listVaultMarketPredictionMarkets() async {
+    final response = await listVaultMarketPredictionMarketsWithHttpInfo();
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'ListVaultMarketPredictionMarketsResponse',) as ListVaultMarketPredictionMarketsResponse;
+    
+    }
+    return Future<ListVaultMarketPredictionMarketsResponse>.value();
+  }
+
+  /// Your prediction orders, newest first: working, done or all; practice, live or all.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  Future<Response> listVaultMarketPredictionOrdersWithHttpInfo() async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/vault-markets/predictions/orders';
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Your prediction orders, newest first: working, done or all; practice, live or all.
+  Future<ListVaultMarketPredictionOrdersResponse> listVaultMarketPredictionOrders() async {
+    final response = await listVaultMarketPredictionOrdersWithHttpInfo();
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'ListVaultMarketPredictionOrdersResponse',) as ListVaultMarketPredictionOrdersResponse;
+    
+    }
+    return Future<ListVaultMarketPredictionOrdersResponse>.value();
+  }
+
+  /// Your prediction positions (practice, live or all; open, settled or all): side, contracts, cost, value at the last price, fees, realised P&L, payout or refund once settled, and the share card if you made one.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  Future<Response> listVaultMarketPredictionPositionsWithHttpInfo() async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/vault-markets/predictions/positions';
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Your prediction positions (practice, live or all; open, settled or all): side, contracts, cost, value at the last price, fees, realised P&L, payout or refund once settled, and the share card if you made one.
+  Future<ListVaultMarketPredictionPositionsResponse> listVaultMarketPredictionPositions() async {
+    final response = await listVaultMarketPredictionPositionsWithHttpInfo();
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'ListVaultMarketPredictionPositionsResponse',) as ListVaultMarketPredictionPositionsResponse;
+    
+    }
+    return Future<ListVaultMarketPredictionPositionsResponse>.value();
+  }
+
+  /// The markets you proposed that are listed: volume, status and what the creator share has earned you.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  Future<Response> listVaultMarketPredictionProposalListedWithHttpInfo() async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/vault-markets/predictions/proposals/listed';
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// The markets you proposed that are listed: volume, status and what the creator share has earned you.
+  Future<ListVaultMarketPredictionProposalListedResponse> listVaultMarketPredictionProposalListed() async {
+    final response = await listVaultMarketPredictionProposalListedWithHttpInfo();
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'ListVaultMarketPredictionProposalListedResponse',) as ListVaultMarketPredictionProposalListedResponse;
+    
+    }
+    return Future<ListVaultMarketPredictionProposalListedResponse>.value();
+  }
+
+  /// Your market proposals and where each stands (pending, listed, rejected, withdrawn).
+  ///
+  /// Note: This method returns the HTTP [Response].
+  Future<Response> listVaultMarketPredictionProposalsWithHttpInfo() async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/vault-markets/predictions/proposals';
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Your market proposals and where each stands (pending, listed, rejected, withdrawn).
+  Future<ListVaultMarketPredictionProposalsResponse> listVaultMarketPredictionProposals() async {
+    final response = await listVaultMarketPredictionProposalsWithHttpInfo();
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'ListVaultMarketPredictionProposalsResponse',) as ListVaultMarketPredictionProposalsResponse;
+    
+    }
+    return Future<ListVaultMarketPredictionProposalsResponse>.value();
   }
 
   /// Your price widgets, newest first, each with its iframe and script-tag snippets. `meta.codes` lists your affiliate codes a widget can link through; `meta.max` is the cap on live widgets.
@@ -22048,6 +31738,158 @@ class VaultMarketsApi {
     return Future<ListVaultMarketSetGoalsResponse>.value();
   }
 
+  /// Your recurring auto-invest plans: amount, weekly or monthly, the series and weights or the basket, what rolled over (budget too small for a whole share; your money stays at the venue), the next run.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  Future<Response> listVaultMarketShareAutoInvestWithHttpInfo() async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/vault-markets/shares/auto-invest';
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Your recurring auto-invest plans: amount, weekly or monthly, the series and weights or the basket, what rolled over (budget too small for a whole share; your money stays at the venue), the next run.
+  Future<ListVaultMarketShareAutoInvestResponse> listVaultMarketShareAutoInvest() async {
+    final response = await listVaultMarketShareAutoInvestWithHttpInfo();
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'ListVaultMarketShareAutoInvestResponse',) as ListVaultMarketShareAutoInvestResponse;
+    
+    }
+    return Future<ListVaultMarketShareAutoInvestResponse>.value();
+  }
+
+  /// A plan’s runs, newest first: the budget, what each series bought, what was spent and what rolled over; rebalances too.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<Response> listVaultMarketShareAutoInvestRunsWithHttpInfo(String id,) async {
+    // Verify required params are set.
+    if (id == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: id');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/vault-markets/shares/auto-invest/{id}/runs'
+      .replaceAll('{id}', id);
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// A plan’s runs, newest first: the budget, what each series bought, what was spent and what rolled over; rebalances too.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<ListVaultMarketShareAutoInvestRunsResponse> listVaultMarketShareAutoInvestRuns(String id,) async {
+    final response = await listVaultMarketShareAutoInvestRunsWithHttpInfo(id,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'ListVaultMarketShareAutoInvestRunsResponse',) as ListVaultMarketShareAutoInvestRunsResponse;
+    
+    }
+    return Future<ListVaultMarketShareAutoInvestRunsResponse>.value();
+  }
+
+  /// Theme baskets: curated model portfolios of Vault Shares series with target weights. You buy and own every share directly in your own name; a basket is never a fund.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  Future<Response> listVaultMarketShareBasketsWithHttpInfo() async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/vault-markets/shares/baskets';
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Theme baskets: curated model portfolios of Vault Shares series with target weights. You buy and own every share directly in your own name; a basket is never a fund.
+  Future<ListVaultMarketShareBasketsResponse> listVaultMarketShareBaskets() async {
+    final response = await listVaultMarketShareBasketsWithHttpInfo();
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'ListVaultMarketShareBasketsResponse',) as ListVaultMarketShareBasketsResponse;
+    
+    }
+    return Future<ListVaultMarketShareBasketsResponse>.value();
+  }
+
   /// Your share cards (not taken down), each as the public sees it.
   ///
   /// Note: This method returns the HTTP [Response].
@@ -22092,6 +31934,508 @@ class VaultMarketsApi {
     
     }
     return Future<ListVaultMarketShareCardsResponse>.value();
+  }
+
+  /// The Vault Shares drops calendar: announced and open offerings, soonest first, each with its phase (announced, early_access, requests, open), the countdown, the allocation (fcfs, pro_rata or lottery with a per-person cap), your Crossly One early-access time (it moves when you may ask, never the price) and whether you asked to be told.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  Future<Response> listVaultMarketShareDropsWithHttpInfo() async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/vault-markets/shares/drops';
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// The Vault Shares drops calendar: announced and open offerings, soonest first, each with its phase (announced, early_access, requests, open), the countdown, the allocation (fcfs, pro_rata or lottery with a per-person cap), your Crossly One early-access time (it moves when you may ask, never the price) and whether you asked to be told.
+  Future<ListVaultMarketShareDropsResponse> listVaultMarketShareDrops() async {
+    final response = await listVaultMarketShareDropsWithHttpInfo();
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'ListVaultMarketShareDropsResponse',) as ListVaultMarketShareDropsResponse;
+    
+    }
+    return Future<ListVaultMarketShareDropsResponse>.value();
+  }
+
+  /// Your share gifts, sent and received, newest first, with where each stands (offered, instructed, settled, declined, cancelled, expired, rejected).
+  ///
+  /// Note: This method returns the HTTP [Response].
+  Future<Response> listVaultMarketShareGiftsWithHttpInfo() async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/vault-markets/shares/gifts';
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Your share gifts, sent and received, newest first, with where each stands (offered, instructed, settled, declined, cancelled, expired, rejected).
+  Future<ListVaultMarketShareGiftsResponse> listVaultMarketShareGifts() async {
+    final response = await listVaultMarketShareGiftsWithHttpInfo();
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'ListVaultMarketShareGiftsResponse',) as ListVaultMarketShareGiftsResponse;
+    
+    }
+    return Future<ListVaultMarketShareGiftsResponse>.value();
+  }
+
+  /// Your share-book orders, newest first; `seriesId` and `open` narrow it.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  Future<Response> listVaultMarketShareOrdersWithHttpInfo() async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/vault-markets/shares/orders';
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Your share-book orders, newest first; `seriesId` and `open` narrow it.
+  Future<ListVaultMarketShareOrdersResponse> listVaultMarketShareOrders() async {
+    final response = await listVaultMarketShareOrdersWithHttpInfo();
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'ListVaultMarketShareOrdersResponse',) as ListVaultMarketShareOrdersResponse;
+    
+    }
+    return Future<ListVaultMarketShareOrdersResponse>.value();
+  }
+
+  /// Vault Shares series: open offerings first, then trading, then the rest. `status` and `bookKey` narrow it. Each with its terms, progress, last share price and implied item value (display only, never a mark), and your holding.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  Future<Response> listVaultMarketShareSeriesWithHttpInfo() async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/vault-markets/shares/series';
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Vault Shares series: open offerings first, then trading, then the rest. `status` and `bookKey` narrow it. Each with its terms, progress, last share price and implied item value (display only, never a mark), and your holding.
+  Future<ListVaultMarketShareSeriesResponse> listVaultMarketShareSeries() async {
+    final response = await listVaultMarketShareSeriesWithHttpInfo();
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'ListVaultMarketShareSeriesResponse',) as ListVaultMarketShareSeriesResponse;
+    
+    }
+    return Future<ListVaultMarketShareSeriesResponse>.value();
+  }
+
+  /// The item’s appraisal history: the offering valuation (sealed valuation statement), independent and insurance appraisals, and any buyout or exit price.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<Response> listVaultMarketShareSeryAppraisalsWithHttpInfo(String id,) async {
+    // Verify required params are set.
+    if (id == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: id');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/vault-markets/shares/series/{id}/appraisals'
+      .replaceAll('{id}', id);
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// The item’s appraisal history: the offering valuation (sealed valuation statement), independent and insurance appraisals, and any buyout or exit price.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<ListVaultMarketShareSeryAppraisalsResponse> listVaultMarketShareSeryAppraisals(String id,) async {
+    final response = await listVaultMarketShareSeryAppraisalsWithHttpInfo(id,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'ListVaultMarketShareSeryAppraisalsResponse',) as ListVaultMarketShareSeryAppraisalsResponse;
+    
+    }
+    return Future<ListVaultMarketShareSeryAppraisalsResponse>.value();
+  }
+
+  /// The latest fills on a share book, newest first, with which side made the market.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<Response> listVaultMarketShareSeryTapeWithHttpInfo(String id,) async {
+    // Verify required params are set.
+    if (id == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: id');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/vault-markets/shares/series/{id}/tape'
+      .replaceAll('{id}', id);
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// The latest fills on a share book, newest first, with which side made the market.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<ListVaultMarketShareSeryTapeResponse> listVaultMarketShareSeryTape(String id,) async {
+    final response = await listVaultMarketShareSeryTapeWithHttpInfo(id,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'ListVaultMarketShareSeryTapeResponse',) as ListVaultMarketShareSeryTapeResponse;
+    
+    }
+    return Future<ListVaultMarketShareSeryTapeResponse>.value();
+  }
+
+  /// The item’s story, provenance, condition reports, appraisals and exhibitions, newest first. Holders also see holders-only updates.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<Response> listVaultMarketShareSeryUpdatesWithHttpInfo(String id,) async {
+    // Verify required params are set.
+    if (id == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: id');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/vault-markets/shares/series/{id}/updates'
+      .replaceAll('{id}', id);
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// The item’s story, provenance, condition reports, appraisals and exhibitions, newest first. Holders also see holders-only updates.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<ListVaultMarketShareSeryUpdatesResponse> listVaultMarketShareSeryUpdates(String id,) async {
+    final response = await listVaultMarketShareSeryUpdatesWithHttpInfo(id,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'ListVaultMarketShareSeryUpdatesResponse',) as ListVaultMarketShareSeryUpdatesResponse;
+    
+    }
+    return Future<ListVaultMarketShareSeryUpdatesResponse>.value();
+  }
+
+  /// Your offering subscriptions, newest first, with where each stands (pending, escrowed, allocated, refunded).
+  ///
+  /// Note: This method returns the HTTP [Response].
+  Future<Response> listVaultMarketShareSubscriptionsWithHttpInfo() async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/vault-markets/shares/subscriptions';
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Your offering subscriptions, newest first, with where each stands (pending, escrowed, allocated, refunded).
+  Future<ListVaultMarketShareSubscriptionsResponse> listVaultMarketShareSubscriptions() async {
+    final response = await listVaultMarketShareSubscriptionsWithHttpInfo();
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'ListVaultMarketShareSubscriptionsResponse',) as ListVaultMarketShareSubscriptionsResponse;
+    
+    }
+    return Future<ListVaultMarketShareSubscriptionsResponse>.value();
+  }
+
+  /// The world vault home’s fractional tiles: each item you own a share of, with \"you own 3.2%\".
+  ///
+  /// Note: This method returns the HTTP [Response].
+  Future<Response> listVaultMarketShareWorldWithHttpInfo() async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/vault-markets/shares/world';
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// The world vault home’s fractional tiles: each item you own a share of, with \"you own 3.2%\".
+  Future<ListVaultMarketShareWorldResponse> listVaultMarketShareWorld() async {
+    final response = await listVaultMarketShareWorldWithHttpInfo();
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'ListVaultMarketShareWorldResponse',) as ListVaultMarketShareWorldResponse;
+    
+    }
+    return Future<ListVaultMarketShareWorldResponse>.value();
+  }
+
+  /// What each item's declared value starts at, by your insurance rule (market, cost or price). `inventoryItemIds` comma-separated.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  Future<Response> listVaultMarketSupplyDeclaredValuesWithHttpInfo() async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/vault-markets/supply/declared-values';
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// What each item's declared value starts at, by your insurance rule (market, cost or price). `inventoryItemIds` comma-separated.
+  Future<ListVaultMarketSupplyDeclaredValuesResponse> listVaultMarketSupplyDeclaredValues() async {
+    final response = await listVaultMarketSupplyDeclaredValuesWithHttpInfo();
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'ListVaultMarketSupplyDeclaredValuesResponse',) as ListVaultMarketSupplyDeclaredValuesResponse;
+    
+    }
+    return Future<ListVaultMarketSupplyDeclaredValuesResponse>.value();
   }
 
   /// Your units sent to the vault, newest first, each with its state and its key's Instant Exit line (\"Instant Exit now: $X (N% of mark)\" or \"No market yet\"). Filter with `inventoryItemIds` (comma-separated).
@@ -22140,6 +32484,52 @@ class VaultMarketsApi {
     return Future<ListVaultMarketSupplyDepositsResponse>.value();
   }
 
+  /// Can these inventory items (`inventoryItemIds`, comma-separated, or every item linked to `listingId`) be sent to the vault now? Each says why not.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  Future<Response> listVaultMarketSupplyEligibilityWithHttpInfo() async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/vault-markets/supply/eligibility';
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Can these inventory items (`inventoryItemIds`, comma-separated, or every item linked to `listingId`) be sent to the vault now? Each says why not.
+  Future<ListVaultMarketSupplyEligibilityResponse> listVaultMarketSupplyEligibility() async {
+    final response = await listVaultMarketSupplyEligibilityWithHttpInfo();
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'ListVaultMarketSupplyEligibilityResponse',) as ListVaultMarketSupplyEligibilityResponse;
+    
+    }
+    return Future<ListVaultMarketSupplyEligibilityResponse>.value();
+  }
+
   /// Market Open invites to you as a dealer: keys Crossly is opening and asks you to quote.
   ///
   /// Note: This method returns the HTTP [Response].
@@ -22184,6 +32574,52 @@ class VaultMarketsApi {
     
     }
     return Future<ListVaultMarketSupplyInvitesResponse>.value();
+  }
+
+  /// Your shipments into the vault, newest first: method, label or drop-off code, tracking and how many units were received.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  Future<Response> listVaultMarketSupplyShipmentsWithHttpInfo() async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/vault-markets/supply/shipments';
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Your shipments into the vault, newest first: method, label or drop-off code, tracking and how many units were received.
+  Future<ListVaultMarketSupplyShipmentsResponse> listVaultMarketSupplyShipments() async {
+    final response = await listVaultMarketSupplyShipmentsWithHttpInfo();
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'ListVaultMarketSupplyShipmentsResponse',) as ListVaultMarketSupplyShipmentsResponse;
+    
+    }
+    return Future<ListVaultMarketSupplyShipmentsResponse>.value();
   }
 
   /// The insurance and appraisal statements you issued, newest first: purpose, date, units, total at the marks, hash and verify link.
@@ -22736,6 +33172,52 @@ class VaultMarketsApi {
     
     }
     return Future<GetVaultMarketAlertPrefResponse>.value();
+  }
+
+  /// Set up or change Auto-buy with payouts: `shareBps` (1–50%) and the whole want list in order, each with an optional `maxPriceCents` (fee included).
+  ///
+  /// Note: This method returns the HTTP [Response].
+  Future<Response> updateVaultMarketAutoBuyWithHttpInfo() async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/vault-markets/auto-buy';
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'PUT',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Set up or change Auto-buy with payouts: `shareBps` (1–50%) and the whole want list in order, each with an optional `maxPriceCents` (fee included).
+  Future<UpdateVaultMarketAutoBuyResponse> updateVaultMarketAutoBuy() async {
+    final response = await updateVaultMarketAutoBuyWithHttpInfo();
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'UpdateVaultMarketAutoBuyResponse',) as UpdateVaultMarketAutoBuyResponse;
+    
+    }
+    return Future<UpdateVaultMarketAutoBuyResponse>.value();
   }
 
   /// Post-trade allocation: set or replace the plan for a buy you placed for one of the entity's sub-accounts (that sub-account leads). Refused once any share has moved.
@@ -23358,6 +33840,66 @@ class VaultMarketsApi {
     return Future<GetVaultMarketIndexResponse>.value();
   }
 
+  /// Set which unit a sale of this item ships first: `vault_first`, `warehouse_first` or `cheapest` (to ship); null = your default. Quantities stay the same on every channel: only who ships changes.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] inventoryItemId (required):
+  Future<Response> updateVaultMarketItemSellFromWithHttpInfo(String inventoryItemId,) async {
+    // Verify required params are set.
+    if (inventoryItemId == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: inventoryItemId');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/vault-markets/items/{inventoryItemId}/sell-from'
+      .replaceAll('{inventoryItemId}', inventoryItemId);
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'PUT',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Set which unit a sale of this item ships first: `vault_first`, `warehouse_first` or `cheapest` (to ship); null = your default. Quantities stay the same on every channel: only who ships changes.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] inventoryItemId (required):
+  Future<GetVaultMarketItemLocationResponse> updateVaultMarketItemSellFrom(String inventoryItemId,) async {
+    final response = await updateVaultMarketItemSellFromWithHttpInfo(inventoryItemId,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'GetVaultMarketItemLocationResponse',) as GetVaultMarketItemLocationResponse;
+    
+    }
+    return Future<GetVaultMarketItemLocationResponse>.value();
+  }
+
   /// Change your lender election (applies to loans opened after the change). Needs lending.
   ///
   /// Note: This method returns the HTTP [Response].
@@ -23542,6 +34084,52 @@ class VaultMarketsApi {
     return Future<UpdateVaultMarketOfferAlertResponse>.value();
   }
 
+  /// Set your auto-close rule: `enabled`, `minutesBefore` (30 to 10080), `onlyItm`, `maxSlippageBps` (0 to 2000).
+  ///
+  /// Note: This method returns the HTTP [Response].
+  Future<Response> updateVaultMarketOptionAutoCloseWithHttpInfo() async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/vault-markets/options/auto-close';
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'PUT',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Set your auto-close rule: `enabled`, `minutesBefore` (30 to 10080), `onlyItm`, `maxSlippageBps` (0 to 2000).
+  Future<GetVaultMarketOptionAutoCloseResponse> updateVaultMarketOptionAutoClose() async {
+    final response = await updateVaultMarketOptionAutoCloseWithHttpInfo();
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'GetVaultMarketOptionAutoCloseResponse',) as GetVaultMarketOptionAutoCloseResponse;
+    
+    }
+    return Future<GetVaultMarketOptionAutoCloseResponse>.value();
+  }
+
   /// Join or leave the weekly paper leaderboard. Joining needs a display name (2 to 24 letters, numbers, spaces, dots, dashes or underscores), never your real name. Returns `{ optIn, displayName }`.
   ///
   /// Note: This method returns the HTTP [Response].
@@ -23586,6 +34174,52 @@ class VaultMarketsApi {
     
     }
     return Future<UpdateVaultMarketPaperLeaderboardResponse>.value();
+  }
+
+  /// Your drop-off partnership's finder profile: postal code, opening hours, services and whether you are listed.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  Future<Response> updateVaultMarketPartnerMeWithHttpInfo() async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/vault-markets/partners/me';
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'PATCH',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Your drop-off partnership's finder profile: postal code, opening hours, services and whether you are listed.
+  Future<UpdateVaultMarketPartnerMeResponse> updateVaultMarketPartnerMe() async {
+    final response = await updateVaultMarketPartnerMeWithHttpInfo();
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'UpdateVaultMarketPartnerMeResponse',) as UpdateVaultMarketPartnerMeResponse;
+    
+    }
+    return Future<UpdateVaultMarketPartnerMeResponse>.value();
   }
 
   /// Set a position's take-profit / stop-loss: a long is closed, a short covered, when the last trade reaches one. Both null clears them.
@@ -23646,6 +34280,158 @@ class VaultMarketsApi {
     
     }
     return Future<UpdateVaultMarketPositionExitResponse>.value();
+  }
+
+  /// Edit your comment.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<Response> updateVaultMarketPredictionCommentWithHttpInfo(String id,) async {
+    // Verify required params are set.
+    if (id == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: id');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/vault-markets/predictions/comments/{id}'
+      .replaceAll('{id}', id);
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'PATCH',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Edit your comment.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<CreateVaultMarketPredictionCommentResponse> updateVaultMarketPredictionComment(String id,) async {
+    final response = await updateVaultMarketPredictionCommentWithHttpInfo(id,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'CreateVaultMarketPredictionCommentResponse',) as CreateVaultMarketPredictionCommentResponse;
+    
+    }
+    return Future<CreateVaultMarketPredictionCommentResponse>.value();
+  }
+
+  /// Go public under a display name (`public: true`), rename, or go private (`public: false`: nothing is shown again).
+  ///
+  /// Note: This method returns the HTTP [Response].
+  Future<Response> updateVaultMarketPredictionForecasterWithHttpInfo() async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/vault-markets/predictions/forecaster';
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'PUT',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Go public under a display name (`public: true`), rename, or go private (`public: false`: nothing is shown again).
+  Future<GetVaultMarketPredictionForecasterResponse> updateVaultMarketPredictionForecaster() async {
+    final response = await updateVaultMarketPredictionForecasterWithHttpInfo();
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'GetVaultMarketPredictionForecasterResponse',) as GetVaultMarketPredictionForecasterResponse;
+    
+    }
+    return Future<GetVaultMarketPredictionForecasterResponse>.value();
+  }
+
+  /// Set your daily loss limit (`dailyLossLimitCents`, null = none) or exclude yourself (`excludeDays`, `excludedUntil` or \"forever\"). Tighter takes effect at once; looser waits 24 hours.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  Future<Response> updateVaultMarketPredictionLimitWithHttpInfo() async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/vault-markets/predictions/limits';
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'PUT',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Set your daily loss limit (`dailyLossLimitCents`, null = none) or exclude yourself (`excludeDays`, `excludedUntil` or \"forever\"). Tighter takes effect at once; looser waits 24 hours.
+  Future<GetVaultMarketPredictionLimitResponse> updateVaultMarketPredictionLimit() async {
+    final response = await updateVaultMarketPredictionLimitWithHttpInfo();
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'GetVaultMarketPredictionLimitResponse',) as GetVaultMarketPredictionLimitResponse;
+    
+    }
+    return Future<GetVaultMarketPredictionLimitResponse>.value();
   }
 
   /// Change a widget: name, range, layout, theme, affiliate code (null for none) or allowed sites. The market or index it shows never changes: make a new widget for another.
@@ -23872,6 +34658,52 @@ class VaultMarketsApi {
     
     }
     return Future<GetVaultMarketSetGoalResponse>.value();
+  }
+
+  /// Change your vault defaults; send only the fields you change.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  Future<Response> updateVaultMarketSettingWithHttpInfo() async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/vault-markets/settings';
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'PUT',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Change your vault defaults; send only the fields you change.
+  Future<GetVaultMarketSettingResponse> updateVaultMarketSetting() async {
+    final response = await updateVaultMarketSettingWithHttpInfo();
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'GetVaultMarketSettingResponse',) as GetVaultMarketSettingResponse;
+    
+    }
+    return Future<GetVaultMarketSettingResponse>.value();
   }
 
   /// Show or hide the dollar amounts on one of your share cards (`showAmounts`).

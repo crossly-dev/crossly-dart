@@ -15,17 +15,19 @@ class GetListingResponsePlatformListings {
   GetListingResponsePlatformListings({
     @required this.id,
     @required this.userId,
-    @required this.quantity,
-    @required this.status,
     @required this.platform,
-    this.errorMessage,
-    @required this.listingId,
-    this.marketplaceId,
     @required this.accountSlot,
+    @required this.status,
+    this.marketplaceId,
+    @required this.origin,
+    @required this.views,
+    @required this.favorites,
+    @required this.quantity,
     this.inventoryItemId,
     this.currency,
     this.delistedAt,
     this.soldAt,
+    @required this.listingId,
     @required this.platformListingId,
     this.platformListingUrl,
     @required this.stockLocation,
@@ -33,13 +35,22 @@ class GetListingResponsePlatformListings {
     this.sharedAt,
     this.delistReason,
     this.lastCheckedAt,
-    @required this.views,
-    @required this.favorites,
     @required this.commentsCount,
+    this.impressions,
+    this.ctrBps,
+    this.viewsSemantics,
     this.lastStatsSyncedAt,
+    this.errorMessage,
+    this.delistRequestedAt,
+    this.delistRequestedReason,
+    this.delistFailedAt,
+    this.delistError,
+    this.delistErrorCode,
     this.listedPrice,
     this.crosslyPriceUsdCents,
     this.crosslyPriceFxAsOf,
+    this.bundlePromo,
+    this.storefrontId,
     this.hashtags,
     @required this.isDraft,
     this.scheduledPublishAt,
@@ -59,7 +70,6 @@ class GetListingResponsePlatformListings {
     this.bestOfferAutoDeclineCents,
     this.aestheticTags,
     this.personalization,
-    this.digitalFile,
     this.tryDays,
     this.tryFeeCents,
     this.subscribeDiscountBps,
@@ -99,25 +109,29 @@ class GetListingResponsePlatformListings {
     @required this.verificationFailed,
     @required this.detailsPending,
     this.publishedOverrides,
+    this.delistState,
+    this.unmatchedSale,
   });
 
   String id;
 
   String userId;
 
-  num quantity;
+  String platform;
+
+  num accountSlot;
 
   String status;
 
-  String platform;
-
-  String errorMessage;
-
-  String listingId;
-
   String marketplaceId;
 
-  num accountSlot;
+  GetListingResponsePlatformListingsOriginEnum origin;
+
+  num views;
+
+  num favorites;
+
+  num quantity;
 
   String inventoryItemId;
 
@@ -126,6 +140,8 @@ class GetListingResponsePlatformListings {
   DateTime delistedAt;
 
   DateTime soldAt;
+
+  String listingId;
 
   String platformListingId;
 
@@ -141,19 +157,37 @@ class GetListingResponsePlatformListings {
 
   DateTime lastCheckedAt;
 
-  num views;
-
-  num favorites;
-
   num commentsCount;
 
+  num impressions;
+
+  num ctrBps;
+
+  GetListingResponsePlatformListingsViewsSemanticsEnum viewsSemantics;
+
   DateTime lastStatsSyncedAt;
+
+  String errorMessage;
+
+  DateTime delistRequestedAt;
+
+  String delistRequestedReason;
+
+  DateTime delistFailedAt;
+
+  String delistError;
+
+  String delistErrorCode;
 
   String listedPrice;
 
   num crosslyPriceUsdCents;
 
   String crosslyPriceFxAsOf;
+
+  GetInventoryResponsePlatformListingsBundlePromo bundlePromo;
+
+  String storefrontId;
 
   List<String> hashtags;
 
@@ -192,8 +226,6 @@ class GetListingResponsePlatformListings {
   List<String> aestheticTags;
 
   GetInventoryResponsePlatformListingsPersonalization personalization;
-
-  GetInventoryResponsePlatformListingsDigitalFile digitalFile;
 
   num tryDays;
 
@@ -273,21 +305,27 @@ class GetListingResponsePlatformListings {
 
   Map<String, Object> publishedOverrides;
 
+  GetListingResponsePlatformListingsDelistStateEnum delistState;
+
+  GetListingResponsePlatformListingsUnmatchedSale unmatchedSale;
+
   @override
   bool operator ==(Object other) => identical(this, other) || other is GetListingResponsePlatformListings &&
      other.id == id &&
      other.userId == userId &&
-     other.quantity == quantity &&
-     other.status == status &&
      other.platform == platform &&
-     other.errorMessage == errorMessage &&
-     other.listingId == listingId &&
-     other.marketplaceId == marketplaceId &&
      other.accountSlot == accountSlot &&
+     other.status == status &&
+     other.marketplaceId == marketplaceId &&
+     other.origin == origin &&
+     other.views == views &&
+     other.favorites == favorites &&
+     other.quantity == quantity &&
      other.inventoryItemId == inventoryItemId &&
      other.currency == currency &&
      other.delistedAt == delistedAt &&
      other.soldAt == soldAt &&
+     other.listingId == listingId &&
      other.platformListingId == platformListingId &&
      other.platformListingUrl == platformListingUrl &&
      other.stockLocation == stockLocation &&
@@ -295,13 +333,22 @@ class GetListingResponsePlatformListings {
      other.sharedAt == sharedAt &&
      other.delistReason == delistReason &&
      other.lastCheckedAt == lastCheckedAt &&
-     other.views == views &&
-     other.favorites == favorites &&
      other.commentsCount == commentsCount &&
+     other.impressions == impressions &&
+     other.ctrBps == ctrBps &&
+     other.viewsSemantics == viewsSemantics &&
      other.lastStatsSyncedAt == lastStatsSyncedAt &&
+     other.errorMessage == errorMessage &&
+     other.delistRequestedAt == delistRequestedAt &&
+     other.delistRequestedReason == delistRequestedReason &&
+     other.delistFailedAt == delistFailedAt &&
+     other.delistError == delistError &&
+     other.delistErrorCode == delistErrorCode &&
      other.listedPrice == listedPrice &&
      other.crosslyPriceUsdCents == crosslyPriceUsdCents &&
      other.crosslyPriceFxAsOf == crosslyPriceFxAsOf &&
+     other.bundlePromo == bundlePromo &&
+     other.storefrontId == storefrontId &&
      other.hashtags == hashtags &&
      other.isDraft == isDraft &&
      other.scheduledPublishAt == scheduledPublishAt &&
@@ -321,7 +368,6 @@ class GetListingResponsePlatformListings {
      other.bestOfferAutoDeclineCents == bestOfferAutoDeclineCents &&
      other.aestheticTags == aestheticTags &&
      other.personalization == personalization &&
-     other.digitalFile == digitalFile &&
      other.tryDays == tryDays &&
      other.tryFeeCents == tryFeeCents &&
      other.subscribeDiscountBps == subscribeDiscountBps &&
@@ -360,24 +406,28 @@ class GetListingResponsePlatformListings {
      other.web3OrderId == web3OrderId &&
      other.verificationFailed == verificationFailed &&
      other.detailsPending == detailsPending &&
-     other.publishedOverrides == publishedOverrides;
+     other.publishedOverrides == publishedOverrides &&
+     other.delistState == delistState &&
+     other.unmatchedSale == unmatchedSale;
 
   @override
   int get hashCode =>
   // ignore: unnecessary_parenthesis
     (id == null ? 0 : id.hashCode) +
     (userId == null ? 0 : userId.hashCode) +
-    (quantity == null ? 0 : quantity.hashCode) +
-    (status == null ? 0 : status.hashCode) +
     (platform == null ? 0 : platform.hashCode) +
-    (errorMessage == null ? 0 : errorMessage.hashCode) +
-    (listingId == null ? 0 : listingId.hashCode) +
-    (marketplaceId == null ? 0 : marketplaceId.hashCode) +
     (accountSlot == null ? 0 : accountSlot.hashCode) +
+    (status == null ? 0 : status.hashCode) +
+    (marketplaceId == null ? 0 : marketplaceId.hashCode) +
+    (origin == null ? 0 : origin.hashCode) +
+    (views == null ? 0 : views.hashCode) +
+    (favorites == null ? 0 : favorites.hashCode) +
+    (quantity == null ? 0 : quantity.hashCode) +
     (inventoryItemId == null ? 0 : inventoryItemId.hashCode) +
     (currency == null ? 0 : currency.hashCode) +
     (delistedAt == null ? 0 : delistedAt.hashCode) +
     (soldAt == null ? 0 : soldAt.hashCode) +
+    (listingId == null ? 0 : listingId.hashCode) +
     (platformListingId == null ? 0 : platformListingId.hashCode) +
     (platformListingUrl == null ? 0 : platformListingUrl.hashCode) +
     (stockLocation == null ? 0 : stockLocation.hashCode) +
@@ -385,13 +435,22 @@ class GetListingResponsePlatformListings {
     (sharedAt == null ? 0 : sharedAt.hashCode) +
     (delistReason == null ? 0 : delistReason.hashCode) +
     (lastCheckedAt == null ? 0 : lastCheckedAt.hashCode) +
-    (views == null ? 0 : views.hashCode) +
-    (favorites == null ? 0 : favorites.hashCode) +
     (commentsCount == null ? 0 : commentsCount.hashCode) +
+    (impressions == null ? 0 : impressions.hashCode) +
+    (ctrBps == null ? 0 : ctrBps.hashCode) +
+    (viewsSemantics == null ? 0 : viewsSemantics.hashCode) +
     (lastStatsSyncedAt == null ? 0 : lastStatsSyncedAt.hashCode) +
+    (errorMessage == null ? 0 : errorMessage.hashCode) +
+    (delistRequestedAt == null ? 0 : delistRequestedAt.hashCode) +
+    (delistRequestedReason == null ? 0 : delistRequestedReason.hashCode) +
+    (delistFailedAt == null ? 0 : delistFailedAt.hashCode) +
+    (delistError == null ? 0 : delistError.hashCode) +
+    (delistErrorCode == null ? 0 : delistErrorCode.hashCode) +
     (listedPrice == null ? 0 : listedPrice.hashCode) +
     (crosslyPriceUsdCents == null ? 0 : crosslyPriceUsdCents.hashCode) +
     (crosslyPriceFxAsOf == null ? 0 : crosslyPriceFxAsOf.hashCode) +
+    (bundlePromo == null ? 0 : bundlePromo.hashCode) +
+    (storefrontId == null ? 0 : storefrontId.hashCode) +
     (hashtags == null ? 0 : hashtags.hashCode) +
     (isDraft == null ? 0 : isDraft.hashCode) +
     (scheduledPublishAt == null ? 0 : scheduledPublishAt.hashCode) +
@@ -411,7 +470,6 @@ class GetListingResponsePlatformListings {
     (bestOfferAutoDeclineCents == null ? 0 : bestOfferAutoDeclineCents.hashCode) +
     (aestheticTags == null ? 0 : aestheticTags.hashCode) +
     (personalization == null ? 0 : personalization.hashCode) +
-    (digitalFile == null ? 0 : digitalFile.hashCode) +
     (tryDays == null ? 0 : tryDays.hashCode) +
     (tryFeeCents == null ? 0 : tryFeeCents.hashCode) +
     (subscribeDiscountBps == null ? 0 : subscribeDiscountBps.hashCode) +
@@ -450,26 +508,27 @@ class GetListingResponsePlatformListings {
     (web3OrderId == null ? 0 : web3OrderId.hashCode) +
     (verificationFailed == null ? 0 : verificationFailed.hashCode) +
     (detailsPending == null ? 0 : detailsPending.hashCode) +
-    (publishedOverrides == null ? 0 : publishedOverrides.hashCode);
+    (publishedOverrides == null ? 0 : publishedOverrides.hashCode) +
+    (delistState == null ? 0 : delistState.hashCode) +
+    (unmatchedSale == null ? 0 : unmatchedSale.hashCode);
 
   @override
-  String toString() => 'GetListingResponsePlatformListings[id=$id, userId=$userId, quantity=$quantity, status=$status, platform=$platform, errorMessage=$errorMessage, listingId=$listingId, marketplaceId=$marketplaceId, accountSlot=$accountSlot, inventoryItemId=$inventoryItemId, currency=$currency, delistedAt=$delistedAt, soldAt=$soldAt, platformListingId=$platformListingId, platformListingUrl=$platformListingUrl, stockLocation=$stockLocation, listedAt=$listedAt, sharedAt=$sharedAt, delistReason=$delistReason, lastCheckedAt=$lastCheckedAt, views=$views, favorites=$favorites, commentsCount=$commentsCount, lastStatsSyncedAt=$lastStatsSyncedAt, listedPrice=$listedPrice, crosslyPriceUsdCents=$crosslyPriceUsdCents, crosslyPriceFxAsOf=$crosslyPriceFxAsOf, hashtags=$hashtags, isDraft=$isDraft, scheduledPublishAt=$scheduledPublishAt, isDutchAuction=$isDutchAuction, dutchStartCents=$dutchStartCents, dutchFloorCents=$dutchFloorCents, dutchEndsAt=$dutchEndsAt, isPreOrder=$isPreOrder, expectedShipBy=$expectedShipBy, preorderDepositPercentBps=$preorderDepositPercentBps, boostedAt=$boostedAt, imageCaption=$imageCaption, durationDays=$durationDays, endsAt=$endsAt, bestOfferEnabled=$bestOfferEnabled, bestOfferAutoAcceptCents=$bestOfferAutoAcceptCents, bestOfferAutoDeclineCents=$bestOfferAutoDeclineCents, aestheticTags=$aestheticTags, personalization=$personalization, digitalFile=$digitalFile, tryDays=$tryDays, tryFeeCents=$tryFeeCents, subscribeDiscountBps=$subscribeDiscountBps, measurements=$measurements, allowsLocalPickup=$allowsLocalPickup, pickupRadiusMiles=$pickupRadiusMiles, pickupLat=$pickupLat, pickupLng=$pickupLng, refurbishedTier=$refurbishedTier, refurbWarrantyMonths=$refurbWarrantyMonths, refurbBatteryPct=$refurbBatteryPct, charitySlug=$charitySlug, charityPercentBps=$charityPercentBps, crosslyReturnPolicyId=$crosslyReturnPolicyId, crosslyShippingPolicyId=$crosslyShippingPolicyId, crosslyPaymentPolicyId=$crosslyPaymentPolicyId, retailPriceCents=$retailPriceCents, restrictedCountries=$restrictedCountries, auctionExtendSeconds=$auctionExtendSeconds, authenticationProviderSlug=$authenticationProviderSlug, authenticationRequired=$authenticationRequired, hasVariants=$hasVariants, charityId=$charityId, minOrderQuantity=$minOrderQuantity, wholesaleUnitPriceCents=$wholesaleUnitPriceCents, wholesaleMinQuantity=$wholesaleMinQuantity, auctionReserveCents=$auctionReserveCents, isGtc=$isGtc, handlingTimeDays=$handlingTimeDays, itemLocation=$itemLocation, itemLocationZip=$itemLocationZip, itemLocationCountry=$itemLocationCountry, declaredShippingCost=$declaredShippingCost, returnPolicyText=$returnPolicyText, lastDriftCheckedAt=$lastDriftCheckedAt, web3OrderId=$web3OrderId, verificationFailed=$verificationFailed, detailsPending=$detailsPending, publishedOverrides=$publishedOverrides]';
+  String toString() => 'GetListingResponsePlatformListings[id=$id, userId=$userId, platform=$platform, accountSlot=$accountSlot, status=$status, marketplaceId=$marketplaceId, origin=$origin, views=$views, favorites=$favorites, quantity=$quantity, inventoryItemId=$inventoryItemId, currency=$currency, delistedAt=$delistedAt, soldAt=$soldAt, listingId=$listingId, platformListingId=$platformListingId, platformListingUrl=$platformListingUrl, stockLocation=$stockLocation, listedAt=$listedAt, sharedAt=$sharedAt, delistReason=$delistReason, lastCheckedAt=$lastCheckedAt, commentsCount=$commentsCount, impressions=$impressions, ctrBps=$ctrBps, viewsSemantics=$viewsSemantics, lastStatsSyncedAt=$lastStatsSyncedAt, errorMessage=$errorMessage, delistRequestedAt=$delistRequestedAt, delistRequestedReason=$delistRequestedReason, delistFailedAt=$delistFailedAt, delistError=$delistError, delistErrorCode=$delistErrorCode, listedPrice=$listedPrice, crosslyPriceUsdCents=$crosslyPriceUsdCents, crosslyPriceFxAsOf=$crosslyPriceFxAsOf, bundlePromo=$bundlePromo, storefrontId=$storefrontId, hashtags=$hashtags, isDraft=$isDraft, scheduledPublishAt=$scheduledPublishAt, isDutchAuction=$isDutchAuction, dutchStartCents=$dutchStartCents, dutchFloorCents=$dutchFloorCents, dutchEndsAt=$dutchEndsAt, isPreOrder=$isPreOrder, expectedShipBy=$expectedShipBy, preorderDepositPercentBps=$preorderDepositPercentBps, boostedAt=$boostedAt, imageCaption=$imageCaption, durationDays=$durationDays, endsAt=$endsAt, bestOfferEnabled=$bestOfferEnabled, bestOfferAutoAcceptCents=$bestOfferAutoAcceptCents, bestOfferAutoDeclineCents=$bestOfferAutoDeclineCents, aestheticTags=$aestheticTags, personalization=$personalization, tryDays=$tryDays, tryFeeCents=$tryFeeCents, subscribeDiscountBps=$subscribeDiscountBps, measurements=$measurements, allowsLocalPickup=$allowsLocalPickup, pickupRadiusMiles=$pickupRadiusMiles, pickupLat=$pickupLat, pickupLng=$pickupLng, refurbishedTier=$refurbishedTier, refurbWarrantyMonths=$refurbWarrantyMonths, refurbBatteryPct=$refurbBatteryPct, charitySlug=$charitySlug, charityPercentBps=$charityPercentBps, crosslyReturnPolicyId=$crosslyReturnPolicyId, crosslyShippingPolicyId=$crosslyShippingPolicyId, crosslyPaymentPolicyId=$crosslyPaymentPolicyId, retailPriceCents=$retailPriceCents, restrictedCountries=$restrictedCountries, auctionExtendSeconds=$auctionExtendSeconds, authenticationProviderSlug=$authenticationProviderSlug, authenticationRequired=$authenticationRequired, hasVariants=$hasVariants, charityId=$charityId, minOrderQuantity=$minOrderQuantity, wholesaleUnitPriceCents=$wholesaleUnitPriceCents, wholesaleMinQuantity=$wholesaleMinQuantity, auctionReserveCents=$auctionReserveCents, isGtc=$isGtc, handlingTimeDays=$handlingTimeDays, itemLocation=$itemLocation, itemLocationZip=$itemLocationZip, itemLocationCountry=$itemLocationCountry, declaredShippingCost=$declaredShippingCost, returnPolicyText=$returnPolicyText, lastDriftCheckedAt=$lastDriftCheckedAt, web3OrderId=$web3OrderId, verificationFailed=$verificationFailed, detailsPending=$detailsPending, publishedOverrides=$publishedOverrides, delistState=$delistState, unmatchedSale=$unmatchedSale]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
       json[r'id'] = id;
       json[r'userId'] = userId;
-      json[r'quantity'] = quantity;
-      json[r'status'] = status;
       json[r'platform'] = platform;
-    if (errorMessage != null) {
-      json[r'errorMessage'] = errorMessage;
-    }
-      json[r'listingId'] = listingId;
+      json[r'accountSlot'] = accountSlot;
+      json[r'status'] = status;
     if (marketplaceId != null) {
       json[r'marketplaceId'] = marketplaceId;
     }
-      json[r'accountSlot'] = accountSlot;
+      json[r'origin'] = origin;
+      json[r'views'] = views;
+      json[r'favorites'] = favorites;
+      json[r'quantity'] = quantity;
     if (inventoryItemId != null) {
       json[r'inventoryItemId'] = inventoryItemId;
     }
@@ -482,6 +541,7 @@ class GetListingResponsePlatformListings {
     if (soldAt != null) {
       json[r'soldAt'] = soldAt.toUtc().toIso8601String();
     }
+      json[r'listingId'] = listingId;
       json[r'platformListingId'] = platformListingId;
     if (platformListingUrl != null) {
       json[r'platformListingUrl'] = platformListingUrl;
@@ -499,11 +559,36 @@ class GetListingResponsePlatformListings {
     if (lastCheckedAt != null) {
       json[r'lastCheckedAt'] = lastCheckedAt.toUtc().toIso8601String();
     }
-      json[r'views'] = views;
-      json[r'favorites'] = favorites;
       json[r'commentsCount'] = commentsCount;
+    if (impressions != null) {
+      json[r'impressions'] = impressions;
+    }
+    if (ctrBps != null) {
+      json[r'ctrBps'] = ctrBps;
+    }
+    if (viewsSemantics != null) {
+      json[r'viewsSemantics'] = viewsSemantics;
+    }
     if (lastStatsSyncedAt != null) {
       json[r'lastStatsSyncedAt'] = lastStatsSyncedAt.toUtc().toIso8601String();
+    }
+    if (errorMessage != null) {
+      json[r'errorMessage'] = errorMessage;
+    }
+    if (delistRequestedAt != null) {
+      json[r'delistRequestedAt'] = delistRequestedAt.toUtc().toIso8601String();
+    }
+    if (delistRequestedReason != null) {
+      json[r'delistRequestedReason'] = delistRequestedReason;
+    }
+    if (delistFailedAt != null) {
+      json[r'delistFailedAt'] = delistFailedAt.toUtc().toIso8601String();
+    }
+    if (delistError != null) {
+      json[r'delistError'] = delistError;
+    }
+    if (delistErrorCode != null) {
+      json[r'delistErrorCode'] = delistErrorCode;
     }
     if (listedPrice != null) {
       json[r'listedPrice'] = listedPrice;
@@ -513,6 +598,12 @@ class GetListingResponsePlatformListings {
     }
     if (crosslyPriceFxAsOf != null) {
       json[r'crosslyPriceFxAsOf'] = crosslyPriceFxAsOf;
+    }
+    if (bundlePromo != null) {
+      json[r'bundlePromo'] = bundlePromo;
+    }
+    if (storefrontId != null) {
+      json[r'storefrontId'] = storefrontId;
     }
     if (hashtags != null) {
       json[r'hashtags'] = hashtags;
@@ -562,9 +653,6 @@ class GetListingResponsePlatformListings {
     }
     if (personalization != null) {
       json[r'personalization'] = personalization;
-    }
-    if (digitalFile != null) {
-      json[r'digitalFile'] = digitalFile;
     }
     if (tryDays != null) {
       json[r'tryDays'] = tryDays;
@@ -667,6 +755,12 @@ class GetListingResponsePlatformListings {
     if (publishedOverrides != null) {
       json[r'publishedOverrides'] = publishedOverrides;
     }
+    if (delistState != null) {
+      json[r'delistState'] = delistState;
+    }
+    if (unmatchedSale != null) {
+      json[r'unmatchedSale'] = unmatchedSale;
+    }
     return json;
   }
 
@@ -679,21 +773,27 @@ class GetListingResponsePlatformListings {
       return GetListingResponsePlatformListings(
         id: mapValueOfType<String>(json, r'id'),
         userId: mapValueOfType<String>(json, r'userId'),
-        quantity: json[r'quantity'] == null
-          ? null
-          : num.parse(json[r'quantity'].toString()),
-        status: mapValueOfType<String>(json, r'status'),
         platform: mapValueOfType<String>(json, r'platform'),
-        errorMessage: mapValueOfType<String>(json, r'errorMessage'),
-        listingId: mapValueOfType<String>(json, r'listingId'),
-        marketplaceId: mapValueOfType<String>(json, r'marketplaceId'),
         accountSlot: json[r'accountSlot'] == null
           ? null
           : num.parse(json[r'accountSlot'].toString()),
+        status: mapValueOfType<String>(json, r'status'),
+        marketplaceId: mapValueOfType<String>(json, r'marketplaceId'),
+        origin: GetListingResponsePlatformListingsOriginEnum.fromJson(json[r'origin']),
+        views: json[r'views'] == null
+          ? null
+          : num.parse(json[r'views'].toString()),
+        favorites: json[r'favorites'] == null
+          ? null
+          : num.parse(json[r'favorites'].toString()),
+        quantity: json[r'quantity'] == null
+          ? null
+          : num.parse(json[r'quantity'].toString()),
         inventoryItemId: mapValueOfType<String>(json, r'inventoryItemId'),
         currency: mapValueOfType<String>(json, r'currency'),
         delistedAt: mapDateTime(json, r'delistedAt', ''),
         soldAt: mapDateTime(json, r'soldAt', ''),
+        listingId: mapValueOfType<String>(json, r'listingId'),
         platformListingId: mapValueOfType<String>(json, r'platformListingId'),
         platformListingUrl: mapValueOfType<String>(json, r'platformListingUrl'),
         stockLocation: mapValueOfType<String>(json, r'stockLocation'),
@@ -701,21 +801,30 @@ class GetListingResponsePlatformListings {
         sharedAt: mapDateTime(json, r'sharedAt', ''),
         delistReason: mapValueOfType<String>(json, r'delistReason'),
         lastCheckedAt: mapDateTime(json, r'lastCheckedAt', ''),
-        views: json[r'views'] == null
-          ? null
-          : num.parse(json[r'views'].toString()),
-        favorites: json[r'favorites'] == null
-          ? null
-          : num.parse(json[r'favorites'].toString()),
         commentsCount: json[r'commentsCount'] == null
           ? null
           : num.parse(json[r'commentsCount'].toString()),
+        impressions: json[r'impressions'] == null
+          ? null
+          : num.parse(json[r'impressions'].toString()),
+        ctrBps: json[r'ctrBps'] == null
+          ? null
+          : num.parse(json[r'ctrBps'].toString()),
+        viewsSemantics: GetListingResponsePlatformListingsViewsSemanticsEnum.fromJson(json[r'viewsSemantics']),
         lastStatsSyncedAt: mapDateTime(json, r'lastStatsSyncedAt', ''),
+        errorMessage: mapValueOfType<String>(json, r'errorMessage'),
+        delistRequestedAt: mapDateTime(json, r'delistRequestedAt', ''),
+        delistRequestedReason: mapValueOfType<String>(json, r'delistRequestedReason'),
+        delistFailedAt: mapDateTime(json, r'delistFailedAt', ''),
+        delistError: mapValueOfType<String>(json, r'delistError'),
+        delistErrorCode: mapValueOfType<String>(json, r'delistErrorCode'),
         listedPrice: mapValueOfType<String>(json, r'listedPrice'),
         crosslyPriceUsdCents: json[r'crosslyPriceUsdCents'] == null
           ? null
           : num.parse(json[r'crosslyPriceUsdCents'].toString()),
         crosslyPriceFxAsOf: mapValueOfType<String>(json, r'crosslyPriceFxAsOf'),
+        bundlePromo: GetInventoryResponsePlatformListingsBundlePromo.fromJson(json[r'bundlePromo']),
+        storefrontId: mapValueOfType<String>(json, r'storefrontId'),
         hashtags: json[r'hashtags'] is List
           ? (json[r'hashtags'] as List).cast<String>()
           : null,
@@ -751,7 +860,6 @@ class GetListingResponsePlatformListings {
           ? (json[r'aestheticTags'] as List).cast<String>()
           : null,
         personalization: GetInventoryResponsePlatformListingsPersonalization.fromJson(json[r'personalization']),
-        digitalFile: GetInventoryResponsePlatformListingsDigitalFile.fromJson(json[r'digitalFile']),
         tryDays: json[r'tryDays'] == null
           ? null
           : num.parse(json[r'tryDays'].toString()),
@@ -821,6 +929,8 @@ class GetListingResponsePlatformListings {
         verificationFailed: mapValueOfType<bool>(json, r'verificationFailed'),
         detailsPending: mapValueOfType<bool>(json, r'detailsPending'),
         publishedOverrides: mapValueOfType<Map<String, Object>>(json, r'publishedOverrides'),
+        delistState: GetListingResponsePlatformListingsDelistStateEnum.fromJson(json[r'delistState']),
+        unmatchedSale: GetListingResponsePlatformListingsUnmatchedSale.fromJson(json[r'unmatchedSale']),
       );
     }
     return null;
@@ -858,4 +968,220 @@ class GetListingResponsePlatformListings {
     return map;
   }
 }
+
+
+class GetListingResponsePlatformListingsOriginEnum {
+  /// Instantiate a new enum with the provided [value].
+  const GetListingResponsePlatformListingsOriginEnum._(this.value);
+
+  /// The underlying value of this enum member.
+  final String value;
+
+  @override
+  String toString() => value ?? '';
+
+  String toJson() => value;
+
+  static const unknown = GetListingResponsePlatformListingsOriginEnum._(r'unknown');
+  static const published = GetListingResponsePlatformListingsOriginEnum._(r'published');
+  static const imported = GetListingResponsePlatformListingsOriginEnum._(r'imported');
+  static const externalStub = GetListingResponsePlatformListingsOriginEnum._(r'external_stub');
+  static const appLinked = GetListingResponsePlatformListingsOriginEnum._(r'app_linked');
+
+  /// List of all possible values in this [enum][GetListingResponsePlatformListingsOriginEnum].
+  static const values = <GetListingResponsePlatformListingsOriginEnum>[
+    unknown,
+    published,
+    imported,
+    externalStub,
+    appLinked,
+  ];
+
+  static GetListingResponsePlatformListingsOriginEnum fromJson(dynamic value) =>
+    GetListingResponsePlatformListingsOriginEnumTypeTransformer().decode(value);
+
+  static List<GetListingResponsePlatformListingsOriginEnum> listFromJson(dynamic json, {bool emptyIsNull, bool growable,}) =>
+    json is List && json.isNotEmpty
+      ? json.map(GetListingResponsePlatformListingsOriginEnum.fromJson).toList(growable: true == growable)
+      : true == emptyIsNull ? null : <GetListingResponsePlatformListingsOriginEnum>[];
+}
+
+/// Transformation class that can [encode] an instance of [GetListingResponsePlatformListingsOriginEnum] to String,
+/// and [decode] dynamic data back to [GetListingResponsePlatformListingsOriginEnum].
+class GetListingResponsePlatformListingsOriginEnumTypeTransformer {
+  factory GetListingResponsePlatformListingsOriginEnumTypeTransformer() => _instance ??= const GetListingResponsePlatformListingsOriginEnumTypeTransformer._();
+
+  const GetListingResponsePlatformListingsOriginEnumTypeTransformer._();
+
+  String encode(GetListingResponsePlatformListingsOriginEnum data) => data.value;
+
+  /// Decodes a [dynamic value][data] to a GetListingResponsePlatformListingsOriginEnum.
+  ///
+  /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
+  /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
+  /// cannot be decoded successfully, then an [UnimplementedError] is thrown.
+  ///
+  /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
+  /// and users are still using an old app with the old code.
+  GetListingResponsePlatformListingsOriginEnum decode(dynamic data, {bool allowNull}) {
+    if (data != null) {
+      switch (data.toString()) {
+        case r'unknown': return GetListingResponsePlatformListingsOriginEnum.unknown;
+        case r'published': return GetListingResponsePlatformListingsOriginEnum.published;
+        case r'imported': return GetListingResponsePlatformListingsOriginEnum.imported;
+        case r'external_stub': return GetListingResponsePlatformListingsOriginEnum.externalStub;
+        case r'app_linked': return GetListingResponsePlatformListingsOriginEnum.appLinked;
+        default:
+          if (allowNull == false) {
+            throw ArgumentError('Unknown enum value to decode: $data');
+          }
+      }
+    }
+    return null;
+  }
+
+  /// Singleton [GetListingResponsePlatformListingsOriginEnumTypeTransformer] instance.
+  static GetListingResponsePlatformListingsOriginEnumTypeTransformer _instance;
+}
+
+
+
+class GetListingResponsePlatformListingsViewsSemanticsEnum {
+  /// Instantiate a new enum with the provided [value].
+  const GetListingResponsePlatformListingsViewsSemanticsEnum._(this.value);
+
+  /// The underlying value of this enum member.
+  final String value;
+
+  @override
+  String toString() => value ?? '';
+
+  String toJson() => value;
+
+  static const lifetime = GetListingResponsePlatformListingsViewsSemanticsEnum._(r'lifetime');
+  static const rolling7d = GetListingResponsePlatformListingsViewsSemanticsEnum._(r'rolling7d');
+  static const rolling30d = GetListingResponsePlatformListingsViewsSemanticsEnum._(r'rolling30d');
+  static const clicks = GetListingResponsePlatformListingsViewsSemanticsEnum._(r'clicks');
+
+  /// List of all possible values in this [enum][GetListingResponsePlatformListingsViewsSemanticsEnum].
+  static const values = <GetListingResponsePlatformListingsViewsSemanticsEnum>[
+    lifetime,
+    rolling7d,
+    rolling30d,
+    clicks,
+  ];
+
+  static GetListingResponsePlatformListingsViewsSemanticsEnum fromJson(dynamic value) =>
+    GetListingResponsePlatformListingsViewsSemanticsEnumTypeTransformer().decode(value);
+
+  static List<GetListingResponsePlatformListingsViewsSemanticsEnum> listFromJson(dynamic json, {bool emptyIsNull, bool growable,}) =>
+    json is List && json.isNotEmpty
+      ? json.map(GetListingResponsePlatformListingsViewsSemanticsEnum.fromJson).toList(growable: true == growable)
+      : true == emptyIsNull ? null : <GetListingResponsePlatformListingsViewsSemanticsEnum>[];
+}
+
+/// Transformation class that can [encode] an instance of [GetListingResponsePlatformListingsViewsSemanticsEnum] to String,
+/// and [decode] dynamic data back to [GetListingResponsePlatformListingsViewsSemanticsEnum].
+class GetListingResponsePlatformListingsViewsSemanticsEnumTypeTransformer {
+  factory GetListingResponsePlatformListingsViewsSemanticsEnumTypeTransformer() => _instance ??= const GetListingResponsePlatformListingsViewsSemanticsEnumTypeTransformer._();
+
+  const GetListingResponsePlatformListingsViewsSemanticsEnumTypeTransformer._();
+
+  String encode(GetListingResponsePlatformListingsViewsSemanticsEnum data) => data.value;
+
+  /// Decodes a [dynamic value][data] to a GetListingResponsePlatformListingsViewsSemanticsEnum.
+  ///
+  /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
+  /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
+  /// cannot be decoded successfully, then an [UnimplementedError] is thrown.
+  ///
+  /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
+  /// and users are still using an old app with the old code.
+  GetListingResponsePlatformListingsViewsSemanticsEnum decode(dynamic data, {bool allowNull}) {
+    if (data != null) {
+      switch (data.toString()) {
+        case r'lifetime': return GetListingResponsePlatformListingsViewsSemanticsEnum.lifetime;
+        case r'rolling7d': return GetListingResponsePlatformListingsViewsSemanticsEnum.rolling7d;
+        case r'rolling30d': return GetListingResponsePlatformListingsViewsSemanticsEnum.rolling30d;
+        case r'clicks': return GetListingResponsePlatformListingsViewsSemanticsEnum.clicks;
+        default:
+          if (allowNull == false) {
+            throw ArgumentError('Unknown enum value to decode: $data');
+          }
+      }
+    }
+    return null;
+  }
+
+  /// Singleton [GetListingResponsePlatformListingsViewsSemanticsEnumTypeTransformer] instance.
+  static GetListingResponsePlatformListingsViewsSemanticsEnumTypeTransformer _instance;
+}
+
+
+
+class GetListingResponsePlatformListingsDelistStateEnum {
+  /// Instantiate a new enum with the provided [value].
+  const GetListingResponsePlatformListingsDelistStateEnum._(this.value);
+
+  /// The underlying value of this enum member.
+  final String value;
+
+  @override
+  String toString() => value ?? '';
+
+  String toJson() => value;
+
+  static const pending = GetListingResponsePlatformListingsDelistStateEnum._(r'pending');
+  static const failed = GetListingResponsePlatformListingsDelistStateEnum._(r'failed');
+
+  /// List of all possible values in this [enum][GetListingResponsePlatformListingsDelistStateEnum].
+  static const values = <GetListingResponsePlatformListingsDelistStateEnum>[
+    pending,
+    failed,
+  ];
+
+  static GetListingResponsePlatformListingsDelistStateEnum fromJson(dynamic value) =>
+    GetListingResponsePlatformListingsDelistStateEnumTypeTransformer().decode(value);
+
+  static List<GetListingResponsePlatformListingsDelistStateEnum> listFromJson(dynamic json, {bool emptyIsNull, bool growable,}) =>
+    json is List && json.isNotEmpty
+      ? json.map(GetListingResponsePlatformListingsDelistStateEnum.fromJson).toList(growable: true == growable)
+      : true == emptyIsNull ? null : <GetListingResponsePlatformListingsDelistStateEnum>[];
+}
+
+/// Transformation class that can [encode] an instance of [GetListingResponsePlatformListingsDelistStateEnum] to String,
+/// and [decode] dynamic data back to [GetListingResponsePlatformListingsDelistStateEnum].
+class GetListingResponsePlatformListingsDelistStateEnumTypeTransformer {
+  factory GetListingResponsePlatformListingsDelistStateEnumTypeTransformer() => _instance ??= const GetListingResponsePlatformListingsDelistStateEnumTypeTransformer._();
+
+  const GetListingResponsePlatformListingsDelistStateEnumTypeTransformer._();
+
+  String encode(GetListingResponsePlatformListingsDelistStateEnum data) => data.value;
+
+  /// Decodes a [dynamic value][data] to a GetListingResponsePlatformListingsDelistStateEnum.
+  ///
+  /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
+  /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
+  /// cannot be decoded successfully, then an [UnimplementedError] is thrown.
+  ///
+  /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
+  /// and users are still using an old app with the old code.
+  GetListingResponsePlatformListingsDelistStateEnum decode(dynamic data, {bool allowNull}) {
+    if (data != null) {
+      switch (data.toString()) {
+        case r'pending': return GetListingResponsePlatformListingsDelistStateEnum.pending;
+        case r'failed': return GetListingResponsePlatformListingsDelistStateEnum.failed;
+        default:
+          if (allowNull == false) {
+            throw ArgumentError('Unknown enum value to decode: $data');
+          }
+      }
+    }
+    return null;
+  }
+
+  /// Singleton [GetListingResponsePlatformListingsDelistStateEnumTypeTransformer] instance.
+  static GetListingResponsePlatformListingsDelistStateEnumTypeTransformer _instance;
+}
+
 

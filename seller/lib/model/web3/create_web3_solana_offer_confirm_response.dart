@@ -95,13 +95,13 @@ class CreateWeb3SolanaOfferConfirmResponseStatusEnum {
 
   String toJson() => value;
 
-  static const filled = CreateWeb3SolanaOfferConfirmResponseStatusEnum._(r'filled');
   static const cancelled = CreateWeb3SolanaOfferConfirmResponseStatusEnum._(r'cancelled');
+  static const filled = CreateWeb3SolanaOfferConfirmResponseStatusEnum._(r'filled');
 
   /// List of all possible values in this [enum][CreateWeb3SolanaOfferConfirmResponseStatusEnum].
   static const values = <CreateWeb3SolanaOfferConfirmResponseStatusEnum>[
-    filled,
     cancelled,
+    filled,
   ];
 
   static CreateWeb3SolanaOfferConfirmResponseStatusEnum fromJson(dynamic value) =>
@@ -133,8 +133,8 @@ class CreateWeb3SolanaOfferConfirmResponseStatusEnumTypeTransformer {
   CreateWeb3SolanaOfferConfirmResponseStatusEnum decode(dynamic data, {bool allowNull}) {
     if (data != null) {
       switch (data.toString()) {
-        case r'filled': return CreateWeb3SolanaOfferConfirmResponseStatusEnum.filled;
         case r'cancelled': return CreateWeb3SolanaOfferConfirmResponseStatusEnum.cancelled;
+        case r'filled': return CreateWeb3SolanaOfferConfirmResponseStatusEnum.filled;
         default:
           if (allowNull == false) {
             throw ArgumentError('Unknown enum value to decode: $data');

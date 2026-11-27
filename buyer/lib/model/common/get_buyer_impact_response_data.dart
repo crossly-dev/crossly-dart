@@ -13,44 +13,44 @@ part of openapi.api;
 class GetBuyerImpactResponseData {
   /// Returns a new [GetBuyerImpactResponseData] instance.
   GetBuyerImpactResponseData({
-    @required this.co2Kg,
-    @required this.waterL,
     @required this.itemsBought,
     @required this.itemsWithFigures,
+    @required this.co2Kg,
+    @required this.waterL,
   });
-
-  num co2Kg;
-
-  num waterL;
 
   num itemsBought;
 
   num itemsWithFigures;
 
+  num co2Kg;
+
+  num waterL;
+
   @override
   bool operator ==(Object other) => identical(this, other) || other is GetBuyerImpactResponseData &&
-     other.co2Kg == co2Kg &&
-     other.waterL == waterL &&
      other.itemsBought == itemsBought &&
-     other.itemsWithFigures == itemsWithFigures;
+     other.itemsWithFigures == itemsWithFigures &&
+     other.co2Kg == co2Kg &&
+     other.waterL == waterL;
 
   @override
   int get hashCode =>
   // ignore: unnecessary_parenthesis
-    (co2Kg == null ? 0 : co2Kg.hashCode) +
-    (waterL == null ? 0 : waterL.hashCode) +
     (itemsBought == null ? 0 : itemsBought.hashCode) +
-    (itemsWithFigures == null ? 0 : itemsWithFigures.hashCode);
+    (itemsWithFigures == null ? 0 : itemsWithFigures.hashCode) +
+    (co2Kg == null ? 0 : co2Kg.hashCode) +
+    (waterL == null ? 0 : waterL.hashCode);
 
   @override
-  String toString() => 'GetBuyerImpactResponseData[co2Kg=$co2Kg, waterL=$waterL, itemsBought=$itemsBought, itemsWithFigures=$itemsWithFigures]';
+  String toString() => 'GetBuyerImpactResponseData[itemsBought=$itemsBought, itemsWithFigures=$itemsWithFigures, co2Kg=$co2Kg, waterL=$waterL]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-      json[r'co2Kg'] = co2Kg;
-      json[r'waterL'] = waterL;
       json[r'itemsBought'] = itemsBought;
       json[r'itemsWithFigures'] = itemsWithFigures;
+      json[r'co2Kg'] = co2Kg;
+      json[r'waterL'] = waterL;
     return json;
   }
 
@@ -61,18 +61,18 @@ class GetBuyerImpactResponseData {
     if (value is Map) {
       final json = value.cast<String, dynamic>();
       return GetBuyerImpactResponseData(
-        co2Kg: json[r'co2Kg'] == null
-          ? null
-          : num.parse(json[r'co2Kg'].toString()),
-        waterL: json[r'waterL'] == null
-          ? null
-          : num.parse(json[r'waterL'].toString()),
         itemsBought: json[r'itemsBought'] == null
           ? null
           : num.parse(json[r'itemsBought'].toString()),
         itemsWithFigures: json[r'itemsWithFigures'] == null
           ? null
           : num.parse(json[r'itemsWithFigures'].toString()),
+        co2Kg: json[r'co2Kg'] == null
+          ? null
+          : num.parse(json[r'co2Kg'].toString()),
+        waterL: json[r'waterL'] == null
+          ? null
+          : num.parse(json[r'waterL'].toString()),
       );
     }
     return null;

@@ -14,25 +14,31 @@ class GetVaultMarketKeyStatResponse {
   /// Returns a new [GetVaultMarketKeyStatResponse] instance.
   GetVaultMarketKeyStatResponse({
     @required this.bookKey,
+    @required this.gemRate,
   });
 
   String bookKey;
 
+  GetVaultMarketKeyStatResponseGemRate gemRate;
+
   @override
   bool operator ==(Object other) => identical(this, other) || other is GetVaultMarketKeyStatResponse &&
-     other.bookKey == bookKey;
+     other.bookKey == bookKey &&
+     other.gemRate == gemRate;
 
   @override
   int get hashCode =>
   // ignore: unnecessary_parenthesis
-    (bookKey == null ? 0 : bookKey.hashCode);
+    (bookKey == null ? 0 : bookKey.hashCode) +
+    (gemRate == null ? 0 : gemRate.hashCode);
 
   @override
-  String toString() => 'GetVaultMarketKeyStatResponse[bookKey=$bookKey]';
+  String toString() => 'GetVaultMarketKeyStatResponse[bookKey=$bookKey, gemRate=$gemRate]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
       json[r'bookKey'] = bookKey;
+      json[r'gemRate'] = gemRate;
     return json;
   }
 
@@ -44,6 +50,7 @@ class GetVaultMarketKeyStatResponse {
       final json = value.cast<String, dynamic>();
       return GetVaultMarketKeyStatResponse(
         bookKey: mapValueOfType<String>(json, r'bookKey'),
+        gemRate: GetVaultMarketKeyStatResponseGemRate.fromJson(json[r'gemRate']),
       );
     }
     return null;

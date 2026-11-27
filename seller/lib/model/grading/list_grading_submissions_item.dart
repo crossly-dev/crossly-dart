@@ -15,6 +15,7 @@ class ListGradingSubmissionsItem {
   ListGradingSubmissionsItem({
     @required this.id,
     @required this.mode,
+    this.orderId,
     this.runId,
     this.runCutoffAt,
     this.runStatus,
@@ -43,6 +44,9 @@ class ListGradingSubmissionsItem {
   String id;
 
   ListGradingSubmissionsItemModeEnum mode;
+
+  /// The grading order (submission through Crossly) this card is in.
+  String orderId;
 
   String runId;
 
@@ -82,7 +86,7 @@ class ListGradingSubmissionsItem {
 
   String prescreenNote;
 
-  ListGradingSubmissionsItemGrading grading;
+  CreateBulkBatchItemResponseGrading grading;
 
   bool certVerified;
 
@@ -94,6 +98,7 @@ class ListGradingSubmissionsItem {
   bool operator ==(Object other) => identical(this, other) || other is ListGradingSubmissionsItem &&
      other.id == id &&
      other.mode == mode &&
+     other.orderId == orderId &&
      other.runId == runId &&
      other.runCutoffAt == runCutoffAt &&
      other.runStatus == runStatus &&
@@ -123,6 +128,7 @@ class ListGradingSubmissionsItem {
   // ignore: unnecessary_parenthesis
     (id == null ? 0 : id.hashCode) +
     (mode == null ? 0 : mode.hashCode) +
+    (orderId == null ? 0 : orderId.hashCode) +
     (runId == null ? 0 : runId.hashCode) +
     (runCutoffAt == null ? 0 : runCutoffAt.hashCode) +
     (runStatus == null ? 0 : runStatus.hashCode) +
@@ -148,12 +154,15 @@ class ListGradingSubmissionsItem {
     (updatedAt == null ? 0 : updatedAt.hashCode);
 
   @override
-  String toString() => 'ListGradingSubmissionsItem[id=$id, mode=$mode, runId=$runId, runCutoffAt=$runCutoffAt, runStatus=$runStatus, graderSlug=$graderSlug, graderName=$graderName, tierSlug=$tierSlug, inventoryItemId=$inventoryItemId, title=$title, declaredValueCents=$declaredValueCents, prescreen=$prescreen, status=$status, missMode=$missMode, returnMode=$returnMode, chargedCents=$chargedCents, refundedCents=$refundedCents, inboundLabelUrl=$inboundLabelUrl, inboundTracking=$inboundTracking, returnTracking=$returnTracking, prescreenNote=$prescreenNote, grading=$grading, certVerified=$certVerified, createdAt=$createdAt, updatedAt=$updatedAt]';
+  String toString() => 'ListGradingSubmissionsItem[id=$id, mode=$mode, orderId=$orderId, runId=$runId, runCutoffAt=$runCutoffAt, runStatus=$runStatus, graderSlug=$graderSlug, graderName=$graderName, tierSlug=$tierSlug, inventoryItemId=$inventoryItemId, title=$title, declaredValueCents=$declaredValueCents, prescreen=$prescreen, status=$status, missMode=$missMode, returnMode=$returnMode, chargedCents=$chargedCents, refundedCents=$refundedCents, inboundLabelUrl=$inboundLabelUrl, inboundTracking=$inboundTracking, returnTracking=$returnTracking, prescreenNote=$prescreenNote, grading=$grading, certVerified=$certVerified, createdAt=$createdAt, updatedAt=$updatedAt]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
       json[r'id'] = id;
       json[r'mode'] = mode;
+    if (orderId != null) {
+      json[r'orderId'] = orderId;
+    }
     if (runId != null) {
       json[r'runId'] = runId;
     }
@@ -209,6 +218,7 @@ class ListGradingSubmissionsItem {
       return ListGradingSubmissionsItem(
         id: mapValueOfType<String>(json, r'id'),
         mode: ListGradingSubmissionsItemModeEnum.fromJson(json[r'mode']),
+        orderId: mapValueOfType<String>(json, r'orderId'),
         runId: mapValueOfType<String>(json, r'runId'),
         runCutoffAt: mapValueOfType<String>(json, r'runCutoffAt'),
         runStatus: mapValueOfType<String>(json, r'runStatus'),
@@ -234,7 +244,7 @@ class ListGradingSubmissionsItem {
         inboundTracking: mapValueOfType<String>(json, r'inboundTracking'),
         returnTracking: mapValueOfType<String>(json, r'returnTracking'),
         prescreenNote: mapValueOfType<String>(json, r'prescreenNote'),
-        grading: ListGradingSubmissionsItemGrading.fromJson(json[r'grading']),
+        grading: CreateBulkBatchItemResponseGrading.fromJson(json[r'grading']),
         certVerified: mapValueOfType<bool>(json, r'certVerified'),
         createdAt: mapValueOfType<String>(json, r'createdAt'),
         updatedAt: mapValueOfType<String>(json, r'updatedAt'),
@@ -289,13 +299,15 @@ class ListGradingSubmissionsItemModeEnum {
 
   String toJson() => value;
 
-  static const run = ListGradingSubmissionsItemModeEnum._(r'run');
   static const direct = ListGradingSubmissionsItemModeEnum._(r'direct');
+  static const order = ListGradingSubmissionsItemModeEnum._(r'order');
+  static const run = ListGradingSubmissionsItemModeEnum._(r'run');
 
   /// List of all possible values in this [enum][ListGradingSubmissionsItemModeEnum].
   static const values = <ListGradingSubmissionsItemModeEnum>[
-    run,
     direct,
+    order,
+    run,
   ];
 
   static ListGradingSubmissionsItemModeEnum fromJson(dynamic value) =>
@@ -327,8 +339,9 @@ class ListGradingSubmissionsItemModeEnumTypeTransformer {
   ListGradingSubmissionsItemModeEnum decode(dynamic data, {bool allowNull}) {
     if (data != null) {
       switch (data.toString()) {
-        case r'run': return ListGradingSubmissionsItemModeEnum.run;
         case r'direct': return ListGradingSubmissionsItemModeEnum.direct;
+        case r'order': return ListGradingSubmissionsItemModeEnum.order;
+        case r'run': return ListGradingSubmissionsItemModeEnum.run;
         default:
           if (allowNull == false) {
             throw ArgumentError('Unknown enum value to decode: $data');
@@ -356,32 +369,32 @@ class ListGradingSubmissionsItemStatusEnum {
 
   String toJson() => value;
 
-  static const graded = ListGradingSubmissionsItemStatusEnum._(r'graded');
-  static const returned = ListGradingSubmissionsItemStatusEnum._(r'returned');
-  static const released = ListGradingSubmissionsItemStatusEnum._(r'released');
   static const refunded = ListGradingSubmissionsItemStatusEnum._(r'refunded');
-  static const reserved = ListGradingSubmissionsItemStatusEnum._(r'reserved');
   static const received = ListGradingSubmissionsItemStatusEnum._(r'received');
+  static const released = ListGradingSubmissionsItemStatusEnum._(r'released');
+  static const reserved = ListGradingSubmissionsItemStatusEnum._(r'reserved');
   static const charged = ListGradingSubmissionsItemStatusEnum._(r'charged');
   static const shippedToHub = ListGradingSubmissionsItemStatusEnum._(r'shipped_to_hub');
   static const prescreenFailed = ListGradingSubmissionsItemStatusEnum._(r'prescreen_failed');
   static const atGrader = ListGradingSubmissionsItemStatusEnum._(r'at_grader');
+  static const graded = ListGradingSubmissionsItemStatusEnum._(r'graded');
   static const returning = ListGradingSubmissionsItemStatusEnum._(r'returning');
+  static const returned = ListGradingSubmissionsItemStatusEnum._(r'returned');
   static const vaulted = ListGradingSubmissionsItemStatusEnum._(r'vaulted');
 
   /// List of all possible values in this [enum][ListGradingSubmissionsItemStatusEnum].
   static const values = <ListGradingSubmissionsItemStatusEnum>[
-    graded,
-    returned,
-    released,
     refunded,
-    reserved,
     received,
+    released,
+    reserved,
     charged,
     shippedToHub,
     prescreenFailed,
     atGrader,
+    graded,
     returning,
+    returned,
     vaulted,
   ];
 
@@ -414,17 +427,17 @@ class ListGradingSubmissionsItemStatusEnumTypeTransformer {
   ListGradingSubmissionsItemStatusEnum decode(dynamic data, {bool allowNull}) {
     if (data != null) {
       switch (data.toString()) {
-        case r'graded': return ListGradingSubmissionsItemStatusEnum.graded;
-        case r'returned': return ListGradingSubmissionsItemStatusEnum.returned;
-        case r'released': return ListGradingSubmissionsItemStatusEnum.released;
         case r'refunded': return ListGradingSubmissionsItemStatusEnum.refunded;
-        case r'reserved': return ListGradingSubmissionsItemStatusEnum.reserved;
         case r'received': return ListGradingSubmissionsItemStatusEnum.received;
+        case r'released': return ListGradingSubmissionsItemStatusEnum.released;
+        case r'reserved': return ListGradingSubmissionsItemStatusEnum.reserved;
         case r'charged': return ListGradingSubmissionsItemStatusEnum.charged;
         case r'shipped_to_hub': return ListGradingSubmissionsItemStatusEnum.shippedToHub;
         case r'prescreen_failed': return ListGradingSubmissionsItemStatusEnum.prescreenFailed;
         case r'at_grader': return ListGradingSubmissionsItemStatusEnum.atGrader;
+        case r'graded': return ListGradingSubmissionsItemStatusEnum.graded;
         case r'returning': return ListGradingSubmissionsItemStatusEnum.returning;
+        case r'returned': return ListGradingSubmissionsItemStatusEnum.returned;
         case r'vaulted': return ListGradingSubmissionsItemStatusEnum.vaulted;
         default:
           if (allowNull == false) {

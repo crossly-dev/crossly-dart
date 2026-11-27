@@ -18,6 +18,7 @@ class ListGameBreakUpcomingItem {
     this.product,
     @required this.status,
     this.startsAt,
+    this.doorsOpenAt,
     @required this.live,
     @required this.shop,
     this.buyUrl,
@@ -37,9 +38,12 @@ class ListGameBreakUpcomingItem {
   /// Scheduled start (ISO), and whether the seller is breaking right now.
   String startsAt;
 
+  /// When the viewer gets in (ISO): the start, or earlier for a loyalty member with the seller's `live_early_entry` perk. Null with no start. Optional: a board read without a viewer leaves it at the start.
+  String doorsOpenAt;
+
   bool live;
 
-  SlugName shop;
+  NameSlug shop;
 
   /// The listing the spots are bought through, on crossly.net. Never a world checkout.
   String buyUrl;
@@ -57,6 +61,7 @@ class ListGameBreakUpcomingItem {
      other.product == product &&
      other.status == status &&
      other.startsAt == startsAt &&
+     other.doorsOpenAt == doorsOpenAt &&
      other.live == live &&
      other.shop == shop &&
      other.buyUrl == buyUrl &&
@@ -72,6 +77,7 @@ class ListGameBreakUpcomingItem {
     (product == null ? 0 : product.hashCode) +
     (status == null ? 0 : status.hashCode) +
     (startsAt == null ? 0 : startsAt.hashCode) +
+    (doorsOpenAt == null ? 0 : doorsOpenAt.hashCode) +
     (live == null ? 0 : live.hashCode) +
     (shop == null ? 0 : shop.hashCode) +
     (buyUrl == null ? 0 : buyUrl.hashCode) +
@@ -80,7 +86,7 @@ class ListGameBreakUpcomingItem {
     (hits == null ? 0 : hits.hashCode);
 
   @override
-  String toString() => 'ListGameBreakUpcomingItem[breakId=$breakId, title=$title, product=$product, status=$status, startsAt=$startsAt, live=$live, shop=$shop, buyUrl=$buyUrl, spotsLeft=$spotsLeft, spots=$spots, hits=$hits]';
+  String toString() => 'ListGameBreakUpcomingItem[breakId=$breakId, title=$title, product=$product, status=$status, startsAt=$startsAt, doorsOpenAt=$doorsOpenAt, live=$live, shop=$shop, buyUrl=$buyUrl, spotsLeft=$spotsLeft, spots=$spots, hits=$hits]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -92,6 +98,9 @@ class ListGameBreakUpcomingItem {
       json[r'status'] = status;
     if (startsAt != null) {
       json[r'startsAt'] = startsAt;
+    }
+    if (doorsOpenAt != null) {
+      json[r'doorsOpenAt'] = doorsOpenAt;
     }
       json[r'live'] = live;
       json[r'shop'] = shop;
@@ -116,8 +125,9 @@ class ListGameBreakUpcomingItem {
         product: mapValueOfType<String>(json, r'product'),
         status: mapValueOfType<String>(json, r'status'),
         startsAt: mapValueOfType<String>(json, r'startsAt'),
+        doorsOpenAt: mapValueOfType<String>(json, r'doorsOpenAt'),
         live: mapValueOfType<bool>(json, r'live'),
-        shop: SlugName.fromJson(json[r'shop']),
+        shop: NameSlug.fromJson(json[r'shop']),
         buyUrl: mapValueOfType<String>(json, r'buyUrl'),
         spotsLeft: json[r'spotsLeft'] == null
           ? null

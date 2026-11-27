@@ -14,8 +14,8 @@ class ListNeighbourhoodsItemNextEvent {
   /// Returns a new [ListNeighbourhoodsItemNextEvent] instance.
   ListNeighbourhoodsItemNextEvent({
     @required this.id,
-    @required this.live,
     @required this.title,
+    @required this.live,
     @required this.endsAt,
     @required this.kind,
     @required this.startsAt,
@@ -23,9 +23,9 @@ class ListNeighbourhoodsItemNextEvent {
 
   String id;
 
-  bool live;
-
   String title;
+
+  bool live;
 
   String endsAt;
 
@@ -36,8 +36,8 @@ class ListNeighbourhoodsItemNextEvent {
   @override
   bool operator ==(Object other) => identical(this, other) || other is ListNeighbourhoodsItemNextEvent &&
      other.id == id &&
-     other.live == live &&
      other.title == title &&
+     other.live == live &&
      other.endsAt == endsAt &&
      other.kind == kind &&
      other.startsAt == startsAt;
@@ -46,20 +46,20 @@ class ListNeighbourhoodsItemNextEvent {
   int get hashCode =>
   // ignore: unnecessary_parenthesis
     (id == null ? 0 : id.hashCode) +
-    (live == null ? 0 : live.hashCode) +
     (title == null ? 0 : title.hashCode) +
+    (live == null ? 0 : live.hashCode) +
     (endsAt == null ? 0 : endsAt.hashCode) +
     (kind == null ? 0 : kind.hashCode) +
     (startsAt == null ? 0 : startsAt.hashCode);
 
   @override
-  String toString() => 'ListNeighbourhoodsItemNextEvent[id=$id, live=$live, title=$title, endsAt=$endsAt, kind=$kind, startsAt=$startsAt]';
+  String toString() => 'ListNeighbourhoodsItemNextEvent[id=$id, title=$title, live=$live, endsAt=$endsAt, kind=$kind, startsAt=$startsAt]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
       json[r'id'] = id;
-      json[r'live'] = live;
       json[r'title'] = title;
+      json[r'live'] = live;
       json[r'endsAt'] = endsAt;
       json[r'kind'] = kind;
       json[r'startsAt'] = startsAt;
@@ -74,8 +74,8 @@ class ListNeighbourhoodsItemNextEvent {
       final json = value.cast<String, dynamic>();
       return ListNeighbourhoodsItemNextEvent(
         id: mapValueOfType<String>(json, r'id'),
-        live: mapValueOfType<bool>(json, r'live'),
         title: mapValueOfType<String>(json, r'title'),
+        live: mapValueOfType<bool>(json, r'live'),
         endsAt: mapValueOfType<String>(json, r'endsAt'),
         kind: ListNeighbourhoodsItemNextEventKindEnum.fromJson(json[r'kind']),
         startsAt: mapValueOfType<String>(json, r'startsAt'),

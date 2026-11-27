@@ -18,11 +18,11 @@ class CreateNftMarketListingResponseListing {
     @required this.updatedAt,
     @required this.status,
     this.soldAt,
-    this.sellerUserId,
     this.buyerUserId,
     @required this.priceCents,
-    @required this.merchantId,
+    this.sellerUserId,
     @required this.cosmeticId,
+    @required this.merchantId,
     @required this.ownershipId,
     @required this.sellerSubjectId,
     this.txSig,
@@ -38,15 +38,15 @@ class CreateNftMarketListingResponseListing {
 
   DateTime soldAt;
 
-  String sellerUserId;
-
   String buyerUserId;
 
   num priceCents;
 
-  String merchantId;
+  String sellerUserId;
 
   String cosmeticId;
+
+  String merchantId;
 
   String ownershipId;
 
@@ -61,11 +61,11 @@ class CreateNftMarketListingResponseListing {
      other.updatedAt == updatedAt &&
      other.status == status &&
      other.soldAt == soldAt &&
-     other.sellerUserId == sellerUserId &&
      other.buyerUserId == buyerUserId &&
      other.priceCents == priceCents &&
-     other.merchantId == merchantId &&
+     other.sellerUserId == sellerUserId &&
      other.cosmeticId == cosmeticId &&
+     other.merchantId == merchantId &&
      other.ownershipId == ownershipId &&
      other.sellerSubjectId == sellerSubjectId &&
      other.txSig == txSig;
@@ -78,17 +78,17 @@ class CreateNftMarketListingResponseListing {
     (updatedAt == null ? 0 : updatedAt.hashCode) +
     (status == null ? 0 : status.hashCode) +
     (soldAt == null ? 0 : soldAt.hashCode) +
-    (sellerUserId == null ? 0 : sellerUserId.hashCode) +
     (buyerUserId == null ? 0 : buyerUserId.hashCode) +
     (priceCents == null ? 0 : priceCents.hashCode) +
-    (merchantId == null ? 0 : merchantId.hashCode) +
+    (sellerUserId == null ? 0 : sellerUserId.hashCode) +
     (cosmeticId == null ? 0 : cosmeticId.hashCode) +
+    (merchantId == null ? 0 : merchantId.hashCode) +
     (ownershipId == null ? 0 : ownershipId.hashCode) +
     (sellerSubjectId == null ? 0 : sellerSubjectId.hashCode) +
     (txSig == null ? 0 : txSig.hashCode);
 
   @override
-  String toString() => 'CreateNftMarketListingResponseListing[id=$id, createdAt=$createdAt, updatedAt=$updatedAt, status=$status, soldAt=$soldAt, sellerUserId=$sellerUserId, buyerUserId=$buyerUserId, priceCents=$priceCents, merchantId=$merchantId, cosmeticId=$cosmeticId, ownershipId=$ownershipId, sellerSubjectId=$sellerSubjectId, txSig=$txSig]';
+  String toString() => 'CreateNftMarketListingResponseListing[id=$id, createdAt=$createdAt, updatedAt=$updatedAt, status=$status, soldAt=$soldAt, buyerUserId=$buyerUserId, priceCents=$priceCents, sellerUserId=$sellerUserId, cosmeticId=$cosmeticId, merchantId=$merchantId, ownershipId=$ownershipId, sellerSubjectId=$sellerSubjectId, txSig=$txSig]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -99,15 +99,15 @@ class CreateNftMarketListingResponseListing {
     if (soldAt != null) {
       json[r'soldAt'] = soldAt.toUtc().toIso8601String();
     }
-    if (sellerUserId != null) {
-      json[r'sellerUserId'] = sellerUserId;
-    }
     if (buyerUserId != null) {
       json[r'buyerUserId'] = buyerUserId;
     }
       json[r'priceCents'] = priceCents;
-      json[r'merchantId'] = merchantId;
+    if (sellerUserId != null) {
+      json[r'sellerUserId'] = sellerUserId;
+    }
       json[r'cosmeticId'] = cosmeticId;
+      json[r'merchantId'] = merchantId;
       json[r'ownershipId'] = ownershipId;
       json[r'sellerSubjectId'] = sellerSubjectId;
     if (txSig != null) {
@@ -128,13 +128,13 @@ class CreateNftMarketListingResponseListing {
         updatedAt: mapDateTime(json, r'updatedAt', ''),
         status: mapValueOfType<String>(json, r'status'),
         soldAt: mapDateTime(json, r'soldAt', ''),
-        sellerUserId: mapValueOfType<String>(json, r'sellerUserId'),
         buyerUserId: mapValueOfType<String>(json, r'buyerUserId'),
         priceCents: json[r'priceCents'] == null
           ? null
           : num.parse(json[r'priceCents'].toString()),
-        merchantId: mapValueOfType<String>(json, r'merchantId'),
+        sellerUserId: mapValueOfType<String>(json, r'sellerUserId'),
         cosmeticId: mapValueOfType<String>(json, r'cosmeticId'),
+        merchantId: mapValueOfType<String>(json, r'merchantId'),
         ownershipId: mapValueOfType<String>(json, r'ownershipId'),
         sellerSubjectId: mapValueOfType<String>(json, r'sellerSubjectId'),
         txSig: mapValueOfType<String>(json, r'txSig'),

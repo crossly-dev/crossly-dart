@@ -19,7 +19,7 @@ class GetWorldPlaceLiveResponseData {
 
   GetWorldPlaceLiveResponseDataStream stream;
 
-  GetWorldPlaceLiveResponseDataLot lot;
+  GetMainStageResponseStreamLot lot;
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is GetWorldPlaceLiveResponseData &&
@@ -54,7 +54,7 @@ class GetWorldPlaceLiveResponseData {
       final json = value.cast<String, dynamic>();
       return GetWorldPlaceLiveResponseData(
         stream: GetWorldPlaceLiveResponseDataStream.fromJson(json[r'stream']),
-        lot: GetWorldPlaceLiveResponseDataLot.fromJson(json[r'lot']),
+        lot: GetMainStageResponseStreamLot.fromJson(json[r'lot']),
       );
     }
     return null;

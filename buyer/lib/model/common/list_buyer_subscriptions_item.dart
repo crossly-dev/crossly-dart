@@ -15,64 +15,64 @@ class ListBuyerSubscriptionsItem {
   ListBuyerSubscriptionsItem({
     @required this.id,
     @required this.status,
-    this.title,
-    this.slug,
-    @required this.nextRunAt,
     @required this.intervalDays,
     @required this.discountBps,
+    @required this.nextRunAt,
+    this.slug,
+    this.title,
   });
 
   String id;
 
   String status;
 
-  String title;
-
-  String slug;
-
-  String nextRunAt;
-
   num intervalDays;
 
   num discountBps;
+
+  String nextRunAt;
+
+  String slug;
+
+  String title;
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is ListBuyerSubscriptionsItem &&
      other.id == id &&
      other.status == status &&
-     other.title == title &&
-     other.slug == slug &&
-     other.nextRunAt == nextRunAt &&
      other.intervalDays == intervalDays &&
-     other.discountBps == discountBps;
+     other.discountBps == discountBps &&
+     other.nextRunAt == nextRunAt &&
+     other.slug == slug &&
+     other.title == title;
 
   @override
   int get hashCode =>
   // ignore: unnecessary_parenthesis
     (id == null ? 0 : id.hashCode) +
     (status == null ? 0 : status.hashCode) +
-    (title == null ? 0 : title.hashCode) +
-    (slug == null ? 0 : slug.hashCode) +
-    (nextRunAt == null ? 0 : nextRunAt.hashCode) +
     (intervalDays == null ? 0 : intervalDays.hashCode) +
-    (discountBps == null ? 0 : discountBps.hashCode);
+    (discountBps == null ? 0 : discountBps.hashCode) +
+    (nextRunAt == null ? 0 : nextRunAt.hashCode) +
+    (slug == null ? 0 : slug.hashCode) +
+    (title == null ? 0 : title.hashCode);
 
   @override
-  String toString() => 'ListBuyerSubscriptionsItem[id=$id, status=$status, title=$title, slug=$slug, nextRunAt=$nextRunAt, intervalDays=$intervalDays, discountBps=$discountBps]';
+  String toString() => 'ListBuyerSubscriptionsItem[id=$id, status=$status, intervalDays=$intervalDays, discountBps=$discountBps, nextRunAt=$nextRunAt, slug=$slug, title=$title]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
       json[r'id'] = id;
       json[r'status'] = status;
-    if (title != null) {
-      json[r'title'] = title;
-    }
+      json[r'intervalDays'] = intervalDays;
+      json[r'discountBps'] = discountBps;
+      json[r'nextRunAt'] = nextRunAt;
     if (slug != null) {
       json[r'slug'] = slug;
     }
-      json[r'nextRunAt'] = nextRunAt;
-      json[r'intervalDays'] = intervalDays;
-      json[r'discountBps'] = discountBps;
+    if (title != null) {
+      json[r'title'] = title;
+    }
     return json;
   }
 
@@ -85,15 +85,15 @@ class ListBuyerSubscriptionsItem {
       return ListBuyerSubscriptionsItem(
         id: mapValueOfType<String>(json, r'id'),
         status: mapValueOfType<String>(json, r'status'),
-        title: mapValueOfType<String>(json, r'title'),
-        slug: mapValueOfType<String>(json, r'slug'),
-        nextRunAt: mapValueOfType<String>(json, r'nextRunAt'),
         intervalDays: json[r'intervalDays'] == null
           ? null
           : num.parse(json[r'intervalDays'].toString()),
         discountBps: json[r'discountBps'] == null
           ? null
           : num.parse(json[r'discountBps'].toString()),
+        nextRunAt: mapValueOfType<String>(json, r'nextRunAt'),
+        slug: mapValueOfType<String>(json, r'slug'),
+        title: mapValueOfType<String>(json, r'title'),
       );
     }
     return null;

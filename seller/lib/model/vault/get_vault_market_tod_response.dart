@@ -22,6 +22,7 @@ class GetVaultMarketTodResponse {
     this.sharesProblem,
     this.units = const [],
     this.claims = const [],
+    this.vaultShares,
   });
 
   GetVaultMarketTodMyClaimResponseGate gate;
@@ -42,6 +43,8 @@ class GetVaultMarketTodResponse {
 
   List<GetVaultMarketTodResponseClaims> claims;
 
+  GetVaultMarketTodResponseVaultShares vaultShares;
+
   @override
   bool operator ==(Object other) => identical(this, other) || other is GetVaultMarketTodResponse &&
      other.gate == gate &&
@@ -52,7 +55,8 @@ class GetVaultMarketTodResponse {
      other.beneficiaries == beneficiaries &&
      other.sharesProblem == sharesProblem &&
      other.units == units &&
-     other.claims == claims;
+     other.claims == claims &&
+     other.vaultShares == vaultShares;
 
   @override
   int get hashCode =>
@@ -65,10 +69,11 @@ class GetVaultMarketTodResponse {
     (beneficiaries == null ? 0 : beneficiaries.hashCode) +
     (sharesProblem == null ? 0 : sharesProblem.hashCode) +
     (units == null ? 0 : units.hashCode) +
-    (claims == null ? 0 : claims.hashCode);
+    (claims == null ? 0 : claims.hashCode) +
+    (vaultShares == null ? 0 : vaultShares.hashCode);
 
   @override
-  String toString() => 'GetVaultMarketTodResponse[gate=$gate, accepted=$accepted, acceptedVersion=$acceptedVersion, acceptedAt=$acceptedAt, locked=$locked, beneficiaries=$beneficiaries, sharesProblem=$sharesProblem, units=$units, claims=$claims]';
+  String toString() => 'GetVaultMarketTodResponse[gate=$gate, accepted=$accepted, acceptedVersion=$acceptedVersion, acceptedAt=$acceptedAt, locked=$locked, beneficiaries=$beneficiaries, sharesProblem=$sharesProblem, units=$units, claims=$claims, vaultShares=$vaultShares]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -85,6 +90,9 @@ class GetVaultMarketTodResponse {
     }
       json[r'units'] = units;
       json[r'claims'] = claims;
+    if (vaultShares != null) {
+      json[r'vaultShares'] = vaultShares;
+    }
     return json;
   }
 
@@ -104,6 +112,7 @@ class GetVaultMarketTodResponse {
         sharesProblem: mapValueOfType<String>(json, r'sharesProblem'),
         units: GetVaultMarketTodResponseUnits.listFromJson(json[r'units']),
         claims: GetVaultMarketTodResponseClaims.listFromJson(json[r'claims']),
+        vaultShares: GetVaultMarketTodResponseVaultShares.fromJson(json[r'vaultShares']),
       );
     }
     return null;

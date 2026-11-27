@@ -20,6 +20,7 @@ class GetMainStageResponse {
     this.live,
     this.upcoming = const [],
     this.stream,
+    @required this.house,
   });
 
   String slug;
@@ -37,6 +38,8 @@ class GetMainStageResponse {
 
   GetMainStageResponseStream stream;
 
+  GetMainStageResponseHouse house;
+
   @override
   bool operator ==(Object other) => identical(this, other) || other is GetMainStageResponse &&
      other.slug == slug &&
@@ -45,7 +48,8 @@ class GetMainStageResponse {
      other.here == here &&
      other.live == live &&
      other.upcoming == upcoming &&
-     other.stream == stream;
+     other.stream == stream &&
+     other.house == house;
 
   @override
   int get hashCode =>
@@ -56,10 +60,11 @@ class GetMainStageResponse {
     (here == null ? 0 : here.hashCode) +
     (live == null ? 0 : live.hashCode) +
     (upcoming == null ? 0 : upcoming.hashCode) +
-    (stream == null ? 0 : stream.hashCode);
+    (stream == null ? 0 : stream.hashCode) +
+    (house == null ? 0 : house.hashCode);
 
   @override
-  String toString() => 'GetMainStageResponse[slug=$slug, name=$name, capacity=$capacity, here=$here, live=$live, upcoming=$upcoming, stream=$stream]';
+  String toString() => 'GetMainStageResponse[slug=$slug, name=$name, capacity=$capacity, here=$here, live=$live, upcoming=$upcoming, stream=$stream, house=$house]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -74,6 +79,7 @@ class GetMainStageResponse {
     if (stream != null) {
       json[r'stream'] = stream;
     }
+      json[r'house'] = house;
     return json;
   }
 
@@ -95,6 +101,7 @@ class GetMainStageResponse {
         live: GetMainStageResponseLive.fromJson(json[r'live']),
         upcoming: GetMainStageResponseUpcoming.listFromJson(json[r'upcoming']),
         stream: GetMainStageResponseStream.fromJson(json[r'stream']),
+        house: GetMainStageResponseHouse.fromJson(json[r'house']),
       );
     }
     return null;

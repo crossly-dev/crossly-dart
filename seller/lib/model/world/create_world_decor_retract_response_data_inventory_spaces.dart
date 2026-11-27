@@ -121,16 +121,16 @@ class CreateWorldDecorRetractResponseDataInventorySpacesKindEnum {
 
   String toJson() => value;
 
-  static const shop = CreateWorldDecorRetractResponseDataInventorySpacesKindEnum._(r'shop');
   static const home = CreateWorldDecorRetractResponseDataInventorySpacesKindEnum._(r'home');
   static const street = CreateWorldDecorRetractResponseDataInventorySpacesKindEnum._(r'street');
+  static const shop = CreateWorldDecorRetractResponseDataInventorySpacesKindEnum._(r'shop');
   static const stall = CreateWorldDecorRetractResponseDataInventorySpacesKindEnum._(r'stall');
 
   /// List of all possible values in this [enum][CreateWorldDecorRetractResponseDataInventorySpacesKindEnum].
   static const values = <CreateWorldDecorRetractResponseDataInventorySpacesKindEnum>[
-    shop,
     home,
     street,
+    shop,
     stall,
   ];
 
@@ -163,9 +163,9 @@ class CreateWorldDecorRetractResponseDataInventorySpacesKindEnumTypeTransformer 
   CreateWorldDecorRetractResponseDataInventorySpacesKindEnum decode(dynamic data, {bool allowNull}) {
     if (data != null) {
       switch (data.toString()) {
-        case r'shop': return CreateWorldDecorRetractResponseDataInventorySpacesKindEnum.shop;
         case r'home': return CreateWorldDecorRetractResponseDataInventorySpacesKindEnum.home;
         case r'street': return CreateWorldDecorRetractResponseDataInventorySpacesKindEnum.street;
+        case r'shop': return CreateWorldDecorRetractResponseDataInventorySpacesKindEnum.shop;
         case r'stall': return CreateWorldDecorRetractResponseDataInventorySpacesKindEnum.stall;
         default:
           if (allowNull == false) {

@@ -17,9 +17,9 @@ class GetAnalyticDashboardResponseTop5ItemsByRevenue {
     @required this.platform,
     this.salePrice,
     this.netProfit,
-    @required this.detectedAt,
+    @required this.revenue,
     this.itemTitle,
-    @required this.itemImage,
+    this.itemImage,
   });
 
   String saleId;
@@ -30,7 +30,7 @@ class GetAnalyticDashboardResponseTop5ItemsByRevenue {
 
   num netProfit;
 
-  DateTime detectedAt;
+  num revenue;
 
   String itemTitle;
 
@@ -42,7 +42,7 @@ class GetAnalyticDashboardResponseTop5ItemsByRevenue {
      other.platform == platform &&
      other.salePrice == salePrice &&
      other.netProfit == netProfit &&
-     other.detectedAt == detectedAt &&
+     other.revenue == revenue &&
      other.itemTitle == itemTitle &&
      other.itemImage == itemImage;
 
@@ -53,12 +53,12 @@ class GetAnalyticDashboardResponseTop5ItemsByRevenue {
     (platform == null ? 0 : platform.hashCode) +
     (salePrice == null ? 0 : salePrice.hashCode) +
     (netProfit == null ? 0 : netProfit.hashCode) +
-    (detectedAt == null ? 0 : detectedAt.hashCode) +
+    (revenue == null ? 0 : revenue.hashCode) +
     (itemTitle == null ? 0 : itemTitle.hashCode) +
     (itemImage == null ? 0 : itemImage.hashCode);
 
   @override
-  String toString() => 'GetAnalyticDashboardResponseTop5ItemsByRevenue[saleId=$saleId, platform=$platform, salePrice=$salePrice, netProfit=$netProfit, detectedAt=$detectedAt, itemTitle=$itemTitle, itemImage=$itemImage]';
+  String toString() => 'GetAnalyticDashboardResponseTop5ItemsByRevenue[saleId=$saleId, platform=$platform, salePrice=$salePrice, netProfit=$netProfit, revenue=$revenue, itemTitle=$itemTitle, itemImage=$itemImage]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -70,11 +70,13 @@ class GetAnalyticDashboardResponseTop5ItemsByRevenue {
     if (netProfit != null) {
       json[r'netProfit'] = netProfit;
     }
-      json[r'detectedAt'] = detectedAt.toUtc().toIso8601String();
+      json[r'revenue'] = revenue;
     if (itemTitle != null) {
       json[r'itemTitle'] = itemTitle;
     }
+    if (itemImage != null) {
       json[r'itemImage'] = itemImage;
+    }
     return json;
   }
 
@@ -93,7 +95,9 @@ class GetAnalyticDashboardResponseTop5ItemsByRevenue {
         netProfit: json[r'netProfit'] == null
           ? null
           : num.parse(json[r'netProfit'].toString()),
-        detectedAt: mapDateTime(json, r'detectedAt', ''),
+        revenue: json[r'revenue'] == null
+          ? null
+          : num.parse(json[r'revenue'].toString()),
         itemTitle: mapValueOfType<String>(json, r'itemTitle'),
         itemImage: mapValueOfType<String>(json, r'itemImage'),
       );

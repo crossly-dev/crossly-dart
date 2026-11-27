@@ -136,6 +136,56 @@ class RestockPromptsApi {
     return Future<CreateRestockPromptRepublishResponse>.value();
   }
 
+  /// Whether restocked items are republished automatically.
+  ///
+  /// autoRepublish (default true): when an item that sold out comes back in stock, Crossly republishes it to the marketplaces it came off without asking. False: a restock prompt is raised instead. A listing the seller ended by hand is never republished automatically.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  Future<Response> getRestockPromptSettingWithHttpInfo() async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/restock-prompts/settings';
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Whether restocked items are republished automatically.
+  ///
+  /// autoRepublish (default true): when an item that sold out comes back in stock, Crossly republishes it to the marketplaces it came off without asking. False: a restock prompt is raised instead. A listing the seller ended by hand is never republished automatically.
+  Future<GetRestockPromptSettingResponse> getRestockPromptSetting() async {
+    final response = await getRestockPromptSettingWithHttpInfo();
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'GetRestockPromptSettingResponse',) as GetRestockPromptSettingResponse;
+    
+    }
+    return Future<GetRestockPromptSettingResponse>.value();
+  }
+
   /// List pending restock prompts.
   ///
   /// Note: This method returns the HTTP [Response].
@@ -180,5 +230,64 @@ class RestockPromptsApi {
     
     }
     return Future<ListRestockPromptsResponse>.value();
+  }
+
+  /// Turn automatic republish of restocked items on or off.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [GetRestockPromptSettingResponse] getRestockPromptSettingResponse (required):
+  Future<Response> updateRestockPromptSettingWithHttpInfo(GetRestockPromptSettingResponse getRestockPromptSettingResponse,) async {
+    // Verify required params are set.
+    if (getRestockPromptSettingResponse == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: getRestockPromptSettingResponse');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/restock-prompts/settings';
+
+    // ignore: prefer_final_locals
+    Object postBody = getRestockPromptSettingResponse;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>['application/json'];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'PUT',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Turn automatic republish of restocked items on or off.
+  ///
+  /// Parameters:
+  ///
+  /// * [GetRestockPromptSettingResponse] getRestockPromptSettingResponse (required):
+  Future<GetRestockPromptSettingResponse> updateRestockPromptSetting(GetRestockPromptSettingResponse getRestockPromptSettingResponse,) async {
+    final response = await updateRestockPromptSettingWithHttpInfo(getRestockPromptSettingResponse,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'GetRestockPromptSettingResponse',) as GetRestockPromptSettingResponse;
+    
+    }
+    return Future<GetRestockPromptSettingResponse>.value();
   }
 }

@@ -22,6 +22,7 @@ class GetVaultMarketProofOfReserveResponseLatest {
     @required this.loansOpen,
     @required this.totalInsuredCents,
     @required this.memo,
+    @required this.anchor,
   });
 
   String day;
@@ -42,6 +43,8 @@ class GetVaultMarketProofOfReserveResponseLatest {
 
   String memo;
 
+  GetVaultMarketProofOfReserveResponseLatestAnchor anchor;
+
   @override
   bool operator ==(Object other) => identical(this, other) || other is GetVaultMarketProofOfReserveResponseLatest &&
      other.day == day &&
@@ -52,7 +55,8 @@ class GetVaultMarketProofOfReserveResponseLatest {
      other.units == units &&
      other.loansOpen == loansOpen &&
      other.totalInsuredCents == totalInsuredCents &&
-     other.memo == memo;
+     other.memo == memo &&
+     other.anchor == anchor;
 
   @override
   int get hashCode =>
@@ -65,10 +69,11 @@ class GetVaultMarketProofOfReserveResponseLatest {
     (units == null ? 0 : units.hashCode) +
     (loansOpen == null ? 0 : loansOpen.hashCode) +
     (totalInsuredCents == null ? 0 : totalInsuredCents.hashCode) +
-    (memo == null ? 0 : memo.hashCode);
+    (memo == null ? 0 : memo.hashCode) +
+    (anchor == null ? 0 : anchor.hashCode);
 
   @override
-  String toString() => 'GetVaultMarketProofOfReserveResponseLatest[day=$day, root=$root, leafCount=$leafCount, methodVersion=$methodVersion, builtAt=$builtAt, units=$units, loansOpen=$loansOpen, totalInsuredCents=$totalInsuredCents, memo=$memo]';
+  String toString() => 'GetVaultMarketProofOfReserveResponseLatest[day=$day, root=$root, leafCount=$leafCount, methodVersion=$methodVersion, builtAt=$builtAt, units=$units, loansOpen=$loansOpen, totalInsuredCents=$totalInsuredCents, memo=$memo, anchor=$anchor]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -81,6 +86,7 @@ class GetVaultMarketProofOfReserveResponseLatest {
       json[r'loansOpen'] = loansOpen;
       json[r'totalInsuredCents'] = totalInsuredCents;
       json[r'memo'] = memo;
+      json[r'anchor'] = anchor;
     return json;
   }
 
@@ -108,6 +114,7 @@ class GetVaultMarketProofOfReserveResponseLatest {
           ? null
           : num.parse(json[r'totalInsuredCents'].toString()),
         memo: mapValueOfType<String>(json, r'memo'),
+        anchor: GetVaultMarketProofOfReserveResponseLatestAnchor.fromJson(json[r'anchor']),
       );
     }
     return null;

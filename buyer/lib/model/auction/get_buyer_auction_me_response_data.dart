@@ -14,19 +14,19 @@ class GetBuyerAuctionMeResponseData {
   /// Returns a new [GetBuyerAuctionMeResponseData] instance.
   GetBuyerAuctionMeResponseData({
     @required this.bidding,
-    this.won,
     this.myMaxCents,
     this.leading,
+    this.won,
     this.needsPayment,
   });
 
   bool bidding;
 
-  bool won;
-
   num myMaxCents;
 
   bool leading;
+
+  bool won;
 
   /// Won, and the charge at close did not go through — call pay.
   bool needsPayment;
@@ -34,34 +34,34 @@ class GetBuyerAuctionMeResponseData {
   @override
   bool operator ==(Object other) => identical(this, other) || other is GetBuyerAuctionMeResponseData &&
      other.bidding == bidding &&
-     other.won == won &&
      other.myMaxCents == myMaxCents &&
      other.leading == leading &&
+     other.won == won &&
      other.needsPayment == needsPayment;
 
   @override
   int get hashCode =>
   // ignore: unnecessary_parenthesis
     (bidding == null ? 0 : bidding.hashCode) +
-    (won == null ? 0 : won.hashCode) +
     (myMaxCents == null ? 0 : myMaxCents.hashCode) +
     (leading == null ? 0 : leading.hashCode) +
+    (won == null ? 0 : won.hashCode) +
     (needsPayment == null ? 0 : needsPayment.hashCode);
 
   @override
-  String toString() => 'GetBuyerAuctionMeResponseData[bidding=$bidding, won=$won, myMaxCents=$myMaxCents, leading=$leading, needsPayment=$needsPayment]';
+  String toString() => 'GetBuyerAuctionMeResponseData[bidding=$bidding, myMaxCents=$myMaxCents, leading=$leading, won=$won, needsPayment=$needsPayment]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
       json[r'bidding'] = bidding;
-    if (won != null) {
-      json[r'won'] = won;
-    }
     if (myMaxCents != null) {
       json[r'myMaxCents'] = myMaxCents;
     }
     if (leading != null) {
       json[r'leading'] = leading;
+    }
+    if (won != null) {
+      json[r'won'] = won;
     }
     if (needsPayment != null) {
       json[r'needsPayment'] = needsPayment;
@@ -77,11 +77,11 @@ class GetBuyerAuctionMeResponseData {
       final json = value.cast<String, dynamic>();
       return GetBuyerAuctionMeResponseData(
         bidding: mapValueOfType<bool>(json, r'bidding'),
-        won: mapValueOfType<bool>(json, r'won'),
         myMaxCents: json[r'myMaxCents'] == null
           ? null
           : num.parse(json[r'myMaxCents'].toString()),
         leading: mapValueOfType<bool>(json, r'leading'),
+        won: mapValueOfType<bool>(json, r'won'),
         needsPayment: mapValueOfType<bool>(json, r'needsPayment'),
       );
     }

@@ -223,17 +223,17 @@ class GetVaultMarketSetGoalResponseBasketStatusEnum {
 
   String toJson() => value;
 
+  static const completed = GetVaultMarketSetGoalResponseBasketStatusEnum._(r'completed');
   static const cancelled = GetVaultMarketSetGoalResponseBasketStatusEnum._(r'cancelled');
   static const ended = GetVaultMarketSetGoalResponseBasketStatusEnum._(r'ended');
   static const working = GetVaultMarketSetGoalResponseBasketStatusEnum._(r'working');
-  static const completed = GetVaultMarketSetGoalResponseBasketStatusEnum._(r'completed');
 
   /// List of all possible values in this [enum][GetVaultMarketSetGoalResponseBasketStatusEnum].
   static const values = <GetVaultMarketSetGoalResponseBasketStatusEnum>[
+    completed,
     cancelled,
     ended,
     working,
-    completed,
   ];
 
   static GetVaultMarketSetGoalResponseBasketStatusEnum fromJson(dynamic value) =>
@@ -265,10 +265,10 @@ class GetVaultMarketSetGoalResponseBasketStatusEnumTypeTransformer {
   GetVaultMarketSetGoalResponseBasketStatusEnum decode(dynamic data, {bool allowNull}) {
     if (data != null) {
       switch (data.toString()) {
+        case r'completed': return GetVaultMarketSetGoalResponseBasketStatusEnum.completed;
         case r'cancelled': return GetVaultMarketSetGoalResponseBasketStatusEnum.cancelled;
         case r'ended': return GetVaultMarketSetGoalResponseBasketStatusEnum.ended;
         case r'working': return GetVaultMarketSetGoalResponseBasketStatusEnum.working;
-        case r'completed': return GetVaultMarketSetGoalResponseBasketStatusEnum.completed;
         default:
           if (allowNull == false) {
             throw ArgumentError('Unknown enum value to decode: $data');

@@ -13,32 +13,32 @@ part of openapi.api;
 class CreateBuyerTotalRequestResponseData {
   /// Returns a new [CreateBuyerTotalRequestResponseData] instance.
   CreateBuyerTotalRequestResponseData({
-    @required this.id,
     @required this.ok,
+    @required this.id,
   });
-
-  String id;
 
   bool ok;
 
+  String id;
+
   @override
   bool operator ==(Object other) => identical(this, other) || other is CreateBuyerTotalRequestResponseData &&
-     other.id == id &&
-     other.ok == ok;
+     other.ok == ok &&
+     other.id == id;
 
   @override
   int get hashCode =>
   // ignore: unnecessary_parenthesis
-    (id == null ? 0 : id.hashCode) +
-    (ok == null ? 0 : ok.hashCode);
+    (ok == null ? 0 : ok.hashCode) +
+    (id == null ? 0 : id.hashCode);
 
   @override
-  String toString() => 'CreateBuyerTotalRequestResponseData[id=$id, ok=$ok]';
+  String toString() => 'CreateBuyerTotalRequestResponseData[ok=$ok, id=$id]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-      json[r'id'] = id;
       json[r'ok'] = ok;
+      json[r'id'] = id;
     return json;
   }
 
@@ -49,8 +49,8 @@ class CreateBuyerTotalRequestResponseData {
     if (value is Map) {
       final json = value.cast<String, dynamic>();
       return CreateBuyerTotalRequestResponseData(
-        id: mapValueOfType<String>(json, r'id'),
         ok: mapValueOfType<bool>(json, r'ok'),
+        id: mapValueOfType<String>(json, r'id'),
       );
     }
     return null;

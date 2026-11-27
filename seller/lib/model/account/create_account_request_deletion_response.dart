@@ -16,6 +16,7 @@ class CreateAccountRequestDeletionResponse {
     @required this.id,
     @required this.scheduledFor,
     @required this.graceDays,
+    @required this.subscriptionsEnding,
   });
 
   String id;
@@ -24,27 +25,32 @@ class CreateAccountRequestDeletionResponse {
 
   num graceDays;
 
+  num subscriptionsEnding;
+
   @override
   bool operator ==(Object other) => identical(this, other) || other is CreateAccountRequestDeletionResponse &&
      other.id == id &&
      other.scheduledFor == scheduledFor &&
-     other.graceDays == graceDays;
+     other.graceDays == graceDays &&
+     other.subscriptionsEnding == subscriptionsEnding;
 
   @override
   int get hashCode =>
   // ignore: unnecessary_parenthesis
     (id == null ? 0 : id.hashCode) +
     (scheduledFor == null ? 0 : scheduledFor.hashCode) +
-    (graceDays == null ? 0 : graceDays.hashCode);
+    (graceDays == null ? 0 : graceDays.hashCode) +
+    (subscriptionsEnding == null ? 0 : subscriptionsEnding.hashCode);
 
   @override
-  String toString() => 'CreateAccountRequestDeletionResponse[id=$id, scheduledFor=$scheduledFor, graceDays=$graceDays]';
+  String toString() => 'CreateAccountRequestDeletionResponse[id=$id, scheduledFor=$scheduledFor, graceDays=$graceDays, subscriptionsEnding=$subscriptionsEnding]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
       json[r'id'] = id;
       json[r'scheduledFor'] = scheduledFor.toUtc().toIso8601String();
       json[r'graceDays'] = graceDays;
+      json[r'subscriptionsEnding'] = subscriptionsEnding;
     return json;
   }
 
@@ -60,6 +66,9 @@ class CreateAccountRequestDeletionResponse {
         graceDays: json[r'graceDays'] == null
           ? null
           : num.parse(json[r'graceDays'].toString()),
+        subscriptionsEnding: json[r'subscriptionsEnding'] == null
+          ? null
+          : num.parse(json[r'subscriptionsEnding'].toString()),
       );
     }
     return null;

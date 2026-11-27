@@ -17,6 +17,7 @@ class Pagination {
     @required this.limit,
     this.total,
     this.totalPages,
+    this.pages,
   });
 
   /// 1-indexed page number.
@@ -33,12 +34,16 @@ class Pagination {
   /// Derived from total and limit.
   int totalPages;
 
+  /// Deprecated alias of `totalPages`, sent only by GET /v1/inventory (its original name). Read `totalPages`.
+  int pages;
+
   @override
   bool operator ==(Object other) => identical(this, other) || other is Pagination &&
      other.page == page &&
      other.limit == limit &&
      other.total == total &&
-     other.totalPages == totalPages;
+     other.totalPages == totalPages &&
+     other.pages == pages;
 
   @override
   int get hashCode =>
@@ -46,10 +51,11 @@ class Pagination {
     (page == null ? 0 : page.hashCode) +
     (limit == null ? 0 : limit.hashCode) +
     (total == null ? 0 : total.hashCode) +
-    (totalPages == null ? 0 : totalPages.hashCode);
+    (totalPages == null ? 0 : totalPages.hashCode) +
+    (pages == null ? 0 : pages.hashCode);
 
   @override
-  String toString() => 'Pagination[page=$page, limit=$limit, total=$total, totalPages=$totalPages]';
+  String toString() => 'Pagination[page=$page, limit=$limit, total=$total, totalPages=$totalPages, pages=$pages]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -60,6 +66,9 @@ class Pagination {
     }
     if (totalPages != null) {
       json[r'totalPages'] = totalPages;
+    }
+    if (pages != null) {
+      json[r'pages'] = pages;
     }
     return json;
   }
@@ -75,6 +84,7 @@ class Pagination {
         limit: mapValueOfType<int>(json, r'limit'),
         total: mapValueOfType<int>(json, r'total'),
         totalPages: mapValueOfType<int>(json, r'totalPages'),
+        pages: mapValueOfType<int>(json, r'pages'),
       );
     }
     return null;

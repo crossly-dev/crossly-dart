@@ -25,7 +25,7 @@ class GetWorldCrewResponseDataMembers {
 
   bool you;
 
-  NameSlug room;
+  NameSlug2 room;
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is GetWorldCrewResponseDataMembers &&
@@ -66,7 +66,7 @@ class GetWorldCrewResponseDataMembers {
         userId: mapValueOfType<String>(json, r'userId'),
         name: mapValueOfType<String>(json, r'name'),
         you: mapValueOfType<bool>(json, r'you'),
-        room: NameSlug.fromJson(json[r'room']),
+        room: NameSlug2.fromJson(json[r'room']),
       );
     }
     return null;

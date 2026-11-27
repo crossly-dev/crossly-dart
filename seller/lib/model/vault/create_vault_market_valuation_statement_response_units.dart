@@ -231,16 +231,16 @@ class CreateVaultMarketValuationStatementResponseUnitsMarkQualityEnum {
   String toJson() => value;
 
   static const none = CreateVaultMarketValuationStatementResponseUnitsMarkQualityEnum._(r'none');
+  static const C = CreateVaultMarketValuationStatementResponseUnitsMarkQualityEnum._(r'C');
   static const A = CreateVaultMarketValuationStatementResponseUnitsMarkQualityEnum._(r'A');
   static const B = CreateVaultMarketValuationStatementResponseUnitsMarkQualityEnum._(r'B');
-  static const C = CreateVaultMarketValuationStatementResponseUnitsMarkQualityEnum._(r'C');
 
   /// List of all possible values in this [enum][CreateVaultMarketValuationStatementResponseUnitsMarkQualityEnum].
   static const values = <CreateVaultMarketValuationStatementResponseUnitsMarkQualityEnum>[
     none,
+    C,
     A,
     B,
-    C,
   ];
 
   static CreateVaultMarketValuationStatementResponseUnitsMarkQualityEnum fromJson(dynamic value) =>
@@ -273,9 +273,9 @@ class CreateVaultMarketValuationStatementResponseUnitsMarkQualityEnumTypeTransfo
     if (data != null) {
       switch (data.toString()) {
         case r'none': return CreateVaultMarketValuationStatementResponseUnitsMarkQualityEnum.none;
+        case r'C': return CreateVaultMarketValuationStatementResponseUnitsMarkQualityEnum.C;
         case r'A': return CreateVaultMarketValuationStatementResponseUnitsMarkQualityEnum.A;
         case r'B': return CreateVaultMarketValuationStatementResponseUnitsMarkQualityEnum.B;
-        case r'C': return CreateVaultMarketValuationStatementResponseUnitsMarkQualityEnum.C;
         default:
           if (allowNull == false) {
             throw ArgumentError('Unknown enum value to decode: $data');

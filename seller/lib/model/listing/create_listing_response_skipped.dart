@@ -15,30 +15,38 @@ class CreateListingResponseSkipped {
   CreateListingResponseSkipped({
     @required this.platform,
     @required this.reason,
+    this.code,
   });
 
   String platform;
 
   String reason;
 
+  String code;
+
   @override
   bool operator ==(Object other) => identical(this, other) || other is CreateListingResponseSkipped &&
      other.platform == platform &&
-     other.reason == reason;
+     other.reason == reason &&
+     other.code == code;
 
   @override
   int get hashCode =>
   // ignore: unnecessary_parenthesis
     (platform == null ? 0 : platform.hashCode) +
-    (reason == null ? 0 : reason.hashCode);
+    (reason == null ? 0 : reason.hashCode) +
+    (code == null ? 0 : code.hashCode);
 
   @override
-  String toString() => 'CreateListingResponseSkipped[platform=$platform, reason=$reason]';
+  String toString() => 'CreateListingResponseSkipped[platform=$platform, reason=$reason, code=$code]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
       json[r'platform'] = platform;
       json[r'reason'] = reason;
+    if (code != null) {
+      json[r'code'] = code;
+    }
     return json;
   }
 
@@ -51,6 +59,7 @@ class CreateListingResponseSkipped {
       return CreateListingResponseSkipped(
         platform: mapValueOfType<String>(json, r'platform'),
         reason: mapValueOfType<String>(json, r'reason'),
+        code: mapValueOfType<String>(json, r'code'),
       );
     }
     return null;

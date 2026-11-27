@@ -15,69 +15,69 @@ class ListBuyerFeedbackPendingItem {
   ListBuyerFeedbackPendingItem({
     @required this.purchaseId,
     @required this.itemTitle,
-    this.shippedAt,
-    this.deliveredAt,
     this.imageUrl,
-    this.sellerName,
+    this.deliveredAt,
+    this.shippedAt,
     this.orderedAt,
+    this.sellerName,
   });
 
   String purchaseId;
 
   String itemTitle;
 
-  String shippedAt;
+  String imageUrl;
 
   String deliveredAt;
 
-  String imageUrl;
-
-  String sellerName;
+  String shippedAt;
 
   String orderedAt;
+
+  String sellerName;
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is ListBuyerFeedbackPendingItem &&
      other.purchaseId == purchaseId &&
      other.itemTitle == itemTitle &&
-     other.shippedAt == shippedAt &&
-     other.deliveredAt == deliveredAt &&
      other.imageUrl == imageUrl &&
-     other.sellerName == sellerName &&
-     other.orderedAt == orderedAt;
+     other.deliveredAt == deliveredAt &&
+     other.shippedAt == shippedAt &&
+     other.orderedAt == orderedAt &&
+     other.sellerName == sellerName;
 
   @override
   int get hashCode =>
   // ignore: unnecessary_parenthesis
     (purchaseId == null ? 0 : purchaseId.hashCode) +
     (itemTitle == null ? 0 : itemTitle.hashCode) +
-    (shippedAt == null ? 0 : shippedAt.hashCode) +
-    (deliveredAt == null ? 0 : deliveredAt.hashCode) +
     (imageUrl == null ? 0 : imageUrl.hashCode) +
-    (sellerName == null ? 0 : sellerName.hashCode) +
-    (orderedAt == null ? 0 : orderedAt.hashCode);
+    (deliveredAt == null ? 0 : deliveredAt.hashCode) +
+    (shippedAt == null ? 0 : shippedAt.hashCode) +
+    (orderedAt == null ? 0 : orderedAt.hashCode) +
+    (sellerName == null ? 0 : sellerName.hashCode);
 
   @override
-  String toString() => 'ListBuyerFeedbackPendingItem[purchaseId=$purchaseId, itemTitle=$itemTitle, shippedAt=$shippedAt, deliveredAt=$deliveredAt, imageUrl=$imageUrl, sellerName=$sellerName, orderedAt=$orderedAt]';
+  String toString() => 'ListBuyerFeedbackPendingItem[purchaseId=$purchaseId, itemTitle=$itemTitle, imageUrl=$imageUrl, deliveredAt=$deliveredAt, shippedAt=$shippedAt, orderedAt=$orderedAt, sellerName=$sellerName]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
       json[r'purchaseId'] = purchaseId;
       json[r'itemTitle'] = itemTitle;
-    if (shippedAt != null) {
-      json[r'shippedAt'] = shippedAt;
+    if (imageUrl != null) {
+      json[r'imageUrl'] = imageUrl;
     }
     if (deliveredAt != null) {
       json[r'deliveredAt'] = deliveredAt;
     }
-    if (imageUrl != null) {
-      json[r'imageUrl'] = imageUrl;
-    }
-    if (sellerName != null) {
-      json[r'sellerName'] = sellerName;
+    if (shippedAt != null) {
+      json[r'shippedAt'] = shippedAt;
     }
     if (orderedAt != null) {
       json[r'orderedAt'] = orderedAt;
+    }
+    if (sellerName != null) {
+      json[r'sellerName'] = sellerName;
     }
     return json;
   }
@@ -91,11 +91,11 @@ class ListBuyerFeedbackPendingItem {
       return ListBuyerFeedbackPendingItem(
         purchaseId: mapValueOfType<String>(json, r'purchaseId'),
         itemTitle: mapValueOfType<String>(json, r'itemTitle'),
-        shippedAt: mapValueOfType<String>(json, r'shippedAt'),
-        deliveredAt: mapValueOfType<String>(json, r'deliveredAt'),
         imageUrl: mapValueOfType<String>(json, r'imageUrl'),
-        sellerName: mapValueOfType<String>(json, r'sellerName'),
+        deliveredAt: mapValueOfType<String>(json, r'deliveredAt'),
+        shippedAt: mapValueOfType<String>(json, r'shippedAt'),
         orderedAt: mapValueOfType<String>(json, r'orderedAt'),
+        sellerName: mapValueOfType<String>(json, r'sellerName'),
       );
     }
     return null;

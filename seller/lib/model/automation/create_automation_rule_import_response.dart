@@ -17,7 +17,7 @@ class CreateAutomationRuleImportResponse {
     this.errors = const [],
   });
 
-  List<CreateAutomationRuleImportResponseCreated> created;
+  List<IdName> created;
 
   List<CreateAutomationRuleImportResponseErrors> errors;
 
@@ -49,7 +49,7 @@ class CreateAutomationRuleImportResponse {
     if (value is Map) {
       final json = value.cast<String, dynamic>();
       return CreateAutomationRuleImportResponse(
-        created: CreateAutomationRuleImportResponseCreated.listFromJson(json[r'created']),
+        created: IdName.listFromJson(json[r'created']),
         errors: CreateAutomationRuleImportResponseErrors.listFromJson(json[r'errors']),
       );
     }

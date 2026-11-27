@@ -16,6 +16,66 @@ class TaxonomyApi {
 
   final ApiClient apiClient;
 
+  /// One canonical category and the category it maps to on each marketplace.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<Response> getCategoryByIdWithHttpInfo(String id,) async {
+    // Verify required params are set.
+    if (id == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: id');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/categories/{id}'
+      .replaceAll('{id}', id);
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// One canonical category and the category it maps to on each marketplace.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<GetCategoryByIdResponse> getCategoryById(String id,) async {
+    final response = await getCategoryByIdWithHttpInfo(id,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'GetCategoryByIdResponse',) as GetCategoryByIdResponse;
+    
+    }
+    return Future<GetCategoryByIdResponse>.value();
+  }
+
   /// Categories for a platform. Default is top-level; pass `?parent=<categoryId>` to drill down one level (supported on cookie platforms whose recipe returns flat parent_id-linked rows).
   ///
   /// Note: This method returns the HTTP [Response].
@@ -288,6 +348,234 @@ class TaxonomyApi {
     
     }
     return Future<GetTaxonomyRequiredFieldResponse>.value();
+  }
+
+  /// Item specifics for a canonical category: required/optional, known values, per-marketplace names.
+  ///
+  /// Required-ness and cardinality come from the eBay category the concept maps to. `freeText` = any text is accepted; otherwise `values` are the known values (up to `valuesLimit`). `marketplaces` gives the attribute name each marketplace uses for the aspect. Send them as `itemSpecifics` on POST /v1/listings.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  ///
+  /// * [int] valuesLimit:
+  Future<Response> listCategoryAspectsWithHttpInfo(String id, { int valuesLimit, }) async {
+    // Verify required params are set.
+    if (id == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: id');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/categories/{id}/aspects'
+      .replaceAll('{id}', id);
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    if (valuesLimit != null) {
+      queryParams.addAll(_convertParametersForCollectionFormat('', 'valuesLimit', valuesLimit));
+    }
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Item specifics for a canonical category: required/optional, known values, per-marketplace names.
+  ///
+  /// Required-ness and cardinality come from the eBay category the concept maps to. `freeText` = any text is accepted; otherwise `values` are the known values (up to `valuesLimit`). `marketplaces` gives the attribute name each marketplace uses for the aspect. Send them as `itemSpecifics` on POST /v1/listings.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  ///
+  /// * [int] valuesLimit:
+  Future<ListCategoryAspectsResponse> listCategoryAspects(String id, { int valuesLimit, }) async {
+    final response = await listCategoryAspectsWithHttpInfo(id,  valuesLimit: valuesLimit, );
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'ListCategoryAspectsResponse',) as ListCategoryAspectsResponse;
+    
+    }
+    return Future<ListCategoryAspectsResponse>.value();
+  }
+
+  /// Search or browse Crossly's canonical categories (the ids listings take as categoryId).
+  ///
+  /// `q` matches the category name and path. `path` (e.g. \"Clothing & Shoes > Men\") limits to one branch. Without `q`, `meta.branches` lists the next level under `path` (the root when omitted) so a client can walk the tree down to a leaf.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] q:
+  ///
+  /// * [String] path:
+  ///
+  /// * [int] limit:
+  Future<Response> listCategorySearchWithHttpInfo({ String q, String path, int limit, }) async {
+    // Verify required params are set.
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/categories/search';
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    if (q != null) {
+      queryParams.addAll(_convertParametersForCollectionFormat('', 'q', q));
+    }
+    if (path != null) {
+      queryParams.addAll(_convertParametersForCollectionFormat('', 'path', path));
+    }
+    if (limit != null) {
+      queryParams.addAll(_convertParametersForCollectionFormat('', 'limit', limit));
+    }
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Search or browse Crossly's canonical categories (the ids listings take as categoryId).
+  ///
+  /// `q` matches the category name and path. `path` (e.g. \"Clothing & Shoes > Men\") limits to one branch. Without `q`, `meta.branches` lists the next level under `path` (the root when omitted) so a client can walk the tree down to a leaf.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] q:
+  ///
+  /// * [String] path:
+  ///
+  /// * [int] limit:
+  Future<ListCategorySearchResponse> listCategorySearch({ String q, String path, int limit, }) async {
+    final response = await listCategorySearchWithHttpInfo( q: q, path: path, limit: limit, );
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'ListCategorySearchResponse',) as ListCategorySearchResponse;
+    
+    }
+    return Future<ListCategorySearchResponse>.value();
+  }
+
+  /// Search eBay for Charity organisations (the charityId an eBay listing donates to).
+  ///
+  /// Send the chosen `charityOrgId` as `overrides.ebay.charityId` with `overrides.ebay.donationPercentage` (10-100 in steps of 5) on a listing to donate that share of the eBay sale. `q` needs at least 2 characters.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] q:
+  ///
+  /// * [int] limit:
+  ///
+  /// * [String] marketplace:
+  Future<Response> listTaxonomyEbayCharitiesWithHttpInfo({ String q, int limit, String marketplace, }) async {
+    // Verify required params are set.
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/taxonomy/ebay/charities';
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    if (q != null) {
+      queryParams.addAll(_convertParametersForCollectionFormat('', 'q', q));
+    }
+    if (limit != null) {
+      queryParams.addAll(_convertParametersForCollectionFormat('', 'limit', limit));
+    }
+    if (marketplace != null) {
+      queryParams.addAll(_convertParametersForCollectionFormat('', 'marketplace', marketplace));
+    }
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Search eBay for Charity organisations (the charityId an eBay listing donates to).
+  ///
+  /// Send the chosen `charityOrgId` as `overrides.ebay.charityId` with `overrides.ebay.donationPercentage` (10-100 in steps of 5) on a listing to donate that share of the eBay sale. `q` needs at least 2 characters.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] q:
+  ///
+  /// * [int] limit:
+  ///
+  /// * [String] marketplace:
+  Future<ListTaxonomyEbayCharitiesResponse> listTaxonomyEbayCharities({ String q, int limit, String marketplace, }) async {
+    final response = await listTaxonomyEbayCharitiesWithHttpInfo( q: q, limit: limit, marketplace: marketplace, );
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'ListTaxonomyEbayCharitiesResponse',) as ListTaxonomyEbayCharitiesResponse;
+    
+    }
+    return Future<ListTaxonomyEbayCharitiesResponse>.value();
   }
 
   /// Reverse lookup — suggest categories matching a search phrase: eBay live; Poshmark, Mercari, Depop, Grailed, Vinted, Whatnot, Vestiaire, OfferUp, Facebook and Curtsy over their harvested trees. Etsy answers an empty list (browse its tree instead).

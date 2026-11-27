@@ -13,39 +13,39 @@ part of openapi.api;
 class ListBuyerCatalogListingSoldHistoryItem {
   /// Returns a new [ListBuyerCatalogListingSoldHistoryItem] instance.
   ListBuyerCatalogListingSoldHistoryItem({
+    @required this.priceCents,
     @required this.quantity,
     @required this.soldAt,
-    @required this.priceCents,
   });
+
+  /// Per-unit item price the buyer paid, in cents — excludes shipping and tax.
+  num priceCents;
 
   num quantity;
 
   String soldAt;
 
-  /// Per-unit item price the buyer paid, in cents — excludes shipping and tax.
-  num priceCents;
-
   @override
   bool operator ==(Object other) => identical(this, other) || other is ListBuyerCatalogListingSoldHistoryItem &&
+     other.priceCents == priceCents &&
      other.quantity == quantity &&
-     other.soldAt == soldAt &&
-     other.priceCents == priceCents;
+     other.soldAt == soldAt;
 
   @override
   int get hashCode =>
   // ignore: unnecessary_parenthesis
+    (priceCents == null ? 0 : priceCents.hashCode) +
     (quantity == null ? 0 : quantity.hashCode) +
-    (soldAt == null ? 0 : soldAt.hashCode) +
-    (priceCents == null ? 0 : priceCents.hashCode);
+    (soldAt == null ? 0 : soldAt.hashCode);
 
   @override
-  String toString() => 'ListBuyerCatalogListingSoldHistoryItem[quantity=$quantity, soldAt=$soldAt, priceCents=$priceCents]';
+  String toString() => 'ListBuyerCatalogListingSoldHistoryItem[priceCents=$priceCents, quantity=$quantity, soldAt=$soldAt]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
+      json[r'priceCents'] = priceCents;
       json[r'quantity'] = quantity;
       json[r'soldAt'] = soldAt;
-      json[r'priceCents'] = priceCents;
     return json;
   }
 
@@ -56,13 +56,13 @@ class ListBuyerCatalogListingSoldHistoryItem {
     if (value is Map) {
       final json = value.cast<String, dynamic>();
       return ListBuyerCatalogListingSoldHistoryItem(
+        priceCents: json[r'priceCents'] == null
+          ? null
+          : num.parse(json[r'priceCents'].toString()),
         quantity: json[r'quantity'] == null
           ? null
           : num.parse(json[r'quantity'].toString()),
         soldAt: mapValueOfType<String>(json, r'soldAt'),
-        priceCents: json[r'priceCents'] == null
-          ? null
-          : num.parse(json[r'priceCents'].toString()),
       );
     }
     return null;

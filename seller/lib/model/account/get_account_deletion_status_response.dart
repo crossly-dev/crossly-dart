@@ -13,7 +13,7 @@ part of openapi.api;
 class GetAccountDeletionStatusResponse {
   /// Returns a new [GetAccountDeletionStatusResponse] instance.
   GetAccountDeletionStatusResponse({
-    @required this.pending,
+    this.pending,
   });
 
   GetAccountDeletionStatusResponsePending pending;
@@ -32,7 +32,9 @@ class GetAccountDeletionStatusResponse {
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
+    if (pending != null) {
       json[r'pending'] = pending;
+    }
     return json;
   }
 

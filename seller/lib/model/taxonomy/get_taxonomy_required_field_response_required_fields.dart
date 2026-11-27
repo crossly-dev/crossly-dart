@@ -17,8 +17,8 @@ class GetTaxonomyRequiredFieldResponseRequiredFields {
     this.enumValues,
     @required this.label,
     @required this.key,
-    @required this.required_,
     this.hint,
+    @required this.required_,
     @required this.master,
     @required this.selectionOnly,
   });
@@ -31,9 +31,9 @@ class GetTaxonomyRequiredFieldResponseRequiredFields {
 
   String key;
 
-  bool required_;
-
   String hint;
+
+  bool required_;
 
   bool master;
 
@@ -45,8 +45,8 @@ class GetTaxonomyRequiredFieldResponseRequiredFields {
      other.enumValues == enumValues &&
      other.label == label &&
      other.key == key &&
-     other.required_ == required_ &&
      other.hint == hint &&
+     other.required_ == required_ &&
      other.master == master &&
      other.selectionOnly == selectionOnly;
 
@@ -57,13 +57,13 @@ class GetTaxonomyRequiredFieldResponseRequiredFields {
     (enumValues == null ? 0 : enumValues.hashCode) +
     (label == null ? 0 : label.hashCode) +
     (key == null ? 0 : key.hashCode) +
-    (required_ == null ? 0 : required_.hashCode) +
     (hint == null ? 0 : hint.hashCode) +
+    (required_ == null ? 0 : required_.hashCode) +
     (master == null ? 0 : master.hashCode) +
     (selectionOnly == null ? 0 : selectionOnly.hashCode);
 
   @override
-  String toString() => 'GetTaxonomyRequiredFieldResponseRequiredFields[dataType=$dataType, enumValues=$enumValues, label=$label, key=$key, required_=$required_, hint=$hint, master=$master, selectionOnly=$selectionOnly]';
+  String toString() => 'GetTaxonomyRequiredFieldResponseRequiredFields[dataType=$dataType, enumValues=$enumValues, label=$label, key=$key, hint=$hint, required_=$required_, master=$master, selectionOnly=$selectionOnly]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -73,10 +73,10 @@ class GetTaxonomyRequiredFieldResponseRequiredFields {
     }
       json[r'label'] = label;
       json[r'key'] = key;
-      json[r'required'] = required_;
     if (hint != null) {
       json[r'hint'] = hint;
     }
+      json[r'required'] = required_;
       json[r'master'] = master;
       json[r'selectionOnly'] = selectionOnly;
     return json;
@@ -95,8 +95,8 @@ class GetTaxonomyRequiredFieldResponseRequiredFields {
           : null,
         label: mapValueOfType<String>(json, r'label'),
         key: mapValueOfType<String>(json, r'key'),
-        required_: mapValueOfType<bool>(json, r'required'),
         hint: mapValueOfType<String>(json, r'hint'),
+        required_: mapValueOfType<bool>(json, r'required'),
         master: mapValueOfType<bool>(json, r'master'),
         selectionOnly: mapValueOfType<bool>(json, r'selectionOnly'),
       );

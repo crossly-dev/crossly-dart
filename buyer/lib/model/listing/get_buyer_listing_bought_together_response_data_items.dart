@@ -13,16 +13,16 @@ part of openapi.api;
 class GetBuyerListingBoughtTogetherResponseDataItems {
   /// Returns a new [GetBuyerListingBoughtTogetherResponseDataItems] instance.
   GetBuyerListingBoughtTogetherResponseDataItems({
-    this.title,
     @required this.slug,
+    this.title,
     @required this.priceCents,
     this.image,
     @required this.sameSeller,
   });
 
-  String title;
-
   String slug;
+
+  String title;
 
   num priceCents;
 
@@ -32,8 +32,8 @@ class GetBuyerListingBoughtTogetherResponseDataItems {
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is GetBuyerListingBoughtTogetherResponseDataItems &&
-     other.title == title &&
      other.slug == slug &&
+     other.title == title &&
      other.priceCents == priceCents &&
      other.image == image &&
      other.sameSeller == sameSeller;
@@ -41,21 +41,21 @@ class GetBuyerListingBoughtTogetherResponseDataItems {
   @override
   int get hashCode =>
   // ignore: unnecessary_parenthesis
-    (title == null ? 0 : title.hashCode) +
     (slug == null ? 0 : slug.hashCode) +
+    (title == null ? 0 : title.hashCode) +
     (priceCents == null ? 0 : priceCents.hashCode) +
     (image == null ? 0 : image.hashCode) +
     (sameSeller == null ? 0 : sameSeller.hashCode);
 
   @override
-  String toString() => 'GetBuyerListingBoughtTogetherResponseDataItems[title=$title, slug=$slug, priceCents=$priceCents, image=$image, sameSeller=$sameSeller]';
+  String toString() => 'GetBuyerListingBoughtTogetherResponseDataItems[slug=$slug, title=$title, priceCents=$priceCents, image=$image, sameSeller=$sameSeller]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
+      json[r'slug'] = slug;
     if (title != null) {
       json[r'title'] = title;
     }
-      json[r'slug'] = slug;
       json[r'priceCents'] = priceCents;
     if (image != null) {
       json[r'image'] = image;
@@ -71,8 +71,8 @@ class GetBuyerListingBoughtTogetherResponseDataItems {
     if (value is Map) {
       final json = value.cast<String, dynamic>();
       return GetBuyerListingBoughtTogetherResponseDataItems(
-        title: mapValueOfType<String>(json, r'title'),
         slug: mapValueOfType<String>(json, r'slug'),
+        title: mapValueOfType<String>(json, r'title'),
         priceCents: json[r'priceCents'] == null
           ? null
           : num.parse(json[r'priceCents'].toString()),

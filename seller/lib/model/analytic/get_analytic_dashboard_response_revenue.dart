@@ -16,6 +16,7 @@ class GetAnalyticDashboardResponseRevenue {
     @required this.current,
     @required this.previous,
     this.pctChange,
+    @required this.delta,
   });
 
   num current;
@@ -24,21 +25,25 @@ class GetAnalyticDashboardResponseRevenue {
 
   num pctChange;
 
+  GetAnalyticOverviewResponseDataKpisNetSalesDelta delta;
+
   @override
   bool operator ==(Object other) => identical(this, other) || other is GetAnalyticDashboardResponseRevenue &&
      other.current == current &&
      other.previous == previous &&
-     other.pctChange == pctChange;
+     other.pctChange == pctChange &&
+     other.delta == delta;
 
   @override
   int get hashCode =>
   // ignore: unnecessary_parenthesis
     (current == null ? 0 : current.hashCode) +
     (previous == null ? 0 : previous.hashCode) +
-    (pctChange == null ? 0 : pctChange.hashCode);
+    (pctChange == null ? 0 : pctChange.hashCode) +
+    (delta == null ? 0 : delta.hashCode);
 
   @override
-  String toString() => 'GetAnalyticDashboardResponseRevenue[current=$current, previous=$previous, pctChange=$pctChange]';
+  String toString() => 'GetAnalyticDashboardResponseRevenue[current=$current, previous=$previous, pctChange=$pctChange, delta=$delta]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -47,6 +52,7 @@ class GetAnalyticDashboardResponseRevenue {
     if (pctChange != null) {
       json[r'pctChange'] = pctChange;
     }
+      json[r'delta'] = delta;
     return json;
   }
 
@@ -66,6 +72,7 @@ class GetAnalyticDashboardResponseRevenue {
         pctChange: json[r'pctChange'] == null
           ? null
           : num.parse(json[r'pctChange'].toString()),
+        delta: GetAnalyticOverviewResponseDataKpisNetSalesDelta.fromJson(json[r'delta']),
       );
     }
     return null;

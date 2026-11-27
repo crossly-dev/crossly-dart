@@ -141,14 +141,14 @@ class GetVaultMarketMarketModelResponseLuldPhaseEnum {
   String toJson() => value;
 
   static const limit = GetVaultMarketMarketModelResponseLuldPhaseEnum._(r'limit');
-  static const normal = GetVaultMarketMarketModelResponseLuldPhaseEnum._(r'normal');
   static const paused = GetVaultMarketMarketModelResponseLuldPhaseEnum._(r'paused');
+  static const normal = GetVaultMarketMarketModelResponseLuldPhaseEnum._(r'normal');
 
   /// List of all possible values in this [enum][GetVaultMarketMarketModelResponseLuldPhaseEnum].
   static const values = <GetVaultMarketMarketModelResponseLuldPhaseEnum>[
     limit,
-    normal,
     paused,
+    normal,
   ];
 
   static GetVaultMarketMarketModelResponseLuldPhaseEnum fromJson(dynamic value) =>
@@ -181,8 +181,8 @@ class GetVaultMarketMarketModelResponseLuldPhaseEnumTypeTransformer {
     if (data != null) {
       switch (data.toString()) {
         case r'limit': return GetVaultMarketMarketModelResponseLuldPhaseEnum.limit;
-        case r'normal': return GetVaultMarketMarketModelResponseLuldPhaseEnum.normal;
         case r'paused': return GetVaultMarketMarketModelResponseLuldPhaseEnum.paused;
+        case r'normal': return GetVaultMarketMarketModelResponseLuldPhaseEnum.normal;
         default:
           if (allowNull == false) {
             throw ArgumentError('Unknown enum value to decode: $data');

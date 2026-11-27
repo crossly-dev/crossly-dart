@@ -14,56 +14,62 @@ class GetWorkflowChainResponseSteps {
   /// Returns a new [GetWorkflowChainResponseSteps] instance.
   GetWorkflowChainResponseSteps({
     @required this.id,
-    @required this.position,
     @required this.chainId,
+    @required this.position,
     @required this.stepType,
     this.actionId,
+    this.actionConfig = const {},
     this.waitMs,
   });
 
   String id;
 
-  num position;
-
   String chainId;
+
+  num position;
 
   String stepType;
 
   String actionId;
+
+  Map<String, Object> actionConfig;
 
   num waitMs;
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is GetWorkflowChainResponseSteps &&
      other.id == id &&
-     other.position == position &&
      other.chainId == chainId &&
+     other.position == position &&
      other.stepType == stepType &&
      other.actionId == actionId &&
+     other.actionConfig == actionConfig &&
      other.waitMs == waitMs;
 
   @override
   int get hashCode =>
   // ignore: unnecessary_parenthesis
     (id == null ? 0 : id.hashCode) +
-    (position == null ? 0 : position.hashCode) +
     (chainId == null ? 0 : chainId.hashCode) +
+    (position == null ? 0 : position.hashCode) +
     (stepType == null ? 0 : stepType.hashCode) +
     (actionId == null ? 0 : actionId.hashCode) +
+    (actionConfig == null ? 0 : actionConfig.hashCode) +
     (waitMs == null ? 0 : waitMs.hashCode);
 
   @override
-  String toString() => 'GetWorkflowChainResponseSteps[id=$id, position=$position, chainId=$chainId, stepType=$stepType, actionId=$actionId, waitMs=$waitMs]';
+  String toString() => 'GetWorkflowChainResponseSteps[id=$id, chainId=$chainId, position=$position, stepType=$stepType, actionId=$actionId, actionConfig=$actionConfig, waitMs=$waitMs]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
       json[r'id'] = id;
-      json[r'position'] = position;
       json[r'chainId'] = chainId;
+      json[r'position'] = position;
       json[r'stepType'] = stepType;
     if (actionId != null) {
       json[r'actionId'] = actionId;
     }
+      json[r'actionConfig'] = actionConfig;
     if (waitMs != null) {
       json[r'waitMs'] = waitMs;
     }
@@ -78,12 +84,13 @@ class GetWorkflowChainResponseSteps {
       final json = value.cast<String, dynamic>();
       return GetWorkflowChainResponseSteps(
         id: mapValueOfType<String>(json, r'id'),
+        chainId: mapValueOfType<String>(json, r'chainId'),
         position: json[r'position'] == null
           ? null
           : num.parse(json[r'position'].toString()),
-        chainId: mapValueOfType<String>(json, r'chainId'),
         stepType: mapValueOfType<String>(json, r'stepType'),
         actionId: mapValueOfType<String>(json, r'actionId'),
+        actionConfig: mapValueOfType<Map<String, Object>>(json, r'actionConfig'),
         waitMs: json[r'waitMs'] == null
           ? null
           : num.parse(json[r'waitMs'].toString()),

@@ -15,6 +15,7 @@ class CreateVariationGroupResponseDataMembers {
   CreateVariationGroupResponseDataMembers({
     @required this.listingId,
     this.axisValue,
+    this.options,
     @required this.sortKey,
     this.title,
     this.price,
@@ -27,6 +28,9 @@ class CreateVariationGroupResponseDataMembers {
   String listingId;
 
   String axisValue;
+
+  /// The member's value on every axis of a multi-axis group; null on a single-axis member.
+  Map<String, Object> options;
 
   num sortKey;
 
@@ -46,6 +50,7 @@ class CreateVariationGroupResponseDataMembers {
   bool operator ==(Object other) => identical(this, other) || other is CreateVariationGroupResponseDataMembers &&
      other.listingId == listingId &&
      other.axisValue == axisValue &&
+     other.options == options &&
      other.sortKey == sortKey &&
      other.title == title &&
      other.price == price &&
@@ -59,6 +64,7 @@ class CreateVariationGroupResponseDataMembers {
   // ignore: unnecessary_parenthesis
     (listingId == null ? 0 : listingId.hashCode) +
     (axisValue == null ? 0 : axisValue.hashCode) +
+    (options == null ? 0 : options.hashCode) +
     (sortKey == null ? 0 : sortKey.hashCode) +
     (title == null ? 0 : title.hashCode) +
     (price == null ? 0 : price.hashCode) +
@@ -68,13 +74,16 @@ class CreateVariationGroupResponseDataMembers {
     (quantityAvailable == null ? 0 : quantityAvailable.hashCode);
 
   @override
-  String toString() => 'CreateVariationGroupResponseDataMembers[listingId=$listingId, axisValue=$axisValue, sortKey=$sortKey, title=$title, price=$price, images=$images, status=$status, sku=$sku, quantityAvailable=$quantityAvailable]';
+  String toString() => 'CreateVariationGroupResponseDataMembers[listingId=$listingId, axisValue=$axisValue, options=$options, sortKey=$sortKey, title=$title, price=$price, images=$images, status=$status, sku=$sku, quantityAvailable=$quantityAvailable]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
       json[r'listingId'] = listingId;
     if (axisValue != null) {
       json[r'axisValue'] = axisValue;
+    }
+    if (options != null) {
+      json[r'options'] = options;
     }
       json[r'sortKey'] = sortKey;
     if (title != null) {
@@ -103,6 +112,7 @@ class CreateVariationGroupResponseDataMembers {
       return CreateVariationGroupResponseDataMembers(
         listingId: mapValueOfType<String>(json, r'listingId'),
         axisValue: mapValueOfType<String>(json, r'axisValue'),
+        options: mapValueOfType<Map<String, Object>>(json, r'options'),
         sortKey: json[r'sortKey'] == null
           ? null
           : num.parse(json[r'sortKey'].toString()),

@@ -184,16 +184,16 @@ class GetVaultMarketWorldFloorResponseTickersMarkQualityEnum {
   String toJson() => value;
 
   static const none = GetVaultMarketWorldFloorResponseTickersMarkQualityEnum._(r'none');
+  static const C = GetVaultMarketWorldFloorResponseTickersMarkQualityEnum._(r'C');
   static const A = GetVaultMarketWorldFloorResponseTickersMarkQualityEnum._(r'A');
   static const B = GetVaultMarketWorldFloorResponseTickersMarkQualityEnum._(r'B');
-  static const C = GetVaultMarketWorldFloorResponseTickersMarkQualityEnum._(r'C');
 
   /// List of all possible values in this [enum][GetVaultMarketWorldFloorResponseTickersMarkQualityEnum].
   static const values = <GetVaultMarketWorldFloorResponseTickersMarkQualityEnum>[
     none,
+    C,
     A,
     B,
-    C,
   ];
 
   static GetVaultMarketWorldFloorResponseTickersMarkQualityEnum fromJson(dynamic value) =>
@@ -226,9 +226,9 @@ class GetVaultMarketWorldFloorResponseTickersMarkQualityEnumTypeTransformer {
     if (data != null) {
       switch (data.toString()) {
         case r'none': return GetVaultMarketWorldFloorResponseTickersMarkQualityEnum.none;
+        case r'C': return GetVaultMarketWorldFloorResponseTickersMarkQualityEnum.C;
         case r'A': return GetVaultMarketWorldFloorResponseTickersMarkQualityEnum.A;
         case r'B': return GetVaultMarketWorldFloorResponseTickersMarkQualityEnum.B;
-        case r'C': return GetVaultMarketWorldFloorResponseTickersMarkQualityEnum.C;
         default:
           if (allowNull == false) {
             throw ArgumentError('Unknown enum value to decode: $data');

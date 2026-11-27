@@ -246,6 +246,78 @@ class ReferenceApi {
     return Future<GetPatternResponse>.value();
   }
 
+  /// Look up a postal code: canonical shape, state and US metro areas.
+  ///
+  /// Every country gets its canonical shape and `valid`. A US ZIP (territories normalize to country US with `territory`) also gets state, county FIPS and CBSA/CSA. `metroStatus` is known (the ZIP is mapped), unmapped (a ZIP with no metro mapping: it matches no metro rule) or no_zip.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] country (required):
+  ///
+  /// * [String] code (required):
+  Future<Response> getReferencePostalWithHttpInfo(String country, String code,) async {
+    // Verify required params are set.
+    if (country == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: country');
+    }
+    if (code == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: code');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/reference/postal/{country}/{code}'
+      .replaceAll('{country}', country)
+      .replaceAll('{code}', code);
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Look up a postal code: canonical shape, state and US metro areas.
+  ///
+  /// Every country gets its canonical shape and `valid`. A US ZIP (territories normalize to country US with `territory`) also gets state, county FIPS and CBSA/CSA. `metroStatus` is known (the ZIP is mapped), unmapped (a ZIP with no metro mapping: it matches no metro rule) or no_zip.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] country (required):
+  ///
+  /// * [String] code (required):
+  Future<GetReferencePostalResponse> getReferencePostal(String country, String code,) async {
+    final response = await getReferencePostalWithHttpInfo(country, code,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'GetReferencePostalResponse',) as GetReferencePostalResponse;
+    
+    }
+    return Future<GetReferencePostalResponse>.value();
+  }
+
   /// Search the Poshmark + Vestiaire size-system union (US/UK/EU/AU/FR/KR).
   ///
   /// Note: This method returns the HTTP [Response].
@@ -432,5 +504,77 @@ class ReferenceApi {
     
     }
     return Future<ListReferenceCountriesResponse>.value();
+  }
+
+  /// Search US metro areas (CSA / CBSA) for location rules.
+  ///
+  /// Combined Statistical Areas first, then Core-Based Statistical Areas, matched on title (or an exact code); at most 20. `q` needs 2+ characters. `meta.datasetAvailable` is false when the census dataset is not loaded, in which case no metro rule can match.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] q (required):
+  ///
+  /// * [int] limit:
+  Future<Response> listReferenceMetrosWithHttpInfo(String q, { int limit, }) async {
+    // Verify required params are set.
+    if (q == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: q');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/reference/metros';
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+      queryParams.addAll(_convertParametersForCollectionFormat('', 'q', q));
+    if (limit != null) {
+      queryParams.addAll(_convertParametersForCollectionFormat('', 'limit', limit));
+    }
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Search US metro areas (CSA / CBSA) for location rules.
+  ///
+  /// Combined Statistical Areas first, then Core-Based Statistical Areas, matched on title (or an exact code); at most 20. `q` needs 2+ characters. `meta.datasetAvailable` is false when the census dataset is not loaded, in which case no metro rule can match.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] q (required):
+  ///
+  /// * [int] limit:
+  Future<ListReferenceMetrosResponse> listReferenceMetros(String q, { int limit, }) async {
+    final response = await listReferenceMetrosWithHttpInfo(q,  limit: limit, );
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'ListReferenceMetrosResponse',) as ListReferenceMetrosResponse;
+    
+    }
+    return Future<ListReferenceMetrosResponse>.value();
   }
 }

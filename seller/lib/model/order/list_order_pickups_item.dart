@@ -18,15 +18,15 @@ class ListOrderPickupsItem {
     @required this.userId,
     @required this.status,
     @required this.carrier,
-    this.orderIds = const [],
-    @required this.shippoPickupId,
     this.confirmation,
-    @required this.pickupDate,
+    this.orderIds = const [],
     @required this.minTime,
     @required this.maxTime,
+    this.instructions,
+    @required this.shippoPickupId,
+    @required this.pickupDate,
     this.confirmedStart,
     this.confirmedEnd,
-    this.instructions,
   });
 
   String id;
@@ -39,23 +39,23 @@ class ListOrderPickupsItem {
 
   String carrier;
 
-  List<String> orderIds;
-
-  String shippoPickupId;
-
   String confirmation;
 
-  String pickupDate;
+  List<String> orderIds;
 
   String minTime;
 
   String maxTime;
 
+  String instructions;
+
+  String shippoPickupId;
+
+  String pickupDate;
+
   DateTime confirmedStart;
 
   DateTime confirmedEnd;
-
-  String instructions;
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is ListOrderPickupsItem &&
@@ -64,15 +64,15 @@ class ListOrderPickupsItem {
      other.userId == userId &&
      other.status == status &&
      other.carrier == carrier &&
-     other.orderIds == orderIds &&
-     other.shippoPickupId == shippoPickupId &&
      other.confirmation == confirmation &&
-     other.pickupDate == pickupDate &&
+     other.orderIds == orderIds &&
      other.minTime == minTime &&
      other.maxTime == maxTime &&
+     other.instructions == instructions &&
+     other.shippoPickupId == shippoPickupId &&
+     other.pickupDate == pickupDate &&
      other.confirmedStart == confirmedStart &&
-     other.confirmedEnd == confirmedEnd &&
-     other.instructions == instructions;
+     other.confirmedEnd == confirmedEnd;
 
   @override
   int get hashCode =>
@@ -82,18 +82,18 @@ class ListOrderPickupsItem {
     (userId == null ? 0 : userId.hashCode) +
     (status == null ? 0 : status.hashCode) +
     (carrier == null ? 0 : carrier.hashCode) +
-    (orderIds == null ? 0 : orderIds.hashCode) +
-    (shippoPickupId == null ? 0 : shippoPickupId.hashCode) +
     (confirmation == null ? 0 : confirmation.hashCode) +
-    (pickupDate == null ? 0 : pickupDate.hashCode) +
+    (orderIds == null ? 0 : orderIds.hashCode) +
     (minTime == null ? 0 : minTime.hashCode) +
     (maxTime == null ? 0 : maxTime.hashCode) +
+    (instructions == null ? 0 : instructions.hashCode) +
+    (shippoPickupId == null ? 0 : shippoPickupId.hashCode) +
+    (pickupDate == null ? 0 : pickupDate.hashCode) +
     (confirmedStart == null ? 0 : confirmedStart.hashCode) +
-    (confirmedEnd == null ? 0 : confirmedEnd.hashCode) +
-    (instructions == null ? 0 : instructions.hashCode);
+    (confirmedEnd == null ? 0 : confirmedEnd.hashCode);
 
   @override
-  String toString() => 'ListOrderPickupsItem[id=$id, createdAt=$createdAt, userId=$userId, status=$status, carrier=$carrier, orderIds=$orderIds, shippoPickupId=$shippoPickupId, confirmation=$confirmation, pickupDate=$pickupDate, minTime=$minTime, maxTime=$maxTime, confirmedStart=$confirmedStart, confirmedEnd=$confirmedEnd, instructions=$instructions]';
+  String toString() => 'ListOrderPickupsItem[id=$id, createdAt=$createdAt, userId=$userId, status=$status, carrier=$carrier, confirmation=$confirmation, orderIds=$orderIds, minTime=$minTime, maxTime=$maxTime, instructions=$instructions, shippoPickupId=$shippoPickupId, pickupDate=$pickupDate, confirmedStart=$confirmedStart, confirmedEnd=$confirmedEnd]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -102,22 +102,22 @@ class ListOrderPickupsItem {
       json[r'userId'] = userId;
       json[r'status'] = status;
       json[r'carrier'] = carrier;
-      json[r'orderIds'] = orderIds;
-      json[r'shippoPickupId'] = shippoPickupId;
     if (confirmation != null) {
       json[r'confirmation'] = confirmation;
     }
-      json[r'pickupDate'] = pickupDate;
+      json[r'orderIds'] = orderIds;
       json[r'minTime'] = minTime;
       json[r'maxTime'] = maxTime;
+    if (instructions != null) {
+      json[r'instructions'] = instructions;
+    }
+      json[r'shippoPickupId'] = shippoPickupId;
+      json[r'pickupDate'] = pickupDate;
     if (confirmedStart != null) {
       json[r'confirmedStart'] = confirmedStart.toUtc().toIso8601String();
     }
     if (confirmedEnd != null) {
       json[r'confirmedEnd'] = confirmedEnd.toUtc().toIso8601String();
-    }
-    if (instructions != null) {
-      json[r'instructions'] = instructions;
     }
     return json;
   }
@@ -134,17 +134,17 @@ class ListOrderPickupsItem {
         userId: mapValueOfType<String>(json, r'userId'),
         status: mapValueOfType<String>(json, r'status'),
         carrier: mapValueOfType<String>(json, r'carrier'),
+        confirmation: mapValueOfType<String>(json, r'confirmation'),
         orderIds: json[r'orderIds'] is List
           ? (json[r'orderIds'] as List).cast<String>()
           : null,
-        shippoPickupId: mapValueOfType<String>(json, r'shippoPickupId'),
-        confirmation: mapValueOfType<String>(json, r'confirmation'),
-        pickupDate: mapValueOfType<String>(json, r'pickupDate'),
         minTime: mapValueOfType<String>(json, r'minTime'),
         maxTime: mapValueOfType<String>(json, r'maxTime'),
+        instructions: mapValueOfType<String>(json, r'instructions'),
+        shippoPickupId: mapValueOfType<String>(json, r'shippoPickupId'),
+        pickupDate: mapValueOfType<String>(json, r'pickupDate'),
         confirmedStart: mapDateTime(json, r'confirmedStart', ''),
         confirmedEnd: mapDateTime(json, r'confirmedEnd', ''),
-        instructions: mapValueOfType<String>(json, r'instructions'),
       );
     }
     return null;

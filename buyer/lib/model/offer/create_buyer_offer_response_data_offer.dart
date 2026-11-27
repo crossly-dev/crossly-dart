@@ -14,16 +14,14 @@ class CreateBuyerOfferResponseDataOffer {
   /// Returns a new [CreateBuyerOfferResponseDataOffer] instance.
   CreateBuyerOfferResponseDataOffer({
     @required this.id,
-    @required this.status,
     @required this.platformListingId,
     @required this.buyerUserId,
     @required this.amountCents,
+    @required this.status,
     this.message,
   });
 
   String id;
-
-  String status;
 
   String platformListingId;
 
@@ -31,37 +29,39 @@ class CreateBuyerOfferResponseDataOffer {
 
   num amountCents;
 
+  String status;
+
   String message;
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is CreateBuyerOfferResponseDataOffer &&
      other.id == id &&
-     other.status == status &&
      other.platformListingId == platformListingId &&
      other.buyerUserId == buyerUserId &&
      other.amountCents == amountCents &&
+     other.status == status &&
      other.message == message;
 
   @override
   int get hashCode =>
   // ignore: unnecessary_parenthesis
     (id == null ? 0 : id.hashCode) +
-    (status == null ? 0 : status.hashCode) +
     (platformListingId == null ? 0 : platformListingId.hashCode) +
     (buyerUserId == null ? 0 : buyerUserId.hashCode) +
     (amountCents == null ? 0 : amountCents.hashCode) +
+    (status == null ? 0 : status.hashCode) +
     (message == null ? 0 : message.hashCode);
 
   @override
-  String toString() => 'CreateBuyerOfferResponseDataOffer[id=$id, status=$status, platformListingId=$platformListingId, buyerUserId=$buyerUserId, amountCents=$amountCents, message=$message]';
+  String toString() => 'CreateBuyerOfferResponseDataOffer[id=$id, platformListingId=$platformListingId, buyerUserId=$buyerUserId, amountCents=$amountCents, status=$status, message=$message]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
       json[r'id'] = id;
-      json[r'status'] = status;
       json[r'platformListingId'] = platformListingId;
       json[r'buyerUserId'] = buyerUserId;
       json[r'amountCents'] = amountCents;
+      json[r'status'] = status;
     if (message != null) {
       json[r'message'] = message;
     }
@@ -76,12 +76,12 @@ class CreateBuyerOfferResponseDataOffer {
       final json = value.cast<String, dynamic>();
       return CreateBuyerOfferResponseDataOffer(
         id: mapValueOfType<String>(json, r'id'),
-        status: mapValueOfType<String>(json, r'status'),
         platformListingId: mapValueOfType<String>(json, r'platformListingId'),
         buyerUserId: mapValueOfType<String>(json, r'buyerUserId'),
         amountCents: json[r'amountCents'] == null
           ? null
           : num.parse(json[r'amountCents'].toString()),
+        status: mapValueOfType<String>(json, r'status'),
         message: mapValueOfType<String>(json, r'message'),
       );
     }

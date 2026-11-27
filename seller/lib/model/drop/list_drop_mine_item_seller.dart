@@ -19,7 +19,7 @@ class ListDropMineItemSeller {
 
   String name;
 
-  NameSlug shop;
+  NameSlug2 shop;
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is ListDropMineItemSeller &&
@@ -52,7 +52,7 @@ class ListDropMineItemSeller {
       final json = value.cast<String, dynamic>();
       return ListDropMineItemSeller(
         name: mapValueOfType<String>(json, r'name'),
-        shop: NameSlug.fromJson(json[r'shop']),
+        shop: NameSlug2.fromJson(json[r'shop']),
       );
     }
     return null;

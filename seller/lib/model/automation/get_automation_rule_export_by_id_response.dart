@@ -13,84 +13,84 @@ part of openapi.api;
 class GetAutomationRuleExportByIdResponse {
   /// Returns a new [GetAutomationRuleExportByIdResponse] instance.
   GetAutomationRuleExportByIdResponse({
-    @required this.name,
-    @required this.action,
     @required this.schemaVersion,
+    @required this.name,
     @required this.trigger,
-    this.condition,
-    this.metadata,
-    this.description,
-    this.platforms,
+    @required this.action,
     this.dollarSchema,
+    this.description,
+    this.condition,
+    this.platforms,
+    this.metadata,
   });
-
-  String name;
-
-  GetAutomationRuleExportByIdResponseAction action;
 
   num schemaVersion;
 
-  GetAutomationRuleExportByIdResponseAction trigger;
+  String name;
 
-  GetAutomationRuleExportByIdResponseCondition condition;
+  GetAutomationRuleExportByIdResponseTrigger trigger;
 
-  GetAutomationRuleExportByIdResponseMetadata metadata;
-
-  String description;
-
-  List<String> platforms;
+  GetAutomationRuleExportByIdResponseTrigger action;
 
   /// Optional reference to the public schema URL — purely cosmetic.
   String dollarSchema;
 
+  String description;
+
+  GetAutomationRuleExportByIdResponseCondition condition;
+
+  List<String> platforms;
+
+  GetAutomationRuleExportByIdResponseMetadata metadata;
+
   @override
   bool operator ==(Object other) => identical(this, other) || other is GetAutomationRuleExportByIdResponse &&
-     other.name == name &&
-     other.action == action &&
      other.schemaVersion == schemaVersion &&
+     other.name == name &&
      other.trigger == trigger &&
-     other.condition == condition &&
-     other.metadata == metadata &&
+     other.action == action &&
+     other.dollarSchema == dollarSchema &&
      other.description == description &&
+     other.condition == condition &&
      other.platforms == platforms &&
-     other.dollarSchema == dollarSchema;
+     other.metadata == metadata;
 
   @override
   int get hashCode =>
   // ignore: unnecessary_parenthesis
-    (name == null ? 0 : name.hashCode) +
-    (action == null ? 0 : action.hashCode) +
     (schemaVersion == null ? 0 : schemaVersion.hashCode) +
+    (name == null ? 0 : name.hashCode) +
     (trigger == null ? 0 : trigger.hashCode) +
-    (condition == null ? 0 : condition.hashCode) +
-    (metadata == null ? 0 : metadata.hashCode) +
+    (action == null ? 0 : action.hashCode) +
+    (dollarSchema == null ? 0 : dollarSchema.hashCode) +
     (description == null ? 0 : description.hashCode) +
+    (condition == null ? 0 : condition.hashCode) +
     (platforms == null ? 0 : platforms.hashCode) +
-    (dollarSchema == null ? 0 : dollarSchema.hashCode);
+    (metadata == null ? 0 : metadata.hashCode);
 
   @override
-  String toString() => 'GetAutomationRuleExportByIdResponse[name=$name, action=$action, schemaVersion=$schemaVersion, trigger=$trigger, condition=$condition, metadata=$metadata, description=$description, platforms=$platforms, dollarSchema=$dollarSchema]';
+  String toString() => 'GetAutomationRuleExportByIdResponse[schemaVersion=$schemaVersion, name=$name, trigger=$trigger, action=$action, dollarSchema=$dollarSchema, description=$description, condition=$condition, platforms=$platforms, metadata=$metadata]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-      json[r'name'] = name;
-      json[r'action'] = action;
       json[r'schemaVersion'] = schemaVersion;
+      json[r'name'] = name;
       json[r'trigger'] = trigger;
-    if (condition != null) {
-      json[r'condition'] = condition;
-    }
-    if (metadata != null) {
-      json[r'metadata'] = metadata;
+      json[r'action'] = action;
+    if (dollarSchema != null) {
+      json[r'$schema'] = dollarSchema;
     }
     if (description != null) {
       json[r'description'] = description;
     }
+    if (condition != null) {
+      json[r'condition'] = condition;
+    }
     if (platforms != null) {
       json[r'platforms'] = platforms;
     }
-    if (dollarSchema != null) {
-      json[r'$schema'] = dollarSchema;
+    if (metadata != null) {
+      json[r'metadata'] = metadata;
     }
     return json;
   }
@@ -102,19 +102,19 @@ class GetAutomationRuleExportByIdResponse {
     if (value is Map) {
       final json = value.cast<String, dynamic>();
       return GetAutomationRuleExportByIdResponse(
-        name: mapValueOfType<String>(json, r'name'),
-        action: GetAutomationRuleExportByIdResponseAction.fromJson(json[r'action']),
         schemaVersion: json[r'schemaVersion'] == null
           ? null
           : num.parse(json[r'schemaVersion'].toString()),
-        trigger: GetAutomationRuleExportByIdResponseAction.fromJson(json[r'trigger']),
-        condition: GetAutomationRuleExportByIdResponseCondition.fromJson(json[r'condition']),
-        metadata: GetAutomationRuleExportByIdResponseMetadata.fromJson(json[r'metadata']),
+        name: mapValueOfType<String>(json, r'name'),
+        trigger: GetAutomationRuleExportByIdResponseTrigger.fromJson(json[r'trigger']),
+        action: GetAutomationRuleExportByIdResponseTrigger.fromJson(json[r'action']),
+        dollarSchema: mapValueOfType<String>(json, r'$schema'),
         description: mapValueOfType<String>(json, r'description'),
+        condition: GetAutomationRuleExportByIdResponseCondition.fromJson(json[r'condition']),
         platforms: json[r'platforms'] is List
           ? (json[r'platforms'] as List).cast<String>()
           : null,
-        dollarSchema: mapValueOfType<String>(json, r'$schema'),
+        metadata: GetAutomationRuleExportByIdResponseMetadata.fromJson(json[r'metadata']),
       );
     }
     return null;

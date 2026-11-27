@@ -23,6 +23,7 @@ class UpdateWorldEmoteWheelResponseDataWheelItem {
 
   String toJson() => value;
 
+  static const phone = UpdateWorldEmoteWheelResponseDataWheelItem._(r'phone');
   static const spin = UpdateWorldEmoteWheelResponseDataWheelItem._(r'spin');
   static const wave = UpdateWorldEmoteWheelResponseDataWheelItem._(r'wave');
   static const point = UpdateWorldEmoteWheelResponseDataWheelItem._(r'point');
@@ -43,6 +44,33 @@ class UpdateWorldEmoteWheelResponseDataWheelItem {
   static const hug = UpdateWorldEmoteWheelResponseDataWheelItem._(r'hug');
   static const highFive = UpdateWorldEmoteWheelResponseDataWheelItem._(r'high_five');
   static const handshake = UpdateWorldEmoteWheelResponseDataWheelItem._(r'handshake');
+  static const facepalm = UpdateWorldEmoteWheelResponseDataWheelItem._(r'facepalm');
+  static const think = UpdateWorldEmoteWheelResponseDataWheelItem._(r'think');
+  static const laugh = UpdateWorldEmoteWheelResponseDataWheelItem._(r'laugh');
+  static const sigh = UpdateWorldEmoteWheelResponseDataWheelItem._(r'sigh');
+  static const no = UpdateWorldEmoteWheelResponseDataWheelItem._(r'no');
+  static const fistPump = UpdateWorldEmoteWheelResponseDataWheelItem._(r'fist_pump');
+  static const victory = UpdateWorldEmoteWheelResponseDataWheelItem._(r'victory');
+  static const yawn = UpdateWorldEmoteWheelResponseDataWheelItem._(r'yawn');
+  static const salute = UpdateWorldEmoteWheelResponseDataWheelItem._(r'salute');
+  static const bigWave = UpdateWorldEmoteWheelResponseDataWheelItem._(r'big_wave');
+  static const beckon = UpdateWorldEmoteWheelResponseDataWheelItem._(r'beckon');
+  static const shush = UpdateWorldEmoteWheelResponseDataWheelItem._(r'shush');
+  static const kiss = UpdateWorldEmoteWheelResponseDataWheelItem._(r'kiss');
+  static const peace = UpdateWorldEmoteWheelResponseDataWheelItem._(r'peace');
+  static const heart = UpdateWorldEmoteWheelResponseDataWheelItem._(r'heart');
+  static const sway = UpdateWorldEmoteWheelResponseDataWheelItem._(r'sway');
+  static const vibe = UpdateWorldEmoteWheelResponseDataWheelItem._(r'vibe');
+  static const airGuitar = UpdateWorldEmoteWheelResponseDataWheelItem._(r'air_guitar');
+  static const robot = UpdateWorldEmoteWheelResponseDataWheelItem._(r'robot');
+  static const disco = UpdateWorldEmoteWheelResponseDataWheelItem._(r'disco');
+  static const gavel = UpdateWorldEmoteWheelResponseDataWheelItem._(r'gavel');
+  static const haggle = UpdateWorldEmoteWheelResponseDataWheelItem._(r'haggle');
+  static const armsCrossed = UpdateWorldEmoteWheelResponseDataWheelItem._(r'arms_crossed');
+  static const handsOnHips = UpdateWorldEmoteWheelResponseDataWheelItem._(r'hands_on_hips');
+  static const kneel = UpdateWorldEmoteWheelResponseDataWheelItem._(r'kneel');
+  static const fistBump = UpdateWorldEmoteWheelResponseDataWheelItem._(r'fist_bump');
+  static const danceOff = UpdateWorldEmoteWheelResponseDataWheelItem._(r'dance_off');
   static const showoff = UpdateWorldEmoteWheelResponseDataWheelItem._(r'showoff');
   static const momentColonHandshake = UpdateWorldEmoteWheelResponseDataWheelItem._(r'moment:handshake');
   static const momentColonUnbox = UpdateWorldEmoteWheelResponseDataWheelItem._(r'moment:unbox');
@@ -50,6 +78,7 @@ class UpdateWorldEmoteWheelResponseDataWheelItem {
 
   /// List of all possible values in this [enum][UpdateWorldEmoteWheelResponseDataWheelItem].
   static const values = <UpdateWorldEmoteWheelResponseDataWheelItem>[
+    phone,
     spin,
     wave,
     point,
@@ -70,6 +99,33 @@ class UpdateWorldEmoteWheelResponseDataWheelItem {
     hug,
     highFive,
     handshake,
+    facepalm,
+    think,
+    laugh,
+    sigh,
+    no,
+    fistPump,
+    victory,
+    yawn,
+    salute,
+    bigWave,
+    beckon,
+    shush,
+    kiss,
+    peace,
+    heart,
+    sway,
+    vibe,
+    airGuitar,
+    robot,
+    disco,
+    gavel,
+    haggle,
+    armsCrossed,
+    handsOnHips,
+    kneel,
+    fistBump,
+    danceOff,
     showoff,
     momentColonHandshake,
     momentColonUnbox,
@@ -105,6 +161,7 @@ class UpdateWorldEmoteWheelResponseDataWheelItemTypeTransformer {
   UpdateWorldEmoteWheelResponseDataWheelItem decode(dynamic data, {bool allowNull}) {
     if (data != null) {
       switch (data.toString()) {
+        case r'phone': return UpdateWorldEmoteWheelResponseDataWheelItem.phone;
         case r'spin': return UpdateWorldEmoteWheelResponseDataWheelItem.spin;
         case r'wave': return UpdateWorldEmoteWheelResponseDataWheelItem.wave;
         case r'point': return UpdateWorldEmoteWheelResponseDataWheelItem.point;
@@ -125,6 +182,33 @@ class UpdateWorldEmoteWheelResponseDataWheelItemTypeTransformer {
         case r'hug': return UpdateWorldEmoteWheelResponseDataWheelItem.hug;
         case r'high_five': return UpdateWorldEmoteWheelResponseDataWheelItem.highFive;
         case r'handshake': return UpdateWorldEmoteWheelResponseDataWheelItem.handshake;
+        case r'facepalm': return UpdateWorldEmoteWheelResponseDataWheelItem.facepalm;
+        case r'think': return UpdateWorldEmoteWheelResponseDataWheelItem.think;
+        case r'laugh': return UpdateWorldEmoteWheelResponseDataWheelItem.laugh;
+        case r'sigh': return UpdateWorldEmoteWheelResponseDataWheelItem.sigh;
+        case r'no': return UpdateWorldEmoteWheelResponseDataWheelItem.no;
+        case r'fist_pump': return UpdateWorldEmoteWheelResponseDataWheelItem.fistPump;
+        case r'victory': return UpdateWorldEmoteWheelResponseDataWheelItem.victory;
+        case r'yawn': return UpdateWorldEmoteWheelResponseDataWheelItem.yawn;
+        case r'salute': return UpdateWorldEmoteWheelResponseDataWheelItem.salute;
+        case r'big_wave': return UpdateWorldEmoteWheelResponseDataWheelItem.bigWave;
+        case r'beckon': return UpdateWorldEmoteWheelResponseDataWheelItem.beckon;
+        case r'shush': return UpdateWorldEmoteWheelResponseDataWheelItem.shush;
+        case r'kiss': return UpdateWorldEmoteWheelResponseDataWheelItem.kiss;
+        case r'peace': return UpdateWorldEmoteWheelResponseDataWheelItem.peace;
+        case r'heart': return UpdateWorldEmoteWheelResponseDataWheelItem.heart;
+        case r'sway': return UpdateWorldEmoteWheelResponseDataWheelItem.sway;
+        case r'vibe': return UpdateWorldEmoteWheelResponseDataWheelItem.vibe;
+        case r'air_guitar': return UpdateWorldEmoteWheelResponseDataWheelItem.airGuitar;
+        case r'robot': return UpdateWorldEmoteWheelResponseDataWheelItem.robot;
+        case r'disco': return UpdateWorldEmoteWheelResponseDataWheelItem.disco;
+        case r'gavel': return UpdateWorldEmoteWheelResponseDataWheelItem.gavel;
+        case r'haggle': return UpdateWorldEmoteWheelResponseDataWheelItem.haggle;
+        case r'arms_crossed': return UpdateWorldEmoteWheelResponseDataWheelItem.armsCrossed;
+        case r'hands_on_hips': return UpdateWorldEmoteWheelResponseDataWheelItem.handsOnHips;
+        case r'kneel': return UpdateWorldEmoteWheelResponseDataWheelItem.kneel;
+        case r'fist_bump': return UpdateWorldEmoteWheelResponseDataWheelItem.fistBump;
+        case r'dance_off': return UpdateWorldEmoteWheelResponseDataWheelItem.danceOff;
         case r'showoff': return UpdateWorldEmoteWheelResponseDataWheelItem.showoff;
         case r'moment:handshake': return UpdateWorldEmoteWheelResponseDataWheelItem.momentColonHandshake;
         case r'moment:unbox': return UpdateWorldEmoteWheelResponseDataWheelItem.momentColonUnbox;

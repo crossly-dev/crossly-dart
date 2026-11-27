@@ -25,6 +25,8 @@ class CreateMeTemplateRenderResponseTokensUsedItem {
 
   static const date = CreateMeTemplateRenderResponseTokensUsedItem._(r'date');
   static const brand = CreateMeTemplateRenderResponseTokensUsedItem._(r'brand');
+  static const category = CreateMeTemplateRenderResponseTokensUsedItem._(r'category');
+  static const month = CreateMeTemplateRenderResponseTokensUsedItem._(r'month');
   static const sku = CreateMeTemplateRenderResponseTokensUsedItem._(r'sku');
   static const condition = CreateMeTemplateRenderResponseTokensUsedItem._(r'condition');
   static const size = CreateMeTemplateRenderResponseTokensUsedItem._(r'size');
@@ -32,16 +34,16 @@ class CreateMeTemplateRenderResponseTokensUsedItem {
   static const style = CreateMeTemplateRenderResponseTokensUsedItem._(r'style');
   static const color = CreateMeTemplateRenderResponseTokensUsedItem._(r'color');
   static const price = CreateMeTemplateRenderResponseTokensUsedItem._(r'price');
-  static const category = CreateMeTemplateRenderResponseTokensUsedItem._(r'category');
   static const year = CreateMeTemplateRenderResponseTokensUsedItem._(r'year');
   static const model = CreateMeTemplateRenderResponseTokensUsedItem._(r'model');
   static const itemName = CreateMeTemplateRenderResponseTokensUsedItem._(r'item_name');
-  static const month = CreateMeTemplateRenderResponseTokensUsedItem._(r'month');
 
   /// List of all possible values in this [enum][CreateMeTemplateRenderResponseTokensUsedItem].
   static const values = <CreateMeTemplateRenderResponseTokensUsedItem>[
     date,
     brand,
+    category,
+    month,
     sku,
     condition,
     size,
@@ -49,11 +51,9 @@ class CreateMeTemplateRenderResponseTokensUsedItem {
     style,
     color,
     price,
-    category,
     year,
     model,
     itemName,
-    month,
   ];
 
   static CreateMeTemplateRenderResponseTokensUsedItem fromJson(dynamic value) =>
@@ -87,6 +87,8 @@ class CreateMeTemplateRenderResponseTokensUsedItemTypeTransformer {
       switch (data.toString()) {
         case r'date': return CreateMeTemplateRenderResponseTokensUsedItem.date;
         case r'brand': return CreateMeTemplateRenderResponseTokensUsedItem.brand;
+        case r'category': return CreateMeTemplateRenderResponseTokensUsedItem.category;
+        case r'month': return CreateMeTemplateRenderResponseTokensUsedItem.month;
         case r'sku': return CreateMeTemplateRenderResponseTokensUsedItem.sku;
         case r'condition': return CreateMeTemplateRenderResponseTokensUsedItem.condition;
         case r'size': return CreateMeTemplateRenderResponseTokensUsedItem.size;
@@ -94,11 +96,9 @@ class CreateMeTemplateRenderResponseTokensUsedItemTypeTransformer {
         case r'style': return CreateMeTemplateRenderResponseTokensUsedItem.style;
         case r'color': return CreateMeTemplateRenderResponseTokensUsedItem.color;
         case r'price': return CreateMeTemplateRenderResponseTokensUsedItem.price;
-        case r'category': return CreateMeTemplateRenderResponseTokensUsedItem.category;
         case r'year': return CreateMeTemplateRenderResponseTokensUsedItem.year;
         case r'model': return CreateMeTemplateRenderResponseTokensUsedItem.model;
         case r'item_name': return CreateMeTemplateRenderResponseTokensUsedItem.itemName;
-        case r'month': return CreateMeTemplateRenderResponseTokensUsedItem.month;
         default:
           if (allowNull == false) {
             throw ArgumentError('Unknown enum value to decode: $data');

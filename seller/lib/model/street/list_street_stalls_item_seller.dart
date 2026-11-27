@@ -20,7 +20,7 @@ class ListStreetStallsItemSeller {
 
   String name;
 
-  NameSlug shop;
+  NameSlug2 shop;
 
   num level;
 
@@ -58,7 +58,7 @@ class ListStreetStallsItemSeller {
       final json = value.cast<String, dynamic>();
       return ListStreetStallsItemSeller(
         name: mapValueOfType<String>(json, r'name'),
-        shop: NameSlug.fromJson(json[r'shop']),
+        shop: NameSlug2.fromJson(json[r'shop']),
         level: json[r'level'] == null
           ? null
           : num.parse(json[r'level'].toString()),

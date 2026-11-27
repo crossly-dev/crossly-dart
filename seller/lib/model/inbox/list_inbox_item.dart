@@ -13,19 +13,23 @@ part of openapi.api;
 class ListInboxItem {
   /// Returns a new [ListInboxItem] instance.
   ListInboxItem({
+    @required this.canSendOffer,
     @required this.id,
     @required this.createdAt,
     @required this.userId,
-    @required this.status,
     @required this.platform,
-    this.listingId,
     @required this.accountSlot,
+    @required this.status,
+    this.source_,
+    this.labels = const [],
     this.inventoryItemId,
+    this.listingId,
     this.platformListingId,
     this.buyerUsername,
-    this.subject,
     @required this.platformConversationId,
     this.buyerPlatformId,
+    this.buyerAvatarUrl,
+    this.subject,
     @required this.isRead,
     @required this.isHidden,
     @required this.hasOffer,
@@ -33,7 +37,11 @@ class ListInboxItem {
     this.offerStatus,
     this.platformConversationUrl,
     this.lastMessageAt,
+    this.supersededAt,
+    @required this.isStarred,
   });
+
+  bool canSendOffer;
 
   String id;
 
@@ -41,25 +49,31 @@ class ListInboxItem {
 
   String userId;
 
-  String status;
-
   String platform;
-
-  String listingId;
 
   num accountSlot;
 
+  String status;
+
+  String source_;
+
+  List<String> labels;
+
   String inventoryItemId;
+
+  String listingId;
 
   String platformListingId;
 
   String buyerUsername;
 
-  String subject;
-
   String platformConversationId;
 
   String buyerPlatformId;
+
+  String buyerAvatarUrl;
+
+  String subject;
 
   bool isRead;
 
@@ -75,69 +89,90 @@ class ListInboxItem {
 
   DateTime lastMessageAt;
 
+  DateTime supersededAt;
+
+  bool isStarred;
+
   @override
   bool operator ==(Object other) => identical(this, other) || other is ListInboxItem &&
+     other.canSendOffer == canSendOffer &&
      other.id == id &&
      other.createdAt == createdAt &&
      other.userId == userId &&
-     other.status == status &&
      other.platform == platform &&
-     other.listingId == listingId &&
      other.accountSlot == accountSlot &&
+     other.status == status &&
+     other.source_ == source_ &&
+     other.labels == labels &&
      other.inventoryItemId == inventoryItemId &&
+     other.listingId == listingId &&
      other.platformListingId == platformListingId &&
      other.buyerUsername == buyerUsername &&
-     other.subject == subject &&
      other.platformConversationId == platformConversationId &&
      other.buyerPlatformId == buyerPlatformId &&
+     other.buyerAvatarUrl == buyerAvatarUrl &&
+     other.subject == subject &&
      other.isRead == isRead &&
      other.isHidden == isHidden &&
      other.hasOffer == hasOffer &&
      other.offerAmount == offerAmount &&
      other.offerStatus == offerStatus &&
      other.platformConversationUrl == platformConversationUrl &&
-     other.lastMessageAt == lastMessageAt;
+     other.lastMessageAt == lastMessageAt &&
+     other.supersededAt == supersededAt &&
+     other.isStarred == isStarred;
 
   @override
   int get hashCode =>
   // ignore: unnecessary_parenthesis
+    (canSendOffer == null ? 0 : canSendOffer.hashCode) +
     (id == null ? 0 : id.hashCode) +
     (createdAt == null ? 0 : createdAt.hashCode) +
     (userId == null ? 0 : userId.hashCode) +
-    (status == null ? 0 : status.hashCode) +
     (platform == null ? 0 : platform.hashCode) +
-    (listingId == null ? 0 : listingId.hashCode) +
     (accountSlot == null ? 0 : accountSlot.hashCode) +
+    (status == null ? 0 : status.hashCode) +
+    (source_ == null ? 0 : source_.hashCode) +
+    (labels == null ? 0 : labels.hashCode) +
     (inventoryItemId == null ? 0 : inventoryItemId.hashCode) +
+    (listingId == null ? 0 : listingId.hashCode) +
     (platformListingId == null ? 0 : platformListingId.hashCode) +
     (buyerUsername == null ? 0 : buyerUsername.hashCode) +
-    (subject == null ? 0 : subject.hashCode) +
     (platformConversationId == null ? 0 : platformConversationId.hashCode) +
     (buyerPlatformId == null ? 0 : buyerPlatformId.hashCode) +
+    (buyerAvatarUrl == null ? 0 : buyerAvatarUrl.hashCode) +
+    (subject == null ? 0 : subject.hashCode) +
     (isRead == null ? 0 : isRead.hashCode) +
     (isHidden == null ? 0 : isHidden.hashCode) +
     (hasOffer == null ? 0 : hasOffer.hashCode) +
     (offerAmount == null ? 0 : offerAmount.hashCode) +
     (offerStatus == null ? 0 : offerStatus.hashCode) +
     (platformConversationUrl == null ? 0 : platformConversationUrl.hashCode) +
-    (lastMessageAt == null ? 0 : lastMessageAt.hashCode);
+    (lastMessageAt == null ? 0 : lastMessageAt.hashCode) +
+    (supersededAt == null ? 0 : supersededAt.hashCode) +
+    (isStarred == null ? 0 : isStarred.hashCode);
 
   @override
-  String toString() => 'ListInboxItem[id=$id, createdAt=$createdAt, userId=$userId, status=$status, platform=$platform, listingId=$listingId, accountSlot=$accountSlot, inventoryItemId=$inventoryItemId, platformListingId=$platformListingId, buyerUsername=$buyerUsername, subject=$subject, platformConversationId=$platformConversationId, buyerPlatformId=$buyerPlatformId, isRead=$isRead, isHidden=$isHidden, hasOffer=$hasOffer, offerAmount=$offerAmount, offerStatus=$offerStatus, platformConversationUrl=$platformConversationUrl, lastMessageAt=$lastMessageAt]';
+  String toString() => 'ListInboxItem[canSendOffer=$canSendOffer, id=$id, createdAt=$createdAt, userId=$userId, platform=$platform, accountSlot=$accountSlot, status=$status, source_=$source_, labels=$labels, inventoryItemId=$inventoryItemId, listingId=$listingId, platformListingId=$platformListingId, buyerUsername=$buyerUsername, platformConversationId=$platformConversationId, buyerPlatformId=$buyerPlatformId, buyerAvatarUrl=$buyerAvatarUrl, subject=$subject, isRead=$isRead, isHidden=$isHidden, hasOffer=$hasOffer, offerAmount=$offerAmount, offerStatus=$offerStatus, platformConversationUrl=$platformConversationUrl, lastMessageAt=$lastMessageAt, supersededAt=$supersededAt, isStarred=$isStarred]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
+      json[r'canSendOffer'] = canSendOffer;
       json[r'id'] = id;
       json[r'createdAt'] = createdAt.toUtc().toIso8601String();
       json[r'userId'] = userId;
-      json[r'status'] = status;
       json[r'platform'] = platform;
-    if (listingId != null) {
-      json[r'listingId'] = listingId;
-    }
       json[r'accountSlot'] = accountSlot;
+      json[r'status'] = status;
+    if (source_ != null) {
+      json[r'source'] = source_;
+    }
+      json[r'labels'] = labels;
     if (inventoryItemId != null) {
       json[r'inventoryItemId'] = inventoryItemId;
+    }
+    if (listingId != null) {
+      json[r'listingId'] = listingId;
     }
     if (platformListingId != null) {
       json[r'platformListingId'] = platformListingId;
@@ -145,12 +180,15 @@ class ListInboxItem {
     if (buyerUsername != null) {
       json[r'buyerUsername'] = buyerUsername;
     }
-    if (subject != null) {
-      json[r'subject'] = subject;
-    }
       json[r'platformConversationId'] = platformConversationId;
     if (buyerPlatformId != null) {
       json[r'buyerPlatformId'] = buyerPlatformId;
+    }
+    if (buyerAvatarUrl != null) {
+      json[r'buyerAvatarUrl'] = buyerAvatarUrl;
+    }
+    if (subject != null) {
+      json[r'subject'] = subject;
     }
       json[r'isRead'] = isRead;
       json[r'isHidden'] = isHidden;
@@ -167,6 +205,10 @@ class ListInboxItem {
     if (lastMessageAt != null) {
       json[r'lastMessageAt'] = lastMessageAt.toUtc().toIso8601String();
     }
+    if (supersededAt != null) {
+      json[r'supersededAt'] = supersededAt.toUtc().toIso8601String();
+    }
+      json[r'isStarred'] = isStarred;
     return json;
   }
 
@@ -177,21 +219,27 @@ class ListInboxItem {
     if (value is Map) {
       final json = value.cast<String, dynamic>();
       return ListInboxItem(
+        canSendOffer: mapValueOfType<bool>(json, r'canSendOffer'),
         id: mapValueOfType<String>(json, r'id'),
         createdAt: mapDateTime(json, r'createdAt', ''),
         userId: mapValueOfType<String>(json, r'userId'),
-        status: mapValueOfType<String>(json, r'status'),
         platform: mapValueOfType<String>(json, r'platform'),
-        listingId: mapValueOfType<String>(json, r'listingId'),
         accountSlot: json[r'accountSlot'] == null
           ? null
           : num.parse(json[r'accountSlot'].toString()),
+        status: mapValueOfType<String>(json, r'status'),
+        source_: mapValueOfType<String>(json, r'source'),
+        labels: json[r'labels'] is List
+          ? (json[r'labels'] as List).cast<String>()
+          : null,
         inventoryItemId: mapValueOfType<String>(json, r'inventoryItemId'),
+        listingId: mapValueOfType<String>(json, r'listingId'),
         platformListingId: mapValueOfType<String>(json, r'platformListingId'),
         buyerUsername: mapValueOfType<String>(json, r'buyerUsername'),
-        subject: mapValueOfType<String>(json, r'subject'),
         platformConversationId: mapValueOfType<String>(json, r'platformConversationId'),
         buyerPlatformId: mapValueOfType<String>(json, r'buyerPlatformId'),
+        buyerAvatarUrl: mapValueOfType<String>(json, r'buyerAvatarUrl'),
+        subject: mapValueOfType<String>(json, r'subject'),
         isRead: mapValueOfType<bool>(json, r'isRead'),
         isHidden: mapValueOfType<bool>(json, r'isHidden'),
         hasOffer: mapValueOfType<bool>(json, r'hasOffer'),
@@ -199,6 +247,8 @@ class ListInboxItem {
         offerStatus: mapValueOfType<String>(json, r'offerStatus'),
         platformConversationUrl: mapValueOfType<String>(json, r'platformConversationUrl'),
         lastMessageAt: mapDateTime(json, r'lastMessageAt', ''),
+        supersededAt: mapDateTime(json, r'supersededAt', ''),
+        isStarred: mapValueOfType<bool>(json, r'isStarred'),
       );
     }
     return null;

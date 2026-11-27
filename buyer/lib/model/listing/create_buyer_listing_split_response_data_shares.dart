@@ -14,37 +14,37 @@ class CreateBuyerListingSplitResponseDataShares {
   /// Returns a new [CreateBuyerListingSplitResponseDataShares] instance.
   CreateBuyerListingSplitResponseDataShares({
     @required this.token,
-    @required this.position,
     @required this.shareCents,
+    @required this.position,
   });
 
   String token;
 
-  num position;
-
   num shareCents;
+
+  num position;
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is CreateBuyerListingSplitResponseDataShares &&
      other.token == token &&
-     other.position == position &&
-     other.shareCents == shareCents;
+     other.shareCents == shareCents &&
+     other.position == position;
 
   @override
   int get hashCode =>
   // ignore: unnecessary_parenthesis
     (token == null ? 0 : token.hashCode) +
-    (position == null ? 0 : position.hashCode) +
-    (shareCents == null ? 0 : shareCents.hashCode);
+    (shareCents == null ? 0 : shareCents.hashCode) +
+    (position == null ? 0 : position.hashCode);
 
   @override
-  String toString() => 'CreateBuyerListingSplitResponseDataShares[token=$token, position=$position, shareCents=$shareCents]';
+  String toString() => 'CreateBuyerListingSplitResponseDataShares[token=$token, shareCents=$shareCents, position=$position]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
       json[r'token'] = token;
-      json[r'position'] = position;
       json[r'shareCents'] = shareCents;
+      json[r'position'] = position;
     return json;
   }
 
@@ -56,12 +56,12 @@ class CreateBuyerListingSplitResponseDataShares {
       final json = value.cast<String, dynamic>();
       return CreateBuyerListingSplitResponseDataShares(
         token: mapValueOfType<String>(json, r'token'),
-        position: json[r'position'] == null
-          ? null
-          : num.parse(json[r'position'].toString()),
         shareCents: json[r'shareCents'] == null
           ? null
           : num.parse(json[r'shareCents'].toString()),
+        position: json[r'position'] == null
+          ? null
+          : num.parse(json[r'position'].toString()),
       );
     }
     return null;

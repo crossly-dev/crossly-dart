@@ -23,7 +23,7 @@ class ListWorldFriendsItem {
 
   String displayName;
 
-  NameSlug room;
+  NameSlug2 room;
 
   String homeSlug;
 
@@ -69,7 +69,7 @@ class ListWorldFriendsItem {
       return ListWorldFriendsItem(
         userId: mapValueOfType<String>(json, r'userId'),
         displayName: mapValueOfType<String>(json, r'displayName'),
-        room: NameSlug.fromJson(json[r'room']),
+        room: NameSlug2.fromJson(json[r'room']),
         homeSlug: mapValueOfType<String>(json, r'homeSlug'),
       );
     }

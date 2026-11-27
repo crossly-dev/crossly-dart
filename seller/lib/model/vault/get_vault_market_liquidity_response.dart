@@ -203,15 +203,15 @@ class GetVaultMarketLiquidityResponseBucketEnum {
 
   String toJson() => value;
 
-  static const high = GetVaultMarketLiquidityResponseBucketEnum._(r'high');
   static const mid = GetVaultMarketLiquidityResponseBucketEnum._(r'mid');
   static const low = GetVaultMarketLiquidityResponseBucketEnum._(r'low');
+  static const high = GetVaultMarketLiquidityResponseBucketEnum._(r'high');
 
   /// List of all possible values in this [enum][GetVaultMarketLiquidityResponseBucketEnum].
   static const values = <GetVaultMarketLiquidityResponseBucketEnum>[
-    high,
     mid,
     low,
+    high,
   ];
 
   static GetVaultMarketLiquidityResponseBucketEnum fromJson(dynamic value) =>
@@ -243,9 +243,9 @@ class GetVaultMarketLiquidityResponseBucketEnumTypeTransformer {
   GetVaultMarketLiquidityResponseBucketEnum decode(dynamic data, {bool allowNull}) {
     if (data != null) {
       switch (data.toString()) {
-        case r'high': return GetVaultMarketLiquidityResponseBucketEnum.high;
         case r'mid': return GetVaultMarketLiquidityResponseBucketEnum.mid;
         case r'low': return GetVaultMarketLiquidityResponseBucketEnum.low;
+        case r'high': return GetVaultMarketLiquidityResponseBucketEnum.high;
         default:
           if (allowNull == false) {
             throw ArgumentError('Unknown enum value to decode: $data');

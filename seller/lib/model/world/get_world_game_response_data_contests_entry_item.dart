@@ -24,14 +24,14 @@ class GetWorldGameResponseDataContestsEntryItem {
   String toJson() => value;
 
   static const free = GetWorldGameResponseDataContestsEntryItem._(r'free');
-  static const sponsored = GetWorldGameResponseDataContestsEntryItem._(r'sponsored');
   static const paid = GetWorldGameResponseDataContestsEntryItem._(r'paid');
+  static const sponsored = GetWorldGameResponseDataContestsEntryItem._(r'sponsored');
 
   /// List of all possible values in this [enum][GetWorldGameResponseDataContestsEntryItem].
   static const values = <GetWorldGameResponseDataContestsEntryItem>[
     free,
-    sponsored,
     paid,
+    sponsored,
   ];
 
   static GetWorldGameResponseDataContestsEntryItem fromJson(dynamic value) =>
@@ -64,8 +64,8 @@ class GetWorldGameResponseDataContestsEntryItemTypeTransformer {
     if (data != null) {
       switch (data.toString()) {
         case r'free': return GetWorldGameResponseDataContestsEntryItem.free;
-        case r'sponsored': return GetWorldGameResponseDataContestsEntryItem.sponsored;
         case r'paid': return GetWorldGameResponseDataContestsEntryItem.paid;
+        case r'sponsored': return GetWorldGameResponseDataContestsEntryItem.sponsored;
         default:
           if (allowNull == false) {
             throw ArgumentError('Unknown enum value to decode: $data');

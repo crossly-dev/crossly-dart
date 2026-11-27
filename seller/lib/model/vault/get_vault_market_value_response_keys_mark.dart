@@ -127,16 +127,16 @@ class GetVaultMarketValueResponseKeysMarkQualityEnum {
   String toJson() => value;
 
   static const none = GetVaultMarketValueResponseKeysMarkQualityEnum._(r'none');
+  static const C = GetVaultMarketValueResponseKeysMarkQualityEnum._(r'C');
   static const A = GetVaultMarketValueResponseKeysMarkQualityEnum._(r'A');
   static const B = GetVaultMarketValueResponseKeysMarkQualityEnum._(r'B');
-  static const C = GetVaultMarketValueResponseKeysMarkQualityEnum._(r'C');
 
   /// List of all possible values in this [enum][GetVaultMarketValueResponseKeysMarkQualityEnum].
   static const values = <GetVaultMarketValueResponseKeysMarkQualityEnum>[
     none,
+    C,
     A,
     B,
-    C,
   ];
 
   static GetVaultMarketValueResponseKeysMarkQualityEnum fromJson(dynamic value) =>
@@ -169,9 +169,9 @@ class GetVaultMarketValueResponseKeysMarkQualityEnumTypeTransformer {
     if (data != null) {
       switch (data.toString()) {
         case r'none': return GetVaultMarketValueResponseKeysMarkQualityEnum.none;
+        case r'C': return GetVaultMarketValueResponseKeysMarkQualityEnum.C;
         case r'A': return GetVaultMarketValueResponseKeysMarkQualityEnum.A;
         case r'B': return GetVaultMarketValueResponseKeysMarkQualityEnum.B;
-        case r'C': return GetVaultMarketValueResponseKeysMarkQualityEnum.C;
         default:
           if (allowNull == false) {
             throw ArgumentError('Unknown enum value to decode: $data');

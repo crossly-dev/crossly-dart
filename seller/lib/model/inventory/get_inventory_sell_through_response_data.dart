@@ -17,22 +17,26 @@ class GetInventorySellThroughResponseData {
     @required this.previous,
     @required this.comparison,
     @required this.window,
+    @required this.cohort,
   });
 
-  GetAnalyticDashboardResponseSellThrough current;
+  GetInventorySellThroughResponseDataCurrent current;
 
-  GetAnalyticDashboardResponseSellThrough previous;
+  GetInventorySellThroughResponseDataCurrent previous;
 
   GetInventorySellThroughResponseDataComparison comparison;
 
-  GetInventorySellThroughResponseDataWindow window;
+  StartEnd window;
+
+  GetAnalyticDashboardResponseSellThroughCohort cohort;
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is GetInventorySellThroughResponseData &&
      other.current == current &&
      other.previous == previous &&
      other.comparison == comparison &&
-     other.window == window;
+     other.window == window &&
+     other.cohort == cohort;
 
   @override
   int get hashCode =>
@@ -40,10 +44,11 @@ class GetInventorySellThroughResponseData {
     (current == null ? 0 : current.hashCode) +
     (previous == null ? 0 : previous.hashCode) +
     (comparison == null ? 0 : comparison.hashCode) +
-    (window == null ? 0 : window.hashCode);
+    (window == null ? 0 : window.hashCode) +
+    (cohort == null ? 0 : cohort.hashCode);
 
   @override
-  String toString() => 'GetInventorySellThroughResponseData[current=$current, previous=$previous, comparison=$comparison, window=$window]';
+  String toString() => 'GetInventorySellThroughResponseData[current=$current, previous=$previous, comparison=$comparison, window=$window, cohort=$cohort]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -51,6 +56,7 @@ class GetInventorySellThroughResponseData {
       json[r'previous'] = previous;
       json[r'comparison'] = comparison;
       json[r'window'] = window;
+      json[r'cohort'] = cohort;
     return json;
   }
 
@@ -61,10 +67,11 @@ class GetInventorySellThroughResponseData {
     if (value is Map) {
       final json = value.cast<String, dynamic>();
       return GetInventorySellThroughResponseData(
-        current: GetAnalyticDashboardResponseSellThrough.fromJson(json[r'current']),
-        previous: GetAnalyticDashboardResponseSellThrough.fromJson(json[r'previous']),
+        current: GetInventorySellThroughResponseDataCurrent.fromJson(json[r'current']),
+        previous: GetInventorySellThroughResponseDataCurrent.fromJson(json[r'previous']),
         comparison: GetInventorySellThroughResponseDataComparison.fromJson(json[r'comparison']),
-        window: GetInventorySellThroughResponseDataWindow.fromJson(json[r'window']),
+        window: StartEnd.fromJson(json[r'window']),
+        cohort: GetAnalyticDashboardResponseSellThroughCohort.fromJson(json[r'cohort']),
       );
     }
     return null;

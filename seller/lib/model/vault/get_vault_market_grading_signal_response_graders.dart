@@ -149,13 +149,13 @@ class GetVaultMarketGradingSignalResponseGradersViaEnum {
 
   String toJson() => value;
 
-  static const run = GetVaultMarketGradingSignalResponseGradersViaEnum._(r'run');
   static const single = GetVaultMarketGradingSignalResponseGradersViaEnum._(r'single');
+  static const run = GetVaultMarketGradingSignalResponseGradersViaEnum._(r'run');
 
   /// List of all possible values in this [enum][GetVaultMarketGradingSignalResponseGradersViaEnum].
   static const values = <GetVaultMarketGradingSignalResponseGradersViaEnum>[
-    run,
     single,
+    run,
   ];
 
   static GetVaultMarketGradingSignalResponseGradersViaEnum fromJson(dynamic value) =>
@@ -187,8 +187,8 @@ class GetVaultMarketGradingSignalResponseGradersViaEnumTypeTransformer {
   GetVaultMarketGradingSignalResponseGradersViaEnum decode(dynamic data, {bool allowNull}) {
     if (data != null) {
       switch (data.toString()) {
-        case r'run': return GetVaultMarketGradingSignalResponseGradersViaEnum.run;
         case r'single': return GetVaultMarketGradingSignalResponseGradersViaEnum.single;
+        case r'run': return GetVaultMarketGradingSignalResponseGradersViaEnum.run;
         default:
           if (allowNull == false) {
             throw ArgumentError('Unknown enum value to decode: $data');

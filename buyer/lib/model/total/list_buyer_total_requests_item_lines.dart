@@ -13,32 +13,32 @@ part of openapi.api;
 class ListBuyerTotalRequestsItemLines {
   /// Returns a new [ListBuyerTotalRequestsItemLines] instance.
   ListBuyerTotalRequestsItemLines({
-    @required this.quantity,
     @required this.platformListingId,
+    @required this.quantity,
   });
-
-  num quantity;
 
   String platformListingId;
 
+  num quantity;
+
   @override
   bool operator ==(Object other) => identical(this, other) || other is ListBuyerTotalRequestsItemLines &&
-     other.quantity == quantity &&
-     other.platformListingId == platformListingId;
+     other.platformListingId == platformListingId &&
+     other.quantity == quantity;
 
   @override
   int get hashCode =>
   // ignore: unnecessary_parenthesis
-    (quantity == null ? 0 : quantity.hashCode) +
-    (platformListingId == null ? 0 : platformListingId.hashCode);
+    (platformListingId == null ? 0 : platformListingId.hashCode) +
+    (quantity == null ? 0 : quantity.hashCode);
 
   @override
-  String toString() => 'ListBuyerTotalRequestsItemLines[quantity=$quantity, platformListingId=$platformListingId]';
+  String toString() => 'ListBuyerTotalRequestsItemLines[platformListingId=$platformListingId, quantity=$quantity]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-      json[r'quantity'] = quantity;
       json[r'platformListingId'] = platformListingId;
+      json[r'quantity'] = quantity;
     return json;
   }
 
@@ -49,10 +49,10 @@ class ListBuyerTotalRequestsItemLines {
     if (value is Map) {
       final json = value.cast<String, dynamic>();
       return ListBuyerTotalRequestsItemLines(
+        platformListingId: mapValueOfType<String>(json, r'platformListingId'),
         quantity: json[r'quantity'] == null
           ? null
           : num.parse(json[r'quantity'].toString()),
-        platformListingId: mapValueOfType<String>(json, r'platformListingId'),
       );
     }
     return null;

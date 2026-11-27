@@ -14,43 +14,43 @@ class CreateVaultMarketValuationStatementResponseTotalsByQuality {
   /// Returns a new [CreateVaultMarketValuationStatementResponseTotalsByQuality] instance.
   CreateVaultMarketValuationStatementResponseTotalsByQuality({
     @required this.none,
+    @required this.C,
     @required this.A,
     @required this.B,
-    @required this.C,
   });
 
   UnitsCents none;
+
+  UnitsCents C;
 
   UnitsCents A;
 
   UnitsCents B;
 
-  UnitsCents C;
-
   @override
   bool operator ==(Object other) => identical(this, other) || other is CreateVaultMarketValuationStatementResponseTotalsByQuality &&
      other.none == none &&
+     other.C == C &&
      other.A == A &&
-     other.B == B &&
-     other.C == C;
+     other.B == B;
 
   @override
   int get hashCode =>
   // ignore: unnecessary_parenthesis
     (none == null ? 0 : none.hashCode) +
+    (C == null ? 0 : C.hashCode) +
     (A == null ? 0 : A.hashCode) +
-    (B == null ? 0 : B.hashCode) +
-    (C == null ? 0 : C.hashCode);
+    (B == null ? 0 : B.hashCode);
 
   @override
-  String toString() => 'CreateVaultMarketValuationStatementResponseTotalsByQuality[none=$none, A=$A, B=$B, C=$C]';
+  String toString() => 'CreateVaultMarketValuationStatementResponseTotalsByQuality[none=$none, C=$C, A=$A, B=$B]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
       json[r'none'] = none;
+      json[r'C'] = C;
       json[r'A'] = A;
       json[r'B'] = B;
-      json[r'C'] = C;
     return json;
   }
 
@@ -62,9 +62,9 @@ class CreateVaultMarketValuationStatementResponseTotalsByQuality {
       final json = value.cast<String, dynamic>();
       return CreateVaultMarketValuationStatementResponseTotalsByQuality(
         none: UnitsCents.fromJson(json[r'none']),
+        C: UnitsCents.fromJson(json[r'C']),
         A: UnitsCents.fromJson(json[r'A']),
         B: UnitsCents.fromJson(json[r'B']),
-        C: UnitsCents.fromJson(json[r'C']),
       );
     }
     return null;

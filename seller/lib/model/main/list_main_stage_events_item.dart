@@ -158,16 +158,16 @@ class ListMainStageEventsItemKindEnum {
 
   String toJson() => value;
 
-  static const creatorMeetup = ListMainStageEventsItemKindEnum._(r'creator_meetup');
   static const brandLaunch = ListMainStageEventsItemKindEnum._(r'brand_launch');
+  static const creatorMeetup = ListMainStageEventsItemKindEnum._(r'creator_meetup');
   static const festival = ListMainStageEventsItemKindEnum._(r'festival');
   static const talk = ListMainStageEventsItemKindEnum._(r'talk');
   static const liveSale = ListMainStageEventsItemKindEnum._(r'live_sale');
 
   /// List of all possible values in this [enum][ListMainStageEventsItemKindEnum].
   static const values = <ListMainStageEventsItemKindEnum>[
-    creatorMeetup,
     brandLaunch,
+    creatorMeetup,
     festival,
     talk,
     liveSale,
@@ -202,8 +202,8 @@ class ListMainStageEventsItemKindEnumTypeTransformer {
   ListMainStageEventsItemKindEnum decode(dynamic data, {bool allowNull}) {
     if (data != null) {
       switch (data.toString()) {
-        case r'creator_meetup': return ListMainStageEventsItemKindEnum.creatorMeetup;
         case r'brand_launch': return ListMainStageEventsItemKindEnum.brandLaunch;
+        case r'creator_meetup': return ListMainStageEventsItemKindEnum.creatorMeetup;
         case r'festival': return ListMainStageEventsItemKindEnum.festival;
         case r'talk': return ListMainStageEventsItemKindEnum.talk;
         case r'live_sale': return ListMainStageEventsItemKindEnum.liveSale;

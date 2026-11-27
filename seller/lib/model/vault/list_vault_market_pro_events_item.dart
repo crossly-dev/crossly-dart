@@ -18,10 +18,10 @@ class ListVaultMarketProEventsItem {
     this.quantity,
     @required this.orderId,
     @required this.kind,
-    @required this.seq,
-    this.detail,
     this.priceCents,
     this.tradeId,
+    this.detail,
+    @required this.seq,
   });
 
   DateTime createdAt;
@@ -34,13 +34,13 @@ class ListVaultMarketProEventsItem {
 
   String kind;
 
-  num seq;
-
-  Map<String, Object> detail;
-
   num priceCents;
 
   String tradeId;
+
+  Map<String, Object> detail;
+
+  num seq;
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is ListVaultMarketProEventsItem &&
@@ -49,10 +49,10 @@ class ListVaultMarketProEventsItem {
      other.quantity == quantity &&
      other.orderId == orderId &&
      other.kind == kind &&
-     other.seq == seq &&
-     other.detail == detail &&
      other.priceCents == priceCents &&
-     other.tradeId == tradeId;
+     other.tradeId == tradeId &&
+     other.detail == detail &&
+     other.seq == seq;
 
   @override
   int get hashCode =>
@@ -62,13 +62,13 @@ class ListVaultMarketProEventsItem {
     (quantity == null ? 0 : quantity.hashCode) +
     (orderId == null ? 0 : orderId.hashCode) +
     (kind == null ? 0 : kind.hashCode) +
-    (seq == null ? 0 : seq.hashCode) +
-    (detail == null ? 0 : detail.hashCode) +
     (priceCents == null ? 0 : priceCents.hashCode) +
-    (tradeId == null ? 0 : tradeId.hashCode);
+    (tradeId == null ? 0 : tradeId.hashCode) +
+    (detail == null ? 0 : detail.hashCode) +
+    (seq == null ? 0 : seq.hashCode);
 
   @override
-  String toString() => 'ListVaultMarketProEventsItem[createdAt=$createdAt, userId=$userId, quantity=$quantity, orderId=$orderId, kind=$kind, seq=$seq, detail=$detail, priceCents=$priceCents, tradeId=$tradeId]';
+  String toString() => 'ListVaultMarketProEventsItem[createdAt=$createdAt, userId=$userId, quantity=$quantity, orderId=$orderId, kind=$kind, priceCents=$priceCents, tradeId=$tradeId, detail=$detail, seq=$seq]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -79,16 +79,16 @@ class ListVaultMarketProEventsItem {
     }
       json[r'orderId'] = orderId;
       json[r'kind'] = kind;
-      json[r'seq'] = seq;
-    if (detail != null) {
-      json[r'detail'] = detail;
-    }
     if (priceCents != null) {
       json[r'priceCents'] = priceCents;
     }
     if (tradeId != null) {
       json[r'tradeId'] = tradeId;
     }
+    if (detail != null) {
+      json[r'detail'] = detail;
+    }
+      json[r'seq'] = seq;
     return json;
   }
 
@@ -106,14 +106,14 @@ class ListVaultMarketProEventsItem {
           : num.parse(json[r'quantity'].toString()),
         orderId: mapValueOfType<String>(json, r'orderId'),
         kind: mapValueOfType<String>(json, r'kind'),
-        seq: json[r'seq'] == null
-          ? null
-          : num.parse(json[r'seq'].toString()),
-        detail: mapValueOfType<Map<String, Object>>(json, r'detail'),
         priceCents: json[r'priceCents'] == null
           ? null
           : num.parse(json[r'priceCents'].toString()),
         tradeId: mapValueOfType<String>(json, r'tradeId'),
+        detail: mapValueOfType<Map<String, Object>>(json, r'detail'),
+        seq: json[r'seq'] == null
+          ? null
+          : num.parse(json[r'seq'].toString()),
       );
     }
     return null;

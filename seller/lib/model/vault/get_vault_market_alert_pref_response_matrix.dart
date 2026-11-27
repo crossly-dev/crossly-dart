@@ -13,10 +13,12 @@ part of openapi.api;
 class GetVaultMarketAlertPrefResponseMatrix {
   /// Returns a new [GetVaultMarketAlertPrefResponseMatrix] instance.
   GetVaultMarketAlertPrefResponseMatrix({
-    @required this.price,
-    @required this.auction,
-    @required this.fill,
     @required this.account,
+    @required this.price,
+    @required this.fill,
+    @required this.auction,
+    @required this.prediction,
+    @required this.optionExpiry,
     @required this.marginCall,
     @required this.adl,
     @required this.p2pLoan,
@@ -24,68 +26,98 @@ class GetVaultMarketAlertPrefResponseMatrix {
     @required this.receiptToken,
     @required this.setGoal,
     @required this.follow,
+    @required this.shareOffering,
+    @required this.shareVote,
+    @required this.optionSettlement,
+    @required this.predictionOdds,
   });
 
-  GetVaultMarketAlertPrefResponseMatrixPrice price;
+  GetVaultMarketAlertPrefResponseMatrixAccount account;
 
-  GetVaultMarketAlertPrefResponseMatrixPrice auction;
+  GetVaultMarketAlertPrefResponseMatrixAccount price;
 
-  GetVaultMarketAlertPrefResponseMatrixPrice fill;
+  GetVaultMarketAlertPrefResponseMatrixAccount fill;
 
-  GetVaultMarketAlertPrefResponseMatrixPrice account;
+  GetVaultMarketAlertPrefResponseMatrixAccount auction;
 
-  GetVaultMarketAlertPrefResponseMatrixPrice marginCall;
+  GetVaultMarketAlertPrefResponseMatrixAccount prediction;
 
-  GetVaultMarketAlertPrefResponseMatrixPrice adl;
+  GetVaultMarketAlertPrefResponseMatrixAccount optionExpiry;
 
-  GetVaultMarketAlertPrefResponseMatrixPrice p2pLoan;
+  GetVaultMarketAlertPrefResponseMatrixAccount marginCall;
 
-  GetVaultMarketAlertPrefResponseMatrixPrice marketOpen;
+  GetVaultMarketAlertPrefResponseMatrixAccount adl;
 
-  GetVaultMarketAlertPrefResponseMatrixPrice receiptToken;
+  GetVaultMarketAlertPrefResponseMatrixAccount p2pLoan;
 
-  GetVaultMarketAlertPrefResponseMatrixPrice setGoal;
+  GetVaultMarketAlertPrefResponseMatrixAccount marketOpen;
 
-  GetVaultMarketAlertPrefResponseMatrixPrice follow;
+  GetVaultMarketAlertPrefResponseMatrixAccount receiptToken;
+
+  GetVaultMarketAlertPrefResponseMatrixAccount setGoal;
+
+  GetVaultMarketAlertPrefResponseMatrixAccount follow;
+
+  GetVaultMarketAlertPrefResponseMatrixAccount shareOffering;
+
+  GetVaultMarketAlertPrefResponseMatrixAccount shareVote;
+
+  GetVaultMarketAlertPrefResponseMatrixAccount optionSettlement;
+
+  GetVaultMarketAlertPrefResponseMatrixAccount predictionOdds;
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is GetVaultMarketAlertPrefResponseMatrix &&
-     other.price == price &&
-     other.auction == auction &&
-     other.fill == fill &&
      other.account == account &&
+     other.price == price &&
+     other.fill == fill &&
+     other.auction == auction &&
+     other.prediction == prediction &&
+     other.optionExpiry == optionExpiry &&
      other.marginCall == marginCall &&
      other.adl == adl &&
      other.p2pLoan == p2pLoan &&
      other.marketOpen == marketOpen &&
      other.receiptToken == receiptToken &&
      other.setGoal == setGoal &&
-     other.follow == follow;
+     other.follow == follow &&
+     other.shareOffering == shareOffering &&
+     other.shareVote == shareVote &&
+     other.optionSettlement == optionSettlement &&
+     other.predictionOdds == predictionOdds;
 
   @override
   int get hashCode =>
   // ignore: unnecessary_parenthesis
-    (price == null ? 0 : price.hashCode) +
-    (auction == null ? 0 : auction.hashCode) +
-    (fill == null ? 0 : fill.hashCode) +
     (account == null ? 0 : account.hashCode) +
+    (price == null ? 0 : price.hashCode) +
+    (fill == null ? 0 : fill.hashCode) +
+    (auction == null ? 0 : auction.hashCode) +
+    (prediction == null ? 0 : prediction.hashCode) +
+    (optionExpiry == null ? 0 : optionExpiry.hashCode) +
     (marginCall == null ? 0 : marginCall.hashCode) +
     (adl == null ? 0 : adl.hashCode) +
     (p2pLoan == null ? 0 : p2pLoan.hashCode) +
     (marketOpen == null ? 0 : marketOpen.hashCode) +
     (receiptToken == null ? 0 : receiptToken.hashCode) +
     (setGoal == null ? 0 : setGoal.hashCode) +
-    (follow == null ? 0 : follow.hashCode);
+    (follow == null ? 0 : follow.hashCode) +
+    (shareOffering == null ? 0 : shareOffering.hashCode) +
+    (shareVote == null ? 0 : shareVote.hashCode) +
+    (optionSettlement == null ? 0 : optionSettlement.hashCode) +
+    (predictionOdds == null ? 0 : predictionOdds.hashCode);
 
   @override
-  String toString() => 'GetVaultMarketAlertPrefResponseMatrix[price=$price, auction=$auction, fill=$fill, account=$account, marginCall=$marginCall, adl=$adl, p2pLoan=$p2pLoan, marketOpen=$marketOpen, receiptToken=$receiptToken, setGoal=$setGoal, follow=$follow]';
+  String toString() => 'GetVaultMarketAlertPrefResponseMatrix[account=$account, price=$price, fill=$fill, auction=$auction, prediction=$prediction, optionExpiry=$optionExpiry, marginCall=$marginCall, adl=$adl, p2pLoan=$p2pLoan, marketOpen=$marketOpen, receiptToken=$receiptToken, setGoal=$setGoal, follow=$follow, shareOffering=$shareOffering, shareVote=$shareVote, optionSettlement=$optionSettlement, predictionOdds=$predictionOdds]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-      json[r'price'] = price;
-      json[r'auction'] = auction;
-      json[r'fill'] = fill;
       json[r'account'] = account;
+      json[r'price'] = price;
+      json[r'fill'] = fill;
+      json[r'auction'] = auction;
+      json[r'prediction'] = prediction;
+      json[r'option_expiry'] = optionExpiry;
       json[r'margin_call'] = marginCall;
       json[r'adl'] = adl;
       json[r'p2p_loan'] = p2pLoan;
@@ -93,6 +125,10 @@ class GetVaultMarketAlertPrefResponseMatrix {
       json[r'receipt_token'] = receiptToken;
       json[r'set_goal'] = setGoal;
       json[r'follow'] = follow;
+      json[r'share_offering'] = shareOffering;
+      json[r'share_vote'] = shareVote;
+      json[r'option_settlement'] = optionSettlement;
+      json[r'prediction_odds'] = predictionOdds;
     return json;
   }
 
@@ -103,17 +139,23 @@ class GetVaultMarketAlertPrefResponseMatrix {
     if (value is Map) {
       final json = value.cast<String, dynamic>();
       return GetVaultMarketAlertPrefResponseMatrix(
-        price: GetVaultMarketAlertPrefResponseMatrixPrice.fromJson(json[r'price']),
-        auction: GetVaultMarketAlertPrefResponseMatrixPrice.fromJson(json[r'auction']),
-        fill: GetVaultMarketAlertPrefResponseMatrixPrice.fromJson(json[r'fill']),
-        account: GetVaultMarketAlertPrefResponseMatrixPrice.fromJson(json[r'account']),
-        marginCall: GetVaultMarketAlertPrefResponseMatrixPrice.fromJson(json[r'margin_call']),
-        adl: GetVaultMarketAlertPrefResponseMatrixPrice.fromJson(json[r'adl']),
-        p2pLoan: GetVaultMarketAlertPrefResponseMatrixPrice.fromJson(json[r'p2p_loan']),
-        marketOpen: GetVaultMarketAlertPrefResponseMatrixPrice.fromJson(json[r'market_open']),
-        receiptToken: GetVaultMarketAlertPrefResponseMatrixPrice.fromJson(json[r'receipt_token']),
-        setGoal: GetVaultMarketAlertPrefResponseMatrixPrice.fromJson(json[r'set_goal']),
-        follow: GetVaultMarketAlertPrefResponseMatrixPrice.fromJson(json[r'follow']),
+        account: GetVaultMarketAlertPrefResponseMatrixAccount.fromJson(json[r'account']),
+        price: GetVaultMarketAlertPrefResponseMatrixAccount.fromJson(json[r'price']),
+        fill: GetVaultMarketAlertPrefResponseMatrixAccount.fromJson(json[r'fill']),
+        auction: GetVaultMarketAlertPrefResponseMatrixAccount.fromJson(json[r'auction']),
+        prediction: GetVaultMarketAlertPrefResponseMatrixAccount.fromJson(json[r'prediction']),
+        optionExpiry: GetVaultMarketAlertPrefResponseMatrixAccount.fromJson(json[r'option_expiry']),
+        marginCall: GetVaultMarketAlertPrefResponseMatrixAccount.fromJson(json[r'margin_call']),
+        adl: GetVaultMarketAlertPrefResponseMatrixAccount.fromJson(json[r'adl']),
+        p2pLoan: GetVaultMarketAlertPrefResponseMatrixAccount.fromJson(json[r'p2p_loan']),
+        marketOpen: GetVaultMarketAlertPrefResponseMatrixAccount.fromJson(json[r'market_open']),
+        receiptToken: GetVaultMarketAlertPrefResponseMatrixAccount.fromJson(json[r'receipt_token']),
+        setGoal: GetVaultMarketAlertPrefResponseMatrixAccount.fromJson(json[r'set_goal']),
+        follow: GetVaultMarketAlertPrefResponseMatrixAccount.fromJson(json[r'follow']),
+        shareOffering: GetVaultMarketAlertPrefResponseMatrixAccount.fromJson(json[r'share_offering']),
+        shareVote: GetVaultMarketAlertPrefResponseMatrixAccount.fromJson(json[r'share_vote']),
+        optionSettlement: GetVaultMarketAlertPrefResponseMatrixAccount.fromJson(json[r'option_settlement']),
+        predictionOdds: GetVaultMarketAlertPrefResponseMatrixAccount.fromJson(json[r'prediction_odds']),
       );
     }
     return null;

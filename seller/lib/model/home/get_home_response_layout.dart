@@ -20,6 +20,7 @@ class GetHomeResponseLayout {
     @required this.rotationY,
     this.slot,
     this.set_,
+    this.tint,
     this.item,
   });
 
@@ -40,6 +41,9 @@ class GetHomeResponseLayout {
   /// A set wall: which set it shows, \"category/brand/model\" (HOME_SET_KEY). Absent: the owner's most complete.
   String set_;
 
+  /// A furniture piece's colour (HOME_TINTS key): its fabric and finish take it. Absent: as made.
+  GetHomeResponseLayoutTintEnum tint;
+
   GetHomeResponseLayoutItem item;
 
   @override
@@ -51,6 +55,7 @@ class GetHomeResponseLayout {
      other.rotationY == rotationY &&
      other.slot == slot &&
      other.set_ == set_ &&
+     other.tint == tint &&
      other.item == item;
 
   @override
@@ -63,10 +68,11 @@ class GetHomeResponseLayout {
     (rotationY == null ? 0 : rotationY.hashCode) +
     (slot == null ? 0 : slot.hashCode) +
     (set_ == null ? 0 : set_.hashCode) +
+    (tint == null ? 0 : tint.hashCode) +
     (item == null ? 0 : item.hashCode);
 
   @override
-  String toString() => 'GetHomeResponseLayout[kind=$kind, model=$model, ref=$ref, position=$position, rotationY=$rotationY, slot=$slot, set_=$set_, item=$item]';
+  String toString() => 'GetHomeResponseLayout[kind=$kind, model=$model, ref=$ref, position=$position, rotationY=$rotationY, slot=$slot, set_=$set_, tint=$tint, item=$item]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -82,6 +88,9 @@ class GetHomeResponseLayout {
     }
     if (set_ != null) {
       json[r'set'] = set_;
+    }
+    if (tint != null) {
+      json[r'tint'] = tint;
     }
     if (item != null) {
       json[r'item'] = item;
@@ -109,6 +118,7 @@ class GetHomeResponseLayout {
           ? null
           : num.parse(json[r'slot'].toString()),
         set_: mapValueOfType<String>(json, r'set'),
+        tint: GetHomeResponseLayoutTintEnum.fromJson(json[r'tint']),
         item: GetHomeResponseLayoutItem.fromJson(json[r'item']),
       );
     }
@@ -212,6 +222,91 @@ class GetHomeResponseLayoutKindEnumTypeTransformer {
 
   /// Singleton [GetHomeResponseLayoutKindEnumTypeTransformer] instance.
   static GetHomeResponseLayoutKindEnumTypeTransformer _instance;
+}
+
+
+/// A furniture piece's colour (HOME_TINTS key): its fabric and finish take it. Absent: as made.
+class GetHomeResponseLayoutTintEnum {
+  /// Instantiate a new enum with the provided [value].
+  const GetHomeResponseLayoutTintEnum._(this.value);
+
+  /// The underlying value of this enum member.
+  final String value;
+
+  @override
+  String toString() => value ?? '';
+
+  String toJson() => value;
+
+  static const oat = GetHomeResponseLayoutTintEnum._(r'oat');
+  static const sage = GetHomeResponseLayoutTintEnum._(r'sage');
+  static const forest = GetHomeResponseLayoutTintEnum._(r'forest');
+  static const navy = GetHomeResponseLayoutTintEnum._(r'navy');
+  static const clay = GetHomeResponseLayoutTintEnum._(r'clay');
+  static const mustard = GetHomeResponseLayoutTintEnum._(r'mustard');
+  static const blush = GetHomeResponseLayoutTintEnum._(r'blush');
+  static const charcoal = GetHomeResponseLayoutTintEnum._(r'charcoal');
+
+  /// List of all possible values in this [enum][GetHomeResponseLayoutTintEnum].
+  static const values = <GetHomeResponseLayoutTintEnum>[
+    oat,
+    sage,
+    forest,
+    navy,
+    clay,
+    mustard,
+    blush,
+    charcoal,
+  ];
+
+  static GetHomeResponseLayoutTintEnum fromJson(dynamic value) =>
+    GetHomeResponseLayoutTintEnumTypeTransformer().decode(value);
+
+  static List<GetHomeResponseLayoutTintEnum> listFromJson(dynamic json, {bool emptyIsNull, bool growable,}) =>
+    json is List && json.isNotEmpty
+      ? json.map(GetHomeResponseLayoutTintEnum.fromJson).toList(growable: true == growable)
+      : true == emptyIsNull ? null : <GetHomeResponseLayoutTintEnum>[];
+}
+
+/// Transformation class that can [encode] an instance of [GetHomeResponseLayoutTintEnum] to String,
+/// and [decode] dynamic data back to [GetHomeResponseLayoutTintEnum].
+class GetHomeResponseLayoutTintEnumTypeTransformer {
+  factory GetHomeResponseLayoutTintEnumTypeTransformer() => _instance ??= const GetHomeResponseLayoutTintEnumTypeTransformer._();
+
+  const GetHomeResponseLayoutTintEnumTypeTransformer._();
+
+  String encode(GetHomeResponseLayoutTintEnum data) => data.value;
+
+  /// Decodes a [dynamic value][data] to a GetHomeResponseLayoutTintEnum.
+  ///
+  /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
+  /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
+  /// cannot be decoded successfully, then an [UnimplementedError] is thrown.
+  ///
+  /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
+  /// and users are still using an old app with the old code.
+  GetHomeResponseLayoutTintEnum decode(dynamic data, {bool allowNull}) {
+    if (data != null) {
+      switch (data.toString()) {
+        case r'oat': return GetHomeResponseLayoutTintEnum.oat;
+        case r'sage': return GetHomeResponseLayoutTintEnum.sage;
+        case r'forest': return GetHomeResponseLayoutTintEnum.forest;
+        case r'navy': return GetHomeResponseLayoutTintEnum.navy;
+        case r'clay': return GetHomeResponseLayoutTintEnum.clay;
+        case r'mustard': return GetHomeResponseLayoutTintEnum.mustard;
+        case r'blush': return GetHomeResponseLayoutTintEnum.blush;
+        case r'charcoal': return GetHomeResponseLayoutTintEnum.charcoal;
+        default:
+          if (allowNull == false) {
+            throw ArgumentError('Unknown enum value to decode: $data');
+          }
+      }
+    }
+    return null;
+  }
+
+  /// Singleton [GetHomeResponseLayoutTintEnumTypeTransformer] instance.
+  static GetHomeResponseLayoutTintEnumTypeTransformer _instance;
 }
 
 

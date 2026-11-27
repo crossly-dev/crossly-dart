@@ -14,47 +14,47 @@ class GetBuyerPurchaseDeliveryResponseData {
   /// Returns a new [GetBuyerPurchaseDeliveryResponseData] instance.
   GetBuyerPurchaseDeliveryResponseData({
     this.pickupPoint,
-    this.carrier,
     this.trackingNumber,
+    this.carrier,
     this.consolidation,
   });
 
   Map<String, Object> pickupPoint;
 
-  String carrier;
-
   String trackingNumber;
+
+  String carrier;
 
   Map<String, Object> consolidation;
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is GetBuyerPurchaseDeliveryResponseData &&
      other.pickupPoint == pickupPoint &&
-     other.carrier == carrier &&
      other.trackingNumber == trackingNumber &&
+     other.carrier == carrier &&
      other.consolidation == consolidation;
 
   @override
   int get hashCode =>
   // ignore: unnecessary_parenthesis
     (pickupPoint == null ? 0 : pickupPoint.hashCode) +
-    (carrier == null ? 0 : carrier.hashCode) +
     (trackingNumber == null ? 0 : trackingNumber.hashCode) +
+    (carrier == null ? 0 : carrier.hashCode) +
     (consolidation == null ? 0 : consolidation.hashCode);
 
   @override
-  String toString() => 'GetBuyerPurchaseDeliveryResponseData[pickupPoint=$pickupPoint, carrier=$carrier, trackingNumber=$trackingNumber, consolidation=$consolidation]';
+  String toString() => 'GetBuyerPurchaseDeliveryResponseData[pickupPoint=$pickupPoint, trackingNumber=$trackingNumber, carrier=$carrier, consolidation=$consolidation]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     if (pickupPoint != null) {
       json[r'pickupPoint'] = pickupPoint;
     }
-    if (carrier != null) {
-      json[r'carrier'] = carrier;
-    }
     if (trackingNumber != null) {
       json[r'trackingNumber'] = trackingNumber;
+    }
+    if (carrier != null) {
+      json[r'carrier'] = carrier;
     }
     if (consolidation != null) {
       json[r'consolidation'] = consolidation;
@@ -70,8 +70,8 @@ class GetBuyerPurchaseDeliveryResponseData {
       final json = value.cast<String, dynamic>();
       return GetBuyerPurchaseDeliveryResponseData(
         pickupPoint: mapValueOfType<Map<String, Object>>(json, r'pickupPoint'),
-        carrier: mapValueOfType<String>(json, r'carrier'),
         trackingNumber: mapValueOfType<String>(json, r'trackingNumber'),
+        carrier: mapValueOfType<String>(json, r'carrier'),
         consolidation: mapValueOfType<Map<String, Object>>(json, r'consolidation'),
       );
     }

@@ -16,7 +16,7 @@ class UpdateInboxConversationResponse {
     @required this.conversation,
   });
 
-  ListInboxItem conversation;
+  UpdateInboxConversationResponseConversation conversation;
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is UpdateInboxConversationResponse &&
@@ -43,7 +43,7 @@ class UpdateInboxConversationResponse {
     if (value is Map) {
       final json = value.cast<String, dynamic>();
       return UpdateInboxConversationResponse(
-        conversation: ListInboxItem.fromJson(json[r'conversation']),
+        conversation: UpdateInboxConversationResponseConversation.fromJson(json[r'conversation']),
       );
     }
     return null;

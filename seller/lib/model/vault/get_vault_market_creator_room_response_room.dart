@@ -171,17 +171,17 @@ class GetVaultMarketCreatorRoomResponseRoomStatusEnum {
 
   String toJson() => value;
 
-  static const applied = GetVaultMarketCreatorRoomResponseRoomStatusEnum._(r'applied');
-  static const verified = GetVaultMarketCreatorRoomResponseRoomStatusEnum._(r'verified');
-  static const rejected = GetVaultMarketCreatorRoomResponseRoomStatusEnum._(r'rejected');
   static const paused = GetVaultMarketCreatorRoomResponseRoomStatusEnum._(r'paused');
+  static const verified = GetVaultMarketCreatorRoomResponseRoomStatusEnum._(r'verified');
+  static const applied = GetVaultMarketCreatorRoomResponseRoomStatusEnum._(r'applied');
+  static const rejected = GetVaultMarketCreatorRoomResponseRoomStatusEnum._(r'rejected');
 
   /// List of all possible values in this [enum][GetVaultMarketCreatorRoomResponseRoomStatusEnum].
   static const values = <GetVaultMarketCreatorRoomResponseRoomStatusEnum>[
-    applied,
-    verified,
-    rejected,
     paused,
+    verified,
+    applied,
+    rejected,
   ];
 
   static GetVaultMarketCreatorRoomResponseRoomStatusEnum fromJson(dynamic value) =>
@@ -213,10 +213,10 @@ class GetVaultMarketCreatorRoomResponseRoomStatusEnumTypeTransformer {
   GetVaultMarketCreatorRoomResponseRoomStatusEnum decode(dynamic data, {bool allowNull}) {
     if (data != null) {
       switch (data.toString()) {
-        case r'applied': return GetVaultMarketCreatorRoomResponseRoomStatusEnum.applied;
-        case r'verified': return GetVaultMarketCreatorRoomResponseRoomStatusEnum.verified;
-        case r'rejected': return GetVaultMarketCreatorRoomResponseRoomStatusEnum.rejected;
         case r'paused': return GetVaultMarketCreatorRoomResponseRoomStatusEnum.paused;
+        case r'verified': return GetVaultMarketCreatorRoomResponseRoomStatusEnum.verified;
+        case r'applied': return GetVaultMarketCreatorRoomResponseRoomStatusEnum.applied;
+        case r'rejected': return GetVaultMarketCreatorRoomResponseRoomStatusEnum.rejected;
         default:
           if (allowNull == false) {
             throw ArgumentError('Unknown enum value to decode: $data');

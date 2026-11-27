@@ -142,11 +142,11 @@ class GetVaultMarketTodResponseClaimsStatusEnum {
   String toJson() => value;
 
   static const draft = GetVaultMarketTodResponseClaimsStatusEnum._(r'draft');
+  static const submitted = GetVaultMarketTodResponseClaimsStatusEnum._(r'submitted');
   static const rejected = GetVaultMarketTodResponseClaimsStatusEnum._(r'rejected');
   static const withdrawn = GetVaultMarketTodResponseClaimsStatusEnum._(r'withdrawn');
   static const released = GetVaultMarketTodResponseClaimsStatusEnum._(r'released');
   static const waiting = GetVaultMarketTodResponseClaimsStatusEnum._(r'waiting');
-  static const submitted = GetVaultMarketTodResponseClaimsStatusEnum._(r'submitted');
   static const needsInfo = GetVaultMarketTodResponseClaimsStatusEnum._(r'needs_info');
   static const partlyReleased = GetVaultMarketTodResponseClaimsStatusEnum._(r'partly_released');
   static const objected = GetVaultMarketTodResponseClaimsStatusEnum._(r'objected');
@@ -154,11 +154,11 @@ class GetVaultMarketTodResponseClaimsStatusEnum {
   /// List of all possible values in this [enum][GetVaultMarketTodResponseClaimsStatusEnum].
   static const values = <GetVaultMarketTodResponseClaimsStatusEnum>[
     draft,
+    submitted,
     rejected,
     withdrawn,
     released,
     waiting,
-    submitted,
     needsInfo,
     partlyReleased,
     objected,
@@ -194,11 +194,11 @@ class GetVaultMarketTodResponseClaimsStatusEnumTypeTransformer {
     if (data != null) {
       switch (data.toString()) {
         case r'draft': return GetVaultMarketTodResponseClaimsStatusEnum.draft;
+        case r'submitted': return GetVaultMarketTodResponseClaimsStatusEnum.submitted;
         case r'rejected': return GetVaultMarketTodResponseClaimsStatusEnum.rejected;
         case r'withdrawn': return GetVaultMarketTodResponseClaimsStatusEnum.withdrawn;
         case r'released': return GetVaultMarketTodResponseClaimsStatusEnum.released;
         case r'waiting': return GetVaultMarketTodResponseClaimsStatusEnum.waiting;
-        case r'submitted': return GetVaultMarketTodResponseClaimsStatusEnum.submitted;
         case r'needs_info': return GetVaultMarketTodResponseClaimsStatusEnum.needsInfo;
         case r'partly_released': return GetVaultMarketTodResponseClaimsStatusEnum.partlyReleased;
         case r'objected': return GetVaultMarketTodResponseClaimsStatusEnum.objected;

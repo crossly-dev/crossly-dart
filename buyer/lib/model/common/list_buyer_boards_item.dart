@@ -14,63 +14,63 @@ class ListBuyerBoardsItem {
   /// Returns a new [ListBuyerBoardsItem] instance.
   ListBuyerBoardsItem({
     @required this.id,
-    @required this.updatedAt,
-    @required this.isPublic,
-    @required this.itemCount,
     @required this.title,
+    @required this.isPublic,
     @required this.shareToken,
     this.coverUrl,
+    @required this.itemCount,
+    @required this.updatedAt,
   });
 
   String id;
 
-  String updatedAt;
+  String title;
 
   bool isPublic;
-
-  num itemCount;
-
-  String title;
 
   String shareToken;
 
   String coverUrl;
 
+  num itemCount;
+
+  String updatedAt;
+
   @override
   bool operator ==(Object other) => identical(this, other) || other is ListBuyerBoardsItem &&
      other.id == id &&
-     other.updatedAt == updatedAt &&
-     other.isPublic == isPublic &&
-     other.itemCount == itemCount &&
      other.title == title &&
+     other.isPublic == isPublic &&
      other.shareToken == shareToken &&
-     other.coverUrl == coverUrl;
+     other.coverUrl == coverUrl &&
+     other.itemCount == itemCount &&
+     other.updatedAt == updatedAt;
 
   @override
   int get hashCode =>
   // ignore: unnecessary_parenthesis
     (id == null ? 0 : id.hashCode) +
-    (updatedAt == null ? 0 : updatedAt.hashCode) +
-    (isPublic == null ? 0 : isPublic.hashCode) +
-    (itemCount == null ? 0 : itemCount.hashCode) +
     (title == null ? 0 : title.hashCode) +
+    (isPublic == null ? 0 : isPublic.hashCode) +
     (shareToken == null ? 0 : shareToken.hashCode) +
-    (coverUrl == null ? 0 : coverUrl.hashCode);
+    (coverUrl == null ? 0 : coverUrl.hashCode) +
+    (itemCount == null ? 0 : itemCount.hashCode) +
+    (updatedAt == null ? 0 : updatedAt.hashCode);
 
   @override
-  String toString() => 'ListBuyerBoardsItem[id=$id, updatedAt=$updatedAt, isPublic=$isPublic, itemCount=$itemCount, title=$title, shareToken=$shareToken, coverUrl=$coverUrl]';
+  String toString() => 'ListBuyerBoardsItem[id=$id, title=$title, isPublic=$isPublic, shareToken=$shareToken, coverUrl=$coverUrl, itemCount=$itemCount, updatedAt=$updatedAt]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
       json[r'id'] = id;
-      json[r'updatedAt'] = updatedAt;
-      json[r'isPublic'] = isPublic;
-      json[r'itemCount'] = itemCount;
       json[r'title'] = title;
+      json[r'isPublic'] = isPublic;
       json[r'shareToken'] = shareToken;
     if (coverUrl != null) {
       json[r'coverUrl'] = coverUrl;
     }
+      json[r'itemCount'] = itemCount;
+      json[r'updatedAt'] = updatedAt;
     return json;
   }
 
@@ -82,14 +82,14 @@ class ListBuyerBoardsItem {
       final json = value.cast<String, dynamic>();
       return ListBuyerBoardsItem(
         id: mapValueOfType<String>(json, r'id'),
-        updatedAt: mapValueOfType<String>(json, r'updatedAt'),
+        title: mapValueOfType<String>(json, r'title'),
         isPublic: mapValueOfType<bool>(json, r'isPublic'),
+        shareToken: mapValueOfType<String>(json, r'shareToken'),
+        coverUrl: mapValueOfType<String>(json, r'coverUrl'),
         itemCount: json[r'itemCount'] == null
           ? null
           : num.parse(json[r'itemCount'].toString()),
-        title: mapValueOfType<String>(json, r'title'),
-        shareToken: mapValueOfType<String>(json, r'shareToken'),
-        coverUrl: mapValueOfType<String>(json, r'coverUrl'),
+        updatedAt: mapValueOfType<String>(json, r'updatedAt'),
       );
     }
     return null;

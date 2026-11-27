@@ -44,7 +44,7 @@ class ListReferenceCountriesItem {
 
   String stateLabel;
 
-  List<ListReferenceCountriesItemSubdivisions> subdivisions;
+  List<CodeName> subdivisions;
 
   bool embargoed;
 
@@ -116,7 +116,7 @@ class ListReferenceCountriesItem {
         postalLabel: mapValueOfType<String>(json, r'postalLabel'),
         stateRequired: mapValueOfType<bool>(json, r'stateRequired'),
         stateLabel: mapValueOfType<String>(json, r'stateLabel'),
-        subdivisions: ListReferenceCountriesItemSubdivisions.listFromJson(json[r'subdivisions']),
+        subdivisions: CodeName.listFromJson(json[r'subdivisions']),
         embargoed: mapValueOfType<bool>(json, r'embargoed'),
       );
     }

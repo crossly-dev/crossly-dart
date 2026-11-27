@@ -14,105 +14,132 @@ class ListAutomationRulesItem {
   /// Returns a new [ListAutomationRulesItem] instance.
   ListAutomationRulesItem({
     @required this.id,
+    @required this.userId,
     @required this.name,
+    @required this.isActive,
+    @required this.triggerType,
+    this.triggerConfig = const {},
+    this.conditionType,
+    this.conditionConfig,
+    @required this.actionType,
+    this.actionConfig = const {},
+    this.platforms,
+    this.lastRunAt,
+    this.nextRunAt,
+    @required this.runCount,
     @required this.createdAt,
     @required this.updatedAt,
-    @required this.userId,
-    @required this.isActive,
-    this.platforms,
-    this.nextRunAt,
-    this.lastRunAt,
-    @required this.triggerType,
-    this.conditionType,
-    @required this.actionType,
-    @required this.runCount,
+    @required this.workflowId,
   });
 
   String id;
 
+  String userId;
+
   String name;
+
+  bool isActive;
+
+  String triggerType;
+
+  Map<String, Object> triggerConfig;
+
+  String conditionType;
+
+  Map<String, Object> conditionConfig;
+
+  String actionType;
+
+  Map<String, Object> actionConfig;
+
+  List<String> platforms;
+
+  DateTime lastRunAt;
+
+  DateTime nextRunAt;
+
+  num runCount;
 
   DateTime createdAt;
 
   DateTime updatedAt;
 
-  String userId;
-
-  bool isActive;
-
-  List<String> platforms;
-
-  DateTime nextRunAt;
-
-  DateTime lastRunAt;
-
-  String triggerType;
-
-  String conditionType;
-
-  String actionType;
-
-  num runCount;
+  /// The workflow this rule is (open it in /v1/workflows).
+  String workflowId;
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is ListAutomationRulesItem &&
      other.id == id &&
+     other.userId == userId &&
      other.name == name &&
+     other.isActive == isActive &&
+     other.triggerType == triggerType &&
+     other.triggerConfig == triggerConfig &&
+     other.conditionType == conditionType &&
+     other.conditionConfig == conditionConfig &&
+     other.actionType == actionType &&
+     other.actionConfig == actionConfig &&
+     other.platforms == platforms &&
+     other.lastRunAt == lastRunAt &&
+     other.nextRunAt == nextRunAt &&
+     other.runCount == runCount &&
      other.createdAt == createdAt &&
      other.updatedAt == updatedAt &&
-     other.userId == userId &&
-     other.isActive == isActive &&
-     other.platforms == platforms &&
-     other.nextRunAt == nextRunAt &&
-     other.lastRunAt == lastRunAt &&
-     other.triggerType == triggerType &&
-     other.conditionType == conditionType &&
-     other.actionType == actionType &&
-     other.runCount == runCount;
+     other.workflowId == workflowId;
 
   @override
   int get hashCode =>
   // ignore: unnecessary_parenthesis
     (id == null ? 0 : id.hashCode) +
+    (userId == null ? 0 : userId.hashCode) +
     (name == null ? 0 : name.hashCode) +
+    (isActive == null ? 0 : isActive.hashCode) +
+    (triggerType == null ? 0 : triggerType.hashCode) +
+    (triggerConfig == null ? 0 : triggerConfig.hashCode) +
+    (conditionType == null ? 0 : conditionType.hashCode) +
+    (conditionConfig == null ? 0 : conditionConfig.hashCode) +
+    (actionType == null ? 0 : actionType.hashCode) +
+    (actionConfig == null ? 0 : actionConfig.hashCode) +
+    (platforms == null ? 0 : platforms.hashCode) +
+    (lastRunAt == null ? 0 : lastRunAt.hashCode) +
+    (nextRunAt == null ? 0 : nextRunAt.hashCode) +
+    (runCount == null ? 0 : runCount.hashCode) +
     (createdAt == null ? 0 : createdAt.hashCode) +
     (updatedAt == null ? 0 : updatedAt.hashCode) +
-    (userId == null ? 0 : userId.hashCode) +
-    (isActive == null ? 0 : isActive.hashCode) +
-    (platforms == null ? 0 : platforms.hashCode) +
-    (nextRunAt == null ? 0 : nextRunAt.hashCode) +
-    (lastRunAt == null ? 0 : lastRunAt.hashCode) +
-    (triggerType == null ? 0 : triggerType.hashCode) +
-    (conditionType == null ? 0 : conditionType.hashCode) +
-    (actionType == null ? 0 : actionType.hashCode) +
-    (runCount == null ? 0 : runCount.hashCode);
+    (workflowId == null ? 0 : workflowId.hashCode);
 
   @override
-  String toString() => 'ListAutomationRulesItem[id=$id, name=$name, createdAt=$createdAt, updatedAt=$updatedAt, userId=$userId, isActive=$isActive, platforms=$platforms, nextRunAt=$nextRunAt, lastRunAt=$lastRunAt, triggerType=$triggerType, conditionType=$conditionType, actionType=$actionType, runCount=$runCount]';
+  String toString() => 'ListAutomationRulesItem[id=$id, userId=$userId, name=$name, isActive=$isActive, triggerType=$triggerType, triggerConfig=$triggerConfig, conditionType=$conditionType, conditionConfig=$conditionConfig, actionType=$actionType, actionConfig=$actionConfig, platforms=$platforms, lastRunAt=$lastRunAt, nextRunAt=$nextRunAt, runCount=$runCount, createdAt=$createdAt, updatedAt=$updatedAt, workflowId=$workflowId]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
       json[r'id'] = id;
-      json[r'name'] = name;
-      json[r'createdAt'] = createdAt.toUtc().toIso8601String();
-      json[r'updatedAt'] = updatedAt.toUtc().toIso8601String();
       json[r'userId'] = userId;
+      json[r'name'] = name;
       json[r'isActive'] = isActive;
+      json[r'triggerType'] = triggerType;
+      json[r'triggerConfig'] = triggerConfig;
+    if (conditionType != null) {
+      json[r'conditionType'] = conditionType;
+    }
+    if (conditionConfig != null) {
+      json[r'conditionConfig'] = conditionConfig;
+    }
+      json[r'actionType'] = actionType;
+      json[r'actionConfig'] = actionConfig;
     if (platforms != null) {
       json[r'platforms'] = platforms;
-    }
-    if (nextRunAt != null) {
-      json[r'nextRunAt'] = nextRunAt.toUtc().toIso8601String();
     }
     if (lastRunAt != null) {
       json[r'lastRunAt'] = lastRunAt.toUtc().toIso8601String();
     }
-      json[r'triggerType'] = triggerType;
-    if (conditionType != null) {
-      json[r'conditionType'] = conditionType;
+    if (nextRunAt != null) {
+      json[r'nextRunAt'] = nextRunAt.toUtc().toIso8601String();
     }
-      json[r'actionType'] = actionType;
       json[r'runCount'] = runCount;
+      json[r'createdAt'] = createdAt.toUtc().toIso8601String();
+      json[r'updatedAt'] = updatedAt.toUtc().toIso8601String();
+      json[r'workflowId'] = workflowId;
     return json;
   }
 
@@ -124,22 +151,26 @@ class ListAutomationRulesItem {
       final json = value.cast<String, dynamic>();
       return ListAutomationRulesItem(
         id: mapValueOfType<String>(json, r'id'),
-        name: mapValueOfType<String>(json, r'name'),
-        createdAt: mapDateTime(json, r'createdAt', ''),
-        updatedAt: mapDateTime(json, r'updatedAt', ''),
         userId: mapValueOfType<String>(json, r'userId'),
+        name: mapValueOfType<String>(json, r'name'),
         isActive: mapValueOfType<bool>(json, r'isActive'),
+        triggerType: mapValueOfType<String>(json, r'triggerType'),
+        triggerConfig: mapValueOfType<Map<String, Object>>(json, r'triggerConfig'),
+        conditionType: mapValueOfType<String>(json, r'conditionType'),
+        conditionConfig: mapValueOfType<Map<String, Object>>(json, r'conditionConfig'),
+        actionType: mapValueOfType<String>(json, r'actionType'),
+        actionConfig: mapValueOfType<Map<String, Object>>(json, r'actionConfig'),
         platforms: json[r'platforms'] is List
           ? (json[r'platforms'] as List).cast<String>()
           : null,
-        nextRunAt: mapDateTime(json, r'nextRunAt', ''),
         lastRunAt: mapDateTime(json, r'lastRunAt', ''),
-        triggerType: mapValueOfType<String>(json, r'triggerType'),
-        conditionType: mapValueOfType<String>(json, r'conditionType'),
-        actionType: mapValueOfType<String>(json, r'actionType'),
+        nextRunAt: mapDateTime(json, r'nextRunAt', ''),
         runCount: json[r'runCount'] == null
           ? null
           : num.parse(json[r'runCount'].toString()),
+        createdAt: mapDateTime(json, r'createdAt', ''),
+        updatedAt: mapDateTime(json, r'updatedAt', ''),
+        workflowId: mapValueOfType<String>(json, r'workflowId'),
       );
     }
     return null;

@@ -16,6 +16,10 @@ class GetAccountDeletionStatusResponsePending {
     @required this.id,
     @required this.requestedAt,
     @required this.scheduledFor,
+    this.pausedAt,
+    this.pauseReason,
+    @required this.listingCount,
+    @required this.inventoryCount,
   });
 
   String id;
@@ -24,27 +28,53 @@ class GetAccountDeletionStatusResponsePending {
 
   DateTime scheduledFor;
 
+  /// Set when the account was found in use: it waits for a re-confirmation.
+  DateTime pausedAt;
+
+  String pauseReason;
+
+  /// What the cascade will take.
+  num listingCount;
+
+  num inventoryCount;
+
   @override
   bool operator ==(Object other) => identical(this, other) || other is GetAccountDeletionStatusResponsePending &&
      other.id == id &&
      other.requestedAt == requestedAt &&
-     other.scheduledFor == scheduledFor;
+     other.scheduledFor == scheduledFor &&
+     other.pausedAt == pausedAt &&
+     other.pauseReason == pauseReason &&
+     other.listingCount == listingCount &&
+     other.inventoryCount == inventoryCount;
 
   @override
   int get hashCode =>
   // ignore: unnecessary_parenthesis
     (id == null ? 0 : id.hashCode) +
     (requestedAt == null ? 0 : requestedAt.hashCode) +
-    (scheduledFor == null ? 0 : scheduledFor.hashCode);
+    (scheduledFor == null ? 0 : scheduledFor.hashCode) +
+    (pausedAt == null ? 0 : pausedAt.hashCode) +
+    (pauseReason == null ? 0 : pauseReason.hashCode) +
+    (listingCount == null ? 0 : listingCount.hashCode) +
+    (inventoryCount == null ? 0 : inventoryCount.hashCode);
 
   @override
-  String toString() => 'GetAccountDeletionStatusResponsePending[id=$id, requestedAt=$requestedAt, scheduledFor=$scheduledFor]';
+  String toString() => 'GetAccountDeletionStatusResponsePending[id=$id, requestedAt=$requestedAt, scheduledFor=$scheduledFor, pausedAt=$pausedAt, pauseReason=$pauseReason, listingCount=$listingCount, inventoryCount=$inventoryCount]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
       json[r'id'] = id;
       json[r'requestedAt'] = requestedAt.toUtc().toIso8601String();
       json[r'scheduledFor'] = scheduledFor.toUtc().toIso8601String();
+    if (pausedAt != null) {
+      json[r'pausedAt'] = pausedAt.toUtc().toIso8601String();
+    }
+    if (pauseReason != null) {
+      json[r'pauseReason'] = pauseReason;
+    }
+      json[r'listingCount'] = listingCount;
+      json[r'inventoryCount'] = inventoryCount;
     return json;
   }
 
@@ -58,6 +88,14 @@ class GetAccountDeletionStatusResponsePending {
         id: mapValueOfType<String>(json, r'id'),
         requestedAt: mapDateTime(json, r'requestedAt', ''),
         scheduledFor: mapDateTime(json, r'scheduledFor', ''),
+        pausedAt: mapDateTime(json, r'pausedAt', ''),
+        pauseReason: mapValueOfType<String>(json, r'pauseReason'),
+        listingCount: json[r'listingCount'] == null
+          ? null
+          : num.parse(json[r'listingCount'].toString()),
+        inventoryCount: json[r'inventoryCount'] == null
+          ? null
+          : num.parse(json[r'inventoryCount'].toString()),
       );
     }
     return null;

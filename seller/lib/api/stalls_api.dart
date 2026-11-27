@@ -122,6 +122,66 @@ class StallsApi {
     return Future<CreateStallBookingCancelResponse>.value();
   }
 
+  /// A stall counter: the listings you picked (in order), its booth kind and capacity.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<Response> getStallBookingCounterWithHttpInfo(String id,) async {
+    // Verify required params are set.
+    if (id == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: id');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/stalls/bookings/{id}/counter'
+      .replaceAll('{id}', id);
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// A stall counter: the listings you picked (in order), its booth kind and capacity.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<GetStallBookingCounterResponse> getStallBookingCounter(String id,) async {
+    final response = await getStallBookingCounterWithHttpInfo(id,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'GetStallBookingCounterResponse',) as GetStallBookingCounterResponse;
+    
+    }
+    return Future<GetStallBookingCounterResponse>.value();
+  }
+
   /// Quote a stall: street, spot, and either unit=day with start (YYYY-MM-DD) and days, or unit=event with events (comma-separated event ids). Returns the line items in cents, the rails the spot accepts and whether it is bookable.
   ///
   /// Note: This method returns the HTTP [Response].
@@ -223,6 +283,112 @@ class StallsApi {
     
     }
     return Future<GetStallQuoteResponse>.value();
+  }
+
+  /// A street from above for booking: every spot with its owner, booth size, counter capacity and price, the street events, and who is booked on each date.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] slug (required):
+  Future<Response> getStallStreetAerialWithHttpInfo(String slug,) async {
+    // Verify required params are set.
+    if (slug == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: slug');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/stalls/streets/{slug}/aerial'
+      .replaceAll('{slug}', slug);
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// A street from above for booking: every spot with its owner, booth size, counter capacity and price, the street events, and who is booked on each date.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] slug (required):
+  Future<GetStallStreetAerialResponse> getStallStreetAerial(String slug,) async {
+    final response = await getStallStreetAerialWithHttpInfo(slug,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'GetStallStreetAerialResponse',) as GetStallStreetAerialResponse;
+    
+    }
+    return Future<GetStallStreetAerialResponse>.value();
+  }
+
+  /// Search ANY of your live Crossly listings for a stall counter or convention booth: q, category, min, max (cents), street (marks what its terms allow), limit, offset.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  Future<Response> listStallListingSearchWithHttpInfo() async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/stalls/listing-search';
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Search ANY of your live Crossly listings for a stall counter or convention booth: q, category, min, max (cents), street (marks what its terms allow), limit, offset.
+  Future<ListStallListingSearchResponse> listStallListingSearch() async {
+    final response = await listStallListingSearchWithHttpInfo();
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'ListStallListingSearchResponse',) as ListStallListingSearchResponse;
+    
+    }
+    return Future<ListStallListingSearchResponse>.value();
   }
 
   /// Your stall bookings, newest first, with visits, offers and sales while the stall was up.

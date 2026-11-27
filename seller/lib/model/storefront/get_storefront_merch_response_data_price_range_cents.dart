@@ -1,0 +1,95 @@
+//
+// AUTO-GENERATED FILE, DO NOT MODIFY!
+//
+// @dart=2.0
+
+// ignore_for_file: unused_element, unused_import
+// ignore_for_file: always_put_required_named_parameters_first
+// ignore_for_file: constant_identifier_names
+// ignore_for_file: lines_longer_than_80_chars
+
+part of openapi.api;
+
+class GetStorefrontMerchResponseDataPriceRangeCents {
+  /// Returns a new [GetStorefrontMerchResponseDataPriceRangeCents] instance.
+  GetStorefrontMerchResponseDataPriceRangeCents({
+    @required this.min,
+    @required this.max,
+  });
+
+  num min;
+
+  num max;
+
+  @override
+  bool operator ==(Object other) => identical(this, other) || other is GetStorefrontMerchResponseDataPriceRangeCents &&
+     other.min == min &&
+     other.max == max;
+
+  @override
+  int get hashCode =>
+  // ignore: unnecessary_parenthesis
+    (min == null ? 0 : min.hashCode) +
+    (max == null ? 0 : max.hashCode);
+
+  @override
+  String toString() => 'GetStorefrontMerchResponseDataPriceRangeCents[min=$min, max=$max]';
+
+  Map<String, dynamic> toJson() {
+    final json = <String, dynamic>{};
+      json[r'min'] = min;
+      json[r'max'] = max;
+    return json;
+  }
+
+  /// Returns a new [GetStorefrontMerchResponseDataPriceRangeCents] instance and imports its values from
+  /// [value] if it's a [Map], null otherwise.
+  // ignore: prefer_constructors_over_static_methods
+  static GetStorefrontMerchResponseDataPriceRangeCents fromJson(dynamic value) {
+    if (value is Map) {
+      final json = value.cast<String, dynamic>();
+      return GetStorefrontMerchResponseDataPriceRangeCents(
+        min: json[r'min'] == null
+          ? null
+          : num.parse(json[r'min'].toString()),
+        max: json[r'max'] == null
+          ? null
+          : num.parse(json[r'max'].toString()),
+      );
+    }
+    return null;
+  }
+
+  static List<GetStorefrontMerchResponseDataPriceRangeCents> listFromJson(dynamic json, {bool emptyIsNull, bool growable,}) =>
+    json is List && json.isNotEmpty
+      ? json.map(GetStorefrontMerchResponseDataPriceRangeCents.fromJson).toList(growable: true == growable)
+      : true == emptyIsNull ? null : <GetStorefrontMerchResponseDataPriceRangeCents>[];
+
+  static Map<String, GetStorefrontMerchResponseDataPriceRangeCents> mapFromJson(dynamic json) {
+    final map = <String, GetStorefrontMerchResponseDataPriceRangeCents>{};
+    if (json is Map && json.isNotEmpty) {
+      json
+        .cast<String, dynamic>()
+        .forEach((key, dynamic value) => map[key] = GetStorefrontMerchResponseDataPriceRangeCents.fromJson(value));
+    }
+    return map;
+  }
+
+  // maps a json object with a list of GetStorefrontMerchResponseDataPriceRangeCents-objects as value to a dart map
+  static Map<String, List<GetStorefrontMerchResponseDataPriceRangeCents>> mapListFromJson(dynamic json, {bool emptyIsNull, bool growable,}) {
+    final map = <String, List<GetStorefrontMerchResponseDataPriceRangeCents>>{};
+    if (json is Map && json.isNotEmpty) {
+      json
+        .cast<String, dynamic>()
+        .forEach((key, dynamic value) {
+          map[key] = GetStorefrontMerchResponseDataPriceRangeCents.listFromJson(
+            value,
+            emptyIsNull: emptyIsNull,
+            growable: growable,
+          );
+        });
+    }
+    return map;
+  }
+}
+

@@ -14,17 +14,17 @@ class CreateVaultMarketAlertPrefTestResponsePlan {
   /// Returns a new [CreateVaultMarketAlertPrefTestResponsePlan] instance.
   CreateVaultMarketAlertPrefTestResponsePlan({
     @required this.email,
-    @required this.webhook,
     @required this.push,
+    @required this.webhook,
     @required this.telegram,
     @required this.terminal,
   });
 
   CreateVaultMarketAlertPrefTestResponsePlanEmailEnum email;
 
-  CreateVaultMarketAlertPrefTestResponsePlanWebhookEnum webhook;
-
   CreateVaultMarketAlertPrefTestResponsePlanPushEnum push;
+
+  CreateVaultMarketAlertPrefTestResponsePlanWebhookEnum webhook;
 
   CreateVaultMarketAlertPrefTestResponsePlanTelegramEnum telegram;
 
@@ -33,8 +33,8 @@ class CreateVaultMarketAlertPrefTestResponsePlan {
   @override
   bool operator ==(Object other) => identical(this, other) || other is CreateVaultMarketAlertPrefTestResponsePlan &&
      other.email == email &&
-     other.webhook == webhook &&
      other.push == push &&
+     other.webhook == webhook &&
      other.telegram == telegram &&
      other.terminal == terminal;
 
@@ -42,19 +42,19 @@ class CreateVaultMarketAlertPrefTestResponsePlan {
   int get hashCode =>
   // ignore: unnecessary_parenthesis
     (email == null ? 0 : email.hashCode) +
-    (webhook == null ? 0 : webhook.hashCode) +
     (push == null ? 0 : push.hashCode) +
+    (webhook == null ? 0 : webhook.hashCode) +
     (telegram == null ? 0 : telegram.hashCode) +
     (terminal == null ? 0 : terminal.hashCode);
 
   @override
-  String toString() => 'CreateVaultMarketAlertPrefTestResponsePlan[email=$email, webhook=$webhook, push=$push, telegram=$telegram, terminal=$terminal]';
+  String toString() => 'CreateVaultMarketAlertPrefTestResponsePlan[email=$email, push=$push, webhook=$webhook, telegram=$telegram, terminal=$terminal]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
       json[r'email'] = email;
-      json[r'webhook'] = webhook;
       json[r'push'] = push;
+      json[r'webhook'] = webhook;
       json[r'telegram'] = telegram;
       json[r'terminal'] = terminal;
     return json;
@@ -68,8 +68,8 @@ class CreateVaultMarketAlertPrefTestResponsePlan {
       final json = value.cast<String, dynamic>();
       return CreateVaultMarketAlertPrefTestResponsePlan(
         email: CreateVaultMarketAlertPrefTestResponsePlanEmailEnum.fromJson(json[r'email']),
-        webhook: CreateVaultMarketAlertPrefTestResponsePlanWebhookEnum.fromJson(json[r'webhook']),
         push: CreateVaultMarketAlertPrefTestResponsePlanPushEnum.fromJson(json[r'push']),
+        webhook: CreateVaultMarketAlertPrefTestResponsePlanWebhookEnum.fromJson(json[r'webhook']),
         telegram: CreateVaultMarketAlertPrefTestResponsePlanTelegramEnum.fromJson(json[r'telegram']),
         terminal: CreateVaultMarketAlertPrefTestResponsePlanTerminalEnum.fromJson(json[r'terminal']),
       );
@@ -184,79 +184,6 @@ class CreateVaultMarketAlertPrefTestResponsePlanEmailEnumTypeTransformer {
 
 
 
-class CreateVaultMarketAlertPrefTestResponsePlanWebhookEnum {
-  /// Instantiate a new enum with the provided [value].
-  const CreateVaultMarketAlertPrefTestResponsePlanWebhookEnum._(this.value);
-
-  /// The underlying value of this enum member.
-  final String value;
-
-  @override
-  String toString() => value ?? '';
-
-  String toJson() => value;
-
-  static const unavailable = CreateVaultMarketAlertPrefTestResponsePlanWebhookEnum._(r'unavailable');
-  static const off = CreateVaultMarketAlertPrefTestResponsePlanWebhookEnum._(r'off');
-  static const send = CreateVaultMarketAlertPrefTestResponsePlanWebhookEnum._(r'send');
-  static const quiet = CreateVaultMarketAlertPrefTestResponsePlanWebhookEnum._(r'quiet');
-
-  /// List of all possible values in this [enum][CreateVaultMarketAlertPrefTestResponsePlanWebhookEnum].
-  static const values = <CreateVaultMarketAlertPrefTestResponsePlanWebhookEnum>[
-    unavailable,
-    off,
-    send,
-    quiet,
-  ];
-
-  static CreateVaultMarketAlertPrefTestResponsePlanWebhookEnum fromJson(dynamic value) =>
-    CreateVaultMarketAlertPrefTestResponsePlanWebhookEnumTypeTransformer().decode(value);
-
-  static List<CreateVaultMarketAlertPrefTestResponsePlanWebhookEnum> listFromJson(dynamic json, {bool emptyIsNull, bool growable,}) =>
-    json is List && json.isNotEmpty
-      ? json.map(CreateVaultMarketAlertPrefTestResponsePlanWebhookEnum.fromJson).toList(growable: true == growable)
-      : true == emptyIsNull ? null : <CreateVaultMarketAlertPrefTestResponsePlanWebhookEnum>[];
-}
-
-/// Transformation class that can [encode] an instance of [CreateVaultMarketAlertPrefTestResponsePlanWebhookEnum] to String,
-/// and [decode] dynamic data back to [CreateVaultMarketAlertPrefTestResponsePlanWebhookEnum].
-class CreateVaultMarketAlertPrefTestResponsePlanWebhookEnumTypeTransformer {
-  factory CreateVaultMarketAlertPrefTestResponsePlanWebhookEnumTypeTransformer() => _instance ??= const CreateVaultMarketAlertPrefTestResponsePlanWebhookEnumTypeTransformer._();
-
-  const CreateVaultMarketAlertPrefTestResponsePlanWebhookEnumTypeTransformer._();
-
-  String encode(CreateVaultMarketAlertPrefTestResponsePlanWebhookEnum data) => data.value;
-
-  /// Decodes a [dynamic value][data] to a CreateVaultMarketAlertPrefTestResponsePlanWebhookEnum.
-  ///
-  /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
-  /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
-  /// cannot be decoded successfully, then an [UnimplementedError] is thrown.
-  ///
-  /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
-  /// and users are still using an old app with the old code.
-  CreateVaultMarketAlertPrefTestResponsePlanWebhookEnum decode(dynamic data, {bool allowNull}) {
-    if (data != null) {
-      switch (data.toString()) {
-        case r'unavailable': return CreateVaultMarketAlertPrefTestResponsePlanWebhookEnum.unavailable;
-        case r'off': return CreateVaultMarketAlertPrefTestResponsePlanWebhookEnum.off;
-        case r'send': return CreateVaultMarketAlertPrefTestResponsePlanWebhookEnum.send;
-        case r'quiet': return CreateVaultMarketAlertPrefTestResponsePlanWebhookEnum.quiet;
-        default:
-          if (allowNull == false) {
-            throw ArgumentError('Unknown enum value to decode: $data');
-          }
-      }
-    }
-    return null;
-  }
-
-  /// Singleton [CreateVaultMarketAlertPrefTestResponsePlanWebhookEnumTypeTransformer] instance.
-  static CreateVaultMarketAlertPrefTestResponsePlanWebhookEnumTypeTransformer _instance;
-}
-
-
-
 class CreateVaultMarketAlertPrefTestResponsePlanPushEnum {
   /// Instantiate a new enum with the provided [value].
   const CreateVaultMarketAlertPrefTestResponsePlanPushEnum._(this.value);
@@ -326,6 +253,79 @@ class CreateVaultMarketAlertPrefTestResponsePlanPushEnumTypeTransformer {
 
   /// Singleton [CreateVaultMarketAlertPrefTestResponsePlanPushEnumTypeTransformer] instance.
   static CreateVaultMarketAlertPrefTestResponsePlanPushEnumTypeTransformer _instance;
+}
+
+
+
+class CreateVaultMarketAlertPrefTestResponsePlanWebhookEnum {
+  /// Instantiate a new enum with the provided [value].
+  const CreateVaultMarketAlertPrefTestResponsePlanWebhookEnum._(this.value);
+
+  /// The underlying value of this enum member.
+  final String value;
+
+  @override
+  String toString() => value ?? '';
+
+  String toJson() => value;
+
+  static const unavailable = CreateVaultMarketAlertPrefTestResponsePlanWebhookEnum._(r'unavailable');
+  static const off = CreateVaultMarketAlertPrefTestResponsePlanWebhookEnum._(r'off');
+  static const send = CreateVaultMarketAlertPrefTestResponsePlanWebhookEnum._(r'send');
+  static const quiet = CreateVaultMarketAlertPrefTestResponsePlanWebhookEnum._(r'quiet');
+
+  /// List of all possible values in this [enum][CreateVaultMarketAlertPrefTestResponsePlanWebhookEnum].
+  static const values = <CreateVaultMarketAlertPrefTestResponsePlanWebhookEnum>[
+    unavailable,
+    off,
+    send,
+    quiet,
+  ];
+
+  static CreateVaultMarketAlertPrefTestResponsePlanWebhookEnum fromJson(dynamic value) =>
+    CreateVaultMarketAlertPrefTestResponsePlanWebhookEnumTypeTransformer().decode(value);
+
+  static List<CreateVaultMarketAlertPrefTestResponsePlanWebhookEnum> listFromJson(dynamic json, {bool emptyIsNull, bool growable,}) =>
+    json is List && json.isNotEmpty
+      ? json.map(CreateVaultMarketAlertPrefTestResponsePlanWebhookEnum.fromJson).toList(growable: true == growable)
+      : true == emptyIsNull ? null : <CreateVaultMarketAlertPrefTestResponsePlanWebhookEnum>[];
+}
+
+/// Transformation class that can [encode] an instance of [CreateVaultMarketAlertPrefTestResponsePlanWebhookEnum] to String,
+/// and [decode] dynamic data back to [CreateVaultMarketAlertPrefTestResponsePlanWebhookEnum].
+class CreateVaultMarketAlertPrefTestResponsePlanWebhookEnumTypeTransformer {
+  factory CreateVaultMarketAlertPrefTestResponsePlanWebhookEnumTypeTransformer() => _instance ??= const CreateVaultMarketAlertPrefTestResponsePlanWebhookEnumTypeTransformer._();
+
+  const CreateVaultMarketAlertPrefTestResponsePlanWebhookEnumTypeTransformer._();
+
+  String encode(CreateVaultMarketAlertPrefTestResponsePlanWebhookEnum data) => data.value;
+
+  /// Decodes a [dynamic value][data] to a CreateVaultMarketAlertPrefTestResponsePlanWebhookEnum.
+  ///
+  /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
+  /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
+  /// cannot be decoded successfully, then an [UnimplementedError] is thrown.
+  ///
+  /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
+  /// and users are still using an old app with the old code.
+  CreateVaultMarketAlertPrefTestResponsePlanWebhookEnum decode(dynamic data, {bool allowNull}) {
+    if (data != null) {
+      switch (data.toString()) {
+        case r'unavailable': return CreateVaultMarketAlertPrefTestResponsePlanWebhookEnum.unavailable;
+        case r'off': return CreateVaultMarketAlertPrefTestResponsePlanWebhookEnum.off;
+        case r'send': return CreateVaultMarketAlertPrefTestResponsePlanWebhookEnum.send;
+        case r'quiet': return CreateVaultMarketAlertPrefTestResponsePlanWebhookEnum.quiet;
+        default:
+          if (allowNull == false) {
+            throw ArgumentError('Unknown enum value to decode: $data');
+          }
+      }
+    }
+    return null;
+  }
+
+  /// Singleton [CreateVaultMarketAlertPrefTestResponsePlanWebhookEnumTypeTransformer] instance.
+  static CreateVaultMarketAlertPrefTestResponsePlanWebhookEnumTypeTransformer _instance;
 }
 
 

@@ -14,27 +14,39 @@ class ListBuyerFeedbackItem {
   /// Returns a new [ListBuyerFeedbackItem] instance.
   ListBuyerFeedbackItem({
     @required this.id,
-    @required this.createdAt,
     @required this.rating,
+    @required this.createdAt,
     this.body,
+    this.revisedAt,
+    this.sellerReply,
+    this.sellerRepliedAt,
+    this.sellerName,
+    this.itemTitle,
+    this.ratingAsDescribed,
     this.ratingCommunication,
     this.ratingShipSpeed,
     this.ratingShipCost,
-    this.ratingAsDescribed,
-    this.sellerReply,
-    this.sellerRepliedAt,
-    this.revisedAt,
-    this.itemTitle,
-    this.sellerName,
   });
 
   String id;
 
-  String createdAt;
-
   num rating;
 
+  String createdAt;
+
   String body;
+
+  String revisedAt;
+
+  String sellerReply;
+
+  String sellerRepliedAt;
+
+  String sellerName;
+
+  String itemTitle;
+
+  num ratingAsDescribed;
 
   num ratingCommunication;
 
@@ -42,61 +54,67 @@ class ListBuyerFeedbackItem {
 
   num ratingShipCost;
 
-  num ratingAsDescribed;
-
-  String sellerReply;
-
-  String sellerRepliedAt;
-
-  String revisedAt;
-
-  String itemTitle;
-
-  String sellerName;
-
   @override
   bool operator ==(Object other) => identical(this, other) || other is ListBuyerFeedbackItem &&
      other.id == id &&
-     other.createdAt == createdAt &&
      other.rating == rating &&
+     other.createdAt == createdAt &&
      other.body == body &&
-     other.ratingCommunication == ratingCommunication &&
-     other.ratingShipSpeed == ratingShipSpeed &&
-     other.ratingShipCost == ratingShipCost &&
-     other.ratingAsDescribed == ratingAsDescribed &&
+     other.revisedAt == revisedAt &&
      other.sellerReply == sellerReply &&
      other.sellerRepliedAt == sellerRepliedAt &&
-     other.revisedAt == revisedAt &&
+     other.sellerName == sellerName &&
      other.itemTitle == itemTitle &&
-     other.sellerName == sellerName;
+     other.ratingAsDescribed == ratingAsDescribed &&
+     other.ratingCommunication == ratingCommunication &&
+     other.ratingShipSpeed == ratingShipSpeed &&
+     other.ratingShipCost == ratingShipCost;
 
   @override
   int get hashCode =>
   // ignore: unnecessary_parenthesis
     (id == null ? 0 : id.hashCode) +
-    (createdAt == null ? 0 : createdAt.hashCode) +
     (rating == null ? 0 : rating.hashCode) +
+    (createdAt == null ? 0 : createdAt.hashCode) +
     (body == null ? 0 : body.hashCode) +
-    (ratingCommunication == null ? 0 : ratingCommunication.hashCode) +
-    (ratingShipSpeed == null ? 0 : ratingShipSpeed.hashCode) +
-    (ratingShipCost == null ? 0 : ratingShipCost.hashCode) +
-    (ratingAsDescribed == null ? 0 : ratingAsDescribed.hashCode) +
+    (revisedAt == null ? 0 : revisedAt.hashCode) +
     (sellerReply == null ? 0 : sellerReply.hashCode) +
     (sellerRepliedAt == null ? 0 : sellerRepliedAt.hashCode) +
-    (revisedAt == null ? 0 : revisedAt.hashCode) +
+    (sellerName == null ? 0 : sellerName.hashCode) +
     (itemTitle == null ? 0 : itemTitle.hashCode) +
-    (sellerName == null ? 0 : sellerName.hashCode);
+    (ratingAsDescribed == null ? 0 : ratingAsDescribed.hashCode) +
+    (ratingCommunication == null ? 0 : ratingCommunication.hashCode) +
+    (ratingShipSpeed == null ? 0 : ratingShipSpeed.hashCode) +
+    (ratingShipCost == null ? 0 : ratingShipCost.hashCode);
 
   @override
-  String toString() => 'ListBuyerFeedbackItem[id=$id, createdAt=$createdAt, rating=$rating, body=$body, ratingCommunication=$ratingCommunication, ratingShipSpeed=$ratingShipSpeed, ratingShipCost=$ratingShipCost, ratingAsDescribed=$ratingAsDescribed, sellerReply=$sellerReply, sellerRepliedAt=$sellerRepliedAt, revisedAt=$revisedAt, itemTitle=$itemTitle, sellerName=$sellerName]';
+  String toString() => 'ListBuyerFeedbackItem[id=$id, rating=$rating, createdAt=$createdAt, body=$body, revisedAt=$revisedAt, sellerReply=$sellerReply, sellerRepliedAt=$sellerRepliedAt, sellerName=$sellerName, itemTitle=$itemTitle, ratingAsDescribed=$ratingAsDescribed, ratingCommunication=$ratingCommunication, ratingShipSpeed=$ratingShipSpeed, ratingShipCost=$ratingShipCost]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
       json[r'id'] = id;
-      json[r'createdAt'] = createdAt;
       json[r'rating'] = rating;
+      json[r'createdAt'] = createdAt;
     if (body != null) {
       json[r'body'] = body;
+    }
+    if (revisedAt != null) {
+      json[r'revisedAt'] = revisedAt;
+    }
+    if (sellerReply != null) {
+      json[r'sellerReply'] = sellerReply;
+    }
+    if (sellerRepliedAt != null) {
+      json[r'sellerRepliedAt'] = sellerRepliedAt;
+    }
+    if (sellerName != null) {
+      json[r'sellerName'] = sellerName;
+    }
+    if (itemTitle != null) {
+      json[r'itemTitle'] = itemTitle;
+    }
+    if (ratingAsDescribed != null) {
+      json[r'ratingAsDescribed'] = ratingAsDescribed;
     }
     if (ratingCommunication != null) {
       json[r'ratingCommunication'] = ratingCommunication;
@@ -106,24 +124,6 @@ class ListBuyerFeedbackItem {
     }
     if (ratingShipCost != null) {
       json[r'ratingShipCost'] = ratingShipCost;
-    }
-    if (ratingAsDescribed != null) {
-      json[r'ratingAsDescribed'] = ratingAsDescribed;
-    }
-    if (sellerReply != null) {
-      json[r'sellerReply'] = sellerReply;
-    }
-    if (sellerRepliedAt != null) {
-      json[r'sellerRepliedAt'] = sellerRepliedAt;
-    }
-    if (revisedAt != null) {
-      json[r'revisedAt'] = revisedAt;
-    }
-    if (itemTitle != null) {
-      json[r'itemTitle'] = itemTitle;
-    }
-    if (sellerName != null) {
-      json[r'sellerName'] = sellerName;
     }
     return json;
   }
@@ -136,11 +136,19 @@ class ListBuyerFeedbackItem {
       final json = value.cast<String, dynamic>();
       return ListBuyerFeedbackItem(
         id: mapValueOfType<String>(json, r'id'),
-        createdAt: mapValueOfType<String>(json, r'createdAt'),
         rating: json[r'rating'] == null
           ? null
           : num.parse(json[r'rating'].toString()),
+        createdAt: mapValueOfType<String>(json, r'createdAt'),
         body: mapValueOfType<String>(json, r'body'),
+        revisedAt: mapValueOfType<String>(json, r'revisedAt'),
+        sellerReply: mapValueOfType<String>(json, r'sellerReply'),
+        sellerRepliedAt: mapValueOfType<String>(json, r'sellerRepliedAt'),
+        sellerName: mapValueOfType<String>(json, r'sellerName'),
+        itemTitle: mapValueOfType<String>(json, r'itemTitle'),
+        ratingAsDescribed: json[r'ratingAsDescribed'] == null
+          ? null
+          : num.parse(json[r'ratingAsDescribed'].toString()),
         ratingCommunication: json[r'ratingCommunication'] == null
           ? null
           : num.parse(json[r'ratingCommunication'].toString()),
@@ -150,14 +158,6 @@ class ListBuyerFeedbackItem {
         ratingShipCost: json[r'ratingShipCost'] == null
           ? null
           : num.parse(json[r'ratingShipCost'].toString()),
-        ratingAsDescribed: json[r'ratingAsDescribed'] == null
-          ? null
-          : num.parse(json[r'ratingAsDescribed'].toString()),
-        sellerReply: mapValueOfType<String>(json, r'sellerReply'),
-        sellerRepliedAt: mapValueOfType<String>(json, r'sellerRepliedAt'),
-        revisedAt: mapValueOfType<String>(json, r'revisedAt'),
-        itemTitle: mapValueOfType<String>(json, r'itemTitle'),
-        sellerName: mapValueOfType<String>(json, r'sellerName'),
       );
     }
     return null;

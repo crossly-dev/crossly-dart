@@ -173,16 +173,16 @@ class GetVaultMarketStatementByMonthResponseOneOf1HoldingsMarkQualityEnum {
   String toJson() => value;
 
   static const none = GetVaultMarketStatementByMonthResponseOneOf1HoldingsMarkQualityEnum._(r'none');
+  static const C = GetVaultMarketStatementByMonthResponseOneOf1HoldingsMarkQualityEnum._(r'C');
   static const A = GetVaultMarketStatementByMonthResponseOneOf1HoldingsMarkQualityEnum._(r'A');
   static const B = GetVaultMarketStatementByMonthResponseOneOf1HoldingsMarkQualityEnum._(r'B');
-  static const C = GetVaultMarketStatementByMonthResponseOneOf1HoldingsMarkQualityEnum._(r'C');
 
   /// List of all possible values in this [enum][GetVaultMarketStatementByMonthResponseOneOf1HoldingsMarkQualityEnum].
   static const values = <GetVaultMarketStatementByMonthResponseOneOf1HoldingsMarkQualityEnum>[
     none,
+    C,
     A,
     B,
-    C,
   ];
 
   static GetVaultMarketStatementByMonthResponseOneOf1HoldingsMarkQualityEnum fromJson(dynamic value) =>
@@ -215,9 +215,9 @@ class GetVaultMarketStatementByMonthResponseOneOf1HoldingsMarkQualityEnumTypeTra
     if (data != null) {
       switch (data.toString()) {
         case r'none': return GetVaultMarketStatementByMonthResponseOneOf1HoldingsMarkQualityEnum.none;
+        case r'C': return GetVaultMarketStatementByMonthResponseOneOf1HoldingsMarkQualityEnum.C;
         case r'A': return GetVaultMarketStatementByMonthResponseOneOf1HoldingsMarkQualityEnum.A;
         case r'B': return GetVaultMarketStatementByMonthResponseOneOf1HoldingsMarkQualityEnum.B;
-        case r'C': return GetVaultMarketStatementByMonthResponseOneOf1HoldingsMarkQualityEnum.C;
         default:
           if (allowNull == false) {
             throw ArgumentError('Unknown enum value to decode: $data');

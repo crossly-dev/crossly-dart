@@ -22,7 +22,7 @@ class GetTaxonomyRequiredFieldResponse {
 
   List<GetTaxonomyRequiredFieldResponseRequiredFields> requiredFields;
 
-  List<GetTaxonomyCategoryAspectResponseAspects> inlineAspects;
+  List<GetTaxonomyRequiredFieldResponseInlineAspects> inlineAspects;
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is GetTaxonomyRequiredFieldResponse &&
@@ -57,7 +57,7 @@ class GetTaxonomyRequiredFieldResponse {
       return GetTaxonomyRequiredFieldResponse(
         platform: GetTaxonomyRequiredFieldResponsePlatformEnum.fromJson(json[r'platform']),
         requiredFields: GetTaxonomyRequiredFieldResponseRequiredFields.listFromJson(json[r'requiredFields']),
-        inlineAspects: GetTaxonomyCategoryAspectResponseAspects.listFromJson(json[r'inlineAspects']),
+        inlineAspects: GetTaxonomyRequiredFieldResponseInlineAspects.listFromJson(json[r'inlineAspects']),
       );
     }
     return null;

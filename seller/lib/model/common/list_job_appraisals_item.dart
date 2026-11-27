@@ -188,13 +188,13 @@ class ListJobAppraisalsItemRailEnum {
 
   String toJson() => value;
 
-  static const bucks = ListJobAppraisalsItemRailEnum._(r'bucks');
   static const cbx = ListJobAppraisalsItemRailEnum._(r'cbx');
+  static const bucks = ListJobAppraisalsItemRailEnum._(r'bucks');
 
   /// List of all possible values in this [enum][ListJobAppraisalsItemRailEnum].
   static const values = <ListJobAppraisalsItemRailEnum>[
-    bucks,
     cbx,
+    bucks,
   ];
 
   static ListJobAppraisalsItemRailEnum fromJson(dynamic value) =>
@@ -226,8 +226,8 @@ class ListJobAppraisalsItemRailEnumTypeTransformer {
   ListJobAppraisalsItemRailEnum decode(dynamic data, {bool allowNull}) {
     if (data != null) {
       switch (data.toString()) {
-        case r'bucks': return ListJobAppraisalsItemRailEnum.bucks;
         case r'cbx': return ListJobAppraisalsItemRailEnum.cbx;
+        case r'bucks': return ListJobAppraisalsItemRailEnum.bucks;
         default:
           if (allowNull == false) {
             throw ArgumentError('Unknown enum value to decode: $data');

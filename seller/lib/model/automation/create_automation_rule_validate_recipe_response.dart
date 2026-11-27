@@ -14,37 +14,37 @@ class CreateAutomationRuleValidateRecipeResponse {
   /// Returns a new [CreateAutomationRuleValidateRecipeResponse] instance.
   CreateAutomationRuleValidateRecipeResponse({
     @required this.valid,
-    @required this.error,
-    @required this.details,
+    @required this.count,
+    this.results = const [],
   });
 
   bool valid;
 
-  String error;
+  num count;
 
-  CreateAutomationRuleValidateRecipeResponseDetails details;
+  List<CreateAutomationRuleValidateRecipeResponseResults> results;
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is CreateAutomationRuleValidateRecipeResponse &&
      other.valid == valid &&
-     other.error == error &&
-     other.details == details;
+     other.count == count &&
+     other.results == results;
 
   @override
   int get hashCode =>
   // ignore: unnecessary_parenthesis
     (valid == null ? 0 : valid.hashCode) +
-    (error == null ? 0 : error.hashCode) +
-    (details == null ? 0 : details.hashCode);
+    (count == null ? 0 : count.hashCode) +
+    (results == null ? 0 : results.hashCode);
 
   @override
-  String toString() => 'CreateAutomationRuleValidateRecipeResponse[valid=$valid, error=$error, details=$details]';
+  String toString() => 'CreateAutomationRuleValidateRecipeResponse[valid=$valid, count=$count, results=$results]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
       json[r'valid'] = valid;
-      json[r'error'] = error;
-      json[r'details'] = details;
+      json[r'count'] = count;
+      json[r'results'] = results;
     return json;
   }
 
@@ -56,8 +56,10 @@ class CreateAutomationRuleValidateRecipeResponse {
       final json = value.cast<String, dynamic>();
       return CreateAutomationRuleValidateRecipeResponse(
         valid: mapValueOfType<bool>(json, r'valid'),
-        error: mapValueOfType<String>(json, r'error'),
-        details: CreateAutomationRuleValidateRecipeResponseDetails.fromJson(json[r'details']),
+        count: json[r'count'] == null
+          ? null
+          : num.parse(json[r'count'].toString()),
+        results: CreateAutomationRuleValidateRecipeResponseResults.listFromJson(json[r'results']),
       );
     }
     return null;

@@ -16,15 +16,14 @@ class GetAnalyticDashboardResponseRecentSales {
     @required this.saleId,
     @required this.platform,
     this.platformOrderId,
+    @required this.detailsPending,
     this.salePrice,
     this.platformFee,
     this.shippingCost,
     this.costOfGoods,
     this.netProfit,
-    @required this.detectedBy,
-    @required this.detectedAt,
     this.itemTitle,
-    @required this.itemImage,
+    this.itemImage,
   });
 
   String saleId;
@@ -32,6 +31,8 @@ class GetAnalyticDashboardResponseRecentSales {
   String platform;
 
   String platformOrderId;
+
+  bool detailsPending;
 
   num salePrice;
 
@@ -43,10 +44,6 @@ class GetAnalyticDashboardResponseRecentSales {
 
   num netProfit;
 
-  String detectedBy;
-
-  DateTime detectedAt;
-
   String itemTitle;
 
   String itemImage;
@@ -56,13 +53,12 @@ class GetAnalyticDashboardResponseRecentSales {
      other.saleId == saleId &&
      other.platform == platform &&
      other.platformOrderId == platformOrderId &&
+     other.detailsPending == detailsPending &&
      other.salePrice == salePrice &&
      other.platformFee == platformFee &&
      other.shippingCost == shippingCost &&
      other.costOfGoods == costOfGoods &&
      other.netProfit == netProfit &&
-     other.detectedBy == detectedBy &&
-     other.detectedAt == detectedAt &&
      other.itemTitle == itemTitle &&
      other.itemImage == itemImage;
 
@@ -72,18 +68,17 @@ class GetAnalyticDashboardResponseRecentSales {
     (saleId == null ? 0 : saleId.hashCode) +
     (platform == null ? 0 : platform.hashCode) +
     (platformOrderId == null ? 0 : platformOrderId.hashCode) +
+    (detailsPending == null ? 0 : detailsPending.hashCode) +
     (salePrice == null ? 0 : salePrice.hashCode) +
     (platformFee == null ? 0 : platformFee.hashCode) +
     (shippingCost == null ? 0 : shippingCost.hashCode) +
     (costOfGoods == null ? 0 : costOfGoods.hashCode) +
     (netProfit == null ? 0 : netProfit.hashCode) +
-    (detectedBy == null ? 0 : detectedBy.hashCode) +
-    (detectedAt == null ? 0 : detectedAt.hashCode) +
     (itemTitle == null ? 0 : itemTitle.hashCode) +
     (itemImage == null ? 0 : itemImage.hashCode);
 
   @override
-  String toString() => 'GetAnalyticDashboardResponseRecentSales[saleId=$saleId, platform=$platform, platformOrderId=$platformOrderId, salePrice=$salePrice, platformFee=$platformFee, shippingCost=$shippingCost, costOfGoods=$costOfGoods, netProfit=$netProfit, detectedBy=$detectedBy, detectedAt=$detectedAt, itemTitle=$itemTitle, itemImage=$itemImage]';
+  String toString() => 'GetAnalyticDashboardResponseRecentSales[saleId=$saleId, platform=$platform, platformOrderId=$platformOrderId, detailsPending=$detailsPending, salePrice=$salePrice, platformFee=$platformFee, shippingCost=$shippingCost, costOfGoods=$costOfGoods, netProfit=$netProfit, itemTitle=$itemTitle, itemImage=$itemImage]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -92,6 +87,7 @@ class GetAnalyticDashboardResponseRecentSales {
     if (platformOrderId != null) {
       json[r'platformOrderId'] = platformOrderId;
     }
+      json[r'detailsPending'] = detailsPending;
     if (salePrice != null) {
       json[r'salePrice'] = salePrice;
     }
@@ -107,12 +103,12 @@ class GetAnalyticDashboardResponseRecentSales {
     if (netProfit != null) {
       json[r'netProfit'] = netProfit;
     }
-      json[r'detectedBy'] = detectedBy;
-      json[r'detectedAt'] = detectedAt.toUtc().toIso8601String();
     if (itemTitle != null) {
       json[r'itemTitle'] = itemTitle;
     }
+    if (itemImage != null) {
       json[r'itemImage'] = itemImage;
+    }
     return json;
   }
 
@@ -126,6 +122,7 @@ class GetAnalyticDashboardResponseRecentSales {
         saleId: mapValueOfType<String>(json, r'saleId'),
         platform: mapValueOfType<String>(json, r'platform'),
         platformOrderId: mapValueOfType<String>(json, r'platformOrderId'),
+        detailsPending: mapValueOfType<bool>(json, r'detailsPending'),
         salePrice: json[r'salePrice'] == null
           ? null
           : num.parse(json[r'salePrice'].toString()),
@@ -141,8 +138,6 @@ class GetAnalyticDashboardResponseRecentSales {
         netProfit: json[r'netProfit'] == null
           ? null
           : num.parse(json[r'netProfit'].toString()),
-        detectedBy: mapValueOfType<String>(json, r'detectedBy'),
-        detectedAt: mapDateTime(json, r'detectedAt', ''),
         itemTitle: mapValueOfType<String>(json, r'itemTitle'),
         itemImage: mapValueOfType<String>(json, r'itemImage'),
       );

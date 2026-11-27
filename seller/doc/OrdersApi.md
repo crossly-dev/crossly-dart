@@ -16,16 +16,27 @@ Method | HTTP request | Description
 [**createOrderBulkMarkDisputed**](OrdersApi.md#createorderbulkmarkdisputed) | **POST** /v1/orders/bulk-mark-disputed | Bulk mark orders as disputed with a shared reason.
 [**createOrderBulkMarkShipped**](OrdersApi.md#createorderbulkmarkshipped) | **POST** /v1/orders/bulk-mark-shipped | Bulk flip status=shipped, clear the reserved-stock marker, and notify each platform.
 [**createOrderBulkPackingSlip**](OrdersApi.md#createorderbulkpackingslip) | **POST** /v1/orders/bulk-packing-slips | Bulk packing slips PDF.
-[**createOrderCancel**](OrdersApi.md#createordercancel) | **POST** /v1/orders/{id}/cancel | Cancel an order on its marketplace.
+[**createOrderCancel**](OrdersApi.md#createordercancel) | **POST** /v1/orders/{id}/cancel | Cancel an order before it ships. Crossly-marketplace orders refund the buyer (also needs orders:refund) and restock; crossposted orders go to the marketplace, or fail not_supported_on_platform (recordOnly: true records a cancel made on the marketplace). Fires order.cancelled.
+[**createOrderCorrectTracking**](OrdersApi.md#createordercorrecttracking) | **POST** /v1/orders/{id}/correct-tracking | Correct a wrong tracking number the marketplace already holds.
 [**createOrderDispute**](OrdersApi.md#createorderdispute) | **POST** /v1/orders/{id}/dispute | Flag an order as disputed.
 [**createOrderImport**](OrdersApi.md#createorderimport) | **POST** /v1/orders/import | Manually (re-)pull one or more connected platforms' order history for a day-window.
-[**createOrderLabel**](OrdersApi.md#createorderlabel) | **POST** /v1/orders/{id}/label | Purchase EasyPost shipping label.
+[**createOrderLabel**](OrdersApi.md#createorderlabel) | **POST** /v1/orders/{id}/label | Purchase a Crossly Shipping label. An order that already has a label answers 409 label_exists unless allowSecondLabel is true.
+[**createOrderLabelVoid**](OrdersApi.md#createorderlabelvoid) | **POST** /v1/orders/{id}/label/void | Void a Crossly Shipping label and refund it to the shipping wallet.
+[**createOrderLinkListing**](OrdersApi.md#createorderlinklisting) | **POST** /v1/orders/{id}/link-listing | Link an unmatched sale to one of your listings (marks it sold, delists it elsewhere).
 [**createOrderMessage**](OrdersApi.md#createordermessage) | **POST** /v1/orders/{id}/message | Message the order's buyer on the marketplace.
+[**createOrderOrderChat**](OrdersApi.md#createorderorderchat) | **POST** /v1/orders/{id}/order-chat | Send a message to the order's buyer chat on the marketplace. Mirrored into the Crossly inbox.
 [**createOrderPickup**](OrdersApi.md#createorderpickup) | **POST** /v1/orders/pickups | Book a carrier pickup for labelled orders (one carrier per pickup; window at least an hour, up to 14 days ahead).
-[**createOrderPickupLabel**](OrdersApi.md#createorderpickuplabel) | **POST** /v1/orders/{id}/pickup-label | Buy the carrier label for a Crossly order the buyer collects from a pickup point (debits your shipping wallet). 402 when the wallet is short.
+[**createOrderPickupLabel**](OrdersApi.md#createorderpickuplabel) | **POST** /v1/orders/{id}/pickup-label | Buy the carrier label for a Crossly order the buyer collects from a pickup point (debits your shipping wallet). 402 when the wallet is short. An order that already has a label answers 409 label_exists unless allowSecondLabel is true.
+[**createOrderPlatformLabelPackage**](OrdersApi.md#createorderplatformlabelpackage) | **POST** /v1/orders/{id}/platform-label/package | Save the package (weight oz, box inches) the marketplace prices the label from.
+[**createOrderPlatformLabelPackageQuote**](OrdersApi.md#createorderplatformlabelpackagequote) | **POST** /v1/orders/{id}/platform-label/package/quote | Quote what a change to the marketplace shipment's package costs (cents).
+[**createOrderPlatformLabelPull**](OrdersApi.md#createorderplatformlabelpull) | **POST** /v1/orders/{id}/platform-label/pull | Pull the marketplace's prepaid label into Crossly (every platform with a label descriptor).
+[**createOrderPlatformLabelPurchase**](OrdersApi.md#createorderplatformlabelpurchase) | **POST** /v1/orders/{id}/platform-label/purchase | Buy a replacement / extra marketplace label, or have the marketplace generate it, and record it.
+[**createOrderPlatformLabelQuote**](OrdersApi.md#createorderplatformlabelquote) | **POST** /v1/orders/{id}/platform-label/quote | Quote what buying a marketplace label costs, before you are charged.
 [**createOrderPullPlatformLabel**](OrdersApi.md#createorderpullplatformlabel) | **POST** /v1/orders/{id}/pull-platform-label | Pull a pre-paid label from cookie platforms (Poshmark/Mercari).
-[**createOrderRate**](OrdersApi.md#createorderrate) | **POST** /v1/orders/{id}/rates | EasyPost rate quote for an order.
-[**createOrderRefund**](OrdersApi.md#createorderrefund) | **POST** /v1/orders/{id}/refund | Issue a full or partial refund on the platform.
+[**createOrderRate**](OrdersApi.md#createorderrate) | **POST** /v1/orders/{id}/rates | Crossly Shipping rate quote for an order.
+[**createOrderRefund**](OrdersApi.md#createorderrefund) | **POST** /v1/orders/{id}/refund | DEPRECATED: use POST /v1/orders/{id}/refunds. Full or partial refund (amount in dollars). Same idempotency and cap as /refunds: the same request twice refunds once (Idempotency-Key, else the body), never past what the buyer paid.
+[**createOrderRefundById**](OrdersApi.md#createorderrefundbyid) | **POST** /v1/orders/{id}/refunds | Refund an order, in full or in part. `amount` is dollars; omit it for everything left (or the line items' value). Crossly-marketplace orders refund the buyer's card; crossposted orders refund through the marketplace, or fail not_supported_on_platform. Never refunds past the order (refund_exceeds_remaining). The same request twice refunds once: send an Idempotency-Key (without one, the body is the key). A partial refund keeps the order's status. What the platform takes (full/partial, its own reason keys, a comment) is GET /v1/orders/{id}/refund-options; a request outside it fails partial_refund_unsupported, invalid_refund_reason or refund_exceeds_item_amount. Fires order.refunded.
+[**createOrderRefundResolve**](OrdersApi.md#createorderrefundresolve) | **POST** /v1/orders/{id}/refunds/{refundId}/resolve | Settle an `unverified` refund (one Crossly could not confirm with the marketplace after its request was interrupted) once you have checked the marketplace: succeeded (with the amount actually refunded, dollars) or failed (nothing moved; the same Idempotency-Key can then try again). Crossly-marketplace refunds are confirmed by support instead.
 [**createOrderScanForm**](OrdersApi.md#createorderscanform) | **POST** /v1/orders/scan-forms | Create SCAN forms (one per carrier account and ship-from address) for labels the carrier has not scanned yet.
 [**createOrderTracking**](OrdersApi.md#createordertracking) | **POST** /v1/orders/{id}/tracking | Submit tracking number + carrier and notify the platform.
 [**createOrderWhatnotLabel**](OrdersApi.md#createorderwhatnotlabel) | **POST** /v1/orders/{id}/whatnot/label | Generate the Whatnot shipping label and record it on the order.
@@ -35,27 +46,44 @@ Method | HTTP request | Description
 [**createRentalCancel**](OrdersApi.md#createrentalcancel) | **POST** /v1/rentals/{id}/cancel | Cancel a booked rental that has not shipped: the renter is refunded in full.
 [**createRentalClaim**](OrdersApi.md#createrentalclaim) | **POST** /v1/rentals/{id}/claim | Claim part or all of the deposit (cents, a note, photo URLs): within 3 days of the return, or 14 days after the end if it never came back.
 [**createRentalDecline**](OrdersApi.md#createrentaldecline) | **POST** /v1/rentals/{id}/decline | Decline a requested rental: the hold on the renter’s card is released.
+[**createRentalDelivered**](OrdersApi.md#createrentaldelivered) | **POST** /v1/rentals/{id}/delivered | Mark a rental delivered to the renter.
+[**createRentalExtensionDecide**](OrdersApi.md#createrentalextensiondecide) | **POST** /v1/rentals/{id}/extensions/{extensionId}/decide | Approve or decline a renter’s request for more days.
+[**createRentalInspect**](OrdersApi.md#createrentalinspect) | **POST** /v1/rentals/{id}/inspect | Record the return inspection: the checklist, photos, and optionally release the deposit.
 [**createRentalLabel**](OrdersApi.md#createrentallabel) | **POST** /v1/rentals/{id}/labels | Buy both labels for a booked rental: outbound to the renter, and the return label they use.
+[**createRentalNotReturned**](OrdersApi.md#createrentalnotreturned) | **POST** /v1/rentals/{id}/not-returned | Report a rental not returned (14 days past due): the deposit goes to you.
+[**createRentalReleaseDeposit**](OrdersApi.md#createrentalreleasedeposit) | **POST** /v1/rentals/{id}/release-deposit | Release the deposit now, without a claim.
 [**createRentalReturned**](OrdersApi.md#createrentalreturned) | **POST** /v1/rentals/{id}/returned | Mark a rental back with you. You then have 3 days to claim damage before the deposit goes back.
 [**createRentalShipped**](OrdersApi.md#createrentalshipped) | **POST** /v1/rentals/{id}/shipped | Mark a booked rental shipped, with at least 2 photos of its condition as it leaves (URLs you uploaded) — the evidence any later claim is judged against.
-[**getOrder**](OrdersApi.md#getorder) | **GET** /v1/orders/{id} | Get one order.
+[**getOrder**](OrdersApi.md#getorder) | **GET** /v1/orders/{id} | Get one order, with its sale price, fees, SKU and line items.
 [**getOrderCancelEligibility**](OrdersApi.md#getordercanceleligibility) | **GET** /v1/orders/{id}/cancel-eligibility | Whether this order can be cancelled, and which reason codes the marketplace accepts.
 [**getOrderCount**](OrdersApi.md#getordercount) | **GET** /v1/orders/counts | Tab badge counts by status.
+[**getOrderDeliveryPhoto**](OrdersApi.md#getorderdeliveryphoto) | **GET** /v1/orders/{id}/delivery-photo | The courier's delivery photo for this order, pulled automatically, with where it came from.
 [**getOrderEvidence**](OrdersApi.md#getorderevidence) | **GET** /v1/orders/{id}/evidence | Everything recorded about how this order was packed and how it arrived.
 [**getOrderLabelPrint**](OrdersApi.md#getorderlabelprint) | **GET** /v1/orders/{id}/label/print | The order's shipping label as a PDF sized for printing (cropped, upright, fitted).
+[**getOrderOrderChat**](OrdersApi.md#getorderorderchat) | **GET** /v1/orders/{id}/order-chat | The order's buyer chat thread on the marketplace (separate from listing comments): { orderId, platform, messages: [{ id, sender (buyer|seller|platform), body, sentAt, attachments? }], canSend }, oldest message first.
 [**getOrderPackingSlip**](OrdersApi.md#getorderpackingslip) | **GET** /v1/orders/{id}/packing-slip | Single-order packing slip PDF.
+[**getOrderPlatformLabelOption**](OrdersApi.md#getorderplatformlabeloption) | **GET** /v1/orders/{id}/platform-label/options | What buying a marketplace label offers for this order (weight tiers, mailbox state).
+[**getOrderPlatformLabelPackingSlip**](OrdersApi.md#getorderplatformlabelpackingslip) | **GET** /v1/orders/{id}/platform-label/packing-slip | A fresh link to the marketplace's own packing slip PDF.
+[**getOrderPlatformLabelState**](OrdersApi.md#getorderplatformlabelstate) | **GET** /v1/orders/{id}/platform-label/state | The marketplace's shipment for an order (package, label, tracking). Records a label found on it.
+[**getOrderPlatformLabelUrl**](OrdersApi.md#getorderplatformlabelurl) | **GET** /v1/orders/{id}/platform-label/url | A fresh, short-lived link to the marketplace's label sheet. Never stored.
 [**getOrderProofOfDelivery**](OrdersApi.md#getorderproofofdelivery) | **GET** /v1/orders/{id}/proof-of-delivery | Proof-of-delivery evidence from the carrier's scan record (PDF, or JSON).
+[**getOrderRefundOption**](OrdersApi.md#getorderrefundoption) | **GET** /v1/orders/{id}/refund-options | What a refund on this order may be, from the platform's declared capability: whether Crossly can refund it at all, full and/or partial, what a partial is measured against (total = what the buyer paid, item = the item price only), whether it may precede shipment, the platform's own reason keys (when listed, a refund's reason must be one of them), whether a comment is sent, whether the refund IS cancelling the sale (cancelsSale: Mercari, full only), whether the window closes when the order completes (untilCompleted; windowClosed = it has) and a one-line note on what the platform does not allow.
+[**getOrderSalesTax**](OrdersApi.md#getordersalestax) | **GET** /v1/orders/{id}/sales-tax | Who collected sales tax on one Crossly marketplace order, where, and the seller notice.
 [**getOrderScanForm**](OrdersApi.md#getorderscanform) | **GET** /v1/orders/scan-forms/{id} | One SCAN form; a queued form is re-read from the carrier and its PDF appears once built.
 [**getOrderShipment**](OrdersApi.md#getordershipment) | **GET** /v1/orders/{id}/shipments | List the parcels an order shipped in.
 [**getOrderWhatnotPackingSlip**](OrdersApi.md#getorderwhatnotpackingslip) | **GET** /v1/orders/{id}/whatnot/packing-slip | A fresh link to Whatnot's packing slip PDF.
 [**getOrderWhatnotShipment**](OrdersApi.md#getorderwhatnotshipment) | **GET** /v1/orders/{id}/whatnot/shipment | Whatnot shipment for an order (package, label, tracking). Records a label found on it.
+[**getRental**](OrdersApi.md#getrental) | **GET** /v1/rentals/{id} | One rental: its timeline, both sides’ condition photos, payments, extensions and what can be done next.
+[**getRentalCalendar**](OrdersApi.md#getrentalcalendar) | **GET** /v1/rentals/calendar | Every rentable item’s bookings (per unit), turnaround buffers and blackouts between two dates (≤ 93 days).
 [**listLayaways**](OrdersApi.md#listlayaways) | **GET** /v1/layaways | Your items on layaway (active and paid off). Do not ship an active one: its order moves to needs_fulfillment when paid in full.
 [**listLiveShipments**](OrdersApi.md#listliveshipments) | **GET** /v1/live-shipments | Your show boxes: every buyer’s orders from one live show, to ship together.
-[**listOrderPickupReady**](OrdersApi.md#listorderpickupready) | **GET** /v1/orders/pickup-ready | Orders with a purchased Shippo label a courier can collect or a SCAN form can cover, grouped by carrier.
+[**listOrderPickupReady**](OrdersApi.md#listorderpickupready) | **GET** /v1/orders/pickup-ready | Orders with a purchased Crossly Shipping label a courier can collect or a SCAN form can cover, grouped by carrier.
 [**listOrderPickups**](OrdersApi.md#listorderpickups) | **GET** /v1/orders/pickups | Booked carrier pickups, newest first.
+[**listOrderRefunds**](OrdersApi.md#listorderrefunds) | **GET** /v1/orders/{id}/refunds | Every refund requested on this order through the API or a cancel, newest first (amounts in dollars).
 [**listOrderScanForms**](OrdersApi.md#listorderscanforms) | **GET** /v1/orders/scan-forms | SCAN forms, newest first.
 [**listOrderUnits**](OrdersApi.md#listorderunits) | **GET** /v1/orders/{id}/units | List the identified units that shipped on an order.
-[**listOrders**](OrdersApi.md#listorders) | **GET** /v1/orders | List orders.
+[**listOrders**](OrdersApi.md#listorders) | **GET** /v1/orders | List orders, each with its sale price, fees, SKU and line items.
+[**listRentalHistory**](OrdersApi.md#listrentalhistory) | **GET** /v1/rentals/history | Active rentals and history, filtered by view, status, dates, item or a search.
 [**listRentals**](OrdersApi.md#listrentals) | **GET** /v1/rentals | Rentals of your items, with the ship-to and the outbound label.
 [**updateOrder**](OrdersApi.md#updateorder) | **PATCH** /v1/orders/{id} | Update order (status, notes, tracking).
 
@@ -241,7 +269,7 @@ This endpoint does not need any parameter.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
 # **createOrderBulkMarkDisputed**
-> CreateInventoryLabelRenameResponse createOrderBulkMarkDisputed()
+> UpdatedResponse createOrderBulkMarkDisputed()
 
 Bulk mark orders as disputed with a shared reason.
 
@@ -270,7 +298,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-**CreateInventoryLabelRenameResponse**
+**UpdatedResponse**
 
 ### Authorization
 
@@ -372,7 +400,7 @@ This endpoint does not need any parameter.
 # **createOrderCancel**
 > CreateOrderCancelResponse createOrderCancel(id)
 
-Cancel an order on its marketplace.
+Cancel an order before it ships. Crossly-marketplace orders refund the buyer (also needs orders:refund) and restock; crossposted orders go to the marketplace, or fail not_supported_on_platform (recordOnly: true records a cancel made on the marketplace). Fires order.cancelled.
 
 ### Example
 ```dart
@@ -404,6 +432,55 @@ Name | Type | Description  | Notes
 ### Return type
 
 **CreateOrderCancelResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+# **createOrderCorrectTracking**
+> CreateOrderCorrectTrackingResponse createOrderCorrectTracking(id)
+
+Correct a wrong tracking number the marketplace already holds.
+
+Replaces the order's tracking number with `trackingNumber`, on Crossly and on the marketplace, where the platform can change tracking it already has (its trackingCorrection capability): `correction` is replace (overwritten), remove_then_submit (the old number removed, then the new one sent) or submit (the platform held none). Refused with validation_error where the platform cannot change it (update it there), when the order has no tracking, its tracking came with a label (void the label instead), or it is closed or delivered; conflict while the previous tracking update is still in flight.
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = OrdersApi();
+final id = 38400000-8cf0-11bd-b23e-10b96e4ef00d; // String | 
+
+try {
+    final result = api_instance.createOrderCorrectTracking(id);
+    print(result);
+} catch (e) {
+    print('Exception when calling OrdersApi->createOrderCorrectTracking: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **String**|  | 
+
+### Return type
+
+**CreateOrderCorrectTrackingResponse**
 
 ### Authorization
 
@@ -509,7 +586,7 @@ This endpoint does not need any parameter.
 # **createOrderLabel**
 > CreateOrderLabelResponse createOrderLabel(id)
 
-Purchase EasyPost shipping label.
+Purchase a Crossly Shipping label. An order that already has a label answers 409 label_exists unless allowSecondLabel is true.
 
 ### Example
 ```dart
@@ -541,6 +618,104 @@ Name | Type | Description  | Notes
 ### Return type
 
 **CreateOrderLabelResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+# **createOrderLabelVoid**
+> CreateOrderLabelVoidResponse createOrderLabelVoid(id)
+
+Void a Crossly Shipping label and refund it to the shipping wallet.
+
+Voids the order's unused label, owes the wallet charge back in full (markup included) and sets the order back to needs_fulfillment. The refund is held as pending (`refundPendingCents`; `refundedCents` stays 0) and is credited to the shipping wallet when Crossly releases held credits. Only while the carrier has not scanned the parcel and within 30 days of purchase. `tracking.outcome` says what happens to tracking already sent to the marketplace: not_submitted, removal_queued, replace_on_next_label, or update_manually (with `platformOrderUrl`). Repeating the call returns the same result with `alreadyVoided: true` and refunds nothing again.
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = OrdersApi();
+final id = 38400000-8cf0-11bd-b23e-10b96e4ef00d; // String | 
+
+try {
+    final result = api_instance.createOrderLabelVoid(id);
+    print(result);
+} catch (e) {
+    print('Exception when calling OrdersApi->createOrderLabelVoid: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **String**|  | 
+
+### Return type
+
+**CreateOrderLabelVoidResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+# **createOrderLinkListing**
+> CreateOrderLinkListingResponse createOrderLinkListing(id)
+
+Link an unmatched sale to one of your listings (marks it sold, delists it elsewhere).
+
+For an order whose listing is an auto-created external-sale stub. Body: { listingId, platformListingId? }. Moves the sale onto the listing's row on the order's platform (or moves the stub's row under the listing when it has none), decrements its stock like a detected sale, archives the stub, and delists the item from every other marketplace once no unit is left. 409 when the order is already linked.
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = OrdersApi();
+final id = 38400000-8cf0-11bd-b23e-10b96e4ef00d; // String | 
+
+try {
+    final result = api_instance.createOrderLinkListing(id);
+    print(result);
+} catch (e) {
+    print('Exception when calling OrdersApi->createOrderLinkListing: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **String**|  | 
+
+### Return type
+
+**CreateOrderLinkListingResponse**
 
 ### Authorization
 
@@ -600,6 +775,55 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
+# **createOrderOrderChat**
+> OkResponse createOrderOrderChat(id, createOrderOrderChatRequest)
+
+Send a message to the order's buyer chat on the marketplace. Mirrored into the Crossly inbox.
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = OrdersApi();
+final id = 38400000-8cf0-11bd-b23e-10b96e4ef00d; // String | 
+final createOrderOrderChatRequest = CreateOrderOrderChatRequest(); // CreateOrderOrderChatRequest | 
+
+try {
+    final result = api_instance.createOrderOrderChat(id, createOrderOrderChatRequest);
+    print(result);
+} catch (e) {
+    print('Exception when calling OrdersApi->createOrderOrderChat: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **String**|  | 
+ **createOrderOrderChatRequest** | **CreateOrderOrderChatRequest**|  | 
+
+### Return type
+
+**OkResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
 # **createOrderPickup**
 > CreateOrderPickupResponse createOrderPickup()
 
@@ -646,7 +870,7 @@ This endpoint does not need any parameter.
 # **createOrderPickupLabel**
 > CreateOrderPickupLabelResponse createOrderPickupLabel(id)
 
-Buy the carrier label for a Crossly order the buyer collects from a pickup point (debits your shipping wallet). 402 when the wallet is short.
+Buy the carrier label for a Crossly order the buyer collects from a pickup point (debits your shipping wallet). 402 when the wallet is short. An order that already has a label answers 409 label_exists unless allowSecondLabel is true.
 
 ### Example
 ```dart
@@ -678,6 +902,241 @@ Name | Type | Description  | Notes
 ### Return type
 
 **CreateOrderPickupLabelResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+# **createOrderPlatformLabelPackage**
+> GetOrderWhatnotShipmentResponse createOrderPlatformLabelPackage(id)
+
+Save the package (weight oz, box inches) the marketplace prices the label from.
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = OrdersApi();
+final id = 38400000-8cf0-11bd-b23e-10b96e4ef00d; // String | 
+
+try {
+    final result = api_instance.createOrderPlatformLabelPackage(id);
+    print(result);
+} catch (e) {
+    print('Exception when calling OrdersApi->createOrderPlatformLabelPackage: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **String**|  | 
+
+### Return type
+
+**GetOrderWhatnotShipmentResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+# **createOrderPlatformLabelPackageQuote**
+> CreateOrderWhatnotPackageQuoteResponse createOrderPlatformLabelPackageQuote(id)
+
+Quote what a change to the marketplace shipment's package costs (cents).
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = OrdersApi();
+final id = 38400000-8cf0-11bd-b23e-10b96e4ef00d; // String | 
+
+try {
+    final result = api_instance.createOrderPlatformLabelPackageQuote(id);
+    print(result);
+} catch (e) {
+    print('Exception when calling OrdersApi->createOrderPlatformLabelPackageQuote: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **String**|  | 
+
+### Return type
+
+**CreateOrderWhatnotPackageQuoteResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+# **createOrderPlatformLabelPull**
+> CreateOrderPlatformLabelPullResponse createOrderPlatformLabelPull(id)
+
+Pull the marketplace's prepaid label into Crossly (every platform with a label descriptor).
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = OrdersApi();
+final id = 38400000-8cf0-11bd-b23e-10b96e4ef00d; // String | 
+
+try {
+    final result = api_instance.createOrderPlatformLabelPull(id);
+    print(result);
+} catch (e) {
+    print('Exception when calling OrdersApi->createOrderPlatformLabelPull: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **String**|  | 
+
+### Return type
+
+**CreateOrderPlatformLabelPullResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+# **createOrderPlatformLabelPurchase**
+> CreateOrderPlatformLabelPurchaseResponse createOrderPlatformLabelPurchase(id)
+
+Buy a replacement / extra marketplace label, or have the marketplace generate it, and record it.
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = OrdersApi();
+final id = 38400000-8cf0-11bd-b23e-10b96e4ef00d; // String | 
+
+try {
+    final result = api_instance.createOrderPlatformLabelPurchase(id);
+    print(result);
+} catch (e) {
+    print('Exception when calling OrdersApi->createOrderPlatformLabelPurchase: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **String**|  | 
+
+### Return type
+
+**CreateOrderPlatformLabelPurchaseResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+# **createOrderPlatformLabelQuote**
+> CreateOrderPlatformLabelQuoteResponse createOrderPlatformLabelQuote(id)
+
+Quote what buying a marketplace label costs, before you are charged.
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = OrdersApi();
+final id = 38400000-8cf0-11bd-b23e-10b96e4ef00d; // String | 
+
+try {
+    final result = api_instance.createOrderPlatformLabelQuote(id);
+    print(result);
+} catch (e) {
+    print('Exception when calling OrdersApi->createOrderPlatformLabelQuote: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **String**|  | 
+
+### Return type
+
+**CreateOrderPlatformLabelQuoteResponse**
 
 ### Authorization
 
@@ -740,7 +1199,7 @@ Name | Type | Description  | Notes
 # **createOrderRate**
 > CreateOrderRateResponse createOrderRate(id)
 
-EasyPost rate quote for an order.
+Crossly Shipping rate quote for an order.
 
 ### Example
 ```dart
@@ -787,7 +1246,7 @@ Name | Type | Description  | Notes
 # **createOrderRefund**
 > CreateOrderRefundResponse createOrderRefund(id)
 
-Issue a full or partial refund on the platform.
+DEPRECATED: use POST /v1/orders/{id}/refunds. Full or partial refund (amount in dollars). Same idempotency and cap as /refunds: the same request twice refunds once (Idempotency-Key, else the body), never past what the buyer paid.
 
 ### Example
 ```dart
@@ -819,6 +1278,102 @@ Name | Type | Description  | Notes
 ### Return type
 
 **CreateOrderRefundResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+# **createOrderRefundById**
+> CreateOrderRefundByIdResponse createOrderRefundById(id)
+
+Refund an order, in full or in part. `amount` is dollars; omit it for everything left (or the line items' value). Crossly-marketplace orders refund the buyer's card; crossposted orders refund through the marketplace, or fail not_supported_on_platform. Never refunds past the order (refund_exceeds_remaining). The same request twice refunds once: send an Idempotency-Key (without one, the body is the key). A partial refund keeps the order's status. What the platform takes (full/partial, its own reason keys, a comment) is GET /v1/orders/{id}/refund-options; a request outside it fails partial_refund_unsupported, invalid_refund_reason or refund_exceeds_item_amount. Fires order.refunded.
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = OrdersApi();
+final id = 38400000-8cf0-11bd-b23e-10b96e4ef00d; // String | 
+
+try {
+    final result = api_instance.createOrderRefundById(id);
+    print(result);
+} catch (e) {
+    print('Exception when calling OrdersApi->createOrderRefundById: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **String**|  | 
+
+### Return type
+
+**CreateOrderRefundByIdResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+# **createOrderRefundResolve**
+> ListOrderRefundsItem createOrderRefundResolve(id, refundId)
+
+Settle an `unverified` refund (one Crossly could not confirm with the marketplace after its request was interrupted) once you have checked the marketplace: succeeded (with the amount actually refunded, dollars) or failed (nothing moved; the same Idempotency-Key can then try again). Crossly-marketplace refunds are confirmed by support instead.
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = OrdersApi();
+final id = 38400000-8cf0-11bd-b23e-10b96e4ef00d; // String | 
+final refundId = 38400000-8cf0-11bd-b23e-10b96e4ef00d; // String | 
+
+try {
+    final result = api_instance.createOrderRefundResolve(id, refundId);
+    print(result);
+} catch (e) {
+    print('Exception when calling OrdersApi->createOrderRefundResolve: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **String**|  | 
+ **refundId** | **String**|  | 
+
+### Return type
+
+**ListOrderRefundsItem**
 
 ### Authorization
 
@@ -875,7 +1430,7 @@ This endpoint does not need any parameter.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
 # **createOrderTracking**
-> CreateInboxOfferResponse createOrderTracking(id)
+> CreateOrderTrackingResponse createOrderTracking(id)
 
 Submit tracking number + carrier and notify the platform.
 
@@ -908,7 +1463,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**CreateInboxOfferResponse**
+**CreateOrderTrackingResponse**
 
 ### Authorization
 
@@ -969,7 +1524,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
 # **createOrderWhatnotPackage**
-> CreateOrderWhatnotLabelResponse createOrderWhatnotPackage(id)
+> GetOrderWhatnotShipmentResponse createOrderWhatnotPackage(id)
 
 Save a Whatnot shipment package (weight oz, box inches).
 
@@ -1002,7 +1557,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**CreateOrderWhatnotLabelResponse**
+**GetOrderWhatnotShipmentResponse**
 
 ### Authorization
 
@@ -1250,6 +1805,149 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
+# **createRentalDelivered**
+> RentalResponse createRentalDelivered(id)
+
+Mark a rental delivered to the renter.
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = OrdersApi();
+final id = id_example; // String | 
+
+try {
+    final result = api_instance.createRentalDelivered(id);
+    print(result);
+} catch (e) {
+    print('Exception when calling OrdersApi->createRentalDelivered: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **String**|  | 
+
+### Return type
+
+**RentalResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+# **createRentalExtensionDecide**
+> CreateRentalExtensionDecideResponse createRentalExtensionDecide(id, extensionId)
+
+Approve or decline a renter’s request for more days.
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = OrdersApi();
+final id = id_example; // String | 
+final extensionId = extensionId_example; // String | 
+
+try {
+    final result = api_instance.createRentalExtensionDecide(id, extensionId);
+    print(result);
+} catch (e) {
+    print('Exception when calling OrdersApi->createRentalExtensionDecide: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **String**|  | 
+ **extensionId** | **String**|  | 
+
+### Return type
+
+**CreateRentalExtensionDecideResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+# **createRentalInspect**
+> RentalResponse createRentalInspect(id)
+
+Record the return inspection: the checklist, photos, and optionally release the deposit.
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = OrdersApi();
+final id = id_example; // String | 
+
+try {
+    final result = api_instance.createRentalInspect(id);
+    print(result);
+} catch (e) {
+    print('Exception when calling OrdersApi->createRentalInspect: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **String**|  | 
+
+### Return type
+
+**RentalResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
 # **createRentalLabel**
 > RentalResponse createRentalLabel(id)
 
@@ -1273,6 +1971,100 @@ try {
     print(result);
 } catch (e) {
     print('Exception when calling OrdersApi->createRentalLabel: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **String**|  | 
+
+### Return type
+
+**RentalResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+# **createRentalNotReturned**
+> RentalResponse createRentalNotReturned(id)
+
+Report a rental not returned (14 days past due): the deposit goes to you.
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = OrdersApi();
+final id = id_example; // String | 
+
+try {
+    final result = api_instance.createRentalNotReturned(id);
+    print(result);
+} catch (e) {
+    print('Exception when calling OrdersApi->createRentalNotReturned: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **String**|  | 
+
+### Return type
+
+**RentalResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+# **createRentalReleaseDeposit**
+> RentalResponse createRentalReleaseDeposit(id)
+
+Release the deposit now, without a claim.
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = OrdersApi();
+final id = id_example; // String | 
+
+try {
+    final result = api_instance.createRentalReleaseDeposit(id);
+    print(result);
+} catch (e) {
+    print('Exception when calling OrdersApi->createRentalReleaseDeposit: $e\n');
 }
 ```
 
@@ -1392,9 +2184,11 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
 # **getOrder**
-> ListOrdersItem getOrder(id)
+> GetOrderResponse getOrder(id)
 
-Get one order.
+Get one order, with its sale price, fees, SKU and line items.
+
+Each order carries its sale exactly as the order.created webhook sent it: salePrice, platformFee, taxCollected and shippingCharged in DOLLARS as JSON numbers (not decimal strings), feeSource (\"exact\" = the fee the marketplace charged, \"estimated\"), sku (the SKU of the listing), quantity (units), and lineItems: one entry per order row {lineKey, listingId, inventoryItemId, platformListingId (the MARKETPLACE listing id), sku (variant SKU, else the listing SKU), variantId, quantity, unitPrice (dollars per unit, rounded to the cent), total (dollars)}. A multi-item marketplace order is one order row per line sharing platformOrderId, each with its own lineKey. detailsPending: true (the sale was recorded before its price and buyer loaded), an order with no sale, or a sale with no listing behind it has null money and lineItems [] (sku and quantity are still given when known). channel is the business channel that sold it (retail, wholesale, auction, live, world, pos), purchaseOrderRef the buyer's PO number, and trade the on-account invoice behind a wholesale order {invoiceId, invoiceNumber, invoiceStatus (open, partial, overdue, paid, void), netDays, dueAt, totalCents, amountPaidCents, balanceCents} or null.
 
 ### Example
 ```dart
@@ -1425,7 +2219,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**ListOrdersItem**
+**GetOrderResponse**
 
 ### Authorization
 
@@ -1516,6 +2310,55 @@ This endpoint does not need any parameter.
 ### Return type
 
 **Map<String, num>**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+# **getOrderDeliveryPhoto**
+> GetOrderDeliveryPhotoResponse getOrderDeliveryPhoto(id)
+
+The courier's delivery photo for this order, pulled automatically, with where it came from.
+
+Crossly pulls the doorstep photo from whoever has it (the carrier API, e.g. UPS; Trackified when its tracking carries one; the marketplace when its payload does) and stores it on the order. state is found | none | not_delivered; source / sourceLabel say where it came from (\"From UPS\", \"Added by you\"); checked lists who was asked when there is none. Carriers often attach the photo hours after delivery.
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = OrdersApi();
+final id = id_example; // String | 
+
+try {
+    final result = api_instance.getOrderDeliveryPhoto(id);
+    print(result);
+} catch (e) {
+    print('Exception when calling OrdersApi->getOrderDeliveryPhoto: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **String**|  | 
+
+### Return type
+
+**GetOrderDeliveryPhotoResponse**
 
 ### Authorization
 
@@ -1630,6 +2473,53 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
+# **getOrderOrderChat**
+> GetOrderOrderChatResponse getOrderOrderChat(id)
+
+The order's buyer chat thread on the marketplace (separate from listing comments): { orderId, platform, messages: [{ id, sender (buyer|seller|platform), body, sentAt, attachments? }], canSend }, oldest message first.
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = OrdersApi();
+final id = 38400000-8cf0-11bd-b23e-10b96e4ef00d; // String | 
+
+try {
+    final result = api_instance.getOrderOrderChat(id);
+    print(result);
+} catch (e) {
+    print('Exception when calling OrdersApi->getOrderOrderChat: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **String**|  | 
+
+### Return type
+
+**GetOrderOrderChatResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
 # **getOrderPackingSlip**
 > MultipartFile getOrderPackingSlip(id)
 
@@ -1677,6 +2567,194 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
+# **getOrderPlatformLabelOption**
+> GetOrderPlatformLabelOptionResponse getOrderPlatformLabelOption(id)
+
+What buying a marketplace label offers for this order (weight tiers, mailbox state).
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = OrdersApi();
+final id = 38400000-8cf0-11bd-b23e-10b96e4ef00d; // String | 
+
+try {
+    final result = api_instance.getOrderPlatformLabelOption(id);
+    print(result);
+} catch (e) {
+    print('Exception when calling OrdersApi->getOrderPlatformLabelOption: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **String**|  | 
+
+### Return type
+
+**GetOrderPlatformLabelOptionResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+# **getOrderPlatformLabelPackingSlip**
+> UrlExpiresInSecondsResponse getOrderPlatformLabelPackingSlip(id)
+
+A fresh link to the marketplace's own packing slip PDF.
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = OrdersApi();
+final id = 38400000-8cf0-11bd-b23e-10b96e4ef00d; // String | 
+
+try {
+    final result = api_instance.getOrderPlatformLabelPackingSlip(id);
+    print(result);
+} catch (e) {
+    print('Exception when calling OrdersApi->getOrderPlatformLabelPackingSlip: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **String**|  | 
+
+### Return type
+
+**UrlExpiresInSecondsResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+# **getOrderPlatformLabelState**
+> GetOrderWhatnotShipmentResponse getOrderPlatformLabelState(id)
+
+The marketplace's shipment for an order (package, label, tracking). Records a label found on it.
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = OrdersApi();
+final id = 38400000-8cf0-11bd-b23e-10b96e4ef00d; // String | 
+
+try {
+    final result = api_instance.getOrderPlatformLabelState(id);
+    print(result);
+} catch (e) {
+    print('Exception when calling OrdersApi->getOrderPlatformLabelState: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **String**|  | 
+
+### Return type
+
+**GetOrderWhatnotShipmentResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+# **getOrderPlatformLabelUrl**
+> UrlExpiresInSecondsResponse getOrderPlatformLabelUrl(id)
+
+A fresh, short-lived link to the marketplace's label sheet. Never stored.
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = OrdersApi();
+final id = 38400000-8cf0-11bd-b23e-10b96e4ef00d; // String | 
+
+try {
+    final result = api_instance.getOrderPlatformLabelUrl(id);
+    print(result);
+} catch (e) {
+    print('Exception when calling OrdersApi->getOrderPlatformLabelUrl: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **String**|  | 
+
+### Return type
+
+**UrlExpiresInSecondsResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
 # **getOrderProofOfDelivery**
 > GetOrderProofOfDeliveryResponse getOrderProofOfDelivery(id)
 
@@ -1712,6 +2790,100 @@ Name | Type | Description  | Notes
 ### Return type
 
 **GetOrderProofOfDeliveryResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+# **getOrderRefundOption**
+> GetOrderRefundOptionResponse getOrderRefundOption(id)
+
+What a refund on this order may be, from the platform's declared capability: whether Crossly can refund it at all, full and/or partial, what a partial is measured against (total = what the buyer paid, item = the item price only), whether it may precede shipment, the platform's own reason keys (when listed, a refund's reason must be one of them), whether a comment is sent, whether the refund IS cancelling the sale (cancelsSale: Mercari, full only), whether the window closes when the order completes (untilCompleted; windowClosed = it has) and a one-line note on what the platform does not allow.
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = OrdersApi();
+final id = 38400000-8cf0-11bd-b23e-10b96e4ef00d; // String | 
+
+try {
+    final result = api_instance.getOrderRefundOption(id);
+    print(result);
+} catch (e) {
+    print('Exception when calling OrdersApi->getOrderRefundOption: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **String**|  | 
+
+### Return type
+
+**GetOrderRefundOptionResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+# **getOrderSalesTax**
+> GetOrderSalesTaxResponse getOrderSalesTax(id)
+
+Who collected sales tax on one Crossly marketplace order, where, and the seller notice.
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = OrdersApi();
+final id = 38400000-8cf0-11bd-b23e-10b96e4ef00d; // String | 
+
+try {
+    final result = api_instance.getOrderSalesTax(id);
+    print(result);
+} catch (e) {
+    print('Exception when calling OrdersApi->getOrderSalesTax: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **String**|  | 
+
+### Return type
+
+**GetOrderSalesTaxResponse**
 
 ### Authorization
 
@@ -1821,7 +2993,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
 # **getOrderWhatnotPackingSlip**
-> GetOrderWhatnotPackingSlipResponse getOrderWhatnotPackingSlip(id)
+> UrlExpiresInSecondsResponse getOrderWhatnotPackingSlip(id)
 
 A fresh link to Whatnot's packing slip PDF.
 
@@ -1854,7 +3026,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**GetOrderWhatnotPackingSlipResponse**
+**UrlExpiresInSecondsResponse**
 
 ### Authorization
 
@@ -1868,7 +3040,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
 # **getOrderWhatnotShipment**
-> CreateOrderWhatnotLabelResponse getOrderWhatnotShipment(id)
+> GetOrderWhatnotShipmentResponse getOrderWhatnotShipment(id)
 
 Whatnot shipment for an order (package, label, tracking). Records a label found on it.
 
@@ -1901,7 +3073,97 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**CreateOrderWhatnotLabelResponse**
+**GetOrderWhatnotShipmentResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+# **getRental**
+> GetRentalResponse getRental(id)
+
+One rental: its timeline, both sides’ condition photos, payments, extensions and what can be done next.
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = OrdersApi();
+final id = id_example; // String | 
+
+try {
+    final result = api_instance.getRental(id);
+    print(result);
+} catch (e) {
+    print('Exception when calling OrdersApi->getRental: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **String**|  | 
+
+### Return type
+
+**GetRentalResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+# **getRentalCalendar**
+> GetRentalCalendarResponse getRentalCalendar()
+
+Every rentable item’s bookings (per unit), turnaround buffers and blackouts between two dates (≤ 93 days).
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = OrdersApi();
+
+try {
+    final result = api_instance.getRentalCalendar();
+    print(result);
+} catch (e) {
+    print('Exception when calling OrdersApi->getRentalCalendar: $e\n');
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+**GetRentalCalendarResponse**
 
 ### Authorization
 
@@ -2003,7 +3265,7 @@ This endpoint does not need any parameter.
 # **listOrderPickupReady**
 > ListOrderPickupReadyResponse listOrderPickupReady()
 
-Orders with a purchased Shippo label a courier can collect or a SCAN form can cover, grouped by carrier.
+Orders with a purchased Crossly Shipping label a courier can collect or a SCAN form can cover, grouped by carrier.
 
 ### Example
 ```dart
@@ -2074,6 +3336,53 @@ This endpoint does not need any parameter.
 ### Return type
 
 **ListOrderPickupsResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+# **listOrderRefunds**
+> ListOrderRefundsResponse listOrderRefunds(id)
+
+Every refund requested on this order through the API or a cancel, newest first (amounts in dollars).
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = OrdersApi();
+final id = 38400000-8cf0-11bd-b23e-10b96e4ef00d; // String | 
+
+try {
+    final result = api_instance.listOrderRefunds(id);
+    print(result);
+} catch (e) {
+    print('Exception when calling OrdersApi->listOrderRefunds: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **String**|  | 
+
+### Return type
+
+**ListOrderRefundsResponse**
 
 ### Authorization
 
@@ -2179,9 +3488,11 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
 # **listOrders**
-> ListOrdersResponse listOrders(page, limit, status, platform)
+> ListOrdersResponse listOrders(page, limit, status, platform, channel, details, unlinked, updatedSince)
 
-List orders.
+List orders, each with its sale price, fees, SKU and line items.
+
+Each order carries its sale exactly as the order.created webhook sent it: salePrice, platformFee, taxCollected and shippingCharged in DOLLARS as JSON numbers (not decimal strings), feeSource (\"exact\" = the fee the marketplace charged, \"estimated\"), sku (the SKU of the listing), quantity (units), and lineItems: one entry per order row {lineKey, listingId, inventoryItemId, platformListingId (the MARKETPLACE listing id), sku (variant SKU, else the listing SKU), variantId, quantity, unitPrice (dollars per unit, rounded to the cent), total (dollars)}. A multi-item marketplace order is one order row per line sharing platformOrderId, each with its own lineKey. detailsPending: true (the sale was recorded before its price and buyer loaded), an order with no sale, or a sale with no listing behind it has null money and lineItems [] (sku and quantity are still given when known). channel is the business channel that sold it (retail, wholesale, auction, live, world, pos), purchaseOrderRef the buyer's PO number, and trade the on-account invoice behind a wholesale order {invoiceId, invoiceNumber, invoiceStatus (open, partial, overdue, paid, void), netDays, dueAt, totalCents, amountPaidCents, balanceCents} or null.
 
 ### Example
 ```dart
@@ -2198,9 +3509,13 @@ final page = 56; // int |
 final limit = 56; // int | 
 final status = status_example; // String | 
 final platform = platform_example; // String | 
+final channel = channel_example; // String | Only orders sold through this business channel (e.g. wholesale).
+final details = details_example; // String | pending = only orders whose sale details (price, buyer) have not loaded yet.
+final unlinked = unlinked_example; // String | 1 or true = only orders whose sale is not linked to any listing (an orphan sale).
+final updatedSince = 2013-10-20T19:20:30+01:00; // DateTime | Only orders created or changed at or after this time (ISO 8601): poll with the time of your last call to catch new orders and status/tracking changes.
 
 try {
-    final result = api_instance.listOrders(page, limit, status, platform);
+    final result = api_instance.listOrders(page, limit, status, platform, channel, details, unlinked, updatedSince);
     print(result);
 } catch (e) {
     print('Exception when calling OrdersApi->listOrders: $e\n');
@@ -2215,10 +3530,57 @@ Name | Type | Description  | Notes
  **limit** | **int**|  | [optional] [default to 25]
  **status** | **String**|  | [optional] 
  **platform** | **String**|  | [optional] 
+ **channel** | **String**| Only orders sold through this business channel (e.g. wholesale). | [optional] 
+ **details** | **String**| pending = only orders whose sale details (price, buyer) have not loaded yet. | [optional] 
+ **unlinked** | **String**| 1 or true = only orders whose sale is not linked to any listing (an orphan sale). | [optional] 
+ **updatedSince** | **DateTime**| Only orders created or changed at or after this time (ISO 8601): poll with the time of your last call to catch new orders and status/tracking changes. | [optional] 
 
 ### Return type
 
 **ListOrdersResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+# **listRentalHistory**
+> ListRentalHistoryResponse listRentalHistory()
+
+Active rentals and history, filtered by view, status, dates, item or a search.
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = OrdersApi();
+
+try {
+    final result = api_instance.listRentalHistory();
+    print(result);
+} catch (e) {
+    print('Exception when calling OrdersApi->listRentalHistory: $e\n');
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+**ListRentalHistoryResponse**
 
 ### Authorization
 
@@ -2275,7 +3637,7 @@ This endpoint does not need any parameter.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
 # **updateOrder**
-> ListOrdersItem updateOrder(id)
+> UpdateOrderResponse updateOrder(id)
 
 Update order (status, notes, tracking).
 
@@ -2308,7 +3670,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**ListOrdersItem**
+**UpdateOrderResponse**
 
 ### Authorization
 

@@ -18,6 +18,7 @@ class CreateStallBookResponseBookingUnits {
     @required this.endsAt,
     @required this.cents,
     this.externalId,
+    this.paymentId,
   });
 
   String key;
@@ -31,13 +32,17 @@ class CreateStallBookResponseBookingUnits {
   /// CBX only: the spend's external id for this unit (one spend per unit).
   String externalId;
 
+  /// CBX only, booked since gap 6: this unit's world_payments row (refunds go through refundWorld).
+  String paymentId;
+
   @override
   bool operator ==(Object other) => identical(this, other) || other is CreateStallBookResponseBookingUnits &&
      other.key == key &&
      other.startsAt == startsAt &&
      other.endsAt == endsAt &&
      other.cents == cents &&
-     other.externalId == externalId;
+     other.externalId == externalId &&
+     other.paymentId == paymentId;
 
   @override
   int get hashCode =>
@@ -46,10 +51,11 @@ class CreateStallBookResponseBookingUnits {
     (startsAt == null ? 0 : startsAt.hashCode) +
     (endsAt == null ? 0 : endsAt.hashCode) +
     (cents == null ? 0 : cents.hashCode) +
-    (externalId == null ? 0 : externalId.hashCode);
+    (externalId == null ? 0 : externalId.hashCode) +
+    (paymentId == null ? 0 : paymentId.hashCode);
 
   @override
-  String toString() => 'CreateStallBookResponseBookingUnits[key=$key, startsAt=$startsAt, endsAt=$endsAt, cents=$cents, externalId=$externalId]';
+  String toString() => 'CreateStallBookResponseBookingUnits[key=$key, startsAt=$startsAt, endsAt=$endsAt, cents=$cents, externalId=$externalId, paymentId=$paymentId]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -59,6 +65,9 @@ class CreateStallBookResponseBookingUnits {
       json[r'cents'] = cents;
     if (externalId != null) {
       json[r'externalId'] = externalId;
+    }
+    if (paymentId != null) {
+      json[r'paymentId'] = paymentId;
     }
     return json;
   }
@@ -77,6 +86,7 @@ class CreateStallBookResponseBookingUnits {
           ? null
           : num.parse(json[r'cents'].toString()),
         externalId: mapValueOfType<String>(json, r'externalId'),
+        paymentId: mapValueOfType<String>(json, r'paymentId'),
       );
     }
     return null;

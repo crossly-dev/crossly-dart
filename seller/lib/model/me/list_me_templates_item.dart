@@ -19,6 +19,9 @@ class ListMeTemplatesItem {
     @required this.createdAt,
     @required this.updatedAt,
     @required this.userId,
+    this.description,
+    this.notes,
+    @required this.isDefault,
     this.condition,
     this.size,
     this.material,
@@ -30,17 +33,14 @@ class ListMeTemplatesItem {
     this.sizeSystem,
     this.color,
     this.tags,
-    this.notes,
     this.weightOz,
-    this.description,
-    @required this.isDefault,
     this.title,
-    @required this.scope,
-    this.shareToken,
     @required this.sortOrder,
+    @required this.scope,
     this.descriptionVariants,
     this.titleVariants,
     this.defaultForCategory,
+    this.shareToken,
   });
 
   String id;
@@ -54,6 +54,12 @@ class ListMeTemplatesItem {
   DateTime updatedAt;
 
   String userId;
+
+  String description;
+
+  String notes;
+
+  bool isDefault;
 
   String condition;
 
@@ -77,27 +83,21 @@ class ListMeTemplatesItem {
 
   List<String> tags;
 
-  String notes;
-
   num weightOz;
-
-  String description;
-
-  bool isDefault;
 
   String title;
 
-  String scope;
-
-  String shareToken;
-
   num sortOrder;
+
+  String scope;
 
   List<String> descriptionVariants;
 
   List<String> titleVariants;
 
   String defaultForCategory;
+
+  String shareToken;
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is ListMeTemplatesItem &&
@@ -107,6 +107,9 @@ class ListMeTemplatesItem {
      other.createdAt == createdAt &&
      other.updatedAt == updatedAt &&
      other.userId == userId &&
+     other.description == description &&
+     other.notes == notes &&
+     other.isDefault == isDefault &&
      other.condition == condition &&
      other.size == size &&
      other.material == material &&
@@ -118,17 +121,14 @@ class ListMeTemplatesItem {
      other.sizeSystem == sizeSystem &&
      other.color == color &&
      other.tags == tags &&
-     other.notes == notes &&
      other.weightOz == weightOz &&
-     other.description == description &&
-     other.isDefault == isDefault &&
      other.title == title &&
-     other.scope == scope &&
-     other.shareToken == shareToken &&
      other.sortOrder == sortOrder &&
+     other.scope == scope &&
      other.descriptionVariants == descriptionVariants &&
      other.titleVariants == titleVariants &&
-     other.defaultForCategory == defaultForCategory;
+     other.defaultForCategory == defaultForCategory &&
+     other.shareToken == shareToken;
 
   @override
   int get hashCode =>
@@ -139,6 +139,9 @@ class ListMeTemplatesItem {
     (createdAt == null ? 0 : createdAt.hashCode) +
     (updatedAt == null ? 0 : updatedAt.hashCode) +
     (userId == null ? 0 : userId.hashCode) +
+    (description == null ? 0 : description.hashCode) +
+    (notes == null ? 0 : notes.hashCode) +
+    (isDefault == null ? 0 : isDefault.hashCode) +
     (condition == null ? 0 : condition.hashCode) +
     (size == null ? 0 : size.hashCode) +
     (material == null ? 0 : material.hashCode) +
@@ -150,20 +153,17 @@ class ListMeTemplatesItem {
     (sizeSystem == null ? 0 : sizeSystem.hashCode) +
     (color == null ? 0 : color.hashCode) +
     (tags == null ? 0 : tags.hashCode) +
-    (notes == null ? 0 : notes.hashCode) +
     (weightOz == null ? 0 : weightOz.hashCode) +
-    (description == null ? 0 : description.hashCode) +
-    (isDefault == null ? 0 : isDefault.hashCode) +
     (title == null ? 0 : title.hashCode) +
-    (scope == null ? 0 : scope.hashCode) +
-    (shareToken == null ? 0 : shareToken.hashCode) +
     (sortOrder == null ? 0 : sortOrder.hashCode) +
+    (scope == null ? 0 : scope.hashCode) +
     (descriptionVariants == null ? 0 : descriptionVariants.hashCode) +
     (titleVariants == null ? 0 : titleVariants.hashCode) +
-    (defaultForCategory == null ? 0 : defaultForCategory.hashCode);
+    (defaultForCategory == null ? 0 : defaultForCategory.hashCode) +
+    (shareToken == null ? 0 : shareToken.hashCode);
 
   @override
-  String toString() => 'ListMeTemplatesItem[id=$id, brand=$brand, name=$name, createdAt=$createdAt, updatedAt=$updatedAt, userId=$userId, condition=$condition, size=$size, material=$material, style=$style, pattern=$pattern, department=$department, gender=$gender, itemType=$itemType, sizeSystem=$sizeSystem, color=$color, tags=$tags, notes=$notes, weightOz=$weightOz, description=$description, isDefault=$isDefault, title=$title, scope=$scope, shareToken=$shareToken, sortOrder=$sortOrder, descriptionVariants=$descriptionVariants, titleVariants=$titleVariants, defaultForCategory=$defaultForCategory]';
+  String toString() => 'ListMeTemplatesItem[id=$id, brand=$brand, name=$name, createdAt=$createdAt, updatedAt=$updatedAt, userId=$userId, description=$description, notes=$notes, isDefault=$isDefault, condition=$condition, size=$size, material=$material, style=$style, pattern=$pattern, department=$department, gender=$gender, itemType=$itemType, sizeSystem=$sizeSystem, color=$color, tags=$tags, weightOz=$weightOz, title=$title, sortOrder=$sortOrder, scope=$scope, descriptionVariants=$descriptionVariants, titleVariants=$titleVariants, defaultForCategory=$defaultForCategory, shareToken=$shareToken]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -175,6 +175,13 @@ class ListMeTemplatesItem {
       json[r'createdAt'] = createdAt.toUtc().toIso8601String();
       json[r'updatedAt'] = updatedAt.toUtc().toIso8601String();
       json[r'userId'] = userId;
+    if (description != null) {
+      json[r'description'] = description;
+    }
+    if (notes != null) {
+      json[r'notes'] = notes;
+    }
+      json[r'isDefault'] = isDefault;
     if (condition != null) {
       json[r'condition'] = condition;
     }
@@ -208,24 +215,14 @@ class ListMeTemplatesItem {
     if (tags != null) {
       json[r'tags'] = tags;
     }
-    if (notes != null) {
-      json[r'notes'] = notes;
-    }
     if (weightOz != null) {
       json[r'weightOz'] = weightOz;
     }
-    if (description != null) {
-      json[r'description'] = description;
-    }
-      json[r'isDefault'] = isDefault;
     if (title != null) {
       json[r'title'] = title;
     }
-      json[r'scope'] = scope;
-    if (shareToken != null) {
-      json[r'shareToken'] = shareToken;
-    }
       json[r'sortOrder'] = sortOrder;
+      json[r'scope'] = scope;
     if (descriptionVariants != null) {
       json[r'descriptionVariants'] = descriptionVariants;
     }
@@ -234,6 +231,9 @@ class ListMeTemplatesItem {
     }
     if (defaultForCategory != null) {
       json[r'defaultForCategory'] = defaultForCategory;
+    }
+    if (shareToken != null) {
+      json[r'shareToken'] = shareToken;
     }
     return json;
   }
@@ -251,6 +251,9 @@ class ListMeTemplatesItem {
         createdAt: mapDateTime(json, r'createdAt', ''),
         updatedAt: mapDateTime(json, r'updatedAt', ''),
         userId: mapValueOfType<String>(json, r'userId'),
+        description: mapValueOfType<String>(json, r'description'),
+        notes: mapValueOfType<String>(json, r'notes'),
+        isDefault: mapValueOfType<bool>(json, r'isDefault'),
         condition: mapValueOfType<String>(json, r'condition'),
         size: mapValueOfType<String>(json, r'size'),
         material: mapValueOfType<String>(json, r'material'),
@@ -264,18 +267,14 @@ class ListMeTemplatesItem {
         tags: json[r'tags'] is List
           ? (json[r'tags'] as List).cast<String>()
           : null,
-        notes: mapValueOfType<String>(json, r'notes'),
         weightOz: json[r'weightOz'] == null
           ? null
           : num.parse(json[r'weightOz'].toString()),
-        description: mapValueOfType<String>(json, r'description'),
-        isDefault: mapValueOfType<bool>(json, r'isDefault'),
         title: mapValueOfType<String>(json, r'title'),
-        scope: mapValueOfType<String>(json, r'scope'),
-        shareToken: mapValueOfType<String>(json, r'shareToken'),
         sortOrder: json[r'sortOrder'] == null
           ? null
           : num.parse(json[r'sortOrder'].toString()),
+        scope: mapValueOfType<String>(json, r'scope'),
         descriptionVariants: json[r'descriptionVariants'] is List
           ? (json[r'descriptionVariants'] as List).cast<String>()
           : null,
@@ -283,6 +282,7 @@ class ListMeTemplatesItem {
           ? (json[r'titleVariants'] as List).cast<String>()
           : null,
         defaultForCategory: mapValueOfType<String>(json, r'defaultForCategory'),
+        shareToken: mapValueOfType<String>(json, r'shareToken'),
       );
     }
     return null;

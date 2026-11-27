@@ -13,15 +13,15 @@ part of openapi.api;
 class GetBuyerCheckoutUsdcResponseData {
   /// Returns a new [GetBuyerCheckoutUsdcResponseData] instance.
   GetBuyerCheckoutUsdcResponseData({
-    this.reason,
     @required this.available,
+    this.reason,
     @required this.maxCents,
     this.networks = const [],
   });
 
-  String reason;
-
   bool available;
+
+  String reason;
 
   num maxCents;
 
@@ -29,28 +29,28 @@ class GetBuyerCheckoutUsdcResponseData {
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is GetBuyerCheckoutUsdcResponseData &&
-     other.reason == reason &&
      other.available == available &&
+     other.reason == reason &&
      other.maxCents == maxCents &&
      other.networks == networks;
 
   @override
   int get hashCode =>
   // ignore: unnecessary_parenthesis
-    (reason == null ? 0 : reason.hashCode) +
     (available == null ? 0 : available.hashCode) +
+    (reason == null ? 0 : reason.hashCode) +
     (maxCents == null ? 0 : maxCents.hashCode) +
     (networks == null ? 0 : networks.hashCode);
 
   @override
-  String toString() => 'GetBuyerCheckoutUsdcResponseData[reason=$reason, available=$available, maxCents=$maxCents, networks=$networks]';
+  String toString() => 'GetBuyerCheckoutUsdcResponseData[available=$available, reason=$reason, maxCents=$maxCents, networks=$networks]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
+      json[r'available'] = available;
     if (reason != null) {
       json[r'reason'] = reason;
     }
-      json[r'available'] = available;
       json[r'maxCents'] = maxCents;
       json[r'networks'] = networks;
     return json;
@@ -63,8 +63,8 @@ class GetBuyerCheckoutUsdcResponseData {
     if (value is Map) {
       final json = value.cast<String, dynamic>();
       return GetBuyerCheckoutUsdcResponseData(
-        reason: mapValueOfType<String>(json, r'reason'),
         available: mapValueOfType<bool>(json, r'available'),
+        reason: mapValueOfType<String>(json, r'reason'),
         maxCents: json[r'maxCents'] == null
           ? null
           : num.parse(json[r'maxCents'].toString()),

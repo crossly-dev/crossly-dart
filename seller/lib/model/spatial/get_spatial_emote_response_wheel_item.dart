@@ -23,6 +23,7 @@ class GetSpatialEmoteResponseWheelItem {
 
   String toJson() => value;
 
+  static const phone = GetSpatialEmoteResponseWheelItem._(r'phone');
   static const spin = GetSpatialEmoteResponseWheelItem._(r'spin');
   static const wave = GetSpatialEmoteResponseWheelItem._(r'wave');
   static const point = GetSpatialEmoteResponseWheelItem._(r'point');
@@ -43,6 +44,33 @@ class GetSpatialEmoteResponseWheelItem {
   static const hug = GetSpatialEmoteResponseWheelItem._(r'hug');
   static const highFive = GetSpatialEmoteResponseWheelItem._(r'high_five');
   static const handshake = GetSpatialEmoteResponseWheelItem._(r'handshake');
+  static const facepalm = GetSpatialEmoteResponseWheelItem._(r'facepalm');
+  static const think = GetSpatialEmoteResponseWheelItem._(r'think');
+  static const laugh = GetSpatialEmoteResponseWheelItem._(r'laugh');
+  static const sigh = GetSpatialEmoteResponseWheelItem._(r'sigh');
+  static const no = GetSpatialEmoteResponseWheelItem._(r'no');
+  static const fistPump = GetSpatialEmoteResponseWheelItem._(r'fist_pump');
+  static const victory = GetSpatialEmoteResponseWheelItem._(r'victory');
+  static const yawn = GetSpatialEmoteResponseWheelItem._(r'yawn');
+  static const salute = GetSpatialEmoteResponseWheelItem._(r'salute');
+  static const bigWave = GetSpatialEmoteResponseWheelItem._(r'big_wave');
+  static const beckon = GetSpatialEmoteResponseWheelItem._(r'beckon');
+  static const shush = GetSpatialEmoteResponseWheelItem._(r'shush');
+  static const kiss = GetSpatialEmoteResponseWheelItem._(r'kiss');
+  static const peace = GetSpatialEmoteResponseWheelItem._(r'peace');
+  static const heart = GetSpatialEmoteResponseWheelItem._(r'heart');
+  static const sway = GetSpatialEmoteResponseWheelItem._(r'sway');
+  static const vibe = GetSpatialEmoteResponseWheelItem._(r'vibe');
+  static const airGuitar = GetSpatialEmoteResponseWheelItem._(r'air_guitar');
+  static const robot = GetSpatialEmoteResponseWheelItem._(r'robot');
+  static const disco = GetSpatialEmoteResponseWheelItem._(r'disco');
+  static const gavel = GetSpatialEmoteResponseWheelItem._(r'gavel');
+  static const haggle = GetSpatialEmoteResponseWheelItem._(r'haggle');
+  static const armsCrossed = GetSpatialEmoteResponseWheelItem._(r'arms_crossed');
+  static const handsOnHips = GetSpatialEmoteResponseWheelItem._(r'hands_on_hips');
+  static const kneel = GetSpatialEmoteResponseWheelItem._(r'kneel');
+  static const fistBump = GetSpatialEmoteResponseWheelItem._(r'fist_bump');
+  static const danceOff = GetSpatialEmoteResponseWheelItem._(r'dance_off');
   static const showoff = GetSpatialEmoteResponseWheelItem._(r'showoff');
   static const momentColonHandshake = GetSpatialEmoteResponseWheelItem._(r'moment:handshake');
   static const momentColonUnbox = GetSpatialEmoteResponseWheelItem._(r'moment:unbox');
@@ -50,6 +78,7 @@ class GetSpatialEmoteResponseWheelItem {
 
   /// List of all possible values in this [enum][GetSpatialEmoteResponseWheelItem].
   static const values = <GetSpatialEmoteResponseWheelItem>[
+    phone,
     spin,
     wave,
     point,
@@ -70,6 +99,33 @@ class GetSpatialEmoteResponseWheelItem {
     hug,
     highFive,
     handshake,
+    facepalm,
+    think,
+    laugh,
+    sigh,
+    no,
+    fistPump,
+    victory,
+    yawn,
+    salute,
+    bigWave,
+    beckon,
+    shush,
+    kiss,
+    peace,
+    heart,
+    sway,
+    vibe,
+    airGuitar,
+    robot,
+    disco,
+    gavel,
+    haggle,
+    armsCrossed,
+    handsOnHips,
+    kneel,
+    fistBump,
+    danceOff,
     showoff,
     momentColonHandshake,
     momentColonUnbox,
@@ -105,6 +161,7 @@ class GetSpatialEmoteResponseWheelItemTypeTransformer {
   GetSpatialEmoteResponseWheelItem decode(dynamic data, {bool allowNull}) {
     if (data != null) {
       switch (data.toString()) {
+        case r'phone': return GetSpatialEmoteResponseWheelItem.phone;
         case r'spin': return GetSpatialEmoteResponseWheelItem.spin;
         case r'wave': return GetSpatialEmoteResponseWheelItem.wave;
         case r'point': return GetSpatialEmoteResponseWheelItem.point;
@@ -125,6 +182,33 @@ class GetSpatialEmoteResponseWheelItemTypeTransformer {
         case r'hug': return GetSpatialEmoteResponseWheelItem.hug;
         case r'high_five': return GetSpatialEmoteResponseWheelItem.highFive;
         case r'handshake': return GetSpatialEmoteResponseWheelItem.handshake;
+        case r'facepalm': return GetSpatialEmoteResponseWheelItem.facepalm;
+        case r'think': return GetSpatialEmoteResponseWheelItem.think;
+        case r'laugh': return GetSpatialEmoteResponseWheelItem.laugh;
+        case r'sigh': return GetSpatialEmoteResponseWheelItem.sigh;
+        case r'no': return GetSpatialEmoteResponseWheelItem.no;
+        case r'fist_pump': return GetSpatialEmoteResponseWheelItem.fistPump;
+        case r'victory': return GetSpatialEmoteResponseWheelItem.victory;
+        case r'yawn': return GetSpatialEmoteResponseWheelItem.yawn;
+        case r'salute': return GetSpatialEmoteResponseWheelItem.salute;
+        case r'big_wave': return GetSpatialEmoteResponseWheelItem.bigWave;
+        case r'beckon': return GetSpatialEmoteResponseWheelItem.beckon;
+        case r'shush': return GetSpatialEmoteResponseWheelItem.shush;
+        case r'kiss': return GetSpatialEmoteResponseWheelItem.kiss;
+        case r'peace': return GetSpatialEmoteResponseWheelItem.peace;
+        case r'heart': return GetSpatialEmoteResponseWheelItem.heart;
+        case r'sway': return GetSpatialEmoteResponseWheelItem.sway;
+        case r'vibe': return GetSpatialEmoteResponseWheelItem.vibe;
+        case r'air_guitar': return GetSpatialEmoteResponseWheelItem.airGuitar;
+        case r'robot': return GetSpatialEmoteResponseWheelItem.robot;
+        case r'disco': return GetSpatialEmoteResponseWheelItem.disco;
+        case r'gavel': return GetSpatialEmoteResponseWheelItem.gavel;
+        case r'haggle': return GetSpatialEmoteResponseWheelItem.haggle;
+        case r'arms_crossed': return GetSpatialEmoteResponseWheelItem.armsCrossed;
+        case r'hands_on_hips': return GetSpatialEmoteResponseWheelItem.handsOnHips;
+        case r'kneel': return GetSpatialEmoteResponseWheelItem.kneel;
+        case r'fist_bump': return GetSpatialEmoteResponseWheelItem.fistBump;
+        case r'dance_off': return GetSpatialEmoteResponseWheelItem.danceOff;
         case r'showoff': return GetSpatialEmoteResponseWheelItem.showoff;
         case r'moment:handshake': return GetSpatialEmoteResponseWheelItem.momentColonHandshake;
         case r'moment:unbox': return GetSpatialEmoteResponseWheelItem.momentColonUnbox;

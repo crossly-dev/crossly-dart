@@ -17,6 +17,7 @@ class CreatePayoutConnectOnboardResponseData {
     @required this.country,
     @required this.agreement,
     @required this.payoutsSupported,
+    @required this.accountSource,
   });
 
   String url;
@@ -25,15 +26,17 @@ class CreatePayoutConnectOnboardResponseData {
 
   CreatePayoutConnectOnboardResponseDataAgreementEnum agreement;
 
-  /// False when Stripe offers no way for Crossly to pay this account (see connect.ts).
   bool payoutsSupported;
+
+  String accountSource;
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is CreatePayoutConnectOnboardResponseData &&
      other.url == url &&
      other.country == country &&
      other.agreement == agreement &&
-     other.payoutsSupported == payoutsSupported;
+     other.payoutsSupported == payoutsSupported &&
+     other.accountSource == accountSource;
 
   @override
   int get hashCode =>
@@ -41,10 +44,11 @@ class CreatePayoutConnectOnboardResponseData {
     (url == null ? 0 : url.hashCode) +
     (country == null ? 0 : country.hashCode) +
     (agreement == null ? 0 : agreement.hashCode) +
-    (payoutsSupported == null ? 0 : payoutsSupported.hashCode);
+    (payoutsSupported == null ? 0 : payoutsSupported.hashCode) +
+    (accountSource == null ? 0 : accountSource.hashCode);
 
   @override
-  String toString() => 'CreatePayoutConnectOnboardResponseData[url=$url, country=$country, agreement=$agreement, payoutsSupported=$payoutsSupported]';
+  String toString() => 'CreatePayoutConnectOnboardResponseData[url=$url, country=$country, agreement=$agreement, payoutsSupported=$payoutsSupported, accountSource=$accountSource]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -52,6 +56,7 @@ class CreatePayoutConnectOnboardResponseData {
       json[r'country'] = country;
       json[r'agreement'] = agreement;
       json[r'payoutsSupported'] = payoutsSupported;
+      json[r'accountSource'] = accountSource;
     return json;
   }
 
@@ -66,6 +71,7 @@ class CreatePayoutConnectOnboardResponseData {
         country: mapValueOfType<String>(json, r'country'),
         agreement: CreatePayoutConnectOnboardResponseDataAgreementEnum.fromJson(json[r'agreement']),
         payoutsSupported: mapValueOfType<bool>(json, r'payoutsSupported'),
+        accountSource: mapValueOfType<String>(json, r'accountSource'),
       );
     }
     return null;

@@ -14,28 +14,22 @@ class GetBuyerBreakResponseDataSpots {
   /// Returns a new [GetBuyerBreakResponseDataSpots] instance.
   GetBuyerBreakResponseDataSpots({
     @required this.id,
-    @required this.label,
     @required this.position,
-    this.heldUntil,
-    this.hits,
-    this.buyer,
+    @required this.label,
     @required this.taken,
     @required this.mine,
     @required this.heldByMe,
     @required this.heldByOther,
+    this.heldUntil,
+    this.buyer,
+    this.hits,
   });
 
   String id;
 
-  String label;
-
   num position;
 
-  String heldUntil;
-
-  String hits;
-
-  String buyer;
+  String label;
 
   bool taken;
 
@@ -45,54 +39,60 @@ class GetBuyerBreakResponseDataSpots {
 
   bool heldByOther;
 
+  String heldUntil;
+
+  String buyer;
+
+  String hits;
+
   @override
   bool operator ==(Object other) => identical(this, other) || other is GetBuyerBreakResponseDataSpots &&
      other.id == id &&
-     other.label == label &&
      other.position == position &&
-     other.heldUntil == heldUntil &&
-     other.hits == hits &&
-     other.buyer == buyer &&
+     other.label == label &&
      other.taken == taken &&
      other.mine == mine &&
      other.heldByMe == heldByMe &&
-     other.heldByOther == heldByOther;
+     other.heldByOther == heldByOther &&
+     other.heldUntil == heldUntil &&
+     other.buyer == buyer &&
+     other.hits == hits;
 
   @override
   int get hashCode =>
   // ignore: unnecessary_parenthesis
     (id == null ? 0 : id.hashCode) +
-    (label == null ? 0 : label.hashCode) +
     (position == null ? 0 : position.hashCode) +
-    (heldUntil == null ? 0 : heldUntil.hashCode) +
-    (hits == null ? 0 : hits.hashCode) +
-    (buyer == null ? 0 : buyer.hashCode) +
+    (label == null ? 0 : label.hashCode) +
     (taken == null ? 0 : taken.hashCode) +
     (mine == null ? 0 : mine.hashCode) +
     (heldByMe == null ? 0 : heldByMe.hashCode) +
-    (heldByOther == null ? 0 : heldByOther.hashCode);
+    (heldByOther == null ? 0 : heldByOther.hashCode) +
+    (heldUntil == null ? 0 : heldUntil.hashCode) +
+    (buyer == null ? 0 : buyer.hashCode) +
+    (hits == null ? 0 : hits.hashCode);
 
   @override
-  String toString() => 'GetBuyerBreakResponseDataSpots[id=$id, label=$label, position=$position, heldUntil=$heldUntil, hits=$hits, buyer=$buyer, taken=$taken, mine=$mine, heldByMe=$heldByMe, heldByOther=$heldByOther]';
+  String toString() => 'GetBuyerBreakResponseDataSpots[id=$id, position=$position, label=$label, taken=$taken, mine=$mine, heldByMe=$heldByMe, heldByOther=$heldByOther, heldUntil=$heldUntil, buyer=$buyer, hits=$hits]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
       json[r'id'] = id;
-      json[r'label'] = label;
       json[r'position'] = position;
-    if (heldUntil != null) {
-      json[r'heldUntil'] = heldUntil;
-    }
-    if (hits != null) {
-      json[r'hits'] = hits;
-    }
-    if (buyer != null) {
-      json[r'buyer'] = buyer;
-    }
+      json[r'label'] = label;
       json[r'taken'] = taken;
       json[r'mine'] = mine;
       json[r'heldByMe'] = heldByMe;
       json[r'heldByOther'] = heldByOther;
+    if (heldUntil != null) {
+      json[r'heldUntil'] = heldUntil;
+    }
+    if (buyer != null) {
+      json[r'buyer'] = buyer;
+    }
+    if (hits != null) {
+      json[r'hits'] = hits;
+    }
     return json;
   }
 
@@ -104,17 +104,17 @@ class GetBuyerBreakResponseDataSpots {
       final json = value.cast<String, dynamic>();
       return GetBuyerBreakResponseDataSpots(
         id: mapValueOfType<String>(json, r'id'),
-        label: mapValueOfType<String>(json, r'label'),
         position: json[r'position'] == null
           ? null
           : num.parse(json[r'position'].toString()),
-        heldUntil: mapValueOfType<String>(json, r'heldUntil'),
-        hits: mapValueOfType<String>(json, r'hits'),
-        buyer: mapValueOfType<String>(json, r'buyer'),
+        label: mapValueOfType<String>(json, r'label'),
         taken: mapValueOfType<bool>(json, r'taken'),
         mine: mapValueOfType<bool>(json, r'mine'),
         heldByMe: mapValueOfType<bool>(json, r'heldByMe'),
         heldByOther: mapValueOfType<bool>(json, r'heldByOther'),
+        heldUntil: mapValueOfType<String>(json, r'heldUntil'),
+        buyer: mapValueOfType<String>(json, r'buyer'),
+        hits: mapValueOfType<String>(json, r'hits'),
       );
     }
     return null;

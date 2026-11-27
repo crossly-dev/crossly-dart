@@ -173,19 +173,19 @@ class ListStreetDropsItemStatusEnum {
 
   String toJson() => value;
 
-  static const scheduled = ListStreetDropsItemStatusEnum._(r'scheduled');
   static const cancelled = ListStreetDropsItemStatusEnum._(r'cancelled');
+  static const scheduled = ListStreetDropsItemStatusEnum._(r'scheduled');
   static const closed = ListStreetDropsItemStatusEnum._(r'closed');
-  static const released = ListStreetDropsItemStatusEnum._(r'released');
   static const lineOpen = ListStreetDropsItemStatusEnum._(r'line_open');
+  static const released = ListStreetDropsItemStatusEnum._(r'released');
 
   /// List of all possible values in this [enum][ListStreetDropsItemStatusEnum].
   static const values = <ListStreetDropsItemStatusEnum>[
-    scheduled,
     cancelled,
+    scheduled,
     closed,
-    released,
     lineOpen,
+    released,
   ];
 
   static ListStreetDropsItemStatusEnum fromJson(dynamic value) =>
@@ -217,11 +217,11 @@ class ListStreetDropsItemStatusEnumTypeTransformer {
   ListStreetDropsItemStatusEnum decode(dynamic data, {bool allowNull}) {
     if (data != null) {
       switch (data.toString()) {
-        case r'scheduled': return ListStreetDropsItemStatusEnum.scheduled;
         case r'cancelled': return ListStreetDropsItemStatusEnum.cancelled;
+        case r'scheduled': return ListStreetDropsItemStatusEnum.scheduled;
         case r'closed': return ListStreetDropsItemStatusEnum.closed;
-        case r'released': return ListStreetDropsItemStatusEnum.released;
         case r'line_open': return ListStreetDropsItemStatusEnum.lineOpen;
+        case r'released': return ListStreetDropsItemStatusEnum.released;
         default:
           if (allowNull == false) {
             throw ArgumentError('Unknown enum value to decode: $data');

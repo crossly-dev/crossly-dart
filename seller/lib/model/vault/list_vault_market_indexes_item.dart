@@ -257,18 +257,18 @@ class ListVaultMarketIndexesItemKindEnum {
   static const custom = ListVaultMarketIndexesItemKindEnum._(r'custom');
   static const brand = ListVaultMarketIndexesItemKindEnum._(r'brand');
   static const category = ListVaultMarketIndexesItemKindEnum._(r'category');
+  static const segment = ListVaultMarketIndexesItemKindEnum._(r'segment');
   static const curated = ListVaultMarketIndexesItemKindEnum._(r'curated');
   static const composite = ListVaultMarketIndexesItemKindEnum._(r'composite');
-  static const segment = ListVaultMarketIndexesItemKindEnum._(r'segment');
 
   /// List of all possible values in this [enum][ListVaultMarketIndexesItemKindEnum].
   static const values = <ListVaultMarketIndexesItemKindEnum>[
     custom,
     brand,
     category,
+    segment,
     curated,
     composite,
-    segment,
   ];
 
   static ListVaultMarketIndexesItemKindEnum fromJson(dynamic value) =>
@@ -303,9 +303,9 @@ class ListVaultMarketIndexesItemKindEnumTypeTransformer {
         case r'custom': return ListVaultMarketIndexesItemKindEnum.custom;
         case r'brand': return ListVaultMarketIndexesItemKindEnum.brand;
         case r'category': return ListVaultMarketIndexesItemKindEnum.category;
+        case r'segment': return ListVaultMarketIndexesItemKindEnum.segment;
         case r'curated': return ListVaultMarketIndexesItemKindEnum.curated;
         case r'composite': return ListVaultMarketIndexesItemKindEnum.composite;
-        case r'segment': return ListVaultMarketIndexesItemKindEnum.segment;
         default:
           if (allowNull == false) {
             throw ArgumentError('Unknown enum value to decode: $data');

@@ -13,32 +13,32 @@ part of openapi.api;
 class CreateBuyerOfferResponseData {
   /// Returns a new [CreateBuyerOfferResponseData] instance.
   CreateBuyerOfferResponseData({
-    @required this.offer,
     @required this.ok,
+    @required this.offer,
   });
-
-  CreateBuyerOfferResponseDataOffer offer;
 
   bool ok;
 
+  CreateBuyerOfferResponseDataOffer offer;
+
   @override
   bool operator ==(Object other) => identical(this, other) || other is CreateBuyerOfferResponseData &&
-     other.offer == offer &&
-     other.ok == ok;
+     other.ok == ok &&
+     other.offer == offer;
 
   @override
   int get hashCode =>
   // ignore: unnecessary_parenthesis
-    (offer == null ? 0 : offer.hashCode) +
-    (ok == null ? 0 : ok.hashCode);
+    (ok == null ? 0 : ok.hashCode) +
+    (offer == null ? 0 : offer.hashCode);
 
   @override
-  String toString() => 'CreateBuyerOfferResponseData[offer=$offer, ok=$ok]';
+  String toString() => 'CreateBuyerOfferResponseData[ok=$ok, offer=$offer]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-      json[r'offer'] = offer;
       json[r'ok'] = ok;
+      json[r'offer'] = offer;
     return json;
   }
 
@@ -49,8 +49,8 @@ class CreateBuyerOfferResponseData {
     if (value is Map) {
       final json = value.cast<String, dynamic>();
       return CreateBuyerOfferResponseData(
-        offer: CreateBuyerOfferResponseDataOffer.fromJson(json[r'offer']),
         ok: mapValueOfType<bool>(json, r'ok'),
+        offer: CreateBuyerOfferResponseDataOffer.fromJson(json[r'offer']),
       );
     }
     return null;

@@ -137,18 +137,18 @@ class GetVaultMarketIndexFeedFundingResponseIndexKindEnum {
   static const custom = GetVaultMarketIndexFeedFundingResponseIndexKindEnum._(r'custom');
   static const brand = GetVaultMarketIndexFeedFundingResponseIndexKindEnum._(r'brand');
   static const category = GetVaultMarketIndexFeedFundingResponseIndexKindEnum._(r'category');
+  static const segment = GetVaultMarketIndexFeedFundingResponseIndexKindEnum._(r'segment');
   static const curated = GetVaultMarketIndexFeedFundingResponseIndexKindEnum._(r'curated');
   static const composite = GetVaultMarketIndexFeedFundingResponseIndexKindEnum._(r'composite');
-  static const segment = GetVaultMarketIndexFeedFundingResponseIndexKindEnum._(r'segment');
 
   /// List of all possible values in this [enum][GetVaultMarketIndexFeedFundingResponseIndexKindEnum].
   static const values = <GetVaultMarketIndexFeedFundingResponseIndexKindEnum>[
     custom,
     brand,
     category,
+    segment,
     curated,
     composite,
-    segment,
   ];
 
   static GetVaultMarketIndexFeedFundingResponseIndexKindEnum fromJson(dynamic value) =>
@@ -183,9 +183,9 @@ class GetVaultMarketIndexFeedFundingResponseIndexKindEnumTypeTransformer {
         case r'custom': return GetVaultMarketIndexFeedFundingResponseIndexKindEnum.custom;
         case r'brand': return GetVaultMarketIndexFeedFundingResponseIndexKindEnum.brand;
         case r'category': return GetVaultMarketIndexFeedFundingResponseIndexKindEnum.category;
+        case r'segment': return GetVaultMarketIndexFeedFundingResponseIndexKindEnum.segment;
         case r'curated': return GetVaultMarketIndexFeedFundingResponseIndexKindEnum.curated;
         case r'composite': return GetVaultMarketIndexFeedFundingResponseIndexKindEnum.composite;
-        case r'segment': return GetVaultMarketIndexFeedFundingResponseIndexKindEnum.segment;
         default:
           if (allowNull == false) {
             throw ArgumentError('Unknown enum value to decode: $data');

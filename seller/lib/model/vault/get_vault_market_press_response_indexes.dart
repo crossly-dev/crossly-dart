@@ -192,18 +192,18 @@ class GetVaultMarketPressResponseIndexesKindEnum {
   static const custom = GetVaultMarketPressResponseIndexesKindEnum._(r'custom');
   static const brand = GetVaultMarketPressResponseIndexesKindEnum._(r'brand');
   static const category = GetVaultMarketPressResponseIndexesKindEnum._(r'category');
+  static const segment = GetVaultMarketPressResponseIndexesKindEnum._(r'segment');
   static const curated = GetVaultMarketPressResponseIndexesKindEnum._(r'curated');
   static const composite = GetVaultMarketPressResponseIndexesKindEnum._(r'composite');
-  static const segment = GetVaultMarketPressResponseIndexesKindEnum._(r'segment');
 
   /// List of all possible values in this [enum][GetVaultMarketPressResponseIndexesKindEnum].
   static const values = <GetVaultMarketPressResponseIndexesKindEnum>[
     custom,
     brand,
     category,
+    segment,
     curated,
     composite,
-    segment,
   ];
 
   static GetVaultMarketPressResponseIndexesKindEnum fromJson(dynamic value) =>
@@ -238,9 +238,9 @@ class GetVaultMarketPressResponseIndexesKindEnumTypeTransformer {
         case r'custom': return GetVaultMarketPressResponseIndexesKindEnum.custom;
         case r'brand': return GetVaultMarketPressResponseIndexesKindEnum.brand;
         case r'category': return GetVaultMarketPressResponseIndexesKindEnum.category;
+        case r'segment': return GetVaultMarketPressResponseIndexesKindEnum.segment;
         case r'curated': return GetVaultMarketPressResponseIndexesKindEnum.curated;
         case r'composite': return GetVaultMarketPressResponseIndexesKindEnum.composite;
-        case r'segment': return GetVaultMarketPressResponseIndexesKindEnum.segment;
         default:
           if (allowNull == false) {
             throw ArgumentError('Unknown enum value to decode: $data');
@@ -342,16 +342,16 @@ class GetVaultMarketPressResponseIndexesQualityEnum {
   String toJson() => value;
 
   static const none = GetVaultMarketPressResponseIndexesQualityEnum._(r'none');
+  static const C = GetVaultMarketPressResponseIndexesQualityEnum._(r'C');
   static const A = GetVaultMarketPressResponseIndexesQualityEnum._(r'A');
   static const B = GetVaultMarketPressResponseIndexesQualityEnum._(r'B');
-  static const C = GetVaultMarketPressResponseIndexesQualityEnum._(r'C');
 
   /// List of all possible values in this [enum][GetVaultMarketPressResponseIndexesQualityEnum].
   static const values = <GetVaultMarketPressResponseIndexesQualityEnum>[
     none,
+    C,
     A,
     B,
-    C,
   ];
 
   static GetVaultMarketPressResponseIndexesQualityEnum fromJson(dynamic value) =>
@@ -384,9 +384,9 @@ class GetVaultMarketPressResponseIndexesQualityEnumTypeTransformer {
     if (data != null) {
       switch (data.toString()) {
         case r'none': return GetVaultMarketPressResponseIndexesQualityEnum.none;
+        case r'C': return GetVaultMarketPressResponseIndexesQualityEnum.C;
         case r'A': return GetVaultMarketPressResponseIndexesQualityEnum.A;
         case r'B': return GetVaultMarketPressResponseIndexesQualityEnum.B;
-        case r'C': return GetVaultMarketPressResponseIndexesQualityEnum.C;
         default:
           if (allowNull == false) {
             throw ArgumentError('Unknown enum value to decode: $data');

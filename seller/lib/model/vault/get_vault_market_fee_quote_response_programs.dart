@@ -118,13 +118,13 @@ class GetVaultMarketFeeQuoteResponseProgramsMemberTierEnum {
 
   String toJson() => value;
 
-  static const classic = GetVaultMarketFeeQuoteResponseProgramsMemberTierEnum._(r'classic');
   static const pro = GetVaultMarketFeeQuoteResponseProgramsMemberTierEnum._(r'pro');
+  static const classic = GetVaultMarketFeeQuoteResponseProgramsMemberTierEnum._(r'classic');
 
   /// List of all possible values in this [enum][GetVaultMarketFeeQuoteResponseProgramsMemberTierEnum].
   static const values = <GetVaultMarketFeeQuoteResponseProgramsMemberTierEnum>[
-    classic,
     pro,
+    classic,
   ];
 
   static GetVaultMarketFeeQuoteResponseProgramsMemberTierEnum fromJson(dynamic value) =>
@@ -156,8 +156,8 @@ class GetVaultMarketFeeQuoteResponseProgramsMemberTierEnumTypeTransformer {
   GetVaultMarketFeeQuoteResponseProgramsMemberTierEnum decode(dynamic data, {bool allowNull}) {
     if (data != null) {
       switch (data.toString()) {
-        case r'classic': return GetVaultMarketFeeQuoteResponseProgramsMemberTierEnum.classic;
         case r'pro': return GetVaultMarketFeeQuoteResponseProgramsMemberTierEnum.pro;
+        case r'classic': return GetVaultMarketFeeQuoteResponseProgramsMemberTierEnum.classic;
         default:
           if (allowNull == false) {
             throw ArgumentError('Unknown enum value to decode: $data');

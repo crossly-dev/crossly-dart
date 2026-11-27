@@ -18,6 +18,7 @@ class GetAnalyticDashboardResponseSellThrough {
     @required this.cohortSold,
     @required this.maturityDays,
     @required this.tooYoungToJudge,
+    @required this.immature,
   });
 
   num rate;
@@ -30,13 +31,16 @@ class GetAnalyticDashboardResponseSellThrough {
 
   bool tooYoungToJudge;
 
+  num immature;
+
   @override
   bool operator ==(Object other) => identical(this, other) || other is GetAnalyticDashboardResponseSellThrough &&
      other.rate == rate &&
      other.cohortSize == cohortSize &&
      other.cohortSold == cohortSold &&
      other.maturityDays == maturityDays &&
-     other.tooYoungToJudge == tooYoungToJudge;
+     other.tooYoungToJudge == tooYoungToJudge &&
+     other.immature == immature;
 
   @override
   int get hashCode =>
@@ -45,10 +49,11 @@ class GetAnalyticDashboardResponseSellThrough {
     (cohortSize == null ? 0 : cohortSize.hashCode) +
     (cohortSold == null ? 0 : cohortSold.hashCode) +
     (maturityDays == null ? 0 : maturityDays.hashCode) +
-    (tooYoungToJudge == null ? 0 : tooYoungToJudge.hashCode);
+    (tooYoungToJudge == null ? 0 : tooYoungToJudge.hashCode) +
+    (immature == null ? 0 : immature.hashCode);
 
   @override
-  String toString() => 'GetAnalyticDashboardResponseSellThrough[rate=$rate, cohortSize=$cohortSize, cohortSold=$cohortSold, maturityDays=$maturityDays, tooYoungToJudge=$tooYoungToJudge]';
+  String toString() => 'GetAnalyticDashboardResponseSellThrough[rate=$rate, cohortSize=$cohortSize, cohortSold=$cohortSold, maturityDays=$maturityDays, tooYoungToJudge=$tooYoungToJudge, immature=$immature]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -59,6 +64,7 @@ class GetAnalyticDashboardResponseSellThrough {
       json[r'cohortSold'] = cohortSold;
       json[r'maturityDays'] = maturityDays;
       json[r'tooYoungToJudge'] = tooYoungToJudge;
+      json[r'immature'] = immature;
     return json;
   }
 
@@ -82,6 +88,9 @@ class GetAnalyticDashboardResponseSellThrough {
           ? null
           : num.parse(json[r'maturityDays'].toString()),
         tooYoungToJudge: mapValueOfType<bool>(json, r'tooYoungToJudge'),
+        immature: json[r'immature'] == null
+          ? null
+          : num.parse(json[r'immature'].toString()),
       );
     }
     return null;

@@ -18,9 +18,9 @@ class ListAuthSessionsItem {
     this.userAgent,
     this.ipAddress,
     this.ipCountry,
-    @required this.createdAt,
-    @required this.lastUsedAt,
-    @required this.expiresAt,
+    this.createdAt,
+    this.lastUsedAt,
+    this.expiresAt,
   });
 
   bool isCurrent;
@@ -33,11 +33,11 @@ class ListAuthSessionsItem {
 
   String ipCountry;
 
-  DateTime createdAt;
+  String createdAt;
 
-  DateTime lastUsedAt;
+  String lastUsedAt;
 
-  DateTime expiresAt;
+  String expiresAt;
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is ListAuthSessionsItem &&
@@ -78,9 +78,15 @@ class ListAuthSessionsItem {
     if (ipCountry != null) {
       json[r'ipCountry'] = ipCountry;
     }
-      json[r'createdAt'] = createdAt.toUtc().toIso8601String();
-      json[r'lastUsedAt'] = lastUsedAt.toUtc().toIso8601String();
-      json[r'expiresAt'] = expiresAt.toUtc().toIso8601String();
+    if (createdAt != null) {
+      json[r'createdAt'] = createdAt;
+    }
+    if (lastUsedAt != null) {
+      json[r'lastUsedAt'] = lastUsedAt;
+    }
+    if (expiresAt != null) {
+      json[r'expiresAt'] = expiresAt;
+    }
     return json;
   }
 
@@ -96,9 +102,9 @@ class ListAuthSessionsItem {
         userAgent: mapValueOfType<String>(json, r'userAgent'),
         ipAddress: mapValueOfType<String>(json, r'ipAddress'),
         ipCountry: mapValueOfType<String>(json, r'ipCountry'),
-        createdAt: mapDateTime(json, r'createdAt', ''),
-        lastUsedAt: mapDateTime(json, r'lastUsedAt', ''),
-        expiresAt: mapDateTime(json, r'expiresAt', ''),
+        createdAt: mapValueOfType<String>(json, r'createdAt'),
+        lastUsedAt: mapValueOfType<String>(json, r'lastUsedAt'),
+        expiresAt: mapValueOfType<String>(json, r'expiresAt'),
       );
     }
     return null;

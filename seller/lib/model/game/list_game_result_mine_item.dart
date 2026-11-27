@@ -154,6 +154,7 @@ class ListGameResultMineItemGameEnum {
   static const hunt = ListGameResultMineItemGameEnum._(r'hunt');
   static const speedTrade = ListGameResultMineItemGameEnum._(r'speed_trade');
   static const breakHost = ListGameResultMineItemGameEnum._(r'break_host');
+  static const packBreak = ListGameResultMineItemGameEnum._(r'pack_break');
 
   /// List of all possible values in this [enum][ListGameResultMineItemGameEnum].
   static const values = <ListGameResultMineItemGameEnum>[
@@ -162,6 +163,7 @@ class ListGameResultMineItemGameEnum {
     hunt,
     speedTrade,
     breakHost,
+    packBreak,
   ];
 
   static ListGameResultMineItemGameEnum fromJson(dynamic value) =>
@@ -198,6 +200,7 @@ class ListGameResultMineItemGameEnumTypeTransformer {
         case r'hunt': return ListGameResultMineItemGameEnum.hunt;
         case r'speed_trade': return ListGameResultMineItemGameEnum.speedTrade;
         case r'break_host': return ListGameResultMineItemGameEnum.breakHost;
+        case r'pack_break': return ListGameResultMineItemGameEnum.packBreak;
         default:
           if (allowNull == false) {
             throw ArgumentError('Unknown enum value to decode: $data');

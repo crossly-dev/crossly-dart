@@ -18,10 +18,10 @@ class GetVaultMarketMmResponseObligations {
     @required this.userId,
     @required this.day,
     this.reasons,
+    @required this.program,
     this.tier,
     @required this.bookKey,
     this.level,
-    @required this.program,
     @required this.samples,
     @required this.inSpread,
     @required this.inHalfSpread,
@@ -43,13 +43,13 @@ class GetVaultMarketMmResponseObligations {
 
   List<String> reasons;
 
+  String program;
+
   String tier;
 
   String bookKey;
 
   String level;
-
-  String program;
 
   num samples;
 
@@ -76,10 +76,10 @@ class GetVaultMarketMmResponseObligations {
      other.userId == userId &&
      other.day == day &&
      other.reasons == reasons &&
+     other.program == program &&
      other.tier == tier &&
      other.bookKey == bookKey &&
      other.level == level &&
-     other.program == program &&
      other.samples == samples &&
      other.inSpread == inSpread &&
      other.inHalfSpread == inHalfSpread &&
@@ -98,10 +98,10 @@ class GetVaultMarketMmResponseObligations {
     (userId == null ? 0 : userId.hashCode) +
     (day == null ? 0 : day.hashCode) +
     (reasons == null ? 0 : reasons.hashCode) +
+    (program == null ? 0 : program.hashCode) +
     (tier == null ? 0 : tier.hashCode) +
     (bookKey == null ? 0 : bookKey.hashCode) +
     (level == null ? 0 : level.hashCode) +
-    (program == null ? 0 : program.hashCode) +
     (samples == null ? 0 : samples.hashCode) +
     (inSpread == null ? 0 : inSpread.hashCode) +
     (inHalfSpread == null ? 0 : inHalfSpread.hashCode) +
@@ -113,7 +113,7 @@ class GetVaultMarketMmResponseObligations {
     (coverageBps == null ? 0 : coverageBps.hashCode);
 
   @override
-  String toString() => 'GetVaultMarketMmResponseObligations[coveragePct=$coveragePct, updatedAt=$updatedAt, userId=$userId, day=$day, reasons=$reasons, tier=$tier, bookKey=$bookKey, level=$level, program=$program, samples=$samples, inSpread=$inSpread, inHalfSpread=$inHalfSpread, callsTotal=$callsTotal, callsJoined=$callsJoined, rfqInvited=$rfqInvited, rfqAnsweredFast=$rfqAnsweredFast, met=$met, coverageBps=$coverageBps]';
+  String toString() => 'GetVaultMarketMmResponseObligations[coveragePct=$coveragePct, updatedAt=$updatedAt, userId=$userId, day=$day, reasons=$reasons, program=$program, tier=$tier, bookKey=$bookKey, level=$level, samples=$samples, inSpread=$inSpread, inHalfSpread=$inHalfSpread, callsTotal=$callsTotal, callsJoined=$callsJoined, rfqInvited=$rfqInvited, rfqAnsweredFast=$rfqAnsweredFast, met=$met, coverageBps=$coverageBps]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -126,6 +126,7 @@ class GetVaultMarketMmResponseObligations {
     if (reasons != null) {
       json[r'reasons'] = reasons;
     }
+      json[r'program'] = program;
     if (tier != null) {
       json[r'tier'] = tier;
     }
@@ -133,7 +134,6 @@ class GetVaultMarketMmResponseObligations {
     if (level != null) {
       json[r'level'] = level;
     }
-      json[r'program'] = program;
       json[r'samples'] = samples;
       json[r'inSpread'] = inSpread;
       json[r'inHalfSpread'] = inHalfSpread;
@@ -166,10 +166,10 @@ class GetVaultMarketMmResponseObligations {
         reasons: json[r'reasons'] is List
           ? (json[r'reasons'] as List).cast<String>()
           : null,
+        program: mapValueOfType<String>(json, r'program'),
         tier: mapValueOfType<String>(json, r'tier'),
         bookKey: mapValueOfType<String>(json, r'bookKey'),
         level: mapValueOfType<String>(json, r'level'),
-        program: mapValueOfType<String>(json, r'program'),
         samples: json[r'samples'] == null
           ? null
           : num.parse(json[r'samples'].toString()),

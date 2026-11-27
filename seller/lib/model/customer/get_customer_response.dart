@@ -21,6 +21,8 @@ class GetCustomerResponse {
     @required this.contact,
     this.profiles = const [],
     @required this.stats,
+    @required this.notes,
+    this.notesUpdatedAt,
   });
 
   String normalizedHandle;
@@ -39,6 +41,10 @@ class GetCustomerResponse {
 
   GetCustomerResponseStats stats;
 
+  String notes;
+
+  String notesUpdatedAt;
+
   @override
   bool operator ==(Object other) => identical(this, other) || other is GetCustomerResponse &&
      other.normalizedHandle == normalizedHandle &&
@@ -48,7 +54,9 @@ class GetCustomerResponse {
      other.orders == orders &&
      other.contact == contact &&
      other.profiles == profiles &&
-     other.stats == stats;
+     other.stats == stats &&
+     other.notes == notes &&
+     other.notesUpdatedAt == notesUpdatedAt;
 
   @override
   int get hashCode =>
@@ -60,10 +68,12 @@ class GetCustomerResponse {
     (orders == null ? 0 : orders.hashCode) +
     (contact == null ? 0 : contact.hashCode) +
     (profiles == null ? 0 : profiles.hashCode) +
-    (stats == null ? 0 : stats.hashCode);
+    (stats == null ? 0 : stats.hashCode) +
+    (notes == null ? 0 : notes.hashCode) +
+    (notesUpdatedAt == null ? 0 : notesUpdatedAt.hashCode);
 
   @override
-  String toString() => 'GetCustomerResponse[normalizedHandle=$normalizedHandle, platforms=$platforms, totalOrders=$totalOrders, totalSpent=$totalSpent, orders=$orders, contact=$contact, profiles=$profiles, stats=$stats]';
+  String toString() => 'GetCustomerResponse[normalizedHandle=$normalizedHandle, platforms=$platforms, totalOrders=$totalOrders, totalSpent=$totalSpent, orders=$orders, contact=$contact, profiles=$profiles, stats=$stats, notes=$notes, notesUpdatedAt=$notesUpdatedAt]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -75,6 +85,10 @@ class GetCustomerResponse {
       json[r'contact'] = contact;
       json[r'profiles'] = profiles;
       json[r'stats'] = stats;
+      json[r'notes'] = notes;
+    if (notesUpdatedAt != null) {
+      json[r'notesUpdatedAt'] = notesUpdatedAt;
+    }
     return json;
   }
 
@@ -99,6 +113,8 @@ class GetCustomerResponse {
         contact: GetCustomerResponseContact.fromJson(json[r'contact']),
         profiles: GetCustomerResponseProfiles.listFromJson(json[r'profiles']),
         stats: GetCustomerResponseStats.fromJson(json[r'stats']),
+        notes: mapValueOfType<String>(json, r'notes'),
+        notesUpdatedAt: mapValueOfType<String>(json, r'notesUpdatedAt'),
       );
     }
     return null;

@@ -144,13 +144,13 @@ class GetVaultMarketAdlResponseRecentEventsBankruptSideEnum {
 
   String toJson() => value;
 
-  static const long = GetVaultMarketAdlResponseRecentEventsBankruptSideEnum._(r'long');
   static const short = GetVaultMarketAdlResponseRecentEventsBankruptSideEnum._(r'short');
+  static const long = GetVaultMarketAdlResponseRecentEventsBankruptSideEnum._(r'long');
 
   /// List of all possible values in this [enum][GetVaultMarketAdlResponseRecentEventsBankruptSideEnum].
   static const values = <GetVaultMarketAdlResponseRecentEventsBankruptSideEnum>[
-    long,
     short,
+    long,
   ];
 
   static GetVaultMarketAdlResponseRecentEventsBankruptSideEnum fromJson(dynamic value) =>
@@ -182,8 +182,8 @@ class GetVaultMarketAdlResponseRecentEventsBankruptSideEnumTypeTransformer {
   GetVaultMarketAdlResponseRecentEventsBankruptSideEnum decode(dynamic data, {bool allowNull}) {
     if (data != null) {
       switch (data.toString()) {
-        case r'long': return GetVaultMarketAdlResponseRecentEventsBankruptSideEnum.long;
         case r'short': return GetVaultMarketAdlResponseRecentEventsBankruptSideEnum.short;
+        case r'long': return GetVaultMarketAdlResponseRecentEventsBankruptSideEnum.long;
         default:
           if (allowNull == false) {
             throw ArgumentError('Unknown enum value to decode: $data');

@@ -324,15 +324,15 @@ class ListMarketBullionItemFormEnum {
 
   String toJson() => value;
 
-  static const round = ListMarketBullionItemFormEnum._(r'round');
   static const bullionCoin = ListMarketBullionItemFormEnum._(r'bullion_coin');
   static const bar = ListMarketBullionItemFormEnum._(r'bar');
+  static const round = ListMarketBullionItemFormEnum._(r'round');
 
   /// List of all possible values in this [enum][ListMarketBullionItemFormEnum].
   static const values = <ListMarketBullionItemFormEnum>[
-    round,
     bullionCoin,
     bar,
+    round,
   ];
 
   static ListMarketBullionItemFormEnum fromJson(dynamic value) =>
@@ -364,9 +364,9 @@ class ListMarketBullionItemFormEnumTypeTransformer {
   ListMarketBullionItemFormEnum decode(dynamic data, {bool allowNull}) {
     if (data != null) {
       switch (data.toString()) {
-        case r'round': return ListMarketBullionItemFormEnum.round;
         case r'bullion_coin': return ListMarketBullionItemFormEnum.bullionCoin;
         case r'bar': return ListMarketBullionItemFormEnum.bar;
+        case r'round': return ListMarketBullionItemFormEnum.round;
         default:
           if (allowNull == false) {
             throw ArgumentError('Unknown enum value to decode: $data');
@@ -394,8 +394,8 @@ class ListMarketBullionItemSizeEnum {
 
   String toJson() => value;
 
-  static const quarter = ListMarketBullionItemSizeEnum._(r'quarter');
   static const fractional = ListMarketBullionItemSizeEnum._(r'fractional');
+  static const quarter = ListMarketBullionItemSizeEnum._(r'quarter');
   static const half = ListMarketBullionItemSizeEnum._(r'half');
   static const one = ListMarketBullionItemSizeEnum._(r'one');
   static const twoFive = ListMarketBullionItemSizeEnum._(r'two-five');
@@ -405,8 +405,8 @@ class ListMarketBullionItemSizeEnum {
 
   /// List of all possible values in this [enum][ListMarketBullionItemSizeEnum].
   static const values = <ListMarketBullionItemSizeEnum>[
-    quarter,
     fractional,
+    quarter,
     half,
     one,
     twoFive,
@@ -444,8 +444,8 @@ class ListMarketBullionItemSizeEnumTypeTransformer {
   ListMarketBullionItemSizeEnum decode(dynamic data, {bool allowNull}) {
     if (data != null) {
       switch (data.toString()) {
-        case r'quarter': return ListMarketBullionItemSizeEnum.quarter;
         case r'fractional': return ListMarketBullionItemSizeEnum.fractional;
+        case r'quarter': return ListMarketBullionItemSizeEnum.quarter;
         case r'half': return ListMarketBullionItemSizeEnum.half;
         case r'one': return ListMarketBullionItemSizeEnum.one;
         case r'two-five': return ListMarketBullionItemSizeEnum.twoFive;

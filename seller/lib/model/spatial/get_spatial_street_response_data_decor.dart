@@ -133,25 +133,25 @@ class GetSpatialStreetResponseDataDecorBannerColourEnum {
 
   String toJson() => value;
 
-  static const red = GetSpatialStreetResponseDataDecorBannerColourEnum._(r'red');
-  static const green = GetSpatialStreetResponseDataDecorBannerColourEnum._(r'green');
-  static const teal = GetSpatialStreetResponseDataDecorBannerColourEnum._(r'teal');
   static const blue = GetSpatialStreetResponseDataDecorBannerColourEnum._(r'blue');
+  static const green = GetSpatialStreetResponseDataDecorBannerColourEnum._(r'green');
   static const purple = GetSpatialStreetResponseDataDecorBannerColourEnum._(r'purple');
+  static const red = GetSpatialStreetResponseDataDecorBannerColourEnum._(r'red');
+  static const teal = GetSpatialStreetResponseDataDecorBannerColourEnum._(r'teal');
   static const cream = GetSpatialStreetResponseDataDecorBannerColourEnum._(r'cream');
-  static const amber = GetSpatialStreetResponseDataDecorBannerColourEnum._(r'amber');
   static const ink = GetSpatialStreetResponseDataDecorBannerColourEnum._(r'ink');
+  static const amber = GetSpatialStreetResponseDataDecorBannerColourEnum._(r'amber');
 
   /// List of all possible values in this [enum][GetSpatialStreetResponseDataDecorBannerColourEnum].
   static const values = <GetSpatialStreetResponseDataDecorBannerColourEnum>[
-    red,
-    green,
-    teal,
     blue,
+    green,
     purple,
+    red,
+    teal,
     cream,
-    amber,
     ink,
+    amber,
   ];
 
   static GetSpatialStreetResponseDataDecorBannerColourEnum fromJson(dynamic value) =>
@@ -183,14 +183,14 @@ class GetSpatialStreetResponseDataDecorBannerColourEnumTypeTransformer {
   GetSpatialStreetResponseDataDecorBannerColourEnum decode(dynamic data, {bool allowNull}) {
     if (data != null) {
       switch (data.toString()) {
-        case r'red': return GetSpatialStreetResponseDataDecorBannerColourEnum.red;
-        case r'green': return GetSpatialStreetResponseDataDecorBannerColourEnum.green;
-        case r'teal': return GetSpatialStreetResponseDataDecorBannerColourEnum.teal;
         case r'blue': return GetSpatialStreetResponseDataDecorBannerColourEnum.blue;
+        case r'green': return GetSpatialStreetResponseDataDecorBannerColourEnum.green;
         case r'purple': return GetSpatialStreetResponseDataDecorBannerColourEnum.purple;
+        case r'red': return GetSpatialStreetResponseDataDecorBannerColourEnum.red;
+        case r'teal': return GetSpatialStreetResponseDataDecorBannerColourEnum.teal;
         case r'cream': return GetSpatialStreetResponseDataDecorBannerColourEnum.cream;
-        case r'amber': return GetSpatialStreetResponseDataDecorBannerColourEnum.amber;
         case r'ink': return GetSpatialStreetResponseDataDecorBannerColourEnum.ink;
+        case r'amber': return GetSpatialStreetResponseDataDecorBannerColourEnum.amber;
         default:
           if (allowNull == false) {
             throw ArgumentError('Unknown enum value to decode: $data');

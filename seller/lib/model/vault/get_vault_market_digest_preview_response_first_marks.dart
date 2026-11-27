@@ -121,16 +121,16 @@ class GetVaultMarketDigestPreviewResponseFirstMarksQualityEnum {
   String toJson() => value;
 
   static const none = GetVaultMarketDigestPreviewResponseFirstMarksQualityEnum._(r'none');
+  static const C = GetVaultMarketDigestPreviewResponseFirstMarksQualityEnum._(r'C');
   static const A = GetVaultMarketDigestPreviewResponseFirstMarksQualityEnum._(r'A');
   static const B = GetVaultMarketDigestPreviewResponseFirstMarksQualityEnum._(r'B');
-  static const C = GetVaultMarketDigestPreviewResponseFirstMarksQualityEnum._(r'C');
 
   /// List of all possible values in this [enum][GetVaultMarketDigestPreviewResponseFirstMarksQualityEnum].
   static const values = <GetVaultMarketDigestPreviewResponseFirstMarksQualityEnum>[
     none,
+    C,
     A,
     B,
-    C,
   ];
 
   static GetVaultMarketDigestPreviewResponseFirstMarksQualityEnum fromJson(dynamic value) =>
@@ -163,9 +163,9 @@ class GetVaultMarketDigestPreviewResponseFirstMarksQualityEnumTypeTransformer {
     if (data != null) {
       switch (data.toString()) {
         case r'none': return GetVaultMarketDigestPreviewResponseFirstMarksQualityEnum.none;
+        case r'C': return GetVaultMarketDigestPreviewResponseFirstMarksQualityEnum.C;
         case r'A': return GetVaultMarketDigestPreviewResponseFirstMarksQualityEnum.A;
         case r'B': return GetVaultMarketDigestPreviewResponseFirstMarksQualityEnum.B;
-        case r'C': return GetVaultMarketDigestPreviewResponseFirstMarksQualityEnum.C;
         default:
           if (allowNull == false) {
             throw ArgumentError('Unknown enum value to decode: $data');

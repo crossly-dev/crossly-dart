@@ -225,15 +225,15 @@ class GetVaultMarketPositionResponseLegsStatusEnum {
 
   String toJson() => value;
 
-  static const filled = GetVaultMarketPositionResponseLegsStatusEnum._(r'filled');
   static const cancelled = GetVaultMarketPositionResponseLegsStatusEnum._(r'cancelled');
+  static const filled = GetVaultMarketPositionResponseLegsStatusEnum._(r'filled');
   static const working = GetVaultMarketPositionResponseLegsStatusEnum._(r'working');
   static const busted = GetVaultMarketPositionResponseLegsStatusEnum._(r'busted');
 
   /// List of all possible values in this [enum][GetVaultMarketPositionResponseLegsStatusEnum].
   static const values = <GetVaultMarketPositionResponseLegsStatusEnum>[
-    filled,
     cancelled,
+    filled,
     working,
     busted,
   ];
@@ -267,8 +267,8 @@ class GetVaultMarketPositionResponseLegsStatusEnumTypeTransformer {
   GetVaultMarketPositionResponseLegsStatusEnum decode(dynamic data, {bool allowNull}) {
     if (data != null) {
       switch (data.toString()) {
-        case r'filled': return GetVaultMarketPositionResponseLegsStatusEnum.filled;
         case r'cancelled': return GetVaultMarketPositionResponseLegsStatusEnum.cancelled;
+        case r'filled': return GetVaultMarketPositionResponseLegsStatusEnum.filled;
         case r'working': return GetVaultMarketPositionResponseLegsStatusEnum.working;
         case r'busted': return GetVaultMarketPositionResponseLegsStatusEnum.busted;
         default:

@@ -30,7 +30,7 @@ class GetHomeResponseVaultWallUnits {
 
   num units;
 
-  /// The book key, for a click through to its market (/shop/vault/markets/<bookKey>).
+  /// The book key, for a click through to its market (/trading/<bookKey>).
   String bookKey;
 
   /// One unit's mark, cents -- only when the viewer may see values (else absent).

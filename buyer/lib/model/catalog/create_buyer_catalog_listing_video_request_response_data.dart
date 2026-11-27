@@ -15,11 +15,11 @@ class CreateBuyerCatalogListingVideoRequestResponseData {
   CreateBuyerCatalogListingVideoRequestResponseData({
     @required this.id,
     @required this.createdAt,
-    this.videoUrl,
     @required this.status,
+    this.videoUrl,
     @required this.platformListingId,
-    @required this.sellerUserId,
     @required this.buyerUserId,
+    @required this.sellerUserId,
     this.note,
     this.answeredAt,
     this.sellerNote,
@@ -29,15 +29,15 @@ class CreateBuyerCatalogListingVideoRequestResponseData {
 
   DateTime createdAt;
 
-  String videoUrl;
-
   String status;
+
+  String videoUrl;
 
   String platformListingId;
 
-  String sellerUserId;
-
   String buyerUserId;
+
+  String sellerUserId;
 
   String note;
 
@@ -49,11 +49,11 @@ class CreateBuyerCatalogListingVideoRequestResponseData {
   bool operator ==(Object other) => identical(this, other) || other is CreateBuyerCatalogListingVideoRequestResponseData &&
      other.id == id &&
      other.createdAt == createdAt &&
-     other.videoUrl == videoUrl &&
      other.status == status &&
+     other.videoUrl == videoUrl &&
      other.platformListingId == platformListingId &&
-     other.sellerUserId == sellerUserId &&
      other.buyerUserId == buyerUserId &&
+     other.sellerUserId == sellerUserId &&
      other.note == note &&
      other.answeredAt == answeredAt &&
      other.sellerNote == sellerNote;
@@ -63,29 +63,29 @@ class CreateBuyerCatalogListingVideoRequestResponseData {
   // ignore: unnecessary_parenthesis
     (id == null ? 0 : id.hashCode) +
     (createdAt == null ? 0 : createdAt.hashCode) +
-    (videoUrl == null ? 0 : videoUrl.hashCode) +
     (status == null ? 0 : status.hashCode) +
+    (videoUrl == null ? 0 : videoUrl.hashCode) +
     (platformListingId == null ? 0 : platformListingId.hashCode) +
-    (sellerUserId == null ? 0 : sellerUserId.hashCode) +
     (buyerUserId == null ? 0 : buyerUserId.hashCode) +
+    (sellerUserId == null ? 0 : sellerUserId.hashCode) +
     (note == null ? 0 : note.hashCode) +
     (answeredAt == null ? 0 : answeredAt.hashCode) +
     (sellerNote == null ? 0 : sellerNote.hashCode);
 
   @override
-  String toString() => 'CreateBuyerCatalogListingVideoRequestResponseData[id=$id, createdAt=$createdAt, videoUrl=$videoUrl, status=$status, platformListingId=$platformListingId, sellerUserId=$sellerUserId, buyerUserId=$buyerUserId, note=$note, answeredAt=$answeredAt, sellerNote=$sellerNote]';
+  String toString() => 'CreateBuyerCatalogListingVideoRequestResponseData[id=$id, createdAt=$createdAt, status=$status, videoUrl=$videoUrl, platformListingId=$platformListingId, buyerUserId=$buyerUserId, sellerUserId=$sellerUserId, note=$note, answeredAt=$answeredAt, sellerNote=$sellerNote]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
       json[r'id'] = id;
       json[r'createdAt'] = createdAt.toUtc().toIso8601String();
+      json[r'status'] = status;
     if (videoUrl != null) {
       json[r'videoUrl'] = videoUrl;
     }
-      json[r'status'] = status;
       json[r'platformListingId'] = platformListingId;
-      json[r'sellerUserId'] = sellerUserId;
       json[r'buyerUserId'] = buyerUserId;
+      json[r'sellerUserId'] = sellerUserId;
     if (note != null) {
       json[r'note'] = note;
     }
@@ -107,11 +107,11 @@ class CreateBuyerCatalogListingVideoRequestResponseData {
       return CreateBuyerCatalogListingVideoRequestResponseData(
         id: mapValueOfType<String>(json, r'id'),
         createdAt: mapDateTime(json, r'createdAt', ''),
-        videoUrl: mapValueOfType<String>(json, r'videoUrl'),
         status: mapValueOfType<String>(json, r'status'),
+        videoUrl: mapValueOfType<String>(json, r'videoUrl'),
         platformListingId: mapValueOfType<String>(json, r'platformListingId'),
-        sellerUserId: mapValueOfType<String>(json, r'sellerUserId'),
         buyerUserId: mapValueOfType<String>(json, r'buyerUserId'),
+        sellerUserId: mapValueOfType<String>(json, r'sellerUserId'),
         note: mapValueOfType<String>(json, r'note'),
         answeredAt: mapDateTime(json, r'answeredAt', ''),
         sellerNote: mapValueOfType<String>(json, r'sellerNote'),

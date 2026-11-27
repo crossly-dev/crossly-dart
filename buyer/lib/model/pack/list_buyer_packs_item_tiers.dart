@@ -15,10 +15,10 @@ class ListBuyerPacksItemTiers {
   ListBuyerPacksItemTiers({
     @required this.id,
     @required this.name,
-    @required this.available,
-    this.minValueCents,
     @required this.weight,
     @required this.oddsPct,
+    @required this.available,
+    this.minValueCents,
     this.maxValueCents,
     @required this.avgValueCents,
   });
@@ -27,13 +27,13 @@ class ListBuyerPacksItemTiers {
 
   String name;
 
-  num available;
-
-  num minValueCents;
-
   num weight;
 
   num oddsPct;
+
+  num available;
+
+  num minValueCents;
 
   num maxValueCents;
 
@@ -43,10 +43,10 @@ class ListBuyerPacksItemTiers {
   bool operator ==(Object other) => identical(this, other) || other is ListBuyerPacksItemTiers &&
      other.id == id &&
      other.name == name &&
-     other.available == available &&
-     other.minValueCents == minValueCents &&
      other.weight == weight &&
      other.oddsPct == oddsPct &&
+     other.available == available &&
+     other.minValueCents == minValueCents &&
      other.maxValueCents == maxValueCents &&
      other.avgValueCents == avgValueCents;
 
@@ -55,26 +55,26 @@ class ListBuyerPacksItemTiers {
   // ignore: unnecessary_parenthesis
     (id == null ? 0 : id.hashCode) +
     (name == null ? 0 : name.hashCode) +
-    (available == null ? 0 : available.hashCode) +
-    (minValueCents == null ? 0 : minValueCents.hashCode) +
     (weight == null ? 0 : weight.hashCode) +
     (oddsPct == null ? 0 : oddsPct.hashCode) +
+    (available == null ? 0 : available.hashCode) +
+    (minValueCents == null ? 0 : minValueCents.hashCode) +
     (maxValueCents == null ? 0 : maxValueCents.hashCode) +
     (avgValueCents == null ? 0 : avgValueCents.hashCode);
 
   @override
-  String toString() => 'ListBuyerPacksItemTiers[id=$id, name=$name, available=$available, minValueCents=$minValueCents, weight=$weight, oddsPct=$oddsPct, maxValueCents=$maxValueCents, avgValueCents=$avgValueCents]';
+  String toString() => 'ListBuyerPacksItemTiers[id=$id, name=$name, weight=$weight, oddsPct=$oddsPct, available=$available, minValueCents=$minValueCents, maxValueCents=$maxValueCents, avgValueCents=$avgValueCents]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
       json[r'id'] = id;
       json[r'name'] = name;
+      json[r'weight'] = weight;
+      json[r'oddsPct'] = oddsPct;
       json[r'available'] = available;
     if (minValueCents != null) {
       json[r'minValueCents'] = minValueCents;
     }
-      json[r'weight'] = weight;
-      json[r'oddsPct'] = oddsPct;
     if (maxValueCents != null) {
       json[r'maxValueCents'] = maxValueCents;
     }
@@ -91,18 +91,18 @@ class ListBuyerPacksItemTiers {
       return ListBuyerPacksItemTiers(
         id: mapValueOfType<String>(json, r'id'),
         name: mapValueOfType<String>(json, r'name'),
-        available: json[r'available'] == null
-          ? null
-          : num.parse(json[r'available'].toString()),
-        minValueCents: json[r'minValueCents'] == null
-          ? null
-          : num.parse(json[r'minValueCents'].toString()),
         weight: json[r'weight'] == null
           ? null
           : num.parse(json[r'weight'].toString()),
         oddsPct: json[r'oddsPct'] == null
           ? null
           : num.parse(json[r'oddsPct'].toString()),
+        available: json[r'available'] == null
+          ? null
+          : num.parse(json[r'available'].toString()),
+        minValueCents: json[r'minValueCents'] == null
+          ? null
+          : num.parse(json[r'minValueCents'].toString()),
         maxValueCents: json[r'maxValueCents'] == null
           ? null
           : num.parse(json[r'maxValueCents'].toString()),

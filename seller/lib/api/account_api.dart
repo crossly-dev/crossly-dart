@@ -47,7 +47,7 @@ class AccountApi {
   }
 
   /// Cancel a pending account deletion.
-  Future<DeleteDropResponse> createAccountCancelDeletion() async {
+  Future<CreateAccountCancelDeletionResponse> createAccountCancelDeletion() async {
     final response = await createAccountCancelDeletionWithHttpInfo();
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
@@ -56,10 +56,73 @@ class AccountApi {
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
     if (response.body != null && response.statusCode != HttpStatus.noContent) {
-      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'DeleteDropResponse',) as DeleteDropResponse;
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'CreateAccountCancelDeletionResponse',) as CreateAccountCancelDeletionResponse;
     
     }
-    return Future<DeleteDropResponse>.value();
+    return Future<CreateAccountCancelDeletionResponse>.value();
+  }
+
+  /// Start the identity check (photo ID + selfie). Returns a Stripe-hosted URL the person completes.
+  ///
+  /// alreadyVerified:true when there is nothing to do. Nothing is verified until a person completes the link.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [CreateAccountIdentityVerificationStartRequest] createAccountIdentityVerificationStartRequest (required):
+  Future<Response> createAccountIdentityVerificationStartWithHttpInfo(CreateAccountIdentityVerificationStartRequest createAccountIdentityVerificationStartRequest,) async {
+    // Verify required params are set.
+    if (createAccountIdentityVerificationStartRequest == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: createAccountIdentityVerificationStartRequest');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/account/identity-verification/start';
+
+    // ignore: prefer_final_locals
+    Object postBody = createAccountIdentityVerificationStartRequest;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>['application/json'];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'POST',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Start the identity check (photo ID + selfie). Returns a Stripe-hosted URL the person completes.
+  ///
+  /// alreadyVerified:true when there is nothing to do. Nothing is verified until a person completes the link.
+  ///
+  /// Parameters:
+  ///
+  /// * [CreateAccountIdentityVerificationStartRequest] createAccountIdentityVerificationStartRequest (required):
+  Future<CreateWorldMatureVerifyResponse> createAccountIdentityVerificationStart(CreateAccountIdentityVerificationStartRequest createAccountIdentityVerificationStartRequest,) async {
+    final response = await createAccountIdentityVerificationStartWithHttpInfo(createAccountIdentityVerificationStartRequest,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'CreateWorldMatureVerifyResponse',) as CreateWorldMatureVerifyResponse;
+    
+    }
+    return Future<CreateWorldMatureVerifyResponse>.value();
   }
 
   /// Revoke every browser auth session for this user.
@@ -108,7 +171,53 @@ class AccountApi {
     return Future<CreateAccountLogoutAllResponse>.value();
   }
 
-  /// Schedule account deletion after a grace period.
+  /// Confirm again a deletion paused because the account was in use.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  Future<Response> createAccountReconfirmDeletionWithHttpInfo() async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/account/reconfirm-deletion';
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'POST',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Confirm again a deletion paused because the account was in use.
+  Future<CreateAccountReconfirmDeletionResponse> createAccountReconfirmDeletion() async {
+    final response = await createAccountReconfirmDeletionWithHttpInfo();
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'CreateAccountReconfirmDeletionResponse',) as CreateAccountReconfirmDeletionResponse;
+    
+    }
+    return Future<CreateAccountReconfirmDeletionResponse>.value();
+  }
+
+  /// Schedule account deletion after a grace period. Requires confirmEmail.
   ///
   /// Note: This method returns the HTTP [Response].
   Future<Response> createAccountRequestDeletionWithHttpInfo() async {
@@ -138,7 +247,7 @@ class AccountApi {
     );
   }
 
-  /// Schedule account deletion after a grace period.
+  /// Schedule account deletion after a grace period. Requires confirmEmail.
   Future<CreateAccountRequestDeletionResponse> createAccountRequestDeletion() async {
     final response = await createAccountRequestDeletionWithHttpInfo();
     if (response.statusCode >= HttpStatus.badRequest) {
@@ -320,6 +429,52 @@ class AccountApi {
     return Future<OkResponse>.value();
   }
 
+  /// What closing the account will and will not do, before you request it.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  Future<Response> getAccountClosureChecklistWithHttpInfo() async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/account/closure-checklist';
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// What closing the account will and will not do, before you request it.
+  Future<GetAccountClosureChecklistResponse> getAccountClosureChecklist() async {
+    final response = await getAccountClosureChecklistWithHttpInfo();
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'GetAccountClosureChecklistResponse',) as GetAccountClosureChecklistResponse;
+    
+    }
+    return Future<GetAccountClosureChecklistResponse>.value();
+  }
+
   /// Get the currently-pending deletion request, if any.
   ///
   /// Note: This method returns the HTTP [Response].
@@ -364,6 +519,56 @@ class AccountApi {
     
     }
     return Future<GetAccountDeletionStatusResponse>.value();
+  }
+
+  /// Your identity verification: one status for the whole account, read by every feature that needs ID.
+  ///
+  /// status is unverified, requires_input, processing, verified or canceled. requires_input with a lastError { code, reason } is a failed try the person can redo on the same link (start returns it); processing is being reviewed; neither is a decline, only canceled is. attempts counts the failed tries. ageVerified passes the age-restricted checkout gate. message is the next step in words (null once verified).
+  ///
+  /// Note: This method returns the HTTP [Response].
+  Future<Response> getAccountIdentityVerificationWithHttpInfo() async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/account/identity-verification';
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Your identity verification: one status for the whole account, read by every feature that needs ID.
+  ///
+  /// status is unverified, requires_input, processing, verified or canceled. requires_input with a lastError { code, reason } is a failed try the person can redo on the same link (start returns it); processing is being reviewed; neither is a decline, only canceled is. attempts counts the failed tries. ageVerified passes the age-restricted checkout gate. message is the next step in words (null once verified).
+  Future<GetAccountIdentityVerificationResponse> getAccountIdentityVerification() async {
+    final response = await getAccountIdentityVerificationWithHttpInfo();
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'GetAccountIdentityVerificationResponse',) as GetAccountIdentityVerificationResponse;
+    
+    }
+    return Future<GetAccountIdentityVerificationResponse>.value();
   }
 
   /// Identity check — authenticated user + PAT scopes + account state.

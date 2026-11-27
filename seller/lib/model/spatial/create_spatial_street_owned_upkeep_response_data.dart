@@ -114,16 +114,16 @@ class CreateSpatialStreetOwnedUpkeepResponseDataUpkeepEnum {
   String toJson() => value;
 
   static const active = CreateSpatialStreetOwnedUpkeepResponseDataUpkeepEnum._(r'active');
-  static const foreclosed = CreateSpatialStreetOwnedUpkeepResponseDataUpkeepEnum._(r'foreclosed');
   static const grace = CreateSpatialStreetOwnedUpkeepResponseDataUpkeepEnum._(r'grace');
   static const delinquent = CreateSpatialStreetOwnedUpkeepResponseDataUpkeepEnum._(r'delinquent');
+  static const foreclosed = CreateSpatialStreetOwnedUpkeepResponseDataUpkeepEnum._(r'foreclosed');
 
   /// List of all possible values in this [enum][CreateSpatialStreetOwnedUpkeepResponseDataUpkeepEnum].
   static const values = <CreateSpatialStreetOwnedUpkeepResponseDataUpkeepEnum>[
     active,
-    foreclosed,
     grace,
     delinquent,
+    foreclosed,
   ];
 
   static CreateSpatialStreetOwnedUpkeepResponseDataUpkeepEnum fromJson(dynamic value) =>
@@ -156,9 +156,9 @@ class CreateSpatialStreetOwnedUpkeepResponseDataUpkeepEnumTypeTransformer {
     if (data != null) {
       switch (data.toString()) {
         case r'active': return CreateSpatialStreetOwnedUpkeepResponseDataUpkeepEnum.active;
-        case r'foreclosed': return CreateSpatialStreetOwnedUpkeepResponseDataUpkeepEnum.foreclosed;
         case r'grace': return CreateSpatialStreetOwnedUpkeepResponseDataUpkeepEnum.grace;
         case r'delinquent': return CreateSpatialStreetOwnedUpkeepResponseDataUpkeepEnum.delinquent;
+        case r'foreclosed': return CreateSpatialStreetOwnedUpkeepResponseDataUpkeepEnum.foreclosed;
         default:
           if (allowNull == false) {
             throw ArgumentError('Unknown enum value to decode: $data');

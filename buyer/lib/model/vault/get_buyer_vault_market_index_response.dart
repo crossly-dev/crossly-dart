@@ -271,18 +271,18 @@ class GetBuyerVaultMarketIndexResponseKindEnum {
   static const custom = GetBuyerVaultMarketIndexResponseKindEnum._(r'custom');
   static const brand = GetBuyerVaultMarketIndexResponseKindEnum._(r'brand');
   static const category = GetBuyerVaultMarketIndexResponseKindEnum._(r'category');
+  static const segment = GetBuyerVaultMarketIndexResponseKindEnum._(r'segment');
   static const curated = GetBuyerVaultMarketIndexResponseKindEnum._(r'curated');
   static const composite = GetBuyerVaultMarketIndexResponseKindEnum._(r'composite');
-  static const segment = GetBuyerVaultMarketIndexResponseKindEnum._(r'segment');
 
   /// List of all possible values in this [enum][GetBuyerVaultMarketIndexResponseKindEnum].
   static const values = <GetBuyerVaultMarketIndexResponseKindEnum>[
     custom,
     brand,
     category,
+    segment,
     curated,
     composite,
-    segment,
   ];
 
   static GetBuyerVaultMarketIndexResponseKindEnum fromJson(dynamic value) =>
@@ -317,9 +317,9 @@ class GetBuyerVaultMarketIndexResponseKindEnumTypeTransformer {
         case r'custom': return GetBuyerVaultMarketIndexResponseKindEnum.custom;
         case r'brand': return GetBuyerVaultMarketIndexResponseKindEnum.brand;
         case r'category': return GetBuyerVaultMarketIndexResponseKindEnum.category;
+        case r'segment': return GetBuyerVaultMarketIndexResponseKindEnum.segment;
         case r'curated': return GetBuyerVaultMarketIndexResponseKindEnum.curated;
         case r'composite': return GetBuyerVaultMarketIndexResponseKindEnum.composite;
-        case r'segment': return GetBuyerVaultMarketIndexResponseKindEnum.segment;
         default:
           if (allowNull == false) {
             throw ArgumentError('Unknown enum value to decode: $data');

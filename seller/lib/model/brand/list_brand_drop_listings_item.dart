@@ -19,6 +19,8 @@ class ListBrandDropListingsItem {
     this.imageUrl,
     this.priceCents,
     @required this.status,
+    this.slug,
+    this.quantity,
   });
 
   String platformListingId;
@@ -33,6 +35,12 @@ class ListBrandDropListingsItem {
 
   String status;
 
+  /// The Crossly listing's slug (platform_listings.platform_listing_id): what the cart adds by.
+  String slug;
+
+  /// Units the listing offers (null = untracked): a pre-book's reservable quantity.
+  num quantity;
+
   @override
   bool operator ==(Object other) => identical(this, other) || other is ListBrandDropListingsItem &&
      other.platformListingId == platformListingId &&
@@ -40,7 +48,9 @@ class ListBrandDropListingsItem {
      other.title == title &&
      other.imageUrl == imageUrl &&
      other.priceCents == priceCents &&
-     other.status == status;
+     other.status == status &&
+     other.slug == slug &&
+     other.quantity == quantity;
 
   @override
   int get hashCode =>
@@ -50,10 +60,12 @@ class ListBrandDropListingsItem {
     (title == null ? 0 : title.hashCode) +
     (imageUrl == null ? 0 : imageUrl.hashCode) +
     (priceCents == null ? 0 : priceCents.hashCode) +
-    (status == null ? 0 : status.hashCode);
+    (status == null ? 0 : status.hashCode) +
+    (slug == null ? 0 : slug.hashCode) +
+    (quantity == null ? 0 : quantity.hashCode);
 
   @override
-  String toString() => 'ListBrandDropListingsItem[platformListingId=$platformListingId, listingId=$listingId, title=$title, imageUrl=$imageUrl, priceCents=$priceCents, status=$status]';
+  String toString() => 'ListBrandDropListingsItem[platformListingId=$platformListingId, listingId=$listingId, title=$title, imageUrl=$imageUrl, priceCents=$priceCents, status=$status, slug=$slug, quantity=$quantity]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -69,6 +81,12 @@ class ListBrandDropListingsItem {
       json[r'priceCents'] = priceCents;
     }
       json[r'status'] = status;
+    if (slug != null) {
+      json[r'slug'] = slug;
+    }
+    if (quantity != null) {
+      json[r'quantity'] = quantity;
+    }
     return json;
   }
 
@@ -87,6 +105,10 @@ class ListBrandDropListingsItem {
           ? null
           : num.parse(json[r'priceCents'].toString()),
         status: mapValueOfType<String>(json, r'status'),
+        slug: mapValueOfType<String>(json, r'slug'),
+        quantity: json[r'quantity'] == null
+          ? null
+          : num.parse(json[r'quantity'].toString()),
       );
     }
     return null;

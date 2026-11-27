@@ -23,6 +23,7 @@ class ListConnectedAppsItem {
     this.homepageUrl,
     this.developerName,
     @required this.developerEmail,
+    this.revShareBps,
   });
 
   String grantId;
@@ -45,6 +46,9 @@ class ListConnectedAppsItem {
 
   String developerEmail;
 
+  /// The share of take-home THIS install agreed to (frozen at consent), not the app's current terms. Null = free.
+  num revShareBps;
+
   @override
   bool operator ==(Object other) => identical(this, other) || other is ListConnectedAppsItem &&
      other.grantId == grantId &&
@@ -56,7 +60,8 @@ class ListConnectedAppsItem {
      other.appDescription == appDescription &&
      other.homepageUrl == homepageUrl &&
      other.developerName == developerName &&
-     other.developerEmail == developerEmail;
+     other.developerEmail == developerEmail &&
+     other.revShareBps == revShareBps;
 
   @override
   int get hashCode =>
@@ -70,10 +75,11 @@ class ListConnectedAppsItem {
     (appDescription == null ? 0 : appDescription.hashCode) +
     (homepageUrl == null ? 0 : homepageUrl.hashCode) +
     (developerName == null ? 0 : developerName.hashCode) +
-    (developerEmail == null ? 0 : developerEmail.hashCode);
+    (developerEmail == null ? 0 : developerEmail.hashCode) +
+    (revShareBps == null ? 0 : revShareBps.hashCode);
 
   @override
-  String toString() => 'ListConnectedAppsItem[grantId=$grantId, scopes=$scopes, connectedAt=$connectedAt, lastUsedAt=$lastUsedAt, appId=$appId, appName=$appName, appDescription=$appDescription, homepageUrl=$homepageUrl, developerName=$developerName, developerEmail=$developerEmail]';
+  String toString() => 'ListConnectedAppsItem[grantId=$grantId, scopes=$scopes, connectedAt=$connectedAt, lastUsedAt=$lastUsedAt, appId=$appId, appName=$appName, appDescription=$appDescription, homepageUrl=$homepageUrl, developerName=$developerName, developerEmail=$developerEmail, revShareBps=$revShareBps]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -95,6 +101,9 @@ class ListConnectedAppsItem {
       json[r'developerName'] = developerName;
     }
       json[r'developerEmail'] = developerEmail;
+    if (revShareBps != null) {
+      json[r'revShareBps'] = revShareBps;
+    }
     return json;
   }
 
@@ -117,6 +126,9 @@ class ListConnectedAppsItem {
         homepageUrl: mapValueOfType<String>(json, r'homepageUrl'),
         developerName: mapValueOfType<String>(json, r'developerName'),
         developerEmail: mapValueOfType<String>(json, r'developerEmail'),
+        revShareBps: json[r'revShareBps'] == null
+          ? null
+          : num.parse(json[r'revShareBps'].toString()),
       );
     }
     return null;

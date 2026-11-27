@@ -146,17 +146,17 @@ class GetSpatialPartyResponsePartyInvitesStatusEnum {
 
   static const pending = GetSpatialPartyResponsePartyInvitesStatusEnum._(r'pending');
   static const cancelled = GetSpatialPartyResponsePartyInvitesStatusEnum._(r'cancelled');
-  static const expired = GetSpatialPartyResponsePartyInvitesStatusEnum._(r'expired');
   static const accepted = GetSpatialPartyResponsePartyInvitesStatusEnum._(r'accepted');
   static const declined = GetSpatialPartyResponsePartyInvitesStatusEnum._(r'declined');
+  static const expired = GetSpatialPartyResponsePartyInvitesStatusEnum._(r'expired');
 
   /// List of all possible values in this [enum][GetSpatialPartyResponsePartyInvitesStatusEnum].
   static const values = <GetSpatialPartyResponsePartyInvitesStatusEnum>[
     pending,
     cancelled,
-    expired,
     accepted,
     declined,
+    expired,
   ];
 
   static GetSpatialPartyResponsePartyInvitesStatusEnum fromJson(dynamic value) =>
@@ -190,9 +190,9 @@ class GetSpatialPartyResponsePartyInvitesStatusEnumTypeTransformer {
       switch (data.toString()) {
         case r'pending': return GetSpatialPartyResponsePartyInvitesStatusEnum.pending;
         case r'cancelled': return GetSpatialPartyResponsePartyInvitesStatusEnum.cancelled;
-        case r'expired': return GetSpatialPartyResponsePartyInvitesStatusEnum.expired;
         case r'accepted': return GetSpatialPartyResponsePartyInvitesStatusEnum.accepted;
         case r'declined': return GetSpatialPartyResponsePartyInvitesStatusEnum.declined;
+        case r'expired': return GetSpatialPartyResponsePartyInvitesStatusEnum.expired;
         default:
           if (allowNull == false) {
             throw ArgumentError('Unknown enum value to decode: $data');

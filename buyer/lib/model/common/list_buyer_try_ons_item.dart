@@ -14,56 +14,56 @@ class ListBuyerTryOnsItem {
   /// Returns a new [ListBuyerTryOnsItem] instance.
   ListBuyerTryOnsItem({
     @required this.id,
-    @required this.createdAt,
-    @required this.status,
     @required this.listingId,
     this.resultUrl,
+    @required this.status,
+    @required this.createdAt,
     this.listingTitle,
   });
 
   String id;
 
-  String createdAt;
-
-  String status;
-
   String listingId;
 
   String resultUrl;
+
+  String status;
+
+  String createdAt;
 
   String listingTitle;
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is ListBuyerTryOnsItem &&
      other.id == id &&
-     other.createdAt == createdAt &&
-     other.status == status &&
      other.listingId == listingId &&
      other.resultUrl == resultUrl &&
+     other.status == status &&
+     other.createdAt == createdAt &&
      other.listingTitle == listingTitle;
 
   @override
   int get hashCode =>
   // ignore: unnecessary_parenthesis
     (id == null ? 0 : id.hashCode) +
-    (createdAt == null ? 0 : createdAt.hashCode) +
-    (status == null ? 0 : status.hashCode) +
     (listingId == null ? 0 : listingId.hashCode) +
     (resultUrl == null ? 0 : resultUrl.hashCode) +
+    (status == null ? 0 : status.hashCode) +
+    (createdAt == null ? 0 : createdAt.hashCode) +
     (listingTitle == null ? 0 : listingTitle.hashCode);
 
   @override
-  String toString() => 'ListBuyerTryOnsItem[id=$id, createdAt=$createdAt, status=$status, listingId=$listingId, resultUrl=$resultUrl, listingTitle=$listingTitle]';
+  String toString() => 'ListBuyerTryOnsItem[id=$id, listingId=$listingId, resultUrl=$resultUrl, status=$status, createdAt=$createdAt, listingTitle=$listingTitle]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
       json[r'id'] = id;
-      json[r'createdAt'] = createdAt;
-      json[r'status'] = status;
       json[r'listingId'] = listingId;
     if (resultUrl != null) {
       json[r'resultUrl'] = resultUrl;
     }
+      json[r'status'] = status;
+      json[r'createdAt'] = createdAt;
     if (listingTitle != null) {
       json[r'listingTitle'] = listingTitle;
     }
@@ -78,10 +78,10 @@ class ListBuyerTryOnsItem {
       final json = value.cast<String, dynamic>();
       return ListBuyerTryOnsItem(
         id: mapValueOfType<String>(json, r'id'),
-        createdAt: mapValueOfType<String>(json, r'createdAt'),
-        status: mapValueOfType<String>(json, r'status'),
         listingId: mapValueOfType<String>(json, r'listingId'),
         resultUrl: mapValueOfType<String>(json, r'resultUrl'),
+        status: mapValueOfType<String>(json, r'status'),
+        createdAt: mapValueOfType<String>(json, r'createdAt'),
         listingTitle: mapValueOfType<String>(json, r'listingTitle'),
       );
     }

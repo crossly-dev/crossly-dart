@@ -211,11 +211,11 @@ class GetConnectionHealthResponseAccountsStateEnum {
 
   String toJson() => value;
 
-  static const stale = GetConnectionHealthResponseAccountsStateEnum._(r'stale');
   static const unknown = GetConnectionHealthResponseAccountsStateEnum._(r'unknown');
-  static const healthy = GetConnectionHealthResponseAccountsStateEnum._(r'healthy');
   static const unmonitored = GetConnectionHealthResponseAccountsStateEnum._(r'unmonitored');
   static const disconnected = GetConnectionHealthResponseAccountsStateEnum._(r'disconnected');
+  static const healthy = GetConnectionHealthResponseAccountsStateEnum._(r'healthy');
+  static const stale = GetConnectionHealthResponseAccountsStateEnum._(r'stale');
   static const partialBlank = GetConnectionHealthResponseAccountsStateEnum._(r'partial_blank');
   static const blankCredential = GetConnectionHealthResponseAccountsStateEnum._(r'blank_credential');
   static const signedOut = GetConnectionHealthResponseAccountsStateEnum._(r'signed_out');
@@ -224,11 +224,11 @@ class GetConnectionHealthResponseAccountsStateEnum {
 
   /// List of all possible values in this [enum][GetConnectionHealthResponseAccountsStateEnum].
   static const values = <GetConnectionHealthResponseAccountsStateEnum>[
-    stale,
     unknown,
-    healthy,
     unmonitored,
     disconnected,
+    healthy,
+    stale,
     partialBlank,
     blankCredential,
     signedOut,
@@ -265,11 +265,11 @@ class GetConnectionHealthResponseAccountsStateEnumTypeTransformer {
   GetConnectionHealthResponseAccountsStateEnum decode(dynamic data, {bool allowNull}) {
     if (data != null) {
       switch (data.toString()) {
-        case r'stale': return GetConnectionHealthResponseAccountsStateEnum.stale;
         case r'unknown': return GetConnectionHealthResponseAccountsStateEnum.unknown;
-        case r'healthy': return GetConnectionHealthResponseAccountsStateEnum.healthy;
         case r'unmonitored': return GetConnectionHealthResponseAccountsStateEnum.unmonitored;
         case r'disconnected': return GetConnectionHealthResponseAccountsStateEnum.disconnected;
+        case r'healthy': return GetConnectionHealthResponseAccountsStateEnum.healthy;
+        case r'stale': return GetConnectionHealthResponseAccountsStateEnum.stale;
         case r'partial_blank': return GetConnectionHealthResponseAccountsStateEnum.partialBlank;
         case r'blank_credential': return GetConnectionHealthResponseAccountsStateEnum.blankCredential;
         case r'signed_out': return GetConnectionHealthResponseAccountsStateEnum.signedOut;
@@ -302,19 +302,19 @@ class GetConnectionHealthResponseAccountsSeverityEnum {
 
   String toJson() => value;
 
-  static const error = GetConnectionHealthResponseAccountsSeverityEnum._(r'error');
-  static const unknown = GetConnectionHealthResponseAccountsSeverityEnum._(r'unknown');
-  static const ok = GetConnectionHealthResponseAccountsSeverityEnum._(r'ok');
-  static const warn = GetConnectionHealthResponseAccountsSeverityEnum._(r'warn');
   static const info = GetConnectionHealthResponseAccountsSeverityEnum._(r'info');
+  static const unknown = GetConnectionHealthResponseAccountsSeverityEnum._(r'unknown');
+  static const error = GetConnectionHealthResponseAccountsSeverityEnum._(r'error');
+  static const warn = GetConnectionHealthResponseAccountsSeverityEnum._(r'warn');
+  static const ok = GetConnectionHealthResponseAccountsSeverityEnum._(r'ok');
 
   /// List of all possible values in this [enum][GetConnectionHealthResponseAccountsSeverityEnum].
   static const values = <GetConnectionHealthResponseAccountsSeverityEnum>[
-    error,
-    unknown,
-    ok,
-    warn,
     info,
+    unknown,
+    error,
+    warn,
+    ok,
   ];
 
   static GetConnectionHealthResponseAccountsSeverityEnum fromJson(dynamic value) =>
@@ -346,11 +346,11 @@ class GetConnectionHealthResponseAccountsSeverityEnumTypeTransformer {
   GetConnectionHealthResponseAccountsSeverityEnum decode(dynamic data, {bool allowNull}) {
     if (data != null) {
       switch (data.toString()) {
-        case r'error': return GetConnectionHealthResponseAccountsSeverityEnum.error;
-        case r'unknown': return GetConnectionHealthResponseAccountsSeverityEnum.unknown;
-        case r'ok': return GetConnectionHealthResponseAccountsSeverityEnum.ok;
-        case r'warn': return GetConnectionHealthResponseAccountsSeverityEnum.warn;
         case r'info': return GetConnectionHealthResponseAccountsSeverityEnum.info;
+        case r'unknown': return GetConnectionHealthResponseAccountsSeverityEnum.unknown;
+        case r'error': return GetConnectionHealthResponseAccountsSeverityEnum.error;
+        case r'warn': return GetConnectionHealthResponseAccountsSeverityEnum.warn;
+        case r'ok': return GetConnectionHealthResponseAccountsSeverityEnum.ok;
         default:
           if (allowNull == false) {
             throw ArgumentError('Unknown enum value to decode: $data');

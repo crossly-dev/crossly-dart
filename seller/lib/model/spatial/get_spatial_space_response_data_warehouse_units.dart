@@ -137,18 +137,18 @@ class GetSpatialSpaceResponseDataWarehouseUnitsSegmentKindEnum {
   String toJson() => value;
 
   static const level = GetSpatialSpaceResponseDataWarehouseUnitsSegmentKindEnum._(r'level');
+  static const bin = GetSpatialSpaceResponseDataWarehouseUnitsSegmentKindEnum._(r'bin');
   static const zone = GetSpatialSpaceResponseDataWarehouseUnitsSegmentKindEnum._(r'zone');
   static const aisle = GetSpatialSpaceResponseDataWarehouseUnitsSegmentKindEnum._(r'aisle');
   static const bay = GetSpatialSpaceResponseDataWarehouseUnitsSegmentKindEnum._(r'bay');
-  static const bin = GetSpatialSpaceResponseDataWarehouseUnitsSegmentKindEnum._(r'bin');
 
   /// List of all possible values in this [enum][GetSpatialSpaceResponseDataWarehouseUnitsSegmentKindEnum].
   static const values = <GetSpatialSpaceResponseDataWarehouseUnitsSegmentKindEnum>[
     level,
+    bin,
     zone,
     aisle,
     bay,
-    bin,
   ];
 
   static GetSpatialSpaceResponseDataWarehouseUnitsSegmentKindEnum fromJson(dynamic value) =>
@@ -181,10 +181,10 @@ class GetSpatialSpaceResponseDataWarehouseUnitsSegmentKindEnumTypeTransformer {
     if (data != null) {
       switch (data.toString()) {
         case r'level': return GetSpatialSpaceResponseDataWarehouseUnitsSegmentKindEnum.level;
+        case r'bin': return GetSpatialSpaceResponseDataWarehouseUnitsSegmentKindEnum.bin;
         case r'zone': return GetSpatialSpaceResponseDataWarehouseUnitsSegmentKindEnum.zone;
         case r'aisle': return GetSpatialSpaceResponseDataWarehouseUnitsSegmentKindEnum.aisle;
         case r'bay': return GetSpatialSpaceResponseDataWarehouseUnitsSegmentKindEnum.bay;
-        case r'bin': return GetSpatialSpaceResponseDataWarehouseUnitsSegmentKindEnum.bin;
         default:
           if (allowNull == false) {
             throw ArgumentError('Unknown enum value to decode: $data');

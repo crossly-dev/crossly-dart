@@ -15,6 +15,7 @@ class CreateBuyerCartItemRequest {
   CreateBuyerCartItemRequest({
     @required this.listingSlug,
     this.quantity = 1,
+    this.listingVariantId,
     this.via,
   });
 
@@ -24,6 +25,9 @@ class CreateBuyerCartItemRequest {
   // maximum: 10
   int quantity;
 
+  /// The option (variants[].id) on a listing with options.
+  String listingVariantId;
+
   /// Where in Crossly World it was added, e.g. room:<publicSlug>.
   String via;
 
@@ -31,6 +35,7 @@ class CreateBuyerCartItemRequest {
   bool operator ==(Object other) => identical(this, other) || other is CreateBuyerCartItemRequest &&
      other.listingSlug == listingSlug &&
      other.quantity == quantity &&
+     other.listingVariantId == listingVariantId &&
      other.via == via;
 
   @override
@@ -38,16 +43,20 @@ class CreateBuyerCartItemRequest {
   // ignore: unnecessary_parenthesis
     (listingSlug == null ? 0 : listingSlug.hashCode) +
     (quantity == null ? 0 : quantity.hashCode) +
+    (listingVariantId == null ? 0 : listingVariantId.hashCode) +
     (via == null ? 0 : via.hashCode);
 
   @override
-  String toString() => 'CreateBuyerCartItemRequest[listingSlug=$listingSlug, quantity=$quantity, via=$via]';
+  String toString() => 'CreateBuyerCartItemRequest[listingSlug=$listingSlug, quantity=$quantity, listingVariantId=$listingVariantId, via=$via]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
       json[r'listingSlug'] = listingSlug;
     if (quantity != null) {
       json[r'quantity'] = quantity;
+    }
+    if (listingVariantId != null) {
+      json[r'listingVariantId'] = listingVariantId;
     }
     if (via != null) {
       json[r'via'] = via;
@@ -64,6 +73,7 @@ class CreateBuyerCartItemRequest {
       return CreateBuyerCartItemRequest(
         listingSlug: mapValueOfType<String>(json, r'listingSlug'),
         quantity: mapValueOfType<int>(json, r'quantity'),
+        listingVariantId: mapValueOfType<String>(json, r'listingVariantId'),
         via: mapValueOfType<String>(json, r'via'),
       );
     }

@@ -14,13 +14,12 @@ class GetBuyerCaseResponseDataCase {
   /// Returns a new [GetBuyerCaseResponseDataCase] instance.
   GetBuyerCaseResponseDataCase({
     @required this.id,
-    @required this.createdAt,
-    @required this.updatedAt,
+    @required this.purchaseId,
+    @required this.sellerUserId,
     @required this.reason,
     @required this.state,
-    @required this.sellerUserId,
-    @required this.purchaseId,
-    this.resolvedAt,
+    @required this.createdAt,
+    @required this.updatedAt,
     this.buyerNote,
     this.photoUrls,
     this.awaitingParty,
@@ -28,23 +27,22 @@ class GetBuyerCaseResponseDataCase {
     this.offeredRefundCents,
     this.resolvedRefundCents,
     this.resolvedDecision,
+    this.resolvedAt,
   });
 
   String id;
 
-  String createdAt;
+  String purchaseId;
 
-  String updatedAt;
+  String sellerUserId;
 
   String reason;
 
   String state;
 
-  String sellerUserId;
+  String createdAt;
 
-  String purchaseId;
-
-  String resolvedAt;
+  String updatedAt;
 
   String buyerNote;
 
@@ -60,58 +58,57 @@ class GetBuyerCaseResponseDataCase {
 
   String resolvedDecision;
 
+  String resolvedAt;
+
   @override
   bool operator ==(Object other) => identical(this, other) || other is GetBuyerCaseResponseDataCase &&
      other.id == id &&
-     other.createdAt == createdAt &&
-     other.updatedAt == updatedAt &&
+     other.purchaseId == purchaseId &&
+     other.sellerUserId == sellerUserId &&
      other.reason == reason &&
      other.state == state &&
-     other.sellerUserId == sellerUserId &&
-     other.purchaseId == purchaseId &&
-     other.resolvedAt == resolvedAt &&
+     other.createdAt == createdAt &&
+     other.updatedAt == updatedAt &&
      other.buyerNote == buyerNote &&
      other.photoUrls == photoUrls &&
      other.awaitingParty == awaitingParty &&
      other.escalateAfter == escalateAfter &&
      other.offeredRefundCents == offeredRefundCents &&
      other.resolvedRefundCents == resolvedRefundCents &&
-     other.resolvedDecision == resolvedDecision;
+     other.resolvedDecision == resolvedDecision &&
+     other.resolvedAt == resolvedAt;
 
   @override
   int get hashCode =>
   // ignore: unnecessary_parenthesis
     (id == null ? 0 : id.hashCode) +
-    (createdAt == null ? 0 : createdAt.hashCode) +
-    (updatedAt == null ? 0 : updatedAt.hashCode) +
+    (purchaseId == null ? 0 : purchaseId.hashCode) +
+    (sellerUserId == null ? 0 : sellerUserId.hashCode) +
     (reason == null ? 0 : reason.hashCode) +
     (state == null ? 0 : state.hashCode) +
-    (sellerUserId == null ? 0 : sellerUserId.hashCode) +
-    (purchaseId == null ? 0 : purchaseId.hashCode) +
-    (resolvedAt == null ? 0 : resolvedAt.hashCode) +
+    (createdAt == null ? 0 : createdAt.hashCode) +
+    (updatedAt == null ? 0 : updatedAt.hashCode) +
     (buyerNote == null ? 0 : buyerNote.hashCode) +
     (photoUrls == null ? 0 : photoUrls.hashCode) +
     (awaitingParty == null ? 0 : awaitingParty.hashCode) +
     (escalateAfter == null ? 0 : escalateAfter.hashCode) +
     (offeredRefundCents == null ? 0 : offeredRefundCents.hashCode) +
     (resolvedRefundCents == null ? 0 : resolvedRefundCents.hashCode) +
-    (resolvedDecision == null ? 0 : resolvedDecision.hashCode);
+    (resolvedDecision == null ? 0 : resolvedDecision.hashCode) +
+    (resolvedAt == null ? 0 : resolvedAt.hashCode);
 
   @override
-  String toString() => 'GetBuyerCaseResponseDataCase[id=$id, createdAt=$createdAt, updatedAt=$updatedAt, reason=$reason, state=$state, sellerUserId=$sellerUserId, purchaseId=$purchaseId, resolvedAt=$resolvedAt, buyerNote=$buyerNote, photoUrls=$photoUrls, awaitingParty=$awaitingParty, escalateAfter=$escalateAfter, offeredRefundCents=$offeredRefundCents, resolvedRefundCents=$resolvedRefundCents, resolvedDecision=$resolvedDecision]';
+  String toString() => 'GetBuyerCaseResponseDataCase[id=$id, purchaseId=$purchaseId, sellerUserId=$sellerUserId, reason=$reason, state=$state, createdAt=$createdAt, updatedAt=$updatedAt, buyerNote=$buyerNote, photoUrls=$photoUrls, awaitingParty=$awaitingParty, escalateAfter=$escalateAfter, offeredRefundCents=$offeredRefundCents, resolvedRefundCents=$resolvedRefundCents, resolvedDecision=$resolvedDecision, resolvedAt=$resolvedAt]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
       json[r'id'] = id;
-      json[r'createdAt'] = createdAt;
-      json[r'updatedAt'] = updatedAt;
+      json[r'purchaseId'] = purchaseId;
+      json[r'sellerUserId'] = sellerUserId;
       json[r'reason'] = reason;
       json[r'state'] = state;
-      json[r'sellerUserId'] = sellerUserId;
-      json[r'purchaseId'] = purchaseId;
-    if (resolvedAt != null) {
-      json[r'resolvedAt'] = resolvedAt;
-    }
+      json[r'createdAt'] = createdAt;
+      json[r'updatedAt'] = updatedAt;
     if (buyerNote != null) {
       json[r'buyerNote'] = buyerNote;
     }
@@ -133,6 +130,9 @@ class GetBuyerCaseResponseDataCase {
     if (resolvedDecision != null) {
       json[r'resolvedDecision'] = resolvedDecision;
     }
+    if (resolvedAt != null) {
+      json[r'resolvedAt'] = resolvedAt;
+    }
     return json;
   }
 
@@ -144,13 +144,12 @@ class GetBuyerCaseResponseDataCase {
       final json = value.cast<String, dynamic>();
       return GetBuyerCaseResponseDataCase(
         id: mapValueOfType<String>(json, r'id'),
-        createdAt: mapValueOfType<String>(json, r'createdAt'),
-        updatedAt: mapValueOfType<String>(json, r'updatedAt'),
+        purchaseId: mapValueOfType<String>(json, r'purchaseId'),
+        sellerUserId: mapValueOfType<String>(json, r'sellerUserId'),
         reason: mapValueOfType<String>(json, r'reason'),
         state: mapValueOfType<String>(json, r'state'),
-        sellerUserId: mapValueOfType<String>(json, r'sellerUserId'),
-        purchaseId: mapValueOfType<String>(json, r'purchaseId'),
-        resolvedAt: mapValueOfType<String>(json, r'resolvedAt'),
+        createdAt: mapValueOfType<String>(json, r'createdAt'),
+        updatedAt: mapValueOfType<String>(json, r'updatedAt'),
         buyerNote: mapValueOfType<String>(json, r'buyerNote'),
         photoUrls: json[r'photoUrls'] is List
           ? (json[r'photoUrls'] as List).cast<String>()
@@ -164,6 +163,7 @@ class GetBuyerCaseResponseDataCase {
           ? null
           : num.parse(json[r'resolvedRefundCents'].toString()),
         resolvedDecision: mapValueOfType<String>(json, r'resolvedDecision'),
+        resolvedAt: mapValueOfType<String>(json, r'resolvedAt'),
       );
     }
     return null;

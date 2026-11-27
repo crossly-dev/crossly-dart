@@ -15,13 +15,13 @@ class ListBuyerAuctionsItem {
   ListBuyerAuctionsItem({
     @required this.title,
     @required this.bidCount,
-    @required this.paid,
     @required this.leading,
-    this.status,
-    this.endsAt,
+    @required this.paid,
     this.slug,
-    this.currentCents,
     this.thumbnail,
+    this.endsAt,
+    this.status,
+    this.currentCents,
     this.myMaxCents,
     this.winningCents,
   });
@@ -30,20 +30,20 @@ class ListBuyerAuctionsItem {
 
   num bidCount;
 
-  bool paid;
-
   bool leading;
 
-  String status;
-
-  String endsAt;
+  bool paid;
 
   String slug;
 
+  String thumbnail;
+
+  String endsAt;
+
+  String status;
+
   /// Current high bid, in cents.
   num currentCents;
-
-  String thumbnail;
 
   /// Your highest maximum (proxy) bid, in cents.
   num myMaxCents;
@@ -55,13 +55,13 @@ class ListBuyerAuctionsItem {
   bool operator ==(Object other) => identical(this, other) || other is ListBuyerAuctionsItem &&
      other.title == title &&
      other.bidCount == bidCount &&
-     other.paid == paid &&
      other.leading == leading &&
-     other.status == status &&
-     other.endsAt == endsAt &&
+     other.paid == paid &&
      other.slug == slug &&
-     other.currentCents == currentCents &&
      other.thumbnail == thumbnail &&
+     other.endsAt == endsAt &&
+     other.status == status &&
+     other.currentCents == currentCents &&
      other.myMaxCents == myMaxCents &&
      other.winningCents == winningCents;
 
@@ -70,39 +70,39 @@ class ListBuyerAuctionsItem {
   // ignore: unnecessary_parenthesis
     (title == null ? 0 : title.hashCode) +
     (bidCount == null ? 0 : bidCount.hashCode) +
-    (paid == null ? 0 : paid.hashCode) +
     (leading == null ? 0 : leading.hashCode) +
-    (status == null ? 0 : status.hashCode) +
-    (endsAt == null ? 0 : endsAt.hashCode) +
+    (paid == null ? 0 : paid.hashCode) +
     (slug == null ? 0 : slug.hashCode) +
-    (currentCents == null ? 0 : currentCents.hashCode) +
     (thumbnail == null ? 0 : thumbnail.hashCode) +
+    (endsAt == null ? 0 : endsAt.hashCode) +
+    (status == null ? 0 : status.hashCode) +
+    (currentCents == null ? 0 : currentCents.hashCode) +
     (myMaxCents == null ? 0 : myMaxCents.hashCode) +
     (winningCents == null ? 0 : winningCents.hashCode);
 
   @override
-  String toString() => 'ListBuyerAuctionsItem[title=$title, bidCount=$bidCount, paid=$paid, leading=$leading, status=$status, endsAt=$endsAt, slug=$slug, currentCents=$currentCents, thumbnail=$thumbnail, myMaxCents=$myMaxCents, winningCents=$winningCents]';
+  String toString() => 'ListBuyerAuctionsItem[title=$title, bidCount=$bidCount, leading=$leading, paid=$paid, slug=$slug, thumbnail=$thumbnail, endsAt=$endsAt, status=$status, currentCents=$currentCents, myMaxCents=$myMaxCents, winningCents=$winningCents]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
       json[r'title'] = title;
       json[r'bidCount'] = bidCount;
-      json[r'paid'] = paid;
       json[r'leading'] = leading;
-    if (status != null) {
-      json[r'status'] = status;
+      json[r'paid'] = paid;
+    if (slug != null) {
+      json[r'slug'] = slug;
+    }
+    if (thumbnail != null) {
+      json[r'thumbnail'] = thumbnail;
     }
     if (endsAt != null) {
       json[r'endsAt'] = endsAt;
     }
-    if (slug != null) {
-      json[r'slug'] = slug;
+    if (status != null) {
+      json[r'status'] = status;
     }
     if (currentCents != null) {
       json[r'currentCents'] = currentCents;
-    }
-    if (thumbnail != null) {
-      json[r'thumbnail'] = thumbnail;
     }
     if (myMaxCents != null) {
       json[r'myMaxCents'] = myMaxCents;
@@ -124,15 +124,15 @@ class ListBuyerAuctionsItem {
         bidCount: json[r'bidCount'] == null
           ? null
           : num.parse(json[r'bidCount'].toString()),
-        paid: mapValueOfType<bool>(json, r'paid'),
         leading: mapValueOfType<bool>(json, r'leading'),
-        status: mapValueOfType<String>(json, r'status'),
-        endsAt: mapValueOfType<String>(json, r'endsAt'),
+        paid: mapValueOfType<bool>(json, r'paid'),
         slug: mapValueOfType<String>(json, r'slug'),
+        thumbnail: mapValueOfType<String>(json, r'thumbnail'),
+        endsAt: mapValueOfType<String>(json, r'endsAt'),
+        status: mapValueOfType<String>(json, r'status'),
         currentCents: json[r'currentCents'] == null
           ? null
           : num.parse(json[r'currentCents'].toString()),
-        thumbnail: mapValueOfType<String>(json, r'thumbnail'),
         myMaxCents: json[r'myMaxCents'] == null
           ? null
           : num.parse(json[r'myMaxCents'].toString()),

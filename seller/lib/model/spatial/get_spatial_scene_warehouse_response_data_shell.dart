@@ -116,21 +116,21 @@ class GetSpatialSceneWarehouseResponseDataShellThemeEnum {
 
   String toJson() => value;
 
-  static const storybook = GetSpatialSceneWarehouseResponseDataShellThemeEnum._(r'storybook');
   static const studio = GetSpatialSceneWarehouseResponseDataShellThemeEnum._(r'studio');
   static const noir = GetSpatialSceneWarehouseResponseDataShellThemeEnum._(r'noir');
   static const daylight = GetSpatialSceneWarehouseResponseDataShellThemeEnum._(r'daylight');
   static const vitrine = GetSpatialSceneWarehouseResponseDataShellThemeEnum._(r'vitrine');
   static const street = GetSpatialSceneWarehouseResponseDataShellThemeEnum._(r'street');
+  static const storybook = GetSpatialSceneWarehouseResponseDataShellThemeEnum._(r'storybook');
 
   /// List of all possible values in this [enum][GetSpatialSceneWarehouseResponseDataShellThemeEnum].
   static const values = <GetSpatialSceneWarehouseResponseDataShellThemeEnum>[
-    storybook,
     studio,
     noir,
     daylight,
     vitrine,
     street,
+    storybook,
   ];
 
   static GetSpatialSceneWarehouseResponseDataShellThemeEnum fromJson(dynamic value) =>
@@ -162,12 +162,12 @@ class GetSpatialSceneWarehouseResponseDataShellThemeEnumTypeTransformer {
   GetSpatialSceneWarehouseResponseDataShellThemeEnum decode(dynamic data, {bool allowNull}) {
     if (data != null) {
       switch (data.toString()) {
-        case r'storybook': return GetSpatialSceneWarehouseResponseDataShellThemeEnum.storybook;
         case r'studio': return GetSpatialSceneWarehouseResponseDataShellThemeEnum.studio;
         case r'noir': return GetSpatialSceneWarehouseResponseDataShellThemeEnum.noir;
         case r'daylight': return GetSpatialSceneWarehouseResponseDataShellThemeEnum.daylight;
         case r'vitrine': return GetSpatialSceneWarehouseResponseDataShellThemeEnum.vitrine;
         case r'street': return GetSpatialSceneWarehouseResponseDataShellThemeEnum.street;
+        case r'storybook': return GetSpatialSceneWarehouseResponseDataShellThemeEnum.storybook;
         default:
           if (allowNull == false) {
             throw ArgumentError('Unknown enum value to decode: $data');

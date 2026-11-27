@@ -17,6 +17,7 @@ class GetMembershipResponse {
     @required this.active,
     this.startedAt,
     this.endsAt,
+    this.benefits,
   });
 
   GetMembershipResponseTierEnum tier;
@@ -27,12 +28,15 @@ class GetMembershipResponse {
 
   DateTime endsAt;
 
+  GetMembershipResponseBenefits benefits;
+
   @override
   bool operator ==(Object other) => identical(this, other) || other is GetMembershipResponse &&
      other.tier == tier &&
      other.active == active &&
      other.startedAt == startedAt &&
-     other.endsAt == endsAt;
+     other.endsAt == endsAt &&
+     other.benefits == benefits;
 
   @override
   int get hashCode =>
@@ -40,10 +44,11 @@ class GetMembershipResponse {
     (tier == null ? 0 : tier.hashCode) +
     (active == null ? 0 : active.hashCode) +
     (startedAt == null ? 0 : startedAt.hashCode) +
-    (endsAt == null ? 0 : endsAt.hashCode);
+    (endsAt == null ? 0 : endsAt.hashCode) +
+    (benefits == null ? 0 : benefits.hashCode);
 
   @override
-  String toString() => 'GetMembershipResponse[tier=$tier, active=$active, startedAt=$startedAt, endsAt=$endsAt]';
+  String toString() => 'GetMembershipResponse[tier=$tier, active=$active, startedAt=$startedAt, endsAt=$endsAt, benefits=$benefits]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -56,6 +61,9 @@ class GetMembershipResponse {
     }
     if (endsAt != null) {
       json[r'endsAt'] = endsAt.toUtc().toIso8601String();
+    }
+    if (benefits != null) {
+      json[r'benefits'] = benefits;
     }
     return json;
   }
@@ -71,6 +79,7 @@ class GetMembershipResponse {
         active: mapValueOfType<bool>(json, r'active'),
         startedAt: mapDateTime(json, r'startedAt', ''),
         endsAt: mapDateTime(json, r'endsAt', ''),
+        benefits: GetMembershipResponseBenefits.fromJson(json[r'benefits']),
       );
     }
     return null;
@@ -122,13 +131,13 @@ class GetMembershipResponseTierEnum {
 
   String toJson() => value;
 
-  static const classic = GetMembershipResponseTierEnum._(r'classic');
   static const pro = GetMembershipResponseTierEnum._(r'pro');
+  static const classic = GetMembershipResponseTierEnum._(r'classic');
 
   /// List of all possible values in this [enum][GetMembershipResponseTierEnum].
   static const values = <GetMembershipResponseTierEnum>[
-    classic,
     pro,
+    classic,
   ];
 
   static GetMembershipResponseTierEnum fromJson(dynamic value) =>
@@ -160,8 +169,8 @@ class GetMembershipResponseTierEnumTypeTransformer {
   GetMembershipResponseTierEnum decode(dynamic data, {bool allowNull}) {
     if (data != null) {
       switch (data.toString()) {
-        case r'classic': return GetMembershipResponseTierEnum.classic;
         case r'pro': return GetMembershipResponseTierEnum.pro;
+        case r'classic': return GetMembershipResponseTierEnum.classic;
         default:
           if (allowNull == false) {
             throw ArgumentError('Unknown enum value to decode: $data');

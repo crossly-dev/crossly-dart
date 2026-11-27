@@ -105,43 +105,43 @@ class GetSpatialSceneResponseDataBreakdownsFacetEnum {
   String toJson() => value;
 
   static const brand = GetSpatialSceneResponseDataBreakdownsFacetEnum._(r'brand');
+  static const label = GetSpatialSceneResponseDataBreakdownsFacetEnum._(r'label');
+  static const status = GetSpatialSceneResponseDataBreakdownsFacetEnum._(r'status');
+  static const age = GetSpatialSceneResponseDataBreakdownsFacetEnum._(r'age');
   static const condition = GetSpatialSceneResponseDataBreakdownsFacetEnum._(r'condition');
   static const size = GetSpatialSceneResponseDataBreakdownsFacetEnum._(r'size');
-  static const status = GetSpatialSceneResponseDataBreakdownsFacetEnum._(r'status');
-  static const label = GetSpatialSceneResponseDataBreakdownsFacetEnum._(r'label');
   static const title = GetSpatialSceneResponseDataBreakdownsFacetEnum._(r'title');
   static const valueOption = GetSpatialSceneResponseDataBreakdownsFacetEnum._(r'value');
+  static const set = GetSpatialSceneResponseDataBreakdownsFacetEnum._(r'set');
+  static const team = GetSpatialSceneResponseDataBreakdownsFacetEnum._(r'team');
   static const year = GetSpatialSceneResponseDataBreakdownsFacetEnum._(r'year');
   static const grade = GetSpatialSceneResponseDataBreakdownsFacetEnum._(r'grade');
   static const game = GetSpatialSceneResponseDataBreakdownsFacetEnum._(r'game');
-  static const set = GetSpatialSceneResponseDataBreakdownsFacetEnum._(r'set');
   static const franchise = GetSpatialSceneResponseDataBreakdownsFacetEnum._(r'franchise');
-  static const team = GetSpatialSceneResponseDataBreakdownsFacetEnum._(r'team');
   static const era = GetSpatialSceneResponseDataBreakdownsFacetEnum._(r'era');
   static const genre = GetSpatialSceneResponseDataBreakdownsFacetEnum._(r'genre');
   static const colour = GetSpatialSceneResponseDataBreakdownsFacetEnum._(r'colour');
-  static const age = GetSpatialSceneResponseDataBreakdownsFacetEnum._(r'age');
   static const exhibitor = GetSpatialSceneResponseDataBreakdownsFacetEnum._(r'exhibitor');
 
   /// List of all possible values in this [enum][GetSpatialSceneResponseDataBreakdownsFacetEnum].
   static const values = <GetSpatialSceneResponseDataBreakdownsFacetEnum>[
     brand,
+    label,
+    status,
+    age,
     condition,
     size,
-    status,
-    label,
     title,
     valueOption,
+    set,
+    team,
     year,
     grade,
     game,
-    set,
     franchise,
-    team,
     era,
     genre,
     colour,
-    age,
     exhibitor,
   ];
 
@@ -175,22 +175,22 @@ class GetSpatialSceneResponseDataBreakdownsFacetEnumTypeTransformer {
     if (data != null) {
       switch (data.toString()) {
         case r'brand': return GetSpatialSceneResponseDataBreakdownsFacetEnum.brand;
+        case r'label': return GetSpatialSceneResponseDataBreakdownsFacetEnum.label;
+        case r'status': return GetSpatialSceneResponseDataBreakdownsFacetEnum.status;
+        case r'age': return GetSpatialSceneResponseDataBreakdownsFacetEnum.age;
         case r'condition': return GetSpatialSceneResponseDataBreakdownsFacetEnum.condition;
         case r'size': return GetSpatialSceneResponseDataBreakdownsFacetEnum.size;
-        case r'status': return GetSpatialSceneResponseDataBreakdownsFacetEnum.status;
-        case r'label': return GetSpatialSceneResponseDataBreakdownsFacetEnum.label;
         case r'title': return GetSpatialSceneResponseDataBreakdownsFacetEnum.title;
         case r'value': return GetSpatialSceneResponseDataBreakdownsFacetEnum.valueOption;
+        case r'set': return GetSpatialSceneResponseDataBreakdownsFacetEnum.set;
+        case r'team': return GetSpatialSceneResponseDataBreakdownsFacetEnum.team;
         case r'year': return GetSpatialSceneResponseDataBreakdownsFacetEnum.year;
         case r'grade': return GetSpatialSceneResponseDataBreakdownsFacetEnum.grade;
         case r'game': return GetSpatialSceneResponseDataBreakdownsFacetEnum.game;
-        case r'set': return GetSpatialSceneResponseDataBreakdownsFacetEnum.set;
         case r'franchise': return GetSpatialSceneResponseDataBreakdownsFacetEnum.franchise;
-        case r'team': return GetSpatialSceneResponseDataBreakdownsFacetEnum.team;
         case r'era': return GetSpatialSceneResponseDataBreakdownsFacetEnum.era;
         case r'genre': return GetSpatialSceneResponseDataBreakdownsFacetEnum.genre;
         case r'colour': return GetSpatialSceneResponseDataBreakdownsFacetEnum.colour;
-        case r'age': return GetSpatialSceneResponseDataBreakdownsFacetEnum.age;
         case r'exhibitor': return GetSpatialSceneResponseDataBreakdownsFacetEnum.exhibitor;
         default:
           if (allowNull == false) {

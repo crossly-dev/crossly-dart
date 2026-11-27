@@ -14,80 +14,80 @@ class GetBuyerCaseResponseDataReturnShipment {
   /// Returns a new [GetBuyerCaseResponseDataReturnShipment] instance.
   GetBuyerCaseResponseDataReturnShipment({
     @required this.trackingCode,
-    this.updatedAt,
-    this.status,
     this.carrier,
-    this.deliveredAt,
-    this.labelUrl,
     this.trackingUrl,
+    this.labelUrl,
+    this.status,
     this.statusDetail,
+    this.updatedAt,
+    this.deliveredAt,
   });
 
   String trackingCode;
 
-  String updatedAt;
-
-  String status;
-
   String carrier;
-
-  String deliveredAt;
-
-  String labelUrl;
 
   String trackingUrl;
 
+  String labelUrl;
+
+  String status;
+
   String statusDetail;
+
+  String updatedAt;
+
+  String deliveredAt;
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is GetBuyerCaseResponseDataReturnShipment &&
      other.trackingCode == trackingCode &&
-     other.updatedAt == updatedAt &&
-     other.status == status &&
      other.carrier == carrier &&
-     other.deliveredAt == deliveredAt &&
-     other.labelUrl == labelUrl &&
      other.trackingUrl == trackingUrl &&
-     other.statusDetail == statusDetail;
+     other.labelUrl == labelUrl &&
+     other.status == status &&
+     other.statusDetail == statusDetail &&
+     other.updatedAt == updatedAt &&
+     other.deliveredAt == deliveredAt;
 
   @override
   int get hashCode =>
   // ignore: unnecessary_parenthesis
     (trackingCode == null ? 0 : trackingCode.hashCode) +
-    (updatedAt == null ? 0 : updatedAt.hashCode) +
-    (status == null ? 0 : status.hashCode) +
     (carrier == null ? 0 : carrier.hashCode) +
-    (deliveredAt == null ? 0 : deliveredAt.hashCode) +
-    (labelUrl == null ? 0 : labelUrl.hashCode) +
     (trackingUrl == null ? 0 : trackingUrl.hashCode) +
-    (statusDetail == null ? 0 : statusDetail.hashCode);
+    (labelUrl == null ? 0 : labelUrl.hashCode) +
+    (status == null ? 0 : status.hashCode) +
+    (statusDetail == null ? 0 : statusDetail.hashCode) +
+    (updatedAt == null ? 0 : updatedAt.hashCode) +
+    (deliveredAt == null ? 0 : deliveredAt.hashCode);
 
   @override
-  String toString() => 'GetBuyerCaseResponseDataReturnShipment[trackingCode=$trackingCode, updatedAt=$updatedAt, status=$status, carrier=$carrier, deliveredAt=$deliveredAt, labelUrl=$labelUrl, trackingUrl=$trackingUrl, statusDetail=$statusDetail]';
+  String toString() => 'GetBuyerCaseResponseDataReturnShipment[trackingCode=$trackingCode, carrier=$carrier, trackingUrl=$trackingUrl, labelUrl=$labelUrl, status=$status, statusDetail=$statusDetail, updatedAt=$updatedAt, deliveredAt=$deliveredAt]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
       json[r'trackingCode'] = trackingCode;
-    if (updatedAt != null) {
-      json[r'updatedAt'] = updatedAt;
-    }
-    if (status != null) {
-      json[r'status'] = status;
-    }
     if (carrier != null) {
       json[r'carrier'] = carrier;
-    }
-    if (deliveredAt != null) {
-      json[r'deliveredAt'] = deliveredAt;
-    }
-    if (labelUrl != null) {
-      json[r'labelUrl'] = labelUrl;
     }
     if (trackingUrl != null) {
       json[r'trackingUrl'] = trackingUrl;
     }
+    if (labelUrl != null) {
+      json[r'labelUrl'] = labelUrl;
+    }
+    if (status != null) {
+      json[r'status'] = status;
+    }
     if (statusDetail != null) {
       json[r'statusDetail'] = statusDetail;
+    }
+    if (updatedAt != null) {
+      json[r'updatedAt'] = updatedAt;
+    }
+    if (deliveredAt != null) {
+      json[r'deliveredAt'] = deliveredAt;
     }
     return json;
   }
@@ -100,13 +100,13 @@ class GetBuyerCaseResponseDataReturnShipment {
       final json = value.cast<String, dynamic>();
       return GetBuyerCaseResponseDataReturnShipment(
         trackingCode: mapValueOfType<String>(json, r'trackingCode'),
-        updatedAt: mapValueOfType<String>(json, r'updatedAt'),
-        status: mapValueOfType<String>(json, r'status'),
         carrier: mapValueOfType<String>(json, r'carrier'),
-        deliveredAt: mapValueOfType<String>(json, r'deliveredAt'),
-        labelUrl: mapValueOfType<String>(json, r'labelUrl'),
         trackingUrl: mapValueOfType<String>(json, r'trackingUrl'),
+        labelUrl: mapValueOfType<String>(json, r'labelUrl'),
+        status: mapValueOfType<String>(json, r'status'),
         statusDetail: mapValueOfType<String>(json, r'statusDetail'),
+        updatedAt: mapValueOfType<String>(json, r'updatedAt'),
+        deliveredAt: mapValueOfType<String>(json, r'deliveredAt'),
       );
     }
     return null;

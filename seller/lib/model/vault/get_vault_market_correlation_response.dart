@@ -37,7 +37,7 @@ class GetVaultMarketCorrelationResponse {
 
   String reason;
 
-  List<SlugName> indexes;
+  List<NameSlug> indexes;
 
   List<List<num>> rho;
 
@@ -109,7 +109,7 @@ class GetVaultMarketCorrelationResponse {
           : num.parse(json[r'minPairWeeks'].toString()),
         insufficient: mapValueOfType<bool>(json, r'insufficient'),
         reason: mapValueOfType<String>(json, r'reason'),
-        indexes: SlugName.listFromJson(json[r'indexes']),
+        indexes: NameSlug.listFromJson(json[r'indexes']),
         rho: json[r'rho'] is List
           ? (json[r'rho'] as List).map(
               (e) => e == null ? null : (e as List).cast<num>()

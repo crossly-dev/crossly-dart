@@ -18,6 +18,7 @@ class GetAnalyticBookkeepingResponseMonthlyPL {
     @required this.cogs,
     @required this.platformFees,
     @required this.shippingCosts,
+    @required this.otherExpenses,
     @required this.netProfit,
   });
 
@@ -31,6 +32,9 @@ class GetAnalyticBookkeepingResponseMonthlyPL {
 
   num shippingCosts;
 
+  /// Mileage and manual expenses.
+  num otherExpenses;
+
   num netProfit;
 
   @override
@@ -40,6 +44,7 @@ class GetAnalyticBookkeepingResponseMonthlyPL {
      other.cogs == cogs &&
      other.platformFees == platformFees &&
      other.shippingCosts == shippingCosts &&
+     other.otherExpenses == otherExpenses &&
      other.netProfit == netProfit;
 
   @override
@@ -50,10 +55,11 @@ class GetAnalyticBookkeepingResponseMonthlyPL {
     (cogs == null ? 0 : cogs.hashCode) +
     (platformFees == null ? 0 : platformFees.hashCode) +
     (shippingCosts == null ? 0 : shippingCosts.hashCode) +
+    (otherExpenses == null ? 0 : otherExpenses.hashCode) +
     (netProfit == null ? 0 : netProfit.hashCode);
 
   @override
-  String toString() => 'GetAnalyticBookkeepingResponseMonthlyPL[month=$month, revenue=$revenue, cogs=$cogs, platformFees=$platformFees, shippingCosts=$shippingCosts, netProfit=$netProfit]';
+  String toString() => 'GetAnalyticBookkeepingResponseMonthlyPL[month=$month, revenue=$revenue, cogs=$cogs, platformFees=$platformFees, shippingCosts=$shippingCosts, otherExpenses=$otherExpenses, netProfit=$netProfit]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -62,6 +68,7 @@ class GetAnalyticBookkeepingResponseMonthlyPL {
       json[r'cogs'] = cogs;
       json[r'platformFees'] = platformFees;
       json[r'shippingCosts'] = shippingCosts;
+      json[r'otherExpenses'] = otherExpenses;
       json[r'netProfit'] = netProfit;
     return json;
   }
@@ -88,6 +95,9 @@ class GetAnalyticBookkeepingResponseMonthlyPL {
         shippingCosts: json[r'shippingCosts'] == null
           ? null
           : num.parse(json[r'shippingCosts'].toString()),
+        otherExpenses: json[r'otherExpenses'] == null
+          ? null
+          : num.parse(json[r'otherExpenses'].toString()),
         netProfit: json[r'netProfit'] == null
           ? null
           : num.parse(json[r'netProfit'].toString()),

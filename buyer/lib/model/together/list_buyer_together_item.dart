@@ -13,38 +13,38 @@ part of openapi.api;
 class ListBuyerTogetherItem {
   /// Returns a new [ListBuyerTogetherItem] instance.
   ListBuyerTogetherItem({
+    @required this.code,
     @required this.name,
     @required this.endsAt,
-    @required this.code,
   });
+
+  String code;
 
   String name;
 
   String endsAt;
 
-  String code;
-
   @override
   bool operator ==(Object other) => identical(this, other) || other is ListBuyerTogetherItem &&
+     other.code == code &&
      other.name == name &&
-     other.endsAt == endsAt &&
-     other.code == code;
+     other.endsAt == endsAt;
 
   @override
   int get hashCode =>
   // ignore: unnecessary_parenthesis
+    (code == null ? 0 : code.hashCode) +
     (name == null ? 0 : name.hashCode) +
-    (endsAt == null ? 0 : endsAt.hashCode) +
-    (code == null ? 0 : code.hashCode);
+    (endsAt == null ? 0 : endsAt.hashCode);
 
   @override
-  String toString() => 'ListBuyerTogetherItem[name=$name, endsAt=$endsAt, code=$code]';
+  String toString() => 'ListBuyerTogetherItem[code=$code, name=$name, endsAt=$endsAt]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
+      json[r'code'] = code;
       json[r'name'] = name;
       json[r'endsAt'] = endsAt;
-      json[r'code'] = code;
     return json;
   }
 
@@ -55,9 +55,9 @@ class ListBuyerTogetherItem {
     if (value is Map) {
       final json = value.cast<String, dynamic>();
       return ListBuyerTogetherItem(
+        code: mapValueOfType<String>(json, r'code'),
         name: mapValueOfType<String>(json, r'name'),
         endsAt: mapValueOfType<String>(json, r'endsAt'),
-        code: mapValueOfType<String>(json, r'code'),
       );
     }
     return null;

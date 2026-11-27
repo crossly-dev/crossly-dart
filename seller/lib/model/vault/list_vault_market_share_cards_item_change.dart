@@ -134,16 +134,16 @@ class ListVaultMarketShareCardsItemChangeSinceEnum {
 
   String toJson() => value;
 
-  static const fill = ListVaultMarketShareCardsItemChangeSinceEnum._(r'fill');
   static const entry = ListVaultMarketShareCardsItemChangeSinceEnum._(r'entry');
   static const cost = ListVaultMarketShareCardsItemChangeSinceEnum._(r'cost');
+  static const fill = ListVaultMarketShareCardsItemChangeSinceEnum._(r'fill');
   static const inception = ListVaultMarketShareCardsItemChangeSinceEnum._(r'inception');
 
   /// List of all possible values in this [enum][ListVaultMarketShareCardsItemChangeSinceEnum].
   static const values = <ListVaultMarketShareCardsItemChangeSinceEnum>[
-    fill,
     entry,
     cost,
+    fill,
     inception,
   ];
 
@@ -176,9 +176,9 @@ class ListVaultMarketShareCardsItemChangeSinceEnumTypeTransformer {
   ListVaultMarketShareCardsItemChangeSinceEnum decode(dynamic data, {bool allowNull}) {
     if (data != null) {
       switch (data.toString()) {
-        case r'fill': return ListVaultMarketShareCardsItemChangeSinceEnum.fill;
         case r'entry': return ListVaultMarketShareCardsItemChangeSinceEnum.entry;
         case r'cost': return ListVaultMarketShareCardsItemChangeSinceEnum.cost;
+        case r'fill': return ListVaultMarketShareCardsItemChangeSinceEnum.fill;
         case r'inception': return ListVaultMarketShareCardsItemChangeSinceEnum.inception;
         default:
           if (allowNull == false) {
@@ -210,8 +210,8 @@ class ListVaultMarketShareCardsItemChangeStateEnum {
   static const live = ListVaultMarketShareCardsItemChangeStateEnum._(r'live');
   static const open = ListVaultMarketShareCardsItemChangeStateEnum._(r'open');
   static const closed = ListVaultMarketShareCardsItemChangeStateEnum._(r'closed');
-  static const held = ListVaultMarketShareCardsItemChangeStateEnum._(r'held');
   static const sold = ListVaultMarketShareCardsItemChangeStateEnum._(r'sold');
+  static const held = ListVaultMarketShareCardsItemChangeStateEnum._(r'held');
   static const gone = ListVaultMarketShareCardsItemChangeStateEnum._(r'gone');
 
   /// List of all possible values in this [enum][ListVaultMarketShareCardsItemChangeStateEnum].
@@ -219,8 +219,8 @@ class ListVaultMarketShareCardsItemChangeStateEnum {
     live,
     open,
     closed,
-    held,
     sold,
+    held,
     gone,
   ];
 
@@ -256,8 +256,8 @@ class ListVaultMarketShareCardsItemChangeStateEnumTypeTransformer {
         case r'live': return ListVaultMarketShareCardsItemChangeStateEnum.live;
         case r'open': return ListVaultMarketShareCardsItemChangeStateEnum.open;
         case r'closed': return ListVaultMarketShareCardsItemChangeStateEnum.closed;
-        case r'held': return ListVaultMarketShareCardsItemChangeStateEnum.held;
         case r'sold': return ListVaultMarketShareCardsItemChangeStateEnum.sold;
+        case r'held': return ListVaultMarketShareCardsItemChangeStateEnum.held;
         case r'gone': return ListVaultMarketShareCardsItemChangeStateEnum.gone;
         default:
           if (allowNull == false) {
@@ -286,14 +286,14 @@ class ListVaultMarketShareCardsItemChangeSideEnum {
 
   String toJson() => value;
 
-  static const long = ListVaultMarketShareCardsItemChangeSideEnum._(r'long');
   static const short = ListVaultMarketShareCardsItemChangeSideEnum._(r'short');
+  static const long = ListVaultMarketShareCardsItemChangeSideEnum._(r'long');
   static const own = ListVaultMarketShareCardsItemChangeSideEnum._(r'own');
 
   /// List of all possible values in this [enum][ListVaultMarketShareCardsItemChangeSideEnum].
   static const values = <ListVaultMarketShareCardsItemChangeSideEnum>[
-    long,
     short,
+    long,
     own,
   ];
 
@@ -326,8 +326,8 @@ class ListVaultMarketShareCardsItemChangeSideEnumTypeTransformer {
   ListVaultMarketShareCardsItemChangeSideEnum decode(dynamic data, {bool allowNull}) {
     if (data != null) {
       switch (data.toString()) {
-        case r'long': return ListVaultMarketShareCardsItemChangeSideEnum.long;
         case r'short': return ListVaultMarketShareCardsItemChangeSideEnum.short;
+        case r'long': return ListVaultMarketShareCardsItemChangeSideEnum.long;
         case r'own': return ListVaultMarketShareCardsItemChangeSideEnum.own;
         default:
           if (allowNull == false) {

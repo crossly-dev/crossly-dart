@@ -191,13 +191,13 @@ class ListVaultMarketAdlEventsItemKindEnum {
 
   String toJson() => value;
 
-  static const unit = ListVaultMarketAdlEventsItemKindEnum._(r'unit');
   static const cash = ListVaultMarketAdlEventsItemKindEnum._(r'cash');
+  static const unit = ListVaultMarketAdlEventsItemKindEnum._(r'unit');
 
   /// List of all possible values in this [enum][ListVaultMarketAdlEventsItemKindEnum].
   static const values = <ListVaultMarketAdlEventsItemKindEnum>[
-    unit,
     cash,
+    unit,
   ];
 
   static ListVaultMarketAdlEventsItemKindEnum fromJson(dynamic value) =>
@@ -229,8 +229,8 @@ class ListVaultMarketAdlEventsItemKindEnumTypeTransformer {
   ListVaultMarketAdlEventsItemKindEnum decode(dynamic data, {bool allowNull}) {
     if (data != null) {
       switch (data.toString()) {
-        case r'unit': return ListVaultMarketAdlEventsItemKindEnum.unit;
         case r'cash': return ListVaultMarketAdlEventsItemKindEnum.cash;
+        case r'unit': return ListVaultMarketAdlEventsItemKindEnum.unit;
         default:
           if (allowNull == false) {
             throw ArgumentError('Unknown enum value to decode: $data');
@@ -325,13 +325,13 @@ class ListVaultMarketAdlEventsItemSideEnum {
 
   String toJson() => value;
 
-  static const long = ListVaultMarketAdlEventsItemSideEnum._(r'long');
   static const short = ListVaultMarketAdlEventsItemSideEnum._(r'short');
+  static const long = ListVaultMarketAdlEventsItemSideEnum._(r'long');
 
   /// List of all possible values in this [enum][ListVaultMarketAdlEventsItemSideEnum].
   static const values = <ListVaultMarketAdlEventsItemSideEnum>[
-    long,
     short,
+    long,
   ];
 
   static ListVaultMarketAdlEventsItemSideEnum fromJson(dynamic value) =>
@@ -363,8 +363,8 @@ class ListVaultMarketAdlEventsItemSideEnumTypeTransformer {
   ListVaultMarketAdlEventsItemSideEnum decode(dynamic data, {bool allowNull}) {
     if (data != null) {
       switch (data.toString()) {
-        case r'long': return ListVaultMarketAdlEventsItemSideEnum.long;
         case r'short': return ListVaultMarketAdlEventsItemSideEnum.short;
+        case r'long': return ListVaultMarketAdlEventsItemSideEnum.long;
         default:
           if (allowNull == false) {
             throw ArgumentError('Unknown enum value to decode: $data');

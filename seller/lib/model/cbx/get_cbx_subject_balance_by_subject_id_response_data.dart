@@ -14,6 +14,7 @@ class GetCbxSubjectBalanceBySubjectIdResponseData {
   /// Returns a new [GetCbxSubjectBalanceBySubjectIdResponseData] instance.
   GetCbxSubjectBalanceBySubjectIdResponseData({
     @required this.grantedBaseUnits,
+    @required this.fundingRestrictedBaseUnits,
     @required this.earnedBaseUnits,
     @required this.stakedBaseUnits,
     @required this.earnedAvailableBaseUnits,
@@ -22,6 +23,8 @@ class GetCbxSubjectBalanceBySubjectIdResponseData {
   });
 
   String grantedBaseUnits;
+
+  String fundingRestrictedBaseUnits;
 
   String earnedBaseUnits;
 
@@ -36,6 +39,7 @@ class GetCbxSubjectBalanceBySubjectIdResponseData {
   @override
   bool operator ==(Object other) => identical(this, other) || other is GetCbxSubjectBalanceBySubjectIdResponseData &&
      other.grantedBaseUnits == grantedBaseUnits &&
+     other.fundingRestrictedBaseUnits == fundingRestrictedBaseUnits &&
      other.earnedBaseUnits == earnedBaseUnits &&
      other.stakedBaseUnits == stakedBaseUnits &&
      other.earnedAvailableBaseUnits == earnedAvailableBaseUnits &&
@@ -46,6 +50,7 @@ class GetCbxSubjectBalanceBySubjectIdResponseData {
   int get hashCode =>
   // ignore: unnecessary_parenthesis
     (grantedBaseUnits == null ? 0 : grantedBaseUnits.hashCode) +
+    (fundingRestrictedBaseUnits == null ? 0 : fundingRestrictedBaseUnits.hashCode) +
     (earnedBaseUnits == null ? 0 : earnedBaseUnits.hashCode) +
     (stakedBaseUnits == null ? 0 : stakedBaseUnits.hashCode) +
     (earnedAvailableBaseUnits == null ? 0 : earnedAvailableBaseUnits.hashCode) +
@@ -53,11 +58,12 @@ class GetCbxSubjectBalanceBySubjectIdResponseData {
     (totalSpendableBaseUnits == null ? 0 : totalSpendableBaseUnits.hashCode);
 
   @override
-  String toString() => 'GetCbxSubjectBalanceBySubjectIdResponseData[grantedBaseUnits=$grantedBaseUnits, earnedBaseUnits=$earnedBaseUnits, stakedBaseUnits=$stakedBaseUnits, earnedAvailableBaseUnits=$earnedAvailableBaseUnits, connectedAvailableBaseUnits=$connectedAvailableBaseUnits, totalSpendableBaseUnits=$totalSpendableBaseUnits]';
+  String toString() => 'GetCbxSubjectBalanceBySubjectIdResponseData[grantedBaseUnits=$grantedBaseUnits, fundingRestrictedBaseUnits=$fundingRestrictedBaseUnits, earnedBaseUnits=$earnedBaseUnits, stakedBaseUnits=$stakedBaseUnits, earnedAvailableBaseUnits=$earnedAvailableBaseUnits, connectedAvailableBaseUnits=$connectedAvailableBaseUnits, totalSpendableBaseUnits=$totalSpendableBaseUnits]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
       json[r'grantedBaseUnits'] = grantedBaseUnits;
+      json[r'fundingRestrictedBaseUnits'] = fundingRestrictedBaseUnits;
       json[r'earnedBaseUnits'] = earnedBaseUnits;
       json[r'stakedBaseUnits'] = stakedBaseUnits;
       json[r'earnedAvailableBaseUnits'] = earnedAvailableBaseUnits;
@@ -74,6 +80,7 @@ class GetCbxSubjectBalanceBySubjectIdResponseData {
       final json = value.cast<String, dynamic>();
       return GetCbxSubjectBalanceBySubjectIdResponseData(
         grantedBaseUnits: mapValueOfType<String>(json, r'grantedBaseUnits'),
+        fundingRestrictedBaseUnits: mapValueOfType<String>(json, r'fundingRestrictedBaseUnits'),
         earnedBaseUnits: mapValueOfType<String>(json, r'earnedBaseUnits'),
         stakedBaseUnits: mapValueOfType<String>(json, r'stakedBaseUnits'),
         earnedAvailableBaseUnits: mapValueOfType<String>(json, r'earnedAvailableBaseUnits'),

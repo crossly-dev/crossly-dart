@@ -13,32 +13,32 @@ part of openapi.api;
 class CreateBuyerScanResponseIdentifier {
   /// Returns a new [CreateBuyerScanResponseIdentifier] instance.
   CreateBuyerScanResponseIdentifier({
-    @required this.value,
     @required this.ns,
+    @required this.value,
   });
-
-  String value;
 
   CreateBuyerScanResponseIdentifierNsEnum ns;
 
+  String value;
+
   @override
   bool operator ==(Object other) => identical(this, other) || other is CreateBuyerScanResponseIdentifier &&
-     other.value == value &&
-     other.ns == ns;
+     other.ns == ns &&
+     other.value == value;
 
   @override
   int get hashCode =>
   // ignore: unnecessary_parenthesis
-    (value == null ? 0 : value.hashCode) +
-    (ns == null ? 0 : ns.hashCode);
+    (ns == null ? 0 : ns.hashCode) +
+    (value == null ? 0 : value.hashCode);
 
   @override
-  String toString() => 'CreateBuyerScanResponseIdentifier[value=$value, ns=$ns]';
+  String toString() => 'CreateBuyerScanResponseIdentifier[ns=$ns, value=$value]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-      json[r'value'] = value;
       json[r'ns'] = ns;
+      json[r'value'] = value;
     return json;
   }
 
@@ -49,8 +49,8 @@ class CreateBuyerScanResponseIdentifier {
     if (value is Map) {
       final json = value.cast<String, dynamic>();
       return CreateBuyerScanResponseIdentifier(
-        value: mapValueOfType<String>(json, r'value'),
         ns: CreateBuyerScanResponseIdentifierNsEnum.fromJson(json[r'ns']),
+        value: mapValueOfType<String>(json, r'value'),
       );
     }
     return null;
@@ -102,8 +102,8 @@ class CreateBuyerScanResponseIdentifierNsEnum {
 
   String toJson() => value;
 
-  static const styleCode = CreateBuyerScanResponseIdentifierNsEnum._(r'style_code');
   static const gtin = CreateBuyerScanResponseIdentifierNsEnum._(r'gtin');
+  static const styleCode = CreateBuyerScanResponseIdentifierNsEnum._(r'style_code');
   static const legoSet = CreateBuyerScanResponseIdentifierNsEnum._(r'lego_set');
   static const tcgplayer = CreateBuyerScanResponseIdentifierNsEnum._(r'tcgplayer');
   static const discogs = CreateBuyerScanResponseIdentifierNsEnum._(r'discogs');
@@ -111,8 +111,8 @@ class CreateBuyerScanResponseIdentifierNsEnum {
 
   /// List of all possible values in this [enum][CreateBuyerScanResponseIdentifierNsEnum].
   static const values = <CreateBuyerScanResponseIdentifierNsEnum>[
-    styleCode,
     gtin,
+    styleCode,
     legoSet,
     tcgplayer,
     discogs,
@@ -148,8 +148,8 @@ class CreateBuyerScanResponseIdentifierNsEnumTypeTransformer {
   CreateBuyerScanResponseIdentifierNsEnum decode(dynamic data, {bool allowNull}) {
     if (data != null) {
       switch (data.toString()) {
-        case r'style_code': return CreateBuyerScanResponseIdentifierNsEnum.styleCode;
         case r'gtin': return CreateBuyerScanResponseIdentifierNsEnum.gtin;
+        case r'style_code': return CreateBuyerScanResponseIdentifierNsEnum.styleCode;
         case r'lego_set': return CreateBuyerScanResponseIdentifierNsEnum.legoSet;
         case r'tcgplayer': return CreateBuyerScanResponseIdentifierNsEnum.tcgplayer;
         case r'discogs': return CreateBuyerScanResponseIdentifierNsEnum.discogs;

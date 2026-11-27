@@ -18,7 +18,7 @@ class CreateTeamInviteResponse {
     @required this.role,
     this.scopes = const [],
     @required this.expiresAt,
-    @required this.acceptUrl,
+    this.acceptUrl,
   });
 
   String id;
@@ -62,7 +62,9 @@ class CreateTeamInviteResponse {
       json[r'role'] = role;
       json[r'scopes'] = scopes;
       json[r'expiresAt'] = expiresAt;
+    if (acceptUrl != null) {
       json[r'acceptUrl'] = acceptUrl;
+    }
     return json;
   }
 

@@ -15,15 +15,15 @@ class CreateCosmCosmeticBuyCbxResponseDataOwnership {
   CreateCosmCosmeticBuyCbxResponseDataOwnership({
     @required this.id,
     @required this.acquiredAt,
-    this.retiredAt,
-    @required this.merchantId,
     @required this.cosmeticId,
+    @required this.merchantId,
+    this.retiredAt,
     @required this.subjectId,
-    this.ledgerId,
-    this.editionNumber,
     @required this.acquiredVia,
     @required this.bound,
     this.paidCents,
+    this.ledgerId,
+    this.editionNumber,
     this.paymentRef,
     this.retiredReason,
     this.requestRef,
@@ -33,23 +33,23 @@ class CreateCosmCosmeticBuyCbxResponseDataOwnership {
 
   DateTime acquiredAt;
 
-  DateTime retiredAt;
+  String cosmeticId;
 
   String merchantId;
 
-  String cosmeticId;
+  DateTime retiredAt;
 
   String subjectId;
-
-  String ledgerId;
-
-  num editionNumber;
 
   String acquiredVia;
 
   bool bound;
 
   num paidCents;
+
+  String ledgerId;
+
+  num editionNumber;
 
   String paymentRef;
 
@@ -61,15 +61,15 @@ class CreateCosmCosmeticBuyCbxResponseDataOwnership {
   bool operator ==(Object other) => identical(this, other) || other is CreateCosmCosmeticBuyCbxResponseDataOwnership &&
      other.id == id &&
      other.acquiredAt == acquiredAt &&
-     other.retiredAt == retiredAt &&
-     other.merchantId == merchantId &&
      other.cosmeticId == cosmeticId &&
+     other.merchantId == merchantId &&
+     other.retiredAt == retiredAt &&
      other.subjectId == subjectId &&
-     other.ledgerId == ledgerId &&
-     other.editionNumber == editionNumber &&
      other.acquiredVia == acquiredVia &&
      other.bound == bound &&
      other.paidCents == paidCents &&
+     other.ledgerId == ledgerId &&
+     other.editionNumber == editionNumber &&
      other.paymentRef == paymentRef &&
      other.retiredReason == retiredReason &&
      other.requestRef == requestRef;
@@ -79,42 +79,42 @@ class CreateCosmCosmeticBuyCbxResponseDataOwnership {
   // ignore: unnecessary_parenthesis
     (id == null ? 0 : id.hashCode) +
     (acquiredAt == null ? 0 : acquiredAt.hashCode) +
-    (retiredAt == null ? 0 : retiredAt.hashCode) +
-    (merchantId == null ? 0 : merchantId.hashCode) +
     (cosmeticId == null ? 0 : cosmeticId.hashCode) +
+    (merchantId == null ? 0 : merchantId.hashCode) +
+    (retiredAt == null ? 0 : retiredAt.hashCode) +
     (subjectId == null ? 0 : subjectId.hashCode) +
-    (ledgerId == null ? 0 : ledgerId.hashCode) +
-    (editionNumber == null ? 0 : editionNumber.hashCode) +
     (acquiredVia == null ? 0 : acquiredVia.hashCode) +
     (bound == null ? 0 : bound.hashCode) +
     (paidCents == null ? 0 : paidCents.hashCode) +
+    (ledgerId == null ? 0 : ledgerId.hashCode) +
+    (editionNumber == null ? 0 : editionNumber.hashCode) +
     (paymentRef == null ? 0 : paymentRef.hashCode) +
     (retiredReason == null ? 0 : retiredReason.hashCode) +
     (requestRef == null ? 0 : requestRef.hashCode);
 
   @override
-  String toString() => 'CreateCosmCosmeticBuyCbxResponseDataOwnership[id=$id, acquiredAt=$acquiredAt, retiredAt=$retiredAt, merchantId=$merchantId, cosmeticId=$cosmeticId, subjectId=$subjectId, ledgerId=$ledgerId, editionNumber=$editionNumber, acquiredVia=$acquiredVia, bound=$bound, paidCents=$paidCents, paymentRef=$paymentRef, retiredReason=$retiredReason, requestRef=$requestRef]';
+  String toString() => 'CreateCosmCosmeticBuyCbxResponseDataOwnership[id=$id, acquiredAt=$acquiredAt, cosmeticId=$cosmeticId, merchantId=$merchantId, retiredAt=$retiredAt, subjectId=$subjectId, acquiredVia=$acquiredVia, bound=$bound, paidCents=$paidCents, ledgerId=$ledgerId, editionNumber=$editionNumber, paymentRef=$paymentRef, retiredReason=$retiredReason, requestRef=$requestRef]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
       json[r'id'] = id;
       json[r'acquiredAt'] = acquiredAt.toUtc().toIso8601String();
+      json[r'cosmeticId'] = cosmeticId;
+      json[r'merchantId'] = merchantId;
     if (retiredAt != null) {
       json[r'retiredAt'] = retiredAt.toUtc().toIso8601String();
     }
-      json[r'merchantId'] = merchantId;
-      json[r'cosmeticId'] = cosmeticId;
       json[r'subjectId'] = subjectId;
+      json[r'acquiredVia'] = acquiredVia;
+      json[r'bound'] = bound;
+    if (paidCents != null) {
+      json[r'paidCents'] = paidCents;
+    }
     if (ledgerId != null) {
       json[r'ledgerId'] = ledgerId;
     }
     if (editionNumber != null) {
       json[r'editionNumber'] = editionNumber;
-    }
-      json[r'acquiredVia'] = acquiredVia;
-      json[r'bound'] = bound;
-    if (paidCents != null) {
-      json[r'paidCents'] = paidCents;
     }
     if (paymentRef != null) {
       json[r'paymentRef'] = paymentRef;
@@ -137,19 +137,19 @@ class CreateCosmCosmeticBuyCbxResponseDataOwnership {
       return CreateCosmCosmeticBuyCbxResponseDataOwnership(
         id: mapValueOfType<String>(json, r'id'),
         acquiredAt: mapDateTime(json, r'acquiredAt', ''),
-        retiredAt: mapDateTime(json, r'retiredAt', ''),
-        merchantId: mapValueOfType<String>(json, r'merchantId'),
         cosmeticId: mapValueOfType<String>(json, r'cosmeticId'),
+        merchantId: mapValueOfType<String>(json, r'merchantId'),
+        retiredAt: mapDateTime(json, r'retiredAt', ''),
         subjectId: mapValueOfType<String>(json, r'subjectId'),
-        ledgerId: mapValueOfType<String>(json, r'ledgerId'),
-        editionNumber: json[r'editionNumber'] == null
-          ? null
-          : num.parse(json[r'editionNumber'].toString()),
         acquiredVia: mapValueOfType<String>(json, r'acquiredVia'),
         bound: mapValueOfType<bool>(json, r'bound'),
         paidCents: json[r'paidCents'] == null
           ? null
           : num.parse(json[r'paidCents'].toString()),
+        ledgerId: mapValueOfType<String>(json, r'ledgerId'),
+        editionNumber: json[r'editionNumber'] == null
+          ? null
+          : num.parse(json[r'editionNumber'].toString()),
         paymentRef: mapValueOfType<String>(json, r'paymentRef'),
         retiredReason: mapValueOfType<String>(json, r'retiredReason'),
         requestRef: mapValueOfType<String>(json, r'requestRef'),

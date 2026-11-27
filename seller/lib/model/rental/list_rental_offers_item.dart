@@ -20,16 +20,21 @@ class ListRentalOffersItem {
     @required this.createdAt,
     @required this.updatedAt,
     @required this.active,
+    @required this.quantity,
     @required this.platformListingId,
+    this.storefrontId,
+    this.options = const {},
     @required this.sellerUserId,
     @required this.depositCents,
-    @required this.dailyCents,
-    this.weeklyCents,
     @required this.minDays,
     @required this.maxDays,
+    @required this.dailyCents,
+    this.weeklyCents,
     @required this.bufferDays,
     @required this.rentOnly,
     @required this.requireApproval,
+    this.blackoutRanges = const [],
+    this.returnPolicy,
   });
 
   String slug;
@@ -46,25 +51,35 @@ class ListRentalOffersItem {
 
   bool active;
 
+  num quantity;
+
   String platformListingId;
+
+  String storefrontId;
+
+  Map<String, Object> options;
 
   String sellerUserId;
 
   num depositCents;
 
-  num dailyCents;
-
-  num weeklyCents;
-
   num minDays;
 
   num maxDays;
+
+  num dailyCents;
+
+  num weeklyCents;
 
   num bufferDays;
 
   bool rentOnly;
 
   bool requireApproval;
+
+  List<StartEnd> blackoutRanges;
+
+  String returnPolicy;
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is ListRentalOffersItem &&
@@ -75,16 +90,21 @@ class ListRentalOffersItem {
      other.createdAt == createdAt &&
      other.updatedAt == updatedAt &&
      other.active == active &&
+     other.quantity == quantity &&
      other.platformListingId == platformListingId &&
+     other.storefrontId == storefrontId &&
+     other.options == options &&
      other.sellerUserId == sellerUserId &&
      other.depositCents == depositCents &&
-     other.dailyCents == dailyCents &&
-     other.weeklyCents == weeklyCents &&
      other.minDays == minDays &&
      other.maxDays == maxDays &&
+     other.dailyCents == dailyCents &&
+     other.weeklyCents == weeklyCents &&
      other.bufferDays == bufferDays &&
      other.rentOnly == rentOnly &&
-     other.requireApproval == requireApproval;
+     other.requireApproval == requireApproval &&
+     other.blackoutRanges == blackoutRanges &&
+     other.returnPolicy == returnPolicy;
 
   @override
   int get hashCode =>
@@ -96,19 +116,24 @@ class ListRentalOffersItem {
     (createdAt == null ? 0 : createdAt.hashCode) +
     (updatedAt == null ? 0 : updatedAt.hashCode) +
     (active == null ? 0 : active.hashCode) +
+    (quantity == null ? 0 : quantity.hashCode) +
     (platformListingId == null ? 0 : platformListingId.hashCode) +
+    (storefrontId == null ? 0 : storefrontId.hashCode) +
+    (options == null ? 0 : options.hashCode) +
     (sellerUserId == null ? 0 : sellerUserId.hashCode) +
     (depositCents == null ? 0 : depositCents.hashCode) +
-    (dailyCents == null ? 0 : dailyCents.hashCode) +
-    (weeklyCents == null ? 0 : weeklyCents.hashCode) +
     (minDays == null ? 0 : minDays.hashCode) +
     (maxDays == null ? 0 : maxDays.hashCode) +
+    (dailyCents == null ? 0 : dailyCents.hashCode) +
+    (weeklyCents == null ? 0 : weeklyCents.hashCode) +
     (bufferDays == null ? 0 : bufferDays.hashCode) +
     (rentOnly == null ? 0 : rentOnly.hashCode) +
-    (requireApproval == null ? 0 : requireApproval.hashCode);
+    (requireApproval == null ? 0 : requireApproval.hashCode) +
+    (blackoutRanges == null ? 0 : blackoutRanges.hashCode) +
+    (returnPolicy == null ? 0 : returnPolicy.hashCode);
 
   @override
-  String toString() => 'ListRentalOffersItem[slug=$slug, listingId=$listingId, title=$title, imageUrl=$imageUrl, createdAt=$createdAt, updatedAt=$updatedAt, active=$active, platformListingId=$platformListingId, sellerUserId=$sellerUserId, depositCents=$depositCents, dailyCents=$dailyCents, weeklyCents=$weeklyCents, minDays=$minDays, maxDays=$maxDays, bufferDays=$bufferDays, rentOnly=$rentOnly, requireApproval=$requireApproval]';
+  String toString() => 'ListRentalOffersItem[slug=$slug, listingId=$listingId, title=$title, imageUrl=$imageUrl, createdAt=$createdAt, updatedAt=$updatedAt, active=$active, quantity=$quantity, platformListingId=$platformListingId, storefrontId=$storefrontId, options=$options, sellerUserId=$sellerUserId, depositCents=$depositCents, minDays=$minDays, maxDays=$maxDays, dailyCents=$dailyCents, weeklyCents=$weeklyCents, bufferDays=$bufferDays, rentOnly=$rentOnly, requireApproval=$requireApproval, blackoutRanges=$blackoutRanges, returnPolicy=$returnPolicy]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -119,18 +144,27 @@ class ListRentalOffersItem {
       json[r'createdAt'] = createdAt;
       json[r'updatedAt'] = updatedAt;
       json[r'active'] = active;
+      json[r'quantity'] = quantity;
       json[r'platformListingId'] = platformListingId;
+    if (storefrontId != null) {
+      json[r'storefrontId'] = storefrontId;
+    }
+      json[r'options'] = options;
       json[r'sellerUserId'] = sellerUserId;
       json[r'depositCents'] = depositCents;
+      json[r'minDays'] = minDays;
+      json[r'maxDays'] = maxDays;
       json[r'dailyCents'] = dailyCents;
     if (weeklyCents != null) {
       json[r'weeklyCents'] = weeklyCents;
     }
-      json[r'minDays'] = minDays;
-      json[r'maxDays'] = maxDays;
       json[r'bufferDays'] = bufferDays;
       json[r'rentOnly'] = rentOnly;
       json[r'requireApproval'] = requireApproval;
+      json[r'blackoutRanges'] = blackoutRanges;
+    if (returnPolicy != null) {
+      json[r'returnPolicy'] = returnPolicy;
+    }
     return json;
   }
 
@@ -148,28 +182,35 @@ class ListRentalOffersItem {
         createdAt: mapValueOfType<String>(json, r'createdAt'),
         updatedAt: mapValueOfType<String>(json, r'updatedAt'),
         active: mapValueOfType<bool>(json, r'active'),
+        quantity: json[r'quantity'] == null
+          ? null
+          : num.parse(json[r'quantity'].toString()),
         platformListingId: mapValueOfType<String>(json, r'platformListingId'),
+        storefrontId: mapValueOfType<String>(json, r'storefrontId'),
+        options: mapValueOfType<Map<String, Object>>(json, r'options'),
         sellerUserId: mapValueOfType<String>(json, r'sellerUserId'),
         depositCents: json[r'depositCents'] == null
           ? null
           : num.parse(json[r'depositCents'].toString()),
-        dailyCents: json[r'dailyCents'] == null
-          ? null
-          : num.parse(json[r'dailyCents'].toString()),
-        weeklyCents: json[r'weeklyCents'] == null
-          ? null
-          : num.parse(json[r'weeklyCents'].toString()),
         minDays: json[r'minDays'] == null
           ? null
           : num.parse(json[r'minDays'].toString()),
         maxDays: json[r'maxDays'] == null
           ? null
           : num.parse(json[r'maxDays'].toString()),
+        dailyCents: json[r'dailyCents'] == null
+          ? null
+          : num.parse(json[r'dailyCents'].toString()),
+        weeklyCents: json[r'weeklyCents'] == null
+          ? null
+          : num.parse(json[r'weeklyCents'].toString()),
         bufferDays: json[r'bufferDays'] == null
           ? null
           : num.parse(json[r'bufferDays'].toString()),
         rentOnly: mapValueOfType<bool>(json, r'rentOnly'),
         requireApproval: mapValueOfType<bool>(json, r'requireApproval'),
+        blackoutRanges: StartEnd.listFromJson(json[r'blackoutRanges']),
+        returnPolicy: mapValueOfType<String>(json, r'returnPolicy'),
       );
     }
     return null;

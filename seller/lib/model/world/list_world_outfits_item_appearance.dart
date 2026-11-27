@@ -21,6 +21,7 @@ class ListWorldOutfitsItemAppearance {
     this.brows,
     this.mouth,
     this.shape,
+    this.outfit,
   });
 
   String skin;
@@ -41,6 +42,8 @@ class ListWorldOutfitsItemAppearance {
   /// A body shape (BODY_SHAPES). Optional, like the face presets.
   String shape;
 
+  ListWorldOutfitsItemAppearanceOutfit outfit;
+
   @override
   bool operator ==(Object other) => identical(this, other) || other is ListWorldOutfitsItemAppearance &&
      other.skin == skin &&
@@ -50,7 +53,8 @@ class ListWorldOutfitsItemAppearance {
      other.build == build &&
      other.brows == brows &&
      other.mouth == mouth &&
-     other.shape == shape;
+     other.shape == shape &&
+     other.outfit == outfit;
 
   @override
   int get hashCode =>
@@ -62,10 +66,11 @@ class ListWorldOutfitsItemAppearance {
     (build == null ? 0 : build.hashCode) +
     (brows == null ? 0 : brows.hashCode) +
     (mouth == null ? 0 : mouth.hashCode) +
-    (shape == null ? 0 : shape.hashCode);
+    (shape == null ? 0 : shape.hashCode) +
+    (outfit == null ? 0 : outfit.hashCode);
 
   @override
-  String toString() => 'ListWorldOutfitsItemAppearance[skin=$skin, hair=$hair, hairColour=$hairColour, eyes=$eyes, build=$build, brows=$brows, mouth=$mouth, shape=$shape]';
+  String toString() => 'ListWorldOutfitsItemAppearance[skin=$skin, hair=$hair, hairColour=$hairColour, eyes=$eyes, build=$build, brows=$brows, mouth=$mouth, shape=$shape, outfit=$outfit]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -82,6 +87,9 @@ class ListWorldOutfitsItemAppearance {
     }
     if (shape != null) {
       json[r'shape'] = shape;
+    }
+    if (outfit != null) {
+      json[r'outfit'] = outfit;
     }
     return json;
   }
@@ -101,6 +109,7 @@ class ListWorldOutfitsItemAppearance {
         brows: mapValueOfType<String>(json, r'brows'),
         mouth: mapValueOfType<String>(json, r'mouth'),
         shape: mapValueOfType<String>(json, r'shape'),
+        outfit: ListWorldOutfitsItemAppearanceOutfit.fromJson(json[r'outfit']),
       );
     }
     return null;

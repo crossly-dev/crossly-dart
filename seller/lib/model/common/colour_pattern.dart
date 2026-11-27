@@ -102,29 +102,29 @@ class ColourPatternColourEnum {
 
   String toJson() => value;
 
+  static const yellow = ColourPatternColourEnum._(r'yellow');
+  static const blue = ColourPatternColourEnum._(r'blue');
+  static const green = ColourPatternColourEnum._(r'green');
+  static const pink = ColourPatternColourEnum._(r'pink');
+  static const purple = ColourPatternColourEnum._(r'purple');
+  static const charcoal = ColourPatternColourEnum._(r'charcoal');
   static const red = ColourPatternColourEnum._(r'red');
   static const orange = ColourPatternColourEnum._(r'orange');
-  static const yellow = ColourPatternColourEnum._(r'yellow');
-  static const green = ColourPatternColourEnum._(r'green');
   static const teal = ColourPatternColourEnum._(r'teal');
-  static const blue = ColourPatternColourEnum._(r'blue');
-  static const purple = ColourPatternColourEnum._(r'purple');
-  static const pink = ColourPatternColourEnum._(r'pink');
   static const cream = ColourPatternColourEnum._(r'cream');
-  static const charcoal = ColourPatternColourEnum._(r'charcoal');
 
   /// List of all possible values in this [enum][ColourPatternColourEnum].
   static const values = <ColourPatternColourEnum>[
+    yellow,
+    blue,
+    green,
+    pink,
+    purple,
+    charcoal,
     red,
     orange,
-    yellow,
-    green,
     teal,
-    blue,
-    purple,
-    pink,
     cream,
-    charcoal,
   ];
 
   static ColourPatternColourEnum fromJson(dynamic value) =>
@@ -156,16 +156,16 @@ class ColourPatternColourEnumTypeTransformer {
   ColourPatternColourEnum decode(dynamic data, {bool allowNull}) {
     if (data != null) {
       switch (data.toString()) {
+        case r'yellow': return ColourPatternColourEnum.yellow;
+        case r'blue': return ColourPatternColourEnum.blue;
+        case r'green': return ColourPatternColourEnum.green;
+        case r'pink': return ColourPatternColourEnum.pink;
+        case r'purple': return ColourPatternColourEnum.purple;
+        case r'charcoal': return ColourPatternColourEnum.charcoal;
         case r'red': return ColourPatternColourEnum.red;
         case r'orange': return ColourPatternColourEnum.orange;
-        case r'yellow': return ColourPatternColourEnum.yellow;
-        case r'green': return ColourPatternColourEnum.green;
         case r'teal': return ColourPatternColourEnum.teal;
-        case r'blue': return ColourPatternColourEnum.blue;
-        case r'purple': return ColourPatternColourEnum.purple;
-        case r'pink': return ColourPatternColourEnum.pink;
         case r'cream': return ColourPatternColourEnum.cream;
-        case r'charcoal': return ColourPatternColourEnum.charcoal;
         default:
           if (allowNull == false) {
             throw ArgumentError('Unknown enum value to decode: $data');
@@ -193,17 +193,17 @@ class ColourPatternPatternEnum {
 
   String toJson() => value;
 
-  static const solid = ColourPatternPatternEnum._(r'solid');
-  static const stripe = ColourPatternPatternEnum._(r'stripe');
-  static const scallop = ColourPatternPatternEnum._(r'scallop');
   static const check = ColourPatternPatternEnum._(r'check');
+  static const stripe = ColourPatternPatternEnum._(r'stripe');
+  static const solid = ColourPatternPatternEnum._(r'solid');
+  static const scallop = ColourPatternPatternEnum._(r'scallop');
 
   /// List of all possible values in this [enum][ColourPatternPatternEnum].
   static const values = <ColourPatternPatternEnum>[
-    solid,
-    stripe,
-    scallop,
     check,
+    stripe,
+    solid,
+    scallop,
   ];
 
   static ColourPatternPatternEnum fromJson(dynamic value) =>
@@ -235,10 +235,10 @@ class ColourPatternPatternEnumTypeTransformer {
   ColourPatternPatternEnum decode(dynamic data, {bool allowNull}) {
     if (data != null) {
       switch (data.toString()) {
-        case r'solid': return ColourPatternPatternEnum.solid;
-        case r'stripe': return ColourPatternPatternEnum.stripe;
-        case r'scallop': return ColourPatternPatternEnum.scallop;
         case r'check': return ColourPatternPatternEnum.check;
+        case r'stripe': return ColourPatternPatternEnum.stripe;
+        case r'solid': return ColourPatternPatternEnum.solid;
+        case r'scallop': return ColourPatternPatternEnum.scallop;
         default:
           if (allowNull == false) {
             throw ArgumentError('Unknown enum value to decode: $data');

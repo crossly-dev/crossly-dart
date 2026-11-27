@@ -19,6 +19,8 @@ class GetWorldGamePackageResponseData {
     @required this.name,
     @required this.designId,
     @required this.createdAt,
+    @required this.updatedAt,
+    this.unpublishedAt,
     this.versions = const [],
   });
 
@@ -34,6 +36,10 @@ class GetWorldGamePackageResponseData {
 
   DateTime createdAt;
 
+  DateTime updatedAt;
+
+  DateTime unpublishedAt;
+
   List<GetWorldGamePackageResponseDataVersions> versions;
 
   @override
@@ -44,6 +50,8 @@ class GetWorldGamePackageResponseData {
      other.name == name &&
      other.designId == designId &&
      other.createdAt == createdAt &&
+     other.updatedAt == updatedAt &&
+     other.unpublishedAt == unpublishedAt &&
      other.versions == versions;
 
   @override
@@ -55,10 +63,12 @@ class GetWorldGamePackageResponseData {
     (name == null ? 0 : name.hashCode) +
     (designId == null ? 0 : designId.hashCode) +
     (createdAt == null ? 0 : createdAt.hashCode) +
+    (updatedAt == null ? 0 : updatedAt.hashCode) +
+    (unpublishedAt == null ? 0 : unpublishedAt.hashCode) +
     (versions == null ? 0 : versions.hashCode);
 
   @override
-  String toString() => 'GetWorldGamePackageResponseData[stats=$stats, id=$id, slug=$slug, name=$name, designId=$designId, createdAt=$createdAt, versions=$versions]';
+  String toString() => 'GetWorldGamePackageResponseData[stats=$stats, id=$id, slug=$slug, name=$name, designId=$designId, createdAt=$createdAt, updatedAt=$updatedAt, unpublishedAt=$unpublishedAt, versions=$versions]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -70,6 +80,10 @@ class GetWorldGamePackageResponseData {
       json[r'name'] = name;
       json[r'designId'] = designId;
       json[r'createdAt'] = createdAt.toUtc().toIso8601String();
+      json[r'updatedAt'] = updatedAt.toUtc().toIso8601String();
+    if (unpublishedAt != null) {
+      json[r'unpublishedAt'] = unpublishedAt.toUtc().toIso8601String();
+    }
       json[r'versions'] = versions;
     return json;
   }
@@ -87,6 +101,8 @@ class GetWorldGamePackageResponseData {
         name: mapValueOfType<String>(json, r'name'),
         designId: mapValueOfType<String>(json, r'designId'),
         createdAt: mapDateTime(json, r'createdAt', ''),
+        updatedAt: mapDateTime(json, r'updatedAt', ''),
+        unpublishedAt: mapDateTime(json, r'unpublishedAt', ''),
         versions: GetWorldGamePackageResponseDataVersions.listFromJson(json[r'versions']),
       );
     }

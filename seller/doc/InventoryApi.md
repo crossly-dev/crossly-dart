@@ -15,7 +15,8 @@ Method | HTTP request | Description
 [**createInventoryBulkArchive**](InventoryApi.md#createinventorybulkarchive) | **POST** /v1/inventory/bulk-archive | Bulk archive inventory items (soft).
 [**createInventoryBulkDelete**](InventoryApi.md#createinventorybulkdelete) | **POST** /v1/inventory/bulk-delete | Bulk delete inventory items (delinks listings).
 [**createInventoryBulkLabel**](InventoryApi.md#createinventorybulklabel) | **POST** /v1/inventory/bulk-labels | Bulk add/remove labels on inventory items.
-[**createInventoryBulkQuantity**](InventoryApi.md#createinventorybulkquantity) | **POST** /v1/inventory/bulk-quantity | Set / add / subtract stock across many items, syncing live listings.
+[**createInventoryBulkQuantity**](InventoryApi.md#createinventorybulkquantity) | **POST** /v1/inventory/bulk-quantity | Set / add / subtract stock across many items, or set a stock per item; syncs live listings.
+[**createInventoryBulkRestore**](InventoryApi.md#createinventorybulkrestore) | **POST** /v1/inventory/bulk-restore | Restore archived inventory items (status returns to active, or sold_out when no stock).
 [**createInventoryCatalogMatchRefresh**](InventoryApi.md#createinventorycatalogmatchrefresh) | **POST** /v1/inventory/{id}/catalog-matches/refresh | Run catalog matching for one item now. An identifier (UPC, style code, catalogue number) that resolves to exactly one product links it; otherwise likely products are returned as suggestions to confirm.
 [**createInventoryCsvExport**](InventoryApi.md#createinventorycsvexport) | **POST** /v1/inventory/csv/export | Export inventory as CSV. Round-trips back through csv/import.
 [**createInventoryCsvImport**](InventoryApi.md#createinventorycsvimport) | **POST** /v1/inventory/csv/import | Import a CSV. Rows whose sku matches an existing item update it; others are added. Pass dryRun to preview.
@@ -39,18 +40,21 @@ Method | HTTP request | Description
 [**createSpatialStreetRequestFound**](InventoryApi.md#createspatialstreetrequestfound) | **POST** /v1/spatial/streets/requests/{id}/found | Found an approved street, in CBX.
 [**deleteInventory**](InventoryApi.md#deleteinventory) | **DELETE** /v1/inventory/{id} | Soft-archive an inventory item.
 [**deleteSpatialStreetPlot**](InventoryApi.md#deletespatialstreetplot) | **DELETE** /v1/spatial/streets/{slug}/plot | Take your shop off a street.
+[**getAnalyticInventory**](InventoryApi.md#getanalyticinventory) | **GET** /v1/analytics/inventory | Unsold stock: aging buckets with cost, listed value and market value, the 20 listings most in need of attention, shelf value over time, cohort sell-through at the chosen maturity, listed vs sold velocity and data health.
+[**getGameEventSummary**](InventoryApi.md#getgameeventsummary) | **GET** /v1/games/events/{eventId}/summary | The results of one of your metaverse events (a Branding event of type scavenger_hunt or pack_break): for a hunt -- status, place, coins and clues, players, finishers, winners (place, masked name, when) and the rewards paid or failed per kind; for a pack break -- status, whether it is live on the stage, spots, spots sold and hits revealed. 404 for an event that is not a World event of yours.
+[**getGameHuntBuild**](InventoryApi.md#getgamehuntbuild) | **GET** /v1/games/hunts/{id}/build | One of your scavenger hunts as the in-world builder sees it: place, rules (days, time limit, hints, winners, ordered), rewards, the build document (coins and clue signs with positions), what still blocks publishing, and buildLink -- the Worlds app link that opens the builder. Read-only: coins are placed in the World.
 [**getGameLeaderboard**](InventoryApi.md#getgameleaderboard) | **GET** /v1/games/leaderboards | Game leaderboards: for each of Price Guess (wins, then points), scavenger hunts (finished) and speed trades (won), the top ten this week (Monday 00:00 UTC on) under week and of all time under all -- rank, name, named, value and, for Price Guess, score. A name appears only for somebody who chose to be seen by name in Crossly World; everyone else is \"A player\" in their place.
 [**getHome**](InventoryApi.md#gethome) | **GET** /v1/homes/{slug} | A home by its address, as you may see it: open homes to anybody, friends-only homes to mutual follows, locked homes to their owner. 404 when you may not enter.
 [**getHomeMine**](InventoryApi.md#gethomemine) | **GET** /v1/homes/mine | Your Crossly World home: its address, privacy (open / friends / locked), theme, the room, the layout (each piece with what it shows -- things you no longer own are left out at read time) and the guestbook. Made on first read.
 [**getInventory**](InventoryApi.md#getinventory) | **GET** /v1/inventory/{id} | Get one inventory item with platform listings.
-[**getInventoryAging**](InventoryApi.md#getinventoryaging) | **GET** /v1/inventory/aging | Unsold stock by age (0-7, 7-30, 30-90, 90+ days, unlisted), each bucket with a recommendation.
+[**getInventoryAging**](InventoryApi.md#getinventoryaging) | **GET** /v1/inventory/aging | Unsold stock by days since first listed (unlisted, 0-7, 7-30, 30-90, 90+), each bucket with items, units, known cost (items without a cost counted separately) and listed value.
 [**getInventoryCatalogMatch**](InventoryApi.md#getinventorycatalogmatch) | **GET** /v1/inventory/{id}/catalog-matches | One inventory item's catalog binding (if confirmed) and its pending match suggestions.
 [**getInventoryFacet**](InventoryApi.md#getinventoryfacet) | **GET** /v1/inventory/facets | Distinct brands + categories across this user's inventory.
 [**getInventoryLabel**](InventoryApi.md#getinventorylabel) | **GET** /v1/inventory/labels | List every distinct label across this user's inventory.
 [**getInventoryLabelStat**](InventoryApi.md#getinventorylabelstat) | **GET** /v1/inventory/labels/stats | List distinct labels with usage counts + colors.
-[**getInventorySellThrough**](InventoryApi.md#getinventorysellthrough) | **GET** /v1/inventory/sell-through | Cohort sell-through for a window (default: the 30 days ending 30 days ago) against the previous window of the same length.
+[**getInventorySellThrough**](InventoryApi.md#getinventorysellthrough) | **GET** /v1/inventory/sell-through | Cohort sell-through: of the items first listed in the window (default 30-60 days ago), the share sold within 30 days of listing, with n, immature items left out, and the change vs the previous window in percentage points (pp).
 [**getInventorySkuExist**](InventoryApi.md#getinventoryskuexist) | **GET** /v1/inventory/sku-exists | Check whether a SKU is already in use on this user's inventory.
-[**getInventoryValueHistory**](InventoryApi.md#getinventoryvaluehistory) | **GET** /v1/inventory/value-history | Portfolio value of unsold stock over time, oldest first (one point per nightly snapshot).
+[**getInventoryValueHistory**](InventoryApi.md#getinventoryvaluehistory) | **GET** /v1/inventory/value-history | Cost and listed value of unsold stock over time, oldest first (one point per nightly snapshot).
 [**getMainStage**](InventoryApi.md#getmainstage) | **GET** /v1/main-stage | The Crossly World Main Stage right now: the live show (title, kind, host lineup), the stream on its big screen while a lineup host is on air, how many people are there (it holds 64 per copy and opens copies as it fills) and what is on next.
 [**getPetMine**](InventoryApi.md#getpetmine) | **GET** /v1/pets/mine | Your Crossly World pets: every kind (cat, dog, slab bot) with whether you own it, when it was earned and the ways to earn it (a quest or a reputation level -- pets are never sold), plus the pet walking beside you and the one greeting visitors at your shop door.
 [**getReputation**](InventoryApi.md#getreputation) | **GET** /v1/reputation/{profile} | Somebody's public reputation levels by their storefront handle: the level on each track and their nameplate badge. 404 for an unknown handle.
@@ -69,12 +73,14 @@ Method | HTTP request | Description
 [**getSpatialStreet**](InventoryApi.md#getspatialstreet) | **GET** /v1/spatial/streets/{slug} | A street: every plot and the shop open on each.
 [**getSpatialStreetFounding**](InventoryApi.md#getspatialstreetfounding) | **GET** /v1/spatial/streets/founding | What founding a street costs.
 [**getSpatialStreetPlotQuote**](InventoryApi.md#getspatialstreetplotquote) | **GET** /v1/spatial/streets/{slug}/plots/{number}/quote | What a plot costs.
+[**getWorldPulse**](InventoryApi.md#getworldpulse) | **GET** /v1/world/pulse | Crossly World's pulse, aggregated with no people in it: the public world shops that made a sale today (slugs only -- never counts, amounts or buyers), the times the world's shops passed each sales milestone today (each fires a fireworks show), and what Crossly Cares took in this month against the Commons fountain's mark.
 [**getWorldRoomFunnel**](InventoryApi.md#getworldroomfunnel) | **GET** /v1/world/rooms/{sceneId}/funnel | Your room's funnel over the last `days` (1-35, default 30): visitors (people, once a day), looks, items opened, checkouts started from the room, paid sales and revenueCents. Sales count only lines the room itself put in a cart.
 [**getWorldShelf**](InventoryApi.md#getworldshelf) | **GET** /v1/world/shelf/{listingSlug} | Where a Crossly listing sits on a shelf in a public room right now (roomSlug, roomName, itemId), or data:null when it is in no room.
 [**getWorldSkusCheapest**](InventoryApi.md#getworldskuscheapest) | **GET** /v1/world/skus/{skuId}/cheapest | The cheapest copy of a catalogue piece for sale on Crossly now, matched by the catalogue id (listingSlug, priceCents, and the room and item when it stands on a shelf), or data:null.
 [**listCatalogMatches**](InventoryApi.md#listcatalogmatches) | **GET** /v1/catalog-matches | Pending catalog-match suggestions: inventory items that look like a catalog product, awaiting your confirm.
 [**listFestivals**](InventoryApi.md#listfestivals) | **GET** /v1/festivals | Live and upcoming Crossly World festivals, soonest first: a weekend when every street wears one decor and the festival quest line (limited pins) counts. meta.live is the festival on now, if any.
 [**listGameBreakUpcoming**](InventoryApi.md#listgamebreakupcoming) | **GET** /v1/games/breaks/upcoming | Pack breaks staged on shop stages in Crossly World, live first then soonest: the break, its shop, start time, spots (taken or not, buyer masked), hits revealed so far, and buyUrl -- the break's page on crossly.net, the only place a spot is bought (null once every spot has sold).
+[**listGameHuntMine**](InventoryApi.md#listgamehuntmine) | **GET** /v1/games/hunts/mine | Your scavenger hunts (spec WD6: made from Branding events, built in Crossly World), newest first: title, place slug, the event it belongs to (eventId), your discount code if it rewards one, whether it is a draft (not yet built and published), live or ended, its coins, and how many people finished.
 [**listGameHunts**](InventoryApi.md#listgamehunts) | **GET** /v1/games/hunts | Scavenger hunts running now in Crossly World shops and pop-up stalls, ending soonest first: title, shop (name and slug -- for a hunt at a stall, the street slug, with stall.bookingId set), how many tokens, what finishing unlocks (\"10% off\" -- never the code), when it ends and how many people have finished. Optional place filters to one shop or street slug.
 [**listGameResultMine**](InventoryApi.md#listgameresultmine) | **GET** /v1/games/results/mine | Your market-game results, newest first: game (price_guess, price_guess_solo, hunt, speed_trade, break_host), the round/hunt/trade/break id, score, whether you won, Bucks prize in cents (0 while prizes are pins only) and detail. meta.unlocks lists the hunt coupons you earned (with their codes); meta.hits the break hits pulled for spots you bought, with the order each ships with.
 [**listHomeMineBuilders**](InventoryApi.md#listhomeminebuilders) | **GET** /v1/homes/mine/builders | Your co-builders: friends you let rearrange your home in the world (move, turn, take out your things, add free furniture; never your bought pieces). Each: userId, name, friends (false once the friendship ended: listed but powerless).
@@ -378,7 +384,9 @@ This endpoint does not need any parameter.
 # **createInventoryBulkQuantity**
 > CreateInventoryBulkQuantityResponse createInventoryBulkQuantity()
 
-Set / add / subtract stock across many items, syncing live listings.
+Set / add / subtract stock across many items, or set a stock per item; syncs live listings.
+
+Two bodies. {ids, mode: \"set\"|\"increase\"|\"decrease\", value, syncMarketplaces?} applies one value to every id. {mode: \"set\", items: [{id, quantity}], syncMarketplaces?} sets each item to its own quantity (1-5000 items, each id once; a repeated id, more than 5000 items, or a body mixing items with ids/value is a 400 naming both shapes). The value is the AVAILABLE stock (reserved units of open orders are kept). Stock changes at once; live listings are pushed in the background against the returned bulkJobId (anything dropping to 0 is delisted). Response: {affected, skipped, bulkJobId?}: skipped = ids that did not move (already at that number, or not yours). Send an Idempotency-Key to retry safely.
 
 ### Example
 ```dart
@@ -406,6 +414,49 @@ This endpoint does not need any parameter.
 ### Return type
 
 **CreateInventoryBulkQuantityResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+# **createInventoryBulkRestore**
+> CreateInventoryBulkRestoreResponse createInventoryBulkRestore()
+
+Restore archived inventory items (status returns to active, or sold_out when no stock).
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = InventoryApi();
+
+try {
+    final result = api_instance.createInventoryBulkRestore();
+    print(result);
+} catch (e) {
+    print('Exception when calling InventoryApi->createInventoryBulkRestore: $e\n');
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+**CreateInventoryBulkRestoreResponse**
 
 ### Authorization
 
@@ -552,7 +603,7 @@ This endpoint does not need any parameter.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
 # **createInventoryLabelRename**
-> CreateInventoryLabelRenameResponse createInventoryLabelRename()
+> UpdatedResponse createInventoryLabelRename()
 
 Rename a label across every inventory item.
 
@@ -581,7 +632,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-**CreateInventoryLabelRenameResponse**
+**UpdatedResponse**
 
 ### Authorization
 
@@ -879,7 +930,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
 # **createSpatialPropertyLeaseAccept**
-> CreateSpatialPropertyLeaseAcceptResponse createSpatialPropertyLeaseAccept(id)
+> CreateWorldMarketPlotRentResponse createSpatialPropertyLeaseAccept(id)
 
 Take a plot on lease.
 
@@ -914,7 +965,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**CreateSpatialPropertyLeaseAcceptResponse**
+**CreateWorldMarketPlotRentResponse**
 
 ### Authorization
 
@@ -932,7 +983,7 @@ Name | Type | Description  | Notes
 
 End a lease (owner or tenant).
 
-The tenant's shop gets a free Main Street address again.
+The tenant's showroom leaves the plot.
 
 ### Example
 ```dart
@@ -1511,6 +1562,169 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
+# **getAnalyticInventory**
+> GetAnalyticInventoryResponse getAnalyticInventory(range, from, to, compare, cmpFrom, cmpTo, labels, platforms, category, brand, tz, maturity)
+
+Unsold stock: aging buckets with cost, listed value and market value, the 20 listings most in need of attention, shelf value over time, cohort sell-through at the chosen maturity, listed vs sold velocity and data health.
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = InventoryApi();
+final range = range_example; // String | Reporting window. Default 30d. custom needs from and to.
+final from = from_example; // String | YYYY-MM-DD, inclusive, in tz. Only with range=custom.
+final to = to_example; // String | YYYY-MM-DD, inclusive, in tz. Only with range=custom.
+final compare = compare_example; // String | Comparison window for deltas: prev (same length just before), yoy, none, custom (cmpFrom/cmpTo).
+final cmpFrom = cmpFrom_example; // String | YYYY-MM-DD. Only with compare=custom.
+final cmpTo = cmpTo_example; // String | YYYY-MM-DD. Only with compare=custom.
+final labels = labels_example; // String | Comma-separated inventory labels (any of them).
+final platforms = platforms_example; // String | Comma-separated platform ids.
+final category = category_example; // String | Canonical main-category key.
+final brand = brand_example; // String | Brand name.
+final tz = tz_example; // String | IANA time zone for day boundaries. Default UTC. An invalid name is a 400.
+final maturity = 56; // int | Days an item has to sell within to count as sold in the cohort. Default 30.
+
+try {
+    final result = api_instance.getAnalyticInventory(range, from, to, compare, cmpFrom, cmpTo, labels, platforms, category, brand, tz, maturity);
+    print(result);
+} catch (e) {
+    print('Exception when calling InventoryApi->getAnalyticInventory: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **range** | **String**| Reporting window. Default 30d. custom needs from and to. | [optional] 
+ **from** | **String**| YYYY-MM-DD, inclusive, in tz. Only with range=custom. | [optional] 
+ **to** | **String**| YYYY-MM-DD, inclusive, in tz. Only with range=custom. | [optional] 
+ **compare** | **String**| Comparison window for deltas: prev (same length just before), yoy, none, custom (cmpFrom/cmpTo). | [optional] 
+ **cmpFrom** | **String**| YYYY-MM-DD. Only with compare=custom. | [optional] 
+ **cmpTo** | **String**| YYYY-MM-DD. Only with compare=custom. | [optional] 
+ **labels** | **String**| Comma-separated inventory labels (any of them). | [optional] 
+ **platforms** | **String**| Comma-separated platform ids. | [optional] 
+ **category** | **String**| Canonical main-category key. | [optional] 
+ **brand** | **String**| Brand name. | [optional] 
+ **tz** | **String**| IANA time zone for day boundaries. Default UTC. An invalid name is a 400. | [optional] 
+ **maturity** | **int**| Days an item has to sell within to count as sold in the cohort. Default 30. | [optional] 
+
+### Return type
+
+**GetAnalyticInventoryResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+# **getGameEventSummary**
+> GetGameEventSummaryResponse getGameEventSummary(eventId)
+
+The results of one of your metaverse events (a Branding event of type scavenger_hunt or pack_break): for a hunt -- status, place, coins and clues, players, finishers, winners (place, masked name, when) and the rewards paid or failed per kind; for a pack break -- status, whether it is live on the stage, spots, spots sold and hits revealed. 404 for an event that is not a World event of yours.
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = InventoryApi();
+final eventId = 38400000-8cf0-11bd-b23e-10b96e4ef00d; // String | 
+
+try {
+    final result = api_instance.getGameEventSummary(eventId);
+    print(result);
+} catch (e) {
+    print('Exception when calling InventoryApi->getGameEventSummary: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **eventId** | **String**|  | 
+
+### Return type
+
+**GetGameEventSummaryResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+# **getGameHuntBuild**
+> GetGameHuntBuildResponse getGameHuntBuild(id)
+
+One of your scavenger hunts as the in-world builder sees it: place, rules (days, time limit, hints, winners, ordered), rewards, the build document (coins and clue signs with positions), what still blocks publishing, and buildLink -- the Worlds app link that opens the builder. Read-only: coins are placed in the World.
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = InventoryApi();
+final id = 38400000-8cf0-11bd-b23e-10b96e4ef00d; // String | 
+
+try {
+    final result = api_instance.getGameHuntBuild(id);
+    print(result);
+} catch (e) {
+    print('Exception when calling InventoryApi->getGameHuntBuild: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **String**|  | 
+
+### Return type
+
+**GetGameHuntBuildResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
 # **getGameLeaderboard**
 > GetGameLeaderboardResponse getGameLeaderboard()
 
@@ -1694,7 +1908,7 @@ Name | Type | Description  | Notes
 # **getInventoryAging**
 > GetInventoryAgingResponse getInventoryAging()
 
-Unsold stock by age (0-7, 7-30, 30-90, 90+ days, unlisted), each bucket with a recommendation.
+Unsold stock by days since first listed (unlisted, 0-7, 7-30, 30-90, 90+), each bucket with items, units, known cost (items without a cost counted separately) and listed value.
 
 ### Example
 ```dart
@@ -1913,7 +2127,7 @@ This endpoint does not need any parameter.
 # **getInventorySellThrough**
 > GetInventorySellThroughResponse getInventorySellThrough()
 
-Cohort sell-through for a window (default: the 30 days ending 30 days ago) against the previous window of the same length.
+Cohort sell-through: of the items first listed in the window (default 30-60 days ago), the share sold within 30 days of listing, with n, immature items left out, and the change vs the previous window in percentage points (pp).
 
 ### Example
 ```dart
@@ -2003,7 +2217,7 @@ Name | Type | Description  | Notes
 # **getInventoryValueHistory**
 > GetInventoryValueHistoryResponse getInventoryValueHistory()
 
-Portfolio value of unsold stock over time, oldest first (one point per nightly snapshot).
+Cost and listed value of unsold stock over time, oldest first (one point per nightly snapshot).
 
 ### Example
 ```dart
@@ -2885,6 +3099,49 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
+# **getWorldPulse**
+> GetWorldPulseResponse getWorldPulse()
+
+Crossly World's pulse, aggregated with no people in it: the public world shops that made a sale today (slugs only -- never counts, amounts or buyers), the times the world's shops passed each sales milestone today (each fires a fireworks show), and what Crossly Cares took in this month against the Commons fountain's mark.
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = InventoryApi();
+
+try {
+    final result = api_instance.getWorldPulse();
+    print(result);
+} catch (e) {
+    print('Exception when calling InventoryApi->getWorldPulse: $e\n');
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+**GetWorldPulseResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
 # **getWorldRoomFunnel**
 > GetWorldRoomFunnelResponse getWorldRoomFunnel(sceneId, days)
 
@@ -3163,6 +3420,49 @@ This endpoint does not need any parameter.
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
+# **listGameHuntMine**
+> ListGameHuntMineResponse listGameHuntMine()
+
+Your scavenger hunts (spec WD6: made from Branding events, built in Crossly World), newest first: title, place slug, the event it belongs to (eventId), your discount code if it rewards one, whether it is a draft (not yet built and published), live or ended, its coins, and how many people finished.
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = InventoryApi();
+
+try {
+    final result = api_instance.listGameHuntMine();
+    print(result);
+} catch (e) {
+    print('Exception when calling InventoryApi->listGameHuntMine: $e\n');
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+**ListGameHuntMineResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
 # **listGameHunts**
 > ListGameHuntsResponse listGameHunts(place)
 
@@ -3340,7 +3640,7 @@ This endpoint does not need any parameter.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
 # **listInventory**
-> ListInventoryResponse listInventory(page, limit, search, status, kind, platforms, platformMode)
+> ListInventoryResponse listInventory(page, limit, search, status, kind, platforms, platformMode, sku, updatedSince)
 
 List inventory items.
 
@@ -3362,9 +3662,11 @@ final status = status_example; // String |
 final kind = kind_example; // String | Physical goods or Web3 assets (NFTs). Omit for both.
 final platforms = platforms_example; // String | Comma-separated marketplaces, e.g. \"ebay,vinted\". Items live (an active listing) on any of them.
 final platformMode = platformMode_example; // String | \"not_listed\" inverts `platforms`: items live on none of them. Default \"listed\".
+final sku = sku_example; // String | Exact SKU match: look up the row a supplier product maps to.
+final updatedSince = 2013-10-20T19:20:30+01:00; // DateTime | Only rows created or changed at or after this time (ISO 8601), oldest change first. Poll with the updatedAt of the last row you saw.
 
 try {
-    final result = api_instance.listInventory(page, limit, search, status, kind, platforms, platformMode);
+    final result = api_instance.listInventory(page, limit, search, status, kind, platforms, platformMode, sku, updatedSince);
     print(result);
 } catch (e) {
     print('Exception when calling InventoryApi->listInventory: $e\n');
@@ -3382,6 +3684,8 @@ Name | Type | Description  | Notes
  **kind** | **String**| Physical goods or Web3 assets (NFTs). Omit for both. | [optional] 
  **platforms** | **String**| Comma-separated marketplaces, e.g. \"ebay,vinted\". Items live (an active listing) on any of them. | [optional] 
  **platformMode** | **String**| \"not_listed\" inverts `platforms`: items live on none of them. Default \"listed\". | [optional] 
+ **sku** | **String**| Exact SKU match: look up the row a supplier product maps to. | [optional] 
+ **updatedSince** | **DateTime**| Only rows created or changed at or after this time (ISO 8601), oldest change first. Poll with the updatedAt of the last row you saw. | [optional] 
 
 ### Return type
 

@@ -118,14 +118,14 @@ class CreateWorldInteractiveAssetResponseDataKindEnum {
 
   String toJson() => value;
 
-  static const png = CreateWorldInteractiveAssetResponseDataKindEnum._(r'png');
   static const glb = CreateWorldInteractiveAssetResponseDataKindEnum._(r'glb');
+  static const png = CreateWorldInteractiveAssetResponseDataKindEnum._(r'png');
   static const wav = CreateWorldInteractiveAssetResponseDataKindEnum._(r'wav');
 
   /// List of all possible values in this [enum][CreateWorldInteractiveAssetResponseDataKindEnum].
   static const values = <CreateWorldInteractiveAssetResponseDataKindEnum>[
-    png,
     glb,
+    png,
     wav,
   ];
 
@@ -158,8 +158,8 @@ class CreateWorldInteractiveAssetResponseDataKindEnumTypeTransformer {
   CreateWorldInteractiveAssetResponseDataKindEnum decode(dynamic data, {bool allowNull}) {
     if (data != null) {
       switch (data.toString()) {
-        case r'png': return CreateWorldInteractiveAssetResponseDataKindEnum.png;
         case r'glb': return CreateWorldInteractiveAssetResponseDataKindEnum.glb;
+        case r'png': return CreateWorldInteractiveAssetResponseDataKindEnum.png;
         case r'wav': return CreateWorldInteractiveAssetResponseDataKindEnum.wav;
         default:
           if (allowNull == false) {

@@ -22,6 +22,7 @@ class GetSpatialStreetPlotQuoteResponseData {
     @required this.vacant,
     @required this.buyable,
     @required this.enabled,
+    this.claim,
   });
 
   String address;
@@ -42,6 +43,8 @@ class GetSpatialStreetPlotQuoteResponseData {
 
   bool enabled;
 
+  GetSpatialStreetPlotQuoteResponseDataClaim claim;
+
   @override
   bool operator ==(Object other) => identical(this, other) || other is GetSpatialStreetPlotQuoteResponseData &&
      other.address == address &&
@@ -52,7 +55,8 @@ class GetSpatialStreetPlotQuoteResponseData {
      other.owned == owned &&
      other.vacant == vacant &&
      other.buyable == buyable &&
-     other.enabled == enabled;
+     other.enabled == enabled &&
+     other.claim == claim;
 
   @override
   int get hashCode =>
@@ -65,10 +69,11 @@ class GetSpatialStreetPlotQuoteResponseData {
     (owned == null ? 0 : owned.hashCode) +
     (vacant == null ? 0 : vacant.hashCode) +
     (buyable == null ? 0 : buyable.hashCode) +
-    (enabled == null ? 0 : enabled.hashCode);
+    (enabled == null ? 0 : enabled.hashCode) +
+    (claim == null ? 0 : claim.hashCode);
 
   @override
-  String toString() => 'GetSpatialStreetPlotQuoteResponseData[address=$address, label=$label, priceCents=$priceCents, maintenanceWeeklyCents=$maintenanceWeeklyCents, includedWeeks=$includedWeeks, owned=$owned, vacant=$vacant, buyable=$buyable, enabled=$enabled]';
+  String toString() => 'GetSpatialStreetPlotQuoteResponseData[address=$address, label=$label, priceCents=$priceCents, maintenanceWeeklyCents=$maintenanceWeeklyCents, includedWeeks=$includedWeeks, owned=$owned, vacant=$vacant, buyable=$buyable, enabled=$enabled, claim=$claim]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -81,6 +86,9 @@ class GetSpatialStreetPlotQuoteResponseData {
       json[r'vacant'] = vacant;
       json[r'buyable'] = buyable;
       json[r'enabled'] = enabled;
+    if (claim != null) {
+      json[r'claim'] = claim;
+    }
     return json;
   }
 
@@ -106,6 +114,7 @@ class GetSpatialStreetPlotQuoteResponseData {
         vacant: mapValueOfType<bool>(json, r'vacant'),
         buyable: mapValueOfType<bool>(json, r'buyable'),
         enabled: mapValueOfType<bool>(json, r'enabled'),
+        claim: GetSpatialStreetPlotQuoteResponseDataClaim.fromJson(json[r'claim']),
       );
     }
     return null;

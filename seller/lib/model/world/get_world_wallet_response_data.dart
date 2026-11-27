@@ -14,25 +14,37 @@ class GetWorldWalletResponseData {
   /// Returns a new [GetWorldWalletResponseData] instance.
   GetWorldWalletResponseData({
     @required this.bucksCents,
+    @required this.cbx,
+    @required this.cosm,
   });
 
   num bucksCents;
 
+  GetWorldWalletResponseDataCbx cbx;
+
+  GetWorldWalletResponseDataCosm cosm;
+
   @override
   bool operator ==(Object other) => identical(this, other) || other is GetWorldWalletResponseData &&
-     other.bucksCents == bucksCents;
+     other.bucksCents == bucksCents &&
+     other.cbx == cbx &&
+     other.cosm == cosm;
 
   @override
   int get hashCode =>
   // ignore: unnecessary_parenthesis
-    (bucksCents == null ? 0 : bucksCents.hashCode);
+    (bucksCents == null ? 0 : bucksCents.hashCode) +
+    (cbx == null ? 0 : cbx.hashCode) +
+    (cosm == null ? 0 : cosm.hashCode);
 
   @override
-  String toString() => 'GetWorldWalletResponseData[bucksCents=$bucksCents]';
+  String toString() => 'GetWorldWalletResponseData[bucksCents=$bucksCents, cbx=$cbx, cosm=$cosm]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
       json[r'bucksCents'] = bucksCents;
+      json[r'cbx'] = cbx;
+      json[r'cosm'] = cosm;
     return json;
   }
 
@@ -46,6 +58,8 @@ class GetWorldWalletResponseData {
         bucksCents: json[r'bucksCents'] == null
           ? null
           : num.parse(json[r'bucksCents'].toString()),
+        cbx: GetWorldWalletResponseDataCbx.fromJson(json[r'cbx']),
+        cosm: GetWorldWalletResponseDataCosm.fromJson(json[r'cosm']),
       );
     }
     return null;

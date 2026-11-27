@@ -310,19 +310,19 @@ class ListWorldDecorCatalogueItemSurfaceEnum {
 
   String toJson() => value;
 
-  static const shop = ListWorldDecorCatalogueItemSurfaceEnum._(r'shop');
   static const home = ListWorldDecorCatalogueItemSurfaceEnum._(r'home');
   static const street = ListWorldDecorCatalogueItemSurfaceEnum._(r'street');
-  static const stall = ListWorldDecorCatalogueItemSurfaceEnum._(r'stall');
+  static const shop = ListWorldDecorCatalogueItemSurfaceEnum._(r'shop');
   static const avatar = ListWorldDecorCatalogueItemSurfaceEnum._(r'avatar');
+  static const stall = ListWorldDecorCatalogueItemSurfaceEnum._(r'stall');
 
   /// List of all possible values in this [enum][ListWorldDecorCatalogueItemSurfaceEnum].
   static const values = <ListWorldDecorCatalogueItemSurfaceEnum>[
-    shop,
     home,
     street,
-    stall,
+    shop,
     avatar,
+    stall,
   ];
 
   static ListWorldDecorCatalogueItemSurfaceEnum fromJson(dynamic value) =>
@@ -354,11 +354,11 @@ class ListWorldDecorCatalogueItemSurfaceEnumTypeTransformer {
   ListWorldDecorCatalogueItemSurfaceEnum decode(dynamic data, {bool allowNull}) {
     if (data != null) {
       switch (data.toString()) {
-        case r'shop': return ListWorldDecorCatalogueItemSurfaceEnum.shop;
         case r'home': return ListWorldDecorCatalogueItemSurfaceEnum.home;
         case r'street': return ListWorldDecorCatalogueItemSurfaceEnum.street;
-        case r'stall': return ListWorldDecorCatalogueItemSurfaceEnum.stall;
+        case r'shop': return ListWorldDecorCatalogueItemSurfaceEnum.shop;
         case r'avatar': return ListWorldDecorCatalogueItemSurfaceEnum.avatar;
+        case r'stall': return ListWorldDecorCatalogueItemSurfaceEnum.stall;
         default:
           if (allowNull == false) {
             throw ArgumentError('Unknown enum value to decode: $data');

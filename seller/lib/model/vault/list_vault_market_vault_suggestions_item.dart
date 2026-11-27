@@ -33,6 +33,7 @@ class ListVaultMarketVaultSuggestionsItem {
     @required this.parts,
     this.reasons = const [],
     @required this.marketPath,
+    this.fractionalize,
   });
 
   String inventoryItemId;
@@ -78,6 +79,8 @@ class ListVaultMarketVaultSuggestionsItem {
   /// Where the market lives on the web (the buyer-side market page).
   String marketPath;
 
+  GetVaultMarketVaultSuggestionItemResponseSuggestionFractionalize fractionalize;
+
   @override
   bool operator ==(Object other) => identical(this, other) || other is ListVaultMarketVaultSuggestionsItem &&
      other.inventoryItemId == inventoryItemId &&
@@ -99,7 +102,8 @@ class ListVaultMarketVaultSuggestionsItem {
      other.strength == strength &&
      other.parts == parts &&
      other.reasons == reasons &&
-     other.marketPath == marketPath;
+     other.marketPath == marketPath &&
+     other.fractionalize == fractionalize;
 
   @override
   int get hashCode =>
@@ -123,10 +127,11 @@ class ListVaultMarketVaultSuggestionsItem {
     (strength == null ? 0 : strength.hashCode) +
     (parts == null ? 0 : parts.hashCode) +
     (reasons == null ? 0 : reasons.hashCode) +
-    (marketPath == null ? 0 : marketPath.hashCode);
+    (marketPath == null ? 0 : marketPath.hashCode) +
+    (fractionalize == null ? 0 : fractionalize.hashCode);
 
   @override
-  String toString() => 'ListVaultMarketVaultSuggestionsItem[inventoryItemId=$inventoryItemId, title=$title, imageUrl=$imageUrl, unitsToSend=$unitsToSend, bookKey=$bookKey, variantId=$variantId, condition=$condition, gradeKey=$gradeKey, market=$market, instantExit=$instantExit, listPriceCents=$listPriceCents, exitVsListBps=$exitVsListBps, exitBasis=$exitBasis, daysListed=$daysListed, vaultFee=$vaultFee, score=$score, strength=$strength, parts=$parts, reasons=$reasons, marketPath=$marketPath]';
+  String toString() => 'ListVaultMarketVaultSuggestionsItem[inventoryItemId=$inventoryItemId, title=$title, imageUrl=$imageUrl, unitsToSend=$unitsToSend, bookKey=$bookKey, variantId=$variantId, condition=$condition, gradeKey=$gradeKey, market=$market, instantExit=$instantExit, listPriceCents=$listPriceCents, exitVsListBps=$exitVsListBps, exitBasis=$exitBasis, daysListed=$daysListed, vaultFee=$vaultFee, score=$score, strength=$strength, parts=$parts, reasons=$reasons, marketPath=$marketPath, fractionalize=$fractionalize]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -164,6 +169,9 @@ class ListVaultMarketVaultSuggestionsItem {
       json[r'parts'] = parts;
       json[r'reasons'] = reasons;
       json[r'marketPath'] = marketPath;
+    if (fractionalize != null) {
+      json[r'fractionalize'] = fractionalize;
+    }
     return json;
   }
 
@@ -206,6 +214,7 @@ class ListVaultMarketVaultSuggestionsItem {
           ? (json[r'reasons'] as List).cast<String>()
           : null,
         marketPath: mapValueOfType<String>(json, r'marketPath'),
+        fractionalize: GetVaultMarketVaultSuggestionItemResponseSuggestionFractionalize.fromJson(json[r'fractionalize']),
       );
     }
     return null;

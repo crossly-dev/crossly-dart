@@ -120,13 +120,13 @@ class CreateVaultMarketInstantExitResponseStatusEnum {
 
   String toJson() => value;
 
-  static const filled = CreateVaultMarketInstantExitResponseStatusEnum._(r'filled');
   static const missed = CreateVaultMarketInstantExitResponseStatusEnum._(r'missed');
+  static const filled = CreateVaultMarketInstantExitResponseStatusEnum._(r'filled');
 
   /// List of all possible values in this [enum][CreateVaultMarketInstantExitResponseStatusEnum].
   static const values = <CreateVaultMarketInstantExitResponseStatusEnum>[
-    filled,
     missed,
+    filled,
   ];
 
   static CreateVaultMarketInstantExitResponseStatusEnum fromJson(dynamic value) =>
@@ -158,8 +158,8 @@ class CreateVaultMarketInstantExitResponseStatusEnumTypeTransformer {
   CreateVaultMarketInstantExitResponseStatusEnum decode(dynamic data, {bool allowNull}) {
     if (data != null) {
       switch (data.toString()) {
-        case r'filled': return CreateVaultMarketInstantExitResponseStatusEnum.filled;
         case r'missed': return CreateVaultMarketInstantExitResponseStatusEnum.missed;
+        case r'filled': return CreateVaultMarketInstantExitResponseStatusEnum.filled;
         default:
           if (allowNull == false) {
             throw ArgumentError('Unknown enum value to decode: $data');

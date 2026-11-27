@@ -15,30 +15,56 @@ class CreateOrderRefundResponse {
   CreateOrderRefundResponse({
     @required this.refundId,
     @required this.amount,
+    @required this.id,
+    @required this.totalRefunded,
+    this.remaining,
+    @required this.replayed,
   });
 
   String refundId;
 
   num amount;
 
+  String id;
+
+  num totalRefunded;
+
+  num remaining;
+
+  bool replayed;
+
   @override
   bool operator ==(Object other) => identical(this, other) || other is CreateOrderRefundResponse &&
      other.refundId == refundId &&
-     other.amount == amount;
+     other.amount == amount &&
+     other.id == id &&
+     other.totalRefunded == totalRefunded &&
+     other.remaining == remaining &&
+     other.replayed == replayed;
 
   @override
   int get hashCode =>
   // ignore: unnecessary_parenthesis
     (refundId == null ? 0 : refundId.hashCode) +
-    (amount == null ? 0 : amount.hashCode);
+    (amount == null ? 0 : amount.hashCode) +
+    (id == null ? 0 : id.hashCode) +
+    (totalRefunded == null ? 0 : totalRefunded.hashCode) +
+    (remaining == null ? 0 : remaining.hashCode) +
+    (replayed == null ? 0 : replayed.hashCode);
 
   @override
-  String toString() => 'CreateOrderRefundResponse[refundId=$refundId, amount=$amount]';
+  String toString() => 'CreateOrderRefundResponse[refundId=$refundId, amount=$amount, id=$id, totalRefunded=$totalRefunded, remaining=$remaining, replayed=$replayed]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
       json[r'refundId'] = refundId;
       json[r'amount'] = amount;
+      json[r'id'] = id;
+      json[r'totalRefunded'] = totalRefunded;
+    if (remaining != null) {
+      json[r'remaining'] = remaining;
+    }
+      json[r'replayed'] = replayed;
     return json;
   }
 
@@ -53,6 +79,14 @@ class CreateOrderRefundResponse {
         amount: json[r'amount'] == null
           ? null
           : num.parse(json[r'amount'].toString()),
+        id: mapValueOfType<String>(json, r'id'),
+        totalRefunded: json[r'totalRefunded'] == null
+          ? null
+          : num.parse(json[r'totalRefunded'].toString()),
+        remaining: json[r'remaining'] == null
+          ? null
+          : num.parse(json[r'remaining'].toString()),
+        replayed: mapValueOfType<bool>(json, r'replayed'),
       );
     }
     return null;

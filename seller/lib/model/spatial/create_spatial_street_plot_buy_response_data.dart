@@ -13,11 +13,24 @@ part of openapi.api;
 class CreateSpatialStreetPlotBuyResponseData {
   /// Returns a new [CreateSpatialStreetPlotBuyResponseData] instance.
   CreateSpatialStreetPlotBuyResponseData({
-    @required this.deedId,
-    @required this.address,
-    @required this.priceCents,
-    @required this.paidThrough,
+    this.done,
+    this.paymentId,
+    this.requiresAction,
+    this.clientSecret,
+    this.deedId,
+    this.address,
+    this.priceCents,
+    this.paidThrough,
+    this.placed,
   });
+
+  bool done;
+
+  String paymentId;
+
+  bool requiresAction;
+
+  String clientSecret;
 
   String deedId;
 
@@ -27,30 +40,65 @@ class CreateSpatialStreetPlotBuyResponseData {
 
   String paidThrough;
 
+  CreateWorldMarketPlotRentResponseDataOneOf2Placed placed;
+
   @override
   bool operator ==(Object other) => identical(this, other) || other is CreateSpatialStreetPlotBuyResponseData &&
+     other.done == done &&
+     other.paymentId == paymentId &&
+     other.requiresAction == requiresAction &&
+     other.clientSecret == clientSecret &&
      other.deedId == deedId &&
      other.address == address &&
      other.priceCents == priceCents &&
-     other.paidThrough == paidThrough;
+     other.paidThrough == paidThrough &&
+     other.placed == placed;
 
   @override
   int get hashCode =>
   // ignore: unnecessary_parenthesis
+    (done == null ? 0 : done.hashCode) +
+    (paymentId == null ? 0 : paymentId.hashCode) +
+    (requiresAction == null ? 0 : requiresAction.hashCode) +
+    (clientSecret == null ? 0 : clientSecret.hashCode) +
     (deedId == null ? 0 : deedId.hashCode) +
     (address == null ? 0 : address.hashCode) +
     (priceCents == null ? 0 : priceCents.hashCode) +
-    (paidThrough == null ? 0 : paidThrough.hashCode);
+    (paidThrough == null ? 0 : paidThrough.hashCode) +
+    (placed == null ? 0 : placed.hashCode);
 
   @override
-  String toString() => 'CreateSpatialStreetPlotBuyResponseData[deedId=$deedId, address=$address, priceCents=$priceCents, paidThrough=$paidThrough]';
+  String toString() => 'CreateSpatialStreetPlotBuyResponseData[done=$done, paymentId=$paymentId, requiresAction=$requiresAction, clientSecret=$clientSecret, deedId=$deedId, address=$address, priceCents=$priceCents, paidThrough=$paidThrough, placed=$placed]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
+    if (done != null) {
+      json[r'done'] = done;
+    }
+    if (paymentId != null) {
+      json[r'paymentId'] = paymentId;
+    }
+    if (requiresAction != null) {
+      json[r'requiresAction'] = requiresAction;
+    }
+    if (clientSecret != null) {
+      json[r'clientSecret'] = clientSecret;
+    }
+    if (deedId != null) {
       json[r'deedId'] = deedId;
+    }
+    if (address != null) {
       json[r'address'] = address;
+    }
+    if (priceCents != null) {
       json[r'priceCents'] = priceCents;
+    }
+    if (paidThrough != null) {
       json[r'paidThrough'] = paidThrough;
+    }
+    if (placed != null) {
+      json[r'placed'] = placed;
+    }
     return json;
   }
 
@@ -61,12 +109,17 @@ class CreateSpatialStreetPlotBuyResponseData {
     if (value is Map) {
       final json = value.cast<String, dynamic>();
       return CreateSpatialStreetPlotBuyResponseData(
+        done: mapValueOfType<bool>(json, r'done'),
+        paymentId: mapValueOfType<String>(json, r'paymentId'),
+        requiresAction: mapValueOfType<bool>(json, r'requiresAction'),
+        clientSecret: mapValueOfType<String>(json, r'clientSecret'),
         deedId: mapValueOfType<String>(json, r'deedId'),
         address: mapValueOfType<String>(json, r'address'),
         priceCents: json[r'priceCents'] == null
           ? null
           : num.parse(json[r'priceCents'].toString()),
         paidThrough: mapValueOfType<String>(json, r'paidThrough'),
+        placed: CreateWorldMarketPlotRentResponseDataOneOf2Placed.fromJson(json[r'placed']),
       );
     }
     return null;

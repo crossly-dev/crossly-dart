@@ -21,7 +21,7 @@ class GetVaultMarketProofOfReserveResponse {
 
   GetVaultMarketProofOfReserveResponseLatest latest;
 
-  List<GetVaultMarketProofOfReserveByDayResponse> history;
+  List<GetVaultMarketProofOfReserveResponseHistory> history;
 
   GetVaultMarketProofOfReserveResponseAnchoring anchoring;
 
@@ -64,7 +64,7 @@ class GetVaultMarketProofOfReserveResponse {
       final json = value.cast<String, dynamic>();
       return GetVaultMarketProofOfReserveResponse(
         latest: GetVaultMarketProofOfReserveResponseLatest.fromJson(json[r'latest']),
-        history: GetVaultMarketProofOfReserveByDayResponse.listFromJson(json[r'history']),
+        history: GetVaultMarketProofOfReserveResponseHistory.listFromJson(json[r'history']),
         anchoring: GetVaultMarketProofOfReserveResponseAnchoring.fromJson(json[r'anchoring']),
         method: GetVaultMarketProofOfReserveResponseMethod.fromJson(json[r'method']),
       );

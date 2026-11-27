@@ -33,7 +33,7 @@ class GetVaultMarketReportResponse {
 
   String label;
 
-  GetInventorySellThroughResponseDataWindow range;
+  StartEnd range;
 
   bool inProgress;
 
@@ -123,7 +123,7 @@ class GetVaultMarketReportResponse {
       return GetVaultMarketReportResponse(
         quarter: mapValueOfType<String>(json, r'quarter'),
         label: mapValueOfType<String>(json, r'label'),
-        range: GetInventorySellThroughResponseDataWindow.fromJson(json[r'range']),
+        range: StartEnd.fromJson(json[r'range']),
         inProgress: mapValueOfType<bool>(json, r'inProgress'),
         generatedAt: mapValueOfType<String>(json, r'generatedAt'),
         totals: GetVaultMarketReportResponseTotals.fromJson(json[r'totals']),

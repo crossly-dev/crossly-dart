@@ -18,6 +18,11 @@ class GetAnalyticByPlatformResponseBreakdown {
     @required this.revenue,
     @required this.fees,
     @required this.netProfit,
+    @required this.pendingDetailsCount,
+    @required this.netSalesCents,
+    @required this.feesCents,
+    @required this.netProfitCents,
+    @required this.share,
   });
 
   String platform;
@@ -30,13 +35,28 @@ class GetAnalyticByPlatformResponseBreakdown {
 
   num netProfit;
 
+  num pendingDetailsCount;
+
+  num netSalesCents;
+
+  num feesCents;
+
+  num netProfitCents;
+
+  num share;
+
   @override
   bool operator ==(Object other) => identical(this, other) || other is GetAnalyticByPlatformResponseBreakdown &&
      other.platform == platform &&
      other.sales == sales &&
      other.revenue == revenue &&
      other.fees == fees &&
-     other.netProfit == netProfit;
+     other.netProfit == netProfit &&
+     other.pendingDetailsCount == pendingDetailsCount &&
+     other.netSalesCents == netSalesCents &&
+     other.feesCents == feesCents &&
+     other.netProfitCents == netProfitCents &&
+     other.share == share;
 
   @override
   int get hashCode =>
@@ -45,10 +65,15 @@ class GetAnalyticByPlatformResponseBreakdown {
     (sales == null ? 0 : sales.hashCode) +
     (revenue == null ? 0 : revenue.hashCode) +
     (fees == null ? 0 : fees.hashCode) +
-    (netProfit == null ? 0 : netProfit.hashCode);
+    (netProfit == null ? 0 : netProfit.hashCode) +
+    (pendingDetailsCount == null ? 0 : pendingDetailsCount.hashCode) +
+    (netSalesCents == null ? 0 : netSalesCents.hashCode) +
+    (feesCents == null ? 0 : feesCents.hashCode) +
+    (netProfitCents == null ? 0 : netProfitCents.hashCode) +
+    (share == null ? 0 : share.hashCode);
 
   @override
-  String toString() => 'GetAnalyticByPlatformResponseBreakdown[platform=$platform, sales=$sales, revenue=$revenue, fees=$fees, netProfit=$netProfit]';
+  String toString() => 'GetAnalyticByPlatformResponseBreakdown[platform=$platform, sales=$sales, revenue=$revenue, fees=$fees, netProfit=$netProfit, pendingDetailsCount=$pendingDetailsCount, netSalesCents=$netSalesCents, feesCents=$feesCents, netProfitCents=$netProfitCents, share=$share]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -57,6 +82,11 @@ class GetAnalyticByPlatformResponseBreakdown {
       json[r'revenue'] = revenue;
       json[r'fees'] = fees;
       json[r'netProfit'] = netProfit;
+      json[r'pendingDetailsCount'] = pendingDetailsCount;
+      json[r'netSalesCents'] = netSalesCents;
+      json[r'feesCents'] = feesCents;
+      json[r'netProfitCents'] = netProfitCents;
+      json[r'share'] = share;
     return json;
   }
 
@@ -80,6 +110,21 @@ class GetAnalyticByPlatformResponseBreakdown {
         netProfit: json[r'netProfit'] == null
           ? null
           : num.parse(json[r'netProfit'].toString()),
+        pendingDetailsCount: json[r'pendingDetailsCount'] == null
+          ? null
+          : num.parse(json[r'pendingDetailsCount'].toString()),
+        netSalesCents: json[r'netSalesCents'] == null
+          ? null
+          : num.parse(json[r'netSalesCents'].toString()),
+        feesCents: json[r'feesCents'] == null
+          ? null
+          : num.parse(json[r'feesCents'].toString()),
+        netProfitCents: json[r'netProfitCents'] == null
+          ? null
+          : num.parse(json[r'netProfitCents'].toString()),
+        share: json[r'share'] == null
+          ? null
+          : num.parse(json[r'share'].toString()),
       );
     }
     return null;

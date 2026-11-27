@@ -164,16 +164,16 @@ class GetVaultMarketPortfolioResponseOnLoanMarkQualityEnum {
   String toJson() => value;
 
   static const none = GetVaultMarketPortfolioResponseOnLoanMarkQualityEnum._(r'none');
+  static const C = GetVaultMarketPortfolioResponseOnLoanMarkQualityEnum._(r'C');
   static const A = GetVaultMarketPortfolioResponseOnLoanMarkQualityEnum._(r'A');
   static const B = GetVaultMarketPortfolioResponseOnLoanMarkQualityEnum._(r'B');
-  static const C = GetVaultMarketPortfolioResponseOnLoanMarkQualityEnum._(r'C');
 
   /// List of all possible values in this [enum][GetVaultMarketPortfolioResponseOnLoanMarkQualityEnum].
   static const values = <GetVaultMarketPortfolioResponseOnLoanMarkQualityEnum>[
     none,
+    C,
     A,
     B,
-    C,
   ];
 
   static GetVaultMarketPortfolioResponseOnLoanMarkQualityEnum fromJson(dynamic value) =>
@@ -206,9 +206,9 @@ class GetVaultMarketPortfolioResponseOnLoanMarkQualityEnumTypeTransformer {
     if (data != null) {
       switch (data.toString()) {
         case r'none': return GetVaultMarketPortfolioResponseOnLoanMarkQualityEnum.none;
+        case r'C': return GetVaultMarketPortfolioResponseOnLoanMarkQualityEnum.C;
         case r'A': return GetVaultMarketPortfolioResponseOnLoanMarkQualityEnum.A;
         case r'B': return GetVaultMarketPortfolioResponseOnLoanMarkQualityEnum.B;
-        case r'C': return GetVaultMarketPortfolioResponseOnLoanMarkQualityEnum.C;
         default:
           if (allowNull == false) {
             throw ArgumentError('Unknown enum value to decode: $data');

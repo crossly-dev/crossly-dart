@@ -13,37 +13,37 @@ part of openapi.api;
 class GetBuyerListingFitResponseDataChartRows {
   /// Returns a new [GetBuyerListingFitResponseDataChartRows] instance.
   GetBuyerListingFitResponseDataChartRows({
-    @required this.label,
     @required this.key,
+    @required this.label,
     @required this.inches,
   });
 
-  String label;
-
   String key;
+
+  String label;
 
   num inches;
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is GetBuyerListingFitResponseDataChartRows &&
-     other.label == label &&
      other.key == key &&
+     other.label == label &&
      other.inches == inches;
 
   @override
   int get hashCode =>
   // ignore: unnecessary_parenthesis
-    (label == null ? 0 : label.hashCode) +
     (key == null ? 0 : key.hashCode) +
+    (label == null ? 0 : label.hashCode) +
     (inches == null ? 0 : inches.hashCode);
 
   @override
-  String toString() => 'GetBuyerListingFitResponseDataChartRows[label=$label, key=$key, inches=$inches]';
+  String toString() => 'GetBuyerListingFitResponseDataChartRows[key=$key, label=$label, inches=$inches]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-      json[r'label'] = label;
       json[r'key'] = key;
+      json[r'label'] = label;
       json[r'inches'] = inches;
     return json;
   }
@@ -55,8 +55,8 @@ class GetBuyerListingFitResponseDataChartRows {
     if (value is Map) {
       final json = value.cast<String, dynamic>();
       return GetBuyerListingFitResponseDataChartRows(
-        label: mapValueOfType<String>(json, r'label'),
         key: mapValueOfType<String>(json, r'key'),
+        label: mapValueOfType<String>(json, r'label'),
         inches: json[r'inches'] == null
           ? null
           : num.parse(json[r'inches'].toString()),

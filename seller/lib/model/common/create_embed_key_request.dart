@@ -15,7 +15,7 @@ class CreateEmbedKeyRequest {
   CreateEmbedKeyRequest({
     @required this.name,
     this.allowedOrigins = const [],
-    this.environment = const CreateEmbedKeyRequestEnvironmentEnum._('live'),
+    this.environment,
   });
 
   /// Which site this is for, e.g. \"my Squarespace shop\".
@@ -24,6 +24,7 @@ class CreateEmbedKeyRequest {
   /// Origins permitted to use this key, e.g. [\"https://shop.example.com\"]. LEAVE EMPTY to allow any origin — necessary when embedding on a platform whose domain you do not control, and the reason this is not locked by default.
   List<String> allowedOrigins;
 
+  /// Omit for this server's own: live on crossly.net, test on sandbox.crossly.net. The other one is refused.
   CreateEmbedKeyRequestEnvironmentEnum environment;
 
   @override
@@ -104,7 +105,7 @@ class CreateEmbedKeyRequest {
   }
 }
 
-
+/// Omit for this server's own: live on crossly.net, test on sandbox.crossly.net. The other one is refused.
 class CreateEmbedKeyRequestEnvironmentEnum {
   /// Instantiate a new enum with the provided [value].
   const CreateEmbedKeyRequestEnvironmentEnum._(this.value);

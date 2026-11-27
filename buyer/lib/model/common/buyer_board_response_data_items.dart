@@ -13,32 +13,30 @@ part of openapi.api;
 class BuyerBoardResponseDataItems {
   /// Returns a new [BuyerBoardResponseDataItems] instance.
   BuyerBoardResponseDataItems({
-    @required this.available,
-    this.title,
     @required this.platformListingId,
     this.slug,
+    this.title,
     @required this.priceCents,
-    this.note,
     this.imageUrl,
+    @required this.available,
     @required this.x,
     @required this.y,
     @required this.w,
     @required this.z,
+    this.note,
   });
-
-  bool available;
-
-  String title;
 
   String platformListingId;
 
   String slug;
 
+  String title;
+
   num priceCents;
 
-  String note;
-
   String imageUrl;
+
+  bool available;
 
   num x;
 
@@ -48,59 +46,61 @@ class BuyerBoardResponseDataItems {
 
   num z;
 
+  String note;
+
   @override
   bool operator ==(Object other) => identical(this, other) || other is BuyerBoardResponseDataItems &&
-     other.available == available &&
-     other.title == title &&
      other.platformListingId == platformListingId &&
      other.slug == slug &&
+     other.title == title &&
      other.priceCents == priceCents &&
-     other.note == note &&
      other.imageUrl == imageUrl &&
+     other.available == available &&
      other.x == x &&
      other.y == y &&
      other.w == w &&
-     other.z == z;
+     other.z == z &&
+     other.note == note;
 
   @override
   int get hashCode =>
   // ignore: unnecessary_parenthesis
-    (available == null ? 0 : available.hashCode) +
-    (title == null ? 0 : title.hashCode) +
     (platformListingId == null ? 0 : platformListingId.hashCode) +
     (slug == null ? 0 : slug.hashCode) +
+    (title == null ? 0 : title.hashCode) +
     (priceCents == null ? 0 : priceCents.hashCode) +
-    (note == null ? 0 : note.hashCode) +
     (imageUrl == null ? 0 : imageUrl.hashCode) +
+    (available == null ? 0 : available.hashCode) +
     (x == null ? 0 : x.hashCode) +
     (y == null ? 0 : y.hashCode) +
     (w == null ? 0 : w.hashCode) +
-    (z == null ? 0 : z.hashCode);
+    (z == null ? 0 : z.hashCode) +
+    (note == null ? 0 : note.hashCode);
 
   @override
-  String toString() => 'BuyerBoardResponseDataItems[available=$available, title=$title, platformListingId=$platformListingId, slug=$slug, priceCents=$priceCents, note=$note, imageUrl=$imageUrl, x=$x, y=$y, w=$w, z=$z]';
+  String toString() => 'BuyerBoardResponseDataItems[platformListingId=$platformListingId, slug=$slug, title=$title, priceCents=$priceCents, imageUrl=$imageUrl, available=$available, x=$x, y=$y, w=$w, z=$z, note=$note]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-      json[r'available'] = available;
-    if (title != null) {
-      json[r'title'] = title;
-    }
       json[r'platformListingId'] = platformListingId;
     if (slug != null) {
       json[r'slug'] = slug;
     }
-      json[r'priceCents'] = priceCents;
-    if (note != null) {
-      json[r'note'] = note;
+    if (title != null) {
+      json[r'title'] = title;
     }
+      json[r'priceCents'] = priceCents;
     if (imageUrl != null) {
       json[r'imageUrl'] = imageUrl;
     }
+      json[r'available'] = available;
       json[r'x'] = x;
       json[r'y'] = y;
       json[r'w'] = w;
       json[r'z'] = z;
+    if (note != null) {
+      json[r'note'] = note;
+    }
     return json;
   }
 
@@ -111,15 +111,14 @@ class BuyerBoardResponseDataItems {
     if (value is Map) {
       final json = value.cast<String, dynamic>();
       return BuyerBoardResponseDataItems(
-        available: mapValueOfType<bool>(json, r'available'),
-        title: mapValueOfType<String>(json, r'title'),
         platformListingId: mapValueOfType<String>(json, r'platformListingId'),
         slug: mapValueOfType<String>(json, r'slug'),
+        title: mapValueOfType<String>(json, r'title'),
         priceCents: json[r'priceCents'] == null
           ? null
           : num.parse(json[r'priceCents'].toString()),
-        note: mapValueOfType<String>(json, r'note'),
         imageUrl: mapValueOfType<String>(json, r'imageUrl'),
+        available: mapValueOfType<bool>(json, r'available'),
         x: json[r'x'] == null
           ? null
           : num.parse(json[r'x'].toString()),
@@ -132,6 +131,7 @@ class BuyerBoardResponseDataItems {
         z: json[r'z'] == null
           ? null
           : num.parse(json[r'z'].toString()),
+        note: mapValueOfType<String>(json, r'note'),
       );
     }
     return null;

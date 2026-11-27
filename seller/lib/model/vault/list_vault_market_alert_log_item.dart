@@ -168,10 +168,12 @@ class ListVaultMarketAlertLogItemKindEnum {
 
   String toJson() => value;
 
-  static const price = ListVaultMarketAlertLogItemKindEnum._(r'price');
-  static const auction = ListVaultMarketAlertLogItemKindEnum._(r'auction');
-  static const fill = ListVaultMarketAlertLogItemKindEnum._(r'fill');
   static const account = ListVaultMarketAlertLogItemKindEnum._(r'account');
+  static const price = ListVaultMarketAlertLogItemKindEnum._(r'price');
+  static const fill = ListVaultMarketAlertLogItemKindEnum._(r'fill');
+  static const auction = ListVaultMarketAlertLogItemKindEnum._(r'auction');
+  static const prediction = ListVaultMarketAlertLogItemKindEnum._(r'prediction');
+  static const optionExpiry = ListVaultMarketAlertLogItemKindEnum._(r'option_expiry');
   static const marginCall = ListVaultMarketAlertLogItemKindEnum._(r'margin_call');
   static const adl = ListVaultMarketAlertLogItemKindEnum._(r'adl');
   static const p2pLoan = ListVaultMarketAlertLogItemKindEnum._(r'p2p_loan');
@@ -179,13 +181,19 @@ class ListVaultMarketAlertLogItemKindEnum {
   static const receiptToken = ListVaultMarketAlertLogItemKindEnum._(r'receipt_token');
   static const setGoal = ListVaultMarketAlertLogItemKindEnum._(r'set_goal');
   static const follow = ListVaultMarketAlertLogItemKindEnum._(r'follow');
+  static const shareOffering = ListVaultMarketAlertLogItemKindEnum._(r'share_offering');
+  static const shareVote = ListVaultMarketAlertLogItemKindEnum._(r'share_vote');
+  static const optionSettlement = ListVaultMarketAlertLogItemKindEnum._(r'option_settlement');
+  static const predictionOdds = ListVaultMarketAlertLogItemKindEnum._(r'prediction_odds');
 
   /// List of all possible values in this [enum][ListVaultMarketAlertLogItemKindEnum].
   static const values = <ListVaultMarketAlertLogItemKindEnum>[
-    price,
-    auction,
-    fill,
     account,
+    price,
+    fill,
+    auction,
+    prediction,
+    optionExpiry,
     marginCall,
     adl,
     p2pLoan,
@@ -193,6 +201,10 @@ class ListVaultMarketAlertLogItemKindEnum {
     receiptToken,
     setGoal,
     follow,
+    shareOffering,
+    shareVote,
+    optionSettlement,
+    predictionOdds,
   ];
 
   static ListVaultMarketAlertLogItemKindEnum fromJson(dynamic value) =>
@@ -224,10 +236,12 @@ class ListVaultMarketAlertLogItemKindEnumTypeTransformer {
   ListVaultMarketAlertLogItemKindEnum decode(dynamic data, {bool allowNull}) {
     if (data != null) {
       switch (data.toString()) {
-        case r'price': return ListVaultMarketAlertLogItemKindEnum.price;
-        case r'auction': return ListVaultMarketAlertLogItemKindEnum.auction;
-        case r'fill': return ListVaultMarketAlertLogItemKindEnum.fill;
         case r'account': return ListVaultMarketAlertLogItemKindEnum.account;
+        case r'price': return ListVaultMarketAlertLogItemKindEnum.price;
+        case r'fill': return ListVaultMarketAlertLogItemKindEnum.fill;
+        case r'auction': return ListVaultMarketAlertLogItemKindEnum.auction;
+        case r'prediction': return ListVaultMarketAlertLogItemKindEnum.prediction;
+        case r'option_expiry': return ListVaultMarketAlertLogItemKindEnum.optionExpiry;
         case r'margin_call': return ListVaultMarketAlertLogItemKindEnum.marginCall;
         case r'adl': return ListVaultMarketAlertLogItemKindEnum.adl;
         case r'p2p_loan': return ListVaultMarketAlertLogItemKindEnum.p2pLoan;
@@ -235,6 +249,10 @@ class ListVaultMarketAlertLogItemKindEnumTypeTransformer {
         case r'receipt_token': return ListVaultMarketAlertLogItemKindEnum.receiptToken;
         case r'set_goal': return ListVaultMarketAlertLogItemKindEnum.setGoal;
         case r'follow': return ListVaultMarketAlertLogItemKindEnum.follow;
+        case r'share_offering': return ListVaultMarketAlertLogItemKindEnum.shareOffering;
+        case r'share_vote': return ListVaultMarketAlertLogItemKindEnum.shareVote;
+        case r'option_settlement': return ListVaultMarketAlertLogItemKindEnum.optionSettlement;
+        case r'prediction_odds': return ListVaultMarketAlertLogItemKindEnum.predictionOdds;
         default:
           if (allowNull == false) {
             throw ArgumentError('Unknown enum value to decode: $data');

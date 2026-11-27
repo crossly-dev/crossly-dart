@@ -143,23 +143,23 @@ class CreateCbxDisbursementRuleCheckResponseDataOutcomeEnum {
 
   String toJson() => value;
 
-  static const fired = CreateCbxDisbursementRuleCheckResponseDataOutcomeEnum._(r'fired');
   static const coverage = CreateCbxDisbursementRuleCheckResponseDataOutcomeEnum._(r'coverage');
-  static const noPrice = CreateCbxDisbursementRuleCheckResponseDataOutcomeEnum._(r'no_price');
-  static const belowThreshold = CreateCbxDisbursementRuleCheckResponseDataOutcomeEnum._(r'below_threshold');
   static const cadence = CreateCbxDisbursementRuleCheckResponseDataOutcomeEnum._(r'cadence');
-  static const noRecipients = CreateCbxDisbursementRuleCheckResponseDataOutcomeEnum._(r'no_recipients');
+  static const noPrice = CreateCbxDisbursementRuleCheckResponseDataOutcomeEnum._(r'no_price');
   static const inactive = CreateCbxDisbursementRuleCheckResponseDataOutcomeEnum._(r'inactive');
+  static const fired = CreateCbxDisbursementRuleCheckResponseDataOutcomeEnum._(r'fired');
+  static const belowThreshold = CreateCbxDisbursementRuleCheckResponseDataOutcomeEnum._(r'below_threshold');
+  static const noRecipients = CreateCbxDisbursementRuleCheckResponseDataOutcomeEnum._(r'no_recipients');
 
   /// List of all possible values in this [enum][CreateCbxDisbursementRuleCheckResponseDataOutcomeEnum].
   static const values = <CreateCbxDisbursementRuleCheckResponseDataOutcomeEnum>[
-    fired,
     coverage,
-    noPrice,
-    belowThreshold,
     cadence,
-    noRecipients,
+    noPrice,
     inactive,
+    fired,
+    belowThreshold,
+    noRecipients,
   ];
 
   static CreateCbxDisbursementRuleCheckResponseDataOutcomeEnum fromJson(dynamic value) =>
@@ -191,13 +191,13 @@ class CreateCbxDisbursementRuleCheckResponseDataOutcomeEnumTypeTransformer {
   CreateCbxDisbursementRuleCheckResponseDataOutcomeEnum decode(dynamic data, {bool allowNull}) {
     if (data != null) {
       switch (data.toString()) {
-        case r'fired': return CreateCbxDisbursementRuleCheckResponseDataOutcomeEnum.fired;
         case r'coverage': return CreateCbxDisbursementRuleCheckResponseDataOutcomeEnum.coverage;
-        case r'no_price': return CreateCbxDisbursementRuleCheckResponseDataOutcomeEnum.noPrice;
-        case r'below_threshold': return CreateCbxDisbursementRuleCheckResponseDataOutcomeEnum.belowThreshold;
         case r'cadence': return CreateCbxDisbursementRuleCheckResponseDataOutcomeEnum.cadence;
-        case r'no_recipients': return CreateCbxDisbursementRuleCheckResponseDataOutcomeEnum.noRecipients;
+        case r'no_price': return CreateCbxDisbursementRuleCheckResponseDataOutcomeEnum.noPrice;
         case r'inactive': return CreateCbxDisbursementRuleCheckResponseDataOutcomeEnum.inactive;
+        case r'fired': return CreateCbxDisbursementRuleCheckResponseDataOutcomeEnum.fired;
+        case r'below_threshold': return CreateCbxDisbursementRuleCheckResponseDataOutcomeEnum.belowThreshold;
+        case r'no_recipients': return CreateCbxDisbursementRuleCheckResponseDataOutcomeEnum.noRecipients;
         default:
           if (allowNull == false) {
             throw ArgumentError('Unknown enum value to decode: $data');

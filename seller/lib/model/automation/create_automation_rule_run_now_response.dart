@@ -14,7 +14,7 @@ class CreateAutomationRuleRunNowResponse {
   /// Returns a new [CreateAutomationRuleRunNowResponse] instance.
   CreateAutomationRuleRunNowResponse({
     @required this.success,
-    this.jobId,
+    @required this.jobId,
   });
 
   bool success;
@@ -38,9 +38,7 @@ class CreateAutomationRuleRunNowResponse {
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
       json[r'success'] = success;
-    if (jobId != null) {
       json[r'jobId'] = jobId;
-    }
     return json;
   }
 

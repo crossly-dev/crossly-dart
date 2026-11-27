@@ -16,9 +16,9 @@ class GetVaultMarketIndexMethodologyResponseDailyMinPriced {
     @required this.custom,
     @required this.brand,
     @required this.category,
+    @required this.segment,
     @required this.curated,
     @required this.composite,
-    @required this.segment,
   });
 
   num custom;
@@ -27,20 +27,20 @@ class GetVaultMarketIndexMethodologyResponseDailyMinPriced {
 
   num category;
 
+  num segment;
+
   num curated;
 
   num composite;
-
-  num segment;
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is GetVaultMarketIndexMethodologyResponseDailyMinPriced &&
      other.custom == custom &&
      other.brand == brand &&
      other.category == category &&
+     other.segment == segment &&
      other.curated == curated &&
-     other.composite == composite &&
-     other.segment == segment;
+     other.composite == composite;
 
   @override
   int get hashCode =>
@@ -48,21 +48,21 @@ class GetVaultMarketIndexMethodologyResponseDailyMinPriced {
     (custom == null ? 0 : custom.hashCode) +
     (brand == null ? 0 : brand.hashCode) +
     (category == null ? 0 : category.hashCode) +
+    (segment == null ? 0 : segment.hashCode) +
     (curated == null ? 0 : curated.hashCode) +
-    (composite == null ? 0 : composite.hashCode) +
-    (segment == null ? 0 : segment.hashCode);
+    (composite == null ? 0 : composite.hashCode);
 
   @override
-  String toString() => 'GetVaultMarketIndexMethodologyResponseDailyMinPriced[custom=$custom, brand=$brand, category=$category, curated=$curated, composite=$composite, segment=$segment]';
+  String toString() => 'GetVaultMarketIndexMethodologyResponseDailyMinPriced[custom=$custom, brand=$brand, category=$category, segment=$segment, curated=$curated, composite=$composite]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
       json[r'custom'] = custom;
       json[r'brand'] = brand;
       json[r'category'] = category;
+      json[r'segment'] = segment;
       json[r'curated'] = curated;
       json[r'composite'] = composite;
-      json[r'segment'] = segment;
     return json;
   }
 
@@ -82,15 +82,15 @@ class GetVaultMarketIndexMethodologyResponseDailyMinPriced {
         category: json[r'category'] == null
           ? null
           : num.parse(json[r'category'].toString()),
+        segment: json[r'segment'] == null
+          ? null
+          : num.parse(json[r'segment'].toString()),
         curated: json[r'curated'] == null
           ? null
           : num.parse(json[r'curated'].toString()),
         composite: json[r'composite'] == null
           ? null
           : num.parse(json[r'composite'].toString()),
-        segment: json[r'segment'] == null
-          ? null
-          : num.parse(json[r'segment'].toString()),
       );
     }
     return null;

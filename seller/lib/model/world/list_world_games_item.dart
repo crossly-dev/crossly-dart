@@ -43,7 +43,7 @@ class ListWorldGamesItem {
 
   ListWorldGamesItemModeEnum mode;
 
-  GetWorldGameResponseDataPlayers players;
+  MinMax players;
 
   List<ListWorldGamesItemPlacesItem> places;
 
@@ -149,7 +149,7 @@ class ListWorldGamesItem {
         version: mapValueOfType<String>(json, r'version'),
         description: mapValueOfType<String>(json, r'description'),
         mode: ListWorldGamesItemModeEnum.fromJson(json[r'mode']),
-        players: GetWorldGameResponseDataPlayers.fromJson(json[r'players']),
+        players: MinMax.fromJson(json[r'players']),
         places: ListWorldGamesItemPlacesItem.listFromJson(json[r'places']),
         rating: ListWorldGamesItemRatingEnum.fromJson(json[r'rating']),
         scoring: GetWorldGameLeaderboardResponseDataScoring.fromJson(json[r'scoring']),

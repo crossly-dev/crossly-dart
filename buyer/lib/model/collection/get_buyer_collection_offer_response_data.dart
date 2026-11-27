@@ -13,73 +13,73 @@ part of openapi.api;
 class GetBuyerCollectionOfferResponseData {
   /// Returns a new [GetBuyerCollectionOfferResponseData] instance.
   GetBuyerCollectionOfferResponseData({
-    this.pending,
+    @required this.portfolioId,
     this.title,
     this.lastSaleCents,
-    this.skuId,
-    @required this.portfolioId,
-    this.offer,
     this.topBidCents,
+    this.skuId,
+    this.offer,
+    this.pending,
   });
 
-  GetBuyerCollectionOfferResponseDataPending pending;
+  String portfolioId;
 
   String title;
 
   num lastSaleCents;
 
-  String skuId;
+  num topBidCents;
 
-  String portfolioId;
+  String skuId;
 
   GetBuyerCollectionOfferResponseDataOffer offer;
 
-  num topBidCents;
+  GetBuyerCollectionOfferResponseDataPending pending;
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is GetBuyerCollectionOfferResponseData &&
-     other.pending == pending &&
+     other.portfolioId == portfolioId &&
      other.title == title &&
      other.lastSaleCents == lastSaleCents &&
+     other.topBidCents == topBidCents &&
      other.skuId == skuId &&
-     other.portfolioId == portfolioId &&
      other.offer == offer &&
-     other.topBidCents == topBidCents;
+     other.pending == pending;
 
   @override
   int get hashCode =>
   // ignore: unnecessary_parenthesis
-    (pending == null ? 0 : pending.hashCode) +
+    (portfolioId == null ? 0 : portfolioId.hashCode) +
     (title == null ? 0 : title.hashCode) +
     (lastSaleCents == null ? 0 : lastSaleCents.hashCode) +
+    (topBidCents == null ? 0 : topBidCents.hashCode) +
     (skuId == null ? 0 : skuId.hashCode) +
-    (portfolioId == null ? 0 : portfolioId.hashCode) +
     (offer == null ? 0 : offer.hashCode) +
-    (topBidCents == null ? 0 : topBidCents.hashCode);
+    (pending == null ? 0 : pending.hashCode);
 
   @override
-  String toString() => 'GetBuyerCollectionOfferResponseData[pending=$pending, title=$title, lastSaleCents=$lastSaleCents, skuId=$skuId, portfolioId=$portfolioId, offer=$offer, topBidCents=$topBidCents]';
+  String toString() => 'GetBuyerCollectionOfferResponseData[portfolioId=$portfolioId, title=$title, lastSaleCents=$lastSaleCents, topBidCents=$topBidCents, skuId=$skuId, offer=$offer, pending=$pending]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (pending != null) {
-      json[r'pending'] = pending;
-    }
+      json[r'portfolioId'] = portfolioId;
     if (title != null) {
       json[r'title'] = title;
     }
     if (lastSaleCents != null) {
       json[r'lastSaleCents'] = lastSaleCents;
     }
+    if (topBidCents != null) {
+      json[r'topBidCents'] = topBidCents;
+    }
     if (skuId != null) {
       json[r'skuId'] = skuId;
     }
-      json[r'portfolioId'] = portfolioId;
     if (offer != null) {
       json[r'offer'] = offer;
     }
-    if (topBidCents != null) {
-      json[r'topBidCents'] = topBidCents;
+    if (pending != null) {
+      json[r'pending'] = pending;
     }
     return json;
   }
@@ -91,17 +91,17 @@ class GetBuyerCollectionOfferResponseData {
     if (value is Map) {
       final json = value.cast<String, dynamic>();
       return GetBuyerCollectionOfferResponseData(
-        pending: GetBuyerCollectionOfferResponseDataPending.fromJson(json[r'pending']),
+        portfolioId: mapValueOfType<String>(json, r'portfolioId'),
         title: mapValueOfType<String>(json, r'title'),
         lastSaleCents: json[r'lastSaleCents'] == null
           ? null
           : num.parse(json[r'lastSaleCents'].toString()),
-        skuId: mapValueOfType<String>(json, r'skuId'),
-        portfolioId: mapValueOfType<String>(json, r'portfolioId'),
-        offer: GetBuyerCollectionOfferResponseDataOffer.fromJson(json[r'offer']),
         topBidCents: json[r'topBidCents'] == null
           ? null
           : num.parse(json[r'topBidCents'].toString()),
+        skuId: mapValueOfType<String>(json, r'skuId'),
+        offer: GetBuyerCollectionOfferResponseDataOffer.fromJson(json[r'offer']),
+        pending: GetBuyerCollectionOfferResponseDataPending.fromJson(json[r'pending']),
       );
     }
     return null;

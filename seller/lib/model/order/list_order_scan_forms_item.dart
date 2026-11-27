@@ -19,10 +19,10 @@ class ListOrderScanFormsItem {
     @required this.status,
     @required this.carrier,
     this.orderIds = const [],
-    this.documentUrl,
-    @required this.shippoManifestId,
-    @required this.shipDate,
     this.warnings = const [],
+    @required this.shipDate,
+    @required this.shippoManifestId,
+    this.documentUrl,
   });
 
   String id;
@@ -37,13 +37,13 @@ class ListOrderScanFormsItem {
 
   List<String> orderIds;
 
-  String documentUrl;
-
-  String shippoManifestId;
+  List<String> warnings;
 
   String shipDate;
 
-  List<String> warnings;
+  String shippoManifestId;
+
+  String documentUrl;
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is ListOrderScanFormsItem &&
@@ -53,10 +53,10 @@ class ListOrderScanFormsItem {
      other.status == status &&
      other.carrier == carrier &&
      other.orderIds == orderIds &&
-     other.documentUrl == documentUrl &&
-     other.shippoManifestId == shippoManifestId &&
+     other.warnings == warnings &&
      other.shipDate == shipDate &&
-     other.warnings == warnings;
+     other.shippoManifestId == shippoManifestId &&
+     other.documentUrl == documentUrl;
 
   @override
   int get hashCode =>
@@ -67,13 +67,13 @@ class ListOrderScanFormsItem {
     (status == null ? 0 : status.hashCode) +
     (carrier == null ? 0 : carrier.hashCode) +
     (orderIds == null ? 0 : orderIds.hashCode) +
-    (documentUrl == null ? 0 : documentUrl.hashCode) +
-    (shippoManifestId == null ? 0 : shippoManifestId.hashCode) +
+    (warnings == null ? 0 : warnings.hashCode) +
     (shipDate == null ? 0 : shipDate.hashCode) +
-    (warnings == null ? 0 : warnings.hashCode);
+    (shippoManifestId == null ? 0 : shippoManifestId.hashCode) +
+    (documentUrl == null ? 0 : documentUrl.hashCode);
 
   @override
-  String toString() => 'ListOrderScanFormsItem[id=$id, createdAt=$createdAt, userId=$userId, status=$status, carrier=$carrier, orderIds=$orderIds, documentUrl=$documentUrl, shippoManifestId=$shippoManifestId, shipDate=$shipDate, warnings=$warnings]';
+  String toString() => 'ListOrderScanFormsItem[id=$id, createdAt=$createdAt, userId=$userId, status=$status, carrier=$carrier, orderIds=$orderIds, warnings=$warnings, shipDate=$shipDate, shippoManifestId=$shippoManifestId, documentUrl=$documentUrl]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -83,12 +83,12 @@ class ListOrderScanFormsItem {
       json[r'status'] = status;
       json[r'carrier'] = carrier;
       json[r'orderIds'] = orderIds;
+      json[r'warnings'] = warnings;
+      json[r'shipDate'] = shipDate;
+      json[r'shippoManifestId'] = shippoManifestId;
     if (documentUrl != null) {
       json[r'documentUrl'] = documentUrl;
     }
-      json[r'shippoManifestId'] = shippoManifestId;
-      json[r'shipDate'] = shipDate;
-      json[r'warnings'] = warnings;
     return json;
   }
 
@@ -107,12 +107,12 @@ class ListOrderScanFormsItem {
         orderIds: json[r'orderIds'] is List
           ? (json[r'orderIds'] as List).cast<String>()
           : null,
-        documentUrl: mapValueOfType<String>(json, r'documentUrl'),
-        shippoManifestId: mapValueOfType<String>(json, r'shippoManifestId'),
-        shipDate: mapValueOfType<String>(json, r'shipDate'),
         warnings: json[r'warnings'] is List
           ? (json[r'warnings'] as List).cast<String>()
           : null,
+        shipDate: mapValueOfType<String>(json, r'shipDate'),
+        shippoManifestId: mapValueOfType<String>(json, r'shippoManifestId'),
+        documentUrl: mapValueOfType<String>(json, r'documentUrl'),
       );
     }
     return null;

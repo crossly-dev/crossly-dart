@@ -14,30 +14,36 @@ class GetAnalyticTimeseryResponse {
   /// Returns a new [GetAnalyticTimeseryResponse] instance.
   GetAnalyticTimeseryResponse({
     @required this.days,
+    @required this.granularity,
     this.series = const [],
   });
 
   num days;
+
+  GetAnalyticTimeseryResponseGranularityEnum granularity;
 
   List<GetAnalyticTimeseryResponseSeries> series;
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is GetAnalyticTimeseryResponse &&
      other.days == days &&
+     other.granularity == granularity &&
      other.series == series;
 
   @override
   int get hashCode =>
   // ignore: unnecessary_parenthesis
     (days == null ? 0 : days.hashCode) +
+    (granularity == null ? 0 : granularity.hashCode) +
     (series == null ? 0 : series.hashCode);
 
   @override
-  String toString() => 'GetAnalyticTimeseryResponse[days=$days, series=$series]';
+  String toString() => 'GetAnalyticTimeseryResponse[days=$days, granularity=$granularity, series=$series]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
       json[r'days'] = days;
+      json[r'granularity'] = granularity;
       json[r'series'] = series;
     return json;
   }
@@ -52,6 +58,7 @@ class GetAnalyticTimeseryResponse {
         days: json[r'days'] == null
           ? null
           : num.parse(json[r'days'].toString()),
+        granularity: GetAnalyticTimeseryResponseGranularityEnum.fromJson(json[r'granularity']),
         series: GetAnalyticTimeseryResponseSeries.listFromJson(json[r'series']),
       );
     }
@@ -90,4 +97,74 @@ class GetAnalyticTimeseryResponse {
     return map;
   }
 }
+
+
+class GetAnalyticTimeseryResponseGranularityEnum {
+  /// Instantiate a new enum with the provided [value].
+  const GetAnalyticTimeseryResponseGranularityEnum._(this.value);
+
+  /// The underlying value of this enum member.
+  final String value;
+
+  @override
+  String toString() => value ?? '';
+
+  String toJson() => value;
+
+  static const day = GetAnalyticTimeseryResponseGranularityEnum._(r'day');
+  static const week = GetAnalyticTimeseryResponseGranularityEnum._(r'week');
+  static const month = GetAnalyticTimeseryResponseGranularityEnum._(r'month');
+
+  /// List of all possible values in this [enum][GetAnalyticTimeseryResponseGranularityEnum].
+  static const values = <GetAnalyticTimeseryResponseGranularityEnum>[
+    day,
+    week,
+    month,
+  ];
+
+  static GetAnalyticTimeseryResponseGranularityEnum fromJson(dynamic value) =>
+    GetAnalyticTimeseryResponseGranularityEnumTypeTransformer().decode(value);
+
+  static List<GetAnalyticTimeseryResponseGranularityEnum> listFromJson(dynamic json, {bool emptyIsNull, bool growable,}) =>
+    json is List && json.isNotEmpty
+      ? json.map(GetAnalyticTimeseryResponseGranularityEnum.fromJson).toList(growable: true == growable)
+      : true == emptyIsNull ? null : <GetAnalyticTimeseryResponseGranularityEnum>[];
+}
+
+/// Transformation class that can [encode] an instance of [GetAnalyticTimeseryResponseGranularityEnum] to String,
+/// and [decode] dynamic data back to [GetAnalyticTimeseryResponseGranularityEnum].
+class GetAnalyticTimeseryResponseGranularityEnumTypeTransformer {
+  factory GetAnalyticTimeseryResponseGranularityEnumTypeTransformer() => _instance ??= const GetAnalyticTimeseryResponseGranularityEnumTypeTransformer._();
+
+  const GetAnalyticTimeseryResponseGranularityEnumTypeTransformer._();
+
+  String encode(GetAnalyticTimeseryResponseGranularityEnum data) => data.value;
+
+  /// Decodes a [dynamic value][data] to a GetAnalyticTimeseryResponseGranularityEnum.
+  ///
+  /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
+  /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
+  /// cannot be decoded successfully, then an [UnimplementedError] is thrown.
+  ///
+  /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
+  /// and users are still using an old app with the old code.
+  GetAnalyticTimeseryResponseGranularityEnum decode(dynamic data, {bool allowNull}) {
+    if (data != null) {
+      switch (data.toString()) {
+        case r'day': return GetAnalyticTimeseryResponseGranularityEnum.day;
+        case r'week': return GetAnalyticTimeseryResponseGranularityEnum.week;
+        case r'month': return GetAnalyticTimeseryResponseGranularityEnum.month;
+        default:
+          if (allowNull == false) {
+            throw ArgumentError('Unknown enum value to decode: $data');
+          }
+      }
+    }
+    return null;
+  }
+
+  /// Singleton [GetAnalyticTimeseryResponseGranularityEnumTypeTransformer] instance.
+  static GetAnalyticTimeseryResponseGranularityEnumTypeTransformer _instance;
+}
+
 

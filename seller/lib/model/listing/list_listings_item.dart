@@ -15,12 +15,16 @@ class ListListingsItem {
   ListListingsItem({
     @required this.aiMedia,
     @required this.aiMediaDetected,
+    @required this.pricing,
     @required this.id,
     this.brand,
     this.name,
     @required this.createdAt,
     @required this.updatedAt,
     @required this.userId,
+    this.description,
+    @required this.status,
+    @required this.source_,
     this.sku,
     @required this.quantity,
     @required this.quantityAvailable,
@@ -46,9 +50,6 @@ class ListListingsItem {
     this.dimensionLIn,
     this.dimensionWIn,
     this.dimensionHIn,
-    @required this.status,
-    @required this.source_,
-    this.description,
     this.title,
     this.descriptionHtml,
     this.price,
@@ -66,6 +67,8 @@ class ListListingsItem {
     this.automationBlockedRuleIds = const [],
     this.automationAssignedChainIds = const [],
     this.automationBlockedChainIds = const [],
+    this.workflowBlockedIds = const [],
+    this.workflowAssignedIds = const [],
     this.hsCode,
     this.countryOfOrigin,
     this.delistedAt,
@@ -73,11 +76,16 @@ class ListListingsItem {
     this.ebayAttributesEnrichedAt,
     this.duplicateOfListingId,
     this.clientDraftId,
+    this.attributedOauthAppId,
+    this.attributedGrantId,
+    this.quotaBucket,
   });
 
   bool aiMedia;
 
   bool aiMediaDetected;
+
+  ListListingsItemPricing pricing;
 
   String id;
 
@@ -90,6 +98,12 @@ class ListListingsItem {
   DateTime updatedAt;
 
   String userId;
+
+  String description;
+
+  String status;
+
+  String source_;
 
   String sku;
 
@@ -125,7 +139,7 @@ class ListListingsItem {
 
   String gradeKey;
 
-  ListGradingSubmissionsItemGrading grading;
+  CreateBulkBatchItemResponseGrading grading;
 
   num priceFloorCents;
 
@@ -140,12 +154,6 @@ class ListListingsItem {
   String dimensionWIn;
 
   String dimensionHIn;
-
-  String status;
-
-  String source_;
-
-  String description;
 
   String title;
 
@@ -181,6 +189,10 @@ class ListListingsItem {
 
   List<String> automationBlockedChainIds;
 
+  List<String> workflowBlockedIds;
+
+  List<String> workflowAssignedIds;
+
   String hsCode;
 
   String countryOfOrigin;
@@ -195,16 +207,26 @@ class ListListingsItem {
 
   String clientDraftId;
 
+  String attributedOauthAppId;
+
+  String attributedGrantId;
+
+  String quotaBucket;
+
   @override
   bool operator ==(Object other) => identical(this, other) || other is ListListingsItem &&
      other.aiMedia == aiMedia &&
      other.aiMediaDetected == aiMediaDetected &&
+     other.pricing == pricing &&
      other.id == id &&
      other.brand == brand &&
      other.name == name &&
      other.createdAt == createdAt &&
      other.updatedAt == updatedAt &&
      other.userId == userId &&
+     other.description == description &&
+     other.status == status &&
+     other.source_ == source_ &&
      other.sku == sku &&
      other.quantity == quantity &&
      other.quantityAvailable == quantityAvailable &&
@@ -230,9 +252,6 @@ class ListListingsItem {
      other.dimensionLIn == dimensionLIn &&
      other.dimensionWIn == dimensionWIn &&
      other.dimensionHIn == dimensionHIn &&
-     other.status == status &&
-     other.source_ == source_ &&
-     other.description == description &&
      other.title == title &&
      other.descriptionHtml == descriptionHtml &&
      other.price == price &&
@@ -250,25 +269,34 @@ class ListListingsItem {
      other.automationBlockedRuleIds == automationBlockedRuleIds &&
      other.automationAssignedChainIds == automationAssignedChainIds &&
      other.automationBlockedChainIds == automationBlockedChainIds &&
+     other.workflowBlockedIds == workflowBlockedIds &&
+     other.workflowAssignedIds == workflowAssignedIds &&
      other.hsCode == hsCode &&
      other.countryOfOrigin == countryOfOrigin &&
      other.delistedAt == delistedAt &&
      other.soldAt == soldAt &&
      other.ebayAttributesEnrichedAt == ebayAttributesEnrichedAt &&
      other.duplicateOfListingId == duplicateOfListingId &&
-     other.clientDraftId == clientDraftId;
+     other.clientDraftId == clientDraftId &&
+     other.attributedOauthAppId == attributedOauthAppId &&
+     other.attributedGrantId == attributedGrantId &&
+     other.quotaBucket == quotaBucket;
 
   @override
   int get hashCode =>
   // ignore: unnecessary_parenthesis
     (aiMedia == null ? 0 : aiMedia.hashCode) +
     (aiMediaDetected == null ? 0 : aiMediaDetected.hashCode) +
+    (pricing == null ? 0 : pricing.hashCode) +
     (id == null ? 0 : id.hashCode) +
     (brand == null ? 0 : brand.hashCode) +
     (name == null ? 0 : name.hashCode) +
     (createdAt == null ? 0 : createdAt.hashCode) +
     (updatedAt == null ? 0 : updatedAt.hashCode) +
     (userId == null ? 0 : userId.hashCode) +
+    (description == null ? 0 : description.hashCode) +
+    (status == null ? 0 : status.hashCode) +
+    (source_ == null ? 0 : source_.hashCode) +
     (sku == null ? 0 : sku.hashCode) +
     (quantity == null ? 0 : quantity.hashCode) +
     (quantityAvailable == null ? 0 : quantityAvailable.hashCode) +
@@ -294,9 +322,6 @@ class ListListingsItem {
     (dimensionLIn == null ? 0 : dimensionLIn.hashCode) +
     (dimensionWIn == null ? 0 : dimensionWIn.hashCode) +
     (dimensionHIn == null ? 0 : dimensionHIn.hashCode) +
-    (status == null ? 0 : status.hashCode) +
-    (source_ == null ? 0 : source_.hashCode) +
-    (description == null ? 0 : description.hashCode) +
     (title == null ? 0 : title.hashCode) +
     (descriptionHtml == null ? 0 : descriptionHtml.hashCode) +
     (price == null ? 0 : price.hashCode) +
@@ -314,21 +339,27 @@ class ListListingsItem {
     (automationBlockedRuleIds == null ? 0 : automationBlockedRuleIds.hashCode) +
     (automationAssignedChainIds == null ? 0 : automationAssignedChainIds.hashCode) +
     (automationBlockedChainIds == null ? 0 : automationBlockedChainIds.hashCode) +
+    (workflowBlockedIds == null ? 0 : workflowBlockedIds.hashCode) +
+    (workflowAssignedIds == null ? 0 : workflowAssignedIds.hashCode) +
     (hsCode == null ? 0 : hsCode.hashCode) +
     (countryOfOrigin == null ? 0 : countryOfOrigin.hashCode) +
     (delistedAt == null ? 0 : delistedAt.hashCode) +
     (soldAt == null ? 0 : soldAt.hashCode) +
     (ebayAttributesEnrichedAt == null ? 0 : ebayAttributesEnrichedAt.hashCode) +
     (duplicateOfListingId == null ? 0 : duplicateOfListingId.hashCode) +
-    (clientDraftId == null ? 0 : clientDraftId.hashCode);
+    (clientDraftId == null ? 0 : clientDraftId.hashCode) +
+    (attributedOauthAppId == null ? 0 : attributedOauthAppId.hashCode) +
+    (attributedGrantId == null ? 0 : attributedGrantId.hashCode) +
+    (quotaBucket == null ? 0 : quotaBucket.hashCode);
 
   @override
-  String toString() => 'ListListingsItem[aiMedia=$aiMedia, aiMediaDetected=$aiMediaDetected, id=$id, brand=$brand, name=$name, createdAt=$createdAt, updatedAt=$updatedAt, userId=$userId, sku=$sku, quantity=$quantity, quantityAvailable=$quantityAvailable, condition=$condition, size=$size, material=$material, style=$style, pattern=$pattern, department=$department, gender=$gender, itemType=$itemType, sizeSystem=$sizeSystem, color=$color, images=$images, videoUrl=$videoUrl, tags=$tags, gradeKey=$gradeKey, grading=$grading, priceFloorCents=$priceFloorCents, floorIsNet=$floorIsNet, weightLb=$weightLb, weightOz=$weightOz, dimensionLIn=$dimensionLIn, dimensionWIn=$dimensionWIn, dimensionHIn=$dimensionHIn, status=$status, source_=$source_, description=$description, title=$title, descriptionHtml=$descriptionHtml, price=$price, currency=$currency, aiMediaUrls=$aiMediaUrls, aiMediaDeclared=$aiMediaDeclared, aiMediaDetectedUrls=$aiMediaDetectedUrls, isDigital=$isDigital, publishAt=$publishAt, scheduledPlatforms=$scheduledPlatforms, parentListingId=$parentListingId, groupKind=$groupKind, isBundle=$isBundle, automationAssignedRuleIds=$automationAssignedRuleIds, automationBlockedRuleIds=$automationBlockedRuleIds, automationAssignedChainIds=$automationAssignedChainIds, automationBlockedChainIds=$automationBlockedChainIds, hsCode=$hsCode, countryOfOrigin=$countryOfOrigin, delistedAt=$delistedAt, soldAt=$soldAt, ebayAttributesEnrichedAt=$ebayAttributesEnrichedAt, duplicateOfListingId=$duplicateOfListingId, clientDraftId=$clientDraftId]';
+  String toString() => 'ListListingsItem[aiMedia=$aiMedia, aiMediaDetected=$aiMediaDetected, pricing=$pricing, id=$id, brand=$brand, name=$name, createdAt=$createdAt, updatedAt=$updatedAt, userId=$userId, description=$description, status=$status, source_=$source_, sku=$sku, quantity=$quantity, quantityAvailable=$quantityAvailable, condition=$condition, size=$size, material=$material, style=$style, pattern=$pattern, department=$department, gender=$gender, itemType=$itemType, sizeSystem=$sizeSystem, color=$color, images=$images, videoUrl=$videoUrl, tags=$tags, gradeKey=$gradeKey, grading=$grading, priceFloorCents=$priceFloorCents, floorIsNet=$floorIsNet, weightLb=$weightLb, weightOz=$weightOz, dimensionLIn=$dimensionLIn, dimensionWIn=$dimensionWIn, dimensionHIn=$dimensionHIn, title=$title, descriptionHtml=$descriptionHtml, price=$price, currency=$currency, aiMediaUrls=$aiMediaUrls, aiMediaDeclared=$aiMediaDeclared, aiMediaDetectedUrls=$aiMediaDetectedUrls, isDigital=$isDigital, publishAt=$publishAt, scheduledPlatforms=$scheduledPlatforms, parentListingId=$parentListingId, groupKind=$groupKind, isBundle=$isBundle, automationAssignedRuleIds=$automationAssignedRuleIds, automationBlockedRuleIds=$automationBlockedRuleIds, automationAssignedChainIds=$automationAssignedChainIds, automationBlockedChainIds=$automationBlockedChainIds, workflowBlockedIds=$workflowBlockedIds, workflowAssignedIds=$workflowAssignedIds, hsCode=$hsCode, countryOfOrigin=$countryOfOrigin, delistedAt=$delistedAt, soldAt=$soldAt, ebayAttributesEnrichedAt=$ebayAttributesEnrichedAt, duplicateOfListingId=$duplicateOfListingId, clientDraftId=$clientDraftId, attributedOauthAppId=$attributedOauthAppId, attributedGrantId=$attributedGrantId, quotaBucket=$quotaBucket]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
       json[r'aiMedia'] = aiMedia;
       json[r'aiMediaDetected'] = aiMediaDetected;
+      json[r'pricing'] = pricing;
       json[r'id'] = id;
     if (brand != null) {
       json[r'brand'] = brand;
@@ -339,6 +370,11 @@ class ListListingsItem {
       json[r'createdAt'] = createdAt.toUtc().toIso8601String();
       json[r'updatedAt'] = updatedAt.toUtc().toIso8601String();
       json[r'userId'] = userId;
+    if (description != null) {
+      json[r'description'] = description;
+    }
+      json[r'status'] = status;
+      json[r'source'] = source_;
     if (sku != null) {
       json[r'sku'] = sku;
     }
@@ -404,11 +440,6 @@ class ListListingsItem {
     if (dimensionHIn != null) {
       json[r'dimensionHIn'] = dimensionHIn;
     }
-      json[r'status'] = status;
-      json[r'source'] = source_;
-    if (description != null) {
-      json[r'description'] = description;
-    }
     if (title != null) {
       json[r'title'] = title;
     }
@@ -442,6 +473,8 @@ class ListListingsItem {
       json[r'automationBlockedRuleIds'] = automationBlockedRuleIds;
       json[r'automationAssignedChainIds'] = automationAssignedChainIds;
       json[r'automationBlockedChainIds'] = automationBlockedChainIds;
+      json[r'workflowBlockedIds'] = workflowBlockedIds;
+      json[r'workflowAssignedIds'] = workflowAssignedIds;
     if (hsCode != null) {
       json[r'hsCode'] = hsCode;
     }
@@ -463,6 +496,15 @@ class ListListingsItem {
     if (clientDraftId != null) {
       json[r'clientDraftId'] = clientDraftId;
     }
+    if (attributedOauthAppId != null) {
+      json[r'attributedOauthAppId'] = attributedOauthAppId;
+    }
+    if (attributedGrantId != null) {
+      json[r'attributedGrantId'] = attributedGrantId;
+    }
+    if (quotaBucket != null) {
+      json[r'quotaBucket'] = quotaBucket;
+    }
     return json;
   }
 
@@ -475,12 +517,16 @@ class ListListingsItem {
       return ListListingsItem(
         aiMedia: mapValueOfType<bool>(json, r'aiMedia'),
         aiMediaDetected: mapValueOfType<bool>(json, r'aiMediaDetected'),
+        pricing: ListListingsItemPricing.fromJson(json[r'pricing']),
         id: mapValueOfType<String>(json, r'id'),
         brand: mapValueOfType<String>(json, r'brand'),
         name: mapValueOfType<String>(json, r'name'),
         createdAt: mapDateTime(json, r'createdAt', ''),
         updatedAt: mapDateTime(json, r'updatedAt', ''),
         userId: mapValueOfType<String>(json, r'userId'),
+        description: mapValueOfType<String>(json, r'description'),
+        status: mapValueOfType<String>(json, r'status'),
+        source_: mapValueOfType<String>(json, r'source'),
         sku: mapValueOfType<String>(json, r'sku'),
         quantity: json[r'quantity'] == null
           ? null
@@ -508,7 +554,7 @@ class ListListingsItem {
           ? (json[r'tags'] as List).cast<String>()
           : null,
         gradeKey: mapValueOfType<String>(json, r'gradeKey'),
-        grading: ListGradingSubmissionsItemGrading.fromJson(json[r'grading']),
+        grading: CreateBulkBatchItemResponseGrading.fromJson(json[r'grading']),
         priceFloorCents: json[r'priceFloorCents'] == null
           ? null
           : num.parse(json[r'priceFloorCents'].toString()),
@@ -518,9 +564,6 @@ class ListListingsItem {
         dimensionLIn: mapValueOfType<String>(json, r'dimensionLIn'),
         dimensionWIn: mapValueOfType<String>(json, r'dimensionWIn'),
         dimensionHIn: mapValueOfType<String>(json, r'dimensionHIn'),
-        status: mapValueOfType<String>(json, r'status'),
-        source_: mapValueOfType<String>(json, r'source'),
-        description: mapValueOfType<String>(json, r'description'),
         title: mapValueOfType<String>(json, r'title'),
         descriptionHtml: mapValueOfType<String>(json, r'descriptionHtml'),
         price: mapValueOfType<String>(json, r'price'),
@@ -552,6 +595,12 @@ class ListListingsItem {
         automationBlockedChainIds: json[r'automationBlockedChainIds'] is List
           ? (json[r'automationBlockedChainIds'] as List).cast<String>()
           : null,
+        workflowBlockedIds: json[r'workflowBlockedIds'] is List
+          ? (json[r'workflowBlockedIds'] as List).cast<String>()
+          : null,
+        workflowAssignedIds: json[r'workflowAssignedIds'] is List
+          ? (json[r'workflowAssignedIds'] as List).cast<String>()
+          : null,
         hsCode: mapValueOfType<String>(json, r'hsCode'),
         countryOfOrigin: mapValueOfType<String>(json, r'countryOfOrigin'),
         delistedAt: mapDateTime(json, r'delistedAt', ''),
@@ -559,6 +608,9 @@ class ListListingsItem {
         ebayAttributesEnrichedAt: mapDateTime(json, r'ebayAttributesEnrichedAt', ''),
         duplicateOfListingId: mapValueOfType<String>(json, r'duplicateOfListingId'),
         clientDraftId: mapValueOfType<String>(json, r'clientDraftId'),
+        attributedOauthAppId: mapValueOfType<String>(json, r'attributedOauthAppId'),
+        attributedGrantId: mapValueOfType<String>(json, r'attributedGrantId'),
+        quotaBucket: mapValueOfType<String>(json, r'quotaBucket'),
       );
     }
     return null;

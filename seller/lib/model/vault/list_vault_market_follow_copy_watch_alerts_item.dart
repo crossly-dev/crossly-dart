@@ -14,6 +14,7 @@ class ListVaultMarketFollowCopyWatchAlertsItem {
   /// Returns a new [ListVaultMarketFollowCopyWatchAlertsItem] instance.
   ListVaultMarketFollowCopyWatchAlertsItem({
     @required this.id,
+    @required this.by,
     @required this.side,
     @required this.quantity,
     this.limitCents,
@@ -29,6 +30,8 @@ class ListVaultMarketFollowCopyWatchAlertsItem {
   });
 
   String id;
+
+  ListVaultMarketFollowCopyWatchAlertsItemBy by;
 
   ListVaultMarketFollowCopyWatchAlertsItemSideEnum side;
 
@@ -57,6 +60,7 @@ class ListVaultMarketFollowCopyWatchAlertsItem {
   @override
   bool operator ==(Object other) => identical(this, other) || other is ListVaultMarketFollowCopyWatchAlertsItem &&
      other.id == id &&
+     other.by == by &&
      other.side == side &&
      other.quantity == quantity &&
      other.limitCents == limitCents &&
@@ -74,6 +78,7 @@ class ListVaultMarketFollowCopyWatchAlertsItem {
   int get hashCode =>
   // ignore: unnecessary_parenthesis
     (id == null ? 0 : id.hashCode) +
+    (by == null ? 0 : by.hashCode) +
     (side == null ? 0 : side.hashCode) +
     (quantity == null ? 0 : quantity.hashCode) +
     (limitCents == null ? 0 : limitCents.hashCode) +
@@ -88,11 +93,12 @@ class ListVaultMarketFollowCopyWatchAlertsItem {
     (marketHref == null ? 0 : marketHref.hashCode);
 
   @override
-  String toString() => 'ListVaultMarketFollowCopyWatchAlertsItem[id=$id, side=$side, quantity=$quantity, limitCents=$limitCents, bookKey=$bookKey, name=$name, label=$label, imageUrl=$imageUrl, placedAt=$placedAt, at=$at, read=$read, stillResting=$stillResting, marketHref=$marketHref]';
+  String toString() => 'ListVaultMarketFollowCopyWatchAlertsItem[id=$id, by=$by, side=$side, quantity=$quantity, limitCents=$limitCents, bookKey=$bookKey, name=$name, label=$label, imageUrl=$imageUrl, placedAt=$placedAt, at=$at, read=$read, stillResting=$stillResting, marketHref=$marketHref]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
       json[r'id'] = id;
+      json[r'by'] = by;
       json[r'side'] = side;
       json[r'quantity'] = quantity;
     if (limitCents != null) {
@@ -124,6 +130,7 @@ class ListVaultMarketFollowCopyWatchAlertsItem {
       final json = value.cast<String, dynamic>();
       return ListVaultMarketFollowCopyWatchAlertsItem(
         id: mapValueOfType<String>(json, r'id'),
+        by: ListVaultMarketFollowCopyWatchAlertsItemBy.fromJson(json[r'by']),
         side: ListVaultMarketFollowCopyWatchAlertsItemSideEnum.fromJson(json[r'side']),
         quantity: json[r'quantity'] == null
           ? null

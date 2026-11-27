@@ -145,17 +145,17 @@ class GetVaultMarketHealthResponseLiquidityTiersTierEnum {
 
   String toJson() => value;
 
+  static const C = GetVaultMarketHealthResponseLiquidityTiersTierEnum._(r'C');
   static const A = GetVaultMarketHealthResponseLiquidityTiersTierEnum._(r'A');
   static const B = GetVaultMarketHealthResponseLiquidityTiersTierEnum._(r'B');
-  static const C = GetVaultMarketHealthResponseLiquidityTiersTierEnum._(r'C');
   static const D = GetVaultMarketHealthResponseLiquidityTiersTierEnum._(r'D');
   static const unclassified = GetVaultMarketHealthResponseLiquidityTiersTierEnum._(r'unclassified');
 
   /// List of all possible values in this [enum][GetVaultMarketHealthResponseLiquidityTiersTierEnum].
   static const values = <GetVaultMarketHealthResponseLiquidityTiersTierEnum>[
+    C,
     A,
     B,
-    C,
     D,
     unclassified,
   ];
@@ -189,9 +189,9 @@ class GetVaultMarketHealthResponseLiquidityTiersTierEnumTypeTransformer {
   GetVaultMarketHealthResponseLiquidityTiersTierEnum decode(dynamic data, {bool allowNull}) {
     if (data != null) {
       switch (data.toString()) {
+        case r'C': return GetVaultMarketHealthResponseLiquidityTiersTierEnum.C;
         case r'A': return GetVaultMarketHealthResponseLiquidityTiersTierEnum.A;
         case r'B': return GetVaultMarketHealthResponseLiquidityTiersTierEnum.B;
-        case r'C': return GetVaultMarketHealthResponseLiquidityTiersTierEnum.C;
         case r'D': return GetVaultMarketHealthResponseLiquidityTiersTierEnum.D;
         case r'unclassified': return GetVaultMarketHealthResponseLiquidityTiersTierEnum.unclassified;
         default:

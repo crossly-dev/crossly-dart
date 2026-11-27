@@ -14,6 +14,7 @@ class GetSpatialPropertyResponseDataDeeds {
   /// Returns a new [GetSpatialPropertyResponseDataDeeds] instance.
   GetSpatialPropertyResponseDataDeeds({
     @required this.id,
+    @required this.plotId,
     @required this.address,
     @required this.label,
     @required this.priceCents,
@@ -26,6 +27,8 @@ class GetSpatialPropertyResponseDataDeeds {
   });
 
   String id;
+
+  String plotId;
 
   String address;
 
@@ -48,6 +51,7 @@ class GetSpatialPropertyResponseDataDeeds {
   @override
   bool operator ==(Object other) => identical(this, other) || other is GetSpatialPropertyResponseDataDeeds &&
      other.id == id &&
+     other.plotId == plotId &&
      other.address == address &&
      other.label == label &&
      other.priceCents == priceCents &&
@@ -62,6 +66,7 @@ class GetSpatialPropertyResponseDataDeeds {
   int get hashCode =>
   // ignore: unnecessary_parenthesis
     (id == null ? 0 : id.hashCode) +
+    (plotId == null ? 0 : plotId.hashCode) +
     (address == null ? 0 : address.hashCode) +
     (label == null ? 0 : label.hashCode) +
     (priceCents == null ? 0 : priceCents.hashCode) +
@@ -73,11 +78,12 @@ class GetSpatialPropertyResponseDataDeeds {
     (listing == null ? 0 : listing.hashCode);
 
   @override
-  String toString() => 'GetSpatialPropertyResponseDataDeeds[id=$id, address=$address, label=$label, priceCents=$priceCents, maintenanceWeeklyCents=$maintenanceWeeklyCents, paidThrough=$paidThrough, status=$status, occupied=$occupied, lease=$lease, listing=$listing]';
+  String toString() => 'GetSpatialPropertyResponseDataDeeds[id=$id, plotId=$plotId, address=$address, label=$label, priceCents=$priceCents, maintenanceWeeklyCents=$maintenanceWeeklyCents, paidThrough=$paidThrough, status=$status, occupied=$occupied, lease=$lease, listing=$listing]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
       json[r'id'] = id;
+      json[r'plotId'] = plotId;
       json[r'address'] = address;
       json[r'label'] = label;
       json[r'priceCents'] = priceCents;
@@ -102,6 +108,7 @@ class GetSpatialPropertyResponseDataDeeds {
       final json = value.cast<String, dynamic>();
       return GetSpatialPropertyResponseDataDeeds(
         id: mapValueOfType<String>(json, r'id'),
+        plotId: mapValueOfType<String>(json, r'plotId'),
         address: mapValueOfType<String>(json, r'address'),
         label: mapValueOfType<String>(json, r'label'),
         priceCents: json[r'priceCents'] == null
@@ -167,16 +174,16 @@ class GetSpatialPropertyResponseDataDeedsStatusEnum {
   String toJson() => value;
 
   static const active = GetSpatialPropertyResponseDataDeedsStatusEnum._(r'active');
-  static const foreclosed = GetSpatialPropertyResponseDataDeedsStatusEnum._(r'foreclosed');
   static const grace = GetSpatialPropertyResponseDataDeedsStatusEnum._(r'grace');
   static const delinquent = GetSpatialPropertyResponseDataDeedsStatusEnum._(r'delinquent');
+  static const foreclosed = GetSpatialPropertyResponseDataDeedsStatusEnum._(r'foreclosed');
 
   /// List of all possible values in this [enum][GetSpatialPropertyResponseDataDeedsStatusEnum].
   static const values = <GetSpatialPropertyResponseDataDeedsStatusEnum>[
     active,
-    foreclosed,
     grace,
     delinquent,
+    foreclosed,
   ];
 
   static GetSpatialPropertyResponseDataDeedsStatusEnum fromJson(dynamic value) =>
@@ -209,9 +216,9 @@ class GetSpatialPropertyResponseDataDeedsStatusEnumTypeTransformer {
     if (data != null) {
       switch (data.toString()) {
         case r'active': return GetSpatialPropertyResponseDataDeedsStatusEnum.active;
-        case r'foreclosed': return GetSpatialPropertyResponseDataDeedsStatusEnum.foreclosed;
         case r'grace': return GetSpatialPropertyResponseDataDeedsStatusEnum.grace;
         case r'delinquent': return GetSpatialPropertyResponseDataDeedsStatusEnum.delinquent;
+        case r'foreclosed': return GetSpatialPropertyResponseDataDeedsStatusEnum.foreclosed;
         default:
           if (allowNull == false) {
             throw ArgumentError('Unknown enum value to decode: $data');

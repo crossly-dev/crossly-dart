@@ -283,13 +283,13 @@ class GetVaultMarketTaxResponseSalesTermEnum {
 
   String toJson() => value;
 
-  static const long = GetVaultMarketTaxResponseSalesTermEnum._(r'long');
   static const short = GetVaultMarketTaxResponseSalesTermEnum._(r'short');
+  static const long = GetVaultMarketTaxResponseSalesTermEnum._(r'long');
 
   /// List of all possible values in this [enum][GetVaultMarketTaxResponseSalesTermEnum].
   static const values = <GetVaultMarketTaxResponseSalesTermEnum>[
-    long,
     short,
+    long,
   ];
 
   static GetVaultMarketTaxResponseSalesTermEnum fromJson(dynamic value) =>
@@ -321,8 +321,8 @@ class GetVaultMarketTaxResponseSalesTermEnumTypeTransformer {
   GetVaultMarketTaxResponseSalesTermEnum decode(dynamic data, {bool allowNull}) {
     if (data != null) {
       switch (data.toString()) {
-        case r'long': return GetVaultMarketTaxResponseSalesTermEnum.long;
         case r'short': return GetVaultMarketTaxResponseSalesTermEnum.short;
+        case r'long': return GetVaultMarketTaxResponseSalesTermEnum.long;
         default:
           if (allowNull == false) {
             throw ArgumentError('Unknown enum value to decode: $data');

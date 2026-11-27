@@ -16,6 +16,7 @@ class GetAnalyticDashboardResponse {
     @required this.revenue,
     @required this.profit,
     @required this.soldItemsCount,
+    @required this.pendingDetailsCount,
     @required this.cancelledCount,
     @required this.cancelRate,
     @required this.refundedAmount,
@@ -24,7 +25,9 @@ class GetAnalyticDashboardResponse {
     @required this.avgSalePrice,
     this.sellThroughRate,
     @required this.sellThrough,
+    @required this.sellThroughCohort,
     this.avgDaysToSell,
+    this.medianDaysToSell,
     this.salesByPlatform = const [],
     this.avgSalePriceByPlatform = const [],
     this.revenueByDay = const [],
@@ -34,6 +37,7 @@ class GetAnalyticDashboardResponse {
     this.top5ItemsByRevenue = const [],
     this.recentSales = const [],
     this.availableLabels = const [],
+    @required this.period,
   });
 
   GetAnalyticDashboardResponseRevenue revenue;
@@ -41,6 +45,9 @@ class GetAnalyticDashboardResponse {
   GetAnalyticDashboardResponseRevenue profit;
 
   GetAnalyticDashboardResponseRevenue soldItemsCount;
+
+  /// \"N sales pending details\": in the period, not in revenue/profit/avg.
+  num pendingDetailsCount;
 
   GetAnalyticDashboardResponseRevenue cancelledCount;
 
@@ -54,11 +61,16 @@ class GetAnalyticDashboardResponse {
 
   GetAnalyticDashboardResponseRevenue avgSalePrice;
 
+  /// 0–100 (legacy unit). The full cohort is `sellThroughCohort`.
   num sellThroughRate;
 
   GetAnalyticDashboardResponseSellThrough sellThrough;
 
+  GetAnalyticDashboardResponseSellThroughCohort sellThroughCohort;
+
   num avgDaysToSell;
+
+  num medianDaysToSell;
 
   List<GetAnalyticDashboardResponseSalesByPlatform> salesByPlatform;
 
@@ -78,11 +90,14 @@ class GetAnalyticDashboardResponse {
 
   List<String> availableLabels;
 
+  GetAnalyticDashboardResponsePeriod period;
+
   @override
   bool operator ==(Object other) => identical(this, other) || other is GetAnalyticDashboardResponse &&
      other.revenue == revenue &&
      other.profit == profit &&
      other.soldItemsCount == soldItemsCount &&
+     other.pendingDetailsCount == pendingDetailsCount &&
      other.cancelledCount == cancelledCount &&
      other.cancelRate == cancelRate &&
      other.refundedAmount == refundedAmount &&
@@ -91,7 +106,9 @@ class GetAnalyticDashboardResponse {
      other.avgSalePrice == avgSalePrice &&
      other.sellThroughRate == sellThroughRate &&
      other.sellThrough == sellThrough &&
+     other.sellThroughCohort == sellThroughCohort &&
      other.avgDaysToSell == avgDaysToSell &&
+     other.medianDaysToSell == medianDaysToSell &&
      other.salesByPlatform == salesByPlatform &&
      other.avgSalePriceByPlatform == avgSalePriceByPlatform &&
      other.revenueByDay == revenueByDay &&
@@ -100,7 +117,8 @@ class GetAnalyticDashboardResponse {
      other.topBrands == topBrands &&
      other.top5ItemsByRevenue == top5ItemsByRevenue &&
      other.recentSales == recentSales &&
-     other.availableLabels == availableLabels;
+     other.availableLabels == availableLabels &&
+     other.period == period;
 
   @override
   int get hashCode =>
@@ -108,6 +126,7 @@ class GetAnalyticDashboardResponse {
     (revenue == null ? 0 : revenue.hashCode) +
     (profit == null ? 0 : profit.hashCode) +
     (soldItemsCount == null ? 0 : soldItemsCount.hashCode) +
+    (pendingDetailsCount == null ? 0 : pendingDetailsCount.hashCode) +
     (cancelledCount == null ? 0 : cancelledCount.hashCode) +
     (cancelRate == null ? 0 : cancelRate.hashCode) +
     (refundedAmount == null ? 0 : refundedAmount.hashCode) +
@@ -116,7 +135,9 @@ class GetAnalyticDashboardResponse {
     (avgSalePrice == null ? 0 : avgSalePrice.hashCode) +
     (sellThroughRate == null ? 0 : sellThroughRate.hashCode) +
     (sellThrough == null ? 0 : sellThrough.hashCode) +
+    (sellThroughCohort == null ? 0 : sellThroughCohort.hashCode) +
     (avgDaysToSell == null ? 0 : avgDaysToSell.hashCode) +
+    (medianDaysToSell == null ? 0 : medianDaysToSell.hashCode) +
     (salesByPlatform == null ? 0 : salesByPlatform.hashCode) +
     (avgSalePriceByPlatform == null ? 0 : avgSalePriceByPlatform.hashCode) +
     (revenueByDay == null ? 0 : revenueByDay.hashCode) +
@@ -125,16 +146,18 @@ class GetAnalyticDashboardResponse {
     (topBrands == null ? 0 : topBrands.hashCode) +
     (top5ItemsByRevenue == null ? 0 : top5ItemsByRevenue.hashCode) +
     (recentSales == null ? 0 : recentSales.hashCode) +
-    (availableLabels == null ? 0 : availableLabels.hashCode);
+    (availableLabels == null ? 0 : availableLabels.hashCode) +
+    (period == null ? 0 : period.hashCode);
 
   @override
-  String toString() => 'GetAnalyticDashboardResponse[revenue=$revenue, profit=$profit, soldItemsCount=$soldItemsCount, cancelledCount=$cancelledCount, cancelRate=$cancelRate, refundedAmount=$refundedAmount, refundedCount=$refundedCount, listedItemsCount=$listedItemsCount, avgSalePrice=$avgSalePrice, sellThroughRate=$sellThroughRate, sellThrough=$sellThrough, avgDaysToSell=$avgDaysToSell, salesByPlatform=$salesByPlatform, avgSalePriceByPlatform=$avgSalePriceByPlatform, revenueByDay=$revenueByDay, topCategories=$topCategories, topSubcategories=$topSubcategories, topBrands=$topBrands, top5ItemsByRevenue=$top5ItemsByRevenue, recentSales=$recentSales, availableLabels=$availableLabels]';
+  String toString() => 'GetAnalyticDashboardResponse[revenue=$revenue, profit=$profit, soldItemsCount=$soldItemsCount, pendingDetailsCount=$pendingDetailsCount, cancelledCount=$cancelledCount, cancelRate=$cancelRate, refundedAmount=$refundedAmount, refundedCount=$refundedCount, listedItemsCount=$listedItemsCount, avgSalePrice=$avgSalePrice, sellThroughRate=$sellThroughRate, sellThrough=$sellThrough, sellThroughCohort=$sellThroughCohort, avgDaysToSell=$avgDaysToSell, medianDaysToSell=$medianDaysToSell, salesByPlatform=$salesByPlatform, avgSalePriceByPlatform=$avgSalePriceByPlatform, revenueByDay=$revenueByDay, topCategories=$topCategories, topSubcategories=$topSubcategories, topBrands=$topBrands, top5ItemsByRevenue=$top5ItemsByRevenue, recentSales=$recentSales, availableLabels=$availableLabels, period=$period]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
       json[r'revenue'] = revenue;
       json[r'profit'] = profit;
       json[r'soldItemsCount'] = soldItemsCount;
+      json[r'pendingDetailsCount'] = pendingDetailsCount;
       json[r'cancelledCount'] = cancelledCount;
       json[r'cancelRate'] = cancelRate;
       json[r'refundedAmount'] = refundedAmount;
@@ -145,8 +168,12 @@ class GetAnalyticDashboardResponse {
       json[r'sellThroughRate'] = sellThroughRate;
     }
       json[r'sellThrough'] = sellThrough;
+      json[r'sellThroughCohort'] = sellThroughCohort;
     if (avgDaysToSell != null) {
       json[r'avgDaysToSell'] = avgDaysToSell;
+    }
+    if (medianDaysToSell != null) {
+      json[r'medianDaysToSell'] = medianDaysToSell;
     }
       json[r'salesByPlatform'] = salesByPlatform;
       json[r'avgSalePriceByPlatform'] = avgSalePriceByPlatform;
@@ -157,6 +184,7 @@ class GetAnalyticDashboardResponse {
       json[r'top5ItemsByRevenue'] = top5ItemsByRevenue;
       json[r'recentSales'] = recentSales;
       json[r'availableLabels'] = availableLabels;
+      json[r'period'] = period;
     return json;
   }
 
@@ -170,6 +198,9 @@ class GetAnalyticDashboardResponse {
         revenue: GetAnalyticDashboardResponseRevenue.fromJson(json[r'revenue']),
         profit: GetAnalyticDashboardResponseRevenue.fromJson(json[r'profit']),
         soldItemsCount: GetAnalyticDashboardResponseRevenue.fromJson(json[r'soldItemsCount']),
+        pendingDetailsCount: json[r'pendingDetailsCount'] == null
+          ? null
+          : num.parse(json[r'pendingDetailsCount'].toString()),
         cancelledCount: GetAnalyticDashboardResponseRevenue.fromJson(json[r'cancelledCount']),
         cancelRate: GetAnalyticDashboardResponseCancelRate.fromJson(json[r'cancelRate']),
         refundedAmount: GetAnalyticDashboardResponseRevenue.fromJson(json[r'refundedAmount']),
@@ -180,9 +211,13 @@ class GetAnalyticDashboardResponse {
           ? null
           : num.parse(json[r'sellThroughRate'].toString()),
         sellThrough: GetAnalyticDashboardResponseSellThrough.fromJson(json[r'sellThrough']),
+        sellThroughCohort: GetAnalyticDashboardResponseSellThroughCohort.fromJson(json[r'sellThroughCohort']),
         avgDaysToSell: json[r'avgDaysToSell'] == null
           ? null
           : num.parse(json[r'avgDaysToSell'].toString()),
+        medianDaysToSell: json[r'medianDaysToSell'] == null
+          ? null
+          : num.parse(json[r'medianDaysToSell'].toString()),
         salesByPlatform: GetAnalyticDashboardResponseSalesByPlatform.listFromJson(json[r'salesByPlatform']),
         avgSalePriceByPlatform: GetAnalyticDashboardResponseAvgSalePriceByPlatform.listFromJson(json[r'avgSalePriceByPlatform']),
         revenueByDay: GetAnalyticDashboardResponseRevenueByDay.listFromJson(json[r'revenueByDay']),
@@ -194,6 +229,7 @@ class GetAnalyticDashboardResponse {
         availableLabels: json[r'availableLabels'] is List
           ? (json[r'availableLabels'] as List).cast<String>()
           : null,
+        period: GetAnalyticDashboardResponsePeriod.fromJson(json[r'period']),
       );
     }
     return null;

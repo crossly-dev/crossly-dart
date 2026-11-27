@@ -342,14 +342,14 @@ class GetVaultMarketOracleBySlugResponseStatusEnum {
   String toJson() => value;
 
   static const skipped = GetVaultMarketOracleBySlugResponseStatusEnum._(r'skipped');
-  static const failed = GetVaultMarketOracleBySlugResponseStatusEnum._(r'failed');
   static const published = GetVaultMarketOracleBySlugResponseStatusEnum._(r'published');
+  static const failed = GetVaultMarketOracleBySlugResponseStatusEnum._(r'failed');
 
   /// List of all possible values in this [enum][GetVaultMarketOracleBySlugResponseStatusEnum].
   static const values = <GetVaultMarketOracleBySlugResponseStatusEnum>[
     skipped,
-    failed,
     published,
+    failed,
   ];
 
   static GetVaultMarketOracleBySlugResponseStatusEnum fromJson(dynamic value) =>
@@ -382,8 +382,8 @@ class GetVaultMarketOracleBySlugResponseStatusEnumTypeTransformer {
     if (data != null) {
       switch (data.toString()) {
         case r'skipped': return GetVaultMarketOracleBySlugResponseStatusEnum.skipped;
-        case r'failed': return GetVaultMarketOracleBySlugResponseStatusEnum.failed;
         case r'published': return GetVaultMarketOracleBySlugResponseStatusEnum.published;
+        case r'failed': return GetVaultMarketOracleBySlugResponseStatusEnum.failed;
         default:
           if (allowNull == false) {
             throw ArgumentError('Unknown enum value to decode: $data');

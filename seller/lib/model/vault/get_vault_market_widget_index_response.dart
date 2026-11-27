@@ -52,7 +52,7 @@ class GetVaultMarketWidgetIndexResponse {
 
   num sinceInceptionBps;
 
-  List<GetVaultMarketWidgetIndexResponsePoints> points;
+  List<GetVaultMarketOptionAnalyticResponseHistoricalVolSeries> points;
 
   GetVaultMarketWidgetIndexResponseQualityEnum quality;
 
@@ -169,7 +169,7 @@ class GetVaultMarketWidgetIndexResponse {
         sinceInceptionBps: json[r'sinceInceptionBps'] == null
           ? null
           : num.parse(json[r'sinceInceptionBps'].toString()),
-        points: GetVaultMarketWidgetIndexResponsePoints.listFromJson(json[r'points']),
+        points: GetVaultMarketOptionAnalyticResponseHistoricalVolSeries.listFromJson(json[r'points']),
         quality: GetVaultMarketWidgetIndexResponseQualityEnum.fromJson(json[r'quality']),
         n: json[r'n'] == null
           ? null
@@ -234,18 +234,18 @@ class GetVaultMarketWidgetIndexResponseKindEnum {
   static const custom = GetVaultMarketWidgetIndexResponseKindEnum._(r'custom');
   static const brand = GetVaultMarketWidgetIndexResponseKindEnum._(r'brand');
   static const category = GetVaultMarketWidgetIndexResponseKindEnum._(r'category');
+  static const segment = GetVaultMarketWidgetIndexResponseKindEnum._(r'segment');
   static const curated = GetVaultMarketWidgetIndexResponseKindEnum._(r'curated');
   static const composite = GetVaultMarketWidgetIndexResponseKindEnum._(r'composite');
-  static const segment = GetVaultMarketWidgetIndexResponseKindEnum._(r'segment');
 
   /// List of all possible values in this [enum][GetVaultMarketWidgetIndexResponseKindEnum].
   static const values = <GetVaultMarketWidgetIndexResponseKindEnum>[
     custom,
     brand,
     category,
+    segment,
     curated,
     composite,
-    segment,
   ];
 
   static GetVaultMarketWidgetIndexResponseKindEnum fromJson(dynamic value) =>
@@ -280,9 +280,9 @@ class GetVaultMarketWidgetIndexResponseKindEnumTypeTransformer {
         case r'custom': return GetVaultMarketWidgetIndexResponseKindEnum.custom;
         case r'brand': return GetVaultMarketWidgetIndexResponseKindEnum.brand;
         case r'category': return GetVaultMarketWidgetIndexResponseKindEnum.category;
+        case r'segment': return GetVaultMarketWidgetIndexResponseKindEnum.segment;
         case r'curated': return GetVaultMarketWidgetIndexResponseKindEnum.curated;
         case r'composite': return GetVaultMarketWidgetIndexResponseKindEnum.composite;
-        case r'segment': return GetVaultMarketWidgetIndexResponseKindEnum.segment;
         default:
           if (allowNull == false) {
             throw ArgumentError('Unknown enum value to decode: $data');
@@ -384,16 +384,16 @@ class GetVaultMarketWidgetIndexResponseQualityEnum {
   String toJson() => value;
 
   static const none = GetVaultMarketWidgetIndexResponseQualityEnum._(r'none');
+  static const C = GetVaultMarketWidgetIndexResponseQualityEnum._(r'C');
   static const A = GetVaultMarketWidgetIndexResponseQualityEnum._(r'A');
   static const B = GetVaultMarketWidgetIndexResponseQualityEnum._(r'B');
-  static const C = GetVaultMarketWidgetIndexResponseQualityEnum._(r'C');
 
   /// List of all possible values in this [enum][GetVaultMarketWidgetIndexResponseQualityEnum].
   static const values = <GetVaultMarketWidgetIndexResponseQualityEnum>[
     none,
+    C,
     A,
     B,
-    C,
   ];
 
   static GetVaultMarketWidgetIndexResponseQualityEnum fromJson(dynamic value) =>
@@ -426,9 +426,9 @@ class GetVaultMarketWidgetIndexResponseQualityEnumTypeTransformer {
     if (data != null) {
       switch (data.toString()) {
         case r'none': return GetVaultMarketWidgetIndexResponseQualityEnum.none;
+        case r'C': return GetVaultMarketWidgetIndexResponseQualityEnum.C;
         case r'A': return GetVaultMarketWidgetIndexResponseQualityEnum.A;
         case r'B': return GetVaultMarketWidgetIndexResponseQualityEnum.B;
-        case r'C': return GetVaultMarketWidgetIndexResponseQualityEnum.C;
         default:
           if (allowNull == false) {
             throw ArgumentError('Unknown enum value to decode: $data');

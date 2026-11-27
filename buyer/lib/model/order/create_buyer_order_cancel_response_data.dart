@@ -13,33 +13,33 @@ part of openapi.api;
 class CreateBuyerOrderCancelResponseData {
   /// Returns a new [CreateBuyerOrderCancelResponseData] instance.
   CreateBuyerOrderCancelResponseData({
-    @required this.refunded,
     @required this.ok,
+    @required this.refunded,
   });
+
+  bool ok;
 
   /// false only for an order paid entirely with credit, which has no card charge to refund.
   bool refunded;
 
-  bool ok;
-
   @override
   bool operator ==(Object other) => identical(this, other) || other is CreateBuyerOrderCancelResponseData &&
-     other.refunded == refunded &&
-     other.ok == ok;
+     other.ok == ok &&
+     other.refunded == refunded;
 
   @override
   int get hashCode =>
   // ignore: unnecessary_parenthesis
-    (refunded == null ? 0 : refunded.hashCode) +
-    (ok == null ? 0 : ok.hashCode);
+    (ok == null ? 0 : ok.hashCode) +
+    (refunded == null ? 0 : refunded.hashCode);
 
   @override
-  String toString() => 'CreateBuyerOrderCancelResponseData[refunded=$refunded, ok=$ok]';
+  String toString() => 'CreateBuyerOrderCancelResponseData[ok=$ok, refunded=$refunded]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-      json[r'refunded'] = refunded;
       json[r'ok'] = ok;
+      json[r'refunded'] = refunded;
     return json;
   }
 
@@ -50,8 +50,8 @@ class CreateBuyerOrderCancelResponseData {
     if (value is Map) {
       final json = value.cast<String, dynamic>();
       return CreateBuyerOrderCancelResponseData(
-        refunded: mapValueOfType<bool>(json, r'refunded'),
         ok: mapValueOfType<bool>(json, r'ok'),
+        refunded: mapValueOfType<bool>(json, r'refunded'),
       );
     }
     return null;

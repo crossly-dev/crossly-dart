@@ -16,11 +16,11 @@ class CreateBuyerRegistryResponseData {
     @required this.id,
     @required this.createdAt,
     @required this.updatedAt,
-    @required this.token,
+    @required this.ownerUserId,
     @required this.kind,
     this.message,
-    @required this.ownerUserId,
     @required this.wishlistId,
+    @required this.token,
     this.eventDate,
     this.shipAddressId,
   });
@@ -31,15 +31,15 @@ class CreateBuyerRegistryResponseData {
 
   DateTime updatedAt;
 
-  String token;
+  String ownerUserId;
 
   String kind;
 
   String message;
 
-  String ownerUserId;
-
   String wishlistId;
+
+  String token;
 
   String eventDate;
 
@@ -50,11 +50,11 @@ class CreateBuyerRegistryResponseData {
      other.id == id &&
      other.createdAt == createdAt &&
      other.updatedAt == updatedAt &&
-     other.token == token &&
+     other.ownerUserId == ownerUserId &&
      other.kind == kind &&
      other.message == message &&
-     other.ownerUserId == ownerUserId &&
      other.wishlistId == wishlistId &&
+     other.token == token &&
      other.eventDate == eventDate &&
      other.shipAddressId == shipAddressId;
 
@@ -64,29 +64,29 @@ class CreateBuyerRegistryResponseData {
     (id == null ? 0 : id.hashCode) +
     (createdAt == null ? 0 : createdAt.hashCode) +
     (updatedAt == null ? 0 : updatedAt.hashCode) +
-    (token == null ? 0 : token.hashCode) +
+    (ownerUserId == null ? 0 : ownerUserId.hashCode) +
     (kind == null ? 0 : kind.hashCode) +
     (message == null ? 0 : message.hashCode) +
-    (ownerUserId == null ? 0 : ownerUserId.hashCode) +
     (wishlistId == null ? 0 : wishlistId.hashCode) +
+    (token == null ? 0 : token.hashCode) +
     (eventDate == null ? 0 : eventDate.hashCode) +
     (shipAddressId == null ? 0 : shipAddressId.hashCode);
 
   @override
-  String toString() => 'CreateBuyerRegistryResponseData[id=$id, createdAt=$createdAt, updatedAt=$updatedAt, token=$token, kind=$kind, message=$message, ownerUserId=$ownerUserId, wishlistId=$wishlistId, eventDate=$eventDate, shipAddressId=$shipAddressId]';
+  String toString() => 'CreateBuyerRegistryResponseData[id=$id, createdAt=$createdAt, updatedAt=$updatedAt, ownerUserId=$ownerUserId, kind=$kind, message=$message, wishlistId=$wishlistId, token=$token, eventDate=$eventDate, shipAddressId=$shipAddressId]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
       json[r'id'] = id;
       json[r'createdAt'] = createdAt.toUtc().toIso8601String();
       json[r'updatedAt'] = updatedAt.toUtc().toIso8601String();
-      json[r'token'] = token;
+      json[r'ownerUserId'] = ownerUserId;
       json[r'kind'] = kind;
     if (message != null) {
       json[r'message'] = message;
     }
-      json[r'ownerUserId'] = ownerUserId;
       json[r'wishlistId'] = wishlistId;
+      json[r'token'] = token;
     if (eventDate != null) {
       json[r'eventDate'] = eventDate;
     }
@@ -106,11 +106,11 @@ class CreateBuyerRegistryResponseData {
         id: mapValueOfType<String>(json, r'id'),
         createdAt: mapDateTime(json, r'createdAt', ''),
         updatedAt: mapDateTime(json, r'updatedAt', ''),
-        token: mapValueOfType<String>(json, r'token'),
+        ownerUserId: mapValueOfType<String>(json, r'ownerUserId'),
         kind: mapValueOfType<String>(json, r'kind'),
         message: mapValueOfType<String>(json, r'message'),
-        ownerUserId: mapValueOfType<String>(json, r'ownerUserId'),
         wishlistId: mapValueOfType<String>(json, r'wishlistId'),
+        token: mapValueOfType<String>(json, r'token'),
         eventDate: mapValueOfType<String>(json, r'eventDate'),
         shipAddressId: mapValueOfType<String>(json, r'shipAddressId'),
       );

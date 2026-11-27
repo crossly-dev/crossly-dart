@@ -13,17 +13,19 @@ part of openapi.api;
 class CreateSpatialSceneNodeResponseData {
   /// Returns a new [CreateSpatialSceneNodeResponseData] instance.
   CreateSpatialSceneNodeResponseData({
+    @required this.transform,
     @required this.id,
     @required this.createdAt,
     @required this.updatedAt,
-    @required this.transform,
     this.label,
     @required this.sort,
-    this.segment,
     @required this.sceneId,
     this.parentId,
     @required this.unitKey,
+    this.segment,
   });
+
+  CreateSpatialSceneNodeResponseDataTransform transform;
 
   String id;
 
@@ -31,13 +33,9 @@ class CreateSpatialSceneNodeResponseData {
 
   DateTime updatedAt;
 
-  CreateSpatialSceneNodeResponseDataTransform transform;
-
   String label;
 
   num sort;
-
-  String segment;
 
   String sceneId;
 
@@ -45,54 +43,56 @@ class CreateSpatialSceneNodeResponseData {
 
   String unitKey;
 
+  String segment;
+
   @override
   bool operator ==(Object other) => identical(this, other) || other is CreateSpatialSceneNodeResponseData &&
+     other.transform == transform &&
      other.id == id &&
      other.createdAt == createdAt &&
      other.updatedAt == updatedAt &&
-     other.transform == transform &&
      other.label == label &&
      other.sort == sort &&
-     other.segment == segment &&
      other.sceneId == sceneId &&
      other.parentId == parentId &&
-     other.unitKey == unitKey;
+     other.unitKey == unitKey &&
+     other.segment == segment;
 
   @override
   int get hashCode =>
   // ignore: unnecessary_parenthesis
+    (transform == null ? 0 : transform.hashCode) +
     (id == null ? 0 : id.hashCode) +
     (createdAt == null ? 0 : createdAt.hashCode) +
     (updatedAt == null ? 0 : updatedAt.hashCode) +
-    (transform == null ? 0 : transform.hashCode) +
     (label == null ? 0 : label.hashCode) +
     (sort == null ? 0 : sort.hashCode) +
-    (segment == null ? 0 : segment.hashCode) +
     (sceneId == null ? 0 : sceneId.hashCode) +
     (parentId == null ? 0 : parentId.hashCode) +
-    (unitKey == null ? 0 : unitKey.hashCode);
+    (unitKey == null ? 0 : unitKey.hashCode) +
+    (segment == null ? 0 : segment.hashCode);
 
   @override
-  String toString() => 'CreateSpatialSceneNodeResponseData[id=$id, createdAt=$createdAt, updatedAt=$updatedAt, transform=$transform, label=$label, sort=$sort, segment=$segment, sceneId=$sceneId, parentId=$parentId, unitKey=$unitKey]';
+  String toString() => 'CreateSpatialSceneNodeResponseData[transform=$transform, id=$id, createdAt=$createdAt, updatedAt=$updatedAt, label=$label, sort=$sort, sceneId=$sceneId, parentId=$parentId, unitKey=$unitKey, segment=$segment]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
+      json[r'transform'] = transform;
       json[r'id'] = id;
       json[r'createdAt'] = createdAt.toUtc().toIso8601String();
       json[r'updatedAt'] = updatedAt.toUtc().toIso8601String();
-      json[r'transform'] = transform;
     if (label != null) {
       json[r'label'] = label;
     }
       json[r'sort'] = sort;
-    if (segment != null) {
-      json[r'segment'] = segment;
-    }
       json[r'sceneId'] = sceneId;
     if (parentId != null) {
       json[r'parentId'] = parentId;
     }
       json[r'unitKey'] = unitKey;
+    if (segment != null) {
+      json[r'segment'] = segment;
+    }
     return json;
   }
 
@@ -103,18 +103,18 @@ class CreateSpatialSceneNodeResponseData {
     if (value is Map) {
       final json = value.cast<String, dynamic>();
       return CreateSpatialSceneNodeResponseData(
+        transform: CreateSpatialSceneNodeResponseDataTransform.fromJson(json[r'transform']),
         id: mapValueOfType<String>(json, r'id'),
         createdAt: mapDateTime(json, r'createdAt', ''),
         updatedAt: mapDateTime(json, r'updatedAt', ''),
-        transform: CreateSpatialSceneNodeResponseDataTransform.fromJson(json[r'transform']),
         label: mapValueOfType<String>(json, r'label'),
         sort: json[r'sort'] == null
           ? null
           : num.parse(json[r'sort'].toString()),
-        segment: mapValueOfType<String>(json, r'segment'),
         sceneId: mapValueOfType<String>(json, r'sceneId'),
         parentId: mapValueOfType<String>(json, r'parentId'),
         unitKey: mapValueOfType<String>(json, r'unitKey'),
+        segment: mapValueOfType<String>(json, r'segment'),
       );
     }
     return null;

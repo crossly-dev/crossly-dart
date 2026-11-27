@@ -38,7 +38,7 @@ class GetVaultMarketWidgetMarkResponse {
 
   String gradeKey;
 
-  ListVaultMarketFeedItemMark mark;
+  ListVaultMarketOpeningItemMark mark;
 
   num trades30d;
 
@@ -117,7 +117,7 @@ class GetVaultMarketWidgetMarkResponse {
         imageUrl: mapValueOfType<String>(json, r'imageUrl'),
         condition: mapValueOfType<String>(json, r'condition'),
         gradeKey: mapValueOfType<String>(json, r'gradeKey'),
-        mark: ListVaultMarketFeedItemMark.fromJson(json[r'mark']),
+        mark: ListVaultMarketOpeningItemMark.fromJson(json[r'mark']),
         trades30d: json[r'trades30d'] == null
           ? null
           : num.parse(json[r'trades30d'].toString()),

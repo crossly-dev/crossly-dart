@@ -32,6 +32,8 @@ Method | HTTP request | Description
 
 Create an automation rule.
 
+Deprecated: automation rules are workflows now. Use /v1/workflows.
+
 ### Example
 ```dart
 import 'package:crossly/api.dart';
@@ -74,6 +76,8 @@ This endpoint does not need any parameter.
 > CreateAutomationRuleImportResponse createAutomationRuleImport(activate)
 
 Import one or more rules from recipe JSON (single or bundle).
+
+Deprecated: automation rules are workflows now. Use /v1/workflows.
 
 ### Example
 ```dart
@@ -122,6 +126,8 @@ Name | Type | Description  | Notes
 
 Fire an automation rule immediately.
 
+Deprecated: automation rules are workflows now. Use /v1/workflows.
+
 ### Example
 ```dart
 import 'package:crossly/api.dart';
@@ -165,9 +171,11 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
 # **createAutomationRuleToggle**
-> UpdateAutomationRuleResponse createAutomationRuleToggle(id)
+> GetAutomationRuleResponse createAutomationRuleToggle(id)
 
 Flip an automation rule between active and inactive.
+
+Deprecated: automation rules are workflows now. Use /v1/workflows.
 
 ### Example
 ```dart
@@ -198,7 +206,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**UpdateAutomationRuleResponse**
+**GetAutomationRuleResponse**
 
 ### Authorization
 
@@ -215,6 +223,8 @@ Name | Type | Description  | Notes
 > CreateAutomationRuleValidateRecipeResponse createAutomationRuleValidateRecipe()
 
 Dry-run validate one or more recipes against the live catalog.
+
+Deprecated: automation rules are workflows now. Use /v1/workflows.
 
 ### Example
 ```dart
@@ -353,6 +363,8 @@ Name | Type | Description  | Notes
 
 Delete an automation rule.
 
+Deprecated: automation rules are workflows now. Use /v1/workflows.
+
 ### Example
 ```dart
 import 'package:crossly/api.dart';
@@ -443,6 +455,8 @@ This endpoint does not need any parameter.
 
 Get a single automation rule.
 
+Deprecated: automation rules are workflows now. Use /v1/workflows.
+
 ### Example
 ```dart
 import 'package:crossly/api.dart';
@@ -490,6 +504,8 @@ Name | Type | Description  | Notes
 
 Export the user's full rule library as a portable recipe bundle.
 
+Deprecated: automation rules are workflows now. Use /v1/workflows.
+
 ### Example
 ```dart
 import 'package:crossly/api.dart';
@@ -532,6 +548,8 @@ This endpoint does not need any parameter.
 > GetAutomationRuleExportByIdResponse getAutomationRuleExportById(id)
 
 Export a single automation rule as a portable recipe.
+
+Deprecated: automation rules are workflows now. Use /v1/workflows.
 
 ### Example
 ```dart
@@ -580,6 +598,8 @@ Name | Type | Description  | Notes
 
 List automation rules.
 
+Deprecated: automation rules are workflows now. Use /v1/workflows.
+
 ### Example
 ```dart
 import 'package:crossly/api.dart';
@@ -622,6 +642,8 @@ This endpoint does not need any parameter.
 > ListAutomationRunsResponse listAutomationRuns(ruleId, chainId, limit)
 
 Per-fire history for automation rules and workflow chain runs.
+
+Deprecated: use /v1/workflow-runs.
 
 ### Example
 ```dart
@@ -713,9 +735,11 @@ This endpoint does not need any parameter.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
 # **updateAutomationRule**
-> UpdateAutomationRuleResponse updateAutomationRule(id)
+> GetAutomationRuleResponse updateAutomationRule(id)
 
 Update an automation rule (full replace).
+
+Deprecated: automation rules are workflows now. Use /v1/workflows.
 
 ### Example
 ```dart
@@ -746,7 +770,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**UpdateAutomationRuleResponse**
+**GetAutomationRuleResponse**
 
 ### Authorization
 

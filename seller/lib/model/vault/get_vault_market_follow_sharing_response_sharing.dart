@@ -15,48 +15,48 @@ class GetVaultMarketFollowSharingResponseSharing {
   GetVaultMarketFollowSharingResponseSharing({
     @required this.orders,
     @required this.sales,
-    @required this.hallLoans,
     @required this.leaderboard,
     @required this.deposits,
+    @required this.hallLoans,
   });
 
   bool orders;
 
   bool sales;
 
-  bool hallLoans;
-
   bool leaderboard;
 
   bool deposits;
+
+  bool hallLoans;
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is GetVaultMarketFollowSharingResponseSharing &&
      other.orders == orders &&
      other.sales == sales &&
-     other.hallLoans == hallLoans &&
      other.leaderboard == leaderboard &&
-     other.deposits == deposits;
+     other.deposits == deposits &&
+     other.hallLoans == hallLoans;
 
   @override
   int get hashCode =>
   // ignore: unnecessary_parenthesis
     (orders == null ? 0 : orders.hashCode) +
     (sales == null ? 0 : sales.hashCode) +
-    (hallLoans == null ? 0 : hallLoans.hashCode) +
     (leaderboard == null ? 0 : leaderboard.hashCode) +
-    (deposits == null ? 0 : deposits.hashCode);
+    (deposits == null ? 0 : deposits.hashCode) +
+    (hallLoans == null ? 0 : hallLoans.hashCode);
 
   @override
-  String toString() => 'GetVaultMarketFollowSharingResponseSharing[orders=$orders, sales=$sales, hallLoans=$hallLoans, leaderboard=$leaderboard, deposits=$deposits]';
+  String toString() => 'GetVaultMarketFollowSharingResponseSharing[orders=$orders, sales=$sales, leaderboard=$leaderboard, deposits=$deposits, hallLoans=$hallLoans]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
       json[r'orders'] = orders;
       json[r'sales'] = sales;
-      json[r'hallLoans'] = hallLoans;
       json[r'leaderboard'] = leaderboard;
       json[r'deposits'] = deposits;
+      json[r'hallLoans'] = hallLoans;
     return json;
   }
 
@@ -69,9 +69,9 @@ class GetVaultMarketFollowSharingResponseSharing {
       return GetVaultMarketFollowSharingResponseSharing(
         orders: mapValueOfType<bool>(json, r'orders'),
         sales: mapValueOfType<bool>(json, r'sales'),
-        hallLoans: mapValueOfType<bool>(json, r'hallLoans'),
         leaderboard: mapValueOfType<bool>(json, r'leaderboard'),
         deposits: mapValueOfType<bool>(json, r'deposits'),
+        hallLoans: mapValueOfType<bool>(json, r'hallLoans'),
       );
     }
     return null;

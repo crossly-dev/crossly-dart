@@ -109,21 +109,21 @@ class GetWeb3ResolveResponseChainEnum {
 
   String toJson() => value;
 
-  static const solana = GetWeb3ResolveResponseChainEnum._(r'solana');
   static const ethereum = GetWeb3ResolveResponseChainEnum._(r'ethereum');
   static const base = GetWeb3ResolveResponseChainEnum._(r'base');
   static const polygon = GetWeb3ResolveResponseChainEnum._(r'polygon');
   static const arbitrum = GetWeb3ResolveResponseChainEnum._(r'arbitrum');
   static const optimism = GetWeb3ResolveResponseChainEnum._(r'optimism');
+  static const solana = GetWeb3ResolveResponseChainEnum._(r'solana');
 
   /// List of all possible values in this [enum][GetWeb3ResolveResponseChainEnum].
   static const values = <GetWeb3ResolveResponseChainEnum>[
-    solana,
     ethereum,
     base,
     polygon,
     arbitrum,
     optimism,
+    solana,
   ];
 
   static GetWeb3ResolveResponseChainEnum fromJson(dynamic value) =>
@@ -155,12 +155,12 @@ class GetWeb3ResolveResponseChainEnumTypeTransformer {
   GetWeb3ResolveResponseChainEnum decode(dynamic data, {bool allowNull}) {
     if (data != null) {
       switch (data.toString()) {
-        case r'solana': return GetWeb3ResolveResponseChainEnum.solana;
         case r'ethereum': return GetWeb3ResolveResponseChainEnum.ethereum;
         case r'base': return GetWeb3ResolveResponseChainEnum.base;
         case r'polygon': return GetWeb3ResolveResponseChainEnum.polygon;
         case r'arbitrum': return GetWeb3ResolveResponseChainEnum.arbitrum;
         case r'optimism': return GetWeb3ResolveResponseChainEnum.optimism;
+        case r'solana': return GetWeb3ResolveResponseChainEnum.solana;
         default:
           if (allowNull == false) {
             throw ArgumentError('Unknown enum value to decode: $data');

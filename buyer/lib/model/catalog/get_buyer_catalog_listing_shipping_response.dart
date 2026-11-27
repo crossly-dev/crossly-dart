@@ -23,8 +23,12 @@ class GetBuyerCatalogListingShippingResponse {
     this.destinationCountry,
     @required this.shipsToCountry,
     this.noShipReason,
+    this.noShipMessage,
+    this.rule,
+    @required this.partial,
     this.services = const [],
     this.defaultServiceId,
+    this.calculatedAtCheckout,
     @required this.international,
     @required this.importChargesNote,
   });
@@ -49,9 +53,21 @@ class GetBuyerCatalogListingShippingResponse {
 
   String noShipReason;
 
+  /// Why it doesn't ship here, as the buyer should read it; null when it does.
+  String noShipMessage;
+
+  /// The seller's ship-to rule that decided a refusal; null when none did.
+  Map<String, Object> rule;
+
+  /// True when a fuller address (ZIP / postcode) could change the answer.
+  bool partial;
+
   List<GetBuyerCatalogListingShippingResponseServices> services;
 
   String defaultServiceId;
+
+  /// Buyer pays: calculated: no live label rate for this destination yet (give a ZIP); `cents` is null.
+  bool calculatedAtCheckout;
 
   GetBuyerCatalogListingShippingResponseInternational international;
 
@@ -69,8 +85,12 @@ class GetBuyerCatalogListingShippingResponse {
      other.destinationCountry == destinationCountry &&
      other.shipsToCountry == shipsToCountry &&
      other.noShipReason == noShipReason &&
+     other.noShipMessage == noShipMessage &&
+     other.rule == rule &&
+     other.partial == partial &&
      other.services == services &&
      other.defaultServiceId == defaultServiceId &&
+     other.calculatedAtCheckout == calculatedAtCheckout &&
      other.international == international &&
      other.importChargesNote == importChargesNote;
 
@@ -87,13 +107,17 @@ class GetBuyerCatalogListingShippingResponse {
     (destinationCountry == null ? 0 : destinationCountry.hashCode) +
     (shipsToCountry == null ? 0 : shipsToCountry.hashCode) +
     (noShipReason == null ? 0 : noShipReason.hashCode) +
+    (noShipMessage == null ? 0 : noShipMessage.hashCode) +
+    (rule == null ? 0 : rule.hashCode) +
+    (partial == null ? 0 : partial.hashCode) +
     (services == null ? 0 : services.hashCode) +
     (defaultServiceId == null ? 0 : defaultServiceId.hashCode) +
+    (calculatedAtCheckout == null ? 0 : calculatedAtCheckout.hashCode) +
     (international == null ? 0 : international.hashCode) +
     (importChargesNote == null ? 0 : importChargesNote.hashCode);
 
   @override
-  String toString() => 'GetBuyerCatalogListingShippingResponse[cents=$cents, kind=$kind, quantity=$quantity, carrier=$carrier, service=$service, cached=$cached, freeShippingThresholdCents=$freeShippingThresholdCents, destinationCountry=$destinationCountry, shipsToCountry=$shipsToCountry, noShipReason=$noShipReason, services=$services, defaultServiceId=$defaultServiceId, international=$international, importChargesNote=$importChargesNote]';
+  String toString() => 'GetBuyerCatalogListingShippingResponse[cents=$cents, kind=$kind, quantity=$quantity, carrier=$carrier, service=$service, cached=$cached, freeShippingThresholdCents=$freeShippingThresholdCents, destinationCountry=$destinationCountry, shipsToCountry=$shipsToCountry, noShipReason=$noShipReason, noShipMessage=$noShipMessage, rule=$rule, partial=$partial, services=$services, defaultServiceId=$defaultServiceId, calculatedAtCheckout=$calculatedAtCheckout, international=$international, importChargesNote=$importChargesNote]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -121,9 +145,19 @@ class GetBuyerCatalogListingShippingResponse {
     if (noShipReason != null) {
       json[r'noShipReason'] = noShipReason;
     }
+    if (noShipMessage != null) {
+      json[r'noShipMessage'] = noShipMessage;
+    }
+    if (rule != null) {
+      json[r'rule'] = rule;
+    }
+      json[r'partial'] = partial;
       json[r'services'] = services;
     if (defaultServiceId != null) {
       json[r'defaultServiceId'] = defaultServiceId;
+    }
+    if (calculatedAtCheckout != null) {
+      json[r'calculatedAtCheckout'] = calculatedAtCheckout;
     }
       json[r'international'] = international;
       json[r'importChargesNote'] = importChargesNote;
@@ -153,8 +187,12 @@ class GetBuyerCatalogListingShippingResponse {
         destinationCountry: mapValueOfType<String>(json, r'destinationCountry'),
         shipsToCountry: mapValueOfType<bool>(json, r'shipsToCountry'),
         noShipReason: mapValueOfType<String>(json, r'noShipReason'),
+        noShipMessage: mapValueOfType<String>(json, r'noShipMessage'),
+        rule: mapValueOfType<Map<String, Object>>(json, r'rule'),
+        partial: mapValueOfType<bool>(json, r'partial'),
         services: GetBuyerCatalogListingShippingResponseServices.listFromJson(json[r'services']),
         defaultServiceId: mapValueOfType<String>(json, r'defaultServiceId'),
+        calculatedAtCheckout: mapValueOfType<bool>(json, r'calculatedAtCheckout'),
         international: GetBuyerCatalogListingShippingResponseInternational.fromJson(json[r'international']),
         importChargesNote: mapValueOfType<bool>(json, r'importChargesNote'),
       );

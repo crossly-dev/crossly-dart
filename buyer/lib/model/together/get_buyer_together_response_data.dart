@@ -14,22 +14,24 @@ class GetBuyerTogetherResponseData {
   /// Returns a new [GetBuyerTogetherResponseData] instance.
   GetBuyerTogetherResponseData({
     @required this.id,
-    @required this.name,
-    @required this.endsAt,
     @required this.code,
+    @required this.name,
+    @required this.isHost,
+    @required this.endsAt,
     this.members = const [],
     this.items = const [],
     this.messages = const [],
-    @required this.isHost,
   });
 
   String id;
 
+  String code;
+
   String name;
 
-  String endsAt;
+  bool isHost;
 
-  String code;
+  String endsAt;
 
   List<GetBuyerTogetherResponseDataMembers> members;
 
@@ -37,44 +39,42 @@ class GetBuyerTogetherResponseData {
 
   List<GetBuyerTogetherResponseDataMessages> messages;
 
-  bool isHost;
-
   @override
   bool operator ==(Object other) => identical(this, other) || other is GetBuyerTogetherResponseData &&
      other.id == id &&
-     other.name == name &&
-     other.endsAt == endsAt &&
      other.code == code &&
+     other.name == name &&
+     other.isHost == isHost &&
+     other.endsAt == endsAt &&
      other.members == members &&
      other.items == items &&
-     other.messages == messages &&
-     other.isHost == isHost;
+     other.messages == messages;
 
   @override
   int get hashCode =>
   // ignore: unnecessary_parenthesis
     (id == null ? 0 : id.hashCode) +
-    (name == null ? 0 : name.hashCode) +
-    (endsAt == null ? 0 : endsAt.hashCode) +
     (code == null ? 0 : code.hashCode) +
+    (name == null ? 0 : name.hashCode) +
+    (isHost == null ? 0 : isHost.hashCode) +
+    (endsAt == null ? 0 : endsAt.hashCode) +
     (members == null ? 0 : members.hashCode) +
     (items == null ? 0 : items.hashCode) +
-    (messages == null ? 0 : messages.hashCode) +
-    (isHost == null ? 0 : isHost.hashCode);
+    (messages == null ? 0 : messages.hashCode);
 
   @override
-  String toString() => 'GetBuyerTogetherResponseData[id=$id, name=$name, endsAt=$endsAt, code=$code, members=$members, items=$items, messages=$messages, isHost=$isHost]';
+  String toString() => 'GetBuyerTogetherResponseData[id=$id, code=$code, name=$name, isHost=$isHost, endsAt=$endsAt, members=$members, items=$items, messages=$messages]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
       json[r'id'] = id;
-      json[r'name'] = name;
-      json[r'endsAt'] = endsAt;
       json[r'code'] = code;
+      json[r'name'] = name;
+      json[r'isHost'] = isHost;
+      json[r'endsAt'] = endsAt;
       json[r'members'] = members;
       json[r'items'] = items;
       json[r'messages'] = messages;
-      json[r'isHost'] = isHost;
     return json;
   }
 
@@ -86,13 +86,13 @@ class GetBuyerTogetherResponseData {
       final json = value.cast<String, dynamic>();
       return GetBuyerTogetherResponseData(
         id: mapValueOfType<String>(json, r'id'),
-        name: mapValueOfType<String>(json, r'name'),
-        endsAt: mapValueOfType<String>(json, r'endsAt'),
         code: mapValueOfType<String>(json, r'code'),
+        name: mapValueOfType<String>(json, r'name'),
+        isHost: mapValueOfType<bool>(json, r'isHost'),
+        endsAt: mapValueOfType<String>(json, r'endsAt'),
         members: GetBuyerTogetherResponseDataMembers.listFromJson(json[r'members']),
         items: GetBuyerTogetherResponseDataItems.listFromJson(json[r'items']),
         messages: GetBuyerTogetherResponseDataMessages.listFromJson(json[r'messages']),
-        isHost: mapValueOfType<bool>(json, r'isHost'),
       );
     }
     return null;

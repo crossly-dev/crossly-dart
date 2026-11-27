@@ -132,15 +132,15 @@ class CreateVaultMarketPaperMissionMarkCheckResponseAnswerEnum {
 
   String toJson() => value;
 
+  static const C = CreateVaultMarketPaperMissionMarkCheckResponseAnswerEnum._(r'C');
   static const A = CreateVaultMarketPaperMissionMarkCheckResponseAnswerEnum._(r'A');
   static const B = CreateVaultMarketPaperMissionMarkCheckResponseAnswerEnum._(r'B');
-  static const C = CreateVaultMarketPaperMissionMarkCheckResponseAnswerEnum._(r'C');
 
   /// List of all possible values in this [enum][CreateVaultMarketPaperMissionMarkCheckResponseAnswerEnum].
   static const values = <CreateVaultMarketPaperMissionMarkCheckResponseAnswerEnum>[
+    C,
     A,
     B,
-    C,
   ];
 
   static CreateVaultMarketPaperMissionMarkCheckResponseAnswerEnum fromJson(dynamic value) =>
@@ -172,9 +172,9 @@ class CreateVaultMarketPaperMissionMarkCheckResponseAnswerEnumTypeTransformer {
   CreateVaultMarketPaperMissionMarkCheckResponseAnswerEnum decode(dynamic data, {bool allowNull}) {
     if (data != null) {
       switch (data.toString()) {
+        case r'C': return CreateVaultMarketPaperMissionMarkCheckResponseAnswerEnum.C;
         case r'A': return CreateVaultMarketPaperMissionMarkCheckResponseAnswerEnum.A;
         case r'B': return CreateVaultMarketPaperMissionMarkCheckResponseAnswerEnum.B;
-        case r'C': return CreateVaultMarketPaperMissionMarkCheckResponseAnswerEnum.C;
         default:
           if (allowNull == false) {
             throw ArgumentError('Unknown enum value to decode: $data');
@@ -202,15 +202,15 @@ class CreateVaultMarketPaperMissionMarkCheckResponseQualityEnum {
 
   String toJson() => value;
 
+  static const C = CreateVaultMarketPaperMissionMarkCheckResponseQualityEnum._(r'C');
   static const A = CreateVaultMarketPaperMissionMarkCheckResponseQualityEnum._(r'A');
   static const B = CreateVaultMarketPaperMissionMarkCheckResponseQualityEnum._(r'B');
-  static const C = CreateVaultMarketPaperMissionMarkCheckResponseQualityEnum._(r'C');
 
   /// List of all possible values in this [enum][CreateVaultMarketPaperMissionMarkCheckResponseQualityEnum].
   static const values = <CreateVaultMarketPaperMissionMarkCheckResponseQualityEnum>[
+    C,
     A,
     B,
-    C,
   ];
 
   static CreateVaultMarketPaperMissionMarkCheckResponseQualityEnum fromJson(dynamic value) =>
@@ -242,9 +242,9 @@ class CreateVaultMarketPaperMissionMarkCheckResponseQualityEnumTypeTransformer {
   CreateVaultMarketPaperMissionMarkCheckResponseQualityEnum decode(dynamic data, {bool allowNull}) {
     if (data != null) {
       switch (data.toString()) {
+        case r'C': return CreateVaultMarketPaperMissionMarkCheckResponseQualityEnum.C;
         case r'A': return CreateVaultMarketPaperMissionMarkCheckResponseQualityEnum.A;
         case r'B': return CreateVaultMarketPaperMissionMarkCheckResponseQualityEnum.B;
-        case r'C': return CreateVaultMarketPaperMissionMarkCheckResponseQualityEnum.C;
         default:
           if (allowNull == false) {
             throw ArgumentError('Unknown enum value to decode: $data');

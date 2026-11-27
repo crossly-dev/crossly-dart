@@ -222,16 +222,16 @@ class GetVaultMarketTaxLossSuggestionResponseSuggestionsMarkQualityEnum {
   String toJson() => value;
 
   static const none = GetVaultMarketTaxLossSuggestionResponseSuggestionsMarkQualityEnum._(r'none');
+  static const C = GetVaultMarketTaxLossSuggestionResponseSuggestionsMarkQualityEnum._(r'C');
   static const A = GetVaultMarketTaxLossSuggestionResponseSuggestionsMarkQualityEnum._(r'A');
   static const B = GetVaultMarketTaxLossSuggestionResponseSuggestionsMarkQualityEnum._(r'B');
-  static const C = GetVaultMarketTaxLossSuggestionResponseSuggestionsMarkQualityEnum._(r'C');
 
   /// List of all possible values in this [enum][GetVaultMarketTaxLossSuggestionResponseSuggestionsMarkQualityEnum].
   static const values = <GetVaultMarketTaxLossSuggestionResponseSuggestionsMarkQualityEnum>[
     none,
+    C,
     A,
     B,
-    C,
   ];
 
   static GetVaultMarketTaxLossSuggestionResponseSuggestionsMarkQualityEnum fromJson(dynamic value) =>
@@ -264,9 +264,9 @@ class GetVaultMarketTaxLossSuggestionResponseSuggestionsMarkQualityEnumTypeTrans
     if (data != null) {
       switch (data.toString()) {
         case r'none': return GetVaultMarketTaxLossSuggestionResponseSuggestionsMarkQualityEnum.none;
+        case r'C': return GetVaultMarketTaxLossSuggestionResponseSuggestionsMarkQualityEnum.C;
         case r'A': return GetVaultMarketTaxLossSuggestionResponseSuggestionsMarkQualityEnum.A;
         case r'B': return GetVaultMarketTaxLossSuggestionResponseSuggestionsMarkQualityEnum.B;
-        case r'C': return GetVaultMarketTaxLossSuggestionResponseSuggestionsMarkQualityEnum.C;
         default:
           if (allowNull == false) {
             throw ArgumentError('Unknown enum value to decode: $data');
@@ -294,13 +294,13 @@ class GetVaultMarketTaxLossSuggestionResponseSuggestionsTermEnum {
 
   String toJson() => value;
 
-  static const long = GetVaultMarketTaxLossSuggestionResponseSuggestionsTermEnum._(r'long');
   static const short = GetVaultMarketTaxLossSuggestionResponseSuggestionsTermEnum._(r'short');
+  static const long = GetVaultMarketTaxLossSuggestionResponseSuggestionsTermEnum._(r'long');
 
   /// List of all possible values in this [enum][GetVaultMarketTaxLossSuggestionResponseSuggestionsTermEnum].
   static const values = <GetVaultMarketTaxLossSuggestionResponseSuggestionsTermEnum>[
-    long,
     short,
+    long,
   ];
 
   static GetVaultMarketTaxLossSuggestionResponseSuggestionsTermEnum fromJson(dynamic value) =>
@@ -332,8 +332,8 @@ class GetVaultMarketTaxLossSuggestionResponseSuggestionsTermEnumTypeTransformer 
   GetVaultMarketTaxLossSuggestionResponseSuggestionsTermEnum decode(dynamic data, {bool allowNull}) {
     if (data != null) {
       switch (data.toString()) {
-        case r'long': return GetVaultMarketTaxLossSuggestionResponseSuggestionsTermEnum.long;
         case r'short': return GetVaultMarketTaxLossSuggestionResponseSuggestionsTermEnum.short;
+        case r'long': return GetVaultMarketTaxLossSuggestionResponseSuggestionsTermEnum.long;
         default:
           if (allowNull == false) {
             throw ArgumentError('Unknown enum value to decode: $data');

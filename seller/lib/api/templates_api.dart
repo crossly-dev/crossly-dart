@@ -466,6 +466,66 @@ class TemplatesApi {
     return Future<GetMeTemplateSuggestResponse>.value();
   }
 
+  /// A shared template by its share token (public, no auth).
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] token (required):
+  Future<Response> getPublicTemplateWithHttpInfo(String token,) async {
+    // Verify required params are set.
+    if (token == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: token');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/public/templates/{token}'
+      .replaceAll('{token}', token);
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>[];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// A shared template by its share token (public, no auth).
+  ///
+  /// Parameters:
+  ///
+  /// * [String] token (required):
+  Future<GetPublicTemplateResponse> getPublicTemplate(String token,) async {
+    final response = await getPublicTemplateWithHttpInfo(token,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'GetPublicTemplateResponse',) as GetPublicTemplateResponse;
+    
+    }
+    return Future<GetPublicTemplateResponse>.value();
+  }
+
   /// List the seller's templates.
   ///
   /// Note: This method returns the HTTP [Response].

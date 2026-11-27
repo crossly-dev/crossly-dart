@@ -18,12 +18,12 @@ class CreateProductionCandidateAcceptResponseCandidate {
     @required this.updatedAt,
     @required this.status,
     this.retailPriceCents,
-    this.creatorUserId,
-    this.completedAt,
     this.acceptedAt,
+    this.completedAt,
+    this.creatorUserId,
+    @required this.cosmeticId,
     @required this.merchantId,
     @required this.creatorSubjectId,
-    @required this.cosmeticId,
     this.editionSize,
     this.unitCostCents,
     this.runCostCents,
@@ -49,17 +49,17 @@ class CreateProductionCandidateAcceptResponseCandidate {
 
   num retailPriceCents;
 
-  String creatorUserId;
+  DateTime acceptedAt;
 
   DateTime completedAt;
 
-  DateTime acceptedAt;
+  String creatorUserId;
+
+  String cosmeticId;
 
   String merchantId;
 
   String creatorSubjectId;
-
-  String cosmeticId;
 
   num editionSize;
 
@@ -94,12 +94,12 @@ class CreateProductionCandidateAcceptResponseCandidate {
      other.updatedAt == updatedAt &&
      other.status == status &&
      other.retailPriceCents == retailPriceCents &&
-     other.creatorUserId == creatorUserId &&
-     other.completedAt == completedAt &&
      other.acceptedAt == acceptedAt &&
+     other.completedAt == completedAt &&
+     other.creatorUserId == creatorUserId &&
+     other.cosmeticId == cosmeticId &&
      other.merchantId == merchantId &&
      other.creatorSubjectId == creatorSubjectId &&
-     other.cosmeticId == cosmeticId &&
      other.editionSize == editionSize &&
      other.unitCostCents == unitCostCents &&
      other.runCostCents == runCostCents &&
@@ -122,12 +122,12 @@ class CreateProductionCandidateAcceptResponseCandidate {
     (updatedAt == null ? 0 : updatedAt.hashCode) +
     (status == null ? 0 : status.hashCode) +
     (retailPriceCents == null ? 0 : retailPriceCents.hashCode) +
-    (creatorUserId == null ? 0 : creatorUserId.hashCode) +
-    (completedAt == null ? 0 : completedAt.hashCode) +
     (acceptedAt == null ? 0 : acceptedAt.hashCode) +
+    (completedAt == null ? 0 : completedAt.hashCode) +
+    (creatorUserId == null ? 0 : creatorUserId.hashCode) +
+    (cosmeticId == null ? 0 : cosmeticId.hashCode) +
     (merchantId == null ? 0 : merchantId.hashCode) +
     (creatorSubjectId == null ? 0 : creatorSubjectId.hashCode) +
-    (cosmeticId == null ? 0 : cosmeticId.hashCode) +
     (editionSize == null ? 0 : editionSize.hashCode) +
     (unitCostCents == null ? 0 : unitCostCents.hashCode) +
     (runCostCents == null ? 0 : runCostCents.hashCode) +
@@ -143,7 +143,7 @@ class CreateProductionCandidateAcceptResponseCandidate {
     (declineReason == null ? 0 : declineReason.hashCode);
 
   @override
-  String toString() => 'CreateProductionCandidateAcceptResponseCandidate[id=$id, createdAt=$createdAt, updatedAt=$updatedAt, status=$status, retailPriceCents=$retailPriceCents, creatorUserId=$creatorUserId, completedAt=$completedAt, acceptedAt=$acceptedAt, merchantId=$merchantId, creatorSubjectId=$creatorSubjectId, cosmeticId=$cosmeticId, editionSize=$editionSize, unitCostCents=$unitCostCents, runCostCents=$runCostCents, designerRoyaltyBps=$designerRoyaltyBps, fundingAtEligibleCents=$fundingAtEligibleCents, distinctHoldersAtEligible=$distinctHoldersAtEligible, holderPriority=$holderPriority, holderPriceCents=$holderPriceCents, designBrief=$designBrief, spec=$spec, ipClearedAt=$ipClearedAt, greenlitAt=$greenlitAt, declineReason=$declineReason]';
+  String toString() => 'CreateProductionCandidateAcceptResponseCandidate[id=$id, createdAt=$createdAt, updatedAt=$updatedAt, status=$status, retailPriceCents=$retailPriceCents, acceptedAt=$acceptedAt, completedAt=$completedAt, creatorUserId=$creatorUserId, cosmeticId=$cosmeticId, merchantId=$merchantId, creatorSubjectId=$creatorSubjectId, editionSize=$editionSize, unitCostCents=$unitCostCents, runCostCents=$runCostCents, designerRoyaltyBps=$designerRoyaltyBps, fundingAtEligibleCents=$fundingAtEligibleCents, distinctHoldersAtEligible=$distinctHoldersAtEligible, holderPriority=$holderPriority, holderPriceCents=$holderPriceCents, designBrief=$designBrief, spec=$spec, ipClearedAt=$ipClearedAt, greenlitAt=$greenlitAt, declineReason=$declineReason]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -154,18 +154,18 @@ class CreateProductionCandidateAcceptResponseCandidate {
     if (retailPriceCents != null) {
       json[r'retailPriceCents'] = retailPriceCents;
     }
-    if (creatorUserId != null) {
-      json[r'creatorUserId'] = creatorUserId;
+    if (acceptedAt != null) {
+      json[r'acceptedAt'] = acceptedAt.toUtc().toIso8601String();
     }
     if (completedAt != null) {
       json[r'completedAt'] = completedAt.toUtc().toIso8601String();
     }
-    if (acceptedAt != null) {
-      json[r'acceptedAt'] = acceptedAt.toUtc().toIso8601String();
+    if (creatorUserId != null) {
+      json[r'creatorUserId'] = creatorUserId;
     }
+      json[r'cosmeticId'] = cosmeticId;
       json[r'merchantId'] = merchantId;
       json[r'creatorSubjectId'] = creatorSubjectId;
-      json[r'cosmeticId'] = cosmeticId;
     if (editionSize != null) {
       json[r'editionSize'] = editionSize;
     }
@@ -214,12 +214,12 @@ class CreateProductionCandidateAcceptResponseCandidate {
         retailPriceCents: json[r'retailPriceCents'] == null
           ? null
           : num.parse(json[r'retailPriceCents'].toString()),
-        creatorUserId: mapValueOfType<String>(json, r'creatorUserId'),
-        completedAt: mapDateTime(json, r'completedAt', ''),
         acceptedAt: mapDateTime(json, r'acceptedAt', ''),
+        completedAt: mapDateTime(json, r'completedAt', ''),
+        creatorUserId: mapValueOfType<String>(json, r'creatorUserId'),
+        cosmeticId: mapValueOfType<String>(json, r'cosmeticId'),
         merchantId: mapValueOfType<String>(json, r'merchantId'),
         creatorSubjectId: mapValueOfType<String>(json, r'creatorSubjectId'),
-        cosmeticId: mapValueOfType<String>(json, r'cosmeticId'),
         editionSize: json[r'editionSize'] == null
           ? null
           : num.parse(json[r'editionSize'].toString()),

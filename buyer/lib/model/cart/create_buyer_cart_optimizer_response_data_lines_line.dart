@@ -13,32 +13,32 @@ part of openapi.api;
 class CreateBuyerCartOptimizerResponseDataLinesLine {
   /// Returns a new [CreateBuyerCartOptimizerResponseDataLinesLine] instance.
   CreateBuyerCartOptimizerResponseDataLinesLine({
-    @required this.quantity,
     @required this.query,
+    @required this.quantity,
   });
-
-  num quantity;
 
   String query;
 
+  num quantity;
+
   @override
   bool operator ==(Object other) => identical(this, other) || other is CreateBuyerCartOptimizerResponseDataLinesLine &&
-     other.quantity == quantity &&
-     other.query == query;
+     other.query == query &&
+     other.quantity == quantity;
 
   @override
   int get hashCode =>
   // ignore: unnecessary_parenthesis
-    (quantity == null ? 0 : quantity.hashCode) +
-    (query == null ? 0 : query.hashCode);
+    (query == null ? 0 : query.hashCode) +
+    (quantity == null ? 0 : quantity.hashCode);
 
   @override
-  String toString() => 'CreateBuyerCartOptimizerResponseDataLinesLine[quantity=$quantity, query=$query]';
+  String toString() => 'CreateBuyerCartOptimizerResponseDataLinesLine[query=$query, quantity=$quantity]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-      json[r'quantity'] = quantity;
       json[r'query'] = query;
+      json[r'quantity'] = quantity;
     return json;
   }
 
@@ -49,10 +49,10 @@ class CreateBuyerCartOptimizerResponseDataLinesLine {
     if (value is Map) {
       final json = value.cast<String, dynamic>();
       return CreateBuyerCartOptimizerResponseDataLinesLine(
+        query: mapValueOfType<String>(json, r'query'),
         quantity: json[r'quantity'] == null
           ? null
           : num.parse(json[r'quantity'].toString()),
-        query: mapValueOfType<String>(json, r'query'),
       );
     }
     return null;

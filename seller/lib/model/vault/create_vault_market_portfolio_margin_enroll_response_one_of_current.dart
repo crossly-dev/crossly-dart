@@ -213,15 +213,15 @@ class CreateVaultMarketPortfolioMarginEnrollResponseOneOfCurrentStateEnum {
 
   String toJson() => value;
 
-  static const buyIn = CreateVaultMarketPortfolioMarginEnrollResponseOneOfCurrentStateEnum._(r'buy_in');
   static const healthy = CreateVaultMarketPortfolioMarginEnrollResponseOneOfCurrentStateEnum._(r'healthy');
   static const call = CreateVaultMarketPortfolioMarginEnrollResponseOneOfCurrentStateEnum._(r'call');
+  static const buyIn = CreateVaultMarketPortfolioMarginEnrollResponseOneOfCurrentStateEnum._(r'buy_in');
 
   /// List of all possible values in this [enum][CreateVaultMarketPortfolioMarginEnrollResponseOneOfCurrentStateEnum].
   static const values = <CreateVaultMarketPortfolioMarginEnrollResponseOneOfCurrentStateEnum>[
-    buyIn,
     healthy,
     call,
+    buyIn,
   ];
 
   static CreateVaultMarketPortfolioMarginEnrollResponseOneOfCurrentStateEnum fromJson(dynamic value) =>
@@ -253,9 +253,9 @@ class CreateVaultMarketPortfolioMarginEnrollResponseOneOfCurrentStateEnumTypeTra
   CreateVaultMarketPortfolioMarginEnrollResponseOneOfCurrentStateEnum decode(dynamic data, {bool allowNull}) {
     if (data != null) {
       switch (data.toString()) {
-        case r'buy_in': return CreateVaultMarketPortfolioMarginEnrollResponseOneOfCurrentStateEnum.buyIn;
         case r'healthy': return CreateVaultMarketPortfolioMarginEnrollResponseOneOfCurrentStateEnum.healthy;
         case r'call': return CreateVaultMarketPortfolioMarginEnrollResponseOneOfCurrentStateEnum.call;
+        case r'buy_in': return CreateVaultMarketPortfolioMarginEnrollResponseOneOfCurrentStateEnum.buyIn;
         default:
           if (allowNull == false) {
             throw ArgumentError('Unknown enum value to decode: $data');

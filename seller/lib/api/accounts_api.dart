@@ -62,6 +62,52 @@ class AccountsApi {
     return Future<CreateAccountResponse>.value();
   }
 
+  /// Connect CardNexus with a personal API key (validated live before it is stored).
+  ///
+  /// Note: This method returns the HTTP [Response].
+  Future<Response> createConnectionCardnexusApiKeyWithHttpInfo() async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/connections/cardnexus/api-key';
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'POST',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Connect CardNexus with a personal API key (validated live before it is stored).
+  Future<CreateConnectionCardnexusApiKeyResponse> createConnectionCardnexusApiKey() async {
+    final response = await createConnectionCardnexusApiKeyWithHttpInfo();
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'CreateConnectionCardnexusApiKeyResponse',) as CreateConnectionCardnexusApiKeyResponse;
+    
+    }
+    return Future<CreateConnectionCardnexusApiKeyResponse>.value();
+  }
+
   /// Add an IMAP mailbox connection.
   ///
   /// Note: This method returns the HTTP [Response].
@@ -152,6 +198,65 @@ class AccountsApi {
     
     }
     return Future<CreateConnectionEmailImapTestResponse>.value();
+  }
+
+  /// Connect Lightspeed X-Series with a personal token (Setup → Personal tokens, Plus plan) and the store prefix.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [CreateConnectionLightspeedXTokenRequest] createConnectionLightspeedXTokenRequest (required):
+  Future<Response> createConnectionLightspeedXTokenWithHttpInfo(CreateConnectionLightspeedXTokenRequest createConnectionLightspeedXTokenRequest,) async {
+    // Verify required params are set.
+    if (createConnectionLightspeedXTokenRequest == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: createConnectionLightspeedXTokenRequest');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/connections/lightspeed_x/token';
+
+    // ignore: prefer_final_locals
+    Object postBody = createConnectionLightspeedXTokenRequest;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>['application/json'];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'POST',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Connect Lightspeed X-Series with a personal token (Setup → Personal tokens, Plus plan) and the store prefix.
+  ///
+  /// Parameters:
+  ///
+  /// * [CreateConnectionLightspeedXTokenRequest] createConnectionLightspeedXTokenRequest (required):
+  Future<CreateConnectionLightspeedXTokenResponse> createConnectionLightspeedXToken(CreateConnectionLightspeedXTokenRequest createConnectionLightspeedXTokenRequest,) async {
+    final response = await createConnectionLightspeedXTokenWithHttpInfo(createConnectionLightspeedXTokenRequest,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'CreateConnectionLightspeedXTokenResponse',) as CreateConnectionLightspeedXTokenResponse;
+    
+    }
+    return Future<CreateConnectionLightspeedXTokenResponse>.value();
   }
 
   /// Express interest in a request_only platform.
@@ -274,7 +379,7 @@ class AccountsApi {
     return Future<CreatePlatformAccountConnectResponse>.value();
   }
 
-  /// Archive every active account row for a platform.
+  /// Disconnect every account of a platform (archives the rows and deletes their stored sessions).
   ///
   /// Note: This method returns the HTTP [Response].
   ///
@@ -314,7 +419,7 @@ class AccountsApi {
     );
   }
 
-  /// Archive every active account row for a platform.
+  /// Disconnect every account of a platform (archives the rows and deletes their stored sessions).
   ///
   /// Parameters:
   ///
@@ -719,9 +824,81 @@ class AccountsApi {
     return Future<GetConnectionExtensionOnlineResponse>.value();
   }
 
+  /// List the live options a marketplace policy field offers (e.g. Allegro delivery methods).
+  ///
+  /// For one of your managed connections, the choices a preset's `platformFields` picker offers, from the marketplace (`source` is the field's `optionsSource`, e.g. `delivery-methods`). An unknown connection or source is a 404.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] connectionId (required):
+  ///
+  /// * [String] source_ (required):
+  Future<Response> getConnectionPolicyManagementOptionWithHttpInfo(String connectionId, String source_,) async {
+    // Verify required params are set.
+    if (connectionId == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: connectionId');
+    }
+    if (source_ == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: source_');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/connections/policy-management/{connectionId}/options/{source}'
+      .replaceAll('{connectionId}', connectionId)
+      .replaceAll('{source}', source_);
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// List the live options a marketplace policy field offers (e.g. Allegro delivery methods).
+  ///
+  /// For one of your managed connections, the choices a preset's `platformFields` picker offers, from the marketplace (`source` is the field's `optionsSource`, e.g. `delivery-methods`). An unknown connection or source is a 404.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] connectionId (required):
+  ///
+  /// * [String] source_ (required):
+  Future<GetConnectionPolicyManagementOptionResponse> getConnectionPolicyManagementOption(String connectionId, String source_,) async {
+    final response = await getConnectionPolicyManagementOptionWithHttpInfo(connectionId, source_,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'GetConnectionPolicyManagementOptionResponse',) as GetConnectionPolicyManagementOptionResponse;
+    
+    }
+    return Future<GetConnectionPolicyManagementOptionResponse>.value();
+  }
+
   /// Return the OAuth authorize URL for an API-track platform.
   ///
-  /// Most platforms return `{ url }`. Etsy adds `{ correlationId }` (PKCE verifier stashed in Redis). Bonanza adds `{ oneShot: true }`. WooCommerce requires `?siteUrl=...`. Walmart returns `{ status: \"request_only\", requestUrl, message }` instead of a URL because per-seller OAuth needs Solution Provider approval.
+  /// Most platforms return `{ url }` (Shopify, Etsy, Amazon and the other marketplaces Atlas Connections connects: the URL Atlas returns for this seller). Bonanza adds `{ oneShot: true }`. WooCommerce requires `?siteUrl=...`. Walmart returns `{ status: \"request_only\", requestUrl, message }` instead of a URL because per-seller OAuth needs Solution Provider approval.
   ///
   /// Note: This method returns the HTTP [Response].
   ///
@@ -779,7 +956,7 @@ class AccountsApi {
 
   /// Return the OAuth authorize URL for an API-track platform.
   ///
-  /// Most platforms return `{ url }`. Etsy adds `{ correlationId }` (PKCE verifier stashed in Redis). Bonanza adds `{ oneShot: true }`. WooCommerce requires `?siteUrl=...`. Walmart returns `{ status: \"request_only\", requestUrl, message }` instead of a URL because per-seller OAuth needs Solution Provider approval.
+  /// Most platforms return `{ url }` (Shopify, Etsy, Amazon and the other marketplaces Atlas Connections connects: the URL Atlas returns for this seller). Bonanza adds `{ oneShot: true }`. WooCommerce requires `?siteUrl=...`. Walmart returns `{ status: \"request_only\", requestUrl, message }` instead of a URL because per-seller OAuth needs Solution Provider approval.
   ///
   /// Parameters:
   ///
@@ -897,6 +1074,56 @@ class AccountsApi {
     return Future<ListAccountsResponse>.value();
   }
 
+  /// List eBay and Etsy accounts with whether Crossly manages their policies.
+  ///
+  /// One row per connected eBay or Etsy account: `eligible` (eBay only on EBAY_US), `managed` (Crossly keeps its policies / shipping profiles in step with your default presets) and sync `notes`.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  Future<Response> listConnectionPolicyManagementWithHttpInfo() async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/connections/policy-management';
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// List eBay and Etsy accounts with whether Crossly manages their policies.
+  ///
+  /// One row per connected eBay or Etsy account: `eligible` (eBay only on EBAY_US), `managed` (Crossly keeps its policies / shipping profiles in step with your default presets) and sync `notes`.
+  Future<ListConnectionPolicyManagementResponse> listConnectionPolicyManagement() async {
+    final response = await listConnectionPolicyManagementWithHttpInfo();
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'ListConnectionPolicyManagementResponse',) as ListConnectionPolicyManagementResponse;
+    
+    }
+    return Future<ListConnectionPolicyManagementResponse>.value();
+  }
+
   /// List OAuth-connected API platforms.
   ///
   /// Note: This method returns the HTTP [Response].
@@ -1001,6 +1228,70 @@ class AccountsApi {
     
     }
     return Future<SuccessResponse>.value();
+  }
+
+  /// Turn Crossly policy management on or off for one eBay or Etsy account.
+  ///
+  /// Body `{ managed: boolean }`. On: Crossly may overwrite that account's own policies with your default presets and queues a sync now (409 for an ineligible account, e.g. non-US eBay). Off: Crossly stops touching them. A connection that is not yours (or not eBay/Etsy) is a 404.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] connectionId (required):
+  Future<Response> updateConnectionPolicyManagementWithHttpInfo(String connectionId,) async {
+    // Verify required params are set.
+    if (connectionId == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: connectionId');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/connections/policy-management/{connectionId}'
+      .replaceAll('{connectionId}', connectionId);
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'PUT',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Turn Crossly policy management on or off for one eBay or Etsy account.
+  ///
+  /// Body `{ managed: boolean }`. On: Crossly may overwrite that account's own policies with your default presets and queues a sync now (409 for an ineligible account, e.g. non-US eBay). Off: Crossly stops touching them. A connection that is not yours (or not eBay/Etsy) is a 404.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] connectionId (required):
+  Future<ListConnectionPolicyManagementItem> updateConnectionPolicyManagement(String connectionId,) async {
+    final response = await updateConnectionPolicyManagementWithHttpInfo(connectionId,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'ListConnectionPolicyManagementItem',) as ListConnectionPolicyManagementItem;
+    
+    }
+    return Future<ListConnectionPolicyManagementItem>.value();
   }
 
   /// Update per-platform connection preferences.

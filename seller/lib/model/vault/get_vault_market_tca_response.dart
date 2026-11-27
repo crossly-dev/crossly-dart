@@ -18,6 +18,7 @@ class GetVaultMarketTcaResponse {
     @required this.to,
     @required this.summary,
     this.items = const [],
+    @required this.options,
     @required this.note,
   });
 
@@ -31,6 +32,8 @@ class GetVaultMarketTcaResponse {
 
   List<GetVaultMarketTcaResponseItems> items;
 
+  GetVaultMarketTcaResponseOptions options;
+
   String note;
 
   @override
@@ -40,6 +43,7 @@ class GetVaultMarketTcaResponse {
      other.to == to &&
      other.summary == summary &&
      other.items == items &&
+     other.options == options &&
      other.note == note;
 
   @override
@@ -50,10 +54,11 @@ class GetVaultMarketTcaResponse {
     (to == null ? 0 : to.hashCode) +
     (summary == null ? 0 : summary.hashCode) +
     (items == null ? 0 : items.hashCode) +
+    (options == null ? 0 : options.hashCode) +
     (note == null ? 0 : note.hashCode);
 
   @override
-  String toString() => 'GetVaultMarketTcaResponse[account=$account, from=$from, to=$to, summary=$summary, items=$items, note=$note]';
+  String toString() => 'GetVaultMarketTcaResponse[account=$account, from=$from, to=$to, summary=$summary, items=$items, options=$options, note=$note]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -62,6 +67,7 @@ class GetVaultMarketTcaResponse {
       json[r'to'] = to;
       json[r'summary'] = summary;
       json[r'items'] = items;
+      json[r'options'] = options;
       json[r'note'] = note;
     return json;
   }
@@ -78,6 +84,7 @@ class GetVaultMarketTcaResponse {
         to: mapValueOfType<String>(json, r'to'),
         summary: GetVaultMarketTcaResponseSummary.fromJson(json[r'summary']),
         items: GetVaultMarketTcaResponseItems.listFromJson(json[r'items']),
+        options: GetVaultMarketTcaResponseOptions.fromJson(json[r'options']),
         note: mapValueOfType<String>(json, r'note'),
       );
     }

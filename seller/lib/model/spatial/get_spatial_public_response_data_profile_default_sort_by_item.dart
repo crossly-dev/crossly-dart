@@ -24,43 +24,43 @@ class GetSpatialPublicResponseDataProfileDefaultSortByItem {
   String toJson() => value;
 
   static const brand = GetSpatialPublicResponseDataProfileDefaultSortByItem._(r'brand');
+  static const label = GetSpatialPublicResponseDataProfileDefaultSortByItem._(r'label');
+  static const status = GetSpatialPublicResponseDataProfileDefaultSortByItem._(r'status');
+  static const age = GetSpatialPublicResponseDataProfileDefaultSortByItem._(r'age');
   static const condition = GetSpatialPublicResponseDataProfileDefaultSortByItem._(r'condition');
   static const size = GetSpatialPublicResponseDataProfileDefaultSortByItem._(r'size');
-  static const status = GetSpatialPublicResponseDataProfileDefaultSortByItem._(r'status');
-  static const label = GetSpatialPublicResponseDataProfileDefaultSortByItem._(r'label');
   static const title = GetSpatialPublicResponseDataProfileDefaultSortByItem._(r'title');
   static const valueOption = GetSpatialPublicResponseDataProfileDefaultSortByItem._(r'value');
+  static const set = GetSpatialPublicResponseDataProfileDefaultSortByItem._(r'set');
+  static const team = GetSpatialPublicResponseDataProfileDefaultSortByItem._(r'team');
   static const year = GetSpatialPublicResponseDataProfileDefaultSortByItem._(r'year');
   static const grade = GetSpatialPublicResponseDataProfileDefaultSortByItem._(r'grade');
   static const game = GetSpatialPublicResponseDataProfileDefaultSortByItem._(r'game');
-  static const set = GetSpatialPublicResponseDataProfileDefaultSortByItem._(r'set');
   static const franchise = GetSpatialPublicResponseDataProfileDefaultSortByItem._(r'franchise');
-  static const team = GetSpatialPublicResponseDataProfileDefaultSortByItem._(r'team');
   static const era = GetSpatialPublicResponseDataProfileDefaultSortByItem._(r'era');
   static const genre = GetSpatialPublicResponseDataProfileDefaultSortByItem._(r'genre');
   static const colour = GetSpatialPublicResponseDataProfileDefaultSortByItem._(r'colour');
-  static const age = GetSpatialPublicResponseDataProfileDefaultSortByItem._(r'age');
   static const exhibitor = GetSpatialPublicResponseDataProfileDefaultSortByItem._(r'exhibitor');
 
   /// List of all possible values in this [enum][GetSpatialPublicResponseDataProfileDefaultSortByItem].
   static const values = <GetSpatialPublicResponseDataProfileDefaultSortByItem>[
     brand,
+    label,
+    status,
+    age,
     condition,
     size,
-    status,
-    label,
     title,
     valueOption,
+    set,
+    team,
     year,
     grade,
     game,
-    set,
     franchise,
-    team,
     era,
     genre,
     colour,
-    age,
     exhibitor,
   ];
 
@@ -94,22 +94,22 @@ class GetSpatialPublicResponseDataProfileDefaultSortByItemTypeTransformer {
     if (data != null) {
       switch (data.toString()) {
         case r'brand': return GetSpatialPublicResponseDataProfileDefaultSortByItem.brand;
+        case r'label': return GetSpatialPublicResponseDataProfileDefaultSortByItem.label;
+        case r'status': return GetSpatialPublicResponseDataProfileDefaultSortByItem.status;
+        case r'age': return GetSpatialPublicResponseDataProfileDefaultSortByItem.age;
         case r'condition': return GetSpatialPublicResponseDataProfileDefaultSortByItem.condition;
         case r'size': return GetSpatialPublicResponseDataProfileDefaultSortByItem.size;
-        case r'status': return GetSpatialPublicResponseDataProfileDefaultSortByItem.status;
-        case r'label': return GetSpatialPublicResponseDataProfileDefaultSortByItem.label;
         case r'title': return GetSpatialPublicResponseDataProfileDefaultSortByItem.title;
         case r'value': return GetSpatialPublicResponseDataProfileDefaultSortByItem.valueOption;
+        case r'set': return GetSpatialPublicResponseDataProfileDefaultSortByItem.set;
+        case r'team': return GetSpatialPublicResponseDataProfileDefaultSortByItem.team;
         case r'year': return GetSpatialPublicResponseDataProfileDefaultSortByItem.year;
         case r'grade': return GetSpatialPublicResponseDataProfileDefaultSortByItem.grade;
         case r'game': return GetSpatialPublicResponseDataProfileDefaultSortByItem.game;
-        case r'set': return GetSpatialPublicResponseDataProfileDefaultSortByItem.set;
         case r'franchise': return GetSpatialPublicResponseDataProfileDefaultSortByItem.franchise;
-        case r'team': return GetSpatialPublicResponseDataProfileDefaultSortByItem.team;
         case r'era': return GetSpatialPublicResponseDataProfileDefaultSortByItem.era;
         case r'genre': return GetSpatialPublicResponseDataProfileDefaultSortByItem.genre;
         case r'colour': return GetSpatialPublicResponseDataProfileDefaultSortByItem.colour;
-        case r'age': return GetSpatialPublicResponseDataProfileDefaultSortByItem.age;
         case r'exhibitor': return GetSpatialPublicResponseDataProfileDefaultSortByItem.exhibitor;
         default:
           if (allowNull == false) {

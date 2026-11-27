@@ -22,7 +22,7 @@ class CreateWorldGamePackageCheckResponseData {
 
   bool ok;
 
-  List<CreateWorldGamePackageCheckResponseDataIssues> issues;
+  List<PathMessage> issues;
 
   CreateWorldGamePackageCheckResponseDataFits fits;
 
@@ -70,7 +70,7 @@ class CreateWorldGamePackageCheckResponseData {
       final json = value.cast<String, dynamic>();
       return CreateWorldGamePackageCheckResponseData(
         ok: mapValueOfType<bool>(json, r'ok'),
-        issues: CreateWorldGamePackageCheckResponseDataIssues.listFromJson(json[r'issues']),
+        issues: PathMessage.listFromJson(json[r'issues']),
         fits: CreateWorldGamePackageCheckResponseDataFits.fromJson(json[r'fits']),
         totalBytes: json[r'totalBytes'] == null
           ? null

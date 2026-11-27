@@ -112,17 +112,17 @@ class ListWeb3MarketplaceKeysItemMarketplaceEnum {
 
   String toJson() => value;
 
-  static const opensea = ListWeb3MarketplaceKeysItemMarketplaceEnum._(r'opensea');
-  static const tensor = ListWeb3MarketplaceKeysItemMarketplaceEnum._(r'tensor');
-  static const magicEden = ListWeb3MarketplaceKeysItemMarketplaceEnum._(r'magic_eden');
   static const rarible = ListWeb3MarketplaceKeysItemMarketplaceEnum._(r'rarible');
+  static const magicEden = ListWeb3MarketplaceKeysItemMarketplaceEnum._(r'magic_eden');
+  static const tensor = ListWeb3MarketplaceKeysItemMarketplaceEnum._(r'tensor');
+  static const opensea = ListWeb3MarketplaceKeysItemMarketplaceEnum._(r'opensea');
 
   /// List of all possible values in this [enum][ListWeb3MarketplaceKeysItemMarketplaceEnum].
   static const values = <ListWeb3MarketplaceKeysItemMarketplaceEnum>[
-    opensea,
-    tensor,
-    magicEden,
     rarible,
+    magicEden,
+    tensor,
+    opensea,
   ];
 
   static ListWeb3MarketplaceKeysItemMarketplaceEnum fromJson(dynamic value) =>
@@ -154,10 +154,10 @@ class ListWeb3MarketplaceKeysItemMarketplaceEnumTypeTransformer {
   ListWeb3MarketplaceKeysItemMarketplaceEnum decode(dynamic data, {bool allowNull}) {
     if (data != null) {
       switch (data.toString()) {
-        case r'opensea': return ListWeb3MarketplaceKeysItemMarketplaceEnum.opensea;
-        case r'tensor': return ListWeb3MarketplaceKeysItemMarketplaceEnum.tensor;
-        case r'magic_eden': return ListWeb3MarketplaceKeysItemMarketplaceEnum.magicEden;
         case r'rarible': return ListWeb3MarketplaceKeysItemMarketplaceEnum.rarible;
+        case r'magic_eden': return ListWeb3MarketplaceKeysItemMarketplaceEnum.magicEden;
+        case r'tensor': return ListWeb3MarketplaceKeysItemMarketplaceEnum.tensor;
+        case r'opensea': return ListWeb3MarketplaceKeysItemMarketplaceEnum.opensea;
         default:
           if (allowNull == false) {
             throw ArgumentError('Unknown enum value to decode: $data');

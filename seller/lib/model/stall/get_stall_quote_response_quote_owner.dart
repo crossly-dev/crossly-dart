@@ -103,14 +103,14 @@ class GetStallQuoteResponseQuoteOwnerKindEnum {
   String toJson() => value;
 
   static const platform = GetStallQuoteResponseQuoteOwnerKindEnum._(r'platform');
-  static const street = GetStallQuoteResponseQuoteOwnerKindEnum._(r'street');
   static const plot = GetStallQuoteResponseQuoteOwnerKindEnum._(r'plot');
+  static const street = GetStallQuoteResponseQuoteOwnerKindEnum._(r'street');
 
   /// List of all possible values in this [enum][GetStallQuoteResponseQuoteOwnerKindEnum].
   static const values = <GetStallQuoteResponseQuoteOwnerKindEnum>[
     platform,
-    street,
     plot,
+    street,
   ];
 
   static GetStallQuoteResponseQuoteOwnerKindEnum fromJson(dynamic value) =>
@@ -143,8 +143,8 @@ class GetStallQuoteResponseQuoteOwnerKindEnumTypeTransformer {
     if (data != null) {
       switch (data.toString()) {
         case r'platform': return GetStallQuoteResponseQuoteOwnerKindEnum.platform;
-        case r'street': return GetStallQuoteResponseQuoteOwnerKindEnum.street;
         case r'plot': return GetStallQuoteResponseQuoteOwnerKindEnum.plot;
+        case r'street': return GetStallQuoteResponseQuoteOwnerKindEnum.street;
         default:
           if (allowNull == false) {
             throw ArgumentError('Unknown enum value to decode: $data');

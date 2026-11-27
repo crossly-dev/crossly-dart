@@ -18,6 +18,10 @@ class CreateVariationGroupPublishResponseDataOutcomes {
     @required this.ok,
     this.listingId,
     this.jobIds,
+    this.members,
+    this.failed,
+    this.afterRecorded,
+    this.ownOptionRows,
     this.warnings = const [],
     this.error,
   });
@@ -34,6 +38,18 @@ class CreateVariationGroupPublishResponseDataOutcomes {
   /// Dispatcher job ids, on the separate path.
   List<String> jobIds;
 
+  /// Grouped: every option that went live, with its own id on the platform. publishGroupToPlatform records one platform_listings row per entry (variation-publish-members.ts), so a sale or delist acts on that option.
+  List<Map<String, Object>> members;
+
+  /// Grouped: options that did not go live. Reported in `warnings`; the live ones are still recorded.
+  List<Map<String, Object>> failed;
+
+  /// Grouped: work that needs the option rows to exist (a POS stock base, markPosPushed), run right after they are recorded. Returns warnings for the seller; must not throw for one option.
+  Map<String, Object> afterRecorded;
+
+  /// The publisher tracks its options itself, not as platform_listings rows (Crossly: crossly_listing_variants with the member listing id, variation-publish-crossly.ts), so no `members` is not a gap.
+  bool ownOptionRows;
+
   List<String> warnings;
 
   String error;
@@ -45,6 +61,10 @@ class CreateVariationGroupPublishResponseDataOutcomes {
      other.ok == ok &&
      other.listingId == listingId &&
      other.jobIds == jobIds &&
+     other.members == members &&
+     other.failed == failed &&
+     other.afterRecorded == afterRecorded &&
+     other.ownOptionRows == ownOptionRows &&
      other.warnings == warnings &&
      other.error == error;
 
@@ -56,11 +76,15 @@ class CreateVariationGroupPublishResponseDataOutcomes {
     (ok == null ? 0 : ok.hashCode) +
     (listingId == null ? 0 : listingId.hashCode) +
     (jobIds == null ? 0 : jobIds.hashCode) +
+    (members == null ? 0 : members.hashCode) +
+    (failed == null ? 0 : failed.hashCode) +
+    (afterRecorded == null ? 0 : afterRecorded.hashCode) +
+    (ownOptionRows == null ? 0 : ownOptionRows.hashCode) +
     (warnings == null ? 0 : warnings.hashCode) +
     (error == null ? 0 : error.hashCode);
 
   @override
-  String toString() => 'CreateVariationGroupPublishResponseDataOutcomes[platform=$platform, mode=$mode, ok=$ok, listingId=$listingId, jobIds=$jobIds, warnings=$warnings, error=$error]';
+  String toString() => 'CreateVariationGroupPublishResponseDataOutcomes[platform=$platform, mode=$mode, ok=$ok, listingId=$listingId, jobIds=$jobIds, members=$members, failed=$failed, afterRecorded=$afterRecorded, ownOptionRows=$ownOptionRows, warnings=$warnings, error=$error]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -72,6 +96,18 @@ class CreateVariationGroupPublishResponseDataOutcomes {
     }
     if (jobIds != null) {
       json[r'jobIds'] = jobIds;
+    }
+    if (members != null) {
+      json[r'members'] = members;
+    }
+    if (failed != null) {
+      json[r'failed'] = failed;
+    }
+    if (afterRecorded != null) {
+      json[r'afterRecorded'] = afterRecorded;
+    }
+    if (ownOptionRows != null) {
+      json[r'ownOptionRows'] = ownOptionRows;
     }
       json[r'warnings'] = warnings;
     if (error != null) {
@@ -94,6 +130,10 @@ class CreateVariationGroupPublishResponseDataOutcomes {
         jobIds: json[r'jobIds'] is List
           ? (json[r'jobIds'] as List).cast<String>()
           : null,
+        members: json[r'members'] is List ? (json[r'members'] as List).cast<Map<String, Object>>() : const [],
+        failed: json[r'failed'] is List ? (json[r'failed'] as List).cast<Map<String, Object>>() : const [],
+        afterRecorded: mapValueOfType<Map<String, Object>>(json, r'afterRecorded'),
+        ownOptionRows: mapValueOfType<bool>(json, r'ownOptionRows'),
         warnings: json[r'warnings'] is List
           ? (json[r'warnings'] as List).cast<String>()
           : null,
@@ -149,13 +189,13 @@ class CreateVariationGroupPublishResponseDataOutcomesModeEnum {
 
   String toJson() => value;
 
-  static const grouped = CreateVariationGroupPublishResponseDataOutcomesModeEnum._(r'grouped');
   static const separate = CreateVariationGroupPublishResponseDataOutcomesModeEnum._(r'separate');
+  static const grouped = CreateVariationGroupPublishResponseDataOutcomesModeEnum._(r'grouped');
 
   /// List of all possible values in this [enum][CreateVariationGroupPublishResponseDataOutcomesModeEnum].
   static const values = <CreateVariationGroupPublishResponseDataOutcomesModeEnum>[
-    grouped,
     separate,
+    grouped,
   ];
 
   static CreateVariationGroupPublishResponseDataOutcomesModeEnum fromJson(dynamic value) =>
@@ -187,8 +227,8 @@ class CreateVariationGroupPublishResponseDataOutcomesModeEnumTypeTransformer {
   CreateVariationGroupPublishResponseDataOutcomesModeEnum decode(dynamic data, {bool allowNull}) {
     if (data != null) {
       switch (data.toString()) {
-        case r'grouped': return CreateVariationGroupPublishResponseDataOutcomesModeEnum.grouped;
         case r'separate': return CreateVariationGroupPublishResponseDataOutcomesModeEnum.separate;
+        case r'grouped': return CreateVariationGroupPublishResponseDataOutcomesModeEnum.grouped;
         default:
           if (allowNull == false) {
             throw ArgumentError('Unknown enum value to decode: $data');

@@ -58,7 +58,7 @@ class ListVaultMarketOpeningItem {
 
   num waitlist;
 
-  ListVaultMarketFeedItemMark mark;
+  ListVaultMarketOpeningItemMark mark;
 
   String marketHref;
 
@@ -172,7 +172,7 @@ class ListVaultMarketOpeningItem {
         waitlist: json[r'waitlist'] == null
           ? null
           : num.parse(json[r'waitlist'].toString()),
-        mark: ListVaultMarketFeedItemMark.fromJson(json[r'mark']),
+        mark: ListVaultMarketOpeningItemMark.fromJson(json[r'mark']),
         marketHref: mapValueOfType<String>(json, r'marketHref'),
         me: ListVaultMarketOpeningItemMe.fromJson(json[r'me']),
         earlyAccess: ListVaultMarketOpeningItemEarlyAccess.fromJson(json[r'earlyAccess']),

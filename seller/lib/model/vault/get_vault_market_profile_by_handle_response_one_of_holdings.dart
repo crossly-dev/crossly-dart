@@ -141,16 +141,16 @@ class GetVaultMarketProfileByHandleResponseOneOfHoldingsQualityEnum {
   String toJson() => value;
 
   static const none = GetVaultMarketProfileByHandleResponseOneOfHoldingsQualityEnum._(r'none');
+  static const C = GetVaultMarketProfileByHandleResponseOneOfHoldingsQualityEnum._(r'C');
   static const A = GetVaultMarketProfileByHandleResponseOneOfHoldingsQualityEnum._(r'A');
   static const B = GetVaultMarketProfileByHandleResponseOneOfHoldingsQualityEnum._(r'B');
-  static const C = GetVaultMarketProfileByHandleResponseOneOfHoldingsQualityEnum._(r'C');
 
   /// List of all possible values in this [enum][GetVaultMarketProfileByHandleResponseOneOfHoldingsQualityEnum].
   static const values = <GetVaultMarketProfileByHandleResponseOneOfHoldingsQualityEnum>[
     none,
+    C,
     A,
     B,
-    C,
   ];
 
   static GetVaultMarketProfileByHandleResponseOneOfHoldingsQualityEnum fromJson(dynamic value) =>
@@ -183,9 +183,9 @@ class GetVaultMarketProfileByHandleResponseOneOfHoldingsQualityEnumTypeTransform
     if (data != null) {
       switch (data.toString()) {
         case r'none': return GetVaultMarketProfileByHandleResponseOneOfHoldingsQualityEnum.none;
+        case r'C': return GetVaultMarketProfileByHandleResponseOneOfHoldingsQualityEnum.C;
         case r'A': return GetVaultMarketProfileByHandleResponseOneOfHoldingsQualityEnum.A;
         case r'B': return GetVaultMarketProfileByHandleResponseOneOfHoldingsQualityEnum.B;
-        case r'C': return GetVaultMarketProfileByHandleResponseOneOfHoldingsQualityEnum.C;
         default:
           if (allowNull == false) {
             throw ArgumentError('Unknown enum value to decode: $data');

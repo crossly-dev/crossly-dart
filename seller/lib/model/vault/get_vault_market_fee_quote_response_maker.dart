@@ -205,17 +205,17 @@ class GetVaultMarketFeeQuoteResponseMakerProgramEnum {
 
   String toJson() => value;
 
+  static const retail = GetVaultMarketFeeQuoteResponseMakerProgramEnum._(r'retail');
   static const volume = GetVaultMarketFeeQuoteResponseMakerProgramEnum._(r'volume');
   static const lp = GetVaultMarketFeeQuoteResponseMakerProgramEnum._(r'lp');
   static const dmm = GetVaultMarketFeeQuoteResponseMakerProgramEnum._(r'dmm');
-  static const retail = GetVaultMarketFeeQuoteResponseMakerProgramEnum._(r'retail');
 
   /// List of all possible values in this [enum][GetVaultMarketFeeQuoteResponseMakerProgramEnum].
   static const values = <GetVaultMarketFeeQuoteResponseMakerProgramEnum>[
+    retail,
     volume,
     lp,
     dmm,
-    retail,
   ];
 
   static GetVaultMarketFeeQuoteResponseMakerProgramEnum fromJson(dynamic value) =>
@@ -247,10 +247,10 @@ class GetVaultMarketFeeQuoteResponseMakerProgramEnumTypeTransformer {
   GetVaultMarketFeeQuoteResponseMakerProgramEnum decode(dynamic data, {bool allowNull}) {
     if (data != null) {
       switch (data.toString()) {
+        case r'retail': return GetVaultMarketFeeQuoteResponseMakerProgramEnum.retail;
         case r'volume': return GetVaultMarketFeeQuoteResponseMakerProgramEnum.volume;
         case r'lp': return GetVaultMarketFeeQuoteResponseMakerProgramEnum.lp;
         case r'dmm': return GetVaultMarketFeeQuoteResponseMakerProgramEnum.dmm;
-        case r'retail': return GetVaultMarketFeeQuoteResponseMakerProgramEnum.retail;
         default:
           if (allowNull == false) {
             throw ArgumentError('Unknown enum value to decode: $data');

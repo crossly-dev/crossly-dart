@@ -133,25 +133,25 @@ class ListWorldDecorStreetsItemDecorBannerColourEnum {
 
   String toJson() => value;
 
-  static const red = ListWorldDecorStreetsItemDecorBannerColourEnum._(r'red');
-  static const green = ListWorldDecorStreetsItemDecorBannerColourEnum._(r'green');
-  static const teal = ListWorldDecorStreetsItemDecorBannerColourEnum._(r'teal');
   static const blue = ListWorldDecorStreetsItemDecorBannerColourEnum._(r'blue');
+  static const green = ListWorldDecorStreetsItemDecorBannerColourEnum._(r'green');
   static const purple = ListWorldDecorStreetsItemDecorBannerColourEnum._(r'purple');
+  static const red = ListWorldDecorStreetsItemDecorBannerColourEnum._(r'red');
+  static const teal = ListWorldDecorStreetsItemDecorBannerColourEnum._(r'teal');
   static const cream = ListWorldDecorStreetsItemDecorBannerColourEnum._(r'cream');
-  static const amber = ListWorldDecorStreetsItemDecorBannerColourEnum._(r'amber');
   static const ink = ListWorldDecorStreetsItemDecorBannerColourEnum._(r'ink');
+  static const amber = ListWorldDecorStreetsItemDecorBannerColourEnum._(r'amber');
 
   /// List of all possible values in this [enum][ListWorldDecorStreetsItemDecorBannerColourEnum].
   static const values = <ListWorldDecorStreetsItemDecorBannerColourEnum>[
-    red,
-    green,
-    teal,
     blue,
+    green,
     purple,
+    red,
+    teal,
     cream,
-    amber,
     ink,
+    amber,
   ];
 
   static ListWorldDecorStreetsItemDecorBannerColourEnum fromJson(dynamic value) =>
@@ -183,14 +183,14 @@ class ListWorldDecorStreetsItemDecorBannerColourEnumTypeTransformer {
   ListWorldDecorStreetsItemDecorBannerColourEnum decode(dynamic data, {bool allowNull}) {
     if (data != null) {
       switch (data.toString()) {
-        case r'red': return ListWorldDecorStreetsItemDecorBannerColourEnum.red;
-        case r'green': return ListWorldDecorStreetsItemDecorBannerColourEnum.green;
-        case r'teal': return ListWorldDecorStreetsItemDecorBannerColourEnum.teal;
         case r'blue': return ListWorldDecorStreetsItemDecorBannerColourEnum.blue;
+        case r'green': return ListWorldDecorStreetsItemDecorBannerColourEnum.green;
         case r'purple': return ListWorldDecorStreetsItemDecorBannerColourEnum.purple;
+        case r'red': return ListWorldDecorStreetsItemDecorBannerColourEnum.red;
+        case r'teal': return ListWorldDecorStreetsItemDecorBannerColourEnum.teal;
         case r'cream': return ListWorldDecorStreetsItemDecorBannerColourEnum.cream;
-        case r'amber': return ListWorldDecorStreetsItemDecorBannerColourEnum.amber;
         case r'ink': return ListWorldDecorStreetsItemDecorBannerColourEnum.ink;
+        case r'amber': return ListWorldDecorStreetsItemDecorBannerColourEnum.amber;
         default:
           if (allowNull == false) {
             throw ArgumentError('Unknown enum value to decode: $data');

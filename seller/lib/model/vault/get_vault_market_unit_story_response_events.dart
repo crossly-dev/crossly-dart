@@ -191,17 +191,17 @@ class GetVaultMarketUnitStoryResponseEventsKindEnum {
 
   String toJson() => value;
 
-  static const transfer = GetVaultMarketUnitStoryResponseEventsKindEnum._(r'transfer');
-  static const evidence = GetVaultMarketUnitStoryResponseEventsKindEnum._(r'evidence');
   static const sale = GetVaultMarketUnitStoryResponseEventsKindEnum._(r'sale');
-  static const graded = GetVaultMarketUnitStoryResponseEventsKindEnum._(r'graded');
-  static const pledged = GetVaultMarketUnitStoryResponseEventsKindEnum._(r'pledged');
-  static const released = GetVaultMarketUnitStoryResponseEventsKindEnum._(r'released');
-  static const received = GetVaultMarketUnitStoryResponseEventsKindEnum._(r'received');
   static const receipt = GetVaultMarketUnitStoryResponseEventsKindEnum._(r'receipt');
+  static const received = GetVaultMarketUnitStoryResponseEventsKindEnum._(r'received');
+  static const released = GetVaultMarketUnitStoryResponseEventsKindEnum._(r'released');
+  static const evidence = GetVaultMarketUnitStoryResponseEventsKindEnum._(r'evidence');
+  static const graded = GetVaultMarketUnitStoryResponseEventsKindEnum._(r'graded');
+  static const transfer = GetVaultMarketUnitStoryResponseEventsKindEnum._(r'transfer');
+  static const pledged = GetVaultMarketUnitStoryResponseEventsKindEnum._(r'pledged');
   static const lent = GetVaultMarketUnitStoryResponseEventsKindEnum._(r'lent');
-  static const recalled = GetVaultMarketUnitStoryResponseEventsKindEnum._(r'recalled');
   static const foreclosed = GetVaultMarketUnitStoryResponseEventsKindEnum._(r'foreclosed');
+  static const recalled = GetVaultMarketUnitStoryResponseEventsKindEnum._(r'recalled');
   static const sentIn = GetVaultMarketUnitStoryResponseEventsKindEnum._(r'sent_in');
   static const vaultedFromGrading = GetVaultMarketUnitStoryResponseEventsKindEnum._(r'vaulted_from_grading');
   static const boughtIn = GetVaultMarketUnitStoryResponseEventsKindEnum._(r'bought_in');
@@ -216,17 +216,17 @@ class GetVaultMarketUnitStoryResponseEventsKindEnum {
 
   /// List of all possible values in this [enum][GetVaultMarketUnitStoryResponseEventsKindEnum].
   static const values = <GetVaultMarketUnitStoryResponseEventsKindEnum>[
-    transfer,
-    evidence,
     sale,
-    graded,
-    pledged,
-    released,
-    received,
     receipt,
+    received,
+    released,
+    evidence,
+    graded,
+    transfer,
+    pledged,
     lent,
-    recalled,
     foreclosed,
+    recalled,
     sentIn,
     vaultedFromGrading,
     boughtIn,
@@ -269,17 +269,17 @@ class GetVaultMarketUnitStoryResponseEventsKindEnumTypeTransformer {
   GetVaultMarketUnitStoryResponseEventsKindEnum decode(dynamic data, {bool allowNull}) {
     if (data != null) {
       switch (data.toString()) {
-        case r'transfer': return GetVaultMarketUnitStoryResponseEventsKindEnum.transfer;
-        case r'evidence': return GetVaultMarketUnitStoryResponseEventsKindEnum.evidence;
         case r'sale': return GetVaultMarketUnitStoryResponseEventsKindEnum.sale;
-        case r'graded': return GetVaultMarketUnitStoryResponseEventsKindEnum.graded;
-        case r'pledged': return GetVaultMarketUnitStoryResponseEventsKindEnum.pledged;
-        case r'released': return GetVaultMarketUnitStoryResponseEventsKindEnum.released;
-        case r'received': return GetVaultMarketUnitStoryResponseEventsKindEnum.received;
         case r'receipt': return GetVaultMarketUnitStoryResponseEventsKindEnum.receipt;
+        case r'received': return GetVaultMarketUnitStoryResponseEventsKindEnum.received;
+        case r'released': return GetVaultMarketUnitStoryResponseEventsKindEnum.released;
+        case r'evidence': return GetVaultMarketUnitStoryResponseEventsKindEnum.evidence;
+        case r'graded': return GetVaultMarketUnitStoryResponseEventsKindEnum.graded;
+        case r'transfer': return GetVaultMarketUnitStoryResponseEventsKindEnum.transfer;
+        case r'pledged': return GetVaultMarketUnitStoryResponseEventsKindEnum.pledged;
         case r'lent': return GetVaultMarketUnitStoryResponseEventsKindEnum.lent;
-        case r'recalled': return GetVaultMarketUnitStoryResponseEventsKindEnum.recalled;
         case r'foreclosed': return GetVaultMarketUnitStoryResponseEventsKindEnum.foreclosed;
+        case r'recalled': return GetVaultMarketUnitStoryResponseEventsKindEnum.recalled;
         case r'sent_in': return GetVaultMarketUnitStoryResponseEventsKindEnum.sentIn;
         case r'vaulted_from_grading': return GetVaultMarketUnitStoryResponseEventsKindEnum.vaultedFromGrading;
         case r'bought_in': return GetVaultMarketUnitStoryResponseEventsKindEnum.boughtIn;
@@ -318,25 +318,25 @@ class GetVaultMarketUnitStoryResponseEventsGroupEnum {
 
   String toJson() => value;
 
-  static const token = GetVaultMarketUnitStoryResponseEventsGroupEnum._(r'token');
   static const grade = GetVaultMarketUnitStoryResponseEventsGroupEnum._(r'grade');
-  static const loan = GetVaultMarketUnitStoryResponseEventsGroupEnum._(r'loan');
-  static const hall = GetVaultMarketUnitStoryResponseEventsGroupEnum._(r'hall');
+  static const token = GetVaultMarketUnitStoryResponseEventsGroupEnum._(r'token');
   static const receipt = GetVaultMarketUnitStoryResponseEventsGroupEnum._(r'receipt');
-  static const intake = GetVaultMarketUnitStoryResponseEventsGroupEnum._(r'intake');
   static const owner = GetVaultMarketUnitStoryResponseEventsGroupEnum._(r'owner');
+  static const hall = GetVaultMarketUnitStoryResponseEventsGroupEnum._(r'hall');
+  static const intake = GetVaultMarketUnitStoryResponseEventsGroupEnum._(r'intake');
   static const custody = GetVaultMarketUnitStoryResponseEventsGroupEnum._(r'custody');
+  static const loan = GetVaultMarketUnitStoryResponseEventsGroupEnum._(r'loan');
 
   /// List of all possible values in this [enum][GetVaultMarketUnitStoryResponseEventsGroupEnum].
   static const values = <GetVaultMarketUnitStoryResponseEventsGroupEnum>[
-    token,
     grade,
-    loan,
-    hall,
+    token,
     receipt,
-    intake,
     owner,
+    hall,
+    intake,
     custody,
+    loan,
   ];
 
   static GetVaultMarketUnitStoryResponseEventsGroupEnum fromJson(dynamic value) =>
@@ -368,14 +368,14 @@ class GetVaultMarketUnitStoryResponseEventsGroupEnumTypeTransformer {
   GetVaultMarketUnitStoryResponseEventsGroupEnum decode(dynamic data, {bool allowNull}) {
     if (data != null) {
       switch (data.toString()) {
-        case r'token': return GetVaultMarketUnitStoryResponseEventsGroupEnum.token;
         case r'grade': return GetVaultMarketUnitStoryResponseEventsGroupEnum.grade;
-        case r'loan': return GetVaultMarketUnitStoryResponseEventsGroupEnum.loan;
-        case r'hall': return GetVaultMarketUnitStoryResponseEventsGroupEnum.hall;
+        case r'token': return GetVaultMarketUnitStoryResponseEventsGroupEnum.token;
         case r'receipt': return GetVaultMarketUnitStoryResponseEventsGroupEnum.receipt;
-        case r'intake': return GetVaultMarketUnitStoryResponseEventsGroupEnum.intake;
         case r'owner': return GetVaultMarketUnitStoryResponseEventsGroupEnum.owner;
+        case r'hall': return GetVaultMarketUnitStoryResponseEventsGroupEnum.hall;
+        case r'intake': return GetVaultMarketUnitStoryResponseEventsGroupEnum.intake;
         case r'custody': return GetVaultMarketUnitStoryResponseEventsGroupEnum.custody;
+        case r'loan': return GetVaultMarketUnitStoryResponseEventsGroupEnum.loan;
         default:
           if (allowNull == false) {
             throw ArgumentError('Unknown enum value to decode: $data');

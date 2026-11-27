@@ -13,45 +13,48 @@ part of openapi.api;
 class GetVaultAttestationResponseLatest {
   /// Returns a new [GetVaultAttestationResponseLatest] instance.
   GetVaultAttestationResponseLatest({
+    this.other,
     this.physicalCount,
     this.insuranceCertificate,
     this.soc1Type2,
     this.soc2,
-    this.other,
   });
 
-  GetVaultAttestationResponseLatestPhysicalCount physicalCount;
+  GetVaultAttestationResponseLatestOther other;
 
-  GetVaultAttestationResponseLatestPhysicalCount insuranceCertificate;
+  GetVaultAttestationResponseLatestOther physicalCount;
 
-  GetVaultAttestationResponseLatestPhysicalCount soc1Type2;
+  GetVaultAttestationResponseLatestOther insuranceCertificate;
 
-  GetVaultAttestationResponseLatestPhysicalCount soc2;
+  GetVaultAttestationResponseLatestOther soc1Type2;
 
-  GetVaultAttestationResponseLatestPhysicalCount other;
+  GetVaultAttestationResponseLatestOther soc2;
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is GetVaultAttestationResponseLatest &&
+     other.other == other &&
      other.physicalCount == physicalCount &&
      other.insuranceCertificate == insuranceCertificate &&
      other.soc1Type2 == soc1Type2 &&
-     other.soc2 == soc2 &&
-     other.other == other;
+     other.soc2 == soc2;
 
   @override
   int get hashCode =>
   // ignore: unnecessary_parenthesis
+    (other == null ? 0 : other.hashCode) +
     (physicalCount == null ? 0 : physicalCount.hashCode) +
     (insuranceCertificate == null ? 0 : insuranceCertificate.hashCode) +
     (soc1Type2 == null ? 0 : soc1Type2.hashCode) +
-    (soc2 == null ? 0 : soc2.hashCode) +
-    (other == null ? 0 : other.hashCode);
+    (soc2 == null ? 0 : soc2.hashCode);
 
   @override
-  String toString() => 'GetVaultAttestationResponseLatest[physicalCount=$physicalCount, insuranceCertificate=$insuranceCertificate, soc1Type2=$soc1Type2, soc2=$soc2, other=$other]';
+  String toString() => 'GetVaultAttestationResponseLatest[other=$other, physicalCount=$physicalCount, insuranceCertificate=$insuranceCertificate, soc1Type2=$soc1Type2, soc2=$soc2]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
+    if (other != null) {
+      json[r'other'] = other;
+    }
     if (physicalCount != null) {
       json[r'physical_count'] = physicalCount;
     }
@@ -64,9 +67,6 @@ class GetVaultAttestationResponseLatest {
     if (soc2 != null) {
       json[r'soc2'] = soc2;
     }
-    if (other != null) {
-      json[r'other'] = other;
-    }
     return json;
   }
 
@@ -77,11 +77,11 @@ class GetVaultAttestationResponseLatest {
     if (value is Map) {
       final json = value.cast<String, dynamic>();
       return GetVaultAttestationResponseLatest(
-        physicalCount: GetVaultAttestationResponseLatestPhysicalCount.fromJson(json[r'physical_count']),
-        insuranceCertificate: GetVaultAttestationResponseLatestPhysicalCount.fromJson(json[r'insurance_certificate']),
-        soc1Type2: GetVaultAttestationResponseLatestPhysicalCount.fromJson(json[r'soc1_type2']),
-        soc2: GetVaultAttestationResponseLatestPhysicalCount.fromJson(json[r'soc2']),
-        other: GetVaultAttestationResponseLatestPhysicalCount.fromJson(json[r'other']),
+        other: GetVaultAttestationResponseLatestOther.fromJson(json[r'other']),
+        physicalCount: GetVaultAttestationResponseLatestOther.fromJson(json[r'physical_count']),
+        insuranceCertificate: GetVaultAttestationResponseLatestOther.fromJson(json[r'insurance_certificate']),
+        soc1Type2: GetVaultAttestationResponseLatestOther.fromJson(json[r'soc1_type2']),
+        soc2: GetVaultAttestationResponseLatestOther.fromJson(json[r'soc2']),
       );
     }
     return null;

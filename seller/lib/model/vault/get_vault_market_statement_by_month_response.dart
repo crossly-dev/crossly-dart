@@ -29,6 +29,7 @@ class GetVaultMarketStatementByMonthResponse {
     this.pledges = const [],
     this.activity = const [],
     this.fees,
+    this.cash,
     this.notes = const [],
   });
 
@@ -64,6 +65,8 @@ class GetVaultMarketStatementByMonthResponse {
 
   GetVaultMarketStatementByMonthResponseOneOf1Fees fees;
 
+  Object cash;
+
   List<String> notes;
 
   @override
@@ -84,6 +87,7 @@ class GetVaultMarketStatementByMonthResponse {
      other.pledges == pledges &&
      other.activity == activity &&
      other.fees == fees &&
+     other.cash == cash &&
      other.notes == notes;
 
   @override
@@ -105,10 +109,11 @@ class GetVaultMarketStatementByMonthResponse {
     (pledges == null ? 0 : pledges.hashCode) +
     (activity == null ? 0 : activity.hashCode) +
     (fees == null ? 0 : fees.hashCode) +
+    (cash == null ? 0 : cash.hashCode) +
     (notes == null ? 0 : notes.hashCode);
 
   @override
-  String toString() => 'GetVaultMarketStatementByMonthResponse[frozen=$frozen, hash=$hash, generatedAt=$generatedAt, account=$account, month=$month, from=$from, to=$to, holdingsAsOf=$holdingsAsOf, provisional=$provisional, summary=$summary, holdings=$holdings, loansOut=$loansOut, positions=$positions, pledges=$pledges, activity=$activity, fees=$fees, notes=$notes]';
+  String toString() => 'GetVaultMarketStatementByMonthResponse[frozen=$frozen, hash=$hash, generatedAt=$generatedAt, account=$account, month=$month, from=$from, to=$to, holdingsAsOf=$holdingsAsOf, provisional=$provisional, summary=$summary, holdings=$holdings, loansOut=$loansOut, positions=$positions, pledges=$pledges, activity=$activity, fees=$fees, cash=$cash, notes=$notes]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -154,6 +159,9 @@ class GetVaultMarketStatementByMonthResponse {
     if (fees != null) {
       json[r'fees'] = fees;
     }
+    if (cash != null) {
+      json[r'cash'] = cash;
+    }
     if (notes != null) {
       json[r'notes'] = notes;
     }
@@ -183,6 +191,7 @@ class GetVaultMarketStatementByMonthResponse {
         pledges: json[r'pledges'] is List ? (json[r'pledges'] as List).cast<Map<String, Object>>() : const [],
         activity: ListVaultMarketConfirmationsItem.listFromJson(json[r'activity']),
         fees: GetVaultMarketStatementByMonthResponseOneOf1Fees.fromJson(json[r'fees']),
+        cash: mapValueOfType<Object>(json, r'cash'),
         notes: json[r'notes'] is List
           ? (json[r'notes'] as List).cast<String>()
           : null,

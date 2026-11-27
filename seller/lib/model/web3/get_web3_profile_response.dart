@@ -131,13 +131,13 @@ class GetWeb3ProfileResponseFamilyEnum {
 
   String toJson() => value;
 
-  static const evm = GetWeb3ProfileResponseFamilyEnum._(r'evm');
   static const solana = GetWeb3ProfileResponseFamilyEnum._(r'solana');
+  static const evm = GetWeb3ProfileResponseFamilyEnum._(r'evm');
 
   /// List of all possible values in this [enum][GetWeb3ProfileResponseFamilyEnum].
   static const values = <GetWeb3ProfileResponseFamilyEnum>[
-    evm,
     solana,
+    evm,
   ];
 
   static GetWeb3ProfileResponseFamilyEnum fromJson(dynamic value) =>
@@ -169,8 +169,8 @@ class GetWeb3ProfileResponseFamilyEnumTypeTransformer {
   GetWeb3ProfileResponseFamilyEnum decode(dynamic data, {bool allowNull}) {
     if (data != null) {
       switch (data.toString()) {
-        case r'evm': return GetWeb3ProfileResponseFamilyEnum.evm;
         case r'solana': return GetWeb3ProfileResponseFamilyEnum.solana;
+        case r'evm': return GetWeb3ProfileResponseFamilyEnum.evm;
         default:
           if (allowNull == false) {
             throw ArgumentError('Unknown enum value to decode: $data');

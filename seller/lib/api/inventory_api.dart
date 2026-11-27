@@ -320,7 +320,9 @@ class InventoryApi {
     return Future<CreateListingBulkUpdateResponse>.value();
   }
 
-  /// Set / add / subtract stock across many items, syncing live listings.
+  /// Set / add / subtract stock across many items, or set a stock per item; syncs live listings.
+  ///
+  /// Two bodies. {ids, mode: \"set\"|\"increase\"|\"decrease\", value, syncMarketplaces?} applies one value to every id. {mode: \"set\", items: [{id, quantity}], syncMarketplaces?} sets each item to its own quantity (1-5000 items, each id once; a repeated id, more than 5000 items, or a body mixing items with ids/value is a 400 naming both shapes). The value is the AVAILABLE stock (reserved units of open orders are kept). Stock changes at once; live listings are pushed in the background against the returned bulkJobId (anything dropping to 0 is delisted). Response: {affected, skipped, bulkJobId?}: skipped = ids that did not move (already at that number, or not yours). Send an Idempotency-Key to retry safely.
   ///
   /// Note: This method returns the HTTP [Response].
   Future<Response> createInventoryBulkQuantityWithHttpInfo() async {
@@ -350,7 +352,9 @@ class InventoryApi {
     );
   }
 
-  /// Set / add / subtract stock across many items, syncing live listings.
+  /// Set / add / subtract stock across many items, or set a stock per item; syncs live listings.
+  ///
+  /// Two bodies. {ids, mode: \"set\"|\"increase\"|\"decrease\", value, syncMarketplaces?} applies one value to every id. {mode: \"set\", items: [{id, quantity}], syncMarketplaces?} sets each item to its own quantity (1-5000 items, each id once; a repeated id, more than 5000 items, or a body mixing items with ids/value is a 400 naming both shapes). The value is the AVAILABLE stock (reserved units of open orders are kept). Stock changes at once; live listings are pushed in the background against the returned bulkJobId (anything dropping to 0 is delisted). Response: {affected, skipped, bulkJobId?}: skipped = ids that did not move (already at that number, or not yours). Send an Idempotency-Key to retry safely.
   Future<CreateInventoryBulkQuantityResponse> createInventoryBulkQuantity() async {
     final response = await createInventoryBulkQuantityWithHttpInfo();
     if (response.statusCode >= HttpStatus.badRequest) {
@@ -364,6 +368,52 @@ class InventoryApi {
     
     }
     return Future<CreateInventoryBulkQuantityResponse>.value();
+  }
+
+  /// Restore archived inventory items (status returns to active, or sold_out when no stock).
+  ///
+  /// Note: This method returns the HTTP [Response].
+  Future<Response> createInventoryBulkRestoreWithHttpInfo() async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/inventory/bulk-restore';
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'POST',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Restore archived inventory items (status returns to active, or sold_out when no stock).
+  Future<CreateInventoryBulkRestoreResponse> createInventoryBulkRestore() async {
+    final response = await createInventoryBulkRestoreWithHttpInfo();
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'CreateInventoryBulkRestoreResponse',) as CreateInventoryBulkRestoreResponse;
+    
+    }
+    return Future<CreateInventoryBulkRestoreResponse>.value();
   }
 
   /// Run catalog matching for one item now. An identifier (UPC, style code, catalogue number) that resolves to exactly one product links it; otherwise likely products are returned as suggestions to confirm.
@@ -549,7 +599,7 @@ class InventoryApi {
   }
 
   /// Rename a label across every inventory item.
-  Future<CreateInventoryLabelRenameResponse> createInventoryLabelRename() async {
+  Future<UpdatedResponse> createInventoryLabelRename() async {
     final response = await createInventoryLabelRenameWithHttpInfo();
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
@@ -558,10 +608,10 @@ class InventoryApi {
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
     if (response.body != null && response.statusCode != HttpStatus.noContent) {
-      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'CreateInventoryLabelRenameResponse',) as CreateInventoryLabelRenameResponse;
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'UpdatedResponse',) as UpdatedResponse;
     
     }
-    return Future<CreateInventoryLabelRenameResponse>.value();
+    return Future<UpdatedResponse>.value();
   }
 
   /// Merge inventory items that are the same physical item into one (stock is not summed).
@@ -965,7 +1015,7 @@ class InventoryApi {
   /// Parameters:
   ///
   /// * [String] id (required):
-  Future<CreateSpatialPropertyLeaseAcceptResponse> createSpatialPropertyLeaseAccept(String id,) async {
+  Future<CreateWorldMarketPlotRentResponse> createSpatialPropertyLeaseAccept(String id,) async {
     final response = await createSpatialPropertyLeaseAcceptWithHttpInfo(id,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
@@ -974,15 +1024,15 @@ class InventoryApi {
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
     if (response.body != null && response.statusCode != HttpStatus.noContent) {
-      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'CreateSpatialPropertyLeaseAcceptResponse',) as CreateSpatialPropertyLeaseAcceptResponse;
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'CreateWorldMarketPlotRentResponse',) as CreateWorldMarketPlotRentResponse;
     
     }
-    return Future<CreateSpatialPropertyLeaseAcceptResponse>.value();
+    return Future<CreateWorldMarketPlotRentResponse>.value();
   }
 
   /// End a lease (owner or tenant).
   ///
-  /// The tenant's shop gets a free Main Street address again.
+  /// The tenant's showroom leaves the plot.
   ///
   /// Note: This method returns the HTTP [Response].
   ///
@@ -1024,7 +1074,7 @@ class InventoryApi {
 
   /// End a lease (owner or tenant).
   ///
-  /// The tenant's shop gets a free Main Street address again.
+  /// The tenant's showroom leaves the plot.
   ///
   /// Parameters:
   ///
@@ -1738,6 +1788,287 @@ class InventoryApi {
     return Future<CreateWorldCrewLeaveResponse>.value();
   }
 
+  /// Unsold stock: aging buckets with cost, listed value and market value, the 20 listings most in need of attention, shelf value over time, cohort sell-through at the chosen maturity, listed vs sold velocity and data health.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] range:
+  ///   Reporting window. Default 30d. custom needs from and to.
+  ///
+  /// * [String] from:
+  ///   YYYY-MM-DD, inclusive, in tz. Only with range=custom.
+  ///
+  /// * [String] to:
+  ///   YYYY-MM-DD, inclusive, in tz. Only with range=custom.
+  ///
+  /// * [String] compare:
+  ///   Comparison window for deltas: prev (same length just before), yoy, none, custom (cmpFrom/cmpTo).
+  ///
+  /// * [String] cmpFrom:
+  ///   YYYY-MM-DD. Only with compare=custom.
+  ///
+  /// * [String] cmpTo:
+  ///   YYYY-MM-DD. Only with compare=custom.
+  ///
+  /// * [String] labels:
+  ///   Comma-separated inventory labels (any of them).
+  ///
+  /// * [String] platforms:
+  ///   Comma-separated platform ids.
+  ///
+  /// * [String] category:
+  ///   Canonical main-category key.
+  ///
+  /// * [String] brand:
+  ///   Brand name.
+  ///
+  /// * [String] tz:
+  ///   IANA time zone for day boundaries. Default UTC. An invalid name is a 400.
+  ///
+  /// * [int] maturity:
+  ///   Days an item has to sell within to count as sold in the cohort. Default 30.
+  Future<Response> getAnalyticInventoryWithHttpInfo({ String range, String from, String to, String compare, String cmpFrom, String cmpTo, String labels, String platforms, String category, String brand, String tz, int maturity, }) async {
+    // Verify required params are set.
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/analytics/inventory';
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    if (range != null) {
+      queryParams.addAll(_convertParametersForCollectionFormat('', 'range', range));
+    }
+    if (from != null) {
+      queryParams.addAll(_convertParametersForCollectionFormat('', 'from', from));
+    }
+    if (to != null) {
+      queryParams.addAll(_convertParametersForCollectionFormat('', 'to', to));
+    }
+    if (compare != null) {
+      queryParams.addAll(_convertParametersForCollectionFormat('', 'compare', compare));
+    }
+    if (cmpFrom != null) {
+      queryParams.addAll(_convertParametersForCollectionFormat('', 'cmpFrom', cmpFrom));
+    }
+    if (cmpTo != null) {
+      queryParams.addAll(_convertParametersForCollectionFormat('', 'cmpTo', cmpTo));
+    }
+    if (labels != null) {
+      queryParams.addAll(_convertParametersForCollectionFormat('', 'labels', labels));
+    }
+    if (platforms != null) {
+      queryParams.addAll(_convertParametersForCollectionFormat('', 'platforms', platforms));
+    }
+    if (category != null) {
+      queryParams.addAll(_convertParametersForCollectionFormat('', 'category', category));
+    }
+    if (brand != null) {
+      queryParams.addAll(_convertParametersForCollectionFormat('', 'brand', brand));
+    }
+    if (tz != null) {
+      queryParams.addAll(_convertParametersForCollectionFormat('', 'tz', tz));
+    }
+    if (maturity != null) {
+      queryParams.addAll(_convertParametersForCollectionFormat('', 'maturity', maturity));
+    }
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Unsold stock: aging buckets with cost, listed value and market value, the 20 listings most in need of attention, shelf value over time, cohort sell-through at the chosen maturity, listed vs sold velocity and data health.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] range:
+  ///   Reporting window. Default 30d. custom needs from and to.
+  ///
+  /// * [String] from:
+  ///   YYYY-MM-DD, inclusive, in tz. Only with range=custom.
+  ///
+  /// * [String] to:
+  ///   YYYY-MM-DD, inclusive, in tz. Only with range=custom.
+  ///
+  /// * [String] compare:
+  ///   Comparison window for deltas: prev (same length just before), yoy, none, custom (cmpFrom/cmpTo).
+  ///
+  /// * [String] cmpFrom:
+  ///   YYYY-MM-DD. Only with compare=custom.
+  ///
+  /// * [String] cmpTo:
+  ///   YYYY-MM-DD. Only with compare=custom.
+  ///
+  /// * [String] labels:
+  ///   Comma-separated inventory labels (any of them).
+  ///
+  /// * [String] platforms:
+  ///   Comma-separated platform ids.
+  ///
+  /// * [String] category:
+  ///   Canonical main-category key.
+  ///
+  /// * [String] brand:
+  ///   Brand name.
+  ///
+  /// * [String] tz:
+  ///   IANA time zone for day boundaries. Default UTC. An invalid name is a 400.
+  ///
+  /// * [int] maturity:
+  ///   Days an item has to sell within to count as sold in the cohort. Default 30.
+  Future<GetAnalyticInventoryResponse> getAnalyticInventory({ String range, String from, String to, String compare, String cmpFrom, String cmpTo, String labels, String platforms, String category, String brand, String tz, int maturity, }) async {
+    final response = await getAnalyticInventoryWithHttpInfo( range: range, from: from, to: to, compare: compare, cmpFrom: cmpFrom, cmpTo: cmpTo, labels: labels, platforms: platforms, category: category, brand: brand, tz: tz, maturity: maturity, );
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'GetAnalyticInventoryResponse',) as GetAnalyticInventoryResponse;
+    
+    }
+    return Future<GetAnalyticInventoryResponse>.value();
+  }
+
+  /// The results of one of your metaverse events (a Branding event of type scavenger_hunt or pack_break): for a hunt -- status, place, coins and clues, players, finishers, winners (place, masked name, when) and the rewards paid or failed per kind; for a pack break -- status, whether it is live on the stage, spots, spots sold and hits revealed. 404 for an event that is not a World event of yours.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] eventId (required):
+  Future<Response> getGameEventSummaryWithHttpInfo(String eventId,) async {
+    // Verify required params are set.
+    if (eventId == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: eventId');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/games/events/{eventId}/summary'
+      .replaceAll('{eventId}', eventId);
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// The results of one of your metaverse events (a Branding event of type scavenger_hunt or pack_break): for a hunt -- status, place, coins and clues, players, finishers, winners (place, masked name, when) and the rewards paid or failed per kind; for a pack break -- status, whether it is live on the stage, spots, spots sold and hits revealed. 404 for an event that is not a World event of yours.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] eventId (required):
+  Future<GetGameEventSummaryResponse> getGameEventSummary(String eventId,) async {
+    final response = await getGameEventSummaryWithHttpInfo(eventId,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'GetGameEventSummaryResponse',) as GetGameEventSummaryResponse;
+    
+    }
+    return Future<GetGameEventSummaryResponse>.value();
+  }
+
+  /// One of your scavenger hunts as the in-world builder sees it: place, rules (days, time limit, hints, winners, ordered), rewards, the build document (coins and clue signs with positions), what still blocks publishing, and buildLink -- the Worlds app link that opens the builder. Read-only: coins are placed in the World.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<Response> getGameHuntBuildWithHttpInfo(String id,) async {
+    // Verify required params are set.
+    if (id == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: id');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/v1/games/hunts/{id}/build'
+      .replaceAll('{id}', id);
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// One of your scavenger hunts as the in-world builder sees it: place, rules (days, time limit, hints, winners, ordered), rewards, the build document (coins and clue signs with positions), what still blocks publishing, and buildLink -- the Worlds app link that opens the builder. Read-only: coins are placed in the World.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  Future<GetGameHuntBuildResponse> getGameHuntBuild(String id,) async {
+    final response = await getGameHuntBuildWithHttpInfo(id,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'GetGameHuntBuildResponse',) as GetGameHuntBuildResponse;
+    
+    }
+    return Future<GetGameHuntBuildResponse>.value();
+  }
+
   /// Game leaderboards: for each of Price Guess (wins, then points), scavenger hunts (finished) and speed trades (won), the top ten this week (Monday 00:00 UTC on) under week and of all time under all -- rank, name, named, value and, for Price Guess, score. A name appears only for somebody who chose to be seen by name in Crossly World; everyone else is \"A player\" in their place.
   ///
   /// Note: This method returns the HTTP [Response].
@@ -1950,7 +2281,7 @@ class InventoryApi {
     return Future<GetInventoryResponse>.value();
   }
 
-  /// Unsold stock by age (0-7, 7-30, 30-90, 90+ days, unlisted), each bucket with a recommendation.
+  /// Unsold stock by days since first listed (unlisted, 0-7, 7-30, 30-90, 90+), each bucket with items, units, known cost (items without a cost counted separately) and listed value.
   ///
   /// Note: This method returns the HTTP [Response].
   Future<Response> getInventoryAgingWithHttpInfo() async {
@@ -1980,7 +2311,7 @@ class InventoryApi {
     );
   }
 
-  /// Unsold stock by age (0-7, 7-30, 30-90, 90+ days, unlisted), each bucket with a recommendation.
+  /// Unsold stock by days since first listed (unlisted, 0-7, 7-30, 30-90, 90+), each bucket with items, units, known cost (items without a cost counted separately) and listed value.
   Future<GetInventoryAgingResponse> getInventoryAging() async {
     final response = await getInventoryAgingWithHttpInfo();
     if (response.statusCode >= HttpStatus.badRequest) {
@@ -2194,7 +2525,7 @@ class InventoryApi {
     return Future<GetInventoryLabelStatResponse>.value();
   }
 
-  /// Cohort sell-through for a window (default: the 30 days ending 30 days ago) against the previous window of the same length.
+  /// Cohort sell-through: of the items first listed in the window (default 30-60 days ago), the share sold within 30 days of listing, with n, immature items left out, and the change vs the previous window in percentage points (pp).
   ///
   /// Note: This method returns the HTTP [Response].
   Future<Response> getInventorySellThroughWithHttpInfo() async {
@@ -2224,7 +2555,7 @@ class InventoryApi {
     );
   }
 
-  /// Cohort sell-through for a window (default: the 30 days ending 30 days ago) against the previous window of the same length.
+  /// Cohort sell-through: of the items first listed in the window (default 30-60 days ago), the share sold within 30 days of listing, with n, immature items left out, and the change vs the previous window in percentage points (pp).
   Future<GetInventorySellThroughResponse> getInventorySellThrough() async {
     final response = await getInventorySellThroughWithHttpInfo();
     if (response.statusCode >= HttpStatus.badRequest) {
@@ -2301,7 +2632,7 @@ class InventoryApi {
     return Future<GetListingSkuExistResponse>.value();
   }
 
-  /// Portfolio value of unsold stock over time, oldest first (one point per nightly snapshot).
+  /// Cost and listed value of unsold stock over time, oldest first (one point per nightly snapshot).
   ///
   /// Note: This method returns the HTTP [Response].
   Future<Response> getInventoryValueHistoryWithHttpInfo() async {
@@ -2331,7 +2662,7 @@ class InventoryApi {
     );
   }
 
-  /// Portfolio value of unsold stock over time, oldest first (one point per nightly snapshot).
+  /// Cost and listed value of unsold stock over time, oldest first (one point per nightly snapshot).
   Future<GetInventoryValueHistoryResponse> getInventoryValueHistory() async {
     final response = await getInventoryValueHistoryWithHttpInfo();
     if (response.statusCode >= HttpStatus.badRequest) {
@@ -3380,6 +3711,52 @@ class InventoryApi {
     return Future<GetSpatialStreetPlotQuoteResponse>.value();
   }
 
+  /// Crossly World's pulse, aggregated with no people in it: the public world shops that made a sale today (slugs only -- never counts, amounts or buyers), the times the world's shops passed each sales milestone today (each fires a fireworks show), and what Crossly Cares took in this month against the Commons fountain's mark.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  Future<Response> getWorldPulseWithHttpInfo() async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/world/pulse';
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Crossly World's pulse, aggregated with no people in it: the public world shops that made a sale today (slugs only -- never counts, amounts or buyers), the times the world's shops passed each sales milestone today (each fires a fireworks show), and what Crossly Cares took in this month against the Commons fountain's mark.
+  Future<GetWorldPulseResponse> getWorldPulse() async {
+    final response = await getWorldPulseWithHttpInfo();
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'GetWorldPulseResponse',) as GetWorldPulseResponse;
+    
+    }
+    return Future<GetWorldPulseResponse>.value();
+  }
+
   /// Your room's funnel over the last `days` (1-35, default 30): visitors (people, once a day), looks, items opened, checkouts started from the room, paid sales and revenueCents. Sales count only lines the room itself put in a cart.
   ///
   /// Note: This method returns the HTTP [Response].
@@ -3729,6 +4106,52 @@ class InventoryApi {
     return Future<ListGameBreakUpcomingResponse>.value();
   }
 
+  /// Your scavenger hunts (spec WD6: made from Branding events, built in Crossly World), newest first: title, place slug, the event it belongs to (eventId), your discount code if it rewards one, whether it is a draft (not yet built and published), live or ended, its coins, and how many people finished.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  Future<Response> listGameHuntMineWithHttpInfo() async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/games/hunts/mine';
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['PersonalAccessToken'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Your scavenger hunts (spec WD6: made from Branding events, built in Crossly World), newest first: title, place slug, the event it belongs to (eventId), your discount code if it rewards one, whether it is a draft (not yet built and published), live or ended, its coins, and how many people finished.
+  Future<ListGameHuntMineResponse> listGameHuntMine() async {
+    final response = await listGameHuntMineWithHttpInfo();
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'ListGameHuntMineResponse',) as ListGameHuntMineResponse;
+    
+    }
+    return Future<ListGameHuntMineResponse>.value();
+  }
+
   /// Scavenger hunts running now in Crossly World shops and pop-up stalls, ending soonest first: title, shop (name and slug -- for a hunt at a stall, the street slug, with stall.bookingId set), how many tokens, what finishing unlocks (\"10% off\" -- never the code), when it ends and how many people have finished. Optional place filters to one shop or street slug.
   ///
   /// Note: This method returns the HTTP [Response].
@@ -3949,7 +4372,13 @@ class InventoryApi {
   ///
   /// * [String] platformMode:
   ///   \"not_listed\" inverts `platforms`: items live on none of them. Default \"listed\".
-  Future<Response> listInventoryWithHttpInfo({ int page, int limit, String search, String status, String kind, String platforms, String platformMode, }) async {
+  ///
+  /// * [String] sku:
+  ///   Exact SKU match: look up the row a supplier product maps to.
+  ///
+  /// * [DateTime] updatedSince:
+  ///   Only rows created or changed at or after this time (ISO 8601), oldest change first. Poll with the updatedAt of the last row you saw.
+  Future<Response> listInventoryWithHttpInfo({ int page, int limit, String search, String status, String kind, String platforms, String platformMode, String sku, DateTime updatedSince, }) async {
     // Verify required params are set.
 
     // ignore: prefer_const_declarations
@@ -3982,6 +4411,12 @@ class InventoryApi {
     }
     if (platformMode != null) {
       queryParams.addAll(_convertParametersForCollectionFormat('', 'platformMode', platformMode));
+    }
+    if (sku != null) {
+      queryParams.addAll(_convertParametersForCollectionFormat('', 'sku', sku));
+    }
+    if (updatedSince != null) {
+      queryParams.addAll(_convertParametersForCollectionFormat('', 'updatedSince', updatedSince));
     }
 
     const authNames = <String>['PersonalAccessToken'];
@@ -4020,8 +4455,14 @@ class InventoryApi {
   ///
   /// * [String] platformMode:
   ///   \"not_listed\" inverts `platforms`: items live on none of them. Default \"listed\".
-  Future<ListInventoryResponse> listInventory({ int page, int limit, String search, String status, String kind, String platforms, String platformMode, }) async {
-    final response = await listInventoryWithHttpInfo( page: page, limit: limit, search: search, status: status, kind: kind, platforms: platforms, platformMode: platformMode, );
+  ///
+  /// * [String] sku:
+  ///   Exact SKU match: look up the row a supplier product maps to.
+  ///
+  /// * [DateTime] updatedSince:
+  ///   Only rows created or changed at or after this time (ISO 8601), oldest change first. Poll with the updatedAt of the last row you saw.
+  Future<ListInventoryResponse> listInventory({ int page, int limit, String search, String status, String kind, String platforms, String platformMode, String sku, DateTime updatedSince, }) async {
+    final response = await listInventoryWithHttpInfo( page: page, limit: limit, search: search, status: status, kind: kind, platforms: platforms, platformMode: platformMode, sku: sku, updatedSince: updatedSince, );
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }

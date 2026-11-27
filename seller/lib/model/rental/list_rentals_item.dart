@@ -18,6 +18,11 @@ class ListRentalsItem {
     this.closedAt,
     @required this.createdAt,
     this.shipTo,
+    this.platformListingId,
+    this.payoutTiming,
+    this.payoutReleasedAt,
+    this.orderId,
+    this.crosslyFeeCents,
     @required this.id,
     @required this.status,
     this.slug,
@@ -40,6 +45,21 @@ class ListRentalsItem {
     this.conditionPhotosIn = const [],
     this.approvalDueAt,
     @required this.depositRefundedCents,
+    @required this.unit,
+    @required this.fulfilment,
+    @required this.cleaningFeeCents,
+    @required this.damageWaiver,
+    @required this.damageWaiverCents,
+    @required this.lateFeeCents,
+    @required this.rentRefundedCents,
+    this.buyoutCents,
+    this.charges = const {},
+    this.conditionPhotosReturn = const [],
+    this.approvedAt,
+    this.deliveredAt,
+    this.returnShippedAt,
+    this.inspectedAt,
+    this.boughtOutAt,
   });
 
   String shippedAt;
@@ -51,6 +71,16 @@ class ListRentalsItem {
   String createdAt;
 
   Map<String, Object> shipTo;
+
+  String platformListingId;
+
+  String payoutTiming;
+
+  String payoutReleasedAt;
+
+  String orderId;
+
+  num crosslyFeeCents;
 
   String id;
 
@@ -96,6 +126,36 @@ class ListRentalsItem {
 
   num depositRefundedCents;
 
+  num unit;
+
+  String fulfilment;
+
+  num cleaningFeeCents;
+
+  bool damageWaiver;
+
+  num damageWaiverCents;
+
+  num lateFeeCents;
+
+  num rentRefundedCents;
+
+  num buyoutCents;
+
+  Map<String, Object> charges;
+
+  List<String> conditionPhotosReturn;
+
+  String approvedAt;
+
+  String deliveredAt;
+
+  String returnShippedAt;
+
+  String inspectedAt;
+
+  String boughtOutAt;
+
   @override
   bool operator ==(Object other) => identical(this, other) || other is ListRentalsItem &&
      other.shippedAt == shippedAt &&
@@ -103,6 +163,11 @@ class ListRentalsItem {
      other.closedAt == closedAt &&
      other.createdAt == createdAt &&
      other.shipTo == shipTo &&
+     other.platformListingId == platformListingId &&
+     other.payoutTiming == payoutTiming &&
+     other.payoutReleasedAt == payoutReleasedAt &&
+     other.orderId == orderId &&
+     other.crosslyFeeCents == crosslyFeeCents &&
      other.id == id &&
      other.status == status &&
      other.slug == slug &&
@@ -124,7 +189,22 @@ class ListRentalsItem {
      other.conditionPhotosOut == conditionPhotosOut &&
      other.conditionPhotosIn == conditionPhotosIn &&
      other.approvalDueAt == approvalDueAt &&
-     other.depositRefundedCents == depositRefundedCents;
+     other.depositRefundedCents == depositRefundedCents &&
+     other.unit == unit &&
+     other.fulfilment == fulfilment &&
+     other.cleaningFeeCents == cleaningFeeCents &&
+     other.damageWaiver == damageWaiver &&
+     other.damageWaiverCents == damageWaiverCents &&
+     other.lateFeeCents == lateFeeCents &&
+     other.rentRefundedCents == rentRefundedCents &&
+     other.buyoutCents == buyoutCents &&
+     other.charges == charges &&
+     other.conditionPhotosReturn == conditionPhotosReturn &&
+     other.approvedAt == approvedAt &&
+     other.deliveredAt == deliveredAt &&
+     other.returnShippedAt == returnShippedAt &&
+     other.inspectedAt == inspectedAt &&
+     other.boughtOutAt == boughtOutAt;
 
   @override
   int get hashCode =>
@@ -134,6 +214,11 @@ class ListRentalsItem {
     (closedAt == null ? 0 : closedAt.hashCode) +
     (createdAt == null ? 0 : createdAt.hashCode) +
     (shipTo == null ? 0 : shipTo.hashCode) +
+    (platformListingId == null ? 0 : platformListingId.hashCode) +
+    (payoutTiming == null ? 0 : payoutTiming.hashCode) +
+    (payoutReleasedAt == null ? 0 : payoutReleasedAt.hashCode) +
+    (orderId == null ? 0 : orderId.hashCode) +
+    (crosslyFeeCents == null ? 0 : crosslyFeeCents.hashCode) +
     (id == null ? 0 : id.hashCode) +
     (status == null ? 0 : status.hashCode) +
     (slug == null ? 0 : slug.hashCode) +
@@ -155,10 +240,25 @@ class ListRentalsItem {
     (conditionPhotosOut == null ? 0 : conditionPhotosOut.hashCode) +
     (conditionPhotosIn == null ? 0 : conditionPhotosIn.hashCode) +
     (approvalDueAt == null ? 0 : approvalDueAt.hashCode) +
-    (depositRefundedCents == null ? 0 : depositRefundedCents.hashCode);
+    (depositRefundedCents == null ? 0 : depositRefundedCents.hashCode) +
+    (unit == null ? 0 : unit.hashCode) +
+    (fulfilment == null ? 0 : fulfilment.hashCode) +
+    (cleaningFeeCents == null ? 0 : cleaningFeeCents.hashCode) +
+    (damageWaiver == null ? 0 : damageWaiver.hashCode) +
+    (damageWaiverCents == null ? 0 : damageWaiverCents.hashCode) +
+    (lateFeeCents == null ? 0 : lateFeeCents.hashCode) +
+    (rentRefundedCents == null ? 0 : rentRefundedCents.hashCode) +
+    (buyoutCents == null ? 0 : buyoutCents.hashCode) +
+    (charges == null ? 0 : charges.hashCode) +
+    (conditionPhotosReturn == null ? 0 : conditionPhotosReturn.hashCode) +
+    (approvedAt == null ? 0 : approvedAt.hashCode) +
+    (deliveredAt == null ? 0 : deliveredAt.hashCode) +
+    (returnShippedAt == null ? 0 : returnShippedAt.hashCode) +
+    (inspectedAt == null ? 0 : inspectedAt.hashCode) +
+    (boughtOutAt == null ? 0 : boughtOutAt.hashCode);
 
   @override
-  String toString() => 'ListRentalsItem[shippedAt=$shippedAt, returnedAt=$returnedAt, closedAt=$closedAt, createdAt=$createdAt, shipTo=$shipTo, id=$id, status=$status, slug=$slug, title=$title, imageUrl=$imageUrl, startDate=$startDate, endDate=$endDate, days=$days, rentCents=$rentCents, shippingCents=$shippingCents, depositCents=$depositCents, outboundTracking=$outboundTracking, returnTracking=$returnTracking, labelUrl=$labelUrl, claimCents=$claimCents, claimNote=$claimNote, claimPhotos=$claimPhotos, claimDisputed=$claimDisputed, conditionPhotosOut=$conditionPhotosOut, conditionPhotosIn=$conditionPhotosIn, approvalDueAt=$approvalDueAt, depositRefundedCents=$depositRefundedCents]';
+  String toString() => 'ListRentalsItem[shippedAt=$shippedAt, returnedAt=$returnedAt, closedAt=$closedAt, createdAt=$createdAt, shipTo=$shipTo, platformListingId=$platformListingId, payoutTiming=$payoutTiming, payoutReleasedAt=$payoutReleasedAt, orderId=$orderId, crosslyFeeCents=$crosslyFeeCents, id=$id, status=$status, slug=$slug, title=$title, imageUrl=$imageUrl, startDate=$startDate, endDate=$endDate, days=$days, rentCents=$rentCents, shippingCents=$shippingCents, depositCents=$depositCents, outboundTracking=$outboundTracking, returnTracking=$returnTracking, labelUrl=$labelUrl, claimCents=$claimCents, claimNote=$claimNote, claimPhotos=$claimPhotos, claimDisputed=$claimDisputed, conditionPhotosOut=$conditionPhotosOut, conditionPhotosIn=$conditionPhotosIn, approvalDueAt=$approvalDueAt, depositRefundedCents=$depositRefundedCents, unit=$unit, fulfilment=$fulfilment, cleaningFeeCents=$cleaningFeeCents, damageWaiver=$damageWaiver, damageWaiverCents=$damageWaiverCents, lateFeeCents=$lateFeeCents, rentRefundedCents=$rentRefundedCents, buyoutCents=$buyoutCents, charges=$charges, conditionPhotosReturn=$conditionPhotosReturn, approvedAt=$approvedAt, deliveredAt=$deliveredAt, returnShippedAt=$returnShippedAt, inspectedAt=$inspectedAt, boughtOutAt=$boughtOutAt]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -174,6 +274,21 @@ class ListRentalsItem {
       json[r'createdAt'] = createdAt;
     if (shipTo != null) {
       json[r'shipTo'] = shipTo;
+    }
+    if (platformListingId != null) {
+      json[r'platformListingId'] = platformListingId;
+    }
+    if (payoutTiming != null) {
+      json[r'payoutTiming'] = payoutTiming;
+    }
+    if (payoutReleasedAt != null) {
+      json[r'payoutReleasedAt'] = payoutReleasedAt;
+    }
+    if (orderId != null) {
+      json[r'orderId'] = orderId;
+    }
+    if (crosslyFeeCents != null) {
+      json[r'crosslyFeeCents'] = crosslyFeeCents;
     }
       json[r'id'] = id;
       json[r'status'] = status;
@@ -209,6 +324,33 @@ class ListRentalsItem {
       json[r'approvalDueAt'] = approvalDueAt;
     }
       json[r'depositRefundedCents'] = depositRefundedCents;
+      json[r'unit'] = unit;
+      json[r'fulfilment'] = fulfilment;
+      json[r'cleaningFeeCents'] = cleaningFeeCents;
+      json[r'damageWaiver'] = damageWaiver;
+      json[r'damageWaiverCents'] = damageWaiverCents;
+      json[r'lateFeeCents'] = lateFeeCents;
+      json[r'rentRefundedCents'] = rentRefundedCents;
+    if (buyoutCents != null) {
+      json[r'buyoutCents'] = buyoutCents;
+    }
+      json[r'charges'] = charges;
+      json[r'conditionPhotosReturn'] = conditionPhotosReturn;
+    if (approvedAt != null) {
+      json[r'approvedAt'] = approvedAt;
+    }
+    if (deliveredAt != null) {
+      json[r'deliveredAt'] = deliveredAt;
+    }
+    if (returnShippedAt != null) {
+      json[r'returnShippedAt'] = returnShippedAt;
+    }
+    if (inspectedAt != null) {
+      json[r'inspectedAt'] = inspectedAt;
+    }
+    if (boughtOutAt != null) {
+      json[r'boughtOutAt'] = boughtOutAt;
+    }
     return json;
   }
 
@@ -224,6 +366,13 @@ class ListRentalsItem {
         closedAt: mapValueOfType<String>(json, r'closedAt'),
         createdAt: mapValueOfType<String>(json, r'createdAt'),
         shipTo: mapValueOfType<Map<String, Object>>(json, r'shipTo'),
+        platformListingId: mapValueOfType<String>(json, r'platformListingId'),
+        payoutTiming: mapValueOfType<String>(json, r'payoutTiming'),
+        payoutReleasedAt: mapValueOfType<String>(json, r'payoutReleasedAt'),
+        orderId: mapValueOfType<String>(json, r'orderId'),
+        crosslyFeeCents: json[r'crosslyFeeCents'] == null
+          ? null
+          : num.parse(json[r'crosslyFeeCents'].toString()),
         id: mapValueOfType<String>(json, r'id'),
         status: mapValueOfType<String>(json, r'status'),
         slug: mapValueOfType<String>(json, r'slug'),
@@ -264,6 +413,35 @@ class ListRentalsItem {
         depositRefundedCents: json[r'depositRefundedCents'] == null
           ? null
           : num.parse(json[r'depositRefundedCents'].toString()),
+        unit: json[r'unit'] == null
+          ? null
+          : num.parse(json[r'unit'].toString()),
+        fulfilment: mapValueOfType<String>(json, r'fulfilment'),
+        cleaningFeeCents: json[r'cleaningFeeCents'] == null
+          ? null
+          : num.parse(json[r'cleaningFeeCents'].toString()),
+        damageWaiver: mapValueOfType<bool>(json, r'damageWaiver'),
+        damageWaiverCents: json[r'damageWaiverCents'] == null
+          ? null
+          : num.parse(json[r'damageWaiverCents'].toString()),
+        lateFeeCents: json[r'lateFeeCents'] == null
+          ? null
+          : num.parse(json[r'lateFeeCents'].toString()),
+        rentRefundedCents: json[r'rentRefundedCents'] == null
+          ? null
+          : num.parse(json[r'rentRefundedCents'].toString()),
+        buyoutCents: json[r'buyoutCents'] == null
+          ? null
+          : num.parse(json[r'buyoutCents'].toString()),
+        charges: mapValueOfType<Map<String, Object>>(json, r'charges'),
+        conditionPhotosReturn: json[r'conditionPhotosReturn'] is List
+          ? (json[r'conditionPhotosReturn'] as List).cast<String>()
+          : null,
+        approvedAt: mapValueOfType<String>(json, r'approvedAt'),
+        deliveredAt: mapValueOfType<String>(json, r'deliveredAt'),
+        returnShippedAt: mapValueOfType<String>(json, r'returnShippedAt'),
+        inspectedAt: mapValueOfType<String>(json, r'inspectedAt'),
+        boughtOutAt: mapValueOfType<String>(json, r'boughtOutAt'),
       );
     }
     return null;

@@ -27,6 +27,8 @@ class CreateBuyerAgentSessionTurnResponseOptions {
     this.facts = const [],
     @required this.reason,
     this.priceCheck,
+    this.model,
+    this.shopSlug,
   });
 
   num n;
@@ -57,6 +59,11 @@ class CreateBuyerAgentSessionTurnResponseOptions {
 
   CreateBuyerAgentSessionActResponseQuotePriceCheck priceCheck;
 
+  /// The world object it stands as, and the seller's public shop room (world-picks.ts).
+  String model;
+
+  String shopSlug;
+
   @override
   bool operator ==(Object other) => identical(this, other) || other is CreateBuyerAgentSessionTurnResponseOptions &&
      other.n == n &&
@@ -72,7 +79,9 @@ class CreateBuyerAgentSessionTurnResponseOptions {
      other.sellerDisplayName == sellerDisplayName &&
      other.facts == facts &&
      other.reason == reason &&
-     other.priceCheck == priceCheck;
+     other.priceCheck == priceCheck &&
+     other.model == model &&
+     other.shopSlug == shopSlug;
 
   @override
   int get hashCode =>
@@ -90,10 +99,12 @@ class CreateBuyerAgentSessionTurnResponseOptions {
     (sellerDisplayName == null ? 0 : sellerDisplayName.hashCode) +
     (facts == null ? 0 : facts.hashCode) +
     (reason == null ? 0 : reason.hashCode) +
-    (priceCheck == null ? 0 : priceCheck.hashCode);
+    (priceCheck == null ? 0 : priceCheck.hashCode) +
+    (model == null ? 0 : model.hashCode) +
+    (shopSlug == null ? 0 : shopSlug.hashCode);
 
   @override
-  String toString() => 'CreateBuyerAgentSessionTurnResponseOptions[n=$n, slug=$slug, title=$title, priceCents=$priceCents, salePriceCents=$salePriceCents, compareAtCents=$compareAtCents, thumbnail=$thumbnail, brand=$brand, condition=$condition, size=$size, sellerDisplayName=$sellerDisplayName, facts=$facts, reason=$reason, priceCheck=$priceCheck]';
+  String toString() => 'CreateBuyerAgentSessionTurnResponseOptions[n=$n, slug=$slug, title=$title, priceCents=$priceCents, salePriceCents=$salePriceCents, compareAtCents=$compareAtCents, thumbnail=$thumbnail, brand=$brand, condition=$condition, size=$size, sellerDisplayName=$sellerDisplayName, facts=$facts, reason=$reason, priceCheck=$priceCheck, model=$model, shopSlug=$shopSlug]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -126,6 +137,12 @@ class CreateBuyerAgentSessionTurnResponseOptions {
       json[r'reason'] = reason;
     if (priceCheck != null) {
       json[r'priceCheck'] = priceCheck;
+    }
+    if (model != null) {
+      json[r'model'] = model;
+    }
+    if (shopSlug != null) {
+      json[r'shopSlug'] = shopSlug;
     }
     return json;
   }
@@ -161,6 +178,8 @@ class CreateBuyerAgentSessionTurnResponseOptions {
           : null,
         reason: mapValueOfType<String>(json, r'reason'),
         priceCheck: CreateBuyerAgentSessionActResponseQuotePriceCheck.fromJson(json[r'priceCheck']),
+        model: mapValueOfType<String>(json, r'model'),
+        shopSlug: mapValueOfType<String>(json, r'shopSlug'),
       );
     }
     return null;

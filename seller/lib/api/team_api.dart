@@ -16,7 +16,7 @@ class TeamApi {
 
   final ApiClient apiClient;
 
-  /// Accept a pending team invitation by raw token.
+  /// Accept a team invitation by the raw token from its link.
   ///
   /// Note: This method returns the HTTP [Response].
   Future<Response> createTeamAcceptWithHttpInfo() async {
@@ -46,7 +46,7 @@ class TeamApi {
     );
   }
 
-  /// Accept a pending team invitation by raw token.
+  /// Accept a team invitation by the raw token from its link.
   Future<CreateTeamAcceptResponse> createTeamAccept() async {
     final response = await createTeamAcceptWithHttpInfo();
     if (response.statusCode >= HttpStatus.badRequest) {
@@ -62,7 +62,7 @@ class TeamApi {
     return Future<CreateTeamAcceptResponse>.value();
   }
 
-  /// Mint a team invitation; returns the one-time accept URL.
+  /// Issue a team invitation; returns the one-time accept URL (nothing is emailed).
   ///
   /// Note: This method returns the HTTP [Response].
   Future<Response> createTeamInviteWithHttpInfo() async {
@@ -92,7 +92,7 @@ class TeamApi {
     );
   }
 
-  /// Mint a team invitation; returns the one-time accept URL.
+  /// Issue a team invitation; returns the one-time accept URL (nothing is emailed).
   Future<CreateTeamInviteResponse> createTeamInvite() async {
     final response = await createTeamInviteWithHttpInfo();
     if (response.statusCode >= HttpStatus.badRequest) {

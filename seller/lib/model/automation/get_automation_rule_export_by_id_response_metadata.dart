@@ -13,43 +13,43 @@ part of openapi.api;
 class GetAutomationRuleExportByIdResponseMetadata {
   /// Returns a new [GetAutomationRuleExportByIdResponseMetadata] instance.
   GetAutomationRuleExportByIdResponseMetadata({
-    this.tags,
-    this.sourceUrl,
     this.author,
+    this.sourceUrl,
+    this.tags,
   });
-
-  List<String> tags;
-
-  String sourceUrl;
 
   String author;
 
+  String sourceUrl;
+
+  List<String> tags;
+
   @override
   bool operator ==(Object other) => identical(this, other) || other is GetAutomationRuleExportByIdResponseMetadata &&
-     other.tags == tags &&
+     other.author == author &&
      other.sourceUrl == sourceUrl &&
-     other.author == author;
+     other.tags == tags;
 
   @override
   int get hashCode =>
   // ignore: unnecessary_parenthesis
-    (tags == null ? 0 : tags.hashCode) +
+    (author == null ? 0 : author.hashCode) +
     (sourceUrl == null ? 0 : sourceUrl.hashCode) +
-    (author == null ? 0 : author.hashCode);
+    (tags == null ? 0 : tags.hashCode);
 
   @override
-  String toString() => 'GetAutomationRuleExportByIdResponseMetadata[tags=$tags, sourceUrl=$sourceUrl, author=$author]';
+  String toString() => 'GetAutomationRuleExportByIdResponseMetadata[author=$author, sourceUrl=$sourceUrl, tags=$tags]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (tags != null) {
-      json[r'tags'] = tags;
+    if (author != null) {
+      json[r'author'] = author;
     }
     if (sourceUrl != null) {
       json[r'sourceUrl'] = sourceUrl;
     }
-    if (author != null) {
-      json[r'author'] = author;
+    if (tags != null) {
+      json[r'tags'] = tags;
     }
     return json;
   }
@@ -61,11 +61,11 @@ class GetAutomationRuleExportByIdResponseMetadata {
     if (value is Map) {
       final json = value.cast<String, dynamic>();
       return GetAutomationRuleExportByIdResponseMetadata(
+        author: mapValueOfType<String>(json, r'author'),
+        sourceUrl: mapValueOfType<String>(json, r'sourceUrl'),
         tags: json[r'tags'] is List
           ? (json[r'tags'] as List).cast<String>()
           : null,
-        sourceUrl: mapValueOfType<String>(json, r'sourceUrl'),
-        author: mapValueOfType<String>(json, r'author'),
       );
     }
     return null;

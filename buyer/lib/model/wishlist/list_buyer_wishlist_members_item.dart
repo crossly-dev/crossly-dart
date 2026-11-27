@@ -13,37 +13,37 @@ part of openapi.api;
 class ListBuyerWishlistMembersItem {
   /// Returns a new [ListBuyerWishlistMembersItem] instance.
   ListBuyerWishlistMembersItem({
-    @required this.name,
     @required this.userId,
+    @required this.name,
     @required this.joinedAt,
   });
 
-  String name;
-
   String userId;
+
+  String name;
 
   String joinedAt;
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is ListBuyerWishlistMembersItem &&
-     other.name == name &&
      other.userId == userId &&
+     other.name == name &&
      other.joinedAt == joinedAt;
 
   @override
   int get hashCode =>
   // ignore: unnecessary_parenthesis
-    (name == null ? 0 : name.hashCode) +
     (userId == null ? 0 : userId.hashCode) +
+    (name == null ? 0 : name.hashCode) +
     (joinedAt == null ? 0 : joinedAt.hashCode);
 
   @override
-  String toString() => 'ListBuyerWishlistMembersItem[name=$name, userId=$userId, joinedAt=$joinedAt]';
+  String toString() => 'ListBuyerWishlistMembersItem[userId=$userId, name=$name, joinedAt=$joinedAt]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-      json[r'name'] = name;
       json[r'userId'] = userId;
+      json[r'name'] = name;
       json[r'joinedAt'] = joinedAt;
     return json;
   }
@@ -55,8 +55,8 @@ class ListBuyerWishlistMembersItem {
     if (value is Map) {
       final json = value.cast<String, dynamic>();
       return ListBuyerWishlistMembersItem(
-        name: mapValueOfType<String>(json, r'name'),
         userId: mapValueOfType<String>(json, r'userId'),
+        name: mapValueOfType<String>(json, r'name'),
         joinedAt: mapValueOfType<String>(json, r'joinedAt'),
       );
     }

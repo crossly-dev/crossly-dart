@@ -14,37 +14,37 @@ class GetBuyerCollectionOfferResponseDataOffer {
   /// Returns a new [GetBuyerCollectionOfferResponseDataOffer] instance.
   GetBuyerCollectionOfferResponseDataOffer({
     @required this.id,
-    @required this.expiresAt,
     @required this.cents,
+    @required this.expiresAt,
   });
 
   String id;
 
-  String expiresAt;
-
   num cents;
+
+  String expiresAt;
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is GetBuyerCollectionOfferResponseDataOffer &&
      other.id == id &&
-     other.expiresAt == expiresAt &&
-     other.cents == cents;
+     other.cents == cents &&
+     other.expiresAt == expiresAt;
 
   @override
   int get hashCode =>
   // ignore: unnecessary_parenthesis
     (id == null ? 0 : id.hashCode) +
-    (expiresAt == null ? 0 : expiresAt.hashCode) +
-    (cents == null ? 0 : cents.hashCode);
+    (cents == null ? 0 : cents.hashCode) +
+    (expiresAt == null ? 0 : expiresAt.hashCode);
 
   @override
-  String toString() => 'GetBuyerCollectionOfferResponseDataOffer[id=$id, expiresAt=$expiresAt, cents=$cents]';
+  String toString() => 'GetBuyerCollectionOfferResponseDataOffer[id=$id, cents=$cents, expiresAt=$expiresAt]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
       json[r'id'] = id;
-      json[r'expiresAt'] = expiresAt;
       json[r'cents'] = cents;
+      json[r'expiresAt'] = expiresAt;
     return json;
   }
 
@@ -56,10 +56,10 @@ class GetBuyerCollectionOfferResponseDataOffer {
       final json = value.cast<String, dynamic>();
       return GetBuyerCollectionOfferResponseDataOffer(
         id: mapValueOfType<String>(json, r'id'),
-        expiresAt: mapValueOfType<String>(json, r'expiresAt'),
         cents: json[r'cents'] == null
           ? null
           : num.parse(json[r'cents'].toString()),
+        expiresAt: mapValueOfType<String>(json, r'expiresAt'),
       );
     }
     return null;

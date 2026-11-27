@@ -24,43 +24,43 @@ class GetSpatialPublicResponseDataProfileDefaultGroupByItem {
   String toJson() => value;
 
   static const brand = GetSpatialPublicResponseDataProfileDefaultGroupByItem._(r'brand');
+  static const label = GetSpatialPublicResponseDataProfileDefaultGroupByItem._(r'label');
+  static const status = GetSpatialPublicResponseDataProfileDefaultGroupByItem._(r'status');
+  static const age = GetSpatialPublicResponseDataProfileDefaultGroupByItem._(r'age');
   static const condition = GetSpatialPublicResponseDataProfileDefaultGroupByItem._(r'condition');
   static const size = GetSpatialPublicResponseDataProfileDefaultGroupByItem._(r'size');
-  static const status = GetSpatialPublicResponseDataProfileDefaultGroupByItem._(r'status');
-  static const label = GetSpatialPublicResponseDataProfileDefaultGroupByItem._(r'label');
   static const title = GetSpatialPublicResponseDataProfileDefaultGroupByItem._(r'title');
   static const valueOption = GetSpatialPublicResponseDataProfileDefaultGroupByItem._(r'value');
+  static const set = GetSpatialPublicResponseDataProfileDefaultGroupByItem._(r'set');
+  static const team = GetSpatialPublicResponseDataProfileDefaultGroupByItem._(r'team');
   static const year = GetSpatialPublicResponseDataProfileDefaultGroupByItem._(r'year');
   static const grade = GetSpatialPublicResponseDataProfileDefaultGroupByItem._(r'grade');
   static const game = GetSpatialPublicResponseDataProfileDefaultGroupByItem._(r'game');
-  static const set = GetSpatialPublicResponseDataProfileDefaultGroupByItem._(r'set');
   static const franchise = GetSpatialPublicResponseDataProfileDefaultGroupByItem._(r'franchise');
-  static const team = GetSpatialPublicResponseDataProfileDefaultGroupByItem._(r'team');
   static const era = GetSpatialPublicResponseDataProfileDefaultGroupByItem._(r'era');
   static const genre = GetSpatialPublicResponseDataProfileDefaultGroupByItem._(r'genre');
   static const colour = GetSpatialPublicResponseDataProfileDefaultGroupByItem._(r'colour');
-  static const age = GetSpatialPublicResponseDataProfileDefaultGroupByItem._(r'age');
   static const exhibitor = GetSpatialPublicResponseDataProfileDefaultGroupByItem._(r'exhibitor');
 
   /// List of all possible values in this [enum][GetSpatialPublicResponseDataProfileDefaultGroupByItem].
   static const values = <GetSpatialPublicResponseDataProfileDefaultGroupByItem>[
     brand,
+    label,
+    status,
+    age,
     condition,
     size,
-    status,
-    label,
     title,
     valueOption,
+    set,
+    team,
     year,
     grade,
     game,
-    set,
     franchise,
-    team,
     era,
     genre,
     colour,
-    age,
     exhibitor,
   ];
 
@@ -94,22 +94,22 @@ class GetSpatialPublicResponseDataProfileDefaultGroupByItemTypeTransformer {
     if (data != null) {
       switch (data.toString()) {
         case r'brand': return GetSpatialPublicResponseDataProfileDefaultGroupByItem.brand;
+        case r'label': return GetSpatialPublicResponseDataProfileDefaultGroupByItem.label;
+        case r'status': return GetSpatialPublicResponseDataProfileDefaultGroupByItem.status;
+        case r'age': return GetSpatialPublicResponseDataProfileDefaultGroupByItem.age;
         case r'condition': return GetSpatialPublicResponseDataProfileDefaultGroupByItem.condition;
         case r'size': return GetSpatialPublicResponseDataProfileDefaultGroupByItem.size;
-        case r'status': return GetSpatialPublicResponseDataProfileDefaultGroupByItem.status;
-        case r'label': return GetSpatialPublicResponseDataProfileDefaultGroupByItem.label;
         case r'title': return GetSpatialPublicResponseDataProfileDefaultGroupByItem.title;
         case r'value': return GetSpatialPublicResponseDataProfileDefaultGroupByItem.valueOption;
+        case r'set': return GetSpatialPublicResponseDataProfileDefaultGroupByItem.set;
+        case r'team': return GetSpatialPublicResponseDataProfileDefaultGroupByItem.team;
         case r'year': return GetSpatialPublicResponseDataProfileDefaultGroupByItem.year;
         case r'grade': return GetSpatialPublicResponseDataProfileDefaultGroupByItem.grade;
         case r'game': return GetSpatialPublicResponseDataProfileDefaultGroupByItem.game;
-        case r'set': return GetSpatialPublicResponseDataProfileDefaultGroupByItem.set;
         case r'franchise': return GetSpatialPublicResponseDataProfileDefaultGroupByItem.franchise;
-        case r'team': return GetSpatialPublicResponseDataProfileDefaultGroupByItem.team;
         case r'era': return GetSpatialPublicResponseDataProfileDefaultGroupByItem.era;
         case r'genre': return GetSpatialPublicResponseDataProfileDefaultGroupByItem.genre;
         case r'colour': return GetSpatialPublicResponseDataProfileDefaultGroupByItem.colour;
-        case r'age': return GetSpatialPublicResponseDataProfileDefaultGroupByItem.age;
         case r'exhibitor': return GetSpatialPublicResponseDataProfileDefaultGroupByItem.exhibitor;
         default:
           if (allowNull == false) {

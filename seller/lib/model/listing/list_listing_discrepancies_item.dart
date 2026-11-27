@@ -17,12 +17,12 @@ class ListListingDiscrepanciesItem {
     @required this.createdAt,
     @required this.updatedAt,
     @required this.userId,
-    @required this.source_,
     @required this.platform,
-    @required this.listingId,
+    @required this.accountSlot,
     @required this.marketplaceId,
     this.lastError,
-    @required this.accountSlot,
+    @required this.source_,
+    @required this.listingId,
     @required this.field,
     this.ourValue,
     this.remoteValue,
@@ -40,17 +40,17 @@ class ListListingDiscrepanciesItem {
 
   String userId;
 
-  String source_;
-
   String platform;
 
-  String listingId;
+  num accountSlot;
 
   String marketplaceId;
 
   String lastError;
 
-  num accountSlot;
+  String source_;
+
+  String listingId;
 
   String field;
 
@@ -72,12 +72,12 @@ class ListListingDiscrepanciesItem {
      other.createdAt == createdAt &&
      other.updatedAt == updatedAt &&
      other.userId == userId &&
-     other.source_ == source_ &&
      other.platform == platform &&
-     other.listingId == listingId &&
+     other.accountSlot == accountSlot &&
      other.marketplaceId == marketplaceId &&
      other.lastError == lastError &&
-     other.accountSlot == accountSlot &&
+     other.source_ == source_ &&
+     other.listingId == listingId &&
      other.field == field &&
      other.ourValue == ourValue &&
      other.remoteValue == remoteValue &&
@@ -93,12 +93,12 @@ class ListListingDiscrepanciesItem {
     (createdAt == null ? 0 : createdAt.hashCode) +
     (updatedAt == null ? 0 : updatedAt.hashCode) +
     (userId == null ? 0 : userId.hashCode) +
-    (source_ == null ? 0 : source_.hashCode) +
     (platform == null ? 0 : platform.hashCode) +
-    (listingId == null ? 0 : listingId.hashCode) +
+    (accountSlot == null ? 0 : accountSlot.hashCode) +
     (marketplaceId == null ? 0 : marketplaceId.hashCode) +
     (lastError == null ? 0 : lastError.hashCode) +
-    (accountSlot == null ? 0 : accountSlot.hashCode) +
+    (source_ == null ? 0 : source_.hashCode) +
+    (listingId == null ? 0 : listingId.hashCode) +
     (field == null ? 0 : field.hashCode) +
     (ourValue == null ? 0 : ourValue.hashCode) +
     (remoteValue == null ? 0 : remoteValue.hashCode) +
@@ -108,7 +108,7 @@ class ListListingDiscrepanciesItem {
     (dismissedRemoteValue == null ? 0 : dismissedRemoteValue.hashCode);
 
   @override
-  String toString() => 'ListListingDiscrepanciesItem[id=$id, createdAt=$createdAt, updatedAt=$updatedAt, userId=$userId, source_=$source_, platform=$platform, listingId=$listingId, marketplaceId=$marketplaceId, lastError=$lastError, accountSlot=$accountSlot, field=$field, ourValue=$ourValue, remoteValue=$remoteValue, firstDetectedAt=$firstDetectedAt, lastDetectedAt=$lastDetectedAt, dismissedAt=$dismissedAt, dismissedRemoteValue=$dismissedRemoteValue]';
+  String toString() => 'ListListingDiscrepanciesItem[id=$id, createdAt=$createdAt, updatedAt=$updatedAt, userId=$userId, platform=$platform, accountSlot=$accountSlot, marketplaceId=$marketplaceId, lastError=$lastError, source_=$source_, listingId=$listingId, field=$field, ourValue=$ourValue, remoteValue=$remoteValue, firstDetectedAt=$firstDetectedAt, lastDetectedAt=$lastDetectedAt, dismissedAt=$dismissedAt, dismissedRemoteValue=$dismissedRemoteValue]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -116,14 +116,14 @@ class ListListingDiscrepanciesItem {
       json[r'createdAt'] = createdAt.toUtc().toIso8601String();
       json[r'updatedAt'] = updatedAt.toUtc().toIso8601String();
       json[r'userId'] = userId;
-      json[r'source'] = source_;
       json[r'platform'] = platform;
-      json[r'listingId'] = listingId;
+      json[r'accountSlot'] = accountSlot;
       json[r'marketplaceId'] = marketplaceId;
     if (lastError != null) {
       json[r'lastError'] = lastError;
     }
-      json[r'accountSlot'] = accountSlot;
+      json[r'source'] = source_;
+      json[r'listingId'] = listingId;
       json[r'field'] = field;
     if (ourValue != null) {
       json[r'ourValue'] = ourValue;
@@ -153,14 +153,14 @@ class ListListingDiscrepanciesItem {
         createdAt: mapDateTime(json, r'createdAt', ''),
         updatedAt: mapDateTime(json, r'updatedAt', ''),
         userId: mapValueOfType<String>(json, r'userId'),
-        source_: mapValueOfType<String>(json, r'source'),
         platform: mapValueOfType<String>(json, r'platform'),
-        listingId: mapValueOfType<String>(json, r'listingId'),
-        marketplaceId: mapValueOfType<String>(json, r'marketplaceId'),
-        lastError: mapValueOfType<String>(json, r'lastError'),
         accountSlot: json[r'accountSlot'] == null
           ? null
           : num.parse(json[r'accountSlot'].toString()),
+        marketplaceId: mapValueOfType<String>(json, r'marketplaceId'),
+        lastError: mapValueOfType<String>(json, r'lastError'),
+        source_: mapValueOfType<String>(json, r'source'),
+        listingId: mapValueOfType<String>(json, r'listingId'),
         field: mapValueOfType<String>(json, r'field'),
         ourValue: mapValueOfType<String>(json, r'ourValue'),
         remoteValue: mapValueOfType<String>(json, r'remoteValue'),

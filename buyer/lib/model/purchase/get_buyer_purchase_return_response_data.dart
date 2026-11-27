@@ -13,37 +13,37 @@ part of openapi.api;
 class GetBuyerPurchaseReturnResponseData {
   /// Returns a new [GetBuyerPurchaseReturnResponseData] instance.
   GetBuyerPurchaseReturnResponseData({
-    this.reasons = const [],
     this.terms = const {},
+    this.reasons = const [],
     this.existing,
   });
 
-  List<GetBuyerPurchaseReturnResponseDataReasons> reasons;
-
   Map<String, Object> terms;
+
+  List<GetBuyerPurchaseReturnResponseDataReasons> reasons;
 
   Map<String, Object> existing;
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is GetBuyerPurchaseReturnResponseData &&
-     other.reasons == reasons &&
      other.terms == terms &&
+     other.reasons == reasons &&
      other.existing == existing;
 
   @override
   int get hashCode =>
   // ignore: unnecessary_parenthesis
-    (reasons == null ? 0 : reasons.hashCode) +
     (terms == null ? 0 : terms.hashCode) +
+    (reasons == null ? 0 : reasons.hashCode) +
     (existing == null ? 0 : existing.hashCode);
 
   @override
-  String toString() => 'GetBuyerPurchaseReturnResponseData[reasons=$reasons, terms=$terms, existing=$existing]';
+  String toString() => 'GetBuyerPurchaseReturnResponseData[terms=$terms, reasons=$reasons, existing=$existing]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-      json[r'reasons'] = reasons;
       json[r'terms'] = terms;
+      json[r'reasons'] = reasons;
     if (existing != null) {
       json[r'existing'] = existing;
     }
@@ -57,8 +57,8 @@ class GetBuyerPurchaseReturnResponseData {
     if (value is Map) {
       final json = value.cast<String, dynamic>();
       return GetBuyerPurchaseReturnResponseData(
-        reasons: GetBuyerPurchaseReturnResponseDataReasons.listFromJson(json[r'reasons']),
         terms: mapValueOfType<Map<String, Object>>(json, r'terms'),
+        reasons: GetBuyerPurchaseReturnResponseDataReasons.listFromJson(json[r'reasons']),
         existing: mapValueOfType<Map<String, Object>>(json, r'existing'),
       );
     }

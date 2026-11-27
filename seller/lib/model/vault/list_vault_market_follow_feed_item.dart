@@ -17,6 +17,7 @@ class ListVaultMarketFollowFeedItem {
     @required this.kind,
     @required this.verb,
     @required this.at,
+    @required this.by,
     @required this.bookKey,
     this.name,
     this.label,
@@ -34,6 +35,8 @@ class ListVaultMarketFollowFeedItem {
 
   String at;
 
+  ListVaultMarketFollowFeedItemBy by;
+
   String bookKey;
 
   String name;
@@ -42,7 +45,7 @@ class ListVaultMarketFollowFeedItem {
 
   String imageUrl;
 
-  ListVaultMarketFeedItemMark mark;
+  ListVaultMarketOpeningItemMark mark;
 
   ListVaultMarketFollowFeedItemExhibition exhibition;
 
@@ -54,6 +57,7 @@ class ListVaultMarketFollowFeedItem {
      other.kind == kind &&
      other.verb == verb &&
      other.at == at &&
+     other.by == by &&
      other.bookKey == bookKey &&
      other.name == name &&
      other.label == label &&
@@ -69,6 +73,7 @@ class ListVaultMarketFollowFeedItem {
     (kind == null ? 0 : kind.hashCode) +
     (verb == null ? 0 : verb.hashCode) +
     (at == null ? 0 : at.hashCode) +
+    (by == null ? 0 : by.hashCode) +
     (bookKey == null ? 0 : bookKey.hashCode) +
     (name == null ? 0 : name.hashCode) +
     (label == null ? 0 : label.hashCode) +
@@ -78,7 +83,7 @@ class ListVaultMarketFollowFeedItem {
     (buyHref == null ? 0 : buyHref.hashCode);
 
   @override
-  String toString() => 'ListVaultMarketFollowFeedItem[id=$id, kind=$kind, verb=$verb, at=$at, bookKey=$bookKey, name=$name, label=$label, imageUrl=$imageUrl, mark=$mark, exhibition=$exhibition, buyHref=$buyHref]';
+  String toString() => 'ListVaultMarketFollowFeedItem[id=$id, kind=$kind, verb=$verb, at=$at, by=$by, bookKey=$bookKey, name=$name, label=$label, imageUrl=$imageUrl, mark=$mark, exhibition=$exhibition, buyHref=$buyHref]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -86,6 +91,7 @@ class ListVaultMarketFollowFeedItem {
       json[r'kind'] = kind;
       json[r'verb'] = verb;
       json[r'at'] = at;
+      json[r'by'] = by;
       json[r'bookKey'] = bookKey;
     if (name != null) {
       json[r'name'] = name;
@@ -115,11 +121,12 @@ class ListVaultMarketFollowFeedItem {
         kind: ListVaultMarketFollowFeedItemKindEnum.fromJson(json[r'kind']),
         verb: mapValueOfType<String>(json, r'verb'),
         at: mapValueOfType<String>(json, r'at'),
+        by: ListVaultMarketFollowFeedItemBy.fromJson(json[r'by']),
         bookKey: mapValueOfType<String>(json, r'bookKey'),
         name: mapValueOfType<String>(json, r'name'),
         label: mapValueOfType<String>(json, r'label'),
         imageUrl: mapValueOfType<String>(json, r'imageUrl'),
-        mark: ListVaultMarketFeedItemMark.fromJson(json[r'mark']),
+        mark: ListVaultMarketOpeningItemMark.fromJson(json[r'mark']),
         exhibition: ListVaultMarketFollowFeedItemExhibition.fromJson(json[r'exhibition']),
         buyHref: mapValueOfType<String>(json, r'buyHref'),
       );
@@ -173,15 +180,15 @@ class ListVaultMarketFollowFeedItemKindEnum {
 
   String toJson() => value;
 
-  static const deposit = ListVaultMarketFollowFeedItemKindEnum._(r'deposit');
   static const sale = ListVaultMarketFollowFeedItemKindEnum._(r'sale');
+  static const deposit = ListVaultMarketFollowFeedItemKindEnum._(r'deposit');
   static const buy = ListVaultMarketFollowFeedItemKindEnum._(r'buy');
   static const hallLoan = ListVaultMarketFollowFeedItemKindEnum._(r'hall_loan');
 
   /// List of all possible values in this [enum][ListVaultMarketFollowFeedItemKindEnum].
   static const values = <ListVaultMarketFollowFeedItemKindEnum>[
-    deposit,
     sale,
+    deposit,
     buy,
     hallLoan,
   ];
@@ -215,8 +222,8 @@ class ListVaultMarketFollowFeedItemKindEnumTypeTransformer {
   ListVaultMarketFollowFeedItemKindEnum decode(dynamic data, {bool allowNull}) {
     if (data != null) {
       switch (data.toString()) {
-        case r'deposit': return ListVaultMarketFollowFeedItemKindEnum.deposit;
         case r'sale': return ListVaultMarketFollowFeedItemKindEnum.sale;
+        case r'deposit': return ListVaultMarketFollowFeedItemKindEnum.deposit;
         case r'buy': return ListVaultMarketFollowFeedItemKindEnum.buy;
         case r'hall_loan': return ListVaultMarketFollowFeedItemKindEnum.hallLoan;
         default:

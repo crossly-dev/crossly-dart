@@ -13,32 +13,40 @@ part of openapi.api;
 class GetBuyerCatalogListingPriceResponseDataPriceMatch {
   /// Returns a new [GetBuyerCatalogListingPriceResponseDataPriceMatch] instance.
   GetBuyerCatalogListingPriceResponseDataPriceMatch({
-    @required this.platform,
     @required this.listPriceCents,
+    @required this.platform,
+    this.platformName,
   });
-
-  String platform;
 
   num listPriceCents;
 
+  String platform;
+
+  String platformName;
+
   @override
   bool operator ==(Object other) => identical(this, other) || other is GetBuyerCatalogListingPriceResponseDataPriceMatch &&
+     other.listPriceCents == listPriceCents &&
      other.platform == platform &&
-     other.listPriceCents == listPriceCents;
+     other.platformName == platformName;
 
   @override
   int get hashCode =>
   // ignore: unnecessary_parenthesis
+    (listPriceCents == null ? 0 : listPriceCents.hashCode) +
     (platform == null ? 0 : platform.hashCode) +
-    (listPriceCents == null ? 0 : listPriceCents.hashCode);
+    (platformName == null ? 0 : platformName.hashCode);
 
   @override
-  String toString() => 'GetBuyerCatalogListingPriceResponseDataPriceMatch[platform=$platform, listPriceCents=$listPriceCents]';
+  String toString() => 'GetBuyerCatalogListingPriceResponseDataPriceMatch[listPriceCents=$listPriceCents, platform=$platform, platformName=$platformName]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-      json[r'platform'] = platform;
       json[r'listPriceCents'] = listPriceCents;
+      json[r'platform'] = platform;
+    if (platformName != null) {
+      json[r'platformName'] = platformName;
+    }
     return json;
   }
 
@@ -49,10 +57,11 @@ class GetBuyerCatalogListingPriceResponseDataPriceMatch {
     if (value is Map) {
       final json = value.cast<String, dynamic>();
       return GetBuyerCatalogListingPriceResponseDataPriceMatch(
-        platform: mapValueOfType<String>(json, r'platform'),
         listPriceCents: json[r'listPriceCents'] == null
           ? null
           : num.parse(json[r'listPriceCents'].toString()),
+        platform: mapValueOfType<String>(json, r'platform'),
+        platformName: mapValueOfType<String>(json, r'platformName'),
       );
     }
     return null;

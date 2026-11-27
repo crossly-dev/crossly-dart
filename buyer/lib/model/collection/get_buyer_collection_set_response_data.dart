@@ -14,75 +14,75 @@ class GetBuyerCollectionSetResponseData {
   /// Returns a new [GetBuyerCollectionSetResponseData] instance.
   GetBuyerCollectionSetResponseData({
     @required this.group,
-    this.leaderboard = const [],
-    @required this.missing,
-    this.pieces = const [],
-    @required this.leaderboardOptIn,
     @required this.pct,
+    this.pieces = const [],
+    @required this.missing,
     @required this.missingCostCents,
     @required this.missingUnpriced,
+    this.leaderboard = const [],
     this.myRank,
+    @required this.leaderboardOptIn,
   });
 
   GetBuyerCollectionSetResponseDataGroup group;
 
-  List<GetBuyerCollectionSetResponseDataLeaderboard> leaderboard;
-
-  num missing;
+  num pct;
 
   List<GetBuyerCollectionSetResponseDataPieces> pieces;
 
-  bool leaderboardOptIn;
-
-  num pct;
+  num missing;
 
   num missingCostCents;
 
   num missingUnpriced;
 
+  List<GetBuyerCollectionSetResponseDataLeaderboard> leaderboard;
+
   num myRank;
+
+  bool leaderboardOptIn;
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is GetBuyerCollectionSetResponseData &&
      other.group == group &&
-     other.leaderboard == leaderboard &&
-     other.missing == missing &&
-     other.pieces == pieces &&
-     other.leaderboardOptIn == leaderboardOptIn &&
      other.pct == pct &&
+     other.pieces == pieces &&
+     other.missing == missing &&
      other.missingCostCents == missingCostCents &&
      other.missingUnpriced == missingUnpriced &&
-     other.myRank == myRank;
+     other.leaderboard == leaderboard &&
+     other.myRank == myRank &&
+     other.leaderboardOptIn == leaderboardOptIn;
 
   @override
   int get hashCode =>
   // ignore: unnecessary_parenthesis
     (group == null ? 0 : group.hashCode) +
-    (leaderboard == null ? 0 : leaderboard.hashCode) +
-    (missing == null ? 0 : missing.hashCode) +
-    (pieces == null ? 0 : pieces.hashCode) +
-    (leaderboardOptIn == null ? 0 : leaderboardOptIn.hashCode) +
     (pct == null ? 0 : pct.hashCode) +
+    (pieces == null ? 0 : pieces.hashCode) +
+    (missing == null ? 0 : missing.hashCode) +
     (missingCostCents == null ? 0 : missingCostCents.hashCode) +
     (missingUnpriced == null ? 0 : missingUnpriced.hashCode) +
-    (myRank == null ? 0 : myRank.hashCode);
+    (leaderboard == null ? 0 : leaderboard.hashCode) +
+    (myRank == null ? 0 : myRank.hashCode) +
+    (leaderboardOptIn == null ? 0 : leaderboardOptIn.hashCode);
 
   @override
-  String toString() => 'GetBuyerCollectionSetResponseData[group=$group, leaderboard=$leaderboard, missing=$missing, pieces=$pieces, leaderboardOptIn=$leaderboardOptIn, pct=$pct, missingCostCents=$missingCostCents, missingUnpriced=$missingUnpriced, myRank=$myRank]';
+  String toString() => 'GetBuyerCollectionSetResponseData[group=$group, pct=$pct, pieces=$pieces, missing=$missing, missingCostCents=$missingCostCents, missingUnpriced=$missingUnpriced, leaderboard=$leaderboard, myRank=$myRank, leaderboardOptIn=$leaderboardOptIn]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
       json[r'group'] = group;
-      json[r'leaderboard'] = leaderboard;
-      json[r'missing'] = missing;
-      json[r'pieces'] = pieces;
-      json[r'leaderboardOptIn'] = leaderboardOptIn;
       json[r'pct'] = pct;
+      json[r'pieces'] = pieces;
+      json[r'missing'] = missing;
       json[r'missingCostCents'] = missingCostCents;
       json[r'missingUnpriced'] = missingUnpriced;
+      json[r'leaderboard'] = leaderboard;
     if (myRank != null) {
       json[r'myRank'] = myRank;
     }
+      json[r'leaderboardOptIn'] = leaderboardOptIn;
     return json;
   }
 
@@ -94,24 +94,24 @@ class GetBuyerCollectionSetResponseData {
       final json = value.cast<String, dynamic>();
       return GetBuyerCollectionSetResponseData(
         group: GetBuyerCollectionSetResponseDataGroup.fromJson(json[r'group']),
-        leaderboard: GetBuyerCollectionSetResponseDataLeaderboard.listFromJson(json[r'leaderboard']),
-        missing: json[r'missing'] == null
-          ? null
-          : num.parse(json[r'missing'].toString()),
-        pieces: GetBuyerCollectionSetResponseDataPieces.listFromJson(json[r'pieces']),
-        leaderboardOptIn: mapValueOfType<bool>(json, r'leaderboardOptIn'),
         pct: json[r'pct'] == null
           ? null
           : num.parse(json[r'pct'].toString()),
+        pieces: GetBuyerCollectionSetResponseDataPieces.listFromJson(json[r'pieces']),
+        missing: json[r'missing'] == null
+          ? null
+          : num.parse(json[r'missing'].toString()),
         missingCostCents: json[r'missingCostCents'] == null
           ? null
           : num.parse(json[r'missingCostCents'].toString()),
         missingUnpriced: json[r'missingUnpriced'] == null
           ? null
           : num.parse(json[r'missingUnpriced'].toString()),
+        leaderboard: GetBuyerCollectionSetResponseDataLeaderboard.listFromJson(json[r'leaderboard']),
         myRank: json[r'myRank'] == null
           ? null
           : num.parse(json[r'myRank'].toString()),
+        leaderboardOptIn: mapValueOfType<bool>(json, r'leaderboardOptIn'),
       );
     }
     return null;

@@ -19,6 +19,7 @@ class ListWeb3WalletsItem {
     this.label,
     this.verifiedAt,
     this.lastSyncedAt,
+    @required this.autoImport,
     @required this.createdAt,
   });
 
@@ -34,6 +35,9 @@ class ListWeb3WalletsItem {
 
   DateTime lastSyncedAt;
 
+  /// A sync adds new NFTs to inventory (migration 0740); off, it only refreshes the ones already there.
+  bool autoImport;
+
   DateTime createdAt;
 
   @override
@@ -44,6 +48,7 @@ class ListWeb3WalletsItem {
      other.label == label &&
      other.verifiedAt == verifiedAt &&
      other.lastSyncedAt == lastSyncedAt &&
+     other.autoImport == autoImport &&
      other.createdAt == createdAt;
 
   @override
@@ -55,10 +60,11 @@ class ListWeb3WalletsItem {
     (label == null ? 0 : label.hashCode) +
     (verifiedAt == null ? 0 : verifiedAt.hashCode) +
     (lastSyncedAt == null ? 0 : lastSyncedAt.hashCode) +
+    (autoImport == null ? 0 : autoImport.hashCode) +
     (createdAt == null ? 0 : createdAt.hashCode);
 
   @override
-  String toString() => 'ListWeb3WalletsItem[id=$id, family=$family, address=$address, label=$label, verifiedAt=$verifiedAt, lastSyncedAt=$lastSyncedAt, createdAt=$createdAt]';
+  String toString() => 'ListWeb3WalletsItem[id=$id, family=$family, address=$address, label=$label, verifiedAt=$verifiedAt, lastSyncedAt=$lastSyncedAt, autoImport=$autoImport, createdAt=$createdAt]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -74,6 +80,7 @@ class ListWeb3WalletsItem {
     if (lastSyncedAt != null) {
       json[r'lastSyncedAt'] = lastSyncedAt.toUtc().toIso8601String();
     }
+      json[r'autoImport'] = autoImport;
       json[r'createdAt'] = createdAt.toUtc().toIso8601String();
     return json;
   }
@@ -91,6 +98,7 @@ class ListWeb3WalletsItem {
         label: mapValueOfType<String>(json, r'label'),
         verifiedAt: mapDateTime(json, r'verifiedAt', ''),
         lastSyncedAt: mapDateTime(json, r'lastSyncedAt', ''),
+        autoImport: mapValueOfType<bool>(json, r'autoImport'),
         createdAt: mapDateTime(json, r'createdAt', ''),
       );
     }
@@ -143,13 +151,13 @@ class ListWeb3WalletsItemFamilyEnum {
 
   String toJson() => value;
 
-  static const evm = ListWeb3WalletsItemFamilyEnum._(r'evm');
   static const solana = ListWeb3WalletsItemFamilyEnum._(r'solana');
+  static const evm = ListWeb3WalletsItemFamilyEnum._(r'evm');
 
   /// List of all possible values in this [enum][ListWeb3WalletsItemFamilyEnum].
   static const values = <ListWeb3WalletsItemFamilyEnum>[
-    evm,
     solana,
+    evm,
   ];
 
   static ListWeb3WalletsItemFamilyEnum fromJson(dynamic value) =>
@@ -181,8 +189,8 @@ class ListWeb3WalletsItemFamilyEnumTypeTransformer {
   ListWeb3WalletsItemFamilyEnum decode(dynamic data, {bool allowNull}) {
     if (data != null) {
       switch (data.toString()) {
-        case r'evm': return ListWeb3WalletsItemFamilyEnum.evm;
         case r'solana': return ListWeb3WalletsItemFamilyEnum.solana;
+        case r'evm': return ListWeb3WalletsItemFamilyEnum.evm;
         default:
           if (allowNull == false) {
             throw ArgumentError('Unknown enum value to decode: $data');

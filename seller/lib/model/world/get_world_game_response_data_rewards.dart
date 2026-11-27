@@ -130,18 +130,18 @@ class GetWorldGameResponseDataRewardsGrantEnum {
   String toJson() => value;
 
   static const item = GetWorldGameResponseDataRewardsGrantEnum._(r'item');
+  static const cosm = GetWorldGameResponseDataRewardsGrantEnum._(r'cosm');
   static const decor = GetWorldGameResponseDataRewardsGrantEnum._(r'decor');
   static const cbx = GetWorldGameResponseDataRewardsGrantEnum._(r'cbx');
-  static const cosm = GetWorldGameResponseDataRewardsGrantEnum._(r'cosm');
   static const pin = GetWorldGameResponseDataRewardsGrantEnum._(r'pin');
   static const emote = GetWorldGameResponseDataRewardsGrantEnum._(r'emote');
 
   /// List of all possible values in this [enum][GetWorldGameResponseDataRewardsGrantEnum].
   static const values = <GetWorldGameResponseDataRewardsGrantEnum>[
     item,
+    cosm,
     decor,
     cbx,
-    cosm,
     pin,
     emote,
   ];
@@ -176,9 +176,9 @@ class GetWorldGameResponseDataRewardsGrantEnumTypeTransformer {
     if (data != null) {
       switch (data.toString()) {
         case r'item': return GetWorldGameResponseDataRewardsGrantEnum.item;
+        case r'cosm': return GetWorldGameResponseDataRewardsGrantEnum.cosm;
         case r'decor': return GetWorldGameResponseDataRewardsGrantEnum.decor;
         case r'cbx': return GetWorldGameResponseDataRewardsGrantEnum.cbx;
-        case r'cosm': return GetWorldGameResponseDataRewardsGrantEnum.cosm;
         case r'pin': return GetWorldGameResponseDataRewardsGrantEnum.pin;
         case r'emote': return GetWorldGameResponseDataRewardsGrantEnum.emote;
         default:

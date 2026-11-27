@@ -16,10 +16,10 @@ class ListWorldContestsItem {
     @required this.id,
     @required this.createdAt,
     @required this.status,
+    @required this.ownerUserId,
     @required this.endsAt,
     @required this.startsAt,
     this.feeCents,
-    @required this.ownerUserId,
     this.settledAt,
     @required this.gamePlace,
     @required this.gameObject,
@@ -33,13 +33,13 @@ class ListWorldContestsItem {
 
   ListWorldContestsItemStatusEnum status;
 
+  String ownerUserId;
+
   DateTime endsAt;
 
   DateTime startsAt;
 
   num feeCents;
-
-  String ownerUserId;
 
   DateTime settledAt;
 
@@ -56,10 +56,10 @@ class ListWorldContestsItem {
      other.id == id &&
      other.createdAt == createdAt &&
      other.status == status &&
+     other.ownerUserId == ownerUserId &&
      other.endsAt == endsAt &&
      other.startsAt == startsAt &&
      other.feeCents == feeCents &&
-     other.ownerUserId == ownerUserId &&
      other.settledAt == settledAt &&
      other.gamePlace == gamePlace &&
      other.gameObject == gameObject &&
@@ -72,10 +72,10 @@ class ListWorldContestsItem {
     (id == null ? 0 : id.hashCode) +
     (createdAt == null ? 0 : createdAt.hashCode) +
     (status == null ? 0 : status.hashCode) +
+    (ownerUserId == null ? 0 : ownerUserId.hashCode) +
     (endsAt == null ? 0 : endsAt.hashCode) +
     (startsAt == null ? 0 : startsAt.hashCode) +
     (feeCents == null ? 0 : feeCents.hashCode) +
-    (ownerUserId == null ? 0 : ownerUserId.hashCode) +
     (settledAt == null ? 0 : settledAt.hashCode) +
     (gamePlace == null ? 0 : gamePlace.hashCode) +
     (gameObject == null ? 0 : gameObject.hashCode) +
@@ -83,19 +83,19 @@ class ListWorldContestsItem {
     (scoreOrder == null ? 0 : scoreOrder.hashCode);
 
   @override
-  String toString() => 'ListWorldContestsItem[id=$id, createdAt=$createdAt, status=$status, endsAt=$endsAt, startsAt=$startsAt, feeCents=$feeCents, ownerUserId=$ownerUserId, settledAt=$settledAt, gamePlace=$gamePlace, gameObject=$gameObject, entryMode=$entryMode, scoreOrder=$scoreOrder]';
+  String toString() => 'ListWorldContestsItem[id=$id, createdAt=$createdAt, status=$status, ownerUserId=$ownerUserId, endsAt=$endsAt, startsAt=$startsAt, feeCents=$feeCents, settledAt=$settledAt, gamePlace=$gamePlace, gameObject=$gameObject, entryMode=$entryMode, scoreOrder=$scoreOrder]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
       json[r'id'] = id;
       json[r'createdAt'] = createdAt.toUtc().toIso8601String();
       json[r'status'] = status;
+      json[r'ownerUserId'] = ownerUserId;
       json[r'endsAt'] = endsAt.toUtc().toIso8601String();
       json[r'startsAt'] = startsAt.toUtc().toIso8601String();
     if (feeCents != null) {
       json[r'feeCents'] = feeCents;
     }
-      json[r'ownerUserId'] = ownerUserId;
     if (settledAt != null) {
       json[r'settledAt'] = settledAt.toUtc().toIso8601String();
     }
@@ -116,12 +116,12 @@ class ListWorldContestsItem {
         id: mapValueOfType<String>(json, r'id'),
         createdAt: mapDateTime(json, r'createdAt', ''),
         status: ListWorldContestsItemStatusEnum.fromJson(json[r'status']),
+        ownerUserId: mapValueOfType<String>(json, r'ownerUserId'),
         endsAt: mapDateTime(json, r'endsAt', ''),
         startsAt: mapDateTime(json, r'startsAt', ''),
         feeCents: json[r'feeCents'] == null
           ? null
           : num.parse(json[r'feeCents'].toString()),
-        ownerUserId: mapValueOfType<String>(json, r'ownerUserId'),
         settledAt: mapDateTime(json, r'settledAt', ''),
         gamePlace: mapValueOfType<String>(json, r'gamePlace'),
         gameObject: mapValueOfType<String>(json, r'gameObject'),
@@ -178,14 +178,14 @@ class ListWorldContestsItemStatusEnum {
 
   String toJson() => value;
 
-  static const open = ListWorldContestsItemStatusEnum._(r'open');
   static const cancelled = ListWorldContestsItemStatusEnum._(r'cancelled');
+  static const open = ListWorldContestsItemStatusEnum._(r'open');
   static const settled = ListWorldContestsItemStatusEnum._(r'settled');
 
   /// List of all possible values in this [enum][ListWorldContestsItemStatusEnum].
   static const values = <ListWorldContestsItemStatusEnum>[
-    open,
     cancelled,
+    open,
     settled,
   ];
 
@@ -218,8 +218,8 @@ class ListWorldContestsItemStatusEnumTypeTransformer {
   ListWorldContestsItemStatusEnum decode(dynamic data, {bool allowNull}) {
     if (data != null) {
       switch (data.toString()) {
-        case r'open': return ListWorldContestsItemStatusEnum.open;
         case r'cancelled': return ListWorldContestsItemStatusEnum.cancelled;
+        case r'open': return ListWorldContestsItemStatusEnum.open;
         case r'settled': return ListWorldContestsItemStatusEnum.settled;
         default:
           if (allowNull == false) {
@@ -249,14 +249,14 @@ class ListWorldContestsItemEntryModeEnum {
   String toJson() => value;
 
   static const free = ListWorldContestsItemEntryModeEnum._(r'free');
-  static const sponsored = ListWorldContestsItemEntryModeEnum._(r'sponsored');
   static const paid = ListWorldContestsItemEntryModeEnum._(r'paid');
+  static const sponsored = ListWorldContestsItemEntryModeEnum._(r'sponsored');
 
   /// List of all possible values in this [enum][ListWorldContestsItemEntryModeEnum].
   static const values = <ListWorldContestsItemEntryModeEnum>[
     free,
-    sponsored,
     paid,
+    sponsored,
   ];
 
   static ListWorldContestsItemEntryModeEnum fromJson(dynamic value) =>
@@ -289,8 +289,8 @@ class ListWorldContestsItemEntryModeEnumTypeTransformer {
     if (data != null) {
       switch (data.toString()) {
         case r'free': return ListWorldContestsItemEntryModeEnum.free;
-        case r'sponsored': return ListWorldContestsItemEntryModeEnum.sponsored;
         case r'paid': return ListWorldContestsItemEntryModeEnum.paid;
+        case r'sponsored': return ListWorldContestsItemEntryModeEnum.sponsored;
         default:
           if (allowNull == false) {
             throw ArgumentError('Unknown enum value to decode: $data');

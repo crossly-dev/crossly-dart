@@ -13,37 +13,37 @@ part of openapi.api;
 class GetBuyerGiftFinderOptionResponseDataRecipients {
   /// Returns a new [GetBuyerGiftFinderOptionResponseDataRecipients] instance.
   GetBuyerGiftFinderOptionResponseDataRecipients({
-    @required this.label,
     @required this.key,
+    @required this.label,
     this.interests = const [],
   });
 
-  String label;
-
   String key;
+
+  String label;
 
   List<Map<String, Object>> interests;
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is GetBuyerGiftFinderOptionResponseDataRecipients &&
-     other.label == label &&
      other.key == key &&
+     other.label == label &&
      other.interests == interests;
 
   @override
   int get hashCode =>
   // ignore: unnecessary_parenthesis
-    (label == null ? 0 : label.hashCode) +
     (key == null ? 0 : key.hashCode) +
+    (label == null ? 0 : label.hashCode) +
     (interests == null ? 0 : interests.hashCode);
 
   @override
-  String toString() => 'GetBuyerGiftFinderOptionResponseDataRecipients[label=$label, key=$key, interests=$interests]';
+  String toString() => 'GetBuyerGiftFinderOptionResponseDataRecipients[key=$key, label=$label, interests=$interests]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-      json[r'label'] = label;
       json[r'key'] = key;
+      json[r'label'] = label;
       json[r'interests'] = interests;
     return json;
   }
@@ -55,8 +55,8 @@ class GetBuyerGiftFinderOptionResponseDataRecipients {
     if (value is Map) {
       final json = value.cast<String, dynamic>();
       return GetBuyerGiftFinderOptionResponseDataRecipients(
-        label: mapValueOfType<String>(json, r'label'),
         key: mapValueOfType<String>(json, r'key'),
+        label: mapValueOfType<String>(json, r'label'),
         interests: json[r'interests'] is List ? (json[r'interests'] as List).cast<Map<String, Object>>() : const [],
       );
     }

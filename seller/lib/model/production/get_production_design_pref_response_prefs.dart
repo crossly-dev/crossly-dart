@@ -16,9 +16,9 @@ class GetProductionDesignPrefResponsePrefs {
     @required this.id,
     @required this.createdAt,
     @required this.updatedAt,
+    @required this.cosmeticId,
     @required this.merchantId,
     @required this.creatorSubjectId,
-    @required this.cosmeticId,
     this.spec,
     @required this.physicalOptOut,
     this.brief,
@@ -31,11 +31,11 @@ class GetProductionDesignPrefResponsePrefs {
 
   DateTime updatedAt;
 
+  String cosmeticId;
+
   String merchantId;
 
   String creatorSubjectId;
-
-  String cosmeticId;
 
   CreateProductionDesignSpecResponsePrefsSpec spec;
 
@@ -50,9 +50,9 @@ class GetProductionDesignPrefResponsePrefs {
      other.id == id &&
      other.createdAt == createdAt &&
      other.updatedAt == updatedAt &&
+     other.cosmeticId == cosmeticId &&
      other.merchantId == merchantId &&
      other.creatorSubjectId == creatorSubjectId &&
-     other.cosmeticId == cosmeticId &&
      other.spec == spec &&
      other.physicalOptOut == physicalOptOut &&
      other.brief == brief &&
@@ -64,25 +64,25 @@ class GetProductionDesignPrefResponsePrefs {
     (id == null ? 0 : id.hashCode) +
     (createdAt == null ? 0 : createdAt.hashCode) +
     (updatedAt == null ? 0 : updatedAt.hashCode) +
+    (cosmeticId == null ? 0 : cosmeticId.hashCode) +
     (merchantId == null ? 0 : merchantId.hashCode) +
     (creatorSubjectId == null ? 0 : creatorSubjectId.hashCode) +
-    (cosmeticId == null ? 0 : cosmeticId.hashCode) +
     (spec == null ? 0 : spec.hashCode) +
     (physicalOptOut == null ? 0 : physicalOptOut.hashCode) +
     (brief == null ? 0 : brief.hashCode) +
     (physicalLineAt == null ? 0 : physicalLineAt.hashCode);
 
   @override
-  String toString() => 'GetProductionDesignPrefResponsePrefs[id=$id, createdAt=$createdAt, updatedAt=$updatedAt, merchantId=$merchantId, creatorSubjectId=$creatorSubjectId, cosmeticId=$cosmeticId, spec=$spec, physicalOptOut=$physicalOptOut, brief=$brief, physicalLineAt=$physicalLineAt]';
+  String toString() => 'GetProductionDesignPrefResponsePrefs[id=$id, createdAt=$createdAt, updatedAt=$updatedAt, cosmeticId=$cosmeticId, merchantId=$merchantId, creatorSubjectId=$creatorSubjectId, spec=$spec, physicalOptOut=$physicalOptOut, brief=$brief, physicalLineAt=$physicalLineAt]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
       json[r'id'] = id;
       json[r'createdAt'] = createdAt.toUtc().toIso8601String();
       json[r'updatedAt'] = updatedAt.toUtc().toIso8601String();
+      json[r'cosmeticId'] = cosmeticId;
       json[r'merchantId'] = merchantId;
       json[r'creatorSubjectId'] = creatorSubjectId;
-      json[r'cosmeticId'] = cosmeticId;
     if (spec != null) {
       json[r'spec'] = spec;
     }
@@ -106,9 +106,9 @@ class GetProductionDesignPrefResponsePrefs {
         id: mapValueOfType<String>(json, r'id'),
         createdAt: mapDateTime(json, r'createdAt', ''),
         updatedAt: mapDateTime(json, r'updatedAt', ''),
+        cosmeticId: mapValueOfType<String>(json, r'cosmeticId'),
         merchantId: mapValueOfType<String>(json, r'merchantId'),
         creatorSubjectId: mapValueOfType<String>(json, r'creatorSubjectId'),
-        cosmeticId: mapValueOfType<String>(json, r'cosmeticId'),
         spec: CreateProductionDesignSpecResponsePrefsSpec.fromJson(json[r'spec']),
         physicalOptOut: mapValueOfType<bool>(json, r'physicalOptOut'),
         brief: CreateProductionDesignSpecResponsePrefsBrief.fromJson(json[r'brief']),

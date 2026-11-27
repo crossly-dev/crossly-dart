@@ -15,30 +15,36 @@ class GetVaultMarketPortfolioHistoryResponse {
   GetVaultMarketPortfolioHistoryResponse({
     this.series = const [],
     @required this.now,
+    @required this.today,
   });
 
   List<GetVaultMarketPortfolioHistoryResponseSeries> series;
 
   GetVaultMarketPortfolioHistoryResponseNow now;
 
+  GetVaultMarketPortfolioHistoryResponseToday today;
+
   @override
   bool operator ==(Object other) => identical(this, other) || other is GetVaultMarketPortfolioHistoryResponse &&
      other.series == series &&
-     other.now == now;
+     other.now == now &&
+     other.today == today;
 
   @override
   int get hashCode =>
   // ignore: unnecessary_parenthesis
     (series == null ? 0 : series.hashCode) +
-    (now == null ? 0 : now.hashCode);
+    (now == null ? 0 : now.hashCode) +
+    (today == null ? 0 : today.hashCode);
 
   @override
-  String toString() => 'GetVaultMarketPortfolioHistoryResponse[series=$series, now=$now]';
+  String toString() => 'GetVaultMarketPortfolioHistoryResponse[series=$series, now=$now, today=$today]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
       json[r'series'] = series;
       json[r'now'] = now;
+      json[r'today'] = today;
     return json;
   }
 
@@ -51,6 +57,7 @@ class GetVaultMarketPortfolioHistoryResponse {
       return GetVaultMarketPortfolioHistoryResponse(
         series: GetVaultMarketPortfolioHistoryResponseSeries.listFromJson(json[r'series']),
         now: GetVaultMarketPortfolioHistoryResponseNow.fromJson(json[r'now']),
+        today: GetVaultMarketPortfolioHistoryResponseToday.fromJson(json[r'today']),
       );
     }
     return null;

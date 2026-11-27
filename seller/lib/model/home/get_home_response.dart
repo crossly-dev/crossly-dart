@@ -25,6 +25,7 @@ class GetHomeResponse {
     this.layout = const [],
     this.guestbook = const [],
     this.giftShelf,
+    this.pullsShelf,
     this.pinCase,
     this.vaultWall,
     this.setWall,
@@ -57,6 +58,8 @@ class GetHomeResponse {
 
   GetHomeResponseGiftShelf giftShelf;
 
+  GetHomeResponsePullsShelf pullsShelf;
+
   /// The owner's earned pins, rarest first, when a pin case stands here (pin-case.ts).
   List<GetHomeResponsePinCase> pinCase;
 
@@ -83,6 +86,7 @@ class GetHomeResponse {
      other.layout == layout &&
      other.guestbook == guestbook &&
      other.giftShelf == giftShelf &&
+     other.pullsShelf == pullsShelf &&
      other.pinCase == pinCase &&
      other.vaultWall == vaultWall &&
      other.setWall == setWall &&
@@ -104,6 +108,7 @@ class GetHomeResponse {
     (layout == null ? 0 : layout.hashCode) +
     (guestbook == null ? 0 : guestbook.hashCode) +
     (giftShelf == null ? 0 : giftShelf.hashCode) +
+    (pullsShelf == null ? 0 : pullsShelf.hashCode) +
     (pinCase == null ? 0 : pinCase.hashCode) +
     (vaultWall == null ? 0 : vaultWall.hashCode) +
     (setWall == null ? 0 : setWall.hashCode) +
@@ -111,7 +116,7 @@ class GetHomeResponse {
     (updatedAt == null ? 0 : updatedAt.hashCode);
 
   @override
-  String toString() => 'GetHomeResponse[slug=$slug, presenceSlug=$presenceSlug, owner=$owner, privacy=$privacy, theme=$theme, decor=$decor, isOwner=$isOwner, canBuild=$canBuild, room=$room, layout=$layout, guestbook=$guestbook, giftShelf=$giftShelf, pinCase=$pinCase, vaultWall=$vaultWall, setWall=$setWall, here=$here, updatedAt=$updatedAt]';
+  String toString() => 'GetHomeResponse[slug=$slug, presenceSlug=$presenceSlug, owner=$owner, privacy=$privacy, theme=$theme, decor=$decor, isOwner=$isOwner, canBuild=$canBuild, room=$room, layout=$layout, guestbook=$guestbook, giftShelf=$giftShelf, pullsShelf=$pullsShelf, pinCase=$pinCase, vaultWall=$vaultWall, setWall=$setWall, here=$here, updatedAt=$updatedAt]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -128,6 +133,9 @@ class GetHomeResponse {
       json[r'guestbook'] = guestbook;
     if (giftShelf != null) {
       json[r'giftShelf'] = giftShelf;
+    }
+    if (pullsShelf != null) {
+      json[r'pullsShelf'] = pullsShelf;
     }
     if (pinCase != null) {
       json[r'pinCase'] = pinCase;
@@ -162,6 +170,7 @@ class GetHomeResponse {
         layout: GetHomeResponseLayout.listFromJson(json[r'layout']),
         guestbook: GetHomeResponseGuestbook.listFromJson(json[r'guestbook']),
         giftShelf: GetHomeResponseGiftShelf.fromJson(json[r'giftShelf']),
+        pullsShelf: GetHomeResponsePullsShelf.fromJson(json[r'pullsShelf']),
         pinCase: GetHomeResponsePinCase.listFromJson(json[r'pinCase']),
         vaultWall: GetHomeResponseVaultWall.fromJson(json[r'vaultWall']),
         setWall: GetHomeResponseSetWall.fromJson(json[r'setWall']),
@@ -221,14 +230,14 @@ class GetHomeResponsePrivacyEnum {
   String toJson() => value;
 
   static const open = GetHomeResponsePrivacyEnum._(r'open');
-  static const locked = GetHomeResponsePrivacyEnum._(r'locked');
   static const friends = GetHomeResponsePrivacyEnum._(r'friends');
+  static const locked = GetHomeResponsePrivacyEnum._(r'locked');
 
   /// List of all possible values in this [enum][GetHomeResponsePrivacyEnum].
   static const values = <GetHomeResponsePrivacyEnum>[
     open,
-    locked,
     friends,
+    locked,
   ];
 
   static GetHomeResponsePrivacyEnum fromJson(dynamic value) =>
@@ -261,8 +270,8 @@ class GetHomeResponsePrivacyEnumTypeTransformer {
     if (data != null) {
       switch (data.toString()) {
         case r'open': return GetHomeResponsePrivacyEnum.open;
-        case r'locked': return GetHomeResponsePrivacyEnum.locked;
         case r'friends': return GetHomeResponsePrivacyEnum.friends;
+        case r'locked': return GetHomeResponsePrivacyEnum.locked;
         default:
           if (allowNull == false) {
             throw ArgumentError('Unknown enum value to decode: $data');
@@ -290,19 +299,19 @@ class GetHomeResponseThemeEnum {
 
   String toJson() => value;
 
-  static const storybook = GetHomeResponseThemeEnum._(r'storybook');
   static const studio = GetHomeResponseThemeEnum._(r'studio');
   static const noir = GetHomeResponseThemeEnum._(r'noir');
   static const daylight = GetHomeResponseThemeEnum._(r'daylight');
   static const vitrine = GetHomeResponseThemeEnum._(r'vitrine');
+  static const storybook = GetHomeResponseThemeEnum._(r'storybook');
 
   /// List of all possible values in this [enum][GetHomeResponseThemeEnum].
   static const values = <GetHomeResponseThemeEnum>[
-    storybook,
     studio,
     noir,
     daylight,
     vitrine,
+    storybook,
   ];
 
   static GetHomeResponseThemeEnum fromJson(dynamic value) =>
@@ -334,11 +343,11 @@ class GetHomeResponseThemeEnumTypeTransformer {
   GetHomeResponseThemeEnum decode(dynamic data, {bool allowNull}) {
     if (data != null) {
       switch (data.toString()) {
-        case r'storybook': return GetHomeResponseThemeEnum.storybook;
         case r'studio': return GetHomeResponseThemeEnum.studio;
         case r'noir': return GetHomeResponseThemeEnum.noir;
         case r'daylight': return GetHomeResponseThemeEnum.daylight;
         case r'vitrine': return GetHomeResponseThemeEnum.vitrine;
+        case r'storybook': return GetHomeResponseThemeEnum.storybook;
         default:
           if (allowNull == false) {
             throw ArgumentError('Unknown enum value to decode: $data');

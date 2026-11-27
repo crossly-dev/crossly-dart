@@ -13,10 +13,19 @@ part of openapi.api;
 class CreateSpatialPropertyLeaseRentResponseData {
   /// Returns a new [CreateSpatialPropertyLeaseRentResponseData] instance.
   CreateSpatialPropertyLeaseRentResponseData({
-    @required this.paidThrough,
-    @required this.waived,
-    @required this.paidCents,
+    this.requiresAction,
+    this.paymentId,
+    this.clientSecret,
+    this.paidThrough,
+    this.waived,
+    this.paidCents,
   });
+
+  bool requiresAction;
+
+  String paymentId;
+
+  String clientSecret;
 
   String paidThrough;
 
@@ -26,6 +35,9 @@ class CreateSpatialPropertyLeaseRentResponseData {
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is CreateSpatialPropertyLeaseRentResponseData &&
+     other.requiresAction == requiresAction &&
+     other.paymentId == paymentId &&
+     other.clientSecret == clientSecret &&
      other.paidThrough == paidThrough &&
      other.waived == waived &&
      other.paidCents == paidCents;
@@ -33,18 +45,36 @@ class CreateSpatialPropertyLeaseRentResponseData {
   @override
   int get hashCode =>
   // ignore: unnecessary_parenthesis
+    (requiresAction == null ? 0 : requiresAction.hashCode) +
+    (paymentId == null ? 0 : paymentId.hashCode) +
+    (clientSecret == null ? 0 : clientSecret.hashCode) +
     (paidThrough == null ? 0 : paidThrough.hashCode) +
     (waived == null ? 0 : waived.hashCode) +
     (paidCents == null ? 0 : paidCents.hashCode);
 
   @override
-  String toString() => 'CreateSpatialPropertyLeaseRentResponseData[paidThrough=$paidThrough, waived=$waived, paidCents=$paidCents]';
+  String toString() => 'CreateSpatialPropertyLeaseRentResponseData[requiresAction=$requiresAction, paymentId=$paymentId, clientSecret=$clientSecret, paidThrough=$paidThrough, waived=$waived, paidCents=$paidCents]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
+    if (requiresAction != null) {
+      json[r'requiresAction'] = requiresAction;
+    }
+    if (paymentId != null) {
+      json[r'paymentId'] = paymentId;
+    }
+    if (clientSecret != null) {
+      json[r'clientSecret'] = clientSecret;
+    }
+    if (paidThrough != null) {
       json[r'paidThrough'] = paidThrough;
+    }
+    if (waived != null) {
       json[r'waived'] = waived;
+    }
+    if (paidCents != null) {
       json[r'paidCents'] = paidCents;
+    }
     return json;
   }
 
@@ -55,6 +85,9 @@ class CreateSpatialPropertyLeaseRentResponseData {
     if (value is Map) {
       final json = value.cast<String, dynamic>();
       return CreateSpatialPropertyLeaseRentResponseData(
+        requiresAction: mapValueOfType<bool>(json, r'requiresAction'),
+        paymentId: mapValueOfType<String>(json, r'paymentId'),
+        clientSecret: mapValueOfType<String>(json, r'clientSecret'),
         paidThrough: mapValueOfType<String>(json, r'paidThrough'),
         waived: mapValueOfType<bool>(json, r'waived'),
         paidCents: json[r'paidCents'] == null

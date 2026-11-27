@@ -40,13 +40,13 @@ class GetWeb3CreatorResponse {
 
   GetWeb3CreatorResponseSales sales;
 
-  List<GetWeb3CreatorResponseDaily> daily;
+  List<GetCreatorCollectionResponseDataDashboardDaily> daily;
 
-  List<GetWeb3CreatorResponseRecent> recent;
+  List<GetCreatorCollectionResponseDataDashboardRecent> recent;
 
   GetWeb3CreatorResponseHolders holders;
 
-  GetWeb3CreatorResponseMint mint;
+  GetCreatorCollectionResponseDataDashboardMint mint;
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is GetWeb3CreatorResponse &&
@@ -120,10 +120,10 @@ class GetWeb3CreatorResponse {
           : num.parse(json[r'royaltyBps'].toString()),
         royaltyEstimateWei: mapValueOfType<String>(json, r'royaltyEstimateWei'),
         sales: GetWeb3CreatorResponseSales.fromJson(json[r'sales']),
-        daily: GetWeb3CreatorResponseDaily.listFromJson(json[r'daily']),
-        recent: GetWeb3CreatorResponseRecent.listFromJson(json[r'recent']),
+        daily: GetCreatorCollectionResponseDataDashboardDaily.listFromJson(json[r'daily']),
+        recent: GetCreatorCollectionResponseDataDashboardRecent.listFromJson(json[r'recent']),
         holders: GetWeb3CreatorResponseHolders.fromJson(json[r'holders']),
-        mint: GetWeb3CreatorResponseMint.fromJson(json[r'mint']),
+        mint: GetCreatorCollectionResponseDataDashboardMint.fromJson(json[r'mint']),
       );
     }
     return null;

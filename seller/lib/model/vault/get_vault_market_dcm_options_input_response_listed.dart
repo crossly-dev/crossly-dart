@@ -142,13 +142,13 @@ class GetVaultMarketDcmOptionsInputResponseListedOptionTypeEnum {
 
   String toJson() => value;
 
-  static const call = GetVaultMarketDcmOptionsInputResponseListedOptionTypeEnum._(r'call');
   static const put = GetVaultMarketDcmOptionsInputResponseListedOptionTypeEnum._(r'put');
+  static const call = GetVaultMarketDcmOptionsInputResponseListedOptionTypeEnum._(r'call');
 
   /// List of all possible values in this [enum][GetVaultMarketDcmOptionsInputResponseListedOptionTypeEnum].
   static const values = <GetVaultMarketDcmOptionsInputResponseListedOptionTypeEnum>[
-    call,
     put,
+    call,
   ];
 
   static GetVaultMarketDcmOptionsInputResponseListedOptionTypeEnum fromJson(dynamic value) =>
@@ -180,8 +180,8 @@ class GetVaultMarketDcmOptionsInputResponseListedOptionTypeEnumTypeTransformer {
   GetVaultMarketDcmOptionsInputResponseListedOptionTypeEnum decode(dynamic data, {bool allowNull}) {
     if (data != null) {
       switch (data.toString()) {
-        case r'call': return GetVaultMarketDcmOptionsInputResponseListedOptionTypeEnum.call;
         case r'put': return GetVaultMarketDcmOptionsInputResponseListedOptionTypeEnum.put;
+        case r'call': return GetVaultMarketDcmOptionsInputResponseListedOptionTypeEnum.call;
         default:
           if (allowNull == false) {
             throw ArgumentError('Unknown enum value to decode: $data');

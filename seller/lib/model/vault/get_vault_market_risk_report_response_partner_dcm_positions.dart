@@ -218,13 +218,13 @@ class GetVaultMarketRiskReportResponsePartnerDcmPositionsSideEnum {
 
   String toJson() => value;
 
-  static const long = GetVaultMarketRiskReportResponsePartnerDcmPositionsSideEnum._(r'long');
   static const short = GetVaultMarketRiskReportResponsePartnerDcmPositionsSideEnum._(r'short');
+  static const long = GetVaultMarketRiskReportResponsePartnerDcmPositionsSideEnum._(r'long');
 
   /// List of all possible values in this [enum][GetVaultMarketRiskReportResponsePartnerDcmPositionsSideEnum].
   static const values = <GetVaultMarketRiskReportResponsePartnerDcmPositionsSideEnum>[
-    long,
     short,
+    long,
   ];
 
   static GetVaultMarketRiskReportResponsePartnerDcmPositionsSideEnum fromJson(dynamic value) =>
@@ -256,8 +256,8 @@ class GetVaultMarketRiskReportResponsePartnerDcmPositionsSideEnumTypeTransformer
   GetVaultMarketRiskReportResponsePartnerDcmPositionsSideEnum decode(dynamic data, {bool allowNull}) {
     if (data != null) {
       switch (data.toString()) {
-        case r'long': return GetVaultMarketRiskReportResponsePartnerDcmPositionsSideEnum.long;
         case r'short': return GetVaultMarketRiskReportResponsePartnerDcmPositionsSideEnum.short;
+        case r'long': return GetVaultMarketRiskReportResponsePartnerDcmPositionsSideEnum.long;
         default:
           if (allowNull == false) {
             throw ArgumentError('Unknown enum value to decode: $data');

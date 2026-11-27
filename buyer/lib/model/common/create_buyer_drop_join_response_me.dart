@@ -190,15 +190,15 @@ class CreateBuyerDropJoinResponseMeOutcomeEnum {
 
   String toJson() => value;
 
-  static const won = CreateBuyerDropJoinResponseMeOutcomeEnum._(r'won');
   static const expired = CreateBuyerDropJoinResponseMeOutcomeEnum._(r'expired');
+  static const won = CreateBuyerDropJoinResponseMeOutcomeEnum._(r'won');
   static const waitlist = CreateBuyerDropJoinResponseMeOutcomeEnum._(r'waitlist');
   static const claimed = CreateBuyerDropJoinResponseMeOutcomeEnum._(r'claimed');
 
   /// List of all possible values in this [enum][CreateBuyerDropJoinResponseMeOutcomeEnum].
   static const values = <CreateBuyerDropJoinResponseMeOutcomeEnum>[
-    won,
     expired,
+    won,
     waitlist,
     claimed,
   ];
@@ -232,8 +232,8 @@ class CreateBuyerDropJoinResponseMeOutcomeEnumTypeTransformer {
   CreateBuyerDropJoinResponseMeOutcomeEnum decode(dynamic data, {bool allowNull}) {
     if (data != null) {
       switch (data.toString()) {
-        case r'won': return CreateBuyerDropJoinResponseMeOutcomeEnum.won;
         case r'expired': return CreateBuyerDropJoinResponseMeOutcomeEnum.expired;
+        case r'won': return CreateBuyerDropJoinResponseMeOutcomeEnum.won;
         case r'waitlist': return CreateBuyerDropJoinResponseMeOutcomeEnum.waitlist;
         case r'claimed': return CreateBuyerDropJoinResponseMeOutcomeEnum.claimed;
         default:

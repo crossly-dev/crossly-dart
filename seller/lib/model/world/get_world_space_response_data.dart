@@ -196,20 +196,20 @@ class GetWorldSpaceResponseDataVenueEnum {
 
   String toJson() => value;
 
+  static const stage = GetWorldSpaceResponseDataVenueEnum._(r'stage');
   static const gallery = GetWorldSpaceResponseDataVenueEnum._(r'gallery');
   static const cardClub = GetWorldSpaceResponseDataVenueEnum._(r'card_club');
   static const sneakerMeet = GetWorldSpaceResponseDataVenueEnum._(r'sneaker_meet');
   static const vintageMarket = GetWorldSpaceResponseDataVenueEnum._(r'vintage_market');
-  static const stage = GetWorldSpaceResponseDataVenueEnum._(r'stage');
   static const clubhouse = GetWorldSpaceResponseDataVenueEnum._(r'clubhouse');
 
   /// List of all possible values in this [enum][GetWorldSpaceResponseDataVenueEnum].
   static const values = <GetWorldSpaceResponseDataVenueEnum>[
+    stage,
     gallery,
     cardClub,
     sneakerMeet,
     vintageMarket,
-    stage,
     clubhouse,
   ];
 
@@ -242,11 +242,11 @@ class GetWorldSpaceResponseDataVenueEnumTypeTransformer {
   GetWorldSpaceResponseDataVenueEnum decode(dynamic data, {bool allowNull}) {
     if (data != null) {
       switch (data.toString()) {
+        case r'stage': return GetWorldSpaceResponseDataVenueEnum.stage;
         case r'gallery': return GetWorldSpaceResponseDataVenueEnum.gallery;
         case r'card_club': return GetWorldSpaceResponseDataVenueEnum.cardClub;
         case r'sneaker_meet': return GetWorldSpaceResponseDataVenueEnum.sneakerMeet;
         case r'vintage_market': return GetWorldSpaceResponseDataVenueEnum.vintageMarket;
-        case r'stage': return GetWorldSpaceResponseDataVenueEnum.stage;
         case r'clubhouse': return GetWorldSpaceResponseDataVenueEnum.clubhouse;
         default:
           if (allowNull == false) {

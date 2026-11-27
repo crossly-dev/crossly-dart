@@ -13,11 +13,18 @@ part of openapi.api;
 class GetAnalyticSummaryResponse {
   /// Returns a new [GetAnalyticSummaryResponse] instance.
   GetAnalyticSummaryResponse({
+    @required this.days,
     @required this.sales,
     @required this.revenue,
     @required this.fees,
-    @required this.days,
+    @required this.pendingDetailsCount,
+    @required this.unitsSold,
+    @required this.netSalesCents,
+    @required this.feesCents,
+    this.netProfitCents,
   });
+
+  num days;
 
   num sales;
 
@@ -25,32 +32,57 @@ class GetAnalyticSummaryResponse {
 
   num fees;
 
-  num days;
+  num pendingDetailsCount;
+
+  num unitsSold;
+
+  num netSalesCents;
+
+  num feesCents;
+
+  num netProfitCents;
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is GetAnalyticSummaryResponse &&
+     other.days == days &&
      other.sales == sales &&
      other.revenue == revenue &&
      other.fees == fees &&
-     other.days == days;
+     other.pendingDetailsCount == pendingDetailsCount &&
+     other.unitsSold == unitsSold &&
+     other.netSalesCents == netSalesCents &&
+     other.feesCents == feesCents &&
+     other.netProfitCents == netProfitCents;
 
   @override
   int get hashCode =>
   // ignore: unnecessary_parenthesis
+    (days == null ? 0 : days.hashCode) +
     (sales == null ? 0 : sales.hashCode) +
     (revenue == null ? 0 : revenue.hashCode) +
     (fees == null ? 0 : fees.hashCode) +
-    (days == null ? 0 : days.hashCode);
+    (pendingDetailsCount == null ? 0 : pendingDetailsCount.hashCode) +
+    (unitsSold == null ? 0 : unitsSold.hashCode) +
+    (netSalesCents == null ? 0 : netSalesCents.hashCode) +
+    (feesCents == null ? 0 : feesCents.hashCode) +
+    (netProfitCents == null ? 0 : netProfitCents.hashCode);
 
   @override
-  String toString() => 'GetAnalyticSummaryResponse[sales=$sales, revenue=$revenue, fees=$fees, days=$days]';
+  String toString() => 'GetAnalyticSummaryResponse[days=$days, sales=$sales, revenue=$revenue, fees=$fees, pendingDetailsCount=$pendingDetailsCount, unitsSold=$unitsSold, netSalesCents=$netSalesCents, feesCents=$feesCents, netProfitCents=$netProfitCents]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
+      json[r'days'] = days;
       json[r'sales'] = sales;
       json[r'revenue'] = revenue;
       json[r'fees'] = fees;
-      json[r'days'] = days;
+      json[r'pendingDetailsCount'] = pendingDetailsCount;
+      json[r'unitsSold'] = unitsSold;
+      json[r'netSalesCents'] = netSalesCents;
+      json[r'feesCents'] = feesCents;
+    if (netProfitCents != null) {
+      json[r'netProfitCents'] = netProfitCents;
+    }
     return json;
   }
 
@@ -61,6 +93,9 @@ class GetAnalyticSummaryResponse {
     if (value is Map) {
       final json = value.cast<String, dynamic>();
       return GetAnalyticSummaryResponse(
+        days: json[r'days'] == null
+          ? null
+          : num.parse(json[r'days'].toString()),
         sales: json[r'sales'] == null
           ? null
           : num.parse(json[r'sales'].toString()),
@@ -70,9 +105,21 @@ class GetAnalyticSummaryResponse {
         fees: json[r'fees'] == null
           ? null
           : num.parse(json[r'fees'].toString()),
-        days: json[r'days'] == null
+        pendingDetailsCount: json[r'pendingDetailsCount'] == null
           ? null
-          : num.parse(json[r'days'].toString()),
+          : num.parse(json[r'pendingDetailsCount'].toString()),
+        unitsSold: json[r'unitsSold'] == null
+          ? null
+          : num.parse(json[r'unitsSold'].toString()),
+        netSalesCents: json[r'netSalesCents'] == null
+          ? null
+          : num.parse(json[r'netSalesCents'].toString()),
+        feesCents: json[r'feesCents'] == null
+          ? null
+          : num.parse(json[r'feesCents'].toString()),
+        netProfitCents: json[r'netProfitCents'] == null
+          ? null
+          : num.parse(json[r'netProfitCents'].toString()),
       );
     }
     return null;

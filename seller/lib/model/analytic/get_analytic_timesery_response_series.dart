@@ -16,6 +16,8 @@ class GetAnalyticTimeseryResponseSeries {
     @required this.day,
     @required this.sales,
     @required this.revenue,
+    @required this.netSalesCents,
+    @required this.netProfitCents,
   });
 
   String day;
@@ -24,27 +26,37 @@ class GetAnalyticTimeseryResponseSeries {
 
   num revenue;
 
+  num netSalesCents;
+
+  num netProfitCents;
+
   @override
   bool operator ==(Object other) => identical(this, other) || other is GetAnalyticTimeseryResponseSeries &&
      other.day == day &&
      other.sales == sales &&
-     other.revenue == revenue;
+     other.revenue == revenue &&
+     other.netSalesCents == netSalesCents &&
+     other.netProfitCents == netProfitCents;
 
   @override
   int get hashCode =>
   // ignore: unnecessary_parenthesis
     (day == null ? 0 : day.hashCode) +
     (sales == null ? 0 : sales.hashCode) +
-    (revenue == null ? 0 : revenue.hashCode);
+    (revenue == null ? 0 : revenue.hashCode) +
+    (netSalesCents == null ? 0 : netSalesCents.hashCode) +
+    (netProfitCents == null ? 0 : netProfitCents.hashCode);
 
   @override
-  String toString() => 'GetAnalyticTimeseryResponseSeries[day=$day, sales=$sales, revenue=$revenue]';
+  String toString() => 'GetAnalyticTimeseryResponseSeries[day=$day, sales=$sales, revenue=$revenue, netSalesCents=$netSalesCents, netProfitCents=$netProfitCents]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
       json[r'day'] = day;
       json[r'sales'] = sales;
       json[r'revenue'] = revenue;
+      json[r'netSalesCents'] = netSalesCents;
+      json[r'netProfitCents'] = netProfitCents;
     return json;
   }
 
@@ -62,6 +74,12 @@ class GetAnalyticTimeseryResponseSeries {
         revenue: json[r'revenue'] == null
           ? null
           : num.parse(json[r'revenue'].toString()),
+        netSalesCents: json[r'netSalesCents'] == null
+          ? null
+          : num.parse(json[r'netSalesCents'].toString()),
+        netProfitCents: json[r'netProfitCents'] == null
+          ? null
+          : num.parse(json[r'netProfitCents'].toString()),
       );
     }
     return null;

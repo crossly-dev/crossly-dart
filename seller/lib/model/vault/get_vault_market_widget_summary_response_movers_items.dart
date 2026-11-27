@@ -168,16 +168,16 @@ class GetVaultMarketWidgetSummaryResponseMoversItemsMarkQualityEnum {
   String toJson() => value;
 
   static const none = GetVaultMarketWidgetSummaryResponseMoversItemsMarkQualityEnum._(r'none');
+  static const C = GetVaultMarketWidgetSummaryResponseMoversItemsMarkQualityEnum._(r'C');
   static const A = GetVaultMarketWidgetSummaryResponseMoversItemsMarkQualityEnum._(r'A');
   static const B = GetVaultMarketWidgetSummaryResponseMoversItemsMarkQualityEnum._(r'B');
-  static const C = GetVaultMarketWidgetSummaryResponseMoversItemsMarkQualityEnum._(r'C');
 
   /// List of all possible values in this [enum][GetVaultMarketWidgetSummaryResponseMoversItemsMarkQualityEnum].
   static const values = <GetVaultMarketWidgetSummaryResponseMoversItemsMarkQualityEnum>[
     none,
+    C,
     A,
     B,
-    C,
   ];
 
   static GetVaultMarketWidgetSummaryResponseMoversItemsMarkQualityEnum fromJson(dynamic value) =>
@@ -210,9 +210,9 @@ class GetVaultMarketWidgetSummaryResponseMoversItemsMarkQualityEnumTypeTransform
     if (data != null) {
       switch (data.toString()) {
         case r'none': return GetVaultMarketWidgetSummaryResponseMoversItemsMarkQualityEnum.none;
+        case r'C': return GetVaultMarketWidgetSummaryResponseMoversItemsMarkQualityEnum.C;
         case r'A': return GetVaultMarketWidgetSummaryResponseMoversItemsMarkQualityEnum.A;
         case r'B': return GetVaultMarketWidgetSummaryResponseMoversItemsMarkQualityEnum.B;
-        case r'C': return GetVaultMarketWidgetSummaryResponseMoversItemsMarkQualityEnum.C;
         default:
           if (allowNull == false) {
             throw ArgumentError('Unknown enum value to decode: $data');

@@ -14,10 +14,12 @@ Method | HTTP request | Description
 [**getDepartment**](ReferenceApi.md#getdepartment) | **GET** /v1/departments | Search the eBay-sourced \"Department\" item-specific values.
 [**getGender**](ReferenceApi.md#getgender) | **GET** /v1/genders | Search the eBay-sourced \"Gender\" item-specific values.
 [**getPattern**](ReferenceApi.md#getpattern) | **GET** /v1/patterns | Search the eBay-sourced \"Pattern\" item-specific values.
+[**getReferencePostal**](ReferenceApi.md#getreferencepostal) | **GET** /v1/reference/postal/{country}/{code} | Look up a postal code: canonical shape, state and US metro areas.
 [**getSizeSystem**](ReferenceApi.md#getsizesystem) | **GET** /v1/size-systems | Search the Poshmark + Vestiaire size-system union (US/UK/EU/AU/FR/KR).
 [**getStyle**](ReferenceApi.md#getstyle) | **GET** /v1/styles | Search the eBay-sourced \"Style\" item-specific values.
 [**getType**](ReferenceApi.md#gettype) | **GET** /v1/types | Search the eBay-sourced \"Type\" item-specific values.
 [**listReferenceCountries**](ReferenceApi.md#listreferencecountries) | **GET** /v1/reference/countries | Every country with its delivery-address rules.
+[**listReferenceMetros**](ReferenceApi.md#listreferencemetros) | **GET** /v1/reference/metros | Search US metro areas (CSA / CBSA) for location rules.
 
 
 # **getBrand**
@@ -235,6 +237,57 @@ This endpoint does not need any parameter.
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
+# **getReferencePostal**
+> GetReferencePostalResponse getReferencePostal(country, code)
+
+Look up a postal code: canonical shape, state and US metro areas.
+
+Every country gets its canonical shape and `valid`. A US ZIP (territories normalize to country US with `territory`) also gets state, county FIPS and CBSA/CSA. `metroStatus` is known (the ZIP is mapped), unmapped (a ZIP with no metro mapping: it matches no metro rule) or no_zip.
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = ReferenceApi();
+final country = country_example; // String | 
+final code = code_example; // String | 
+
+try {
+    final result = api_instance.getReferencePostal(country, code);
+    print(result);
+} catch (e) {
+    print('Exception when calling ReferenceApi->getReferencePostal: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **country** | **String**|  | 
+ **code** | **String**|  | 
+
+### Return type
+
+**GetReferencePostalResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
 # **getSizeSystem**
 > GetSizeSystemResponse getSizeSystem()
 
@@ -397,6 +450,57 @@ This endpoint does not need any parameter.
 ### Return type
 
 **ListReferenceCountriesResponse**
+
+### Authorization
+
+[PersonalAccessToken](../README.md#PersonalAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+# **listReferenceMetros**
+> ListReferenceMetrosResponse listReferenceMetros(q, limit)
+
+Search US metro areas (CSA / CBSA) for location rules.
+
+Combined Statistical Areas first, then Core-Based Statistical Areas, matched on title (or an exact code); at most 20. `q` needs 2+ characters. `meta.datasetAvailable` is false when the census dataset is not loaded, in which case no metro rule can match.
+
+### Example
+```dart
+import 'package:crossly/api.dart';
+// TODO Configure HTTP Bearer authorization: PersonalAccessToken
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('PersonalAccessToken').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = ReferenceApi();
+final q = q_example; // String | 
+final limit = 56; // int | 
+
+try {
+    final result = api_instance.listReferenceMetros(q, limit);
+    print(result);
+} catch (e) {
+    print('Exception when calling ReferenceApi->listReferenceMetros: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **q** | **String**|  | 
+ **limit** | **int**|  | [optional] [default to 20]
+
+### Return type
+
+**ListReferenceMetrosResponse**
 
 ### Authorization
 

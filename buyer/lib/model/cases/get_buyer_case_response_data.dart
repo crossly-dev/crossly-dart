@@ -13,15 +13,15 @@ part of openapi.api;
 class GetBuyerCaseResponseData {
   /// Returns a new [GetBuyerCaseResponseData] instance.
   GetBuyerCaseResponseData({
-    this.messages = const [],
     @required this.case_,
+    this.messages = const [],
     this.purchase,
     this.returnShipment,
   });
 
-  List<GetBuyerCaseResponseDataMessages> messages;
-
   GetBuyerCaseResponseDataCase case_;
+
+  List<GetBuyerCaseResponseDataMessages> messages;
 
   GetBuyerCaseResponseDataPurchase purchase;
 
@@ -29,26 +29,26 @@ class GetBuyerCaseResponseData {
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is GetBuyerCaseResponseData &&
-     other.messages == messages &&
      other.case_ == case_ &&
+     other.messages == messages &&
      other.purchase == purchase &&
      other.returnShipment == returnShipment;
 
   @override
   int get hashCode =>
   // ignore: unnecessary_parenthesis
-    (messages == null ? 0 : messages.hashCode) +
     (case_ == null ? 0 : case_.hashCode) +
+    (messages == null ? 0 : messages.hashCode) +
     (purchase == null ? 0 : purchase.hashCode) +
     (returnShipment == null ? 0 : returnShipment.hashCode);
 
   @override
-  String toString() => 'GetBuyerCaseResponseData[messages=$messages, case_=$case_, purchase=$purchase, returnShipment=$returnShipment]';
+  String toString() => 'GetBuyerCaseResponseData[case_=$case_, messages=$messages, purchase=$purchase, returnShipment=$returnShipment]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-      json[r'messages'] = messages;
       json[r'case'] = case_;
+      json[r'messages'] = messages;
     if (purchase != null) {
       json[r'purchase'] = purchase;
     }
@@ -65,8 +65,8 @@ class GetBuyerCaseResponseData {
     if (value is Map) {
       final json = value.cast<String, dynamic>();
       return GetBuyerCaseResponseData(
-        messages: GetBuyerCaseResponseDataMessages.listFromJson(json[r'messages']),
         case_: GetBuyerCaseResponseDataCase.fromJson(json[r'case']),
+        messages: GetBuyerCaseResponseDataMessages.listFromJson(json[r'messages']),
         purchase: GetBuyerCaseResponseDataPurchase.fromJson(json[r'purchase']),
         returnShipment: GetBuyerCaseResponseDataReturnShipment.fromJson(json[r'returnShipment']),
       );

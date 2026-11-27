@@ -22,6 +22,7 @@ class GetVaultMarketGradingSignalResponse {
     @required this.rawTier,
     this.myUnits = const [],
     @required this.myRawUnits,
+    this.cta,
   });
 
   String bookKey;
@@ -30,7 +31,7 @@ class GetVaultMarketGradingSignalResponse {
 
   GetVaultMarketGradingSignalResponseRawMarkQualityEnum rawMarkQuality;
 
-  List<GetVaultMarketKeyStatResponse> graded;
+  List<GetVaultMarketGradingSignalResponseGraded> graded;
 
   List<GetVaultMarketGradingSignalResponseGraders> graders;
 
@@ -43,6 +44,8 @@ class GetVaultMarketGradingSignalResponse {
 
   num myRawUnits;
 
+  GetVaultMarketGradingSignalResponseCta cta;
+
   @override
   bool operator ==(Object other) => identical(this, other) || other is GetVaultMarketGradingSignalResponse &&
      other.bookKey == bookKey &&
@@ -53,7 +56,8 @@ class GetVaultMarketGradingSignalResponse {
      other.worthIt == worthIt &&
      other.rawTier == rawTier &&
      other.myUnits == myUnits &&
-     other.myRawUnits == myRawUnits;
+     other.myRawUnits == myRawUnits &&
+     other.cta == cta;
 
   @override
   int get hashCode =>
@@ -66,10 +70,11 @@ class GetVaultMarketGradingSignalResponse {
     (worthIt == null ? 0 : worthIt.hashCode) +
     (rawTier == null ? 0 : rawTier.hashCode) +
     (myUnits == null ? 0 : myUnits.hashCode) +
-    (myRawUnits == null ? 0 : myRawUnits.hashCode);
+    (myRawUnits == null ? 0 : myRawUnits.hashCode) +
+    (cta == null ? 0 : cta.hashCode);
 
   @override
-  String toString() => 'GetVaultMarketGradingSignalResponse[bookKey=$bookKey, rawMarkCents=$rawMarkCents, rawMarkQuality=$rawMarkQuality, graded=$graded, graders=$graders, worthIt=$worthIt, rawTier=$rawTier, myUnits=$myUnits, myRawUnits=$myRawUnits]';
+  String toString() => 'GetVaultMarketGradingSignalResponse[bookKey=$bookKey, rawMarkCents=$rawMarkCents, rawMarkQuality=$rawMarkQuality, graded=$graded, graders=$graders, worthIt=$worthIt, rawTier=$rawTier, myUnits=$myUnits, myRawUnits=$myRawUnits, cta=$cta]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -84,6 +89,9 @@ class GetVaultMarketGradingSignalResponse {
       json[r'rawTier'] = rawTier;
       json[r'myUnits'] = myUnits;
       json[r'myRawUnits'] = myRawUnits;
+    if (cta != null) {
+      json[r'cta'] = cta;
+    }
     return json;
   }
 
@@ -99,7 +107,7 @@ class GetVaultMarketGradingSignalResponse {
           ? null
           : num.parse(json[r'rawMarkCents'].toString()),
         rawMarkQuality: GetVaultMarketGradingSignalResponseRawMarkQualityEnum.fromJson(json[r'rawMarkQuality']),
-        graded: GetVaultMarketKeyStatResponse.listFromJson(json[r'graded']),
+        graded: GetVaultMarketGradingSignalResponseGraded.listFromJson(json[r'graded']),
         graders: GetVaultMarketGradingSignalResponseGraders.listFromJson(json[r'graders']),
         worthIt: mapValueOfType<bool>(json, r'worthIt'),
         rawTier: GetVaultMarketGradingSignalResponseRawTierEnum.fromJson(json[r'rawTier']),
@@ -109,6 +117,7 @@ class GetVaultMarketGradingSignalResponse {
         myRawUnits: json[r'myRawUnits'] == null
           ? null
           : num.parse(json[r'myRawUnits'].toString()),
+        cta: GetVaultMarketGradingSignalResponseCta.fromJson(json[r'cta']),
       );
     }
     return null;
@@ -161,16 +170,16 @@ class GetVaultMarketGradingSignalResponseRawMarkQualityEnum {
   String toJson() => value;
 
   static const none = GetVaultMarketGradingSignalResponseRawMarkQualityEnum._(r'none');
+  static const C = GetVaultMarketGradingSignalResponseRawMarkQualityEnum._(r'C');
   static const A = GetVaultMarketGradingSignalResponseRawMarkQualityEnum._(r'A');
   static const B = GetVaultMarketGradingSignalResponseRawMarkQualityEnum._(r'B');
-  static const C = GetVaultMarketGradingSignalResponseRawMarkQualityEnum._(r'C');
 
   /// List of all possible values in this [enum][GetVaultMarketGradingSignalResponseRawMarkQualityEnum].
   static const values = <GetVaultMarketGradingSignalResponseRawMarkQualityEnum>[
     none,
+    C,
     A,
     B,
-    C,
   ];
 
   static GetVaultMarketGradingSignalResponseRawMarkQualityEnum fromJson(dynamic value) =>
@@ -203,9 +212,9 @@ class GetVaultMarketGradingSignalResponseRawMarkQualityEnumTypeTransformer {
     if (data != null) {
       switch (data.toString()) {
         case r'none': return GetVaultMarketGradingSignalResponseRawMarkQualityEnum.none;
+        case r'C': return GetVaultMarketGradingSignalResponseRawMarkQualityEnum.C;
         case r'A': return GetVaultMarketGradingSignalResponseRawMarkQualityEnum.A;
         case r'B': return GetVaultMarketGradingSignalResponseRawMarkQualityEnum.B;
-        case r'C': return GetVaultMarketGradingSignalResponseRawMarkQualityEnum.C;
         default:
           if (allowNull == false) {
             throw ArgumentError('Unknown enum value to decode: $data');
@@ -233,15 +242,15 @@ class GetVaultMarketGradingSignalResponseRawTierEnum {
 
   String toJson() => value;
 
-  static const standard = GetVaultMarketGradingSignalResponseRawTierEnum._(r'standard');
   static const closed = GetVaultMarketGradingSignalResponseRawTierEnum._(r'closed');
+  static const standard = GetVaultMarketGradingSignalResponseRawTierEnum._(r'standard');
   static const deep = GetVaultMarketGradingSignalResponseRawTierEnum._(r'deep');
   static const thin = GetVaultMarketGradingSignalResponseRawTierEnum._(r'thin');
 
   /// List of all possible values in this [enum][GetVaultMarketGradingSignalResponseRawTierEnum].
   static const values = <GetVaultMarketGradingSignalResponseRawTierEnum>[
-    standard,
     closed,
+    standard,
     deep,
     thin,
   ];
@@ -275,8 +284,8 @@ class GetVaultMarketGradingSignalResponseRawTierEnumTypeTransformer {
   GetVaultMarketGradingSignalResponseRawTierEnum decode(dynamic data, {bool allowNull}) {
     if (data != null) {
       switch (data.toString()) {
-        case r'standard': return GetVaultMarketGradingSignalResponseRawTierEnum.standard;
         case r'closed': return GetVaultMarketGradingSignalResponseRawTierEnum.closed;
+        case r'standard': return GetVaultMarketGradingSignalResponseRawTierEnum.standard;
         case r'deep': return GetVaultMarketGradingSignalResponseRawTierEnum.deep;
         case r'thin': return GetVaultMarketGradingSignalResponseRawTierEnum.thin;
         default:

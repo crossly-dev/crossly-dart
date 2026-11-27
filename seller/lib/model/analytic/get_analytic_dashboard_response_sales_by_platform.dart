@@ -20,7 +20,7 @@ class GetAnalyticDashboardResponseSalesByPlatform {
 
   String platform;
 
-  String count;
+  num count;
 
   num revenue;
 
@@ -56,7 +56,9 @@ class GetAnalyticDashboardResponseSalesByPlatform {
       final json = value.cast<String, dynamic>();
       return GetAnalyticDashboardResponseSalesByPlatform(
         platform: mapValueOfType<String>(json, r'platform'),
-        count: mapValueOfType<String>(json, r'count'),
+        count: json[r'count'] == null
+          ? null
+          : num.parse(json[r'count'].toString()),
         revenue: json[r'revenue'] == null
           ? null
           : num.parse(json[r'revenue'].toString()),

@@ -26,6 +26,8 @@ class GetInboxConversationMessageResponseMessages {
     this.aiScamScore,
     this.aiSuggestedReply,
     this.aiTriagedAt,
+    this.offerAmount,
+    this.offerStatus,
   });
 
   String id;
@@ -54,6 +56,10 @@ class GetInboxConversationMessageResponseMessages {
 
   DateTime aiTriagedAt;
 
+  String offerAmount;
+
+  GetInboxConversationMessageResponseMessagesOfferStatusEnum offerStatus;
+
   @override
   bool operator ==(Object other) => identical(this, other) || other is GetInboxConversationMessageResponseMessages &&
      other.id == id &&
@@ -68,7 +74,9 @@ class GetInboxConversationMessageResponseMessages {
      other.aiUrgency == aiUrgency &&
      other.aiScamScore == aiScamScore &&
      other.aiSuggestedReply == aiSuggestedReply &&
-     other.aiTriagedAt == aiTriagedAt;
+     other.aiTriagedAt == aiTriagedAt &&
+     other.offerAmount == offerAmount &&
+     other.offerStatus == offerStatus;
 
   @override
   int get hashCode =>
@@ -85,10 +93,12 @@ class GetInboxConversationMessageResponseMessages {
     (aiUrgency == null ? 0 : aiUrgency.hashCode) +
     (aiScamScore == null ? 0 : aiScamScore.hashCode) +
     (aiSuggestedReply == null ? 0 : aiSuggestedReply.hashCode) +
-    (aiTriagedAt == null ? 0 : aiTriagedAt.hashCode);
+    (aiTriagedAt == null ? 0 : aiTriagedAt.hashCode) +
+    (offerAmount == null ? 0 : offerAmount.hashCode) +
+    (offerStatus == null ? 0 : offerStatus.hashCode);
 
   @override
-  String toString() => 'GetInboxConversationMessageResponseMessages[id=$id, conversationId=$conversationId, platformMessageId=$platformMessageId, sender=$sender, body=$body, attachments=$attachments, sentAt=$sentAt, syncedAt=$syncedAt, aiIntent=$aiIntent, aiUrgency=$aiUrgency, aiScamScore=$aiScamScore, aiSuggestedReply=$aiSuggestedReply, aiTriagedAt=$aiTriagedAt]';
+  String toString() => 'GetInboxConversationMessageResponseMessages[id=$id, conversationId=$conversationId, platformMessageId=$platformMessageId, sender=$sender, body=$body, attachments=$attachments, sentAt=$sentAt, syncedAt=$syncedAt, aiIntent=$aiIntent, aiUrgency=$aiUrgency, aiScamScore=$aiScamScore, aiSuggestedReply=$aiSuggestedReply, aiTriagedAt=$aiTriagedAt, offerAmount=$offerAmount, offerStatus=$offerStatus]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -123,6 +133,12 @@ class GetInboxConversationMessageResponseMessages {
     if (aiTriagedAt != null) {
       json[r'aiTriagedAt'] = aiTriagedAt.toUtc().toIso8601String();
     }
+    if (offerAmount != null) {
+      json[r'offerAmount'] = offerAmount;
+    }
+    if (offerStatus != null) {
+      json[r'offerStatus'] = offerStatus;
+    }
     return json;
   }
 
@@ -150,6 +166,8 @@ class GetInboxConversationMessageResponseMessages {
           : num.parse(json[r'aiScamScore'].toString()),
         aiSuggestedReply: mapValueOfType<String>(json, r'aiSuggestedReply'),
         aiTriagedAt: mapDateTime(json, r'aiTriagedAt', ''),
+        offerAmount: mapValueOfType<String>(json, r'offerAmount'),
+        offerStatus: GetInboxConversationMessageResponseMessagesOfferStatusEnum.fromJson(json[r'offerStatus']),
       );
     }
     return null;
@@ -187,4 +205,80 @@ class GetInboxConversationMessageResponseMessages {
     return map;
   }
 }
+
+
+class GetInboxConversationMessageResponseMessagesOfferStatusEnum {
+  /// Instantiate a new enum with the provided [value].
+  const GetInboxConversationMessageResponseMessagesOfferStatusEnum._(this.value);
+
+  /// The underlying value of this enum member.
+  final String value;
+
+  @override
+  String toString() => value ?? '';
+
+  String toJson() => value;
+
+  static const pending = GetInboxConversationMessageResponseMessagesOfferStatusEnum._(r'pending');
+  static const accepted = GetInboxConversationMessageResponseMessagesOfferStatusEnum._(r'accepted');
+  static const declined = GetInboxConversationMessageResponseMessagesOfferStatusEnum._(r'declined');
+  static const expired = GetInboxConversationMessageResponseMessagesOfferStatusEnum._(r'expired');
+  static const voided = GetInboxConversationMessageResponseMessagesOfferStatusEnum._(r'voided');
+
+  /// List of all possible values in this [enum][GetInboxConversationMessageResponseMessagesOfferStatusEnum].
+  static const values = <GetInboxConversationMessageResponseMessagesOfferStatusEnum>[
+    pending,
+    accepted,
+    declined,
+    expired,
+    voided,
+  ];
+
+  static GetInboxConversationMessageResponseMessagesOfferStatusEnum fromJson(dynamic value) =>
+    GetInboxConversationMessageResponseMessagesOfferStatusEnumTypeTransformer().decode(value);
+
+  static List<GetInboxConversationMessageResponseMessagesOfferStatusEnum> listFromJson(dynamic json, {bool emptyIsNull, bool growable,}) =>
+    json is List && json.isNotEmpty
+      ? json.map(GetInboxConversationMessageResponseMessagesOfferStatusEnum.fromJson).toList(growable: true == growable)
+      : true == emptyIsNull ? null : <GetInboxConversationMessageResponseMessagesOfferStatusEnum>[];
+}
+
+/// Transformation class that can [encode] an instance of [GetInboxConversationMessageResponseMessagesOfferStatusEnum] to String,
+/// and [decode] dynamic data back to [GetInboxConversationMessageResponseMessagesOfferStatusEnum].
+class GetInboxConversationMessageResponseMessagesOfferStatusEnumTypeTransformer {
+  factory GetInboxConversationMessageResponseMessagesOfferStatusEnumTypeTransformer() => _instance ??= const GetInboxConversationMessageResponseMessagesOfferStatusEnumTypeTransformer._();
+
+  const GetInboxConversationMessageResponseMessagesOfferStatusEnumTypeTransformer._();
+
+  String encode(GetInboxConversationMessageResponseMessagesOfferStatusEnum data) => data.value;
+
+  /// Decodes a [dynamic value][data] to a GetInboxConversationMessageResponseMessagesOfferStatusEnum.
+  ///
+  /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
+  /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
+  /// cannot be decoded successfully, then an [UnimplementedError] is thrown.
+  ///
+  /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
+  /// and users are still using an old app with the old code.
+  GetInboxConversationMessageResponseMessagesOfferStatusEnum decode(dynamic data, {bool allowNull}) {
+    if (data != null) {
+      switch (data.toString()) {
+        case r'pending': return GetInboxConversationMessageResponseMessagesOfferStatusEnum.pending;
+        case r'accepted': return GetInboxConversationMessageResponseMessagesOfferStatusEnum.accepted;
+        case r'declined': return GetInboxConversationMessageResponseMessagesOfferStatusEnum.declined;
+        case r'expired': return GetInboxConversationMessageResponseMessagesOfferStatusEnum.expired;
+        case r'voided': return GetInboxConversationMessageResponseMessagesOfferStatusEnum.voided;
+        default:
+          if (allowNull == false) {
+            throw ArgumentError('Unknown enum value to decode: $data');
+          }
+      }
+    }
+    return null;
+  }
+
+  /// Singleton [GetInboxConversationMessageResponseMessagesOfferStatusEnumTypeTransformer] instance.
+  static GetInboxConversationMessageResponseMessagesOfferStatusEnumTypeTransformer _instance;
+}
+
 
